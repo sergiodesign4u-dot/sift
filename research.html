@@ -1,0 +1,1613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sift - Research</title>
+<style>
+  :root {
+    --bg: #0c0c0e;
+    --bg-2: #111115;
+    --bg-3: #17171c;
+    --bg-4: #1e1e25;
+    --border: #2a2a35;
+    --border-light: #1e1e28;
+    --text: #e8e8ec;
+    --text-2: #a0a0b0;
+    --text-3: #66667a;
+    --accent: #7c6af7;
+    --accent-dim: #3a3470;
+    --accent-glow: rgba(124,106,247,0.12);
+    --green: #3ecf8e;
+    --green-dim: rgba(62,207,142,0.12);
+    --amber: #e8a838;
+    --amber-dim: rgba(232,168,56,0.12);
+    --red: #f06060;
+    --red-dim: rgba(240,96,96,0.12);
+    --radius: 8px;
+    --radius-lg: 12px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    font-size: 15px;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(12,12,14,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-light);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    height: 52px;
+  }
+
+  .nav-brand {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .nav-brand span {
+    color: var(--accent);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 6px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text-3);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: color 0.15s, background 0.15s;
+  }
+
+  .nav-links a:hover {
+    color: var(--text);
+    background: var(--bg-3);
+  }
+
+  /* LAYOUT */
+  .page {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 100px 40px 120px;
+  }
+
+  /* SECTIONS */
+  section {
+    padding-top: 80px;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+
+  h1 {
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    font-size: 26px;
+    font-weight: 650;
+    letter-spacing: -0.015em;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+
+  h4 {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 8px;
+    margin-top: 24px;
+  }
+
+  p {
+    color: var(--text-2);
+    margin-bottom: 14px;
+  }
+
+  p:last-child { margin-bottom: 0; }
+
+  .lead {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--text-2);
+    max-width: 680px;
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border-light);
+    margin: 60px 0;
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+  }
+
+  .card-grid {
+    display: grid;
+    gap: 16px;
+  }
+
+  .card-grid-2 { grid-template-columns: 1fr 1fr; }
+  .card-grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+  /* TABLES */
+  .table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    margin: 20px 0;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  th {
+    background: var(--bg-3);
+    color: var(--text-3);
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border-light);
+    color: var(--text-2);
+    vertical-align: top;
+  }
+
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--bg-3); }
+
+  .score-cell {
+    font-weight: 600;
+    font-size: 14px;
+    text-align: center;
+    width: 60px;
+  }
+
+  .s5 { color: var(--green); background: var(--green-dim); }
+  .s4 { color: #6ee7a0; }
+  .s3 { color: var(--amber); }
+  .s2 { color: #c88b40; }
+  .s1 { color: var(--red); background: var(--red-dim); }
+  .sna { color: var(--text-3); }
+
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+
+  .tag-hard { background: rgba(240,96,96,0.15); color: #f08080; }
+  .tag-soft { background: rgba(232,168,56,0.15); color: var(--amber); }
+  .tag-aspirational { background: var(--accent-glow); color: #a090ff; }
+  .tag-primary { background: var(--green-dim); color: var(--green); }
+  .tag-secondary { background: var(--amber-dim); color: var(--amber); }
+  .tag-later { background: var(--bg-4); color: var(--text-3); }
+  .tag-confirmed { background: var(--green-dim); color: var(--green); }
+  .tag-challenged { background: var(--amber-dim); color: var(--amber); }
+  .tag-changed { background: rgba(124,106,247,0.15); color: var(--accent); }
+
+  .badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 4px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  .badge-hypothesis { background: var(--amber-dim); color: var(--amber); }
+  .badge-verified { background: var(--green-dim); color: var(--green); }
+  .badge-unknown { background: var(--bg-4); color: var(--text-3); }
+
+  /* INTRO CARDS */
+  .key-conclusions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 32px;
+  }
+
+  .conclusion-card {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .conclusion-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--accent);
+    opacity: 0.5;
+  }
+
+  .conclusion-num {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .conclusion-card p {
+    font-size: 13px;
+    color: var(--text-2);
+    line-height: 1.55;
+  }
+
+  /* LEAN UX CANVAS */
+  .canvas-wrapper {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 36px;
+    margin: 32px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .canvas-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), #a090ff, var(--green));
+  }
+
+  .canvas-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-3);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .canvas-subtitle {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .canvas-credit {
+    font-size: 11px;
+    color: var(--text-3);
+    margin-bottom: 28px;
+  }
+
+  .canvas-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto auto;
+    gap: 12px;
+  }
+
+  .canvas-cell {
+    background: var(--bg-3);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius);
+    padding: 16px;
+  }
+
+  .canvas-cell.span-2 {
+    grid-column: span 2;
+  }
+
+  .canvas-cell-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 8px;
+  }
+
+  .canvas-cell-label span {
+    color: var(--accent);
+    margin-right: 4px;
+  }
+
+  .canvas-cell p {
+    font-size: 12.5px;
+    color: var(--text-2);
+    line-height: 1.55;
+    margin-bottom: 6px;
+  }
+
+  .canvas-cell p:last-child { margin-bottom: 0; }
+
+  .canvas-risk {
+    border-color: var(--accent-dim);
+    background: rgba(124,106,247,0.06);
+  }
+
+  .canvas-risk .canvas-cell-label { color: var(--accent); }
+
+  /* HYPOTHESIS CARDS */
+  .hypothesis-grid {
+    display: grid;
+    gap: 16px;
+    margin-top: 20px;
+  }
+
+  .hypothesis-card {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+
+  .hypothesis-card.riskiest {
+    border-color: var(--accent-dim);
+    background: rgba(124,106,247,0.04);
+  }
+
+  .hypothesis-id {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    padding-top: 2px;
+    min-width: 36px;
+  }
+
+  .hypothesis-card.riskiest .hypothesis-id { color: var(--accent); }
+
+  .hypothesis-body h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 14px;
+    letter-spacing: 0;
+  }
+
+  .h-if, .h-then, .h-because {
+    margin-bottom: 10px;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .h-label {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-right: 7px;
+    vertical-align: middle;
+  }
+
+  .h-if .h-label { background: rgba(62,207,142,0.2); color: var(--green); }
+  .h-then .h-label { background: var(--accent-glow); color: var(--accent); }
+  .h-because .h-label { background: var(--amber-dim); color: var(--amber); }
+
+  .h-if, .h-then { color: var(--text); }
+  .h-because { color: var(--text-2); }
+
+  .riskiest-flag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--accent);
+    background: var(--accent-glow);
+    border: 1px solid var(--accent-dim);
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+  }
+
+  /* SCREENSHOT GALLERY */
+  .gallery-label {
+    font-size: 12px;
+    color: var(--text-3);
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+
+  .gallery {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    padding-bottom: 12px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+    margin: 20px 0;
+  }
+
+  .gallery::-webkit-scrollbar { height: 4px; }
+  .gallery::-webkit-scrollbar-track { background: transparent; }
+  .gallery::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+  .gallery-item {
+    flex-shrink: 0;
+    width: 320px;
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    display: block;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+
+  .gallery-item img:hover {
+    transform: scale(1.02);
+    border-color: var(--accent-dim);
+  }
+
+  .gallery-caption {
+    font-size: 11px;
+    color: var(--text-3);
+    margin-top: 7px;
+    padding-left: 2px;
+  }
+
+  /* GAPS TABLE */
+  .gap-high { color: var(--green); }
+  .gap-medium { color: var(--amber); }
+
+  /* JTBD */
+  .jtbd-card {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    margin: 12px 0;
+    font-size: 14px;
+    color: var(--text-2);
+    font-style: italic;
+    line-height: 1.7;
+  }
+
+  /* SECTION HEADER */
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .section-num {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-3);
+  }
+
+  /* METRIC ROWS */
+  .metric-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin: 20px 0;
+  }
+
+  .metric-cell {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+  }
+
+  .metric-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 6px;
+  }
+
+  .metric-value {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+  }
+
+  .metric-note {
+    font-size: 11px;
+    color: var(--text-3);
+  }
+
+  /* COMPETITOR GRID */
+  .comp-name {
+    font-weight: 600;
+    color: var(--text);
+    font-size: 13px;
+  }
+
+  .comp-detail {
+    font-size: 12px;
+    color: var(--text-3);
+    margin-top: 2px;
+  }
+
+  /* INLINE CITE */
+  .cite {
+    font-size: 11px;
+    color: var(--text-3);
+    font-weight: 500;
+  }
+
+  /* PATTERN CARDS */
+  .pattern-card {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+
+  .pattern-card.chosen {
+    border-color: var(--accent-dim);
+    background: rgba(124,106,247,0.04);
+  }
+
+  .pattern-card.wont-fit {
+    border-color: rgba(240,96,96,0.3);
+    background: rgba(240,96,96,0.04);
+  }
+
+  .pattern-label {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+
+  .pattern-chosen { background: var(--accent-glow); color: var(--accent); }
+  .pattern-alt { background: var(--amber-dim); color: var(--amber); }
+  .pattern-no { background: rgba(240,96,96,0.15); color: var(--red); }
+
+  /* OPEN QUESTIONS */
+  .question-row {
+    border-bottom: 1px solid var(--border-light);
+    padding: 16px 0;
+  }
+  .question-row:last-child { border-bottom: none; }
+
+  .question-text {
+    font-size: 14px;
+    color: var(--text);
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+
+  .question-why {
+    font-size: 12.5px;
+    color: var(--text-3);
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border-light);
+    margin-top: 100px;
+    padding-top: 40px;
+    padding-bottom: 60px;
+    color: var(--text-3);
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .page > section:first-child { animation: fadeUp 0.5s ease; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .page { padding: 80px 20px 80px; }
+    .key-conclusions { grid-template-columns: 1fr; }
+    .canvas-grid { grid-template-columns: 1fr 1fr; }
+    .card-grid-2, .card-grid-3 { grid-template-columns: 1fr; }
+    .metric-row { grid-template-columns: 1fr; }
+    h1 { font-size: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="#intro"><span>S</span>ift</a>
+  <ul class="nav-links">
+    <li><a href="#canvas">Canvas</a></li>
+    <li><a href="#strategy">Strategy</a></li>
+    <li><a href="#aarrr">AARRR</a></li>
+    <li><a href="#competitors">Competitors</a></li>
+    <li><a href="#benchmark">Benchmark</a></li>
+    <li><a href="#patterns">Patterns</a></li>
+    <li><a href="#conclusions">Conclusions</a></li>
+  </ul>
+</nav>
+
+<div class="page">
+
+<!-- INTRO -->
+<section id="intro">
+  <div class="section-label">Research - June 2026</div>
+  <h1>From signal to decision</h1>
+  <p class="lead">Sift is a B2B SaaS that turns scattered customer feedback into clear, prioritized product decisions. Every roadmap item is traceable back to the real user voices behind it. This document is the complete research foundation for the product design sprint.</p>
+
+  <div class="key-conclusions">
+    <div class="conclusion-card">
+      <div class="conclusion-num">01</div>
+      <p>The synthesis trust gap is real and undefended. No direct competitor demonstrates a trustworthy full-chain synthesis with honest confidence levels on public pages.</p>
+    </div>
+    <div class="conclusion-card">
+      <div class="conclusion-num">02</div>
+      <p>The "confident PM defending her roadmap" positioning is unclaimed. All HARD competitors target broad teams; no one owns the PM-specific evidence story.</p>
+    </div>
+    <div class="conclusion-card">
+      <div class="conclusion-num">03</div>
+      <p>The market has converged on AI capture and classification. AI synthesis that a PM can trust enough to act on is not the dominant pattern - it is the open opportunity.</p>
+    </div>
+    <div class="conclusion-card">
+      <div class="conclusion-num">04</div>
+      <p>Trust is earned through decomposability and inline citation, not through confident-sounding outputs. Showing the work is the mechanism, not the output quality.</p>
+    </div>
+    <div class="conclusion-card">
+      <div class="conclusion-num">05</div>
+      <p>The shareable evidence brief is simultaneously the acquisition asset, the retention hook, and the referral artifact. Building it well is the highest-leverage early investment.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- LEAN UX CANVAS -->
+<section id="canvas">
+  <div class="section-label">Lean UX Canvas v2</div>
+  <h2>Executive Summary</h2>
+  <p>One-glance synthesis of all research findings, placed here for executive context before the detailed sections follow.</p>
+
+  <div class="canvas-wrapper">
+    <div class="canvas-title">Lean UX Canvas v2</div>
+    <div class="canvas-subtitle">Sift - Feedback Synthesis to Defensible Decision</div>
+    <div class="canvas-credit">Framework by Jeff Gothelf, Lean UX Canvas v2 - populated from research conducted June 2026</div>
+
+    <div class="canvas-grid">
+
+      <div class="canvas-cell">
+        <div class="canvas-cell-label"><span>1</span> Business Problem</div>
+        <p>Product teams at B2B mid-market SaaS companies cannot make confident, evidence-backed roadmap decisions because customer feedback is scattered across 3-7 disconnected tools, synthesis is manual and unreliable, and every prioritization call can be challenged by sales or leadership with no traceable evidence to counter it.</p>
+      </div>
+
+      <div class="canvas-cell">
+        <div class="canvas-cell-label"><span>2</span> Business Outcomes</div>
+        <p>60% of activated users cite Sift as primary input for roadmap decisions within 90 days.</p>
+        <p>Planning session time under 25 minutes.</p>
+        <p>Free-to-paid conversion 8-12% within 60 days.</p>
+        <p>12-month NRR 110%+.</p>
+      </div>
+
+      <div class="canvas-cell">
+        <div class="canvas-cell-label"><span>3</span> Users</div>
+        <p><strong style="color:var(--text)">Primary:</strong> PM at B2B SaaS, 28-38, 3-8 years experience, drowning in scattered signal, needs defensible prioritization.</p>
+        <p><strong style="color:var(--text)">Secondary:</strong> Head/VP of Product managing 3-8 PMs, presenting evidence-backed strategy to leadership.</p>
+      </div>
+
+      <div class="canvas-cell">
+        <div class="canvas-cell-label"><span>4</span> User Outcomes and Benefits</div>
+        <p>Finish a prioritization session in under 25 minutes with defensible evidence, not guesswork.</p>
+        <p>Say "Sift shows this is the top priority" in a stakeholder meeting and mean it.</p>
+        <p>Close the loop with sales: here is the evidence behind why we are building this.</p>
+      </div>
+
+      <div class="canvas-cell span-2">
+        <div class="canvas-cell-label"><span>5</span> Solutions (MVP Scope)</div>
+        <p>Feedback ingestion from 3-5 sources (Intercom, Zendesk, Gong, reviews, CSV). AI synthesis into transparent theme clusters with evidence counts. Full drill-down: theme - evidence items (n=X) - raw source text. Honest confidence display (sample size visible, thin evidence flagged). Prioritization view with scoreable themes. Shareable public evidence brief. Free: 250 items/month, 1 integration, themes visible. Paid: unlimited + full traceability + team features.</p>
+      </div>
+
+      <div class="canvas-cell span-2">
+        <div class="canvas-cell-label"><span>6</span> Hypotheses</div>
+        <p><strong style="color:var(--text)">H1 (riskiest):</strong> If synthesis is transparent and traceable, PMs will trust it enough to act without re-synthesizing raw data themselves.</p>
+        <p><strong style="color:var(--text)">H2:</strong> If first synthesis uses real data and confirms something the PM already suspected, activation will complete.</p>
+        <p><strong style="color:var(--text)">H3:</strong> If evidence briefs are shareable as public links, sharing will become the primary organic acquisition channel.</p>
+        <p><strong style="color:var(--text)">H4:</strong> If upgrade prompts are context-specific, conversion will exceed a generic upgrade wall.</p>
+      </div>
+
+      <div class="canvas-cell canvas-risk">
+        <div class="canvas-cell-label"><span>7</span> Riskiest Assumption</div>
+        <p>PMs will trust Sift's AI synthesis enough to act on a real roadmap decision without re-synthesizing the raw data themselves. If false, the core time-saving value fails.</p>
+      </div>
+
+      <div class="canvas-cell">
+        <div class="canvas-cell-label"><span>8</span> Smallest Test</div>
+        <p>Show a PM their own feedback synthesized into 3-5 themes with evidence counts. Ask: "Would you present this in a roadmap review without auditing the raw data first?" A "yes" validates H1. Target: 6 out of 10 PMs in prototype interviews say yes.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- STRATEGY -->
+<section id="strategy">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2>Strategy</h2>
+  </div>
+
+  <h3>Objectives</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Objective</th>
+          <th>Metric</th>
+          <th>Target</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="color:var(--accent);font-weight:700">1</td>
+          <td><span style="color:var(--text)">PMs trust and act on Sift synthesis</span></td>
+          <td>% citing Sift as primary input for last roadmap change</td>
+          <td>60% of activated users at 90 days <span class="badge badge-hypothesis">Hypothesis</span></td>
+        </tr>
+        <tr>
+          <td style="color:var(--accent);font-weight:700">2</td>
+          <td><span style="color:var(--text)">Faster prioritization sessions</span></td>
+          <td>Avg. time from session start to decision</td>
+          <td>Under 25 minutes <span class="badge badge-hypothesis">Hypothesis</span></td>
+        </tr>
+        <tr>
+          <td style="color:var(--accent);font-weight:700">3</td>
+          <td><span style="color:var(--text)">Free-to-paid conversion</span></td>
+          <td>Conversion within 60 days of hitting limit</td>
+          <td>8-12% <span class="badge badge-hypothesis">Hypothesis</span></td>
+        </tr>
+        <tr>
+          <td style="color:var(--accent);font-weight:700">4</td>
+          <td><span style="color:var(--text)">Team retention and expansion</span></td>
+          <td>12-month net revenue retention</td>
+          <td>110%+ <span class="badge badge-hypothesis">Hypothesis</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin-top:32px">Audience Segments</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Segment</th>
+          <th>Profile</th>
+          <th>JTBD</th>
+          <th>Priority</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="comp-name">The Overloaded PM</span></td>
+          <td>PM at B2B SaaS, 28-38, 3-8 years, manual synthesis today, lives in Jira/Linear</td>
+          <td>When planning sessions come up, want trustworthy traceable synthesis to make a defensible call</td>
+          <td><span class="tag tag-primary">Primary</span></td>
+        </tr>
+        <tr>
+          <td><span class="comp-name">The Evidence-Hungry Product Lead</span></td>
+          <td>Head/VP Product, 35-45, manages 3-8 PMs, presents strategy to board</td>
+          <td>When presenting to leadership, want systematic evidence behind each priority</td>
+          <td><span class="tag tag-secondary">Secondary</span></td>
+        </tr>
+        <tr>
+          <td><span class="comp-name">The Signal Supplier</span></td>
+          <td>CS Manager or Support Lead, daily customer contact, insights lost in transit</td>
+          <td>When sharing feedback, want to see it was heard and used</td>
+          <td><span class="tag tag-later">Later</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin-top:32px">Primary JTBD</h3>
+  <div class="jtbd-card">
+    "When I have a roadmap planning session coming up, I want to see a trustworthy synthesis of what customers are saying - with evidence I can trace - so that I can make a confident, defensible prioritization call and not just guess."
+  </div>
+
+  <h3 style="margin-top:32px">Business Model</h3>
+  <div class="card-grid card-grid-2" style="margin-top:16px">
+    <div class="card">
+      <h4>Free Plan</h4>
+      <p style="font-size:13px">Up to 250 feedback items/month. Theme clusters visible (names and counts). 1 integration. Single-user workspace. No evidence drill-down. No team features. No sharing or export.</p>
+      <p style="font-size:12px;color:var(--text-3)">Goal: Let the team experience the synthesis quality before hitting the evidence-tracing wall.</p>
+    </div>
+    <div class="card">
+      <h4>Paid Plans <span class="badge badge-hypothesis">Hypothesis</span></h4>
+      <p style="font-size:13px">Starter (~$30-40/seat/mo): unlimited signal, full traceability, 3+ integrations. Growth (~$20-25/seat/mo, 5-20 seats): team features, roadmap sync. Enterprise: custom.</p>
+      <p style="font-size:12px;color:var(--text-3)">All pricing unvalidated. Willingness-to-pay research required before setting prices.</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top:32px">Riskiest Assumption</h3>
+  <div class="card" style="border-color:var(--accent-dim);background:rgba(124,106,247,0.04);margin-top:12px">
+    <p style="font-size:14px;color:var(--text)"><strong>PMs will trust Sift's AI synthesis enough to act on a real roadmap decision without re-synthesizing the raw data themselves.</strong></p>
+    <p style="font-size:13px;margin-top:8px">If false, the core time-saving value fails. Sift becomes another data source they process manually. See Hypothesis H1 in Section 7.</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- AARRR -->
+<section id="aarrr">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2>AARRR Funnel</h2>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Stage</th>
+          <th>Primary metric</th>
+          <th>Target</th>
+          <th>MVP decision</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong style="color:var(--text)">Acquisition</strong></td>
+          <td>Organic/PLG signups/month</td>
+          <td>200/month at 6 months <span class="badge badge-hypothesis">H</span></td>
+          <td>Build shareable evidence brief as acquisition asset</td>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--text)">Activation</strong></td>
+          <td>% completing first synthesis on own data within 7 days</td>
+          <td>40% <span class="badge badge-hypothesis">H</span></td>
+          <td>CSV import + Intercom as first connections; reach synthesis fast</td>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--text)">Retention</strong></td>
+          <td>Week-4 retention rate (activated users)</td>
+          <td>50% <span class="badge badge-hypothesis">H</span></td>
+          <td>"New signal since last session" digest as re-engagement hook</td>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--text)">Revenue</strong></td>
+          <td>Free-to-paid conversion within 60 days of limit</td>
+          <td>10% <span class="badge badge-hypothesis">H</span></td>
+          <td>Context-specific upgrade prompt at the exact gated feature</td>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--text)">Referral</strong></td>
+          <td>% signups attributed to referral</td>
+          <td>25% at 12 months <span class="badge badge-hypothesis">H</span></td>
+          <td>Public shareable brief with "made with Sift" attribution</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card-grid card-grid-2" style="margin-top:24px">
+    <div class="card">
+      <h3>The brief is everything</h3>
+      <p style="font-size:13px">The evidence brief drives acquisition (shared publicly), referral (circulates in org tools), and retention (team becomes dependent). It is the single most impactful early product investment for AARRR.</p>
+    </div>
+    <div class="card">
+      <h3>Activate on real data only</h3>
+      <p style="font-size:13px">Demo data does not create trust. The activation moment is "I see a theme from my own feedback that I already suspected is real." Confirmation with evidence, not discovery of something new.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- COMPETITORS -->
+<section id="competitors">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2>Competitive Analysis</h2>
+  </div>
+
+  <p>Sources: live product sites and pricing pages, fetched June 2026. Screens captured via Playwright into research/screens/.</p>
+
+  <h3 style="margin-top:28px">Competitor Groups</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Group</th>
+          <th>Why in group</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="comp-name">Productboard</span></td>
+          <td><span class="tag tag-hard">Hard</span></td>
+          <td>Direct competitor: centralizes feedback, generates roadmaps, AI synthesis via Spark</td>
+        </tr>
+        <tr>
+          <td><span class="comp-name">Canny</span></td>
+          <td><span class="tag tag-hard">Hard</span></td>
+          <td>Direct competitor: AI autopilot for capture, vote-based roadmap, most widely adopted mid-market</td>
+        </tr>
+        <tr>
+          <td><span class="comp-name">Enterpret</span></td>
+          <td><span class="tag tag-hard">Hard</span></td>
+          <td>AI synthesis layer: adaptive taxonomy, 50+ integrations, enterprise-focused intelligence infra</td>
+        </tr>
+        <tr>
+          <td><span class="comp-name">Dovetail</span></td>
+          <td><span class="tag tag-soft">Soft</span></td>
+          <td>Same JTBD (evidence-based decisions) from the research angle. "Build with facts not vibes."</td>
+        </tr>
+        <tr>
+          <td><span class="comp-name">Jira Product Discovery</span></td>
+          <td><span class="tag tag-soft">Soft</span></td>
+          <td>Same JTBD via Atlassian ecosystem. Absorbed Cycle's team. Free tier with Jira integration.</td>
+        </tr>
+        <tr>
+          <td><span class="comp-name">Linear</span></td>
+          <td><span class="tag tag-aspirational">Aspirational</span></td>
+          <td>Gold standard for craft, density, and clarity. Not a functional competitor.</td>
+        </tr>
+        <tr>
+          <td><span class="comp-name">Perplexity AI</span></td>
+          <td><span class="tag tag-aspirational">Aspirational</span></td>
+          <td>Best-in-class citation transparency. Direct model for how Sift should show evidence.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gallery-label" style="margin-top:28px">Competitor screens (public/pre-login pages only)</div>
+  <div class="gallery">
+    <div class="gallery-item">
+      <img src="research/screens/productboard-homepage.png" alt="Productboard homepage">
+      <div class="gallery-caption">Productboard - Homepage</div>
+    </div>
+    <div class="gallery-item">
+      <img src="research/screens/productboard-pricing.png" alt="Productboard pricing">
+      <div class="gallery-caption">Productboard - Spark Pricing ($15/maker/mo billed annually)</div>
+    </div>
+    <div class="gallery-item">
+      <img src="research/screens/canny-homepage.png" alt="Canny homepage">
+      <div class="gallery-caption">Canny - Homepage</div>
+    </div>
+    <div class="gallery-item">
+      <img src="research/screens/canny-pricing.png" alt="Canny pricing">
+      <div class="gallery-caption">Canny - Pricing (Free/Pro $79/Business custom)</div>
+    </div>
+    <div class="gallery-item">
+      <img src="research/screens/enterpret-homepage.png" alt="Enterpret homepage">
+      <div class="gallery-caption">Enterpret - Homepage (Enterprise only, contact sales)</div>
+    </div>
+    <div class="gallery-item">
+      <img src="research/screens/dovetail-homepage.png" alt="Dovetail homepage">
+      <div class="gallery-caption">Dovetail - "Build with facts, not vibes"</div>
+    </div>
+    <div class="gallery-item">
+      <img src="research/screens/dovetail-pricing.png" alt="Dovetail pricing">
+      <div class="gallery-caption">Dovetail - Pricing (Free/Enterprise 2-tier)</div>
+    </div>
+    <div class="gallery-item">
+      <img src="research/screens/jira-product-discovery-homepage.png" alt="Jira Product Discovery">
+      <div class="gallery-caption">Jira Product Discovery - Post-Cycle acquisition</div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:36px">Comparison Matrix</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Audience</th>
+          <th>Key mechanism</th>
+          <th>Trust signal</th>
+          <th>Pricing</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="comp-name">Productboard</div>
+            <div class="comp-detail"><span class="tag tag-hard" style="margin-top:4px">Hard</span></div>
+          </td>
+          <td>Enterprise + scaling orgs, 6,000+ teams</td>
+          <td>LLM workflow prompts (Spark), feedback classification, roadmap views</td>
+          <td class="cite">[? behind login]</td>
+          <td style="white-space:nowrap">$19-59/maker/mo <span class="cite">(productboard.com/pricing)</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="comp-name">Canny</div>
+            <div class="comp-detail"><span class="tag tag-hard" style="margin-top:4px">Hard</span></div>
+          </td>
+          <td>Mid-market cross-functional, 100K+ companies</td>
+          <td>AI Autopilot captures from Gong/Intercom/Slack; vote aggregation; public roadmap</td>
+          <td>Vote counts + linked feedback per feature visible pre-login</td>
+          <td style="white-space:nowrap">Free 25 users, Pro $79/mo <span class="cite">(canny.io/pricing)</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="comp-name">Enterpret</div>
+            <div class="comp-detail"><span class="tag tag-hard" style="margin-top:4px">Hard</span></div>
+          </td>
+          <td>High-velocity enterprise: Canva, Notion, Apollo</td>
+          <td>5-level adaptive taxonomy, 50+ integrations, NL querying ("Why are customers churning?")</td>
+          <td>Positions as infrastructure, not answer layer. Honest about being the synthesis layer.</td>
+          <td>Enterprise only, contact sales</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="comp-name">Dovetail</div>
+            <div class="comp-detail"><span class="tag tag-soft" style="margin-top:4px">Soft</span></div>
+          </td>
+          <td>Design/research first, expanding to product + CX</td>
+          <td>AI tags + insight docs with source clips. "Build with facts, not vibes."</td>
+          <td>Clip-level evidence - insight docs link back to specific video/text quotes</td>
+          <td style="white-space:nowrap">Free (1 project), Enterprise custom <span class="cite">(dovetail.com/pricing)</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="comp-name">Jira Product Discovery</div>
+            <div class="comp-detail"><span class="tag tag-soft" style="margin-top:4px">Soft</span></div>
+          </td>
+          <td>Atlassian-native PM teams, scaled to enterprise</td>
+          <td>Configurable scoring + Jira backlog link + Cycle team's approach to discovery</td>
+          <td class="cite">[? behind login]</td>
+          <td style="white-space:nowrap">Free 3 creators, $10-25/creator/mo <span class="cite">(atlassian.com/jira/product-discovery/pricing)</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card-grid card-grid-3" style="margin-top:28px">
+    <div class="card">
+      <h4>3 Common Patterns</h4>
+      <p style="font-size:13px">1. AI for capture and classification, not trusted synthesis.</p>
+      <p style="font-size:13px">2. Free tiers create desire, not full value - volume/collaboration limits are the universal conversion lever.</p>
+      <p style="font-size:13px">3. Broad multi-team positioning dilutes the PM story.</p>
+    </div>
+    <div class="card">
+      <h4>3 Key Differences</h4>
+      <p style="font-size:13px">1. Infrastructure (Enterpret) vs. workflow tool (Productboard, Canny) vs. research layer (Dovetail).</p>
+      <p style="font-size:13px">2. Bottom-up PLG (Canny, JPD) vs. top-down enterprise sales (Enterpret).</p>
+      <p style="font-size:13px">3. Customer-facing (Canny: public roadmap) vs. internal-only (all others).</p>
+    </div>
+    <div class="card" style="border-color:var(--accent-dim)">
+      <h4 style="color:var(--accent)">The Gap (Sift's Opening)</h4>
+      <p style="font-size:13px">No competitor demonstrates a transparent, traceable synthesis chain (signal to theme to evidence to decision) with honest confidence levels and challengeable conclusions. This is Sift's primary differentiator.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- BENCHMARK -->
+<section id="benchmark">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <h2>Benchmark: Trust in the Synthesis</h2>
+  </div>
+
+  <p>5 best-in-class products evaluated outside the direct competitor set, scored against 8 criteria for trust and traceability.</p>
+
+  <div class="gallery-label" style="margin-top:20px">Benchmark product screens</div>
+  <div class="gallery">
+    <div class="gallery-item">
+      <img src="research/screens/perplexity-homepage.png" alt="Perplexity AI">
+      <div class="gallery-caption">Perplexity AI - Inline citation transparency benchmark</div>
+    </div>
+    <div class="gallery-item">
+      <img src="research/screens/amplitude-homepage.png" alt="Amplitude">
+      <div class="gallery-caption">Amplitude - Drill-down from metric to raw event</div>
+    </div>
+    <div class="gallery-item">
+      <img src="research/screens/linear-homepage.png" alt="Linear">
+      <div class="gallery-caption">Linear - Density without noise, aspirational craft</div>
+    </div>
+    <div class="gallery-item">
+      <img src="research/screens/linear-method.png" alt="Linear Method">
+      <div class="gallery-caption">Linear Method - Design principles for product tooling</div>
+    </div>
+    <div class="gallery-item">
+      <img src="research/screens/linear-pricing.png" alt="Linear Pricing">
+      <div class="gallery-caption">Linear Pricing - From free to $16/user/mo Business</div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:28px">Scores</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th title="How clearly the method of producing the conclusion is visible">Transparency</th>
+          <th title="Can the user trace from conclusion to raw source?">Evidence trace</th>
+          <th title="Does the tool represent evidence strength honestly?">Confidence honesty</th>
+          <th title="Does the tool acknowledge mixed or contradictory evidence?">Conflict handling</th>
+          <th title="Are sources shown inline, adjacent to claims?">Inline citation</th>
+          <th title="Dense data without visual noise">Density</th>
+          <th title="Can the user challenge or edit conclusions?">Override</th>
+          <th title="Does the synthesis build on previous sessions?">Memory</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong style="color:var(--text)">Perplexity AI</strong></td>
+          <td class="score-cell s3">3</td>
+          <td class="score-cell s5">5</td>
+          <td class="score-cell s4">4</td>
+          <td class="score-cell s3">3</td>
+          <td class="score-cell s5">5</td>
+          <td class="score-cell s4">4</td>
+          <td class="score-cell s2">2</td>
+          <td class="score-cell s1">1</td>
+          <td style="font-weight:700;color:var(--text)">27/40</td>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--text)">Amplitude</strong></td>
+          <td class="score-cell s4">4</td>
+          <td class="score-cell s5">5</td>
+          <td class="score-cell s3">3</td>
+          <td class="score-cell s3">3</td>
+          <td class="score-cell s3">3</td>
+          <td class="score-cell s4">4</td>
+          <td class="score-cell s4">4</td>
+          <td class="score-cell s4">4</td>
+          <td style="font-weight:700;color:var(--green)">30/40</td>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--text)">Linear</strong></td>
+          <td class="score-cell s2">2</td>
+          <td class="score-cell s3">3</td>
+          <td class="score-cell sna">N/A</td>
+          <td class="score-cell s2">2</td>
+          <td class="score-cell s3">3</td>
+          <td class="score-cell s5">5</td>
+          <td class="score-cell s5">5</td>
+          <td class="score-cell s4">4</td>
+          <td style="font-weight:700;color:var(--text)">24/35*</td>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--text)">Grain</strong></td>
+          <td class="score-cell s2">2</td>
+          <td class="score-cell s5">5</td>
+          <td class="score-cell s2">2</td>
+          <td class="score-cell s2">2</td>
+          <td class="score-cell s4">4</td>
+          <td class="score-cell s3">3</td>
+          <td class="score-cell s3">3</td>
+          <td class="score-cell s3">3</td>
+          <td style="font-weight:700;color:var(--text)">24/40</td>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--text)">Notion</strong></td>
+          <td class="score-cell s2">2</td>
+          <td class="score-cell s3">3</td>
+          <td class="score-cell s1">1</td>
+          <td class="score-cell s1">1</td>
+          <td class="score-cell s3">3</td>
+          <td class="score-cell s3">3</td>
+          <td class="score-cell s5">5</td>
+          <td class="score-cell s3">3</td>
+          <td style="font-weight:700;color:var(--text-3)">21/40</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:12px;color:var(--text-3);margin-top:6px">*Linear scored out of 35 (Confidence honesty N/A - not a synthesis tool). Scale: 5 = best-in-class, 1 = absent or broken.</p>
+
+  <h3 style="margin-top:36px">Top 3 Mechanisms to Carry into MVP</h3>
+  <div class="card-grid card-grid-3" style="margin-top:16px">
+    <div class="card" style="border-top:3px solid var(--green)">
+      <h4 style="color:var(--green)">Mechanism 1</h4>
+      <h3>Inline numbered citation</h3>
+      <p style="font-size:13px">From Perplexity AI. Every synthesis theme gets an inline citation count (n=47). Clicking opens the evidence list. <strong style="color:var(--text)">The affordance of verifiability is the trust mechanism</strong> - users do not need to audit every claim, they need to know they can.</p>
+    </div>
+    <div class="card" style="border-top:3px solid var(--accent)">
+      <h4 style="color:var(--accent)">Mechanism 2</h4>
+      <h3>Progressive drill-down</h3>
+      <p style="font-size:13px">From Amplitude. Theme - Evidence items (n=X) - Full original text. The chain is accessible without leaving the view. <strong style="color:var(--text)">Decomposability is the rational foundation of trust.</strong> The user trusts the summary because they know they can audit it.</p>
+    </div>
+    <div class="card" style="border-top:3px solid var(--amber)">
+      <h4 style="color:var(--amber)">Mechanism 3</h4>
+      <h3>Honest confidence display</h3>
+      <p style="font-size:13px">From Perplexity + Amplitude combined. Every theme shows item count, source diversity, and a confidence indicator. Thin evidence is flagged. <strong style="color:var(--text)">Honesty about weak evidence increases trust in strong evidence.</strong></p>
+    </div>
+  </div>
+
+  <div class="card" style="border-color:rgba(240,96,96,0.3);background:rgba(240,96,96,0.03);margin-top:16px">
+    <h4 style="color:var(--red)">1 Mechanism That Will NOT Work</h4>
+    <h3>Fully automated synthesis with no visible reasoning</h3>
+    <p style="font-size:13px">Observed in Canny Autopilot and early Productboard AI. Presents conclusions without showing method. The skeptical PM who needs to defend conclusions cannot say "because the AI said so" in a roadmap review. One bad synthesis experience destroys trust permanently. A tool that shows its reasoning fails gracefully; a tool that hides it fails catastrophically.</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- UX PATTERNS -->
+<section id="patterns">
+  <div class="section-header">
+    <span class="section-num">06</span>
+    <h2>UX Patterns</h2>
+  </div>
+
+  <h3>Core Behavioral Patterns</h3>
+  <div class="table-wrap" style="margin-top:16px">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Pattern</th>
+          <th>Implication for Sift</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong style="color:var(--accent)">B1</strong></td>
+          <td><span style="color:var(--text);font-weight:600">Synthesis-first, detail-on-demand</span> <span class="badge badge-hypothesis" style="background:var(--accent-glow);color:var(--accent)">Entry Point</span></td>
+          <td>Synthesis view is always primary. Raw feedback is accessible but never the starting point.</td>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--text-3)">B2</strong></td>
+          <td><span style="color:var(--text)">Evidence as a social object</span></td>
+          <td>Export and share are primary use cases. Brief must read independently of Sift context.</td>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--text-3)">B3</strong></td>
+          <td><span style="color:var(--text)">Trust through spot-checking</span></td>
+          <td>Show the most obvious theme first. Give the PM an early win on first session.</td>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--text-3)">B4</strong></td>
+          <td><span style="color:var(--text)">Context-switching cost aversion</span></td>
+          <td>Every key view delivers value in 10-15 minutes. Jira/Linear integration is retention-critical.</td>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--text-3)">B5</strong></td>
+          <td><span style="color:var(--text)">Retrospective synthesis over real-time monitoring</span></td>
+          <td>Default to synthesis on demand, not live dashboard. Low-volume session-oriented notifications.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin-top:32px">Pattern Selection</h3>
+
+  <div class="pattern-card chosen">
+    <div class="pattern-label pattern-chosen">Primary choice</div>
+    <h3>The Report + Evidence Brief (Patterns C + E)</h3>
+    <p style="font-size:13px">The core experience is a synthesis-on-demand report. The PM opens Sift, the synthesis of their current feedback is visible (auto-updated), and they can drill from any theme to its evidence. The session output is a shareable evidence brief.</p>
+    <div class="card-grid card-grid-3" style="margin-top:16px">
+      <div style="background:var(--bg-4);border-radius:var(--radius);padding:14px">
+        <div style="font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px">Reason 1</div>
+        <p style="font-size:12px">JTBD alignment: the PM's job is to get to a defensible answer within a planning session. Report starts with conclusion, enables verification, produces shareable output.</p>
+      </div>
+      <div style="background:var(--bg-4);border-radius:var(--radius);padding:14px">
+        <div style="font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px">Reason 2</div>
+        <p style="font-size:12px">Competitor gap: no HARD competitor nails the report-with-drill-down for PM synthesis. The pattern is an open position in the market.</p>
+      </div>
+      <div style="background:var(--bg-4);border-radius:var(--radius);padding:14px">
+        <div style="font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px">Reason 3</div>
+        <p style="font-size:12px">Trust mechanism fit: inline citation + progressive drill-down enable synthesis-first, spot-check to verify, then act. The trust-building progression maps directly.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pattern-card" style="border-color:rgba(232,168,56,0.3);margin-top:12px">
+    <div class="pattern-label pattern-alt">Alternative under condition X</div>
+    <h3>The Inbox (Pattern B)</h3>
+    <p style="font-size:13px">If the target segment shifts to CS/Support Leads (Segment C), the inbox pattern becomes primary. CS teams do process feedback individually and want a triage view. Not chosen for MVP because the PM is the primary target and inbox does not scale to PM synthesis needs.</p>
+  </div>
+
+  <div class="pattern-card wont-fit" style="margin-top:12px">
+    <div class="pattern-label pattern-no">Does not fit</div>
+    <h3>The Canvas (Pattern D)</h3>
+    <p style="font-size:13px">Does not scale to hundreds of feedback items. Not repeatable across sessions. Trust in a canvas depends on the person who built it, not the system. Defeats the core promise of systematized, consistent synthesis that is trustworthy independently of who ran the session.</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CONCLUSIONS -->
+<section id="conclusions">
+  <div class="section-header">
+    <span class="section-num">07</span>
+    <h2>Conclusions</h2>
+  </div>
+
+  <h3>Gaps Table</h3>
+  <div class="table-wrap" style="margin-top:16px">
+    <table>
+      <thead>
+        <tr>
+          <th>Gap</th>
+          <th>Description</th>
+          <th>Source</th>
+          <th>Confidence</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="color:var(--text);font-weight:600">Synthesis trust chain</td>
+          <td>No competitor demonstrates full traceability from raw signal to decision with honest confidence on public pages</td>
+          <td class="cite">competitive-analysis.md, benchmark.md</td>
+          <td class="gap-high">High</td>
+        </tr>
+        <tr>
+          <td style="color:var(--text);font-weight:600">PM-specific positioning</td>
+          <td>"Confident PM defending her roadmap" story is unclaimed by any HARD competitor</td>
+          <td class="cite">competitive-analysis.md</td>
+          <td class="gap-high">High</td>
+        </tr>
+        <tr>
+          <td style="color:var(--text);font-weight:600">Honest confidence display</td>
+          <td>No direct competitor shows sample size and confidence level alongside synthesis conclusions</td>
+          <td class="cite">benchmark.md</td>
+          <td class="gap-high">High</td>
+        </tr>
+        <tr>
+          <td style="color:var(--text);font-weight:600">Evidence brief as product</td>
+          <td>The shareable evidence artifact is underbuilt across all competitors</td>
+          <td class="cite">aarrr.md, competitive-analysis.md</td>
+          <td class="gap-medium">Medium</td>
+        </tr>
+        <tr>
+          <td style="color:var(--text);font-weight:600">Free tier value delivery</td>
+          <td>Current free tiers too restrictive to create genuine "aha" moments at fair volume</td>
+          <td class="cite">competitive-analysis.md</td>
+          <td class="gap-medium">Medium</td>
+        </tr>
+        <tr>
+          <td style="color:var(--text);font-weight:600">Atlassian consolidation risk</td>
+          <td>JPD + Cycle acquisition could absorb the "good enough" mid-market via distribution advantage</td>
+          <td class="cite">competitive-analysis.md, cycle.app/blog</td>
+          <td class="gap-medium">Medium - monitor</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin-top:40px">6 Hypotheses (If / Then / Because)</h3>
+
+  <div class="hypothesis-grid">
+
+    <div class="hypothesis-card riskiest">
+      <div class="hypothesis-id">H1</div>
+      <div class="hypothesis-body">
+        <div class="riskiest-flag">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4" fill="currentColor" opacity="0.3"/><circle cx="5" cy="5" r="2" fill="currentColor"/></svg>
+          Riskiest assumption - failure kills the idea
+        </div>
+        <div class="h-if"><span class="h-label">If</span> we build synthesis that is transparent (method visible), traceable (drill-down to raw signal), and honest about confidence,</div>
+        <div class="h-then"><span class="h-label">Then</span> skeptical PMs will trust the synthesis enough to act on a real roadmap decision without re-synthesizing the raw data themselves,</div>
+        <div class="h-because"><span class="h-label">Because</span> the presence of verifiability - knowing you can audit any conclusion - is the psychological mechanism that creates calibrated trust, even when the user does not actually audit every claim. (Source: Perplexity citation pattern, benchmark.md)</div>
+      </div>
+    </div>
+
+    <div class="hypothesis-card">
+      <div class="hypothesis-id">H2</div>
+      <div class="hypothesis-body">
+        <h3>Activation</h3>
+        <div class="h-if"><span class="h-label">If</span> the PM's first synthesis session uses their own real feedback data and surfaces at least one theme they already suspected is real,</div>
+        <div class="h-then"><span class="h-label">Then</span> they will complete activation and not abandon during onboarding,</div>
+        <div class="h-because"><span class="h-label">Because</span> confirmation of known intuition with evidence is a lower-friction trust-building moment than discovery of something new. The PM validates "yes, that is real" and extends trust to unfamiliar themes.</div>
+      </div>
+    </div>
+
+    <div class="hypothesis-card">
+      <div class="hypothesis-id">H3</div>
+      <div class="hypothesis-body">
+        <h3>Evidence brief as viral loop</h3>
+        <div class="h-if"><span class="h-label">If</span> every PM can share a synthesis output as a public link (no Sift login required to view),</div>
+        <div class="h-then"><span class="h-label">Then</span> evidence brief sharing will become the primary organic acquisition channel,</div>
+        <div class="h-because"><span class="h-label">Because</span> the brief circulates in environments (Notion, Slack, Google Slides) where the audience is both receptive to PM tools and influential enough to adopt them.</div>
+      </div>
+    </div>
+
+    <div class="hypothesis-card">
+      <div class="hypothesis-id">H4</div>
+      <div class="hypothesis-body">
+        <h3>Conversion timing</h3>
+        <div class="h-if"><span class="h-label">If</span> the upgrade prompt appears at the specific moment the user is trying to use a gated feature (evidence drill-down, team sharing, additional integration),</div>
+        <div class="h-then"><span class="h-label">Then</span> the conversion rate will be meaningfully higher than a generic upgrade wall,</div>
+        <div class="h-because"><span class="h-label">Because</span> context-specific conversion connects the price to a concrete, immediate benefit. The user knows exactly what they are buying.</div>
+      </div>
+    </div>
+
+    <div class="hypothesis-card">
+      <div class="hypothesis-id">H5</div>
+      <div class="hypothesis-body">
+        <h3>The positioning gap</h3>
+        <div class="h-if"><span class="h-label">If</span> Sift positions specifically for the PM who needs to defend roadmap decisions with evidence (vs. broad "product + CS + sales + marketing" positioning of competitors),</div>
+        <div class="h-then"><span class="h-label">Then</span> PMs in the target segment will self-select into Sift over competing tools,</div>
+        <div class="h-because"><span class="h-label">Because</span> specificity creates stronger resonance with the segment that has the pain, even at the cost of reducing the addressable market on paper. Being the obvious choice for one segment outperforms being a good choice for five. (Source: competitive-analysis.md)</div>
+      </div>
+    </div>
+
+    <div class="hypothesis-card">
+      <div class="hypothesis-id">H6</div>
+      <div class="hypothesis-body">
+        <h3>Retention through team dependency</h3>
+        <div class="h-if"><span class="h-label">If</span> Sift's evidence briefs become a standard output for roadmap reviews (shared with the PM's team, engineering, and leadership),</div>
+        <div class="h-then"><span class="h-label">Then</span> individual PM retention becomes team-level retention,</div>
+        <div class="h-because"><span class="h-label">Because</span> shared artifacts create organizational lock-in that individual feature value cannot. The brief is the exit barrier, not the synthesis engine.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <h3 style="margin-top:40px">Open Questions</h3>
+  <div class="card" style="margin-top:16px;padding:0">
+    <div style="padding:0 4px">
+      <div class="question-row" style="padding:20px">
+        <div class="question-text">What is the exact baseline time PMs spend on manual feedback synthesis today?</div>
+        <div class="question-why">Needed to validate Objective 2 and sharpen activation/conversion messaging. [?] - no verified primary source found for specific hours figure.</div>
+      </div>
+      <div class="question-row" style="padding:20px">
+        <div class="question-text">Does Productboard Spark actually provide evidence traceability, or only AI workflow prompts?</div>
+        <div class="question-why">If Spark solves the trust chain problem, the differentiation argument narrows. Needs hands-on evaluation [? behind login for full assessment].</div>
+      </div>
+      <div class="question-row" style="padding:20px">
+        <div class="question-text">Will Jira Product Discovery absorb the synthesis market through Atlassian's distribution?</div>
+        <div class="question-why">If JPD builds credible synthesis post-Cycle acquisition, the "good enough" mid-market shrinks. Monitor JPD product releases quarterly.</div>
+      </div>
+      <div class="question-row" style="padding:20px">
+        <div class="question-text">What is the right free plan constraint - items/month or features/tier?</div>
+        <div class="question-why">Wrong limit kills activation (too low) or kills conversion (too high). A/B test in early beta.</div>
+      </div>
+      <div class="question-row" style="padding:20px">
+        <div class="question-text">What willingness-to-pay exists at $30-40/seat/month in the primary segment?</div>
+        <div class="question-why">Pricing hypothesis entirely unvalidated. Van Westendorp price sensitivity research needed with target PMs.</div>
+      </div>
+      <div class="question-row" style="padding:20px">
+        <div class="question-text">Do PMs share evidence briefs externally or keep them internal?</div>
+        <div class="question-why">Determines whether the brief viral loop (H3) actually activates. Observe brief sharing behavior in beta: track internal vs. external shares.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>Sift - Research Sprint - June 2026 - All competitor facts verified from live sources</div>
+  <div style="text-align:right">
+    <a href="research/master-research.md" style="color:var(--text-3);text-decoration:none">master-research.md</a>
+    <span style="margin:0 8px">-</span>
+    <a href="CLAUDE.md" style="color:var(--text-3);text-decoration:none">CLAUDE.md</a>
+  </div>
+</footer>
+
+</div>
+
+<script>
+  // Subtle scroll-activated nav highlight
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => {
+          link.style.color = '';
+          if (link.getAttribute('href') === '#' + entry.target.id) {
+            link.style.color = 'var(--text)';
+          }
+        });
+      }
+    });
+  }, { threshold: 0.25, rootMargin: '-52px 0px -60% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
