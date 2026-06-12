@@ -2,7 +2,7 @@
 
 B2B SaaS that turns scattered customer feedback into clear, prioritized product decisions. Every roadmap item is traceable back to the real user voices behind it.
 
-**Research:** [research.html](research.html) (see Status below for live link once deployed)
+**Live research page:** [https://sergiodesign4u-dot.github.io/sift/research.html](https://sergiodesign4u-dot.github.io/sift/research.html)
 
 ---
 
@@ -10,7 +10,7 @@ B2B SaaS that turns scattered customer feedback into clear, prioritized product 
 
 | Phase         | Status      |
 |---------------|-------------|
-| Research      | Not started |
+| Research      | Done (competitive analysis, benchmarks, strategy v1+v2, AARRR, UX patterns, master synthesis, research.html) |
 | Wireframes    | Not started |
 | Concept       | Not started |
 | Design System | Not started |
