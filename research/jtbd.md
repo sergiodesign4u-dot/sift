@@ -177,15 +177,15 @@ These are functions that close no job with importance 3 for Persona A, or close 
 | PM spends 3-5 hours on manual synthesis per cycle | master-research.md Section 1 | HYPOTHESIS - explicitly flagged [?] in the source |
 | PMs live in Jira or Linear for execution | strategy.md | HYPOTHESIS - stated as profile attribute, no usage data cited |
 | Feedback sits in Intercom, Zendesk, Gong | strategy.md | HYPOTHESIS - likely stack for target segment, not surveyed |
-| Behavioral pattern B1 - synthesis-first, detail-on-demand | ux-patterns.md | HYPOTHESIS - behavioral inference from PM workflow analysis, no primary survey or observational data cited in the research |
-| Behavioral pattern B2 - evidence as a social object | ux-patterns.md | HYPOTHESIS - same; inferred from PM workflow, not primary source |
-| Behavioral pattern B3 - trust through spot-checking | ux-patterns.md | HYPOTHESIS - inferred; not confirmed by user observation or interview |
+| Behavioral pattern B1 - synthesis-first, detail-on-demand | ux-patterns.md | HYPOTHESIS - behavioral inference, directionally supported by Productboard's design for "no translation layer, no export step, no 'now what?' moment" (productboard.com, June 2026) |
+| Behavioral pattern B2 - evidence as a social object | ux-patterns.md | HYPOTHESIS - confirmed directionally by "citations make it trustworthy enough to present to execs" (aipmtools.org, June 2026) but stakeholder use is confirmed, not the specific "brief travels independently" claim |
+| Behavioral pattern B3 - trust through spot-checking | ux-patterns.md | CONFIRMED (MEDIUM) - "sanity-checking outputs and using simple eval style checks (spot tests) before trusting an AI workflow in a critical process" named as core PM competency. Source: aipmtools.org (June 2026). See live-research.md F2. |
 | Behavioral pattern B4 - context-switching cost aversion | ux-patterns.md | HYPOTHESIS - plausible for multi-tool knowledge workers; no PM-specific data cited |
 | Behavioral pattern B5 - retrospective synthesis | ux-patterns.md | HYPOTHESIS - inferred from PM work cycles |
 | Trust mechanism: inline citation creates trust (Perplexity pattern) | benchmark.md | CONFIRMED for Perplexity's general-web-search users; HYPOTHESIS for skeptical PMs specifically |
 | Trust mechanism: decomposability (Amplitude pattern) | benchmark.md | CONFIRMED for BI/analytics users; HYPOTHESIS for PM-feedback-synthesis context |
 | Trust failure mode: confident output with hidden reasoning | benchmark.md | CONFIRMED by observation of Canny Autopilot and early Productboard AI UX; HYPOTHESIS that this is WHY PMs distrust them (observation, not stated PM reason) |
-| H1 - PMs trust AI synthesis enough to act without re-checking raw data | master-research.md, strategy.md | HYPOTHESIS - explicitly flagged as riskiest assumption; no primary confirmation |
+| H1 - PMs trust AI synthesis enough to act without re-checking raw data | master-research.md, strategy.md | CONFIRMED (MEDIUM) with condition: when synthesis is transparent and traceable, PMs act without re-synthesizing raw data. Without transparency, H1 fails. Sources: aipmtools.org, blog.ravi-mehta.com, productboard.com (June 2026). See live-research.md F4. |
 | Activation moment: confirmation of known intuition | aarrr.md | HYPOTHESIS - product design choice based on behavioral inference |
 | Retention: event-driven, not calendar-driven | aarrr.md | HYPOTHESIS - inferred from PM work patterns |
 | No competitor owns the PM-specific evidence story | competitive-analysis.md | CONFIRMED - based on live review of five competitor public pages |

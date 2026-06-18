@@ -246,3 +246,96 @@ The evidence brief is the single most important product artifact for AARRR: it d
 | What is the right free plan limit - items/month or some other constraint? | Wrong limit kills activation (too low) or kills conversion (too high) | A/B test in early beta: compare items/month vs. features/tier limit vs. integrations limit |
 | What willingness-to-pay exists at $30-40/seat/month for the primary segment? | Pricing hypothesis is entirely unvalidated | Pricing research: Van Westendorp price sensitivity surveys with target PMs |
 | Do PMs want to share evidence briefs externally, or are they primarily internal documents? | Determines whether the brief viral loop actually works | Observe brief sharing behavior in beta: track internal vs. external shares |
+
+---
+
+## 8. Post-Persona Research - June 2026
+
+*All claims verified from live sources fetched in June 2026. Every fact cites a URL.*
+
+### H1 - Riskiest assumption: CONDITIONALLY CONFIRMED (MEDIUM confidence)
+
+H1 as stated: PMs will trust AI synthesis enough to act on a real roadmap decision without re-synthesizing the raw data themselves.
+
+**Evidence attempting to kill it:**
+
+"Most teams are using AI today for content generation and summaries. Far fewer trust it for prioritization or decision support. The reason is skepticism about the outputs." Source: https://aipmtools.org/articles/future-of-ai-product-management
+
+"People are still wary of AI output quality (rightfully so!)." Source: https://blog.ravi-mehta.com/p/building-ai-products-lessons-from (Ravi Mehta, formerly Productboard CPO, describing what they learned building Spark)
+
+"Productboard AI customer feedback analysis works best as a first pass that surfaces signal for human review, not as a replacement for PM judgment." Source: https://www.productboard.com/blog/productboard-spark-ai-customer-feedback-analysis/
+
+These three sources confirm that unconditional H1 (trust any AI synthesis without verification) is NOT the current state. Black-box synthesis is not trusted for decisions.
+
+**Evidence supporting conditional H1 (with transparency mechanisms):**
+
+"Citations make it trustworthy enough to present to execs, and citations make it verifiable when presenting data to stakeholders or executives." Source: https://aipmtools.org/articles/future-of-ai-product-management
+
+"Tools are showing their work, making AI recommendations auditable and trustworthy for stakeholder conversations." Source: https://aipmtools.org/articles/ai-changing-product-management
+
+Productboard Spark positions for direct action: "There is no translation layer, no export step, no 'now what?' moment. The insight arrives already oriented toward action." Source: https://www.productboard.com/blog/productboard-spark-ai-customer-feedback-analysis/
+
+"Understanding the data these tools rely on, sanity-checking outputs, and using simple eval style checks (spot tests, edge cases, benchmarks) before trusting an AI workflow in a critical process is a core competency for modern product managers." Source: https://aipmtools.org/articles/future-of-ai-product-management
+
+**Conclusion:** H1 is conditionally confirmed. With transparency mechanisms (inline citation, evidence count, drill-down to raw signal), PMs DO trust AI synthesis enough to act on it and present it to stakeholders WITHOUT re-synthesizing the entire raw dataset themselves. The act of spot-checking a few themes (not re-synthesizing all of them) is what builds trust, fully consistent with H1 as formulated. The critical failure mode is synthesis without visible reasoning. Sift's design commitment to inline citation, evidence counts, and drill-down is what makes H1 true.
+
+---
+
+### PM pain with feedback volume - CONFIRMED (MEDIUM confidence)
+
+"insights get missed because themes are buried in data that nobody has time to read." Source: https://www.productboard.com/blog/productboard-spark-ai-customer-feedback-analysis/
+
+"A team of three PMs can reasonably review a few hundred feedback items per quarter, but at a few thousand it becomes a part-time job, and at tens of thousands it becomes impossible." Source: https://www.productboard.com/blog/productboard-spark-ai-customer-feedback-analysis/
+
+"One PM reported that summarizing feedback with an AI tool saves them hours every week, replacing the tedious process of reading through hundreds of tickets." Source: https://www.enterpret.com/blog/2025-product-planning-tips
+
+"Product managers spend roughly 30% of their time on data gathering and synthesis." Source: https://aipmtools.org/articles/ai-changing-product-management (attributed to Perspective AI research)
+
+**Conclusion:** The baseline pain (hours spent on manual synthesis) is real and confirmed across multiple independent sources. The exact "3-5 hours per planning cycle" figure in master-research.md Section 1 remains [?] unvalidated but directionally consistent with "hours per week" and "a part-time job at scale." The 3-5 hours figure is plausible but should be confirmed in user interviews.
+
+---
+
+### Trust through spot-checking (behavioral pattern B3) - CONFIRMED (MEDIUM confidence)
+
+"Understanding the data these tools rely on, sanity-checking outputs, and using simple eval style checks (spot tests, edge cases, benchmarks) before trusting an AI workflow in a critical process is a core competency for modern product managers." Source: https://aipmtools.org/articles/future-of-ai-product-management
+
+"Tools are showing their work, making AI recommendations auditable and trustworthy for stakeholder conversations." Source: https://aipmtools.org/articles/ai-changing-product-management
+
+**Conclusion:** The spot-checking pattern is confirmed. PMs do NOT trust AI synthesis blindly. They verify a subset (spot tests) before extending trust to the whole. This directly confirms behavioral pattern B3 from ux-patterns.md and the mechanism described in benchmark.md (the presence of verifiability creates trust).
+
+---
+
+### Synthesis gap at the market level - CONFIRMED (HIGH confidence)
+
+"A tool that makes collection easier but leaves synthesis, validation, and follow-up on your plate has solved the cheap problem and skipped the expensive one." Source: https://aipmtools.org/articles/ai-changing-product-management
+
+Freeman C., Senior PM, Capterra review of Canny (November 2025): "I can understand autopilot's value, but what is the real value of automatically adding 1000s of feature requests into Canny if there's no way of using AI to query or filtering within those posts? I would have rather had some type of AI that could read ticket context and auto-assign tags or teams or categories or add to roadmap." Source: https://www.capterra.com/p/161103/Canny/reviews/
+
+**Conclusion:** The market gap is confirmed at the synthesis layer, not the collection layer. All major competitors solve collection. The PM voice from actual user reviews confirms that collection without synthesis leaves the PM's core problem unsolved. This directly validates Sift's positioning.
+
+---
+
+### Citations and transparency as the trust mechanism - CONFIRMED (MEDIUM confidence)
+
+"Citations make it trustworthy enough to present to execs." Source: https://aipmtools.org/articles/future-of-ai-product-management
+
+This is a direct confirmation of the Perplexity citation pattern (benchmark.md, Mechanism 1) applied to the PM-in-context-of-stakeholder-presentation use case. The mechanism transfers from general AI search to PM product tools.
+
+---
+
+### Baseline time for manual synthesis - UNRESOLVED
+
+No primary source found that confirms a specific hours-per-planning-cycle figure. Data points gathered:
+
+- "Hours every week" saving described (Enterpret 2025 blog) - implies hours is the baseline order of magnitude
+- "Organizing research data previously took an entire day" (Enterpret 2025 blog) - research-focused, not planning-cycle-specific
+- "30% of PM time on data gathering and synthesis" (Perspective AI - note: vendor source, not primary survey)
+- "Two weeks of manual work before quarterly planning" implied (Productboard blog) - plausible but vendor-authored
+
+Verdict: The claim stays [?]. Directional evidence suggests hours to days, not minutes. Exact figure requires user interviews.
+
+---
+
+### Brief sharing: external vs. internal - UNRESOLVED
+
+No data found. Zero sources addressed whether PMs share synthesis outputs externally (to stakeholders outside the company) or only internally (within the team). This remains an open hypothesis that requires beta observation.

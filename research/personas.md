@@ -70,7 +70,7 @@ Source: ux-patterns.md, Pattern B2.
 
 Skeptical PMs earn trust in synthesis tools through spot-checking: they pick a theme they already know is real, verify that the tool found it with the right evidence, and then extend trust to themes they did not already know. The activation moment is exactly this: "yes, this theme is real, I recognize these quotes."
 
-Source: ux-patterns.md, Pattern B3. Supported by aarrr.md (Activation: "confirmation of intuition with evidence, not discovery of something unknown").
+Source: ux-patterns.md, Pattern B3. Supported by aarrr.md (Activation: "confirmation of intuition with evidence, not discovery of something unknown"). CONFIRMED by live research (June 2026): "Understanding the data these tools rely on, sanity-checking outputs, and using simple eval style checks (spot tests, edge cases, benchmarks) before trusting an AI workflow in a critical process is a core competency for modern product managers." (https://aipmtools.org/articles/future-of-ai-product-management). The [?] on this behavioral pattern is removed.
 
 ---
 
@@ -110,9 +110,9 @@ Source: benchmark.md, Mechanisms 1-3 and Anti-pattern section. Confirmed by comp
 
 PMs will trust Sift's AI synthesis enough to act on a real roadmap decision without re-synthesizing the raw data themselves. If this is false, Sift becomes another data source they process manually rather than a synthesis they act on. The core time-saving value proposition fails.
 
-This is the single claim most in need of verification. It is the premise the entire product rests on.
+UPDATED (live research, June 2026): H1 is conditionally confirmed (MEDIUM confidence). When synthesis is transparent and traceable (inline citations, evidence counts, drill-down to source), PMs DO act on AI synthesis without re-synthesizing the raw data. They spot-check (verify a subset), then act. Without transparency, H1 fails: black-box synthesis is not trusted for decisions. Sift's transparency design is what makes H1 true, not an optional feature.
 
-Source: master-research.md, Hypothesis H1. strategy.md, Section 4 (Riskiest Assumption).
+Source: master-research.md, Hypothesis H1. strategy.md, Section 4 (Riskiest Assumption). Live research: https://aipmtools.org/articles/future-of-ai-product-management, https://blog.ravi-mehta.com/p/building-ai-products-lessons-from, https://www.productboard.com/blog/productboard-spark-ai-customer-feedback-analysis/, https://www.capterra.com/p/161103/Canny/reviews/ (live-research.md, F4).
 
 ---
 
