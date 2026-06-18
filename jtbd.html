@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sift - JTBD</title>
+<style>
+  :root {
+    --bg: #0c0c0e;
+    --bg-2: #111115;
+    --bg-3: #17171c;
+    --bg-4: #1e1e25;
+    --border: #2a2a35;
+    --border-light: #1e1e28;
+    --text: #e8e8ec;
+    --text-2: #a0a0b0;
+    --text-3: #66667a;
+    --accent: #7c6af7;
+    --accent-dim: #3a3470;
+    --accent-glow: rgba(124,106,247,0.12);
+    --green: #3ecf8e;
+    --green-dim: rgba(62,207,142,0.12);
+    --amber: #e8a838;
+    --amber-dim: rgba(232,168,56,0.12);
+    --red: #f06060;
+    --red-dim: rgba(240,96,96,0.12);
+    --radius: 8px;
+    --radius-lg: 12px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", system-ui, sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.65; font-size: 15px;
+  }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(12,12,14,0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-light);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 40px; height: 52px;
+  }
+  .nav-brand { font-size: 14px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text); text-decoration: none; }
+  .nav-brand span { color: var(--accent); }
+  .nav-links { display: flex; gap: 6px; list-style: none; }
+  .nav-links a {
+    color: var(--text-3); text-decoration: none; font-size: 12px; font-weight: 500;
+    letter-spacing: 0.03em; padding: 5px 10px; border-radius: 5px; transition: color 0.15s, background 0.15s;
+  }
+  .nav-links a:hover { color: var(--text); background: var(--bg-3); }
+
+  .page { max-width: 1040px; margin: 0 auto; padding: 100px 40px 120px; }
+  section { padding-top: 80px; }
+
+  .section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+  h1 { font-size: 42px; font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; color: var(--text); margin-bottom: 20px; }
+  h2 { font-size: 26px; font-weight: 650; letter-spacing: -0.015em; color: var(--text); margin-bottom: 8px; }
+  h3 { font-size: 17px; font-weight: 600; color: var(--text); margin-bottom: 10px; }
+  h4 { font-size: 13px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-3); margin-bottom: 8px; margin-top: 24px; }
+  p { color: var(--text-2); margin-bottom: 14px; }
+  p:last-child { margin-bottom: 0; }
+  .lead { font-size: 17px; line-height: 1.7; color: var(--text-2); max-width: 680px; }
+  .divider { border: none; border-top: 1px solid var(--border-light); margin: 60px 0; }
+
+  .card { background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; }
+
+  .table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius-lg); margin: 20px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { background: var(--bg-3); color: var(--text-3); font-weight: 600; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  td { padding: 12px 16px; border-bottom: 1px solid var(--border-light); color: var(--text-2); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--bg-3); }
+
+  .tag { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; padding: 3px 8px; border-radius: 4px; white-space: nowrap; }
+  .tag-primary { background: var(--green-dim); color: var(--green); }
+  .tag-secondary { background: var(--amber-dim); color: var(--amber); }
+  .tag-later { background: var(--bg-4); color: var(--text-3); }
+  .tag-mvp { background: var(--green-dim); color: var(--green); }
+  .tag-cut { background: var(--red-dim); color: var(--red); }
+  .tag-v2 { background: var(--bg-4); color: var(--text-3); }
+
+  .badge { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 7px; border-radius: 4px; margin-left: 8px; vertical-align: middle; }
+  .badge-hypothesis { background: var(--amber-dim); color: var(--amber); }
+  .badge-verified { background: var(--green-dim); color: var(--green); }
+  .badge-unknown { background: var(--bg-4); color: var(--text-3); }
+  .badge-conditional { background: var(--amber-dim); color: var(--amber); }
+  .badge-d1 { background: rgba(124,106,247,0.15); color: var(--accent); }
+  .badge-d2 { background: rgba(124,106,247,0.15); color: var(--accent); }
+
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border-light); }
+  .section-num { font-size: 13px; font-weight: 700; color: var(--text-3); }
+  .cite { font-size: 11px; color: var(--text-3); font-weight: 500; }
+
+  footer { border-top: 1px solid var(--border-light); margin-top: 100px; padding-top: 40px; padding-bottom: 60px; color: var(--text-3); font-size: 12px; display: flex; justify-content: space-between; align-items: center; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  .page > section:first-child { animation: fadeUp 0.5s ease; }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .page { padding: 80px 20px 80px; }
+    h1 { font-size: 28px; }
+  }
+
+  /* SIDEBAR */
+  .sidebar { display: none; }
+  @media (min-width: 1100px) {
+    .sidebar {
+      display: flex; flex-direction: column; gap: 2px;
+      position: fixed; top: 52px; left: 0; width: 220px;
+      height: calc(100vh - 52px); overflow-y: auto;
+      padding: 24px 12px 32px; border-right: 1px solid var(--border-light);
+      background: var(--bg); z-index: 90;
+    }
+    .page { margin: 0; margin-left: 220px; max-width: 1040px; padding: 100px 40px 120px; }
+  }
+
+  .sidebar-phase-label { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-3); padding: 5px 8px; border-radius: 5px; display: block; cursor: default; text-decoration: none; }
+  a.sidebar-phase-label:hover { color: var(--text); background: var(--bg-3); cursor: pointer; }
+  .sidebar-phase.active .sidebar-phase-label { color: var(--accent); background: var(--accent-glow); }
+  .sidebar-section-links { list-style: none; margin: 4px 0 8px 0; padding: 0; }
+  .sidebar-section-links a { display: block; font-size: 12px; color: var(--text-3); text-decoration: none; padding: 4px 8px 4px 16px; border-radius: 4px; border-left: 2px solid transparent; transition: color 0.15s, border-color 0.15s, background 0.15s; line-height: 1.5; }
+  .sidebar-section-links a:hover { color: var(--text); background: var(--bg-3); }
+  .sidebar-section-links a.active { color: var(--text); border-left-color: var(--accent); background: var(--bg-3); }
+  .sidebar-divider { border: none; border-top: 1px solid var(--border-light); margin: 8px 0; }
+  .sidebar-spacer { flex: 1; }
+  .sidebar-next { padding: 12px; border: 1px solid var(--border-light); border-radius: 6px; background: var(--bg-2); margin-top: 16px; }
+  .sidebar-next-label { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-3); opacity: 0.6; margin-bottom: 4px; }
+  .sidebar-next-content { font-size: 11px; color: var(--text-3); opacity: 0.6; line-height: 1.5; }
+
+  /* JOB CARDS */
+  .job-card {
+    background: var(--bg-2); border: 1px solid var(--border);
+    border-radius: var(--radius-lg); padding: 22px 24px; margin-bottom: 14px;
+  }
+  .job-card.main-job {
+    border-color: var(--accent-dim); background: rgba(124,106,247,0.04);
+    border-left: 3px solid var(--accent);
+  }
+
+  .job-id {
+    font-size: 22px; font-weight: 800; color: var(--accent);
+    letter-spacing: -0.02em; line-height: 1; margin-bottom: 10px;
+  }
+  .job-id.main { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
+  .job-type-label {
+    display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 3px 8px; border-radius: 4px; margin-bottom: 10px;
+  }
+  .job-type-related { background: var(--accent-glow); color: var(--accent); }
+  .job-type-emotional { background: rgba(62,207,142,0.15); color: var(--green); }
+  .job-type-social { background: var(--amber-dim); color: var(--amber); }
+  .job-type-hypothesis { background: var(--bg-4); color: var(--text-3); border: 1px solid var(--border); }
+
+  .job-statement { font-size: 15px; color: var(--text); line-height: 1.7; font-style: italic; margin-bottom: 12px; }
+  .job-meta { font-size: 12px; color: var(--text-3); line-height: 1.6; }
+  .job-meta strong { color: var(--text-2); }
+
+  .persona-tag { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 4px; margin-right: 4px; margin-bottom: 4px; }
+  .pt-a { background: var(--accent-glow); color: var(--accent); }
+  .pt-b { background: var(--amber-dim); color: var(--amber); }
+  .pt-c { background: var(--bg-4); color: var(--text-3); }
+
+  /* CLAIM UPDATE */
+  .claim-update { background: var(--amber-dim); border: 1px solid rgba(232,168,56,0.25); border-radius: var(--radius); padding: 12px 16px; margin-top: 10px; }
+  .claim-update-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--amber); margin-bottom: 5px; }
+  .claim-update-text { font-size: 13px; color: var(--text-2); line-height: 1.55; }
+
+  /* DECISION NOTE */
+  .decision-note { background: rgba(124,106,247,0.06); border: 1px solid var(--accent-dim); border-radius: var(--radius); padding: 12px 16px; margin-top: 10px; }
+  .decision-note-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 5px; }
+  .decision-note-text { font-size: 13px; color: var(--text-2); line-height: 1.55; }
+
+  /* MATRIX */
+  .matrix-3 { font-weight: 700; color: var(--green); }
+  .matrix-2 { color: var(--amber); }
+  .matrix-1 { color: var(--text-3); }
+  .matrix-na { color: var(--text-3); font-style: italic; }
+
+  .function-col { font-size: 12px; color: var(--text-2); line-height: 1.55; min-width: 180px; }
+  .comp-col { font-size: 12px; color: var(--text-3); line-height: 1.55; min-width: 200px; }
+  .job-col-label { font-weight: 600; color: var(--text); display: block; margin-bottom: 3px; font-style: normal; }
+
+  /* CONCLUSIONS */
+  .mvp-core-card { background: rgba(62,207,142,0.05); border: 1px solid rgba(62,207,142,0.2); border-radius: var(--radius-lg); padding: 18px 22px; margin-bottom: 12px; }
+  .mvp-core-num { font-size: 11px; font-weight: 700; color: var(--green); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 5px; }
+  .mvp-core-title { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+  .mvp-core-desc { font-size: 13px; color: var(--text-2); line-height: 1.55; }
+
+  .cut-card { background: rgba(240,96,96,0.04); border: 1px solid rgba(240,96,96,0.15); border-radius: var(--radius-lg); padding: 16px 20px; margin-bottom: 10px; }
+  .cut-title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 5px; }
+  .cut-reason { font-size: 13px; color: var(--text-2); line-height: 1.55; }
+
+  .hypothesis-note { font-size: 12px; color: var(--text-3); font-style: italic; margin-top: 6px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="research.html"><span>S</span>ift</a>
+  <ul class="nav-links">
+    <li><a href="#main-job">Main Job</a></li>
+    <li><a href="#related-jobs">Related</a></li>
+    <li><a href="#emotional-social">Emotional / Social</a></li>
+    <li><a href="#matrix">Matrix</a></li>
+    <li><a href="#conclusions">Conclusions</a></li>
+    <li><a href="personas.html" style="color:var(--text-3)">Personas</a></li>
+  </ul>
+</nav>
+
+<aside class="sidebar">
+  <div class="sidebar-phase">
+    <a class="sidebar-phase-label" href="research.html">Research</a>
+  </div>
+  <hr class="sidebar-divider">
+  <div class="sidebar-phase">
+    <a class="sidebar-phase-label" href="personas.html">Personas</a>
+  </div>
+  <hr class="sidebar-divider">
+  <div class="sidebar-phase active">
+    <span class="sidebar-phase-label">JTBD</span>
+    <ul class="sidebar-section-links">
+      <li><a href="#main-job">Main Job</a></li>
+      <li><a href="#related-jobs">Related Jobs</a></li>
+      <li><a href="#emotional-social">Emotional / Social</a></li>
+      <li><a href="#hypotheses">Hypotheses</a></li>
+      <li><a href="#matrix">Matrix</a></li>
+      <li><a href="#conclusions">Conclusions</a></li>
+    </ul>
+  </div>
+  <div class="sidebar-spacer"></div>
+  <div class="sidebar-next">
+    <div class="sidebar-next-label">Next</div>
+    <div class="sidebar-next-content">Wireframes, Concept</div>
+  </div>
+</aside>
+
+<div class="page">
+
+<!-- INTRO -->
+<section id="intro">
+  <div class="section-label">People &amp; JTBD - June 2026</div>
+  <h1>Jobs to be done</h1>
+  <p class="lead">Jobs in the format "When [situation], I want [motivation], so that [outcome]." No feature names - only the person's progress. Every job cites its persona and research source. Hypothesis claims carry a <span class="badge badge-hypothesis">?</span> badge. Confirmed claims carry no badge.</p>
+</section>
+
+<hr class="divider">
+
+<!-- MAIN JOB -->
+<section id="main-job">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2>Main job of the product</h2>
+  </div>
+
+  <div class="job-card main-job">
+    <div class="job-id main">Main Job</div>
+    <div class="job-statement">"When I am preparing for a roadmap planning session and I have customer feedback spread across multiple tools I haven't had time to read, I want to feel certain I know what our customers actually need most - with the evidence behind it - so that I can walk into the session with a call I'll stand behind and defend if anyone pushes back."</div>
+    <div class="job-meta">
+      <span class="persona-tag pt-a">A - Primary</span>
+      <br>
+      <strong>Note:</strong> Stated in the PM's language, not the product's. The product names this "synthesis-to-defensible-decision." The PM names it "I want to not be guessing when I walk into the room."
+      <br><span class="cite" style="display:block;margin-top:6px">Source: strategy.md (Segment A primary JTBD). master-research.md (JTBD Selected jobs). CLAUDE.md (Primary Job). ux-patterns.md B1, B5.</span>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- RELATED JOBS -->
+<section id="related-jobs">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2>Related jobs</h2>
+  </div>
+  <p>Jobs that arise on the way to the main job, or that share the same evidence infrastructure.</p>
+
+  <div class="job-card">
+    <div class="job-id">J1</div>
+    <span class="job-type-label job-type-related">Related</span>
+    <h3 style="margin-bottom:10px">Stakeholder defense</h3>
+    <div class="job-statement">"When a colleague or executive challenges a roadmap decision I've already made, I want to pull up the actual customer evidence behind it right then, so that I can hold my position with facts rather than back down because I can't remember where I saw it."</div>
+    <div class="job-meta">
+      <span class="persona-tag pt-a">A - primary</span>
+      <span class="persona-tag pt-b">B - secondary (higher stakes: board, not sales)</span>
+      <br><span class="cite" style="display:block;margin-top:6px">Source: strategy.md (Segment A secondary JTBD). ux-patterns.md B2 (evidence as a social object).</span>
+    </div>
+  </div>
+
+  <div class="job-card">
+    <div class="job-id">J2</div>
+    <span class="job-type-label job-type-related">Related</span>
+    <h3 style="margin-bottom:10px">Make sense of the incoming pile</h3>
+    <div class="job-statement">"When I receive feedback from multiple sources over the past month, I want to see the coherent picture of what is happening without having to read everything myself, so that I can spot the real patterns and not just the loudest voices."</div>
+    <div class="job-meta">
+      <span class="persona-tag pt-a">A - primary</span>
+      <span class="persona-tag pt-b">B - secondary (managing the team's pile)</span>
+      <br><span class="cite" style="display:block;margin-top:6px">Source: strategy.md (Segment A pain: synthesis is scattered). ux-patterns.md B1, B5. CLAUDE.md (Secondary Job 2).</span>
+    </div>
+  </div>
+
+  <div class="job-card">
+    <div class="job-id">J3</div>
+    <span class="job-type-label job-type-related">Related</span>
+    <h3 style="margin-bottom:10px">Know how much to trust a conclusion <span class="tag tag-mvp" style="font-size:10px;padding:2px 6px;vertical-align:middle">MVP core</span></h3>
+    <div class="job-statement">"When I am looking at a summary of what customers want, I want to understand how strong the evidence actually is behind each conclusion, so that I can decide whether to act on it now or wait until I have more signal before putting it on the roadmap."</div>
+    <div class="job-meta">
+      <span class="persona-tag pt-a">A - primary</span>
+      <br>
+      <div class="decision-note" style="margin-top:8px">
+        <div class="decision-note-label">D2 - Founder decision, June 2026</div>
+        <div class="decision-note-text">Confidence display is mandatory in MVP - not optional. Tied directly to H1: transparency is the condition H1 requires. Day-one scope: item count per theme (n=X) and a "low signal" badge for thin evidence. Source diversity, time range display, and configurable thresholds are v2 scope. Source: strategy.md Section 6, master-research.md Section 9.</div>
+      </div>
+      <br><span class="cite" style="display:block;margin-top:4px">Source: benchmark.md (Mechanism 3). ux-patterns.md B3 (trust through spot-checking).</span>
+    </div>
+  </div>
+
+  <div class="job-card">
+    <div class="job-id">J4</div>
+    <span class="job-type-label job-type-related">Related</span>
+    <h3 style="margin-bottom:10px">Get the team to the same "why"</h3>
+    <div class="job-statement">"When I share a roadmap decision with engineering, design, or customer success, I want to give them the customer evidence behind it in a form they can read and respond to without needing access to my tools, so that we are aligned on why we are building this before we discuss how."</div>
+    <div class="job-meta">
+      <span class="persona-tag pt-a">A - secondary</span>
+      <span class="persona-tag pt-b">B - primary (coordinates across PM team)</span>
+      <br><span class="cite" style="display:block;margin-top:6px">Source: ux-patterns.md B2 (evidence as a social object). strategy.md (Segment B pain: no consistent evidence standard). aarrr.md (Retention: collaboration drives retention).</span>
+    </div>
+  </div>
+
+  <div class="job-card">
+    <div class="job-id">J5</div>
+    <span class="job-type-label job-type-related">Related</span>
+    <h3 style="margin-bottom:10px">Close the signal loop with the people who supply it <span class="tag tag-cut" style="font-size:10px;padding:2px 6px;vertical-align:middle">Cut from MVP</span></h3>
+    <div class="job-statement">"When I have processed customer feedback and made a decision about it, I want the people who submitted that feedback to see what it contributed to, so that they keep sending me signal rather than giving up because nothing visible ever happens to it."</div>
+    <div class="job-meta">
+      <span class="persona-tag pt-c">C - primary</span>
+      <span class="persona-tag pt-a">A - secondary (PM benefits from CS continuing to supply signal)</span>
+      <div class="decision-note" style="margin-top:8px">
+        <div class="decision-note-label">D1 - Founder decision, June 2026 - cut from MVP</div>
+        <div class="decision-note-text">Segment C is deferred. J5 is not a separate backlog feature - it is a PM retention dependency. If the signal supplier stops submitting, the PM's data quality degrades. The Segment A transparency design (theme - evidence - source chain) is the prerequisite surface for this function in the fast follow. Source: strategy.md Section 6, master-research.md Section 9.</div>
+      </div>
+      <br><span class="cite" style="display:block;margin-top:4px">Source: strategy.md (Segment C JTBD). competitive-analysis.md (Canny addresses this externally through public roadmap).</span>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- EMOTIONAL + SOCIAL JOBS -->
+<section id="emotional-social">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2>Emotional and social jobs</h2>
+  </div>
+
+  <div class="job-card">
+    <div class="job-id">E1</div>
+    <span class="job-type-label job-type-emotional">Emotional</span>
+    <h3 style="margin-bottom:10px">Feel like I actually understood it, not just processed it <span class="badge badge-hypothesis">?</span></h3>
+    <div class="job-statement">"When I finish reviewing customer feedback before a planning session, I want to feel I have genuinely understood what customers are saying and not just moved text around, so that I can walk into the meeting without the nagging suspicion that I missed something important."</div>
+    <div class="job-meta">
+      <span class="persona-tag pt-a">A - primary</span>
+      <br>
+      <span class="badge badge-hypothesis">?</span> The "nagging suspicion" emotional texture is a hypothesis - no primary source confirms this specific phrasing. Supported directionally by strategy.md (Segment A motivation: "feel confident, not just defensible") but not sourced from a PM voice.
+      <br><span class="cite" style="display:block;margin-top:6px">Source: strategy.md, ux-patterns.md B3.</span>
+    </div>
+  </div>
+
+  <div class="job-card">
+    <div class="job-id">E2</div>
+    <span class="job-type-label job-type-emotional">Emotional</span>
+    <h3 style="margin-bottom:10px">Feel certain instead of defensive when questioned <span class="badge badge-hypothesis">?</span></h3>
+    <div class="job-statement">"When a stakeholder questions a decision I've made, I want to feel grounded and prepared rather than defensive or caught off guard, so that I project confidence and move the conversation forward rather than backing down or apologizing."</div>
+    <div class="job-meta">
+      <span class="persona-tag pt-a">A - primary</span>
+      <span class="persona-tag pt-b">B - secondary (higher visibility: the board call)</span>
+      <br>
+      <span class="badge badge-hypothesis">?</span> The "defensive vs. confident" framing is a hypothesis. Research confirms the situation (stakeholder challenges a decision) but the exact emotional texture is not yet sourced from a primary PM voice.
+      <br><span class="cite" style="display:block;margin-top:6px">Source: strategy.md (Segment A motivation). CLAUDE.md ("emotion to design for: confidence and calm"). master-research.md (Objective 1).</span>
+    </div>
+  </div>
+
+  <div class="job-card">
+    <div class="job-id">S1</div>
+    <span class="job-type-label job-type-social">Social</span>
+    <h3 style="margin-bottom:10px">Give stakeholders something they can engage with <span class="tag tag-mvp" style="font-size:10px;padding:2px 6px;vertical-align:middle">MVP core</span></h3>
+    <div class="job-statement">"When I share a roadmap decision with someone who was not involved in the research, I want to give them a traceable set of evidence they can question or push back on, so that the conversation is about what customers actually said rather than about whether to trust my judgment."</div>
+    <div class="job-meta">
+      <span class="persona-tag pt-a">A - primary</span>
+      <span class="persona-tag pt-b">B - primary (higher stakes)</span>
+      <br><span class="cite" style="display:block;margin-top:6px">Source: ux-patterns.md B2 (evidence as a social object). aarrr.md (Referral: brief circulates in environments where the audience is receptive to PM tools).</span>
+    </div>
+  </div>
+
+  <div class="job-card">
+    <div class="job-id">S2</div>
+    <span class="job-type-label job-type-social">Social</span>
+    <h3 style="margin-bottom:10px">Create a credible evidence standard the whole team uses <span class="badge badge-hypothesis">?</span></h3>
+    <div class="job-statement">"When my PM team each runs their own process for synthesizing feedback, I want to establish a shared approach that produces comparable, citable evidence across the team, so that when I present to leadership I am showing a systematic picture of customer needs rather than one PM's synthesis stitched together with another's."</div>
+    <div class="job-meta">
+      <span class="persona-tag pt-b">B - primary</span>
+      <span class="persona-tag pt-a">A - secondary (benefits from being part of a consistent team standard)</span>
+      <br>
+      <span class="badge badge-hypothesis">?</span> Whether Product Leads actively want a standardized evidence tool vs. individual PMs choosing their own is a hypothesis - no primary source confirms the exact shape of Segment B's adoption decision.
+      <br><span class="cite" style="display:block;margin-top:6px">Source: strategy.md (Segment B pain: "every PM synthesizes feedback differently").</span>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- HYPOTHESES -->
+<section id="hypotheses">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2>Hypothesis jobs</h2>
+  </div>
+  <p>Plausible but with no direct research data behind them. Not in the matrix. Not in MVP scope until confirmed.</p>
+
+  <div class="job-card" style="border-color:rgba(232,168,56,0.25);background:rgba(232,168,56,0.03)">
+    <div class="job-id" style="color:var(--amber)">H-J1</div>
+    <span class="job-type-label job-type-hypothesis">Hypothesis</span>
+    <h3 style="margin-bottom:10px">Continuous sensing between cycles</h3>
+    <div class="job-statement">"When I am not in a planning cycle, I want to stay loosely aware of whether customer problems are shifting, so that I am not surprised when I sit down for planning and find the picture has changed."</div>
+    <div class="job-meta">
+      <span class="badge badge-hypothesis">?</span> ux-patterns.md B5 identifies retrospective synthesis as the primary pattern. aarrr.md Retention describes "new signal since last session" as the retention hook, but this is a product design choice, not a confirmed PM behavior. No source confirms PMs actively want monitoring between cycles vs. preferring to stay focused on the current sprint.
+      <br><span class="cite" style="display:block;margin-top:6px">Source: ux-patterns.md B5 (retrospective synthesis, not continuous monitoring).</span>
+    </div>
+  </div>
+
+  <div class="job-card" style="border-color:rgba(232,168,56,0.25);background:rgba(232,168,56,0.03)">
+    <div class="job-id" style="color:var(--amber)">H-J2</div>
+    <span class="job-type-label job-type-hypothesis">Hypothesis</span>
+    <h3 style="margin-bottom:10px">Reproduce someone else's synthesis</h3>
+    <div class="job-statement">"When a colleague has already synthesized feedback from a period I was not involved in, I want to be able to see how they reached their conclusions, so that I can build on their work rather than start from scratch."</div>
+    <div class="job-meta">
+      <span class="badge badge-hypothesis">?</span> No research source addresses team-level synthesis reuse. Implied by strategy.md Segment B pain (inconsistent standards) but not confirmed as a job a PM would actively seek to do.
+      <br><span class="cite" style="display:block;margin-top:6px">Status: unconfirmed hypothesis. Needs primary research.</span>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- MATRIX -->
+<section id="matrix">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <h2>JTBD matrix</h2>
+  </div>
+  <p>Importance 1 (low), 2 (medium), 3 (high) for each persona. FUNCTION shows what in the product closes this job. COMPETITORS shows which named competitors partially or fully close it.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="min-width:200px">Job</th>
+          <th style="min-width:90px">A - PM</th>
+          <th style="min-width:100px">B - Product Lead</th>
+          <th style="min-width:100px">C - Signal Supplier</th>
+          <th style="min-width:200px">Function</th>
+          <th style="min-width:220px">Competitors</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <span class="job-col-label">Main: Confident defensible synthesis</span>
+            <span class="tag tag-mvp" style="font-size:9px;padding:1px 5px">MVP core</span>
+          </td>
+          <td class="matrix-3">3</td>
+          <td class="matrix-2">2</td>
+          <td class="matrix-na">-</td>
+          <td class="function-col">AI synthesis view: theme clusters with evidence counts, recency, ranked by signal volume. Full drill-down to raw source.</td>
+          <td class="comp-col">Productboard Spark (partial, trust mechanism unclear); Canny (vote-based, not synthesis); Enterpret (partial, enterprise-only); Dovetail (research, not roadmap). <strong style="color:var(--text)">None close the transparent trust chain.</strong></td>
+        </tr>
+        <tr>
+          <td>
+            <span class="job-col-label">J1: Stakeholder defense</span>
+          </td>
+          <td class="matrix-3">3</td>
+          <td class="matrix-3">3</td>
+          <td class="matrix-1">1</td>
+          <td class="function-col">Shareable evidence document with traceable source links. Viewable without Sift access.</td>
+          <td class="comp-col">Dovetail (insight docs with clips - research audience, not roadmap defense); Productboard (partial sharing); Canny (public roadmap - customer-facing). <strong style="color:var(--text)">No competitor closes PM-to-stakeholder defense specifically.</strong></td>
+        </tr>
+        <tr>
+          <td>
+            <span class="job-col-label">J2: Make sense of the incoming pile</span>
+          </td>
+          <td class="matrix-3">3</td>
+          <td class="matrix-2">2</td>
+          <td class="matrix-2">2</td>
+          <td class="function-col">Feedback ingestion pipeline + AI theme clustering with source attribution.</td>
+          <td class="comp-col">Productboard (Spark capture + classification); Canny (Autopilot); Enterpret (adaptive taxonomy, 50+ integrations). <strong style="color:var(--text)">All close capture. None close trustworthy synthesis.</strong></td>
+        </tr>
+        <tr>
+          <td>
+            <span class="job-col-label">J3: Know how much to trust a conclusion</span>
+            <span class="tag tag-mvp" style="font-size:9px;padding:1px 5px">MVP core</span>
+          </td>
+          <td class="matrix-3">3</td>
+          <td class="matrix-2">2</td>
+          <td class="matrix-na">?</td>
+          <td class="function-col">
+            <strong style="color:var(--text)">Day-one (D2):</strong> item count (n=X) + "low signal" badge for thin evidence.
+            <span class="tag tag-v2" style="font-size:9px;padding:1px 5px;display:inline-block;margin-top:4px">v2: source diversity, time range, thresholds</span>
+          </td>
+          <td class="comp-col"><strong style="color:var(--text)">None of the five competitors clearly close this from public pages.</strong> The clearest unclosed gap in the market.</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="job-col-label">J4: Get the team to the same "why"</span>
+          </td>
+          <td class="matrix-2">2</td>
+          <td class="matrix-3">3</td>
+          <td class="matrix-1">1</td>
+          <td class="function-col">Shareable evidence document + Jira/Linear link connecting evidence to roadmap items.</td>
+          <td class="comp-col">Dovetail (shareable insight docs for research teams, not PM-to-team alignment). Canny (changelog - customer-facing, not internal). <strong style="color:var(--text)">Partially closed by Dovetail for wrong audience.</strong></td>
+        </tr>
+        <tr>
+          <td>
+            <span class="job-col-label">J5: Close the signal loop</span>
+            <span class="tag tag-cut" style="font-size:9px;padding:1px 5px">Cut - D1</span>
+          </td>
+          <td class="matrix-1">1</td>
+          <td class="matrix-1">1</td>
+          <td class="matrix-3">3</td>
+          <td class="function-col">Signal supplier view: contribution tracker. <em style="color:var(--text-3)">Cut from MVP by D1. PM retention dependency - fast follow after Segment A transparency is built.</em></td>
+          <td class="comp-col">Canny (public roadmap and changelog - external/customer-facing, not internal CS-to-PM). <strong style="color:var(--text)">Not closed for internal use by any competitor.</strong></td>
+        </tr>
+        <tr>
+          <td><span class="job-col-label">E1: Feel like I actually understood it</span></td>
+          <td class="matrix-3">3</td>
+          <td class="matrix-2">2</td>
+          <td class="matrix-na">?</td>
+          <td class="function-col">All trust mechanisms together: spot-checkable themes, honest confidence, drill-down to raw text.</td>
+          <td class="comp-col">Not explicitly designed for by any competitor.</td>
+        </tr>
+        <tr>
+          <td><span class="job-col-label">E2: Feel certain instead of defensive</span></td>
+          <td class="matrix-3">3</td>
+          <td class="matrix-3">3</td>
+          <td class="matrix-na">?</td>
+          <td class="function-col">Full evidence chain: theme - evidence items - raw source. PM can answer "why is this the priority?" in one click.</td>
+          <td class="comp-col">Not explicitly designed for. Synthesis outputs exist; the "walk into the room feeling ready" experience is not a stated design goal in any competitor's public UX.</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="job-col-label">S1: Give stakeholders something to engage with</span>
+            <span class="tag tag-mvp" style="font-size:9px;padding:1px 5px">MVP core</span>
+          </td>
+          <td class="matrix-3">3</td>
+          <td class="matrix-3">3</td>
+          <td class="matrix-na">?</td>
+          <td class="function-col">Public shareable brief with inline citations. No login required to view.</td>
+          <td class="comp-col">Dovetail (shareable research docs); Canny (public-facing, different function). <strong style="color:var(--text)">Partially closed for research teams. Not closed for roadmap defense.</strong></td>
+        </tr>
+        <tr>
+          <td><span class="job-col-label">S2: Create a shared evidence standard</span></td>
+          <td class="matrix-2">2</td>
+          <td class="matrix-3">3</td>
+          <td class="matrix-na">?</td>
+          <td class="function-col">Team workspace with consistent synthesis view, shared integrations, same confidence display for all PMs.</td>
+          <td class="comp-col">Productboard (team workspace, synthesis method unclear). Enterpret (consistent taxonomy). <strong style="color:var(--text)">Partially closed at team setup level; not closed at trust-and-evidence level.</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CONCLUSIONS -->
+<section id="conclusions">
+  <div class="section-header">
+    <span class="section-num">06</span>
+    <h2>Matrix conclusions</h2>
+  </div>
+
+  <h3>3 jobs for the MVP core</h3>
+  <p style="margin-bottom:20px">Jobs with importance 3 for Persona A (primary persona) that are not closed by any existing competitor.</p>
+
+  <div class="mvp-core-card">
+    <div class="mvp-core-num">MVP Core 01</div>
+    <div class="mvp-core-title">Confident defensible synthesis for planning (Main Job)</div>
+    <div class="mvp-core-desc">Importance 3 for Persona A. All competitors provide feedback capture and AI classification. None demonstrate, on public pages, a transparent synthesis chain the PM can act on and defend. The gap is at the trust layer, not at the data layer.</div>
+  </div>
+
+  <div class="mvp-core-card">
+    <div class="mvp-core-num">MVP Core 02</div>
+    <div class="mvp-core-title">Know how much to trust a conclusion (J3)</div>
+    <div class="mvp-core-desc">Importance 3 for Persona A. The clearest unclosed gap across all five competitors. No competitor shows sample size and confidence level alongside synthesis conclusions with honest variation (thin evidence vs. strong evidence treated differently). This is the single function most needed to make the main job achievable. Day-one scope locked by D2: item count (n=X) + "low signal" badge.</div>
+    <div class="decision-note" style="margin-top:10px">
+      <div class="decision-note-label">D2 - Mandatory in MVP. Day-one scope only.</div>
+      <div class="decision-note-text">Confidence display is the mechanism that makes H1 true. Without it, the transparency condition fails. Source diversity, time range, and configurable thresholds are v2 - not MVP blockers.</div>
+    </div>
+  </div>
+
+  <div class="mvp-core-card">
+    <div class="mvp-core-num">MVP Core 03</div>
+    <div class="mvp-core-title">Give stakeholders something they can engage with (S1)</div>
+    <div class="mvp-core-desc">Importance 3 for both Persona A and B. Dovetail partially closes this for research teams, not PM roadmap defense. No competitor has a PM-focused shareable evidence brief designed for the "defend your roadmap to leadership" moment. This is both a product function and the primary referral artifact (aarrr.md: the brief drives acquisition, retention, and referral simultaneously).</div>
+  </div>
+
+  <h3 style="margin-top:40px">Candidate-for-cut functions</h3>
+  <p style="margin-bottom:16px">Functions that close no job with importance 3 for Persona A, or close jobs already well-served by competitors.</p>
+
+  <div class="cut-card">
+    <div class="cut-title">Signal heard loop / contribution tracker (J5) <span class="badge badge-d1">D1</span></div>
+    <div class="cut-reason">Importance 3 for Segment C only. Confirmed cut from MVP by D1 (June 2026). Segment C is a PM retention dependency, not an independent MVP feature. The Segment A transparency design (theme - evidence - source chain) is the prerequisite surface for this function in the fast follow. Source: strategy.md Section 6.</div>
+  </div>
+
+  <div class="cut-card">
+    <div class="cut-title">Real-time monitoring / continuous sensing (H-J1)</div>
+    <div class="cut-reason">Not confirmed as a real job. ux-patterns.md explicitly identifies retrospective synthesis as the primary behavior. Real-time dashboard is the anti-pattern per ux-patterns.md (canvas pattern, Pattern D).</div>
+  </div>
+
+  <div class="cut-card">
+    <div class="cut-title">Team synthesis reproduction (H-J2)</div>
+    <div class="cut-reason">Unconfirmed hypothesis. No research source supports it as a stated need. Not in MVP scope.</div>
+  </div>
+
+  <h3 style="margin-top:40px">H1 - Riskiest assumption: status as of June 2026</h3>
+  <div class="claim-update" style="margin-top:12px">
+    <div class="claim-update-label">Updated - live research June 2026</div>
+    <div class="claim-update-text">H1 is conditionally confirmed (MEDIUM). When synthesis is transparent and traceable (inline citations, evidence counts, drill-down to raw signal), PMs DO act on AI synthesis without re-synthesizing raw data. Without transparency, H1 fails. Founder decision D2 responds to this: confidence display is mandatory in MVP precisely because transparency is the condition H1 requires. Sources: aipmtools.org, blog.ravi-mehta.com, productboard.com, capterra.com (June 2026). See live-research.md F1, F2, F3, F4. strategy.md Section 5.</div>
+  </div>
+
+</section>
+
+<footer>
+  <div>Sift - JTBD - June 2026 - People &amp; JTBD phase</div>
+  <div style="text-align:right">
+    <a href="research/jtbd.md" style="color:var(--text-3);text-decoration:none">jtbd.md</a>
+    <span style="margin:0 8px">-</span>
+    <a href="personas.html" style="color:var(--text-3);text-decoration:none">personas.html</a>
+  </div>
+</footer>
+
+</div>
+
+<script>
+  const sections = document.querySelectorAll('section[id]');
+  const sidebarLinks = document.querySelectorAll('.sidebar-section-links a');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        sidebarLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + id) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+  }, { threshold: 0, rootMargin: '-15% 0px -75% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>

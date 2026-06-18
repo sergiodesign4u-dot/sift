@@ -760,6 +760,15 @@
     background: var(--accent-glow);
   }
 
+  a.sidebar-phase-label {
+    cursor: pointer;
+  }
+
+  a.sidebar-phase-label:hover {
+    color: var(--text);
+    background: var(--bg-3);
+  }
+
   .sidebar-section-links {
     list-style: none;
     margin: 4px 0 8px 0;
@@ -866,6 +875,7 @@
     <li><a href="#benchmark">Benchmark</a></li>
     <li><a href="#patterns">Patterns</a></li>
     <li><a href="#conclusions">Conclusions</a></li>
+    <li><a href="#live-research">Live Research</a></li>
   </ul>
 </nav>
 
@@ -881,16 +891,15 @@
       <li><a href="#benchmark">Benchmark</a></li>
       <li><a href="#patterns">Patterns</a></li>
       <li><a href="#conclusions">Conclusions</a></li>
+      <li><a href="#live-research">Live Research</a></li>
     </ul>
   </div>
   <hr class="sidebar-divider">
-  <div class="sidebar-coming-soon">
-    <span class="sidebar-cs-label">Personas</span>
-    <span class="sidebar-cs-badge">coming soon</span>
+  <div class="sidebar-phase">
+    <a class="sidebar-phase-label" href="personas.html" style="text-decoration:none">Personas</a>
   </div>
-  <div class="sidebar-coming-soon">
-    <span class="sidebar-cs-label">JTBD</span>
-    <span class="sidebar-cs-badge">coming soon</span>
+  <div class="sidebar-phase">
+    <a class="sidebar-phase-label" href="jtbd.html" style="text-decoration:none">JTBD</a>
   </div>
   <div class="sidebar-spacer"></div>
   <div class="sidebar-next">
@@ -1744,6 +1753,166 @@
         <div class="question-why">Determines whether the brief viral loop (H3) actually activates. Observe brief sharing behavior in beta: track internal vs. external shares.</div>
       </div>
     </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- LIVE RESEARCH -->
+<section id="live-research">
+  <div class="section-header">
+    <span class="section-num">08</span>
+    <h2>Live Research</h2>
+  </div>
+  <p>Adversarial verification conducted June 2026. Claims from personas.md and jtbd.md were tested against live sources. The goal was to kill claims first - search for disconfirming evidence before confirming. All sources fetched in June 2026; only sources from the last 1-2 years used.</p>
+
+  <!-- STAT LINE -->
+  <div class="metric-row" style="margin-top:24px">
+    <div class="metric-cell">
+      <div class="metric-label">Claims tested</div>
+      <div class="metric-value">8</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Sources accessed</div>
+      <div class="metric-value">11</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Confirmed</div>
+      <div class="metric-value" style="color:var(--green)">6</div>
+    </div>
+  </div>
+  <div class="metric-row" style="margin-top:0">
+    <div class="metric-cell">
+      <div class="metric-label">Killed</div>
+      <div class="metric-value" style="color:var(--text-3)">0</div>
+      <div class="metric-note">No claim was directly disconfirmed</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Unresolved</div>
+      <div class="metric-value" style="color:var(--amber)">2</div>
+      <div class="metric-note">U1 (baseline hours), U2 (brief sharing)</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Access blockers</div>
+      <div class="metric-value" style="color:var(--text-3)">2</div>
+      <div class="metric-note">Reddit (network security), G2 (access restricted)</div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:40px;margin-bottom:16px">Confirmed findings</h3>
+
+  <div class="hypothesis-grid">
+
+    <div class="hypothesis-card">
+      <div class="hypothesis-id" style="font-size:16px">F1</div>
+      <div class="hypothesis-body">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+          <h3 style="margin-bottom:0">PM wariness toward AI for prioritization decisions</h3>
+          <span class="badge badge-verified">HIGH</span>
+        </div>
+        <p style="font-size:13px;margin-bottom:10px">Multiple independent sources confirm that PMs are wary of using AI for decision support specifically. The wariness is named as the reason AI adoption is limited to lower-stakes tasks.</p>
+        <p style="font-size:13px;color:var(--text-3);font-style:italic;margin-bottom:6px">"Most teams are using AI today for content generation and summaries. Far fewer trust it for prioritization or decision support. The reason is skepticism about the outputs."</p>
+        <p class="cite">Sources: aipmtools.org/articles/future-of-ai-product-management, blog.ravi-mehta.com, productboard.com/blog</p>
+      </div>
+    </div>
+
+    <div class="hypothesis-card">
+      <div class="hypothesis-id" style="font-size:16px">F2</div>
+      <div class="hypothesis-body">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+          <h3 style="margin-bottom:0">PMs spot-check AI outputs before acting</h3>
+          <span class="badge badge-challenged" style="background:var(--amber-dim);color:var(--amber)">MEDIUM</span>
+        </div>
+        <p style="font-size:13px;margin-bottom:10px">Spot-checking (testing AI output against known-good data before extending trust) is described as standard PM practice, not exceptional behavior. Confirms behavioral pattern B3.</p>
+        <p style="font-size:13px;color:var(--text-3);font-style:italic;margin-bottom:6px">"Understanding the data these tools rely on, sanity-checking outputs, and using simple eval style checks before trusting an AI workflow in a critical process is a core competency for modern product managers."</p>
+        <p class="cite">Source: aipmtools.org/articles/future-of-ai-product-management</p>
+      </div>
+    </div>
+
+    <div class="hypothesis-card">
+      <div class="hypothesis-id" style="font-size:16px">F3</div>
+      <div class="hypothesis-body">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+          <h3 style="margin-bottom:0">Transparent citations make AI synthesis trustworthy for stakeholder presentation</h3>
+          <span class="badge badge-challenged" style="background:var(--amber-dim);color:var(--amber)">MEDIUM</span>
+        </div>
+        <p style="font-size:13px;margin-bottom:10px">When AI synthesis includes citations, PMs trust it enough to present to executives. This directly confirms the Perplexity citation benchmark finding (benchmark.md, Mechanism 1) in the PM-specific context.</p>
+        <p style="font-size:13px;color:var(--text-3);font-style:italic;margin-bottom:6px">"Citations make it trustworthy enough to present to execs, and citations make it verifiable when presenting data to stakeholders or executives."</p>
+        <p class="cite">Sources: aipmtools.org/articles/future-of-ai-product-management, aipmtools.org/articles/ai-changing-product-management</p>
+      </div>
+    </div>
+
+    <div class="hypothesis-card riskiest">
+      <div class="hypothesis-id" style="font-size:16px">F4</div>
+      <div class="hypothesis-body">
+        <div class="riskiest-flag">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4" fill="currentColor" opacity="0.3"/><circle cx="5" cy="5" r="2" fill="currentColor"/></svg>
+          H1 reformulated - riskiest assumption
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+          <h3 style="margin-bottom:0">Conditional H1: With transparency, PMs act on AI synthesis without re-synthesizing</h3>
+          <span class="badge badge-challenged" style="background:var(--amber-dim);color:var(--amber)">MEDIUM</span>
+        </div>
+        <p style="font-size:13px;margin-bottom:10px">H1 is conditionally confirmed. When synthesis is transparent and traceable, PMs DO act on it without re-reading all raw data. They spot-check a subset (trust calibration), then act. Black-box synthesis is not trusted. The condition is transparency - inline citations, evidence counts, drill-down.</p>
+        <p style="font-size:13px;color:var(--text-3);font-style:italic;margin-bottom:6px">"There is no translation layer, no export step, no 'now what?' moment. The insight arrives already oriented toward action." (Productboard on Spark intent)</p>
+        <p class="cite">Sources: productboard.com/blog, aipmtools.org, blog.ravi-mehta.com, capterra.com (Canny reviews - Freeman C., Senior PM, Nov 2025). See strategy.md Section 5.</p>
+      </div>
+    </div>
+
+    <div class="hypothesis-card">
+      <div class="hypothesis-id" style="font-size:16px">F5</div>
+      <div class="hypothesis-body">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+          <h3 style="margin-bottom:0">The synthesis gap at market level is real and current</h3>
+          <span class="badge badge-verified">HIGH</span>
+        </div>
+        <p style="font-size:13px;margin-bottom:10px">Real user reviews and industry analysis independently confirm that competitors have solved collection, not synthesis. The PM voice from Canny reviews names this gap explicitly.</p>
+        <p style="font-size:13px;color:var(--text-3);font-style:italic;margin-bottom:6px">"What is the real value of automatically adding 1000s of feature requests into Canny if there's no way of using AI to query or filter within those posts? I would have rather had some type of AI that could read ticket context and auto-assign tags or teams or categories or add to roadmap." - Freeman C., Senior PM (Capterra, Nov 2025)</p>
+        <p class="cite">Sources: capterra.com/p/161103/Canny/reviews/, aipmtools.org/articles/ai-changing-product-management</p>
+      </div>
+    </div>
+
+    <div class="hypothesis-card">
+      <div class="hypothesis-id" style="font-size:16px">F6</div>
+      <div class="hypothesis-body">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+          <h3 style="margin-bottom:0">PM feedback pain - volume and scatter - is real</h3>
+          <span class="badge badge-challenged" style="background:var(--amber-dim);color:var(--amber)">MEDIUM</span>
+        </div>
+        <p style="font-size:13px;margin-bottom:10px">Multiple independent sources confirm the baseline pain. The pattern is consistent even though no single source confirms the exact 3-5 hours per planning cycle figure. "Hours per week" is confirmed as the order of magnitude.</p>
+        <p style="font-size:13px;color:var(--text-3);font-style:italic;margin-bottom:6px">"One PM reported that summarizing feedback with an AI tool saves them hours every week, replacing the tedious process of reading through hundreds of tickets."</p>
+        <p class="cite">Sources: enterpret.com/blog/2025-product-planning-tips, productboard.com/blog, aipmtools.org</p>
+      </div>
+    </div>
+
+  </div>
+
+  <h3 style="margin-top:40px;margin-bottom:12px">Killed claims</h3>
+  <div class="card" style="background:rgba(240,96,96,0.04);border-color:rgba(240,96,96,0.15)">
+    <p style="font-size:14px;color:var(--text-2)">None. No claim from personas.md or jtbd.md was directly disconfirmed by this research. Killed count: 0. This is shown, not hidden.</p>
+    <p style="font-size:13px;color:var(--text-3);margin-top:8px">The adversarial search was conducted: Reddit via browser (network security block), G2 (access temporarily restricted), direct search for PM abandonment of AI synthesis tools attempted. The unconditional reading of H1 (PMs trust ANY AI synthesis without verification) was tested and does not hold - but H1 as stated in strategy.md (trust transparent synthesis to act without re-synthesizing raw data) was not killed - it was conditionally confirmed.</p>
+  </div>
+
+  <h3 style="margin-top:40px;margin-bottom:12px">What we still do not know</h3>
+  <div class="card" style="padding:0;margin-top:0">
+    <div style="padding:0 4px">
+      <div class="question-row" style="padding:20px">
+        <div class="question-text">U1 - Exact baseline time PMs spend on manual synthesis per planning cycle</div>
+        <div class="question-why">No primary source confirmed the 3-5 hours figure from master-research.md. Order of magnitude (hours) is supported. The specific figure requires user interviews. To close: ask target PMs in user interviews to time their next pre-planning synthesis session.</div>
+      </div>
+      <div class="question-row" style="padding:20px">
+        <div class="question-text">U2 - Whether PMs share evidence briefs externally or only internally</div>
+        <div class="question-why">No source addressed this directly. All sources about sharing focused on internal stakeholder alignment, not external sharing. The referral viral loop (H3) depends on external sharing. To close: beta observation - track internal vs. external links in shared brief URLs.</div>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:40px;margin-bottom:12px">Key implication</h3>
+  <div class="card" style="border-color:var(--accent-dim);background:rgba(124,106,247,0.04)">
+    <p style="font-size:14px;color:var(--text)">Sift's trust design is not optional polish - it is what makes the core job possible. The research confirms the conditional form of H1 and sharpens the design requirement:</p>
+    <p style="font-size:14px">PMs are wary of AI synthesis for decision support (confirmed, HIGH). That wall comes down with transparency: citations, evidence counts, drill-down, and the ability to spot-check (confirmed, MEDIUM). When those mechanisms are present, PMs DO act on synthesis without re-synthesizing everything themselves (confirmed, MEDIUM).</p>
+    <p style="font-size:14px">The first post-launch signal to watch: whether activated users open the evidence drill-down at least once in their first session. If they do, the spot-checking pattern is active and the trust chain is working. If they never open it, either synthesis quality is already trusted (good) or the drill-down is too hidden (bad). One behavior distinguishes between two very different product situations.</p>
+    <p class="cite" style="margin-top:12px">Full verification record: research/live-research.md</p>
   </div>
 </section>
 

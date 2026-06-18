@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sift - Personas</title>
+<style>
+  :root {
+    --bg: #0c0c0e;
+    --bg-2: #111115;
+    --bg-3: #17171c;
+    --bg-4: #1e1e25;
+    --border: #2a2a35;
+    --border-light: #1e1e28;
+    --text: #e8e8ec;
+    --text-2: #a0a0b0;
+    --text-3: #66667a;
+    --accent: #7c6af7;
+    --accent-dim: #3a3470;
+    --accent-glow: rgba(124,106,247,0.12);
+    --green: #3ecf8e;
+    --green-dim: rgba(62,207,142,0.12);
+    --amber: #e8a838;
+    --amber-dim: rgba(232,168,56,0.12);
+    --red: #f06060;
+    --red-dim: rgba(240,96,96,0.12);
+    --radius: 8px;
+    --radius-lg: 12px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    font-size: 15px;
+  }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(12,12,14,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-light);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 40px; height: 52px;
+  }
+
+  .nav-brand {
+    font-size: 14px; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--text); text-decoration: none;
+  }
+  .nav-brand span { color: var(--accent); }
+
+  .nav-links { display: flex; gap: 6px; list-style: none; }
+  .nav-links a {
+    color: var(--text-3); text-decoration: none; font-size: 12px;
+    font-weight: 500; letter-spacing: 0.03em; padding: 5px 10px;
+    border-radius: 5px; transition: color 0.15s, background 0.15s;
+  }
+  .nav-links a:hover { color: var(--text); background: var(--bg-3); }
+
+  .page { max-width: 1040px; margin: 0 auto; padding: 100px 40px 120px; }
+
+  section { padding-top: 80px; }
+
+  .section-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 12px;
+  }
+
+  h1 {
+    font-size: 42px; font-weight: 700; line-height: 1.15;
+    letter-spacing: -0.02em; color: var(--text); margin-bottom: 20px;
+  }
+
+  h2 {
+    font-size: 26px; font-weight: 650; letter-spacing: -0.015em;
+    color: var(--text); margin-bottom: 8px;
+  }
+
+  h3 { font-size: 17px; font-weight: 600; color: var(--text); margin-bottom: 10px; }
+
+  h4 {
+    font-size: 13px; font-weight: 600; letter-spacing: 0.04em;
+    text-transform: uppercase; color: var(--text-3); margin-bottom: 8px; margin-top: 24px;
+  }
+
+  p { color: var(--text-2); margin-bottom: 14px; }
+  p:last-child { margin-bottom: 0; }
+
+  .lead { font-size: 17px; line-height: 1.7; color: var(--text-2); max-width: 680px; }
+
+  .divider { border: none; border-top: 1px solid var(--border-light); margin: 60px 0; }
+
+  .card {
+    background: var(--bg-2); border: 1px solid var(--border);
+    border-radius: var(--radius-lg); padding: 28px;
+  }
+
+  .card-grid { display: grid; gap: 16px; }
+  .card-grid-2 { grid-template-columns: 1fr 1fr; }
+  .card-grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+  .table-wrap {
+    overflow-x: auto; border: 1px solid var(--border);
+    border-radius: var(--radius-lg); margin: 20px 0;
+  }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: var(--bg-3); color: var(--text-3); font-weight: 600;
+    font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  td {
+    padding: 12px 16px; border-bottom: 1px solid var(--border-light);
+    color: var(--text-2); vertical-align: top;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--bg-3); }
+
+  .tag {
+    display: inline-block; font-size: 11px; font-weight: 600;
+    letter-spacing: 0.05em; text-transform: uppercase; padding: 3px 8px;
+    border-radius: 4px; white-space: nowrap;
+  }
+  .tag-primary { background: var(--green-dim); color: var(--green); }
+  .tag-secondary { background: var(--amber-dim); color: var(--amber); }
+  .tag-later { background: var(--bg-4); color: var(--text-3); }
+  .tag-confirmed { background: var(--green-dim); color: var(--green); }
+
+  .badge {
+    display: inline-block; font-size: 10px; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 7px;
+    border-radius: 4px; margin-left: 8px; vertical-align: middle;
+  }
+  .badge-hypothesis { background: var(--amber-dim); color: var(--amber); }
+  .badge-verified { background: var(--green-dim); color: var(--green); }
+  .badge-unknown { background: var(--bg-4); color: var(--text-3); }
+  .badge-conditional { background: var(--amber-dim); color: var(--amber); }
+
+  .section-header {
+    display: flex; align-items: baseline; gap: 16px;
+    margin-bottom: 24px; padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .section-num { font-size: 13px; font-weight: 700; color: var(--text-3); }
+
+  .cite { font-size: 11px; color: var(--text-3); font-weight: 500; }
+
+  footer {
+    border-top: 1px solid var(--border-light); margin-top: 100px;
+    padding-top: 40px; padding-bottom: 60px; color: var(--text-3);
+    font-size: 12px; display: flex; justify-content: space-between; align-items: center;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .page > section:first-child { animation: fadeUp 0.5s ease; }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .page { padding: 80px 20px 80px; }
+    .card-grid-2, .card-grid-3 { grid-template-columns: 1fr; }
+    h1 { font-size: 28px; }
+    .trust-grid { grid-template-columns: 1fr; }
+  }
+
+  /* SIDEBAR */
+  .sidebar { display: none; }
+
+  @media (min-width: 1100px) {
+    .sidebar {
+      display: flex; flex-direction: column; gap: 2px;
+      position: fixed; top: 52px; left: 0; width: 220px;
+      height: calc(100vh - 52px); overflow-y: auto;
+      padding: 24px 12px 32px; border-right: 1px solid var(--border-light);
+      background: var(--bg); z-index: 90;
+    }
+    .page { margin: 0; margin-left: 220px; max-width: 1040px; padding: 100px 40px 120px; }
+  }
+
+  .sidebar-phase-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--text-3); padding: 5px 8px;
+    border-radius: 5px; display: block; cursor: default; text-decoration: none;
+  }
+  .sidebar-phase-label:hover { color: var(--text); background: var(--bg-3); cursor: pointer; }
+  a.sidebar-phase-label { cursor: pointer; }
+
+  .sidebar-phase.active .sidebar-phase-label { color: var(--accent); background: var(--accent-glow); }
+
+  .sidebar-section-links { list-style: none; margin: 4px 0 8px 0; padding: 0; }
+  .sidebar-section-links a {
+    display: block; font-size: 12px; color: var(--text-3); text-decoration: none;
+    padding: 4px 8px 4px 16px; border-radius: 4px;
+    border-left: 2px solid transparent;
+    transition: color 0.15s, border-color 0.15s, background 0.15s; line-height: 1.5;
+  }
+  .sidebar-section-links a:hover { color: var(--text); background: var(--bg-3); }
+  .sidebar-section-links a.active { color: var(--text); border-left-color: var(--accent); background: var(--bg-3); }
+
+  .sidebar-divider { border: none; border-top: 1px solid var(--border-light); margin: 8px 0; }
+  .sidebar-spacer { flex: 1; }
+
+  .sidebar-next {
+    padding: 12px; border: 1px solid var(--border-light);
+    border-radius: 6px; background: var(--bg-2); margin-top: 16px;
+  }
+  .sidebar-next-label {
+    font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--text-3); opacity: 0.6; margin-bottom: 4px;
+  }
+  .sidebar-next-content { font-size: 11px; color: var(--text-3); opacity: 0.6; line-height: 1.5; }
+
+  /* OBSERVATION CARDS */
+  .obs-card {
+    background: var(--bg-2); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 18px;
+  }
+  .obs-id {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 6px;
+  }
+  .obs-text { font-size: 13px; color: var(--text-2); line-height: 1.55; }
+  .obs-confirmed {
+    font-size: 11px; color: var(--green); font-weight: 600;
+    margin-top: 8px; display: flex; align-items: center; gap: 5px;
+  }
+
+  /* PERSONA CARDS */
+  .persona-card {
+    background: var(--bg-2); border: 1px solid var(--border);
+    border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 48px;
+  }
+  .persona-bar { height: 3px; }
+  .persona-bar-primary { background: var(--accent); }
+  .persona-bar-secondary { background: var(--amber); }
+  .persona-bar-later { background: var(--bg-4); }
+
+  .persona-header {
+    padding: 28px 28px 0; display: flex;
+    align-items: flex-start; gap: 20px;
+  }
+  .persona-avatar {
+    width: 48px; height: 48px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; font-weight: 700; flex-shrink: 0;
+  }
+  .persona-avatar-primary { background: var(--accent-glow); color: var(--accent); }
+  .persona-avatar-secondary { background: var(--amber-dim); color: var(--amber); }
+  .persona-avatar-later { background: var(--bg-4); color: var(--text-3); }
+
+  .persona-name-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 4px; }
+  .persona-name { font-size: 22px; font-weight: 700; color: var(--text); letter-spacing: -0.01em; }
+  .persona-role { font-size: 13px; color: var(--text-3); margin-top: 2px; }
+
+  .persona-body { padding: 20px 28px 28px; }
+
+  .persona-section-title {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--text-3);
+    margin-top: 28px; margin-bottom: 10px;
+    padding-top: 20px; border-top: 1px solid var(--border-light);
+  }
+  .persona-section-title.first { margin-top: 12px; padding-top: 0; border-top: none; }
+
+  .job-card {
+    background: var(--bg-3); border: 1px solid var(--border-light);
+    border-left: 3px solid var(--accent); border-radius: var(--radius);
+    padding: 14px 18px; margin-bottom: 10px;
+    font-size: 14px; color: var(--text-2); font-style: italic; line-height: 1.7;
+  }
+  .job-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--accent); font-style: normal;
+    margin-bottom: 6px;
+  }
+
+  .pain-item {
+    border-bottom: 1px solid var(--border-light); padding: 12px 0;
+  }
+  .pain-item:last-child { border-bottom: none; }
+  .pain-competitor { font-weight: 600; color: var(--text); font-size: 13px; }
+  .pain-detail { font-size: 13px; color: var(--text-2); margin-top: 3px; line-height: 1.55; }
+
+  .trust-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 4px; }
+  .trust-col-title {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; margin-bottom: 10px;
+  }
+  .trust-positive-title { color: var(--green); }
+  .trust-negative-title { color: var(--red); }
+
+  .trust-item { display: flex; gap: 8px; margin-bottom: 8px; font-size: 13px; color: var(--text-2); line-height: 1.55; }
+  .trust-dot { flex-shrink: 0; width: 6px; height: 6px; border-radius: 50%; margin-top: 5px; }
+  .trust-dot-positive { background: var(--green); }
+  .trust-dot-negative { background: var(--red); }
+
+  .quote-block {
+    background: var(--bg-3); border: 1px solid var(--border-light);
+    border-left: 3px solid var(--border); border-radius: var(--radius);
+    padding: 14px 18px; margin-top: 8px;
+  }
+  .quote-block.illustrative { border-left-color: var(--text-3); opacity: 0.7; }
+  .quote-illustrative-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--text-3); margin-bottom: 8px;
+  }
+  .quote-text { font-size: 14px; color: var(--text-2); font-style: italic; line-height: 1.7; }
+  .quote-citation { font-size: 11px; color: var(--text-3); margin-top: 6px; }
+
+  .claim-update {
+    background: var(--amber-dim); border: 1px solid rgba(232,168,56,0.25);
+    border-radius: var(--radius); padding: 12px 16px; margin-top: 10px;
+  }
+  .claim-update-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--amber); margin-bottom: 5px;
+  }
+  .claim-update-text { font-size: 13px; color: var(--text-2); line-height: 1.55; }
+
+  .decision-note {
+    background: rgba(124,106,247,0.06); border: 1px solid var(--accent-dim);
+    border-radius: var(--radius); padding: 14px 16px; margin-top: 12px;
+  }
+  .decision-note-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 6px;
+  }
+  .decision-note-text { font-size: 13px; color: var(--text-2); line-height: 1.55; }
+
+  .hypothesis-note { font-size: 12px; color: var(--text-3); font-style: italic; margin-top: 6px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="research.html"><span>S</span>ift</a>
+  <ul class="nav-links">
+    <li><a href="#observations">Observations</a></li>
+    <li><a href="#persona-pm">PM</a></li>
+    <li><a href="#persona-lead">Product Lead</a></li>
+    <li><a href="#persona-supplier">Signal Supplier</a></li>
+    <li><a href="jtbd.html" style="color:var(--text-3)">JTBD</a></li>
+  </ul>
+</nav>
+
+<aside class="sidebar">
+  <div class="sidebar-phase">
+    <a class="sidebar-phase-label" href="research.html">Research</a>
+  </div>
+  <hr class="sidebar-divider">
+  <div class="sidebar-phase active">
+    <span class="sidebar-phase-label">Personas</span>
+    <ul class="sidebar-section-links">
+      <li><a href="#observations">Observations</a></li>
+      <li><a href="#persona-pm">The Overloaded PM</a></li>
+      <li><a href="#persona-lead">Product Lead</a></li>
+      <li><a href="#persona-supplier">Signal Supplier</a></li>
+    </ul>
+  </div>
+  <hr class="sidebar-divider">
+  <div class="sidebar-phase">
+    <a class="sidebar-phase-label" href="jtbd.html">JTBD</a>
+  </div>
+  <div class="sidebar-spacer"></div>
+  <div class="sidebar-next">
+    <div class="sidebar-next-label">Next</div>
+    <div class="sidebar-next-content">Wireframes, Concept</div>
+  </div>
+</aside>
+
+<div class="page">
+
+<!-- INTRO -->
+<section id="intro">
+  <div class="section-label">People &amp; JTBD - June 2026</div>
+  <h1>People behind the product</h1>
+  <p class="lead">Three personas grown from research. Each is rooted in documented observations from strategy, competitive analysis, benchmarks, and live re-research in June 2026. Gaps are labeled. Hypothesis claims carry a <span class="badge badge-hypothesis">?</span> badge. All three mood quotes on this page are illustrative, not sourced quotes - each is labeled accordingly.</p>
+</section>
+
+<hr class="divider">
+
+<!-- OBSERVATIONS -->
+<section id="observations">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2>People observations from research</h2>
+  </div>
+  <p>16 observations were pulled from the six research files before building the personas. The six most structurally important are shown here. All 16 with sources are in <a href="research/personas.md" style="color:var(--text-3);text-decoration:none">research/personas.md</a>.</p>
+
+  <div class="card-grid card-grid-2" style="margin-top:24px">
+
+    <div class="obs-card">
+      <div class="obs-id">O2 - Primary user profile</div>
+      <div class="obs-text">PM at a B2B mid-market SaaS company, 50-500 employees, 2-10 person product team. 3-8 years experience. Comfortable with data but not a data analyst. Feedback sits in Intercom, Zendesk, Gong - with no coherent synthesis across them. Lives in Jira or Linear for execution.</div>
+      <div class="obs-text" style="margin-top:6px"><span class="cite">Source: strategy.md, Segment A profile</span></div>
+    </div>
+
+    <div class="obs-card">
+      <div class="obs-id">O5 - Synthesis-first, detail on demand</div>
+      <div class="obs-text">PMs want to see the synthesized picture first - what are the themes, which are biggest - and drill into evidence only for the themes that matter to the current decision. They do not want to start with raw data. The synthesis is the value. The drill-down is the trust mechanism.</div>
+      <div class="obs-text" style="margin-top:6px"><span class="cite">Source: ux-patterns.md, Pattern B1 (marked MOST CRITICAL)</span></div>
+    </div>
+
+    <div class="obs-card">
+      <div class="obs-id">O7 - Trust through spot-checking <span class="badge badge-verified">Confirmed</span></div>
+      <div class="obs-text">Skeptical PMs earn trust in synthesis tools through spot-checking: pick a theme they already know is real, verify the tool found it with the right evidence, then extend trust to themes they did not already know. The activation moment is exactly this recognition.</div>
+      <div class="obs-confirmed">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" fill="currentColor" opacity="0.2"/><path d="M3 6l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Confirmed (MEDIUM) - live research June 2026. Source: aipmtools.org
+      </div>
+    </div>
+
+    <div class="obs-card">
+      <div class="obs-id">O10 - The trust gap and what creates it</div>
+      <div class="obs-text">The anti-pattern: confident synthesis with no visible reasoning. One bad synthesis experience destroys trust permanently. The trust-building mechanisms: inline citation adjacent to every claim, progressive drill-down from conclusion to raw signal, and honest confidence display. The PM does not need to verify every conclusion - they need to know they can verify any conclusion.</div>
+      <div class="obs-text" style="margin-top:6px"><span class="cite">Source: benchmark.md, Mechanisms 1-3 and Anti-pattern section</span></div>
+    </div>
+
+    <div class="obs-card" style="border-color: var(--accent-dim); background: rgba(124,106,247,0.04);">
+      <div class="obs-id">O11 - H1: Riskiest assumption</div>
+      <div class="obs-text">PMs will trust Sift's AI synthesis enough to act on a real roadmap decision without re-synthesizing raw data themselves. If false, the core time-saving value proposition fails.</div>
+      <div class="claim-update" style="margin-top:10px">
+        <div class="claim-update-label">Updated - live research June 2026</div>
+        <div class="claim-update-text">H1 is conditionally confirmed (MEDIUM). When synthesis is transparent and traceable, PMs DO act on AI synthesis without re-synthesizing raw data. They spot-check a subset, then act. Without transparency, H1 fails. Sources: aipmtools.org, blog.ravi-mehta.com, productboard.com, capterra.com (June 2026).</div>
+      </div>
+    </div>
+
+    <div class="obs-card">
+      <div class="obs-id">O14 - No competitor owns the PM-specific evidence story</div>
+      <div class="obs-text">All HARD competitors (Productboard, Canny, Enterpret) position for broad teams - product plus CS plus sales plus marketing. None own the specific story of the PM who needs to make a confident, defensible prioritization call. The positioning gap is confirmed across all five competitors studied.</div>
+      <div class="obs-text" style="margin-top:6px"><span class="cite">Source: competitive-analysis.md</span></div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- PERSONA A -->
+<section id="persona-pm">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2>The three personas</h2>
+  </div>
+
+  <div class="persona-card">
+    <div class="persona-bar persona-bar-primary"></div>
+    <div class="persona-header">
+      <div class="persona-avatar persona-avatar-primary">A</div>
+      <div>
+        <div class="persona-name-row">
+          <span class="persona-name">The Overloaded PM</span>
+          <span class="tag tag-primary">Primary</span>
+        </div>
+        <div class="persona-role">Alex - Product Manager, B2B SaaS, 150 employees</div>
+      </div>
+    </div>
+
+    <div class="persona-body">
+
+      <div class="persona-section-title first">Context</div>
+      <p style="font-size:14px">Alex owns two product areas and manages a backlog of 40+ active items. Feedback arrives from Intercom, Gong, Zendesk, app store reviews, and occasional user interviews. None of these tools talk to each other. Before each sprint planning session, Alex spends time manually reading through the sources, tagging items by theme in a Notion database or Jira epics, and trying to form a picture of what customers actually want.</p>
+      <p style="font-size:14px">That picture changes every time, because every PM has their own method. Alex's synthesis is not reproducible by a colleague.</p>
+      <p style="font-size:13px;color:var(--text-3);margin-top:6px">Age 28-38 <span class="badge badge-hypothesis">?</span> inferred from career progression, not validated. Source: strategy.md, Segment A profile; master-research.md Section 1.</p>
+
+      <div class="persona-section-title">Jobs</div>
+      <div class="job-card">
+        <div class="job-label">Primary</div>
+        When I have a roadmap planning session coming up, I want to see a trustworthy synthesis of what customers are saying - with evidence I can trace - so that I can make a confident, defensible prioritization call and not just guess.
+      </div>
+      <div class="job-card">
+        <div class="job-label">Secondary</div>
+        When a stakeholder challenges a roadmap decision, I want to quickly pull the underlying evidence so that I can defend the choice with real customer voices rather than my opinion.
+      </div>
+      <p class="hypothesis-note">Source: strategy.md, Segment A JTBD. Consistent with master-research.md Section 2.</p>
+
+      <div class="persona-section-title">Pains</div>
+      <h4 style="margin-top:0;margin-bottom:10px">Today's way of doing it</h4>
+      <p style="font-size:13px">Manual synthesis in Notion or Jira. Hours of reading across tools, tagging items, trying to spot patterns. The result is not traceable back to source items, not reproducible by the team, and hard to defend when challenged - "I think I saw this in several support tickets" is not evidence.</p>
+
+      <h4>With competitors</h4>
+      <div class="table-wrap" style="margin:10px 0 0">
+        <table>
+          <tbody>
+            <tr>
+              <td style="width:140px"><span class="pain-competitor">Productboard</span></td>
+              <td><span class="pain-detail">Feature-rich but complex to set up. Spark AI positions around workflow prompts (write a PRD, summarize) rather than traceable evidence. Trust mechanism unclear from public pages. High price point ($19-59/maker/month).</span></td>
+            </tr>
+            <tr>
+              <td><span class="pain-competitor">Canny</span></td>
+              <td><span class="pain-detail">Vote-based prioritization. Autopilot AI captures and classifies. But Canny is customer-facing (public roadmap, changelog) - a different problem than internal PM synthesis. Using Canny means also managing customer expectations publicly.</span></td>
+            </tr>
+            <tr>
+              <td><span class="pain-competitor">Enterpret</span></td>
+              <td><span class="pain-detail">Enterprise infrastructure, contact sales, not self-serve. Not accessible to a PM at a 150-person company without a procurement process.</span></td>
+            </tr>
+            <tr>
+              <td><span class="pain-competitor">Dovetail</span></td>
+              <td><span class="pain-detail">Research-oriented (interviews, recordings, insight docs). Positioned as a research repository, not a synthesis-to-decision tool for PMs in sprint planning.</span></td>
+            </tr>
+            <tr>
+              <td><span class="pain-competitor">Jira Product Discovery</span></td>
+              <td><span class="pain-detail">Attractive if already in Atlassian ecosystem. Scoring and backlog integration strong. But feedback ingestion and AI synthesis are weaker than purpose-built tools.</span></td>
+            </tr>
+            <tr>
+              <td><span class="pain-competitor">Notion DIY</span></td>
+              <td><span class="pain-detail">Maximum flexibility, zero cost. But synthesis happens in Alex's head. Requires manual maintenance to keep evidence intact. When Alex leaves, the system collapses. Trust is in Alex, not a reproducible process.</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="hypothesis-note">Source: competitive-analysis.md, benchmark.md.</p>
+
+      <div class="persona-section-title">Trust triggers</div>
+      <div class="trust-grid">
+        <div>
+          <div class="trust-col-title trust-positive-title">What builds trust</div>
+          <div class="trust-item"><div class="trust-dot trust-dot-positive"></div>Their own data, not demo data. The first synthesis must use Alex's actual feedback.</div>
+          <div class="trust-item"><div class="trust-dot trust-dot-positive"></div>A theme they already know is real, found and supported with the right quotes. Confirmation before asking Alex to trust novel conclusions.</div>
+          <div class="trust-item"><div class="trust-dot trust-dot-positive"></div>Visible sample size and evidence count per theme. "Based on 47 feedback items from Intercom over the last 30 days" is trustworthy. "Based on feedback" is not.</div>
+          <div class="trust-item"><div class="trust-dot trust-dot-positive"></div>The ability to drill down to the raw source. Even if Alex does not click through on every theme, knowing they can is what creates permission to act.</div>
+          <div class="trust-item"><div class="trust-dot trust-dot-positive"></div>Honest admission when evidence is thin. A theme with 3 data points flagged as "low volume" is more trustworthy than a theme confidently presented on 3 data points.</div>
+        </div>
+        <div>
+          <div class="trust-col-title trust-negative-title">What destroys trust</div>
+          <div class="trust-item"><div class="trust-dot trust-dot-negative"></div>One synthesis conclusion that is clearly wrong - a theme they know is fictional, or quotes that do not match the theme label. Trust destroyed permanently.</div>
+          <div class="trust-item"><div class="trust-dot trust-dot-negative"></div>Confident presentation with no visible reasoning. "AI identified this as a top priority" with no evidence count or drill-down. The experience that Canny Autopilot and early Productboard AI created.</div>
+          <div class="trust-item"><div class="trust-dot trust-dot-negative"></div>A synthesis that sounds like it was written by a marketing team, not derived from real tickets. If the themes do not sound like customer language, Alex will not trust them.</div>
+        </div>
+      </div>
+      <p class="hypothesis-note">Source: benchmark.md (Mechanisms 1-3, Anti-pattern). ux-patterns.md (B3). strategy.md, Riskiest Assumption (H1).</p>
+
+      <div class="persona-section-title">Mood quote</div>
+      <div class="quote-block illustrative">
+        <div class="quote-illustrative-label">Illustrative - not a sourced quote</div>
+        <div class="quote-text">"I spend more time organizing feedback than thinking about what to do with it. By the time I've synthesized everything, the planning session has started."</div>
+      </div>
+      <p class="hypothesis-note" style="margin-top:8px">No real sourced quote was gathered in the research phase. Step 6 re-research was attempted (Reddit blocked, G2 blocked). Freeman C. (Senior PM, Capterra, Nov 2025) is the closest primary voice found. See live-research.md F5.</p>
+
+    </div>
+  </div>
+
+<!-- PERSONA B -->
+<div class="persona-card" id="persona-lead">
+  <div class="persona-bar persona-bar-secondary"></div>
+  <div class="persona-header">
+    <div class="persona-avatar persona-avatar-secondary">B</div>
+    <div>
+      <div class="persona-name-row">
+        <span class="persona-name">The Evidence-Hungry Product Lead</span>
+        <span class="tag tag-secondary">Secondary</span>
+      </div>
+      <div class="persona-role">Morgan - Head of Product or VP of Product, scale-up, 200 employees, 4 PMs</div>
+    </div>
+  </div>
+
+  <div class="persona-body">
+
+    <div class="persona-section-title first">Context</div>
+    <p style="font-size:14px">Morgan manages a team of four PMs and presents the roadmap to the board or leadership team quarterly. Each PM synthesizes feedback differently, and when Morgan assembles a quarterly strategy presentation, they are aggregating summaries of summaries - not traceable back to customer signal.</p>
+    <p style="font-size:14px">When leadership challenges a priority ("Why aren't we solving X? That's what I hear from every customer"), Morgan cannot point to systematic evidence. The answer is anecdote ("I believe our research shows...") rather than data.</p>
+    <p style="font-size:13px;color:var(--text-3);margin-top:6px">Age 35-45 <span class="badge badge-hypothesis">?</span> inferred from career progression, not validated. Source: strategy.md, Segment B profile.</p>
+
+    <div class="persona-section-title">Jobs</div>
+    <div class="job-card">
+      <div class="job-label">Primary</div>
+      When I present the roadmap to leadership, I want to show systematic customer evidence behind each priority so that the strategy feels grounded and not opinion-based.
+    </div>
+    <div class="job-card">
+      <div class="job-label">Secondary <span class="badge badge-hypothesis" style="margin-left:4px">?</span></div>
+      When I manage my PM team's synthesis work, I want a consistent standard for how evidence is gathered and structured so that I can aggregate across the team's work rather than reconcile four different approaches.
+    </div>
+    <p class="hypothesis-note">Primary source: strategy.md, Segment B JTBD. Secondary job is a hypothesis - implied by the "no consistent evidence standard" pain but not stated explicitly in strategy.md.</p>
+
+    <div class="persona-section-title">Pains</div>
+    <div class="pain-item">
+      <div class="pain-competitor">No consistent evidence standard</div>
+      <div class="pain-detail">Every PM synthesizes feedback differently. Cannot aggregate across the team without translating between individual systems. The result is a strategy presentation built on four different approaches to the same problem.</div>
+    </div>
+    <div class="pain-item">
+      <div class="pain-competitor">Anecdotes instead of systematic signal</div>
+      <div class="pain-detail">Relies on anecdotes when presenting to leadership. Vulnerable to challenge by anyone who says "my customer said something different."</div>
+    </div>
+    <div class="pain-item">
+      <div class="pain-competitor">Atlassian consolidation risk</div>
+      <div class="pain-detail">Morgan at an Atlassian-heavy org may default to Jira Product Discovery for this use case, especially post-Cycle acquisition (September 2025). Harder acquisition target. Source: strategy.md v2 update; cycle.app/blog.</div>
+    </div>
+
+    <div class="persona-section-title">Trust triggers <span class="badge badge-hypothesis">?</span></div>
+    <p class="hypothesis-note" style="margin-bottom:10px">Morgan-specific trust behaviors are a hypothesis. No primary source for this persona's trust behaviors was gathered in research.</p>
+    <div class="trust-grid">
+      <div>
+        <div class="trust-col-title trust-positive-title">What builds trust</div>
+        <div class="trust-item"><div class="trust-dot trust-dot-positive"></div>Consistency across the team. If all four PMs use the same synthesis tool and evidence standard, Morgan can aggregate their work with confidence.</div>
+        <div class="trust-item"><div class="trust-dot trust-dot-positive"></div>A traceable link from the board presentation back to the customer voices that support each priority.</div>
+        <div class="trust-item"><div class="trust-dot trust-dot-positive"></div>Evidence that the PM team trusts the tool themselves - not just using it as a reporting layer.</div>
+      </div>
+      <div>
+        <div class="trust-col-title trust-negative-title">What destroys trust</div>
+        <div class="trust-item"><div class="trust-dot trust-dot-negative"></div>A synthesis the PMs on the team question or override. If the team does not trust the output, the output is not useful to Morgan.</div>
+        <div class="trust-item"><div class="trust-dot trust-dot-negative"></div>Over-confidence in thin evidence. Priority backed by 3 quotes shown with the same visual weight as one backed by 300.</div>
+      </div>
+    </div>
+
+    <div class="persona-section-title">Mood quote</div>
+    <div class="quote-block illustrative">
+      <div class="quote-illustrative-label">Illustrative - not a sourced quote</div>
+      <div class="quote-text">"Every quarter I tell the board 'customers are saying X' and every quarter I'm one sharp question away from not being able to back it up."</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- PERSONA C -->
+<div class="persona-card" id="persona-supplier">
+  <div class="persona-bar persona-bar-later"></div>
+  <div class="persona-header">
+    <div class="persona-avatar persona-avatar-later">C</div>
+    <div>
+      <div class="persona-name-row">
+        <span class="persona-name">The Signal Supplier</span>
+        <span class="tag tag-later">Later</span>
+      </div>
+      <div class="persona-role">Jordan - Customer Success Manager or Support Lead, same company as Alex</div>
+    </div>
+  </div>
+
+  <div class="persona-body">
+
+    <div class="decision-note">
+      <div class="decision-note-label">D1 - Founder decision, June 2026</div>
+      <div class="decision-note-text">Segment C is out of MVP scope. But Jordan is NOT a separate backlog feature - Jordan is a PM retention dependency. If the signal supplier does not see their signal being used, they stop submitting, which degrades Alex's (Segment A) data quality over time. The Segment A transparency design - theme, evidence, source chain - is the prerequisite surface for Jordan's closure loop in the fast follow. Build Segment A's traceability well, and the closure loop for Jordan is a thin layer on top. Source: strategy.md Section 6, master-research.md Section 9.</div>
+    </div>
+
+    <div class="persona-section-title">Context</div>
+    <p style="font-size:14px">Jordan speaks to customers daily - support tickets, onboarding calls, check-ins. Jordan sees patterns that product does not see: common complaints, feature requests from multiple accounts, recurring confusion in the same flow. Jordan logs these in Intercom or shares them in Slack, but they do not visibly move the roadmap.</p>
+    <p style="font-size:14px">Jordan has no closure loop: they share the feedback, and it disappears into a black box.</p>
+    <p style="font-size:13px;color:var(--text-3);margin-top:6px">Age 26-35 <span class="badge badge-hypothesis">?</span> inferred from career progression, not validated. Not the economic buyer. Adoption depends on Alex (Segment A) using the tool. Source: strategy.md, Segment C.</p>
+
+    <div class="persona-section-title">Job</div>
+    <div class="job-card">
+      <div class="job-label">Primary</div>
+      When I share customer feedback with the product team, I want to see whether it influenced a decision so that I can close the loop with the customer and feel the signal was heard.
+    </div>
+    <p class="hypothesis-note">Source: strategy.md, Segment C JTBD.</p>
+
+    <div class="persona-section-title">Pains</div>
+    <div class="pain-item">
+      <div class="pain-competitor">Feedback submitted into the void</div>
+      <div class="pain-detail">No visibility into whether feedback reached product. Cannot tell customers whether their request was heard, prioritized, or deprioritized - and why.</div>
+    </div>
+    <div class="pain-item">
+      <div class="pain-competitor">Not the economic buyer</div>
+      <div class="pain-detail">Cannot adopt Sift unilaterally. Adoption depends on Alex (Segment A) using the tool and making the signal supply channel visible. Canny partially addresses this through customer-facing public roadmaps and changelogs - Jordan's organization does not use Canny.</div>
+    </div>
+
+    <div class="persona-section-title">Trust triggers <span class="badge badge-hypothesis">?</span></div>
+    <p class="hypothesis-note" style="margin-bottom:10px">Jordan-specific trust behaviors are a hypothesis. No primary source was gathered. This is the least-developed persona because research confirms CS/support as a later priority.</p>
+    <div class="trust-grid">
+      <div>
+        <div class="trust-col-title trust-positive-title">What builds trust</div>
+        <div class="trust-item"><div class="trust-dot trust-dot-positive"></div>Evidence that feedback was actually read and incorporated into a synthesis theme - not just ingested.</div>
+        <div class="trust-item"><div class="trust-dot trust-dot-positive"></div>A visible loop: "your 5 tickets about onboarding confusion contributed to the Onboarding Friction theme, ranked priority 2 this quarter."</div>
+      </div>
+      <div>
+        <div class="trust-col-title trust-negative-title">Risk</div>
+        <div class="trust-item"><div class="trust-dot trust-dot-negative"></div>If Sift is internal-only with no CS/support view, Jordan never sees the loop close. The signal supply dries up, and Alex's data quality degrades with it.</div>
+      </div>
+    </div>
+
+    <div class="persona-section-title">Mood quote</div>
+    <div class="quote-block illustrative">
+      <div class="quote-illustrative-label">Illustrative - not a sourced quote</div>
+      <div class="quote-text">"I send a dozen pieces of customer feedback to product every week. I have no idea what happens to any of them."</div>
+    </div>
+
+  </div>
+</div>
+
+</section>
+
+<footer>
+  <div>Sift - Personas - June 2026 - People &amp; JTBD phase</div>
+  <div style="text-align:right">
+    <a href="research/personas.md" style="color:var(--text-3);text-decoration:none">personas.md</a>
+    <span style="margin:0 8px">-</span>
+    <a href="jtbd.html" style="color:var(--text-3);text-decoration:none">jtbd.html</a>
+  </div>
+</footer>
+
+</div>
+
+<script>
+  const sections = document.querySelectorAll('section[id], div[id]');
+  const sidebarLinks = document.querySelectorAll('.sidebar-section-links a');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        sidebarLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + id) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+  }, { threshold: 0, rootMargin: '-15% 0px -75% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>

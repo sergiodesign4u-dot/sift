@@ -133,11 +133,21 @@ When I receive feedback from multiple sources (support, sales, interviews, revie
 
 | Phase | Scope | Estimated duration |
 |---|---|---|
-| Research (current) | Competitive analysis, strategy, AARRR, benchmarks, UX patterns | 1-2 weeks |
-| Wireframes | Core flows: ingestion, synthesis view, evidence trace, prioritization | 2-3 weeks |
+| Research | Competitive analysis, strategy, AARRR, benchmarks, UX patterns, live re-research, personas, JTBD matrix - **Done. Founder decisions D1-D3 locked.** | 1-2 weeks |
+| Wireframes (current) | Core flows: ingestion, synthesis view, evidence trace, prioritization | 2-3 weeks |
 | Concept | Visual language, brand direction, high-fidelity mockups | 3-4 weeks |
 | Design system | Tokens, components, patterns | 2-3 weeks |
 | Components | Coded component library | 3-4 weeks |
 | Handoff | Dev handoff, annotations, specs | 1-2 weeks |
 
 **Assumption:** Timeline is for design phase only. Engineering build and launch timeline are separate.
+
+---
+
+## Locked Decisions (June 2026)
+
+Three founder decisions locked at end of research phase. Full rationale in research/strategy.md Sections 5-6 and research/master-research.md Section 9.
+
+- **D1 - MVP focus:** Segment A (Overloaded PM) only. Segment C (Signal Supplier) deferred as a PM retention dependency, not a separate backlog feature. The signal supplier's closure loop depends on Segment A's transparency design being built first.
+- **D2 - Confidence display:** Mandatory in MVP. Tied directly to H1 reformulation: transparency is the condition H1 requires. Day-one scope: item count per theme (n=X) plus a "low signal" badge. Source diversity, time range, and thresholds are v2.
+- **D3 - First integration set:** CSV + Intercom for MVP. Zendesk follows using the same abstraction pattern. No specific timeline committed for Zendesk.
