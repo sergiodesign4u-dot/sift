@@ -339,3 +339,62 @@ Verdict: The claim stays [?]. Directional evidence suggests hours to days, not m
 ### Brief sharing: external vs. internal - UNRESOLVED
 
 No data found. Zero sources addressed whether PMs share synthesis outputs externally (to stakeholders outside the company) or only internally (within the team). This remains an open hypothesis that requires beta observation.
+
+---
+
+## 9. Founder Decisions - June 2026
+
+*Three product decisions locked after personas, JTBD, and live re-research. June 2026.*
+*Abbreviated here. Full decision text with open questions in research/strategy.md (Sections 5 and 6).*
+
+### H1 Reformulation - Record
+
+H1 was reformulated from unconditional (PMs will trust AI synthesis enough to act) to conditional (when synthesis is transparent and traceable, PMs DO act on AI synthesis without re-synthesizing raw data). This is a live research finding, not a founder decision.
+
+The conditional form is confirmed MEDIUM confidence across four independent sources (live-research.md, F1, F2, F3, F4). The founder decision (D2 below) responds to this reformulation: since transparency is the condition H1 requires, confidence display is mandatory in MVP.
+
+The chain: H1 reformulation (research finding) - transparency is load-bearing (design implication) - confidence display is mandatory in MVP (D2) - day-one scope is item count + low signal badge (D2 scope).
+
+Cite as: master-research.md Section 8 (H1 conditional confirmation). strategy.md Section 5 (H1 reformulation). live-research.md (F1, F2, F3, F4).
+
+---
+
+### D1 - MVP Audience Focus: Segment A Only
+
+**CLOSED.**
+
+MVP scope is Segment A (The Overloaded PM) only. Segment C (The Signal Supplier) is deferred.
+
+Record on Segment C: it is NOT a separate backlog feature. It is a PM retention dependency. The signal supplier needs to see their signal being used or they stop submitting, which degrades the PM's (Segment A) data quality over time. The Segment A transparency design (theme - evidence - source chain) is the prerequisite surface for Segment C's closure loop in the fast follow.
+
+Research basis: strategy.md (Segment C: "Later"). competitive-analysis.md (PLG model: Segment A is the economic buyer in self-serve). jtbd.md (J5: Importance 3 for Segment C, cut from MVP). personas.md (Persona C: Later priority confirmed).
+
+Cross-reference updates: jtbd.md (J5 cut confirmed by D1). personas.md (Persona C note updated with retention dependency framing).
+
+---
+
+### D2 - Honest Confidence Display: Mandatory in MVP
+
+**CLOSED.**
+
+Confidence display is mandatory in MVP. The H1 reformulation makes this a prerequisite, not a feature. Without visible evidence counts and honest thin-evidence signals, the transparency condition that H1 requires does not hold, and the core value proposition fails.
+
+Day-one scope only: item count per theme (n=X) and a "low signal" badge for thin evidence. Source diversity, time range display, and configurable thresholds are v2 scope.
+
+Research basis: H1 conditional confirmation (live-research.md F4, master-research.md Section 8). benchmark.md (Mechanism 3: honest confidence and sample size display). jtbd.md (J3: Know how much to trust a conclusion - D2's day-one scope is what closes J3 at MVP).
+
+Cross-reference updates: jtbd.md (J3 function column scoped to day-one). jtbd.md (critique table H1 row updated with D2 connection).
+
+---
+
+### D3 - First Integration Set: CSV + Intercom
+
+**CLOSED.**
+
+MVP integrations: CSV import and Intercom. Zendesk is the confirmed next integration, using the same abstraction pattern as Intercom, without extending MVP build scope. No timeline committed for Zendesk.
+
+Research basis: personas.md (O2: Segment A tool stack names Intercom and Zendesk as primary sources). master-research.md (AARRR section: "CSV import + Intercom integration as first connections" - now confirmed by founder decision, not hypothesis). aarrr.md (Activation: first synthesis must use real PM data within 20 minutes of signup).
+
+Note: the [?] about CSV vs. native integration preference at activation in personas.md is a separate data question. D3 is a build priority decision made under that uncertainty. Beta behavior will answer the preference question.
+
+Cross-reference updates: personas.md (gaps table: CSV vs. integration row updated to reflect D3 build decision).

@@ -165,10 +165,10 @@ These are genuine gaps - not guesses, not hypotheses presented as facts. They ar
 | Gap | Why it matters | Where to look |
 |---|---|---|
 | [?] Exact time PMs spend on manual synthesis per planning cycle | Validates Objective 2 and sharpens "time to decision" messaging | User interviews; time-motion studies in PM communities |
-| [?] Whether H1 is true at all - do PMs actually trust AI synthesis enough to act? | Riskiest assumption in the product; failure kills the core value proposition | Reddit (r/ProductManagement), G2/Capterra reviews of Productboard Spark and Canny Autopilot, PM forums |
+| H1 conditionally confirmed (MEDIUM, live research June 2026) | H1 is true WHEN transparency mechanisms are present (citations, evidence counts, drill-down). Without transparency, H1 fails. This conditional confirmation is the basis for D2: mandatory confidence display in MVP. | Full evidence: live-research.md (F1, F2, F3, F4). Reformulation in strategy.md Section 5 and master-research.md Section 8. |
 | [?] Whether PMs in this segment search actively for tools or wait for peer recommendations | Determines acquisition channel priority | PM community surveys, AARRR activation data once live |
 | [?] Which PM communities (Lenny's, Mind the Product, Product School) have highest density of Segment A | Determines where to launch and where content goes | Community member counts, engagement data (where accessible publicly) |
-| [?] CSV vs. native integration preference at activation | Determines MVP integration build order | Beta user behavior data; AARRR activation experiment |
+| Integration build order: CSV + Intercom for MVP (D3, strategy.md June 2026) | Build order determined by founder decision. PM preference data at activation is a separate open question for beta. | Beta observation: track whether PMs use CSV or Intercom first, and whether activation rate differs. |
 | [?] What percentage of PMs have feedback already centralized vs. spread across 3+ tools | Determines how hard the activation path is | PM surveys in the research community |
 | [?] Whether PMs share evidence briefs externally or only internally | Determines whether the referral viral loop (H3) activates | Beta sharing behavior; ask directly in onboarding survey |
 | [?] Real quotes from target PMs about AI synthesis tools - in their own words | Grounding for personas, trust language, and positioning copy | Reddit, G2 reviews, forums (Step 6 re-research) |
@@ -384,7 +384,9 @@ Jordan's trust is less about AI synthesis skepticism and more about whether the 
 
 [? Jordan-specific trust behaviors are a hypothesis - no primary source was gathered in research. This is the least-developed persona because the research confirms CS/support as a later priority, not a day-1 user.]
 
-Source: strategy.md, Segment C (Later priority). ux-patterns.md (Inbox pattern alternative for CS/support users).
+D1 (June 2026): Segment C is out of MVP scope. Record: Jordan is NOT a separate backlog feature. Jordan is a PM retention dependency. If the signal supplier does not see their signal being used, they stop submitting, which degrades Alex's (Segment A) data quality over time. The transparency design for Segment A (theme - evidence - source chain) is the prerequisite surface for Jordan's closure loop in the fast follow. Build Segment A's traceability well, and the closure loop for Jordan is a thin layer on top.
+
+Source: strategy.md, Segment C (Later priority). ux-patterns.md (Inbox pattern alternative for CS/support users). D1 (strategy.md Section 6, master-research.md Section 9).
 
 ---
 

@@ -135,3 +135,78 @@ Benchmark research strengthens this: the gap between "AI synthesis with no visib
 **If this assumption is false (consequence):** PMs will always feel the need to re-check the raw data. Sift becomes another data source they process manually, not a synthesis they act on. The core time-saving value proposition fails. The product survives as a better data aggregator but not as the decision-confidence tool it needs to be.
 
 **This is Hypothesis H1 in Phase 6 (master-research.md) - the one whose failure kills the idea.**
+
+---
+
+## 5. H1 Reformulation - June 2026
+
+*From live research conducted June 2026. This is a research finding, not a founder decision. The founder decision (D2 below) responds to it.*
+
+**Original form:** PMs will trust Sift's AI synthesis enough to act on a real roadmap decision without re-synthesizing the raw data themselves.
+
+**Reformulation:** H1 is conditionally confirmed. The condition is transparency.
+
+When synthesis is transparent and traceable (inline citations, evidence counts, drill-down to raw signal), PMs DO act on AI synthesis without re-synthesizing raw data. They spot-check a subset of themes (verify themes they know are real before trusting novel ones), then act. This spot-check is not re-synthesizing - it is trust calibration. Without transparency, H1 fails: black-box synthesis is not trusted for decisions.
+
+Sift's transparency design is what makes H1 true. It is the mechanism, not optional polish.
+
+**Evidence (all confirmed, June 2026):**
+- "Citations make it trustworthy enough to present to execs." Source: https://aipmtools.org/articles/future-of-ai-product-management
+- "Tools are showing their work, making AI recommendations auditable and trustworthy for stakeholder conversations." Source: https://aipmtools.org/articles/ai-changing-product-management
+- "Sanity-checking outputs and using simple eval style checks (spot tests, edge cases, benchmarks) before trusting an AI workflow in a critical process is a core competency for modern product managers." Source: https://aipmtools.org/articles/future-of-ai-product-management
+- Productboard Spark positions for direct action: "There is no translation layer, no export step, no 'now what?' moment." Source: https://www.productboard.com/blog/productboard-spark-ai-customer-feedback-analysis/
+
+Full verification record: live-research.md (F1, F2, F3, F4). Full update in master-research.md Section 8.
+
+---
+
+## 6. Founder Decisions - June 2026
+
+*Three decisions locked after personas, JTBD, and live re-research work. June 2026.*
+*Abbreviated rationale here. Full rationale in master-research.md Section 9.*
+
+### D1 - MVP Audience Focus: Segment A Only
+
+**CLOSED.**
+
+MVP scope is Segment A (The Overloaded PM) only.
+
+Segment C (The Signal Supplier) is deferred. Record: Segment C is NOT a separate backlog feature. It is a PM retention dependency. The signal supplier needs to see their signal being used or they stop submitting, which degrades the PM's (Segment A) data quality over time. The transparency design for Segment A (theme - evidence - source chain) is the natural prerequisite surface for Segment C's closure loop in the fast follow.
+
+Cross-reference: personas.md (Persona C: Later priority confirmed). jtbd.md (J5: Importance 3 for Segment C, cut from MVP by this decision).
+
+### D2 - Honest Confidence Display: Mandatory in MVP
+
+**CLOSED.**
+
+Confidence display is mandatory in MVP. It is not a feature to add later. The H1 reformulation (Section 5 above) makes this non-negotiable: transparency is the condition H1 requires, and confidence display is the primary transparency mechanism.
+
+Day-one scope only: item count per theme (n=X) plus a "low signal" badge for thin evidence. Source diversity, time range display, and configurable thresholds are v2 scope, not MVP blockers.
+
+Cross-reference: jtbd.md (J3: Know how much to trust a conclusion - this function closes J3 at MVP). benchmark.md (Mechanism 3: honest confidence and sample size display). H1 reformulation above.
+
+### D3 - First Integration Set: CSV + Intercom
+
+**CLOSED.**
+
+MVP integrations: CSV import and Intercom. Zendesk follows next using the same abstraction pattern established by the Intercom integration, without extending MVP build scope. No specific timeline committed for Zendesk.
+
+Reasoning: CSV covers the immediate activation path (any PM can upload existing feedback on day one). Intercom is named as the primary tool in the Segment A profile (personas.md O2). Together they enable a real synthesis from real data, which is the activation requirement (aarrr.md: PM must reach a synthesis from their own data within 20 minutes).
+
+Note: the [?] about CSV vs. native integration preference at activation (personas.md gaps table) is a separate data question. This decision is a build priority choice made under that uncertainty. Beta behavior will answer the underlying preference question.
+
+Cross-reference: personas.md (O2: Intercom named in Segment A tool stack). master-research.md (AARRR section: "CSV import + Intercom integration as first connections" - now confirmed by founder decision).
+
+---
+
+## Open Questions (Strategy Level)
+
+These questions are not resolved by the decisions above. They remain open until beta or user research.
+
+| Question | Status | How to close |
+|---|---|---|
+| Exact baseline time PMs spend on manual synthesis per planning cycle (U1) | OPEN | User interviews; ask PMs to time a real synthesis session |
+| Whether PMs share evidence briefs externally vs. internally (U2) | OPEN | Beta observation: track internal vs. external share link usage |
+| Exact threshold for "low signal" badge | OPEN | Design phase decision; configurable in v2 |
+| Zendesk integration timeline | OPEN by design | Follows Intercom; no commitment made |
+| Willingness to pay at $30-40/seat/month | OPEN | Van Westendorp price sensitivity research with target PMs |
