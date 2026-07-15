@@ -31,11 +31,30 @@ Research was conducted across 7 phases: product strategy hypotheses, AARRR model
 
 5. **The PLG + evidence-brief viral loop is the right go-to-market.** The shareable evidence brief (a synthesis output that travels independently) is the primary acquisition asset, activation trigger, and referral mechanism simultaneously. Building it well is the single most impactful product investment for early growth.
 
+### What the research confirmed, refuted, and changed vs the initial brief (CLAUDE.md)
+
+**Confirmed:**
+- The core problem: PMs drown in scattered feedback and cannot make defensible calls. Confirmed by real PM voices in live research, including a Capterra reviewer naming "collection without synthesis" as the unsolved problem. (Source: [live-research.md](live-research.md) F5, F6)
+- The primary differentiator: transparent, traceable synthesis. No competitor owns it on public pages, and citations are what make AI synthesis presentable to stakeholders. (Source: [competitors.md](competitors.md), [live-research.md](live-research.md) F3)
+- Segment A (the Overloaded PM) as the primary user, and the "defend your roadmap" positioning as an open, unclaimed gap. (Source: [competitors.md](competitors.md))
+- Confidence display as a design principle. Live research promoted it from a principle to a mandatory MVP feature (founder decision D2).
+
+**Refuted / corrected:**
+- The unconditional form of the riskiest assumption was refuted: PMs do NOT trust black-box AI synthesis for decisions. H1 survives only in its conditional form (trust follows transparency). (Source: [live-research.md](live-research.md) F1, F4; Section 8 below)
+- Two market facts in the original competitor picture were wrong and corrected: Cycle.app is no longer independent (acquired by Atlassian, sunset October 31, 2025) and Dovetail moved to a 2-tier model (Free + Enterprise). (Source: [competitors.md](competitors.md), [quality-check.md](quality-check.md))
+- Several unsourced stats that had crept into early notes ("7-9 tools", "40% faster decisions") were removed as unverifiable. (Source: [quality-check.md](quality-check.md))
+
+**Changed / sharpened:**
+- MVP scope narrowed from Segment A + C to Segment A only; Segment C reframed as a retention dependency, not a backlog feature (founder decision D1).
+- Free plan volume limit revised down from 500 to 250 items/month after reviewing competitor free tiers. (Source: [strategy.md](strategy.md) Section 3)
+- First integration set locked to CSV + Intercom, with Zendesk deferred to a follow-on using the same abstraction (founder decision D3).
+- The "3-5 hours per planning cycle" figure from the brief could not be verified against a primary source; the order of magnitude (hours) holds, but the exact number stays [?] pending user interviews. (Source: [live-research.md](live-research.md) U1, [quality-check.md](quality-check.md))
+
 ---
 
 ## 2. Strategy
 
-*(Full detail in research/strategy.md v2)*
+*(Full detail in research/docs/strategy.md v2)*
 
 ### Objectives
 
@@ -70,7 +89,7 @@ PMs will trust Sift's AI synthesis enough to act on a real roadmap decision with
 
 ## 3. AARRR
 
-*(Full detail in research/aarrr.md)*
+*(Full detail in research/docs/aarrr.md)*
 
 ### Funnel Summary
 
@@ -90,7 +109,7 @@ The evidence brief is the single most important product artifact for AARRR: it d
 
 ## 4. Competitors
 
-*(Full detail in research/competitive-analysis.md)*
+*(Full detail in research/docs/competitors.md)*
 
 ### Competitor Matrix
 
@@ -123,7 +142,7 @@ The evidence brief is the single most important product artifact for AARRR: it d
 
 ## 5. Benchmark: Trust in Synthesis
 
-*(Full detail in research/benchmark.md)*
+*(Full detail in research/docs/benchmark.md)*
 
 ### Scores
 
@@ -151,7 +170,7 @@ The evidence brief is the single most important product artifact for AARRR: it d
 
 ## 6. UX Patterns
 
-*(Full detail in research/ux-patterns.md)*
+*(Full detail in research/docs/ux-patterns.md)*
 
 ### Pattern Chosen: The Report + Evidence Brief
 
@@ -177,12 +196,12 @@ The evidence brief is the single most important product artifact for AARRR: it d
 
 | Gap | Description | Source | Confidence |
 |---|---|---|---|
-| Synthesis trust chain | No competitor demonstrates full traceability from raw signal to decision with honest confidence on public pages | competitive-analysis.md, benchmark.md | High |
-| PM-specific positioning | "Confident PM defending her roadmap" story is unclaimed by any HARD competitor | competitive-analysis.md | High |
+| Synthesis trust chain | No competitor demonstrates full traceability from raw signal to decision with honest confidence on public pages | competitors.md, benchmark.md | High |
+| PM-specific positioning | "Confident PM defending her roadmap" story is unclaimed by any HARD competitor | competitors.md | High |
 | Honest confidence display | None of the benchmarked direct competitors show sample size and confidence level alongside synthesis conclusions | benchmark.md | High |
-| Evidence brief as product | The shareable evidence artifact (quotes + themes + sources) is underbuilt across all competitors | aarrr.md, competitive-analysis.md | Medium |
-| Free tier value delivery | Current free tiers across competitors are too restrictive to create genuine "aha" moments; Sift can do better | competitive-analysis.md | Medium |
-| Atlassian consolidation risk | JPD + Cycle acquisition could absorb the "good enough" mid-market segment via distribution advantage | competitive-analysis.md | Medium - monitor |
+| Evidence brief as product | The shareable evidence artifact (quotes + themes + sources) is underbuilt across all competitors | aarrr.md, competitors.md | Medium |
+| Free tier value delivery | Current free tiers across competitors are too restrictive to create genuine "aha" moments; Sift can do better | competitors.md | Medium |
+| Atlassian consolidation risk | JPD + Cycle acquisition could absorb the "good enough" mid-market segment via distribution advantage | competitors.md | Medium - monitor |
 
 ---
 
@@ -291,7 +310,7 @@ Productboard Spark positions for direct action: "There is no translation layer, 
 
 "Product managers spend roughly 30% of their time on data gathering and synthesis." Source: https://aipmtools.org/articles/ai-changing-product-management (attributed to Perspective AI research)
 
-**Conclusion:** The baseline pain (hours spent on manual synthesis) is real and confirmed across multiple independent sources. The exact "3-5 hours per planning cycle" figure in master-research.md Section 1 remains [?] unvalidated but directionally consistent with "hours per week" and "a part-time job at scale." The 3-5 hours figure is plausible but should be confirmed in user interviews.
+**Conclusion:** The baseline pain (hours spent on manual synthesis) is real and confirmed across multiple independent sources. The exact "3-5 hours per planning cycle" figure in research.md Section 1 remains [?] unvalidated but directionally consistent with "hours per week" and "a part-time job at scale." The 3-5 hours figure is plausible but should be confirmed in user interviews.
 
 ---
 
@@ -345,7 +364,7 @@ No data found. Zero sources addressed whether PMs share synthesis outputs extern
 ## 9. Founder Decisions - June 2026
 
 *Three product decisions locked after personas, JTBD, and live re-research. June 2026.*
-*Abbreviated here. Full decision text with open questions in research/strategy.md (Sections 5 and 6).*
+*Abbreviated here. Full decision text with open questions in research/docs/strategy.md (Sections 5 and 6).*
 
 ### H1 Reformulation - Record
 
@@ -355,7 +374,7 @@ The conditional form is confirmed MEDIUM confidence across four independent sour
 
 The chain: H1 reformulation (research finding) - transparency is load-bearing (design implication) - confidence display is mandatory in MVP (D2) - day-one scope is item count + low signal badge (D2 scope).
 
-Cite as: master-research.md Section 8 (H1 conditional confirmation). strategy.md Section 5 (H1 reformulation). live-research.md (F1, F2, F3, F4).
+Cite as: research.md Section 8 (H1 conditional confirmation). strategy.md Section 5 (H1 reformulation). live-research.md (F1, F2, F3, F4).
 
 ---
 
@@ -367,7 +386,7 @@ MVP scope is Segment A (The Overloaded PM) only. Segment C (The Signal Supplier)
 
 Record on Segment C: it is NOT a separate backlog feature. It is a PM retention dependency. The signal supplier needs to see their signal being used or they stop submitting, which degrades the PM's (Segment A) data quality over time. The Segment A transparency design (theme - evidence - source chain) is the prerequisite surface for Segment C's closure loop in the fast follow.
 
-Research basis: strategy.md (Segment C: "Later"). competitive-analysis.md (PLG model: Segment A is the economic buyer in self-serve). jtbd.md (J5: Importance 3 for Segment C, cut from MVP). personas.md (Persona C: Later priority confirmed).
+Research basis: strategy.md (Segment C: "Later"). competitors.md (PLG model: Segment A is the economic buyer in self-serve). jtbd.md (J5: Importance 3 for Segment C, cut from MVP). personas.md (Persona C: Later priority confirmed).
 
 Cross-reference updates: jtbd.md (J5 cut confirmed by D1). personas.md (Persona C note updated with retention dependency framing).
 
@@ -381,7 +400,7 @@ Confidence display is mandatory in MVP. The H1 reformulation makes this a prereq
 
 Day-one scope only: item count per theme (n=X) and a "low signal" badge for thin evidence. Source diversity, time range display, and configurable thresholds are v2 scope.
 
-Research basis: H1 conditional confirmation (live-research.md F4, master-research.md Section 8). benchmark.md (Mechanism 3: honest confidence and sample size display). jtbd.md (J3: Know how much to trust a conclusion - D2's day-one scope is what closes J3 at MVP).
+Research basis: H1 conditional confirmation (live-research.md F4, research.md Section 8). benchmark.md (Mechanism 3: honest confidence and sample size display). jtbd.md (J3: Know how much to trust a conclusion - D2's day-one scope is what closes J3 at MVP).
 
 Cross-reference updates: jtbd.md (J3 function column scoped to day-one). jtbd.md (critique table H1 row updated with D2 connection).
 
@@ -393,7 +412,7 @@ Cross-reference updates: jtbd.md (J3 function column scoped to day-one). jtbd.md
 
 MVP integrations: CSV import and Intercom. Zendesk is the confirmed next integration, using the same abstraction pattern as Intercom, without extending MVP build scope. No timeline committed for Zendesk.
 
-Research basis: personas.md (O2: Segment A tool stack names Intercom and Zendesk as primary sources). master-research.md (AARRR section: "CSV import + Intercom integration as first connections" - now confirmed by founder decision, not hypothesis). aarrr.md (Activation: first synthesis must use real PM data within 20 minutes of signup).
+Research basis: personas.md (O2: Segment A tool stack names Intercom and Zendesk as primary sources). research.md (AARRR section: "CSV import + Intercom integration as first connections" - now confirmed by founder decision, not hypothesis). aarrr.md (Activation: first synthesis must use real PM data within 20 minutes of signup).
 
 Note: the [?] about CSV vs. native integration preference at activation in personas.md is a separate data question. D3 is a build priority decision made under that uncertainty. Beta behavior will answer the preference question.
 

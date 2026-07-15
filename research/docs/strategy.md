@@ -45,7 +45,7 @@
 
 **Priority:** Primary
 
-**Evidence:** Confirmed by competitive research: no HARD competitor clearly owns the "PM who needs to defend their roadmap" story. All competitors (Productboard, Canny, Enterpret) position for broad teams (product + CS + sales + marketing). The PM-specific, evidence-defensible story is an open positioning gap. (Source: competitive-analysis.md)
+**Evidence:** Confirmed by competitive research: no HARD competitor clearly owns the "PM who needs to defend their roadmap" story. All competitors (Productboard, Canny, Enterpret) position for broad teams (product + CS + sales + marketing). The PM-specific, evidence-defensible story is an open positioning gap. (Source: competitors.md)
 
 ---
 
@@ -125,7 +125,7 @@ The pattern across competitors is a free tier designed to be genuinely useful fo
 
 **Research status: CONFIRMED as the riskiest assumption.**
 
-Benchmark research strengthens this: the gap between "AI synthesis with no visible reasoning" (pattern observed across Canny Autopilot, early Productboard features) and "transparent synthesis with drill-down" (Amplitude, Perplexity benchmark patterns) is large and underexplored by direct competitors. No HARD competitor clearly demonstrates the full trust chain on public pages. (Source: benchmark.md, competitive-analysis.md)
+Benchmark research strengthens this: the gap between "AI synthesis with no visible reasoning" (pattern observed across Canny Autopilot, early Productboard features) and "transparent synthesis with drill-down" (Amplitude, Perplexity benchmark patterns) is large and underexplored by direct competitors. No HARD competitor clearly demonstrates the full trust chain on public pages. (Source: benchmark.md, competitors.md)
 
 **What the research adds to v1:**
 - The trust mechanism that works is *decomposability* (Amplitude pattern) + *inline citation* (Perplexity pattern) + *honest confidence display*. These are specific, buildable, and not currently well-executed by competitors.
@@ -134,7 +134,7 @@ Benchmark research strengthens this: the gap between "AI synthesis with no visib
 
 **If this assumption is false (consequence):** PMs will always feel the need to re-check the raw data. Sift becomes another data source they process manually, not a synthesis they act on. The core time-saving value proposition fails. The product survives as a better data aggregator but not as the decision-confidence tool it needs to be.
 
-**This is Hypothesis H1 in Phase 6 (master-research.md) - the one whose failure kills the idea.**
+**This is Hypothesis H1 in Phase 6 (research.md) - the one whose failure kills the idea.**
 
 ---
 
@@ -156,14 +156,14 @@ Sift's transparency design is what makes H1 true. It is the mechanism, not optio
 - "Sanity-checking outputs and using simple eval style checks (spot tests, edge cases, benchmarks) before trusting an AI workflow in a critical process is a core competency for modern product managers." Source: https://aipmtools.org/articles/future-of-ai-product-management
 - Productboard Spark positions for direct action: "There is no translation layer, no export step, no 'now what?' moment." Source: https://www.productboard.com/blog/productboard-spark-ai-customer-feedback-analysis/
 
-Full verification record: live-research.md (F1, F2, F3, F4). Full update in master-research.md Section 8.
+Full verification record: live-research.md (F1, F2, F3, F4). Full update in research.md Section 8.
 
 ---
 
 ## 6. Founder Decisions - June 2026
 
 *Three decisions locked after personas, JTBD, and live re-research work. June 2026.*
-*Abbreviated rationale here. Full rationale in master-research.md Section 9.*
+*Abbreviated rationale here. Full rationale in research.md Section 9.*
 
 ### D1 - MVP Audience Focus: Segment A Only
 
@@ -195,7 +195,7 @@ Reasoning: CSV covers the immediate activation path (any PM can upload existing 
 
 Note: the [?] about CSV vs. native integration preference at activation (personas.md gaps table) is a separate data question. This decision is a build priority choice made under that uncertainty. Beta behavior will answer the underlying preference question.
 
-Cross-reference: personas.md (O2: Intercom named in Segment A tool stack). master-research.md (AARRR section: "CSV import + Intercom integration as first connections" - now confirmed by founder decision).
+Cross-reference: personas.md (O2: Intercom named in Segment A tool stack). research.md (AARRR section: "CSV import + Intercom integration as first connections" - now confirmed by founder decision).
 
 ---
 

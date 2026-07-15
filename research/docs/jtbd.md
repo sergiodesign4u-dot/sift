@@ -12,7 +12,7 @@
 **When I am preparing for a roadmap planning session and I have customer feedback spread across multiple tools I haven't had time to read, I want to feel certain I know what our customers actually need most - with the evidence behind it - so that I can walk into the session with a call I'll stand behind and defend if anyone pushes back.**
 
 - **Persona:** A - The Overloaded PM (primary)
-- **Research source:** strategy.md (Segment A primary JTBD and secondary JTBD). master-research.md (JTBD Selected jobs). CLAUDE.md (Primary Job). ux-patterns.md B1 (synthesis-first), B5 (retrospective synthesis).
+- **Research source:** strategy.md (Segment A primary JTBD and secondary JTBD). research.md (JTBD Selected jobs). CLAUDE.md (Primary Job). ux-patterns.md B1 (synthesis-first), B5 (retrospective synthesis).
 - **Note:** This is stated in the PM's language, not the product's. The product names this "synthesis-to-defensible-decision." The PM names it "I want to not be guessing when I walk into the room."
 
 ---
@@ -60,7 +60,7 @@
 **When I have processed customer feedback and made a decision about it, I want the people who submitted that feedback to see what it contributed to, so that they keep sending me signal rather than giving up because nothing visible ever happens to it.**
 
 - **Persona:** C - primary. A - secondary (PM benefits from CS/support continuing to submit signal).
-- **Research source:** strategy.md (Segment C JTBD: "When I share customer feedback with the product team, I want to see whether it influenced a decision so that I can close the loop with the customer."). competitive-analysis.md (Canny addresses this externally through public roadmap and changelog for customer-facing use case).
+- **Research source:** strategy.md (Segment C JTBD: "When I share customer feedback with the product team, I want to see whether it influenced a decision so that I can close the loop with the customer."). competitors.md (Canny addresses this externally through public roadmap and changelog for customer-facing use case).
 
 ---
 
@@ -71,7 +71,7 @@
 **When I finish reviewing customer feedback before a planning session, I want to feel I have genuinely understood what customers are saying and not just moved text around, so that I can walk into the meeting without the nagging suspicion that I missed something important.**
 
 - **Persona:** A - primary.
-- **Research source:** strategy.md (Segment A motivation: "feel confident, not just defensible"). ux-patterns.md B3 (spot-checking as the trust mechanism - the PM needs to recognize real themes, not just scan output). [? The specific feeling of "nagging suspicion" is a hypothesis about the emotional texture; no primary source has confirmed this phrasing. Supported directionally by the "3-5 hours per planning cycle" pain in master-research.md but that figure is unvalidated.]
+- **Research source:** strategy.md (Segment A motivation: "feel confident, not just defensible"). ux-patterns.md B3 (spot-checking as the trust mechanism - the PM needs to recognize real themes, not just scan output). [? The specific feeling of "nagging suspicion" is a hypothesis about the emotional texture; no primary source has confirmed this phrasing. Supported directionally by the "3-5 hours per planning cycle" pain in research.md but that figure is unvalidated.]
 
 ---
 
@@ -80,7 +80,7 @@
 **When a stakeholder questions a decision I've made, I want to feel grounded and prepared rather than defensive or caught off guard, so that I project confidence and move the conversation forward rather than backing down or apologizing.**
 
 - **Persona:** A - primary. B - secondary (higher-visibility version of the same feeling: the board call).
-- **Research source:** strategy.md (Segment A motivation: "feel confident, not just defensible"). CLAUDE.md ("emotion to design for: confidence and calm instead of overload"). master-research.md (Section 2: Objective 1 - "PMs trust and act on Sift's synthesis" - the behavioral outcome that makes E2 achievable). [? The "defensive vs. confident" emotional framing is a hypothesis; the research confirms the situation (stakeholder challenges a decision) but the exact emotional texture is not yet sourced from a primary PM voice.]
+- **Research source:** strategy.md (Segment A motivation: "feel confident, not just defensible"). CLAUDE.md ("emotion to design for: confidence and calm instead of overload"). research.md (Section 2: Objective 1 - "PMs trust and act on Sift's synthesis" - the behavioral outcome that makes E2 achievable). [? The "defensive vs. confident" emotional framing is a hypothesis; the research confirms the situation (stakeholder challenges a decision) but the exact emotional texture is not yet sourced from a primary PM voice.]
 
 ---
 
@@ -156,7 +156,7 @@ These are the jobs that are importance 3 for Persona A (the primary persona) AND
 
 These are functions that close no job with importance 3 for Persona A, or close jobs already well-served by competitors:
 
-- **Signal heard loop / contribution tracker (J5)** - Importance 3 for Segment C only. Confirmed cut from MVP by D1 (strategy.md Section 6, master-research.md Section 9, June 2026). Segment C is a PM retention dependency, not an independent MVP feature. The Segment A transparency design (theme - evidence - source chain) is the prerequisite surface for this function in the fast follow.
+- **Signal heard loop / contribution tracker (J5)** - Importance 3 for Segment C only. Confirmed cut from MVP by D1 (strategy.md Section 6, research.md Section 9, June 2026). Segment C is a PM retention dependency, not an independent MVP feature. The Segment A transparency design (theme - evidence - source chain) is the prerequisite surface for this function in the fast follow.
 - **Real-time monitoring / continuous sensing (H-J1 Hypothesis)** - Not confirmed as a real job. ux-patterns.md explicitly identifies retrospective synthesis as the primary behavior. Real-time dashboard is the anti-pattern per ux-patterns.md.
 - **Team synthesis reproduction (H-J2 Hypothesis)** - Unconfirmed job. No research source supports it as a stated need.
 
@@ -174,7 +174,7 @@ These are functions that close no job with importance 3 for Persona A, or close 
 |---|---|---|
 | Segment A PM age 28-38 | strategy.md (inferred from career progression) | HYPOTHESIS - career-progression inference, not survey data |
 | Segment A PM at B2B SaaS 50-500 employees | strategy.md | HYPOTHESIS - typical target profile, not census-validated |
-| PM spends 3-5 hours on manual synthesis per cycle | master-research.md Section 1 | HYPOTHESIS - explicitly flagged [?] in the source |
+| PM spends 3-5 hours on manual synthesis per cycle | research.md Section 1 | HYPOTHESIS - explicitly flagged [?] in the source |
 | PMs live in Jira or Linear for execution | strategy.md | HYPOTHESIS - stated as profile attribute, no usage data cited |
 | Feedback sits in Intercom, Zendesk, Gong | strategy.md | HYPOTHESIS - likely stack for target segment, not surveyed |
 | Behavioral pattern B1 - synthesis-first, detail-on-demand | ux-patterns.md | HYPOTHESIS - behavioral inference, directionally supported by Productboard's design for "no translation layer, no export step, no 'now what?' moment" (productboard.com, June 2026) |
@@ -185,11 +185,11 @@ These are functions that close no job with importance 3 for Persona A, or close 
 | Trust mechanism: inline citation creates trust (Perplexity pattern) | benchmark.md | CONFIRMED for Perplexity's general-web-search users; HYPOTHESIS for skeptical PMs specifically |
 | Trust mechanism: decomposability (Amplitude pattern) | benchmark.md | CONFIRMED for BI/analytics users; HYPOTHESIS for PM-feedback-synthesis context |
 | Trust failure mode: confident output with hidden reasoning | benchmark.md | CONFIRMED by observation of Canny Autopilot and early Productboard AI UX; HYPOTHESIS that this is WHY PMs distrust them (observation, not stated PM reason) |
-| H1 - PMs trust AI synthesis enough to act without re-checking raw data | master-research.md, strategy.md | CONFIRMED (MEDIUM) with condition: when synthesis is transparent and traceable, PMs act without re-synthesizing raw data. Without transparency, H1 fails. Sources: aipmtools.org, blog.ravi-mehta.com, productboard.com (June 2026). See live-research.md F4. D2 (June 2026): confidence display is mandatory in MVP precisely because transparency is the condition H1 requires. |
+| H1 - PMs trust AI synthesis enough to act without re-checking raw data | research.md, strategy.md | CONFIRMED (MEDIUM) with condition: when synthesis is transparent and traceable, PMs act without re-synthesizing raw data. Without transparency, H1 fails. Sources: aipmtools.org, blog.ravi-mehta.com, productboard.com (June 2026). See live-research.md F4. D2 (June 2026): confidence display is mandatory in MVP precisely because transparency is the condition H1 requires. |
 | Activation moment: confirmation of known intuition | aarrr.md | HYPOTHESIS - product design choice based on behavioral inference |
 | Retention: event-driven, not calendar-driven | aarrr.md | HYPOTHESIS - inferred from PM work patterns |
-| No competitor owns the PM-specific evidence story | competitive-analysis.md | CONFIRMED - based on live review of five competitor public pages |
-| PM-specific positioning gap is available | competitive-analysis.md | CONFIRMED - corroborated by absence of this positioning across all five competitors |
+| No competitor owns the PM-specific evidence story | competitors.md | CONFIRMED - based on live review of five competitor public pages |
+| PM-specific positioning gap is available | competitors.md | CONFIRMED - corroborated by absence of this positioning across all five competitors |
 | Segment B Product Lead age 35-45 | strategy.md (inferred) | HYPOTHESIS - career-progression inference |
 | Product Lead faces no consistent evidence standard | strategy.md | HYPOTHESIS - stated as segment pain, not researched with primary data |
 | Signal Supplier pain: feedback disappears with no closure | strategy.md | HYPOTHESIS - directionally supported by Canny's public roadmap product solving the same problem; not confirmed from CS/Support primary source |

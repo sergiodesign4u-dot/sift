@@ -38,7 +38,7 @@ Source: strategy.md, Segment A profile.
 
 Ship things that matter to customers. Feel confident, not just defensible. Stop spending hours before every planning session manually reading and tagging scattered feedback.
 
-Source: strategy.md, Segment A motivation. The "3-5 hours per planning cycle" figure appears in master-research.md Section 1 (Problem) but is flagged there as [? exact figure unvalidated].
+Source: strategy.md, Segment A motivation. The "3-5 hours per planning cycle" figure appears in research.md Section 1 (Problem) but is flagged there as [? exact figure unvalidated].
 
 ---
 
@@ -102,7 +102,7 @@ The anti-pattern: fully automated synthesis with no visible reasoning. One bad s
 
 The critical insight: "The PM does not need to verify every conclusion - they need to know they can verify any conclusion. The presence of the drill-down is the trust signal, not the act of drilling down." (benchmark.md, Mechanism 1)
 
-Source: benchmark.md, Mechanisms 1-3 and Anti-pattern section. Confirmed by competitive-analysis.md (trust mechanism gap across all HARD competitors).
+Source: benchmark.md, Mechanisms 1-3 and Anti-pattern section. Confirmed by competitors.md (trust mechanism gap across all HARD competitors).
 
 ---
 
@@ -112,7 +112,7 @@ PMs will trust Sift's AI synthesis enough to act on a real roadmap decision with
 
 UPDATED (live research, June 2026): H1 is conditionally confirmed (MEDIUM confidence). When synthesis is transparent and traceable (inline citations, evidence counts, drill-down to source), PMs DO act on AI synthesis without re-synthesizing the raw data. They spot-check (verify a subset), then act. Without transparency, H1 fails: black-box synthesis is not trusted for decisions. Sift's transparency design is what makes H1 true, not an optional feature.
 
-Source: master-research.md, Hypothesis H1. strategy.md, Section 4 (Riskiest Assumption). Live research: https://aipmtools.org/articles/future-of-ai-product-management, https://blog.ravi-mehta.com/p/building-ai-products-lessons-from, https://www.productboard.com/blog/productboard-spark-ai-customer-feedback-analysis/, https://www.capterra.com/p/161103/Canny/reviews/ (live-research.md, F4).
+Source: research.md, Hypothesis H1. strategy.md, Section 4 (Riskiest Assumption). Live research: https://aipmtools.org/articles/future-of-ai-product-management, https://blog.ravi-mehta.com/p/building-ai-products-lessons-from, https://www.productboard.com/blog/productboard-spark-ai-customer-feedback-analysis/, https://www.capterra.com/p/161103/Canny/reviews/ (live-research.md, F4).
 
 ---
 
@@ -136,7 +136,7 @@ Source: aarrr.md, Retention section.
 
 All HARD competitors (Productboard, Canny, Enterpret) position for broad teams: product + CS + sales + marketing. None own the specific story of the PM who needs to make a confident, defensible prioritization call. The positioning gap is confirmed across all five competitors studied.
 
-Source: competitive-analysis.md, Section Analysis (3 Common Patterns, Pattern 3; and What is Missing).
+Source: competitors.md, Section Analysis (3 Common Patterns, Pattern 3; and What is Missing).
 
 ---
 
@@ -146,7 +146,7 @@ CS Manager or Support Lead with daily customer contact. Insights shared with pro
 
 The economic buyer is the PM, not the CS lead. The CS lead is a source of signal, not a buyer of synthesis.
 
-Source: strategy.md, Segment C. competitive-analysis.md (Canny analysis, customer-facing components).
+Source: strategy.md, Segment C. competitors.md (Canny analysis, customer-facing components).
 
 ---
 
@@ -165,7 +165,7 @@ These are genuine gaps - not guesses, not hypotheses presented as facts. They ar
 | Gap | Why it matters | Where to look |
 |---|---|---|
 | [?] Exact time PMs spend on manual synthesis per planning cycle | Validates Objective 2 and sharpens "time to decision" messaging | User interviews; time-motion studies in PM communities |
-| H1 conditionally confirmed (MEDIUM, live research June 2026) | H1 is true WHEN transparency mechanisms are present (citations, evidence counts, drill-down). Without transparency, H1 fails. This conditional confirmation is the basis for D2: mandatory confidence display in MVP. | Full evidence: live-research.md (F1, F2, F3, F4). Reformulation in strategy.md Section 5 and master-research.md Section 8. |
+| H1 conditionally confirmed (MEDIUM, live research June 2026) | H1 is true WHEN transparency mechanisms are present (citations, evidence counts, drill-down). Without transparency, H1 fails. This conditional confirmation is the basis for D2: mandatory confidence display in MVP. | Full evidence: live-research.md (F1, F2, F3, F4). Reformulation in strategy.md Section 5 and research.md Section 8. |
 | [?] Whether PMs in this segment search actively for tools or wait for peer recommendations | Determines acquisition channel priority | PM community surveys, AARRR activation data once live |
 | [?] Which PM communities (Lenny's, Mind the Product, Product School) have highest density of Segment A | Determines where to launch and where content goes | Community member counts, engagement data (where accessible publicly) |
 | Integration build order: CSV + Intercom for MVP (D3, strategy.md June 2026) | Build order determined by founder decision. PM preference data at activation is a separate open question for beta. | Beta observation: track whether PMs use CSV or Intercom first, and whether activation rate differs. |
@@ -198,7 +198,7 @@ Three options were considered for primary persona:
 
 This is consistent with strategy.md (Segment A: Primary). No change is made to the strategy.
 
-Source for choice: strategy.md (Segment A analysis), competitive-analysis.md (bottom-up PLG model), master-research.md (H1 as riskiest assumption).
+Source for choice: strategy.md (Segment A analysis), competitors.md (bottom-up PLG model), research.md (H1 as riskiest assumption).
 
 ---
 
@@ -214,7 +214,7 @@ Alex is a Product Manager at a B2B SaaS company with 150 employees and a four-pe
 
 That picture changes every time, because every PM has their own method. Alex's synthesis is not reproducible by a colleague.
 
-Source: strategy.md (Segment A profile, pain, motivation), master-research.md (Section 1, Problem).
+Source: strategy.md (Segment A profile, pain, motivation), research.md (Section 1, Problem).
 
 ---
 
@@ -224,7 +224,7 @@ Primary: When I have a roadmap planning session coming up, I want to see a trust
 
 Secondary: When a stakeholder challenges a roadmap decision, I want to quickly pull the underlying evidence so that I can defend the choice with real customer voices rather than my opinion.
 
-Source: strategy.md, Segment A JTBD (primary and secondary). Consistent with master-research.md Section 2 (Selected jobs from CLAUDE.md).
+Source: strategy.md, Segment A JTBD (primary and secondary). Consistent with research.md Section 2 (Selected jobs from CLAUDE.md).
 
 ---
 
@@ -243,7 +243,7 @@ Manual synthesis in Notion or Jira. Hours of reading across tools, tagging items
 - **Jira Product Discovery:** Attractive if already in Atlassian ecosystem. Scoring and backlog integration strong. But feedback ingestion and AI synthesis are weaker than purpose-built tools - it solves the roadmap organization problem more than the synthesis-from-raw-signal problem.
 - **Notion DIY system:** Maximum flexibility, zero cost. But the synthesis happens in Alex's head, with Notion as storage. Requires manual maintenance to keep the evidence chain intact. When Alex leaves, the system collapses. Trust in the Notion system is trust in Alex, not in a reproducible process.
 
-Source: competitive-analysis.md (all competitor sections), benchmark.md (Notion as DIY alternative).
+Source: competitors.md (all competitor sections), benchmark.md (Notion as DIY alternative).
 
 ---
 
@@ -308,7 +308,7 @@ Source: strategy.md, Segment B JTBD. Second job is a hypothesis - not stated in 
 - Atlassian-native organizations may default to Jira Product Discovery for this use case, especially post-Cycle acquisition. Morgan at an Atlassian-heavy org is a harder target.
 - Productboard is the most likely current tool (enterprise-adjacent, broad audience) but the AI synthesis trust mechanism is unclear from public materials.
 
-Source: strategy.md, Segment B pain and v2 update (Atlassian risk). competitive-analysis.md (Productboard audience profile).
+Source: strategy.md, Segment B pain and v2 update (Atlassian risk). competitors.md (Productboard audience profile).
 
 ---
 
@@ -349,7 +349,7 @@ Jordan is a Customer Success Manager or Support Lead at the same company where A
 
 Canny partially addresses this through customer-facing public roadmaps and changelogs. Jordan's organization does not use Canny.
 
-Source: strategy.md, Segment C profile and JTBD. competitive-analysis.md (Canny customer-facing components, CS/support use case).
+Source: strategy.md, Segment C profile and JTBD. competitors.md (Canny customer-facing components, CS/support use case).
 
 ---
 
@@ -367,7 +367,7 @@ Source: strategy.md, Segment C JTBD.
 - Cannot tell customers whether their request was heard, prioritized, or deprioritized - and why.
 - Not the economic buyer. Cannot adopt Sift unilaterally. Adoption depends on Alex (Segment A) using the tool and making the signal supply channel visible.
 
-Source: strategy.md, Segment C. competitive-analysis.md (Canny as the closest existing solution for the closure-loop use case).
+Source: strategy.md, Segment C. competitors.md (Canny as the closest existing solution for the closure-loop use case).
 
 ---
 
@@ -386,7 +386,7 @@ Jordan's trust is less about AI synthesis skepticism and more about whether the 
 
 D1 (June 2026): Segment C is out of MVP scope. Record: Jordan is NOT a separate backlog feature. Jordan is a PM retention dependency. If the signal supplier does not see their signal being used, they stop submitting, which degrades Alex's (Segment A) data quality over time. The transparency design for Segment A (theme - evidence - source chain) is the prerequisite surface for Jordan's closure loop in the fast follow. Build Segment A's traceability well, and the closure loop for Jordan is a thin layer on top.
 
-Source: strategy.md, Segment C (Later priority). ux-patterns.md (Inbox pattern alternative for CS/support users). D1 (strategy.md Section 6, master-research.md Section 9).
+Source: strategy.md, Segment C (Later priority). ux-patterns.md (Inbox pattern alternative for CS/support users). D1 (strategy.md Section 6, research.md Section 9).
 
 ---
 

@@ -127,6 +127,9 @@
   .sidebar-section-links a:hover { color: var(--text); background: var(--bg-3); }
   .sidebar-section-links a.active { color: var(--text); border-left-color: var(--accent); background: var(--bg-3); }
   .sidebar-divider { border: none; border-top: 1px solid var(--border-light); margin: 8px 0; }
+  .sidebar-coming-soon { display: flex; align-items: center; justify-content: space-between; padding: 5px 8px; border-radius: 5px; cursor: default; opacity: 0.5; }
+  .sidebar-cs-label { font-size: 12px; font-weight: 500; color: var(--text-3); letter-spacing: 0.02em; }
+  .sidebar-cs-badge { font-size: 9px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-3); background: var(--bg-3); border: 1px solid var(--border-light); padding: 2px 5px; border-radius: 3px; }
   .sidebar-spacer { flex: 1; }
   .sidebar-next { padding: 12px; border: 1px solid var(--border-light); border-radius: 6px; background: var(--bg-2); margin-top: 16px; }
   .sidebar-next-label { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-3); opacity: 0.6; margin-bottom: 4px; }
@@ -214,16 +217,12 @@
 
 <aside class="sidebar">
   <div class="sidebar-phase">
-    <a class="sidebar-phase-label" href="research.html">Research</a>
+    <a class="sidebar-phase-label" href="research.html">Foundation Research</a>
   </div>
-  <hr class="sidebar-divider">
-  <div class="sidebar-phase">
-    <a class="sidebar-phase-label" href="personas.html">Personas</a>
-  </div>
-  <hr class="sidebar-divider">
   <div class="sidebar-phase active">
-    <span class="sidebar-phase-label">JTBD</span>
+    <span class="sidebar-phase-label">User Research</span>
     <ul class="sidebar-section-links">
+      <li><a href="personas.html">Personas &rsaquo;</a></li>
       <li><a href="#main-job">Main Job</a></li>
       <li><a href="#related-jobs">Related Jobs</a></li>
       <li><a href="#emotional-social">Emotional / Social</a></li>
@@ -232,11 +231,17 @@
       <li><a href="#conclusions">Conclusions</a></li>
     </ul>
   </div>
-  <div class="sidebar-spacer"></div>
-  <div class="sidebar-next">
-    <div class="sidebar-next-label">Next</div>
-    <div class="sidebar-next-content">Wireframes, Concept</div>
-  </div>
+  <hr class="sidebar-divider">
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Information Architecture</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Wireframes</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Voice</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Concept</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">UI + Visual</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Tokens + Components</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Design System</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Responsive</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Animation</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Handoff</span><span class="sidebar-cs-badge">Soon</span></div>
 </aside>
 
 <div class="page">
@@ -264,7 +269,7 @@
       <span class="persona-tag pt-a">A - Primary</span>
       <br>
       <strong>Note:</strong> Stated in the PM's language, not the product's. The product names this "synthesis-to-defensible-decision." The PM names it "I want to not be guessing when I walk into the room."
-      <br><span class="cite" style="display:block;margin-top:6px">Source: strategy.md (Segment A primary JTBD). master-research.md (JTBD Selected jobs). CLAUDE.md (Primary Job). ux-patterns.md B1, B5.</span>
+      <br><span class="cite" style="display:block;margin-top:6px">Source: strategy.md (Segment A primary JTBD). research.md (JTBD Selected jobs). CLAUDE.md (Primary Job). ux-patterns.md B1, B5.</span>
     </div>
   </div>
 </section>
@@ -313,7 +318,7 @@
       <br>
       <div class="decision-note" style="margin-top:8px">
         <div class="decision-note-label">D2 - Founder decision, June 2026</div>
-        <div class="decision-note-text">Confidence display is mandatory in MVP - not optional. Tied directly to H1: transparency is the condition H1 requires. Day-one scope: item count per theme (n=X) and a "low signal" badge for thin evidence. Source diversity, time range display, and configurable thresholds are v2 scope. Source: strategy.md Section 6, master-research.md Section 9.</div>
+        <div class="decision-note-text">Confidence display is mandatory in MVP - not optional. Tied directly to H1: transparency is the condition H1 requires. Day-one scope: item count per theme (n=X) and a "low signal" badge for thin evidence. Source diversity, time range display, and configurable thresholds are v2 scope. Source: strategy.md Section 6, research.md Section 9.</div>
       </div>
       <br><span class="cite" style="display:block;margin-top:4px">Source: benchmark.md (Mechanism 3). ux-patterns.md B3 (trust through spot-checking).</span>
     </div>
@@ -341,9 +346,9 @@
       <span class="persona-tag pt-a">A - secondary (PM benefits from CS continuing to supply signal)</span>
       <div class="decision-note" style="margin-top:8px">
         <div class="decision-note-label">D1 - Founder decision, June 2026 - cut from MVP</div>
-        <div class="decision-note-text">Segment C is deferred. J5 is not a separate backlog feature - it is a PM retention dependency. If the signal supplier stops submitting, the PM's data quality degrades. The Segment A transparency design (theme - evidence - source chain) is the prerequisite surface for this function in the fast follow. Source: strategy.md Section 6, master-research.md Section 9.</div>
+        <div class="decision-note-text">Segment C is deferred. J5 is not a separate backlog feature - it is a PM retention dependency. If the signal supplier stops submitting, the PM's data quality degrades. The Segment A transparency design (theme - evidence - source chain) is the prerequisite surface for this function in the fast follow. Source: strategy.md Section 6, research.md Section 9.</div>
       </div>
-      <br><span class="cite" style="display:block;margin-top:4px">Source: strategy.md (Segment C JTBD). competitive-analysis.md (Canny addresses this externally through public roadmap).</span>
+      <br><span class="cite" style="display:block;margin-top:4px">Source: strategy.md (Segment C JTBD). competitors.md (Canny addresses this externally through public roadmap).</span>
     </div>
   </div>
 </section>
@@ -380,7 +385,7 @@
       <span class="persona-tag pt-b">B - secondary (higher visibility: the board call)</span>
       <br>
       <span class="badge badge-hypothesis">?</span> The "defensive vs. confident" framing is a hypothesis. Research confirms the situation (stakeholder challenges a decision) but the exact emotional texture is not yet sourced from a primary PM voice.
-      <br><span class="cite" style="display:block;margin-top:6px">Source: strategy.md (Segment A motivation). CLAUDE.md ("emotion to design for: confidence and calm"). master-research.md (Objective 1).</span>
+      <br><span class="cite" style="display:block;margin-top:6px">Source: strategy.md (Segment A motivation). CLAUDE.md ("emotion to design for: confidence and calm"). research.md (Objective 1).</span>
     </div>
   </div>
 
@@ -636,7 +641,7 @@
 <footer>
   <div>Sift - JTBD - June 2026 - People &amp; JTBD phase</div>
   <div style="text-align:right">
-    <a href="research/jtbd.md" style="color:var(--text-3);text-decoration:none">jtbd.md</a>
+    <a href="research/docs/jtbd.md" style="color:var(--text-3);text-decoration:none">jtbd.md</a>
     <span style="margin:0 8px">-</span>
     <a href="personas.html" style="color:var(--text-3);text-decoration:none">personas.html</a>
   </div>

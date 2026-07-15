@@ -122,7 +122,7 @@ Killed count: 0. This is shown, not hidden. The adversarial search for disconfir
 
 ### U1 - Exact baseline hours PM spends on manual synthesis per planning cycle
 
-No primary source confirmed the 3-5 hours figure from master-research.md. The order of magnitude (hours) is supported. The specific figure requires user interviews.
+No primary source confirmed the 3-5 hours figure from research.md. The order of magnitude (hours) is supported. The specific figure requires user interviews.
 
 Directional data only: "hours per week" (Enterpret 2025), "entire day" for quarterly research synthesis (Enterpret 2025), "part-time job at thousands of items" (Productboard). No first-person PM account of timing a specific planning session.
 

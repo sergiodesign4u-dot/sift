@@ -146,7 +146,7 @@ When I receive feedback from multiple sources (support, sales, interviews, revie
 
 ## Locked Decisions (June 2026)
 
-Three founder decisions locked at end of research phase. Full rationale in research/strategy.md Sections 5-6 and research/master-research.md Section 9.
+Three founder decisions locked at end of research phase. Full rationale in research/docs/strategy.md Sections 5-6 and research/docs/research.md Section 9.
 
 - **D1 - MVP focus:** Segment A (Overloaded PM) only. Segment C (Signal Supplier) deferred as a PM retention dependency, not a separate backlog feature. The signal supplier's closure loop depends on Segment A's transparency design being built first.
 - **D2 - Confidence display:** Mandatory in MVP. Tied directly to H1 reformulation: transparency is the condition H1 requires. Day-one scope: item count per theme (n=X) plus a "low signal" badge. Source diversity, time range, and thresholds are v2.

@@ -208,6 +208,9 @@
   .sidebar-section-links a.active { color: var(--text); border-left-color: var(--accent); background: var(--bg-3); }
 
   .sidebar-divider { border: none; border-top: 1px solid var(--border-light); margin: 8px 0; }
+  .sidebar-coming-soon { display: flex; align-items: center; justify-content: space-between; padding: 5px 8px; border-radius: 5px; cursor: default; opacity: 0.5; }
+  .sidebar-cs-label { font-size: 12px; font-weight: 500; color: var(--text-3); letter-spacing: 0.02em; }
+  .sidebar-cs-badge { font-size: 9px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-3); background: var(--bg-3); border: 1px solid var(--border-light); padding: 2px 5px; border-radius: 3px; }
   .sidebar-spacer { flex: 1; }
 
   .sidebar-next {
@@ -355,27 +358,29 @@
 
 <aside class="sidebar">
   <div class="sidebar-phase">
-    <a class="sidebar-phase-label" href="research.html">Research</a>
+    <a class="sidebar-phase-label" href="research.html">Foundation Research</a>
   </div>
-  <hr class="sidebar-divider">
   <div class="sidebar-phase active">
-    <span class="sidebar-phase-label">Personas</span>
+    <span class="sidebar-phase-label">User Research</span>
     <ul class="sidebar-section-links">
       <li><a href="#observations">Observations</a></li>
       <li><a href="#persona-pm">The Overloaded PM</a></li>
       <li><a href="#persona-lead">Product Lead</a></li>
       <li><a href="#persona-supplier">Signal Supplier</a></li>
+      <li><a href="jtbd.html">JTBD &rsaquo;</a></li>
     </ul>
   </div>
   <hr class="sidebar-divider">
-  <div class="sidebar-phase">
-    <a class="sidebar-phase-label" href="jtbd.html">JTBD</a>
-  </div>
-  <div class="sidebar-spacer"></div>
-  <div class="sidebar-next">
-    <div class="sidebar-next-label">Next</div>
-    <div class="sidebar-next-content">Wireframes, Concept</div>
-  </div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Information Architecture</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Wireframes</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Voice</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Concept</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">UI + Visual</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Tokens + Components</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Design System</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Responsive</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Animation</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Handoff</span><span class="sidebar-cs-badge">Soon</span></div>
 </aside>
 
 <div class="page">
@@ -395,7 +400,7 @@
     <span class="section-num">01</span>
     <h2>People observations from research</h2>
   </div>
-  <p>16 observations were pulled from the six research files before building the personas. The six most structurally important are shown here. All 16 with sources are in <a href="research/personas.md" style="color:var(--text-3);text-decoration:none">research/personas.md</a>.</p>
+  <p>16 observations were pulled from the six research files before building the personas. The six most structurally important are shown here. All 16 with sources are in <a href="research/docs/personas.md" style="color:var(--text-3);text-decoration:none">research/docs/personas.md</a>.</p>
 
   <div class="card-grid card-grid-2" style="margin-top:24px">
 
@@ -438,7 +443,7 @@
     <div class="obs-card">
       <div class="obs-id">O14 - No competitor owns the PM-specific evidence story</div>
       <div class="obs-text">All HARD competitors (Productboard, Canny, Enterpret) position for broad teams - product plus CS plus sales plus marketing. None own the specific story of the PM who needs to make a confident, defensible prioritization call. The positioning gap is confirmed across all five competitors studied.</div>
-      <div class="obs-text" style="margin-top:6px"><span class="cite">Source: competitive-analysis.md</span></div>
+      <div class="obs-text" style="margin-top:6px"><span class="cite">Source: competitors.md</span></div>
     </div>
 
   </div>
@@ -471,7 +476,7 @@
       <div class="persona-section-title first">Context</div>
       <p style="font-size:14px">Alex owns two product areas and manages a backlog of 40+ active items. Feedback arrives from Intercom, Gong, Zendesk, app store reviews, and occasional user interviews. None of these tools talk to each other. Before each sprint planning session, Alex spends time manually reading through the sources, tagging items by theme in a Notion database or Jira epics, and trying to form a picture of what customers actually want.</p>
       <p style="font-size:14px">That picture changes every time, because every PM has their own method. Alex's synthesis is not reproducible by a colleague.</p>
-      <p style="font-size:13px;color:var(--text-3);margin-top:6px">Age 28-38 <span class="badge badge-hypothesis">?</span> inferred from career progression, not validated. Source: strategy.md, Segment A profile; master-research.md Section 1.</p>
+      <p style="font-size:13px;color:var(--text-3);margin-top:6px">Age 28-38 <span class="badge badge-hypothesis">?</span> inferred from career progression, not validated. Source: strategy.md, Segment A profile; research.md Section 1.</p>
 
       <div class="persona-section-title">Jobs</div>
       <div class="job-card">
@@ -482,7 +487,7 @@
         <div class="job-label">Secondary</div>
         When a stakeholder challenges a roadmap decision, I want to quickly pull the underlying evidence so that I can defend the choice with real customer voices rather than my opinion.
       </div>
-      <p class="hypothesis-note">Source: strategy.md, Segment A JTBD. Consistent with master-research.md Section 2.</p>
+      <p class="hypothesis-note">Source: strategy.md, Segment A JTBD. Consistent with research.md Section 2.</p>
 
       <div class="persona-section-title">Pains</div>
       <h4 style="margin-top:0;margin-bottom:10px">Today's way of doing it</h4>
@@ -519,7 +524,7 @@
           </tbody>
         </table>
       </div>
-      <p class="hypothesis-note">Source: competitive-analysis.md, benchmark.md.</p>
+      <p class="hypothesis-note">Source: competitors.md, benchmark.md.</p>
 
       <div class="persona-section-title">Trust triggers</div>
       <div class="trust-grid">
@@ -639,7 +644,7 @@
 
     <div class="decision-note">
       <div class="decision-note-label">D1 - Founder decision, June 2026</div>
-      <div class="decision-note-text">Segment C is out of MVP scope. But Jordan is NOT a separate backlog feature - Jordan is a PM retention dependency. If the signal supplier does not see their signal being used, they stop submitting, which degrades Alex's (Segment A) data quality over time. The Segment A transparency design - theme, evidence, source chain - is the prerequisite surface for Jordan's closure loop in the fast follow. Build Segment A's traceability well, and the closure loop for Jordan is a thin layer on top. Source: strategy.md Section 6, master-research.md Section 9.</div>
+      <div class="decision-note-text">Segment C is out of MVP scope. But Jordan is NOT a separate backlog feature - Jordan is a PM retention dependency. If the signal supplier does not see their signal being used, they stop submitting, which degrades Alex's (Segment A) data quality over time. The Segment A transparency design - theme, evidence, source chain - is the prerequisite surface for Jordan's closure loop in the fast follow. Build Segment A's traceability well, and the closure loop for Jordan is a thin layer on top. Source: strategy.md Section 6, research.md Section 9.</div>
     </div>
 
     <div class="persona-section-title">Context</div>
@@ -692,7 +697,7 @@
 <footer>
   <div>Sift - Personas - June 2026 - People &amp; JTBD phase</div>
   <div style="text-align:right">
-    <a href="research/personas.md" style="color:var(--text-3);text-decoration:none">personas.md</a>
+    <a href="research/docs/personas.md" style="color:var(--text-3);text-decoration:none">personas.md</a>
     <span style="margin:0 8px">-</span>
     <a href="jtbd.html" style="color:var(--text-3);text-decoration:none">jtbd.html</a>
   </div>

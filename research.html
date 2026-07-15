@@ -882,7 +882,7 @@
 <!-- SIDEBAR NAV -->
 <aside class="sidebar">
   <div class="sidebar-phase active">
-    <span class="sidebar-phase-label">Research</span>
+    <span class="sidebar-phase-label">Foundation Research</span>
     <ul class="sidebar-section-links">
       <li><a href="#canvas">Canvas</a></li>
       <li><a href="#strategy">Strategy</a></li>
@@ -894,18 +894,20 @@
       <li><a href="#live-research">Live Research</a></li>
     </ul>
   </div>
+  <div class="sidebar-phase">
+    <a class="sidebar-phase-label" href="personas.html">User Research</a>
+  </div>
   <hr class="sidebar-divider">
-  <div class="sidebar-phase">
-    <a class="sidebar-phase-label" href="personas.html" style="text-decoration:none">Personas</a>
-  </div>
-  <div class="sidebar-phase">
-    <a class="sidebar-phase-label" href="jtbd.html" style="text-decoration:none">JTBD</a>
-  </div>
-  <div class="sidebar-spacer"></div>
-  <div class="sidebar-next">
-    <div class="sidebar-next-label">Next</div>
-    <div class="sidebar-next-content">Wireframes, Concept</div>
-  </div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Information Architecture</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Wireframes</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Voice</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Concept</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">UI + Visual</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Tokens + Components</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Design System</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Responsive</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Animation</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Handoff</span><span class="sidebar-cs-badge">Soon</span></div>
 </aside>
 
 <div class="page">
@@ -1619,13 +1621,13 @@
         <tr>
           <td style="color:var(--text);font-weight:600">Synthesis trust chain</td>
           <td>No competitor demonstrates full traceability from raw signal to decision with honest confidence on public pages</td>
-          <td class="cite">competitive-analysis.md, benchmark.md</td>
+          <td class="cite">competitors.md, benchmark.md</td>
           <td class="gap-high">High</td>
         </tr>
         <tr>
           <td style="color:var(--text);font-weight:600">PM-specific positioning</td>
           <td>"Confident PM defending her roadmap" story is unclaimed by any HARD competitor</td>
-          <td class="cite">competitive-analysis.md</td>
+          <td class="cite">competitors.md</td>
           <td class="gap-high">High</td>
         </tr>
         <tr>
@@ -1637,19 +1639,19 @@
         <tr>
           <td style="color:var(--text);font-weight:600">Evidence brief as product</td>
           <td>The shareable evidence artifact is underbuilt across all competitors</td>
-          <td class="cite">aarrr.md, competitive-analysis.md</td>
+          <td class="cite">aarrr.md, competitors.md</td>
           <td class="gap-medium">Medium</td>
         </tr>
         <tr>
           <td style="color:var(--text);font-weight:600">Free tier value delivery</td>
           <td>Current free tiers too restrictive to create genuine "aha" moments at fair volume</td>
-          <td class="cite">competitive-analysis.md</td>
+          <td class="cite">competitors.md</td>
           <td class="gap-medium">Medium</td>
         </tr>
         <tr>
           <td style="color:var(--text);font-weight:600">Atlassian consolidation risk</td>
           <td>JPD + Cycle acquisition could absorb the "good enough" mid-market via distribution advantage</td>
-          <td class="cite">competitive-analysis.md, cycle.app/blog</td>
+          <td class="cite">competitors.md, cycle.app/blog</td>
           <td class="gap-medium">Medium - monitor</td>
         </tr>
       </tbody>
@@ -1709,7 +1711,7 @@
         <h3>The positioning gap</h3>
         <div class="h-if"><span class="h-label">If</span> Sift positions specifically for the PM who needs to defend roadmap decisions with evidence (vs. broad "product + CS + sales + marketing" positioning of competitors),</div>
         <div class="h-then"><span class="h-label">Then</span> PMs in the target segment will self-select into Sift over competing tools,</div>
-        <div class="h-because"><span class="h-label">Because</span> specificity creates stronger resonance with the segment that has the pain, even at the cost of reducing the addressable market on paper. Being the obvious choice for one segment outperforms being a good choice for five. (Source: competitive-analysis.md)</div>
+        <div class="h-because"><span class="h-label">Because</span> specificity creates stronger resonance with the segment that has the pain, even at the cost of reducing the addressable market on paper. Being the obvious choice for one segment outperforms being a good choice for five. (Source: competitors.md)</div>
       </div>
     </div>
 
@@ -1898,7 +1900,7 @@
     <div style="padding:0 4px">
       <div class="question-row" style="padding:20px">
         <div class="question-text">U1 - Exact baseline time PMs spend on manual synthesis per planning cycle</div>
-        <div class="question-why">No primary source confirmed the 3-5 hours figure from master-research.md. Order of magnitude (hours) is supported. The specific figure requires user interviews. To close: ask target PMs in user interviews to time their next pre-planning synthesis session.</div>
+        <div class="question-why">No primary source confirmed the 3-5 hours figure from research.md. Order of magnitude (hours) is supported. The specific figure requires user interviews. To close: ask target PMs in user interviews to time their next pre-planning synthesis session.</div>
       </div>
       <div class="question-row" style="padding:20px">
         <div class="question-text">U2 - Whether PMs share evidence briefs externally or only internally</div>
@@ -1912,14 +1914,14 @@
     <p style="font-size:14px;color:var(--text)">Sift's trust design is not optional polish - it is what makes the core job possible. The research confirms the conditional form of H1 and sharpens the design requirement:</p>
     <p style="font-size:14px">PMs are wary of AI synthesis for decision support (confirmed, HIGH). That wall comes down with transparency: citations, evidence counts, drill-down, and the ability to spot-check (confirmed, MEDIUM). When those mechanisms are present, PMs DO act on synthesis without re-synthesizing everything themselves (confirmed, MEDIUM).</p>
     <p style="font-size:14px">The first post-launch signal to watch: whether activated users open the evidence drill-down at least once in their first session. If they do, the spot-checking pattern is active and the trust chain is working. If they never open it, either synthesis quality is already trusted (good) or the drill-down is too hidden (bad). One behavior distinguishes between two very different product situations.</p>
-    <p class="cite" style="margin-top:12px">Full verification record: research/live-research.md</p>
+    <p class="cite" style="margin-top:12px">Full verification record: research/docs/live-research.md</p>
   </div>
 </section>
 
 <footer>
   <div>Sift - Research Sprint - June 2026 - All competitor facts verified from live sources</div>
   <div style="text-align:right">
-    <a href="research/master-research.md" style="color:var(--text-3);text-decoration:none">master-research.md</a>
+    <a href="research/docs/research.md" style="color:var(--text-3);text-decoration:none">research.md</a>
     <span style="margin:0 8px">-</span>
     <a href="CLAUDE.md" style="color:var(--text-3);text-decoration:none">CLAUDE.md</a>
   </div>
