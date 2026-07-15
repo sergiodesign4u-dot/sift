@@ -66,7 +66,7 @@ Convention: raw markdown lives in each stage's `docs/`; the deployed HTML pages 
 - [benchmark.md](research/docs/benchmark.md) - Trust in synthesis: cross-category best-in-class scores and mechanisms
 - [aarrr.md](research/docs/aarrr.md) - AARRR funnel model with one metric and one MVP decision per stage
 - [ux-patterns.md](research/docs/ux-patterns.md) - UX pattern selection and rationale
-- [personas.md](research/docs/personas.md) - People observations and three personas (Overloaded PM, Product Lead, Signal Supplier)
-- [jtbd.md](research/docs/jtbd.md) - JTBD job hierarchy, matrix, and MVP core conclusions
+- [personas.md](user-research/docs/personas.md) - People observations and three personas (Overloaded PM, Product Lead, Signal Supplier)
+- [jtbd.md](user-research/docs/jtbd.md) - JTBD job hierarchy, matrix, and MVP core conclusions
 - [live-research.md](research/docs/live-research.md) - Adversarial verification artifact: 8 claims tested, 6 confirmed, 0 killed
 - [quality-check.md](research/docs/quality-check.md) - Source audit: every quantitative claim checked against a cited source

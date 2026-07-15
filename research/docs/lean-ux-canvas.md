@@ -38,7 +38,7 @@ Full objective rationale: [strategy.md](strategy.md) Section 1.
 
 **Later - The Signal Supplier (Segment C):** CS Manager or Support Lead with daily customer contact. Deferred from MVP as a PM retention dependency, not a separate feature. (Founder decision D1, [strategy.md](strategy.md) Section 6)
 
-Full segment detail: [strategy.md](strategy.md) Section 2, [personas.md](personas.md).
+Full segment detail: [strategy.md](strategy.md) Section 2, [personas.md](../../user-research/docs/personas.md).
 
 ---
 
@@ -51,7 +51,7 @@ Full segment detail: [strategy.md](strategy.md) Section 2, [personas.md](persona
 - Close the loop with sales: here is the traceable evidence behind why we are building this, not an opinion.
 - Trust the synthesis enough to act, because any conclusion can be audited down to the raw feedback item.
 
-Primary JTBD: *When I have a roadmap planning session coming up, I want to see a trustworthy synthesis of what customers are saying, with evidence I can trace, so that I can make a confident, defensible prioritization call and not just guess.* ([jtbd.md](jtbd.md))
+Primary JTBD: *When I have a roadmap planning session coming up, I want to see a trustworthy synthesis of what customers are saying, with evidence I can trace, so that I can make a confident, defensible prioritization call and not just guess.* ([jtbd.md](../../user-research/docs/jtbd.md))
 
 ---
 
