@@ -3,11 +3,12 @@
 B2B SaaS that turns scattered customer feedback into clear, prioritized product decisions. Every roadmap item is traceable back to the real user voices behind it.
 
 **Live pages:**
-- Foundation Research: [https://sergiodesign4u-dot.github.io/sift/research.html](https://sergiodesign4u-dot.github.io/sift/research.html)
-- User Research - Personas: [https://sergiodesign4u-dot.github.io/sift/personas.html](https://sergiodesign4u-dot.github.io/sift/personas.html)
-- User Research - JTBD: [https://sergiodesign4u-dot.github.io/sift/jtbd.html](https://sergiodesign4u-dot.github.io/sift/jtbd.html)
-- User Research - CJM As-Is: [https://sergiodesign4u-dot.github.io/sift/cjm-as-is.html](https://sergiodesign4u-dot.github.io/sift/cjm-as-is.html)
-- User Research - CJM To-Be: [https://sergiodesign4u-dot.github.io/sift/cjm-to-be.html](https://sergiodesign4u-dot.github.io/sift/cjm-to-be.html)
+- Home (project hub): [https://sergiodesign4u-dot.github.io/sift/](https://sergiodesign4u-dot.github.io/sift/)
+- Foundation Research: [https://sergiodesign4u-dot.github.io/sift/research/research.html](https://sergiodesign4u-dot.github.io/sift/research/research.html)
+- User Research - Personas: [https://sergiodesign4u-dot.github.io/sift/user-research/personas.html](https://sergiodesign4u-dot.github.io/sift/user-research/personas.html)
+- User Research - JTBD: [https://sergiodesign4u-dot.github.io/sift/user-research/jtbd.html](https://sergiodesign4u-dot.github.io/sift/user-research/jtbd.html)
+- User Research - CJM As-Is: [https://sergiodesign4u-dot.github.io/sift/user-research/cjm-as-is.html](https://sergiodesign4u-dot.github.io/sift/user-research/cjm-as-is.html)
+- User Research - CJM To-Be: [https://sergiodesign4u-dot.github.io/sift/user-research/cjm-to-be.html](https://sergiodesign4u-dot.github.io/sift/user-research/cjm-to-be.html)
 
 ---
 
@@ -36,13 +37,17 @@ B2B SaaS that turns scattered customer feedback into clear, prioritized product 
 ```
 CLAUDE.md            Product brief (read by Claude in every prompt)
 README.md            This living index
-research.html        Foundation Research, deployed page
-personas.html        User Research: personas, deployed page
-jtbd.html            User Research: JTBD, deployed page
+index.html           Project hub / landing, deployed at the site root
 research/
+  research.html      Foundation Research, deployed page
   docs/              All research markdown - the source of truth
   screens/           Captured competitor and benchmark screens
-user-research/docs/  User Research markdown: personas, JTBD, CJM As-Is + To-Be
+user-research/
+  personas.html      User Research: personas, deployed page
+  jtbd.html          User Research: JTBD, deployed page
+  cjm-as-is.html     User Research: CJM As-Is, deployed page
+  cjm-to-be.html     User Research: CJM To-Be, deployed page
+  docs/              User Research markdown: personas, JTBD, CJM As-Is + To-Be
 ia/                  Information Architecture (skeleton)
 wireframes/          Core flow wireframes (skeleton)
 voice/               Voice and tone (skeleton)
@@ -55,7 +60,7 @@ animation/           Motion and animation (skeleton)
 handoff/             Dev handoff specs and annotations (skeleton)
 ```
 
-Convention: raw markdown lives in each stage's `docs/`; the deployed HTML pages sit flat at the repo root so the GitHub Pages links stay stable across stages.
+Convention: each stage owns one folder holding both its deployed HTML page(s) and its raw markdown under `docs/`. The project hub `index.html` sits at the repo root so the GitHub Pages site root is a real landing page. Stage pages live under their stage folder (for example `research/research.html`, `user-research/personas.html`), and cross-links between pages use relative paths.
 
 ---
 

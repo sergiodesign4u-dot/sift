@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sift - Product Design Project</title>
+<style>
+  :root {
+    --bg: #0c0c0e;
+    --bg-2: #111115;
+    --bg-3: #17171c;
+    --bg-4: #1e1e25;
+    --border: #2a2a35;
+    --border-light: #1e1e28;
+    --text: #e8e8ec;
+    --text-2: #a0a0b0;
+    --text-3: #66667a;
+    --accent: #7c6af7;
+    --accent-dim: #3a3470;
+    --accent-glow: rgba(124,106,247,0.12);
+    --green: #3ecf8e;
+    --green-dim: rgba(62,207,142,0.12);
+    --amber: #e8a838;
+    --amber-dim: rgba(232,168,56,0.12);
+    --red: #f06060;
+    --red-dim: rgba(240,96,96,0.12);
+    --radius: 8px;
+    --radius-lg: 12px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(12,12,14,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-light);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 40px; height: 52px;
+  }
+  .nav-brand {
+    font-size: 14px; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--text); text-decoration: none;
+  }
+  .nav-brand span { color: var(--accent); }
+  .nav-links { display: flex; gap: 6px; list-style: none; }
+  .nav-links a {
+    color: var(--text-3); text-decoration: none; font-size: 12px;
+    font-weight: 500; letter-spacing: 0.03em; padding: 5px 10px;
+    border-radius: 5px; transition: color 0.15s, background 0.15s;
+  }
+  .nav-links a:hover { color: var(--text); background: var(--bg-3); }
+
+  .hub { max-width: 900px; margin: 0 auto; padding: 120px 40px 120px; }
+
+  .section-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 14px;
+  }
+  h1 {
+    font-size: 52px; font-weight: 700; line-height: 1.1;
+    letter-spacing: -0.03em; color: var(--text); margin-bottom: 22px;
+  }
+  .lead { font-size: 18px; line-height: 1.7; color: var(--text-2); max-width: 640px; }
+
+  .meta-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 28px; }
+  .chip {
+    font-size: 12px; color: var(--text-2); background: var(--bg-2);
+    border: 1px solid var(--border); border-radius: 20px; padding: 5px 14px;
+  }
+  .chip a { color: var(--accent); text-decoration: none; }
+  .chip a:hover { text-decoration: underline; }
+
+  .divider { border: none; border-top: 1px solid var(--border-light); margin: 56px 0 40px; }
+
+  .roadmap-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    margin-bottom: 24px;
+  }
+  .roadmap-head h2 {
+    font-size: 15px; font-weight: 600; letter-spacing: 0.04em;
+    text-transform: uppercase; color: var(--text-3);
+  }
+  .roadmap-count { font-size: 12px; color: var(--text-3); }
+
+  .stages { display: flex; flex-direction: column; gap: 10px; }
+
+  .stage {
+    display: flex; align-items: flex-start; gap: 18px;
+    padding: 18px 22px; background: var(--bg-2);
+    border: 1px solid var(--border); border-radius: var(--radius-lg);
+    transition: border-color 0.15s;
+  }
+  .stage.done:hover { border-color: var(--accent-dim); }
+  .stage.upcoming { opacity: 0.55; background: transparent; }
+  .stage.next { opacity: 1; border-color: var(--accent-dim); }
+
+  .stage-num {
+    font-size: 12px; color: var(--text-3); font-weight: 600;
+    font-variant-numeric: tabular-nums; padding-top: 2px; min-width: 22px;
+  }
+  .stage-body { flex: 1; min-width: 0; }
+  .stage-titlerow { display: flex; align-items: center; gap: 12px; }
+  .stage-title { font-size: 15px; font-weight: 600; color: var(--text); }
+  .stage-note { font-size: 13px; color: var(--text-3); margin-top: 4px; }
+
+  .stage-links { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+  .stage-links a {
+    font-size: 12px; font-weight: 500; color: var(--accent);
+    text-decoration: none; padding: 4px 11px;
+    border: 1px solid var(--accent-dim); border-radius: 6px;
+    transition: background 0.15s;
+  }
+  .stage-links a:hover { background: var(--accent-glow); }
+
+  .badge {
+    font-size: 9px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; padding: 3px 8px; border-radius: 4px;
+    white-space: nowrap;
+  }
+  .badge-done { color: var(--green); background: var(--green-dim); border: 1px solid rgba(62,207,142,0.3); }
+  .badge-next { color: var(--accent); background: var(--accent-glow); border: 1px solid var(--accent-dim); }
+  .badge-soon { color: var(--text-3); background: var(--bg-3); border: 1px solid var(--border-light); }
+
+  footer {
+    margin-top: 64px; padding-top: 28px; border-top: 1px solid var(--border-light);
+    font-size: 12px; color: var(--text-3); line-height: 1.7;
+  }
+  footer a { color: var(--text-2); text-decoration: none; }
+  footer a:hover { color: var(--text); }
+
+  @media (max-width: 640px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .hub { padding: 96px 20px 80px; }
+    h1 { font-size: 38px; }
+    .lead { font-size: 16px; }
+    .stage { padding: 16px 16px; gap: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="index.html"><span>S</span>ift</a>
+  <ul class="nav-links">
+    <li><a href="research/research.html">Research</a></li>
+    <li><a href="user-research/personas.html">User Research</a></li>
+    <li><a href="https://github.com/sergiodesign4u-dot/sift">GitHub</a></li>
+  </ul>
+</nav>
+
+<div class="hub">
+
+  <div class="section-label">Product Design Project - June 2026</div>
+  <h1>Sift</h1>
+  <p class="lead">Turns scattered customer feedback from support tickets, sales calls, product reviews, and user interviews into clear, prioritized product decisions. Every roadmap item is traceable back to the real user voices behind it.</p>
+
+  <div class="meta-row">
+    <span class="chip">B2B SaaS</span>
+    <span class="chip">Product design case study</span>
+    <span class="chip"><a href="https://github.com/sergiodesign4u-dot/sift">Repository</a></span>
+  </div>
+
+  <hr class="divider">
+
+  <div class="roadmap-head">
+    <h2>Design Roadmap</h2>
+    <span class="roadmap-count">2 of 12 stages complete</span>
+  </div>
+
+  <div class="stages">
+
+    <div class="stage done">
+      <div class="stage-num">01</div>
+      <div class="stage-body">
+        <div class="stage-titlerow">
+          <span class="stage-title">Foundation Research</span>
+          <span class="badge badge-done">Done</span>
+        </div>
+        <div class="stage-note">Competitors, benchmark, Lean UX Canvas, strategy, AARRR, UX patterns, live re-research, founder decisions D1-D3.</div>
+        <div class="stage-links">
+          <a href="research/research.html">Foundation Research</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="stage done">
+      <div class="stage-num">02</div>
+      <div class="stage-body">
+        <div class="stage-titlerow">
+          <span class="stage-title">User Research</span>
+          <span class="badge badge-done">Done</span>
+        </div>
+        <div class="stage-note">Three personas, JTBD hierarchy, and the Customer Journey Map (As-Is from mined voice-of-customer, plus a traced To-Be path and sharpened MVP backlog).</div>
+        <div class="stage-links">
+          <a href="user-research/personas.html">Personas</a>
+          <a href="user-research/jtbd.html">JTBD</a>
+          <a href="user-research/cjm-as-is.html">CJM As-Is</a>
+          <a href="user-research/cjm-to-be.html">CJM To-Be</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="stage next">
+      <div class="stage-num">03</div>
+      <div class="stage-body">
+        <div class="stage-titlerow">
+          <span class="stage-title">Information Architecture</span>
+          <span class="badge badge-next">Next</span>
+        </div>
+        <div class="stage-note">Basic and detailed IA for the core flows: ingestion, synthesis, evidence trace, prioritization.</div>
+      </div>
+    </div>
+
+    <div class="stage upcoming">
+      <div class="stage-num">04</div>
+      <div class="stage-body"><div class="stage-titlerow"><span class="stage-title">Wireframes</span><span class="badge badge-soon">Soon</span></div></div>
+    </div>
+    <div class="stage upcoming">
+      <div class="stage-num">05</div>
+      <div class="stage-body"><div class="stage-titlerow"><span class="stage-title">Voice</span><span class="badge badge-soon">Soon</span></div></div>
+    </div>
+    <div class="stage upcoming">
+      <div class="stage-num">06</div>
+      <div class="stage-body"><div class="stage-titlerow"><span class="stage-title">Concept</span><span class="badge badge-soon">Soon</span></div></div>
+    </div>
+    <div class="stage upcoming">
+      <div class="stage-num">07</div>
+      <div class="stage-body"><div class="stage-titlerow"><span class="stage-title">UI + Visual</span><span class="badge badge-soon">Soon</span></div></div>
+    </div>
+    <div class="stage upcoming">
+      <div class="stage-num">08</div>
+      <div class="stage-body"><div class="stage-titlerow"><span class="stage-title">Tokens + Components</span><span class="badge badge-soon">Soon</span></div></div>
+    </div>
+    <div class="stage upcoming">
+      <div class="stage-num">09</div>
+      <div class="stage-body"><div class="stage-titlerow"><span class="stage-title">Design System</span><span class="badge badge-soon">Soon</span></div></div>
+    </div>
+    <div class="stage upcoming">
+      <div class="stage-num">10</div>
+      <div class="stage-body"><div class="stage-titlerow"><span class="stage-title">Responsive</span><span class="badge badge-soon">Soon</span></div></div>
+    </div>
+    <div class="stage upcoming">
+      <div class="stage-num">11</div>
+      <div class="stage-body"><div class="stage-titlerow"><span class="stage-title">Animation</span><span class="badge badge-soon">Soon</span></div></div>
+    </div>
+    <div class="stage upcoming">
+      <div class="stage-num">12</div>
+      <div class="stage-body"><div class="stage-titlerow"><span class="stage-title">Handoff</span><span class="badge badge-soon">Soon</span></div></div>
+    </div>
+
+  </div>
+
+  <footer>
+    Raw research and markdown live under each stage's <code>docs/</code> folder. Deployed pages sit inside their stage folder. Source on <a href="https://github.com/sergiodesign4u-dot/sift">GitHub</a>.
+  </footer>
+
+</div>
+
+</body>
+</html>
