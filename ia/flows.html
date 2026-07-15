@@ -218,7 +218,7 @@
   <div class="legend">
     <div class="legend-item"><span class="legend-swatch legend-success"></span> Green: success, the happy-path ends and the arrows to a closed job</div>
     <div class="legend-item"><span class="legend-swatch legend-dead"></span> Red: a real dead-end, an As-Is trap with no path to the goal</div>
-    <div class="legend-item"><span class="legend-swatch legend-neutral"></span> Gray: neutral steps, decisions, and loading / empty / error states</div>
+    <div class="legend-item"><span class="legend-swatch legend-neutral"></span> Gray: neutral steps, decisions, and loading / empty / error states and recoveries</div>
   </div>
 </section>
 
@@ -243,7 +243,9 @@ flowchart TD
     Strong -->|looks strong| Drill
     Drill --> Raw["Evidence source: raw verbatim (C1)"]
     Raw --> Trust{"Evidence backs the theme?"}
-    Trust -->|no, citations mismatch| Dead["Dead end: trust breaks, back to manual re-read"]
+    Trust -->|one theme off| Discard["Discard the theme, pick another"]
+    Discard --> Themes
+    Trust -->|trail systematically broken| Dead["Dead end: synthesis not trustworthy, fall back to manual"]
     Trust -->|yes, verified| Prioritize["Set priority on trusted themes (B1 / D1)"]
     Prioritize --> Brief["Build evidence brief (D1)"]
     Brief --> Share["Loading: generate public link"]
@@ -259,14 +261,15 @@ flowchart TD
     classDef neutral fill:#17171c,stroke:#3a3a45,color:#c9c9d2;
     class Start,Win,Grounded success;
     class Dead dead;
-    class Open,Ready,Connect,Ingest,Themes,Strong,Thin,Drill,Raw,Trust,Prioritize,Brief,Share,Shared,Session,Challenge,Defend neutral;
-    linkStyle 0,1,5,6,9,10,11,13,14,15,16,17,18,19,20,21 stroke:#3ecf8e,stroke-width:2px;
+    class Open,Ready,Connect,Ingest,Themes,Strong,Thin,Drill,Raw,Trust,Discard,Prioritize,Brief,Share,Shared,Session,Challenge,Defend neutral;
+    linkStyle 0,1,5,6,9,10,11,15,16,17,18,19,20,21,22,23 stroke:#3ecf8e,stroke-width:2px;
     </pre>
   </div>
   <div class="flow-meta">
-    <p><strong>Decisions:</strong> synthesis ready for this cycle (route to ingest if not); theme strong enough to trust (confidence gate, To-Be P3); evidence backs the theme (spot-check, To-Be P4); stakeholder pushes back (To-Be P6).</p>
+    <p><strong>Decisions:</strong> synthesis ready for this cycle (route to ingest if not); theme strong enough to trust (confidence gate, To-Be P3); evidence backs the theme, split into one theme off (discard and pick another) versus a systematically broken trail (To-Be P4); stakeholder pushes back (To-Be P6).</p>
     <p><strong>States:</strong> Loading during ingest and cluster; Loading during public-link generation; Low-signal badge on thin themes.</p>
-    <p><strong>Dead-end:</strong> the spot-check reveals citations that do not match the theme label, so trust breaks and the PM falls back to manual re-reading. If the evidence chain is not real, H1 fails and Sift loses its value. This is the one place the To-Be path can still die.</p>
+    <p><strong>Recovery:</strong> a single theme that fails the spot-check does not end the journey; the PM discards it and picks another, looping back to the ranked themes.</p>
+    <p><strong>Dead-end:</strong> the terminal dead-end is reserved for a systematically broken evidence trail, where trust in the whole synthesis collapses and the PM falls back to manual re-reading. That is the one place the To-Be path can still die (H1 fails). A raw source that cannot resolve is shown as an error state in Flow 2.</p>
     <p><strong>Traces:</strong> To-Be P1 (Connect), P2 (Synthesis ready), P3 (confidence gate), P4 (drill, spot-check, set priority), P5 (build and share brief), P6 (defend live). The As-Is P6 dead-end, scrambling back into Intercom mid-conversation, is inverted here into the Defend node.</p>
   </div>
 </section>
@@ -293,22 +296,25 @@ flowchart TD
     AuthErr --> OAuth
     Auth -->|yes| Ingesting
     Ingesting --> Enough{"Any usable signal found?"}
-    Enough -->|no, empty| EmptyDead["Dead end: source empty or all filtered, nothing to synthesize"]
+    Enough -->|no, empty| Empty["Empty: nothing usable, loosen filters or add a source"]
+    Empty --> Sources
+    Empty -->|no other source exists| NoData["Dead end: no usable feedback available yet"]
     Enough -->|yes| Synth(["Job closed: signal in one place, synthesis ready (B1)"])
 
     classDef success fill:#12351f,stroke:#3ecf8e,color:#eafff9;
     classDef dead fill:#3a1618,stroke:#f06060,color:#ffd7d7;
     classDef neutral fill:#17171c,stroke:#3a3a45,color:#c9c9d2;
     class Start,Synth success;
-    class EmptyDead dead;
-    class Sources,Pick,Upload,Map,MapErr,Ingesting,OAuth,Auth,AuthErr,Enough neutral;
-    linkStyle 0,1,2,3,6,12,14 stroke:#3ecf8e,stroke-width:2px;
+    class NoData dead;
+    class Sources,Pick,Upload,Map,MapErr,Ingesting,OAuth,Auth,AuthErr,Enough,Empty neutral;
+    linkStyle 0,1,2,3,6,12,16 stroke:#3ecf8e,stroke-width:2px;
     </pre>
   </div>
   <div class="flow-meta">
     <p><strong>Decisions:</strong> CSV or Intercom; columns map cleanly (CSV); authorized (Intercom); any usable signal found.</p>
     <p><strong>States:</strong> empty Sources on first run; Loading during normalize, PII scrub, and cluster; two recoverable Errors (unmapped columns, auth failed) that loop back into the connect step.</p>
-    <p><strong>Dead-end:</strong> the source is empty or everything is filtered out, so there is nothing to synthesize.</p>
+    <p><strong>Recovery:</strong> an empty source is not terminal; the PM loosens filters or adds another source, looping back to Sources.</p>
+    <p><strong>Dead-end:</strong> the true dead-end is only when no usable feedback exists anywhere yet, so there is nothing to synthesize.</p>
     <p><strong>Traces:</strong> To-Be P1 (connect once, CSV + Intercom, D3), P2 (a synthesis is ready). The green line marks the CSV happy path; the Intercom branch is the symmetric path to the same success.</p>
   </div>
 </section>
@@ -327,9 +333,14 @@ flowchart TD
     Conf -->|low-signal badge| Low["Low signal: treat as weak, do not over-rely"]
     Low --> Decide["Act on trusted themes, skip weak ones"]
     Conf -->|strong n=X| Items["Evidence items list n=X (B2)"]
-    Items --> RawItem["Evidence source: raw verbatim in context (C1)"]
+    Items --> Avail{"Raw source still available?"}
+    Avail -->|no| SrcErr["Error: source unavailable, citation cannot resolve, theme flagged"]
+    SrcErr --> Decide
+    Avail -->|yes| RawItem["Evidence source: raw verbatim in context (C1)"]
     RawItem --> Match{"Do the quotes match the theme label?"}
-    Match -->|no| Broken["Dead end: label misrepresents evidence, trust lost"]
+    Match -->|one theme off| DiscardT["Discard this theme, check another"]
+    DiscardT --> Theme
+    Match -->|trail systematically broken| Broken["Dead end: evidence trail broken, trust lost"]
     Match -->|yes| Verified["Spot-check passes: the theme is real"]
     Verified --> Decide
     Decide --> Trusted(["Job closed: calibrated trust, acted without re-reading all raw data"])
@@ -339,14 +350,15 @@ flowchart TD
     classDef neutral fill:#17171c,stroke:#3a3a45,color:#c9c9d2;
     class Start,Trusted success;
     class Broken dead;
-    class Theme,Conf,Low,Items,RawItem,Match,Verified,Decide neutral;
-    linkStyle 0,1,4,5,6,8,9,10 stroke:#3ecf8e,stroke-width:2px;
+    class Theme,Conf,Low,Items,Avail,SrcErr,RawItem,Match,DiscardT,Verified,Decide neutral;
+    linkStyle 0,1,4,5,8,9,13,14,15 stroke:#3ecf8e,stroke-width:2px;
     </pre>
   </div>
   <div class="flow-meta">
-    <p><strong>Decisions:</strong> confidence strong or low-signal (To-Be P3); do the quotes match the theme label (the spot-check, To-Be P4).</p>
-    <p><strong>States:</strong> the low-signal branch is the honest thin-evidence path; it does not dead-end, the PM simply weights it less and still reaches a decision.</p>
-    <p><strong>Dead-end:</strong> the drill-down shows the label misrepresents its evidence and trust is lost. This is the anti-pattern benchmark.md warns about, kept visible so the design never hides it.</p>
+    <p><strong>Decisions:</strong> confidence strong or low-signal (To-Be P3); raw source still available (traceability guard); do the quotes match the theme label, split into one theme off (discard and check another) versus a systematically broken trail (To-Be P4).</p>
+    <p><strong>States:</strong> the low-signal branch is the honest thin-evidence path; a new Error state covers a source that is unavailable and a citation that cannot resolve, in which case the theme is flagged and the PM still reaches a decision on the other themes.</p>
+    <p><strong>Recovery:</strong> a single mismatched theme is discarded and the PM checks another.</p>
+    <p><strong>Dead-end:</strong> Broken is terminal only for a systematically broken trail, the trust-destruction anti-pattern benchmark.md warns about, kept visible so the design never hides it.</p>
     <p><strong>Traces:</strong> To-Be P3 (confidence) and P4 (spot-check). Closes GZ2: the PM acts without re-reading everything, because the evidence trail is inspectable.</p>
   </div>
 </section>
@@ -382,7 +394,7 @@ flowchart TD
   <div class="flow-meta">
     <p><strong>Decisions:</strong> is the brief open or Sift at hand (the As-Is trap is being caught without it); anecdote versus traceable evidence (evidence holds, or the challenge surfaced a genuine new signal).</p>
     <p><strong>States:</strong> no loading here; this flow is a live, in-room interaction.</p>
-    <p><strong>Dead-end:</strong> the PM is offline or without the brief, cannot cite, and backs down. This is the exact As-Is Phase 6 failure (-5), preserved so the design keeps in view what it must prevent (have the brief ready, To-Be P5).</p>
+    <p><strong>Dead-end:</strong> Scramble is the one legitimate terminal here. The PM is offline or without the brief, cannot cite, and backs down. This is the exact As-Is Phase 6 failure (-5), preserved so the design keeps in view what it must prevent (have the brief ready, To-Be P5).</p>
     <p><strong>Traces:</strong> To-Be P6, the +9 inversion. The second success end (Reframe) is honest: sometimes the challenge is right, and the win is that the disagreement moves onto evidence rather than ego. Note: single-item mid-meeting capture is a fast-follow question; for MVP the new signal is simply noted for the next import.</p>
   </div>
 </section>
@@ -404,7 +416,7 @@ flowchart TD
     Gen --> Link["Public share link, no login (D2)"]
     Link --> Send["Send link to stakeholders before the session"]
     Send --> Opened{"Did the stakeholder open it?"}
-    Opened -->|no or ignored| Cold["Dead end: brief ignored, rationale still does not land"]
+    Opened -->|no or ignored| Fallback(["Not opened: defend live in the session instead (Flow 3)"])
     Opened -->|yes| Read["Stakeholder reads themes, evidence, quotes (D2)"]
     Read --> Landed(["Job closed: reasoning is legible without Sift access"])
 
@@ -412,15 +424,14 @@ flowchart TD
     classDef dead fill:#3a1618,stroke:#f06060,color:#ffd7d7;
     classDef neutral fill:#17171c,stroke:#3a3a45,color:#c9c9d2;
     class Start,Landed success;
-    class Cold dead;
-    class Build,Ready,ThinWarn,Gen,Link,Send,Opened,Read neutral;
+    class Build,Ready,ThinWarn,Gen,Link,Send,Opened,Read,Fallback neutral;
     linkStyle 0,1,4,5,6,7,9,10 stroke:#3ecf8e,stroke-width:2px;
     </pre>
   </div>
   <div class="flow-meta">
     <p><strong>Decisions:</strong> does the brief have evidence per theme (route back to add or label thin themes); did the stakeholder open it.</p>
     <p><strong>States:</strong> a recoverable Warning when some themes are low-signal (label them, do not hide them); Loading while the public link generates.</p>
-    <p><strong>Dead-end:</strong> the brief is ignored, so the rationale still does not land. Honest limit: Sift makes the reasoning legible, but it cannot force a reader to open it.</p>
+    <p><strong>No hard dead-end:</strong> an ignored brief is not terminal. The PM falls back to defending live in the session (Flow 3), so the person is not stuck. The honest limit is that Sift cannot force a reader to open the brief, but the reasoning still gets its moment in the room.</p>
     <p><strong>Traces:</strong> To-Be P5 (walk in with a brief the room can read), the referral artifact (aarrr.md). GZ5 is supporting, and it reuses the same brief that GZ1 needs, so it comes largely for free.</p>
   </div>
 </section>

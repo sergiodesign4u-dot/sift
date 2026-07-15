@@ -4,11 +4,13 @@
 
 *Every screen-node exists in the concept-sitemap (sitemap.md, section 2). States (empty / error / loading) are separate nodes, not screens. Node labels carry their concept-sitemap code (A1, B2, ...).*
 
+*Critique note (Step 6): the dead-ends were tightened. A single failed theme or an empty source now recovers (discard and continue, or add another source); the terminal red dead-end is reserved for a systematic failure, where the person genuinely cannot reach the goal.*
+
 ## Color legend
 
 - **Green (success):** the ends of the happy path (the start and the closed-job finish) and the arrows that lead to a closed job.
 - **Red (dead):** a real dead-end, a node with no path to the goal (the As-Is trap, preserved honestly).
-- **Gray (neutral):** everything between the ends, including decision diamonds, loading / empty / error states, and errors that recover back into the flow.
+- **Gray (neutral):** everything between the ends, including decision diamonds, loading / empty / error states, and recoveries that loop back into the flow.
 
 Colors use the research.html tokens (green #3ecf8e, red #f06060, dark surfaces). Three classDef per diagram: success / dead / neutral. Node color is authoritative; the green arrows (linkStyle) highlight the happy path as a bonus.
 
@@ -32,7 +34,9 @@ flowchart TD
     Strong -->|looks strong| Drill
     Drill --> Raw["Evidence source: raw verbatim (C1)"]
     Raw --> Trust{"Evidence backs the theme?"}
-    Trust -->|no, citations mismatch| Dead["Dead end: trust breaks, back to manual re-read"]
+    Trust -->|one theme off| Discard["Discard the theme, pick another"]
+    Discard --> Themes
+    Trust -->|trail systematically broken| Dead["Dead end: synthesis not trustworthy, fall back to manual"]
     Trust -->|yes, verified| Prioritize["Set priority on trusted themes (B1 / D1)"]
     Prioritize --> Brief["Build evidence brief (D1)"]
     Brief --> Share["Loading: generate public link"]
@@ -48,20 +52,21 @@ flowchart TD
     classDef neutral fill:#17171c,stroke:#3a3a45,color:#c9c9d2;
     class Start,Win,Grounded success;
     class Dead dead;
-    class Open,Ready,Connect,Ingest,Themes,Strong,Thin,Drill,Raw,Trust,Prioritize,Brief,Share,Shared,Session,Challenge,Defend neutral;
-    linkStyle 0,1,5,6,9,10,11,13,14,15,16,17,18,19,20,21 stroke:#3ecf8e,stroke-width:2px;
+    class Open,Ready,Connect,Ingest,Themes,Strong,Thin,Drill,Raw,Trust,Discard,Prioritize,Brief,Share,Shared,Session,Challenge,Defend neutral;
+    linkStyle 0,1,5,6,9,10,11,15,16,17,18,19,20,21,22,23 stroke:#3ecf8e,stroke-width:2px;
 ```
 
-**Decisions:** synthesis ready for this cycle (route to ingest if not); theme strong enough to trust (confidence gate, To-Be P3); evidence backs the theme (spot-check, To-Be P4); stakeholder pushes back (To-Be P6).
+**Decisions:** synthesis ready for this cycle (route to ingest if not); theme strong enough to trust (confidence gate, To-Be P3); evidence backs the theme, split into a single theme off (discard and pick another) versus a systematically broken trail (To-Be P4); stakeholder pushes back (To-Be P6).
 **States:** Loading during ingest and cluster; Loading during public-link generation; Low-signal badge on thin themes.
-**Dead-end:** Dead - the spot-check reveals citations that do not match the theme label, so trust breaks and the PM falls back to manual re-reading. This is the honest failure mode: if the evidence chain is not real, H1 fails and Sift loses its value. It is the one place the To-Be path can still die.
-**Traces:** To-Be P1 (Connect), P2 (Synthesis view ready), P3 (confidence gate), P4 (drill + spot-check + set priority), P5 (build and share brief), P6 (defend live). The As-Is P6 dead-end (scramble back into Intercom mid-conversation) is inverted here into the Defend node, the deepest win.
+**Recovery:** a single theme that fails the spot-check does not end the journey; the PM discards it and picks another, looping back to the ranked themes.
+**Dead-end:** the terminal dead-end is reserved for a systematically broken evidence trail, where trust in the whole synthesis collapses and the PM falls back to manual re-reading. That is the one place the To-Be path can still die (H1 fails). A raw source that cannot resolve is shown as an error state in Flow 2.
+**Traces:** To-Be P1 (Connect), P2 (Synthesis ready), P3 (confidence gate), P4 (drill, spot-check, set priority), P5 (build and share brief), P6 (defend live). The As-Is P6 dead-end, scrambling back into Intercom mid-conversation, is inverted here into the Defend node.
 
 ---
 
-## Flow 1 - J2: bring the signal in (first-run activation)
+## Flow 1 - Bring the signal in (first-run activation)
 
-*Traces To-Be phases 1 to 2, closes As-Is Phase 2 (siloed channels, GZ4). Primary. The activation path: a first synthesis on the PM own data.*
+*Traces To-Be phases 1 to 2, closes As-Is Phase 2 (siloed channels, GZ4). Primary. The activation path: a first synthesis on the PM own data, from an empty workspace.*
 
 ```mermaid
 flowchart TD
@@ -78,26 +83,29 @@ flowchart TD
     AuthErr --> OAuth
     Auth -->|yes| Ingesting
     Ingesting --> Enough{"Any usable signal found?"}
-    Enough -->|no, empty| EmptyDead["Dead end: source empty or all filtered, nothing to synthesize"]
+    Enough -->|no, empty| Empty["Empty: nothing usable, loosen filters or add a source"]
+    Empty --> Sources
+    Empty -->|no other source exists| NoData["Dead end: no usable feedback available yet"]
     Enough -->|yes| Synth(["Job closed: signal in one place, synthesis ready (B1)"])
 
     classDef success fill:#12351f,stroke:#3ecf8e,color:#eafff9;
     classDef dead fill:#3a1618,stroke:#f06060,color:#ffd7d7;
     classDef neutral fill:#17171c,stroke:#3a3a45,color:#c9c9d2;
     class Start,Synth success;
-    class EmptyDead dead;
-    class Sources,Pick,Upload,Map,MapErr,Ingesting,OAuth,Auth,AuthErr,Enough neutral;
-    linkStyle 0,1,2,3,6,12,14 stroke:#3ecf8e,stroke-width:2px;
+    class NoData dead;
+    class Sources,Pick,Upload,Map,MapErr,Ingesting,OAuth,Auth,AuthErr,Enough,Empty neutral;
+    linkStyle 0,1,2,3,6,12,16 stroke:#3ecf8e,stroke-width:2px;
 ```
 
 **Decisions:** CSV or Intercom; columns map cleanly (CSV); authorized (Intercom); any usable signal found.
 **States:** empty Sources on first run; Loading during normalize, PII scrub, and cluster; two recoverable Errors (unmapped columns, auth failed) that loop back into the connect step.
-**Dead-end:** EmptyDead - the source is empty or everything is filtered out, so there is nothing to synthesize.
-**Traces:** To-Be P1 (connect once, CSV + Intercom, D3), P2 (a synthesis is ready). The green line marks the CSV happy path; the Intercom branch is the symmetric path to the same Ingesting and success.
+**Recovery:** an empty source is not terminal; the PM loosens filters or adds another source, looping back to Sources.
+**Dead-end:** the true dead-end is only when no usable feedback exists anywhere yet, so there is nothing to synthesize.
+**Traces:** To-Be P1 (connect once, CSV + Intercom, D3), P2 (a synthesis is ready). The green line marks the CSV happy path; the Intercom branch is the symmetric path to the same success.
 
 ---
 
-## Flow 2 - J3: trust the synthesis (confidence and spot-check)
+## Flow 2 - Trust the synthesis (confidence and spot-check)
 
 *Traces To-Be phases 3 to 4, closes As-Is Phase 4 (distrust of the summary, GZ2, the second differentiator). Primary.*
 
@@ -108,9 +116,14 @@ flowchart TD
     Conf -->|low-signal badge| Low["Low signal: treat as weak, do not over-rely"]
     Low --> Decide["Act on trusted themes, skip weak ones"]
     Conf -->|strong n=X| Items["Evidence items list n=X (B2)"]
-    Items --> RawItem["Evidence source: raw verbatim in context (C1)"]
+    Items --> Avail{"Raw source still available?"}
+    Avail -->|no| SrcErr["Error: source unavailable, citation cannot resolve, theme flagged"]
+    SrcErr --> Decide
+    Avail -->|yes| RawItem["Evidence source: raw verbatim in context (C1)"]
     RawItem --> Match{"Do the quotes match the theme label?"}
-    Match -->|no| Broken["Dead end: label misrepresents evidence, trust lost"]
+    Match -->|one theme off| DiscardT["Discard this theme, check another"]
+    DiscardT --> Theme
+    Match -->|trail systematically broken| Broken["Dead end: evidence trail broken, trust lost"]
     Match -->|yes| Verified["Spot-check passes: the theme is real"]
     Verified --> Decide
     Decide --> Trusted(["Job closed: calibrated trust, acted without re-reading all raw data"])
@@ -120,18 +133,19 @@ flowchart TD
     classDef neutral fill:#17171c,stroke:#3a3a45,color:#c9c9d2;
     class Start,Trusted success;
     class Broken dead;
-    class Theme,Conf,Low,Items,RawItem,Match,Verified,Decide neutral;
-    linkStyle 0,1,4,5,6,8,9,10 stroke:#3ecf8e,stroke-width:2px;
+    class Theme,Conf,Low,Items,Avail,SrcErr,RawItem,Match,DiscardT,Verified,Decide neutral;
+    linkStyle 0,1,4,5,8,9,13,14,15 stroke:#3ecf8e,stroke-width:2px;
 ```
 
-**Decisions:** confidence strong or low-signal (To-Be P3); do the quotes match the theme label (the spot-check, To-Be P4).
-**States:** the low-signal branch is the honest thin-evidence path; it does not dead-end, the PM simply weights it less and still reaches a decision.
-**Dead-end:** Broken - the drill-down shows the label misrepresents its evidence; trust is lost. This is the anti-pattern benchmark.md warns about, kept visible so the design never hides it.
-**Traces:** To-Be P3 (confidence) and P4 (spot-check to trust). Closes GZ2: the PM acts without re-reading everything, because the evidence trail is inspectable.
+**Decisions:** confidence strong or low-signal (To-Be P3); raw source still available (traceability guard); do the quotes match the theme label, split into one theme off (discard and check another) versus a systematically broken trail (To-Be P4).
+**States:** the low-signal branch is the honest thin-evidence path; a new Error state covers a source that is unavailable and a citation that cannot resolve, in which case the theme is flagged and the PM still reaches a decision on the other themes.
+**Recovery:** a single mismatched theme is discarded and the PM checks another.
+**Dead-end:** Broken is terminal only for a systematically broken trail, the trust-destruction anti-pattern benchmark.md warns about, kept visible so the design never hides it.
+**Traces:** To-Be P3 (confidence) and P4 (spot-check). Closes GZ2: the PM acts without re-reading everything, because the evidence trail is inspectable.
 
 ---
 
-## Flow 3 - J1: defend live under challenge
+## Flow 3 - Defend live under challenge
 
 *Traces To-Be phase 6, closes As-Is Phase 6 (opinion outweighs unciteable evidence, GZ1, the floor at -5, the deepest win). Primary. Job: J1, E2, S1.*
 
@@ -158,12 +172,12 @@ flowchart TD
 
 **Decisions:** is the brief open or Sift at hand (the As-Is trap is being caught without it); anecdote versus traceable evidence (evidence holds, or the challenge surfaced a genuine new signal).
 **States:** none of loading type here; this flow is a live, in-room interaction.
-**Dead-end:** Scramble - the PM is offline or without the brief, cannot cite, and backs down. This is the exact As-Is Phase 6 failure (-5), preserved as the dead-end so the design keeps in view what it must prevent (have the brief ready, To-Be P5, so this branch is not taken).
-**Traces:** To-Be P6, the +9 inversion. The second success end (Reframe) is honest: sometimes the challenge is right, and the win is that the disagreement moves onto evidence rather than ego. Note: single-item mid-meeting capture is [?] fast-follow; for MVP the new signal is simply noted for the next normal import (no new screen).
+**Dead-end:** Scramble is the one legitimate terminal here. The PM is offline or without the brief, cannot cite, and backs down. This is the exact As-Is Phase 6 failure (-5), preserved so the design keeps in view what it must prevent (have the brief ready, To-Be P5, so this branch is not taken).
+**Traces:** To-Be P6, the +9 inversion. The second success end (Reframe) is honest: sometimes the challenge is right, and the win is that the disagreement moves onto evidence rather than ego. Note: single-item mid-meeting capture is a fast-follow question; for MVP the new signal is simply noted for the next import.
 
 ---
 
-## Flow 4 - S1: share the brief before the session
+## Flow 4 - Share the brief before the session
 
 *Traces To-Be phase 5, closes As-Is Phase 5 (rationale does not land, GZ5). Primary produces, secondary and anonymous stakeholders consume. Job: S1, J4, Main.*
 
@@ -177,7 +191,7 @@ flowchart TD
     Gen --> Link["Public share link, no login (D2)"]
     Link --> Send["Send link to stakeholders before the session"]
     Send --> Opened{"Did the stakeholder open it?"}
-    Opened -->|no or ignored| Cold["Dead end: brief ignored, rationale still does not land"]
+    Opened -->|no or ignored| Fallback(["Not opened: defend live in the session instead (Flow 3)"])
     Opened -->|yes| Read["Stakeholder reads themes, evidence, quotes (D2)"]
     Read --> Landed(["Job closed: reasoning is legible without Sift access"])
 
@@ -185,14 +199,13 @@ flowchart TD
     classDef dead fill:#3a1618,stroke:#f06060,color:#ffd7d7;
     classDef neutral fill:#17171c,stroke:#3a3a45,color:#c9c9d2;
     class Start,Landed success;
-    class Cold dead;
-    class Build,Ready,ThinWarn,Gen,Link,Send,Opened,Read neutral;
+    class Build,Ready,ThinWarn,Gen,Link,Send,Opened,Read,Fallback neutral;
     linkStyle 0,1,4,5,6,7,9,10 stroke:#3ecf8e,stroke-width:2px;
 ```
 
 **Decisions:** does the brief have evidence per theme (route back to add or label thin themes); did the stakeholder open it.
 **States:** a recoverable Warning when some themes are low-signal (label them, do not hide them); Loading while the public link generates.
-**Dead-end:** Cold - the brief is ignored, so the rationale still does not land. Honest limit: Sift makes the reasoning legible, but it cannot force a reader to open it.
+**No hard dead-end:** an ignored brief is not terminal. The PM falls back to defending live in the session (Flow 3), so the person is not stuck. The honest limit is that Sift cannot force a reader to open the brief, but the reasoning still gets its moment in the room.
 **Traces:** To-Be P5 (walk in with a brief the room can read), the referral artifact (aarrr.md). GZ5 is supporting, and it reuses the same brief that GZ1 needs, so it comes largely for free.
 
 ---
@@ -200,7 +213,7 @@ flowchart TD
 ## Coverage and honesty summary
 
 - **No new screens.** Every screen-node above already exists in the concept-sitemap (A1, A2, B1, B2, C1, D1, D2). The flows added no screen, so the Step 5 reconciliation of concept-sitemap versus flows is clean. Real-world touchpoints (the planning session, the room) and states (empty / error / loading) are not screens.
-- **States present in every flow that has a happy path:** loading (ingest, link generation), empty (no sources, no usable signal), error (CSV mapping, Intercom auth), and low-signal / thin warnings.
-- **Both ends in every flow:** each has at least one closed-job success end and at least one honest dead-end. The dead-ends are the As-Is traps kept visible: manual re-read (Flow 0), empty source (Flow 1), misrepresented evidence (Flow 2), scramble without the brief (Flow 3), ignored brief (Flow 4).
+- **States present in every flow that has a happy path:** loading (ingest, link generation), empty (no sources, no usable signal), error (CSV mapping, Intercom auth, and a source that cannot resolve a citation), and low-signal / thin warnings.
+- **Recoveries versus dead-ends (tightened in Step 6):** a single failed theme (Flow 0, Flow 2) or an empty source (Flow 1) now recovers rather than terminating. The terminal red dead-ends are the honest catastrophic cases: a systematically broken evidence trail (Flow 0, Flow 2, where H1 fails), no usable feedback anywhere (Flow 1), and being caught in the room without the brief (Flow 3). Flow 4 has no hard dead-end: an ignored brief hands off to the live defend.
 - **The deepest inversion (Flow 3 / To-Be P6):** the As-Is floor (-5, evidence loses to the HiPPO) becomes the moment the PM is most in control. That is the product core promise, aimed at the phase with the strongest As-Is evidence.
 - **[?] carried forward:** in-meeting single-item capture (Flow 3) is fast-follow, not MVP; the new signal is noted for the next import.
