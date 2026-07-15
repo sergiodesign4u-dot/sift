@@ -6,6 +6,8 @@ B2B SaaS that turns scattered customer feedback into clear, prioritized product 
 - Foundation Research: [https://sergiodesign4u-dot.github.io/sift/research.html](https://sergiodesign4u-dot.github.io/sift/research.html)
 - User Research - Personas: [https://sergiodesign4u-dot.github.io/sift/personas.html](https://sergiodesign4u-dot.github.io/sift/personas.html)
 - User Research - JTBD: [https://sergiodesign4u-dot.github.io/sift/jtbd.html](https://sergiodesign4u-dot.github.io/sift/jtbd.html)
+- User Research - CJM As-Is: [https://sergiodesign4u-dot.github.io/sift/cjm-as-is.html](https://sergiodesign4u-dot.github.io/sift/cjm-as-is.html)
+- User Research - CJM To-Be: [https://sergiodesign4u-dot.github.io/sift/cjm-to-be.html](https://sergiodesign4u-dot.github.io/sift/cjm-to-be.html)
 
 ---
 
@@ -15,7 +17,7 @@ B2B SaaS that turns scattered customer feedback into clear, prioritized product 
 |---|---|
 | Foundation Research | Done (competitors, benchmark, Lean UX Canvas, strategy, AARRR, UX patterns, master synthesis, live re-research, quality check, founder decisions D1-D3 locked) |
 | User Research (Personas + JTBD) | Done (three personas, JTBD hierarchy + matrix) |
-| CJM (As-Is + To-Be) | Not started |
+| CJM (As-Is + To-Be) | Done (As-Is journey from mined VOC with emotional curve, To-Be traced path, sharpened MVP backlog) |
 | Information Architecture (Basic + Detailed) | Not started |
 | Wireframes | Not started |
 | Voice | Not started |

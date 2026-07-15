@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sift - CJM To-Be</title>
+<style>
+  :root {
+    --bg: #0c0c0e;
+    --bg-2: #111115;
+    --bg-3: #17171c;
+    --bg-4: #1e1e25;
+    --border: #2a2a35;
+    --border-light: #1e1e28;
+    --text: #e8e8ec;
+    --text-2: #a0a0b0;
+    --text-3: #66667a;
+    --accent: #7c6af7;
+    --accent-dim: #3a3470;
+    --accent-glow: rgba(124,106,247,0.12);
+    --green: #3ecf8e;
+    --green-dim: rgba(62,207,142,0.12);
+    --amber: #e8a838;
+    --amber-dim: rgba(232,168,56,0.12);
+    --red: #f06060;
+    --red-dim: rgba(240,96,96,0.12);
+    --radius: 8px;
+    --radius-lg: 12px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    font-size: 15px;
+  }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(12,12,14,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-light);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 40px; height: 52px;
+  }
+
+  .nav-brand {
+    font-size: 14px; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--text); text-decoration: none;
+  }
+  .nav-brand span { color: var(--accent); }
+
+  .nav-links { display: flex; gap: 6px; list-style: none; }
+  .nav-links a {
+    color: var(--text-3); text-decoration: none; font-size: 12px;
+    font-weight: 500; letter-spacing: 0.03em; padding: 5px 10px;
+    border-radius: 5px; transition: color 0.15s, background 0.15s;
+  }
+  .nav-links a:hover { color: var(--text); background: var(--bg-3); }
+
+  .page { max-width: 1040px; margin: 0 auto; padding: 100px 40px 120px; }
+
+  section { padding-top: 80px; }
+
+  .section-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 12px;
+  }
+
+  h1 {
+    font-size: 42px; font-weight: 700; line-height: 1.15;
+    letter-spacing: -0.02em; color: var(--text); margin-bottom: 20px;
+  }
+
+  h2 {
+    font-size: 26px; font-weight: 650; letter-spacing: -0.015em;
+    color: var(--text); margin-bottom: 8px;
+  }
+
+  h3 { font-size: 17px; font-weight: 600; color: var(--text); margin-bottom: 10px; }
+
+  h4 {
+    font-size: 13px; font-weight: 600; letter-spacing: 0.04em;
+    text-transform: uppercase; color: var(--text-3); margin-bottom: 8px; margin-top: 24px;
+  }
+
+  p { color: var(--text-2); margin-bottom: 14px; }
+  p:last-child { margin-bottom: 0; }
+
+  .lead { font-size: 17px; line-height: 1.7; color: var(--text-2); max-width: 680px; }
+
+  .divider { border: none; border-top: 1px solid var(--border-light); margin: 60px 0; }
+
+  .card {
+    background: var(--bg-2); border: 1px solid var(--border);
+    border-radius: var(--radius-lg); padding: 28px;
+  }
+
+  .card-grid { display: grid; gap: 16px; }
+  .card-grid-2 { grid-template-columns: 1fr 1fr; }
+  .card-grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+  .table-wrap {
+    overflow-x: auto; border: 1px solid var(--border);
+    border-radius: var(--radius-lg); margin: 20px 0;
+  }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: var(--bg-3); color: var(--text-3); font-weight: 600;
+    font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  td {
+    padding: 12px 16px; border-bottom: 1px solid var(--border-light);
+    color: var(--text-2); vertical-align: top;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--bg-3); }
+
+  .tag {
+    display: inline-block; font-size: 11px; font-weight: 600;
+    letter-spacing: 0.05em; text-transform: uppercase; padding: 3px 8px;
+    border-radius: 4px; white-space: nowrap;
+  }
+  .tag-primary { background: var(--green-dim); color: var(--green); }
+  .tag-secondary { background: var(--amber-dim); color: var(--amber); }
+  .tag-later { background: var(--bg-4); color: var(--text-3); }
+  .tag-confirmed { background: var(--green-dim); color: var(--green); }
+
+  .badge {
+    display: inline-block; font-size: 10px; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 7px;
+    border-radius: 4px; margin-left: 8px; vertical-align: middle;
+  }
+  .badge-hypothesis { background: var(--amber-dim); color: var(--amber); }
+  .badge-verified { background: var(--green-dim); color: var(--green); }
+  .badge-unknown { background: var(--bg-4); color: var(--text-3); }
+  .badge-conditional { background: var(--amber-dim); color: var(--amber); }
+
+  .section-header {
+    display: flex; align-items: baseline; gap: 16px;
+    margin-bottom: 24px; padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .section-num { font-size: 13px; font-weight: 700; color: var(--text-3); }
+
+  .cite { font-size: 11px; color: var(--text-3); font-weight: 500; }
+
+  footer {
+    border-top: 1px solid var(--border-light); margin-top: 100px;
+    padding-top: 40px; padding-bottom: 60px; color: var(--text-3);
+    font-size: 12px; display: flex; justify-content: space-between; align-items: center;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .page > section:first-child { animation: fadeUp 0.5s ease; }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .page { padding: 80px 20px 80px; }
+    .card-grid-2, .card-grid-3 { grid-template-columns: 1fr; }
+    h1 { font-size: 28px; }
+    .trust-grid { grid-template-columns: 1fr; }
+  }
+
+  /* SIDEBAR */
+  .sidebar { display: none; }
+
+  @media (min-width: 1100px) {
+    .sidebar {
+      display: flex; flex-direction: column; gap: 2px;
+      position: fixed; top: 52px; left: 0; width: 220px;
+      height: calc(100vh - 52px); overflow-y: auto;
+      padding: 24px 12px 32px; border-right: 1px solid var(--border-light);
+      background: var(--bg); z-index: 90;
+    }
+    .page { margin: 0; margin-left: 220px; max-width: 1040px; padding: 100px 40px 120px; }
+  }
+
+  .sidebar-phase-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--text-3); padding: 5px 8px;
+    border-radius: 5px; display: block; cursor: default; text-decoration: none;
+  }
+  .sidebar-phase-label:hover { color: var(--text); background: var(--bg-3); cursor: pointer; }
+  a.sidebar-phase-label { cursor: pointer; }
+
+  .sidebar-phase.active .sidebar-phase-label { color: var(--accent); background: var(--accent-glow); }
+
+  .sidebar-section-links { list-style: none; margin: 4px 0 8px 0; padding: 0; }
+  .sidebar-section-links a {
+    display: block; font-size: 12px; color: var(--text-3); text-decoration: none;
+    padding: 4px 8px 4px 16px; border-radius: 4px;
+    border-left: 2px solid transparent;
+    transition: color 0.15s, border-color 0.15s, background 0.15s; line-height: 1.5;
+  }
+  .sidebar-section-links a:hover { color: var(--text); background: var(--bg-3); }
+  .sidebar-section-links a.active { color: var(--text); border-left-color: var(--accent); background: var(--bg-3); }
+
+  .sidebar-divider { border: none; border-top: 1px solid var(--border-light); margin: 8px 0; }
+  .sidebar-coming-soon { display: flex; align-items: center; justify-content: space-between; padding: 5px 8px; border-radius: 5px; cursor: default; opacity: 0.5; }
+  .sidebar-cs-label { font-size: 12px; font-weight: 500; color: var(--text-3); letter-spacing: 0.02em; }
+  .sidebar-cs-badge { font-size: 9px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-3); background: var(--bg-3); border: 1px solid var(--border-light); padding: 2px 5px; border-radius: 3px; }
+  .sidebar-spacer { flex: 1; }
+
+  .sidebar-next {
+    padding: 12px; border: 1px solid var(--border-light);
+    border-radius: 6px; background: var(--bg-2); margin-top: 16px;
+  }
+  .sidebar-next-label {
+    font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--text-3); opacity: 0.6; margin-bottom: 4px;
+  }
+  .sidebar-next-content { font-size: 11px; color: var(--text-3); opacity: 0.6; line-height: 1.5; }
+
+  /* OBSERVATION CARDS */
+  .obs-card {
+    background: var(--bg-2); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 18px;
+  }
+  .obs-id {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 6px;
+  }
+  .obs-text { font-size: 13px; color: var(--text-2); line-height: 1.55; }
+  .obs-confirmed {
+    font-size: 11px; color: var(--green); font-weight: 600;
+    margin-top: 8px; display: flex; align-items: center; gap: 5px;
+  }
+
+  /* PERSONA CARDS */
+  .persona-card {
+    background: var(--bg-2); border: 1px solid var(--border);
+    border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 48px;
+  }
+  .persona-bar { height: 3px; }
+  .persona-bar-primary { background: var(--accent); }
+  .persona-bar-secondary { background: var(--amber); }
+  .persona-bar-later { background: var(--bg-4); }
+
+  .persona-header {
+    padding: 28px 28px 0; display: flex;
+    align-items: flex-start; gap: 20px;
+  }
+  .persona-avatar {
+    width: 48px; height: 48px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; font-weight: 700; flex-shrink: 0;
+  }
+  .persona-avatar-primary { background: var(--accent-glow); color: var(--accent); }
+  .persona-avatar-secondary { background: var(--amber-dim); color: var(--amber); }
+  .persona-avatar-later { background: var(--bg-4); color: var(--text-3); }
+
+  .persona-name-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 4px; }
+  .persona-name { font-size: 22px; font-weight: 700; color: var(--text); letter-spacing: -0.01em; }
+  .persona-role { font-size: 13px; color: var(--text-3); margin-top: 2px; }
+
+  .persona-body { padding: 20px 28px 28px; }
+
+  .persona-section-title {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--text-3);
+    margin-top: 28px; margin-bottom: 10px;
+    padding-top: 20px; border-top: 1px solid var(--border-light);
+  }
+  .persona-section-title.first { margin-top: 12px; padding-top: 0; border-top: none; }
+
+  .job-card {
+    background: var(--bg-3); border: 1px solid var(--border-light);
+    border-left: 3px solid var(--accent); border-radius: var(--radius);
+    padding: 14px 18px; margin-bottom: 10px;
+    font-size: 14px; color: var(--text-2); font-style: italic; line-height: 1.7;
+  }
+  .job-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--accent); font-style: normal;
+    margin-bottom: 6px;
+  }
+
+  .pain-item {
+    border-bottom: 1px solid var(--border-light); padding: 12px 0;
+  }
+  .pain-item:last-child { border-bottom: none; }
+  .pain-competitor { font-weight: 600; color: var(--text); font-size: 13px; }
+  .pain-detail { font-size: 13px; color: var(--text-2); margin-top: 3px; line-height: 1.55; }
+
+  .trust-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 4px; }
+  .trust-col-title {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; margin-bottom: 10px;
+  }
+  .trust-positive-title { color: var(--green); }
+  .trust-negative-title { color: var(--red); }
+
+  .trust-item { display: flex; gap: 8px; margin-bottom: 8px; font-size: 13px; color: var(--text-2); line-height: 1.55; }
+  .trust-dot { flex-shrink: 0; width: 6px; height: 6px; border-radius: 50%; margin-top: 5px; }
+  .trust-dot-positive { background: var(--green); }
+  .trust-dot-negative { background: var(--red); }
+
+  .quote-block {
+    background: var(--bg-3); border: 1px solid var(--border-light);
+    border-left: 3px solid var(--border); border-radius: var(--radius);
+    padding: 14px 18px; margin-top: 8px;
+  }
+  .quote-block.illustrative { border-left-color: var(--text-3); opacity: 0.7; }
+  .quote-illustrative-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--text-3); margin-bottom: 8px;
+  }
+  .quote-text { font-size: 14px; color: var(--text-2); font-style: italic; line-height: 1.7; }
+  .quote-citation { font-size: 11px; color: var(--text-3); margin-top: 6px; }
+
+  .claim-update {
+    background: var(--amber-dim); border: 1px solid rgba(232,168,56,0.25);
+    border-radius: var(--radius); padding: 12px 16px; margin-top: 10px;
+  }
+  .claim-update-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--amber); margin-bottom: 5px;
+  }
+  .claim-update-text { font-size: 13px; color: var(--text-2); line-height: 1.55; }
+
+  .decision-note {
+    background: rgba(124,106,247,0.06); border: 1px solid var(--accent-dim);
+    border-radius: var(--radius); padding: 14px 16px; margin-top: 12px;
+  }
+  .decision-note-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 6px;
+  }
+  .decision-note-text { font-size: 13px; color: var(--text-2); line-height: 1.55; }
+
+  .hypothesis-note { font-size: 12px; color: var(--text-3); font-style: italic; margin-top: 6px; }
+
+  /* CJM TO-BE additions */
+  .sidebar-subsection a { padding-left: 28px; font-size: 11px; }
+
+  /* To-Be path horizontal track */
+  .track {
+    display: flex; gap: 16px; overflow-x: auto;
+    padding: 4px 2px 18px; margin-top: 24px;
+    scroll-snap-type: x proximity;
+  }
+  .track-card {
+    flex: 0 0 300px; width: 300px; padding: 20px;
+    scroll-snap-align: start; display: flex; flex-direction: column;
+  }
+  .step-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 14px; min-height: 28px; }
+  .step-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--accent-glow); color: var(--accent);
+    font-weight: 700; font-size: 14px; flex-shrink: 0;
+  }
+  .step-name { font-size: 16px; margin-bottom: 8px; }
+  .step-desc { font-size: 12px; color: var(--text-3); line-height: 1.55; margin-bottom: 16px; }
+  .step-meta { border-top: 1px solid var(--border-light); padding-top: 14px; margin-top: auto; }
+  .step-row { margin-bottom: 12px; }
+  .step-row:last-child { margin-bottom: 0; }
+  .step-key { display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); margin-bottom: 4px; }
+  .step-val { font-size: 12px; color: var(--text-2); line-height: 1.5; }
+  .closes-pill { display: inline-block; background: var(--red-dim); color: var(--red); font-size: 11px; font-weight: 600; letter-spacing: 0.01em; padding: 3px 8px; border-radius: 4px; }
+  .emotion-val { color: var(--green); font-style: italic; }
+  .track-hint { font-size: 12px; color: var(--text-3); margin-top: 2px; }
+
+  /* MVP tag + backlog highlight */
+  .tag-mvp { background: var(--green-dim); color: var(--green); }
+  tr.mvp-row td:first-child { border-left: 3px solid var(--green); }
+  tr.mvp-row td { background: rgba(62,207,142,0.045); }
+  .mvp-note { font-size: 11px; color: var(--text-3); display: block; margin-top: 4px; }
+  .feat-name { color: var(--text); font-weight: 600; }
+
+  /* Emotional curve */
+  .curve-wrap { margin-top: 24px; background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; }
+  .curve-svg { width: 100%; height: auto; display: block; }
+  .curve-line { fill: none; stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; }
+  .curve-asis { stroke: var(--red); }
+  .curve-tobe { stroke: var(--green); stroke-dasharray: 7 5; }
+  .curve-dot-asis { fill: var(--red); }
+  .curve-dot-tobe { fill: var(--green); }
+  .curve-axis { stroke: var(--border); stroke-width: 1; }
+  .curve-grid { stroke: var(--border-light); stroke-width: 1; }
+  .curve-zero { stroke: var(--text-3); stroke-width: 1.25; stroke-dasharray: 4 4; }
+  .curve-ylabel { fill: var(--text-3); font-size: 11px; }
+  .curve-plabel { fill: var(--text-2); font-size: 12px; font-weight: 600; }
+  .curve-pname { fill: var(--text-3); font-size: 10px; }
+  .curve-p6band { fill: var(--accent-glow); }
+  .curve-liftline { stroke: var(--amber); stroke-width: 1.25; stroke-dasharray: 3 3; }
+  .curve-lift { fill: var(--amber); font-weight: 700; }
+  .curve-legend { display: flex; flex-wrap: wrap; gap: 24px; margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--border-light); }
+  .curve-legend-item { display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--text-2); }
+  .curve-swatch { flex-shrink: 0; }
+  .curve-caption { font-size: 12px; color: var(--text-3); margin-top: 14px; line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="research.html"><span>S</span>ift</a>
+  <ul class="nav-links">
+    <li><a href="#focus">Focus</a></li>
+    <li><a href="#path">To-Be Path</a></li>
+    <li><a href="#curve">Emotional Curve</a></li>
+    <li><a href="#backlog">Backlog</a></li>
+    <li><a href="#risks">Risks</a></li>
+    <li><a href="cjm-as-is.html" style="color:var(--text-3)">CJM As-Is</a></li>
+  </ul>
+</nav>
+
+<aside class="sidebar">
+  <div class="sidebar-phase"><a class="sidebar-phase-label" href="research.html">Foundation Research</a></div>
+  <div class="sidebar-phase active">
+    <span class="sidebar-phase-label">User Research</span>
+    <ul class="sidebar-section-links">
+      <li><a href="personas.html">Personas</a></li>
+      <li><a href="jtbd.html">JTBD</a></li>
+      <li><a href="cjm-as-is.html">CJM As-Is</a></li>
+      <li><a href="cjm-to-be.html" class="active">CJM To-Be</a></li>
+      <li class="sidebar-subsection"><a href="#focus">Focus</a></li>
+      <li class="sidebar-subsection"><a href="#path">To-Be Path</a></li>
+      <li class="sidebar-subsection"><a href="#curve">Emotional Curve</a></li>
+      <li class="sidebar-subsection"><a href="#backlog">Backlog and MVP</a></li>
+      <li class="sidebar-subsection"><a href="#risks">Critique and Risks</a></li>
+    </ul>
+  </div>
+  <hr class="sidebar-divider">
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Information Architecture</span><span class="sidebar-cs-badge">Next</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Wireframes</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Voice</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Concept</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">UI + Visual</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Tokens + Components</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Design System</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Responsive</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Animation</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Handoff</span><span class="sidebar-cs-badge">Soon</span></div>
+</aside>
+
+<div class="page">
+
+<!-- FOCUS -->
+<section id="focus">
+  <div class="section-label">CJM To-Be - June 2026</div>
+  <h1>The To-Be journey</h1>
+  <p class="lead">The ideal path: how the same PM does the same job, inside Sift. Every step and every feature closes a specific As-Is barrier or serves a specific job, and the trace is shown. A feature with no parent pain or job is cut.</p>
+
+  <div class="persona-card" style="margin-top:32px;margin-bottom:0">
+    <div class="persona-bar persona-bar-primary"></div>
+    <div class="persona-header">
+      <div class="persona-avatar persona-avatar-primary">A</div>
+      <div>
+        <div class="persona-name-row">
+          <span class="persona-name">The Overloaded PM</span>
+          <span class="tag tag-primary">Focus persona</span>
+        </div>
+        <div class="persona-role">Alex - Product Manager, B2B SaaS, 150 employees</div>
+      </div>
+    </div>
+    <div class="persona-body">
+      <div class="persona-section-title first">Main job</div>
+      <div class="job-card">
+        <div class="job-label">Primary</div>
+        When I am preparing for a roadmap planning session and I have customer feedback spread across multiple tools I haven't had time to read, I want to feel certain I know what our customers actually need most, with the evidence behind it, so that I can walk into the session with a call I'll stand behind and defend if anyone pushes back.
+      </div>
+      <p class="hypothesis-note">Focus persona: <a href="personas.html" style="color:var(--text-3)">personas.md</a> (Persona A). Main job: <a href="jtbd.html" style="color:var(--text-3)">jtbd.md</a>. As-Is source: <a href="cjm-as-is.html" style="color:var(--text-3)">cjm-as-is.html</a>.</p>
+
+      <div class="decision-note">
+        <div class="decision-note-label">Design rule - To-Be = design</div>
+        <div class="decision-note-text">The future must be designed, so "don't invent" does not apply here. It is replaced by tracing: every step and every feature closes a specific As-Is barrier or serves a specific JTBD job, with a link to it. A feature with no parent pain or job is cut. The To-Be map sharpens the existing MVP core, it does not fork a second parallel backlog.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- PATH -->
+<section id="path">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2>The To-Be path</h2>
+  </div>
+  <p>The same PM doing the same job, inside Sift. Each step traces to a concrete As-Is barrier or a job (the <span style="color:var(--red)">Closes</span> line). A step that closes nothing is an orphan and is cut. Target emotions are designed goals contrasted against the As-Is emotion on that phase, not measured. Steps 3, 4, and 6 are the differentiators.</p>
+  <p class="track-hint">Scroll horizontally to move through the six steps.</p>
+
+  <div class="track">
+
+    <div class="card track-card">
+      <div class="step-head"><span class="step-num">1</span></div>
+      <h3 class="step-name">Connect the signal (once)</h3>
+      <p class="step-desc">PM connects CSV import and/or Intercom; feedback ingests and normalizes; PII scrubbed by default.</p>
+      <div class="step-meta">
+        <div class="step-row"><span class="step-key">Goal (job)</span><span class="step-val">J2 - make sense of the incoming pile</span></div>
+        <div class="step-row"><span class="step-key">Closes</span><span class="closes-pill">As-Is P2 siloed channels / GZ4</span></div>
+        <div class="step-row"><span class="step-key">Capability</span><span class="step-val">Ingestion and normalization pipeline (CSV + Intercom MVP; Zendesk, Gong follow the same pattern)</span></div>
+        <div class="step-row"><span class="step-key">Target emotion</span><span class="step-val emotion-val">"It is all in one place" (vs -4 overwhelm). Table-stakes.</span></div>
+      </div>
+    </div>
+
+    <div class="card track-card">
+      <div class="step-head"><span class="step-num">2</span></div>
+      <h3 class="step-name">Open to a synthesis already done</h3>
+      <p class="step-desc">When the session looms, PM opens Sift and sees feedback already clustered into themes with volume, recency, and evidence count; no manual reading or tagging.</p>
+      <div class="step-meta">
+        <div class="step-row"><span class="step-key">Goal (job)</span><span class="step-val">Main job; J2</span></div>
+        <div class="step-row"><span class="step-key">Closes</span><span class="closes-pill">As-Is P1 no POV / GZ5 + P3 tagging / GZ3</span></div>
+        <div class="step-row"><span class="step-key">Capability</span><span class="step-val">AI theme synthesis, kept current (new signal since last session digest)</span></div>
+        <div class="step-row"><span class="step-key">Target emotion</span><span class="step-val emotion-val">Prepared, calm (vs -4 dread and -4 exhaustion)</span></div>
+      </div>
+    </div>
+
+    <div class="card track-card">
+      <div class="step-head"><span class="step-num">3</span><span class="tag tag-primary">Differentiator</span></div>
+      <h3 class="step-name">See how strong each theme is</h3>
+      <p class="step-desc">Each theme shows item count (n=X) and a low-signal badge when thin; strong themes are visibly distinct from thin ones.</p>
+      <div class="step-meta">
+        <div class="step-row"><span class="step-key">Goal (job)</span><span class="step-val">J3 - know how much to trust</span></div>
+        <div class="step-row"><span class="step-key">Closes</span><span class="closes-pill">As-Is P4 cannot gauge strength / GZ2</span></div>
+        <div class="step-row"><span class="step-key">Capability</span><span class="step-val">Honest confidence display (n=X plus low-signal badge)</span></div>
+        <div class="step-row"><span class="step-key">Target emotion</span><span class="step-val emotion-val">Calibrated trust (vs -3 distrust)</span></div>
+      </div>
+    </div>
+
+    <div class="card track-card">
+      <div class="step-head"><span class="step-num">4</span><span class="tag tag-primary">Differentiator</span></div>
+      <h3 class="step-name">Spot-check the evidence, then commit</h3>
+      <p class="step-desc">PM clicks a theme, sees its supporting items (n=X), clicks any item to the raw original text; verifies a theme they already know is real, then trusts the novel ones; sets priority.</p>
+      <div class="step-meta">
+        <div class="step-row"><span class="step-key">Goal (job)</span><span class="step-val">Main job; J3; E1 - feel I actually understood it</span></div>
+        <div class="step-row"><span class="step-key">Closes</span><span class="closes-pill">As-Is P4 distrust and re-reading / GZ2</span></div>
+        <div class="step-row"><span class="step-key">Capability</span><span class="step-val">Progressive drill-down (theme, evidence items, raw source) with inline citation</span></div>
+        <div class="step-row"><span class="step-key">Target emotion</span><span class="step-val emotion-val">"I understood it, and I can prove it" (vs -3 distrust)</span></div>
+      </div>
+    </div>
+
+    <div class="card track-card">
+      <div class="step-head"><span class="step-num">5</span></div>
+      <h3 class="step-name">Walk in with a brief the room can read</h3>
+      <p class="step-desc">PM shares an evidence brief (top themes, evidence per theme, source quotes, recommended priority) as a link before the session, so the reasoning is legible without Sift access.</p>
+      <div class="step-meta">
+        <div class="step-row"><span class="step-key">Goal (job)</span><span class="step-val">S1 - give stakeholders something to engage with; J4; Main job</span></div>
+        <div class="step-row"><span class="step-key">Closes</span><span class="closes-pill">As-Is P5 rationale does not land / GZ5</span></div>
+        <div class="step-row"><span class="step-key">Capability</span><span class="step-val">Shareable public evidence brief (no login to view)</span></div>
+        <div class="step-row"><span class="step-key">Target emotion</span><span class="step-val emotion-val">It lands, it is legible (vs -3 deflation)</span></div>
+      </div>
+    </div>
+
+    <div class="card track-card">
+      <div class="step-head"><span class="step-num">6</span><span class="tag tag-primary">Differentiator</span></div>
+      <h3 class="step-name">Defend with one click</h3>
+      <p class="step-desc">Challenged in the room ("my customer said X"), the PM pulls the theme live and shows n=X items and the verbatim quotes on the spot; the anecdote meets traceable evidence.</p>
+      <div class="step-meta">
+        <div class="step-row"><span class="step-key">Goal (job)</span><span class="step-val">J1 - stakeholder defense; E2 - certain not defensive; S1</span></div>
+        <div class="step-row"><span class="step-key">Closes</span><span class="closes-pill">As-Is P6 opinion outweighs evidence / GZ1</span></div>
+        <div class="step-row"><span class="step-key">Capability</span><span class="step-val">Live traceable evidence chain (theme, items, verbatim quote), citable in the moment</span></div>
+        <div class="step-row"><span class="step-key">Target emotion</span><span class="step-val emotion-val">Grounded, certain (vs -5 powerlessness). The deepest win.</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <p class="hypothesis-note" style="margin-top:8px"><strong style="color:var(--text-2)">Orphan check: none.</strong> All six steps close a named As-Is barrier and serve a job. All five growth zones are covered: GZ1 to Phase 6, GZ2 to Phases 3 and 4, GZ3 to Phase 2, GZ4 to Phase 1, GZ5 to Phases 2 and 5.</p>
+
+  <div class="card-grid card-grid-2" style="margin-top:24px">
+    <div class="decision-note" style="margin-top:0">
+      <div class="decision-note-label">D3 - First integration set (locked)</div>
+      <div class="decision-note-text">CSV + Intercom for MVP. CSV gives zero-friction day-one activation (any PM can upload existing feedback and reach a first synthesis within 20 minutes); Intercom is the source named in the Segment A stack. Email-forwarding rejected: lower signal quality and messy source attribution undermine the traceability the whole product rests on.</div>
+    </div>
+    <div class="decision-note" style="margin-top:0">
+      <div class="decision-note-label">D2 - Confidence display (locked)</div>
+      <div class="decision-note-text">Item count n=X plus a low-signal badge for MVP day-one scope. Source diversity and time range are real but are v2. A single opaque confidence score is rejected outright: a confident number with no visible basis is exactly the anti-pattern benchmark.md warns against, and would undermine trust rather than build it.</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CURVE -->
+<section id="curve">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2>Emotional curve - As-Is vs To-Be</h2>
+  </div>
+  <p>The To-Be projected target overlaid on the As-Is evidence curve. The entirely-negative As-Is trough is designed to invert into a steady positive line, rising to its peak exactly where As-Is hit its floor. Phase 6 is the largest lift (-5 to +4), the deepest, best-evidenced As-Is pain becoming the moment the PM is most in control.</p>
+
+  <div class="curve-wrap">
+    <svg class="curve-svg" viewBox="0 0 760 380" role="img" aria-label="Emotional curve comparing the As-Is evidence line against the To-Be projected target across six phases">
+      <!-- Phase 6 highlight band -->
+      <rect class="curve-p6band" x="662" y="30" width="84" height="296" rx="4"></rect>
+
+      <!-- gridlines -->
+      <line class="curve-grid" x1="56" y1="30" x2="704" y2="30"></line>
+      <line class="curve-grid" x1="56" y1="326" x2="704" y2="326"></line>
+      <!-- zero baseline -->
+      <line class="curve-zero" x1="56" y1="178" x2="704" y2="178"></line>
+      <!-- y axis -->
+      <line class="curve-axis" x1="56" y1="30" x2="56" y2="326"></line>
+
+      <!-- y labels -->
+      <text class="curve-ylabel" x="48" y="34" text-anchor="end">+5</text>
+      <text class="curve-ylabel" x="48" y="182" text-anchor="end">0</text>
+      <text class="curve-ylabel" x="48" y="330" text-anchor="end">-5</text>
+
+      <!-- Phase 6 lift connector -->
+      <line class="curve-liftline" x1="704" y1="60" x2="704" y2="326"></line>
+      <text class="curve-lift" x="716" y="192" style="font-size:13px">+9</text>
+      <text class="curve-lift" x="716" y="206" style="font-size:9px;font-weight:600">lift</text>
+
+      <!-- As-Is line (solid, red) -->
+      <polyline class="curve-line curve-asis" points="56,296 186,296 315,296 445,267 574,267 704,326"></polyline>
+      <!-- To-Be line (dashed, green) -->
+      <polyline class="curve-line curve-tobe" points="56,119 186,89 315,89 445,60 574,89 704,60"></polyline>
+
+      <!-- As-Is dots -->
+      <circle class="curve-dot-asis" cx="56" cy="296" r="4"></circle>
+      <circle class="curve-dot-asis" cx="186" cy="296" r="4"></circle>
+      <circle class="curve-dot-asis" cx="315" cy="296" r="4"></circle>
+      <circle class="curve-dot-asis" cx="445" cy="267" r="4"></circle>
+      <circle class="curve-dot-asis" cx="574" cy="267" r="4"></circle>
+      <circle class="curve-dot-asis" cx="704" cy="326" r="4.5"></circle>
+
+      <!-- To-Be dots -->
+      <circle class="curve-dot-tobe" cx="56" cy="119" r="4"></circle>
+      <circle class="curve-dot-tobe" cx="186" cy="89" r="4"></circle>
+      <circle class="curve-dot-tobe" cx="315" cy="89" r="4"></circle>
+      <circle class="curve-dot-tobe" cx="445" cy="60" r="4"></circle>
+      <circle class="curve-dot-tobe" cx="574" cy="89" r="4"></circle>
+      <circle class="curve-dot-tobe" cx="704" cy="60" r="4.5"></circle>
+
+      <!-- x labels -->
+      <text class="curve-plabel" x="56" y="352" text-anchor="middle">P1</text>
+      <text class="curve-pname" x="56" y="366" text-anchor="middle">Connect</text>
+      <text class="curve-plabel" x="186" y="352" text-anchor="middle">P2</text>
+      <text class="curve-pname" x="186" y="366" text-anchor="middle">Synthesis</text>
+      <text class="curve-plabel" x="315" y="352" text-anchor="middle">P3</text>
+      <text class="curve-pname" x="315" y="366" text-anchor="middle">Strength</text>
+      <text class="curve-plabel" x="445" y="352" text-anchor="middle">P4</text>
+      <text class="curve-pname" x="445" y="366" text-anchor="middle">Spot-check</text>
+      <text class="curve-plabel" x="574" y="352" text-anchor="middle">P5</text>
+      <text class="curve-pname" x="574" y="366" text-anchor="middle">Brief</text>
+      <text class="curve-plabel" x="704" y="352" text-anchor="middle">P6</text>
+      <text class="curve-pname" x="704" y="366" text-anchor="middle">Defend</text>
+    </svg>
+
+    <div class="curve-legend">
+      <div class="curve-legend-item">
+        <svg class="curve-swatch" width="34" height="12"><line x1="2" y1="6" x2="32" y2="6" style="stroke:var(--red);stroke-width:2.5"></line></svg>
+        As-Is: evidence-backed (solid)
+      </div>
+      <div class="curve-legend-item">
+        <svg class="curve-swatch" width="34" height="12"><line x1="2" y1="6" x2="32" y2="6" style="stroke:var(--green);stroke-width:2.5;stroke-dasharray:6 4"></line></svg>
+        To-Be: projected target, not measured (dashed)
+      </div>
+    </div>
+
+    <p class="curve-caption">The dashed To-Be line is a designed goal, not measured data. Phase 6 (the amber band) is the biggest inversion: from -5 powerlessness, the As-Is floor and its strongest-evidenced pain, to +4 control. That single inversion is the product's core promise, aimed at a real, confirmed pain.</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- BACKLOG -->
+<section id="backlog">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2>Backlog and MVP</h2>
+  </div>
+  <p>The existing MVP core, sharpened. This is the same list as the lean UX canvas Solutions, the JTBD matrix MVP core, and the CLAUDE.md MVP scope, reordered by priority with a parent and a success signal on each. One list, not a second parallel backlog. Every item has a parent barrier or job; an item with no parent is not added. The five MVP-spine rows are highlighted.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:34px">#</th>
+          <th>Feature / capability</th>
+          <th>Parent (As-Is barrier / job)</th>
+          <th style="width:120px">Priority</th>
+          <th>Success signal (hypothesis)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="mvp-row">
+          <td>1</td>
+          <td><span class="feat-name">Feedback ingestion</span> - CSV + Intercom</td>
+          <td>As-Is P2 siloed (GZ4); J2</td>
+          <td><span class="tag tag-mvp">MVP</span></td>
+          <td>40% of signups reach a first synthesis on their own data within 7 days (aarrr.md Activation)</td>
+        </tr>
+        <tr class="mvp-row">
+          <td>2</td>
+          <td><span class="feat-name">AI theme synthesis</span> - transparent clusters with volume, recency, evidence count; basic ranking by signal</td>
+          <td>As-Is P1 no POV (GZ5) + P3 tagging (GZ3); Main job; J2</td>
+          <td><span class="tag tag-mvp">MVP</span></td>
+          <td>First synthesis in under 20 minutes with at least one theme the PM recognizes as real (aarrr.md Activation)</td>
+        </tr>
+        <tr class="mvp-row">
+          <td>3</td>
+          <td><span class="feat-name">Honest confidence display</span> - item count n=X + low-signal badge</td>
+          <td>As-Is P4 cannot gauge strength (GZ2); J3</td>
+          <td><span class="tag tag-mvp">MVP</span><span class="mvp-note">D2, mandatory</span></td>
+          <td>Activated users act on the synthesis; leading H1 condition. Objective 1: 60% cite Sift as primary roadmap input at 90 days</td>
+        </tr>
+        <tr class="mvp-row">
+          <td>4</td>
+          <td><span class="feat-name">Evidence drill-down + inline citation</span> - theme, evidence items (n=X), raw source text</td>
+          <td>As-Is P4 distrust (GZ2) + P6 unciteable evidence (GZ1); Main job; J3; E1</td>
+          <td><span class="tag tag-mvp">MVP</span></td>
+          <td>Activated users open the drill-down at least once in the first session (the trust behavior named in live-research.md)</td>
+        </tr>
+        <tr class="mvp-row">
+          <td>5</td>
+          <td><span class="feat-name">Shareable public evidence brief</span> - no login to view</td>
+          <td>As-Is P5 does not land (GZ5) + P6 defend (GZ1); S1; J4</td>
+          <td><span class="tag tag-mvp">MVP</span></td>
+          <td>25% of signups attributed to referral / brief sharing (aarrr.md Referral)</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td><span class="feat-name">Prioritization scoring</span> - multi-factor (customer segment, revenue impact)</td>
+          <td>Main job (rank and interrogate)</td>
+          <td><span class="tag tag-later">Later</span></td>
+          <td>PM interrogates a ranked list rather than accepting a black-box order (basic volume/recency ranking already ships inside item 2)</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td><span class="feat-name">"New signal since last session" digest</span></td>
+          <td>Weak parent: retention loop (aarrr.md) + H-J1 continuous sensing, which jtbd.md marks as an UNCONFIRMED hypothesis job. Not an As-Is barrier.</td>
+          <td><span class="tag tag-later">Later</span><span class="mvp-note">held with caveat</span></td>
+          <td>Week-4 retention 50% for activated users (aarrr.md Retention)</td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td><span class="feat-name">Roadmap link</span> - native lightweight or Jira / Linear sync</td>
+          <td>J4 (get the team to the same why); the decision-theme-signal chain</td>
+          <td><span class="tag tag-later">Later</span></td>
+          <td>Roadmap items linked back to their themes; serves Segment B more than the core Segment A journey</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="decision-note" style="margin-top:20px">
+    <div class="decision-note-label">MVP spine = items 1 to 5</div>
+    <div class="decision-note-text">Remove any one and the To-Be path breaks: no ingestion (no signal), no synthesis (back to manual reading), no confidence display (no trust, H1 fails), no drill-down (the differentiator is gone), no brief (Phases 5 to 6 have nothing to carry). Items 6 to 8 improve the path but it holds without them.</div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- RISKS -->
+<section id="risks">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2>Critique and risks</h2>
+  </div>
+  <p>Adversarial check of the To-Be map and backlog: does every feature have a parent, does the backlog sharpen rather than fork the MVP core, and is "MVP" no broader than the riskiest assumption (H1).</p>
+
+  <div class="card-grid card-grid-2" style="margin-top:24px">
+
+    <div class="obs-card">
+      <div class="obs-id">Parent audit - result: no orphans</div>
+      <div class="obs-text">Every To-Be step and backlog item traces to a parent. Each of the five MVP-spine items (1 to 5) has at least one pattern-strength parent, so no MVP feature rests on a single-source signal alone. One weak parent found and flagged: item 7 (new-signal digest) is parented by the retention loop plus H-J1, which jtbd.md marks as an unconfirmed hypothesis job. It stays LATER, held only with that caveat, and does not earn a slot until H-J1 is confirmed.</div>
+    </div>
+
+    <div class="obs-card">
+      <div class="obs-id">Sharpen, not fork</div>
+      <div class="obs-text">The lean UX canvas prioritization view is narrowed: basic ranking by signal ships inside the AI synthesis item (MVP); multi-factor scoring (segment, revenue) moves to LATER. A narrowing, not a contradiction. The jtbd.md matrix (3 MVP jobs: Main, J3, S1) is consistent; ingestion and drill-down are the enablers of those jobs, not new scope.</div>
+      <div class="claim-update">
+        <div class="claim-update-label">Action for Step 11 - fork risk to close</div>
+        <div class="claim-update-text">CLAUDE.md MVP scope lists 7 features, including roadmap link and full prioritization, as MVP. This CJM narrows MVP to the 5-item spine and moves roadmap link and multi-factor scoring to LATER. Until CLAUDE.md is updated, two MVP definitions coexist. Step 11 must narrow CLAUDE.md to the 5-item spine so the repo holds one MVP definition.</div>
+      </div>
+    </div>
+
+    <div class="obs-card">
+      <div class="obs-id">Brief in MVP - decision recorded</div>
+      <div class="obs-text">Item 5 (shareable brief) is the one MVP item broader than H1: it tests H3 (viral loop) and serves S1 (stakeholder engagement), not the PM's own trust. <strong style="color:var(--text)">Decision: keep the brief in MVP.</strong> It closes the Phase 5 barrier, it is the go-to-market and referral artifact, and "evidence as a social object" (job S1) is a confirmed behavior. But it is explicitly the first candidate to move to a fast-follow if a leaner, H1-only first test is wanted later. A conscious scope choice: MVP tests H1 (items 1 to 4) plus the deepest-pain defend-and-share value (item 5).</div>
+    </div>
+
+    <div class="obs-card" style="border-color: var(--accent-dim); background: rgba(124,106,247,0.04);">
+      <div class="obs-id">Dangerous / open items</div>
+      <div class="obs-text"><strong style="color:var(--text)">MVP vs H1:</strong> items 1 to 4 are the pure H1 test, the transparency-and-traceability mechanism H1 requires. Remove any one and the To-Be path is dead.</div>
+      <div class="obs-text" style="margin-top:8px"><strong style="color:var(--text)">Item 7 (digest):</strong> no confirmed parent; held in LATER, gated on confirming H-J1.</div>
+      <div class="obs-text" style="margin-top:8px"><strong style="color:var(--text)">Forked MVP definition:</strong> the CLAUDE.md 7-feature MVP vs the 5-item spine is the open fork risk, actioned for Step 11.</div>
+    </div>
+
+  </div>
+
+  <p class="hypothesis-note" style="margin-top:20px"><strong style="color:var(--text-2)">Orphans cut: none new.</strong> The map confirms the earlier cuts, which correctly map to no To-Be step: J5 signal-loop / contribution tracker (D1, Segment C), real-time monitoring (anti-pattern per ux-patterns.md), team synthesis reproduction (unconfirmed job). The free/paid split is untouched: the drill-down (item 4) stays the paid differentiator, consistent with gating the trust mechanism as the paid value.</p>
+</section>
+
+<footer>
+  <div>Sift - CJM To-Be - June 2026 - User Research phase</div>
+  <div style="text-align:right">
+    <a href="user-research/docs/cjm-to-be.md" style="color:var(--text-3);text-decoration:none">cjm-to-be.md</a>
+    <span style="margin:0 8px">-</span>
+    <a href="cjm-as-is.html" style="color:var(--text-3);text-decoration:none">cjm-as-is.html</a>
+  </div>
+</footer>
+
+</div>
+
+<script>
+  const sections = document.querySelectorAll('section[id]');
+  const sidebarLinks = document.querySelectorAll('.sidebar-section-links a[href^="#"]');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        sidebarLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + id) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+  }, { threshold: 0, rootMargin: '-15% 0px -75% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>

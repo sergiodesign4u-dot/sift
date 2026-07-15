@@ -126,6 +126,7 @@
   .sidebar-section-links a { display: block; font-size: 12px; color: var(--text-3); text-decoration: none; padding: 4px 8px 4px 16px; border-radius: 4px; border-left: 2px solid transparent; transition: color 0.15s, border-color 0.15s, background 0.15s; line-height: 1.5; }
   .sidebar-section-links a:hover { color: var(--text); background: var(--bg-3); }
   .sidebar-section-links a.active { color: var(--text); border-left-color: var(--accent); background: var(--bg-3); }
+  .sidebar-subsection a { padding-left: 28px; font-size: 11px; }
   .sidebar-divider { border: none; border-top: 1px solid var(--border-light); margin: 8px 0; }
   .sidebar-coming-soon { display: flex; align-items: center; justify-content: space-between; padding: 5px 8px; border-radius: 5px; cursor: default; opacity: 0.5; }
   .sidebar-cs-label { font-size: 12px; font-weight: 500; color: var(--text-3); letter-spacing: 0.02em; }
@@ -222,17 +223,20 @@
   <div class="sidebar-phase active">
     <span class="sidebar-phase-label">User Research</span>
     <ul class="sidebar-section-links">
-      <li><a href="personas.html">Personas &rsaquo;</a></li>
-      <li><a href="#main-job">Main Job</a></li>
-      <li><a href="#related-jobs">Related Jobs</a></li>
-      <li><a href="#emotional-social">Emotional / Social</a></li>
-      <li><a href="#hypotheses">Hypotheses</a></li>
-      <li><a href="#matrix">Matrix</a></li>
-      <li><a href="#conclusions">Conclusions</a></li>
+      <li><a href="personas.html">Personas</a></li>
+      <li><a href="jtbd.html" class="active">JTBD</a></li>
+      <li class="sidebar-subsection"><a href="#main-job">Main Job</a></li>
+      <li class="sidebar-subsection"><a href="#related-jobs">Related Jobs</a></li>
+      <li class="sidebar-subsection"><a href="#emotional-social">Emotional / Social</a></li>
+      <li class="sidebar-subsection"><a href="#hypotheses">Hypotheses</a></li>
+      <li class="sidebar-subsection"><a href="#matrix">Matrix</a></li>
+      <li class="sidebar-subsection"><a href="#conclusions">Conclusions</a></li>
+      <li><a href="cjm-as-is.html">CJM As-Is</a></li>
+      <li><a href="cjm-to-be.html">CJM To-Be</a></li>
     </ul>
   </div>
   <hr class="sidebar-divider">
-  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Information Architecture</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Information Architecture</span><span class="sidebar-cs-badge">Next</span></div>
   <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Wireframes</span><span class="sidebar-cs-badge">Soon</span></div>
   <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Voice</span><span class="sidebar-cs-badge">Soon</span></div>
   <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Concept</span><span class="sidebar-cs-badge">Soon</span></div>

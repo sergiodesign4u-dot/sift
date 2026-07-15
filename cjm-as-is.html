@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sift - CJM As-Is</title>
+<style>
+  :root {
+    --bg: #0c0c0e;
+    --bg-2: #111115;
+    --bg-3: #17171c;
+    --bg-4: #1e1e25;
+    --border: #2a2a35;
+    --border-light: #1e1e28;
+    --text: #e8e8ec;
+    --text-2: #a0a0b0;
+    --text-3: #66667a;
+    --accent: #7c6af7;
+    --accent-dim: #3a3470;
+    --accent-glow: rgba(124,106,247,0.12);
+    --green: #3ecf8e;
+    --green-dim: rgba(62,207,142,0.12);
+    --amber: #e8a838;
+    --amber-dim: rgba(232,168,56,0.12);
+    --red: #f06060;
+    --red-dim: rgba(240,96,96,0.12);
+    --radius: 8px;
+    --radius-lg: 12px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    font-size: 15px;
+  }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(12,12,14,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-light);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 40px; height: 52px;
+  }
+
+  .nav-brand {
+    font-size: 14px; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--text); text-decoration: none;
+  }
+  .nav-brand span { color: var(--accent); }
+
+  .nav-links { display: flex; gap: 6px; list-style: none; }
+  .nav-links a {
+    color: var(--text-3); text-decoration: none; font-size: 12px;
+    font-weight: 500; letter-spacing: 0.03em; padding: 5px 10px;
+    border-radius: 5px; transition: color 0.15s, background 0.15s;
+  }
+  .nav-links a:hover { color: var(--text); background: var(--bg-3); }
+
+  .page { max-width: 1040px; margin: 0 auto; padding: 100px 40px 120px; }
+
+  section { padding-top: 80px; }
+
+  .section-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 12px;
+  }
+
+  h1 {
+    font-size: 42px; font-weight: 700; line-height: 1.15;
+    letter-spacing: -0.02em; color: var(--text); margin-bottom: 20px;
+  }
+
+  h2 {
+    font-size: 26px; font-weight: 650; letter-spacing: -0.015em;
+    color: var(--text); margin-bottom: 8px;
+  }
+
+  h3 { font-size: 17px; font-weight: 600; color: var(--text); margin-bottom: 10px; }
+
+  h4 {
+    font-size: 13px; font-weight: 600; letter-spacing: 0.04em;
+    text-transform: uppercase; color: var(--text-3); margin-bottom: 8px; margin-top: 24px;
+  }
+
+  p { color: var(--text-2); margin-bottom: 14px; }
+  p:last-child { margin-bottom: 0; }
+
+  .lead { font-size: 17px; line-height: 1.7; color: var(--text-2); max-width: 680px; }
+
+  .divider { border: none; border-top: 1px solid var(--border-light); margin: 60px 0; }
+
+  .card {
+    background: var(--bg-2); border: 1px solid var(--border);
+    border-radius: var(--radius-lg); padding: 28px;
+  }
+
+  .card-grid { display: grid; gap: 16px; }
+  .card-grid-2 { grid-template-columns: 1fr 1fr; }
+  .card-grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+  .table-wrap {
+    overflow-x: auto; border: 1px solid var(--border);
+    border-radius: var(--radius-lg); margin: 20px 0;
+  }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: var(--bg-3); color: var(--text-3); font-weight: 600;
+    font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  td {
+    padding: 12px 16px; border-bottom: 1px solid var(--border-light);
+    color: var(--text-2); vertical-align: top;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--bg-3); }
+
+  .tag {
+    display: inline-block; font-size: 11px; font-weight: 600;
+    letter-spacing: 0.05em; text-transform: uppercase; padding: 3px 8px;
+    border-radius: 4px; white-space: nowrap;
+  }
+  .tag-primary { background: var(--green-dim); color: var(--green); }
+  .tag-secondary { background: var(--amber-dim); color: var(--amber); }
+  .tag-later { background: var(--bg-4); color: var(--text-3); }
+  .tag-confirmed { background: var(--green-dim); color: var(--green); }
+
+  .badge {
+    display: inline-block; font-size: 10px; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 7px;
+    border-radius: 4px; margin-left: 8px; vertical-align: middle;
+  }
+  .badge-hypothesis { background: var(--amber-dim); color: var(--amber); }
+  .badge-verified { background: var(--green-dim); color: var(--green); }
+  .badge-unknown { background: var(--bg-4); color: var(--text-3); }
+  .badge-conditional { background: var(--amber-dim); color: var(--amber); }
+
+  .section-header {
+    display: flex; align-items: baseline; gap: 16px;
+    margin-bottom: 24px; padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .section-num { font-size: 13px; font-weight: 700; color: var(--text-3); }
+
+  .cite { font-size: 11px; color: var(--text-3); font-weight: 500; }
+
+  footer {
+    border-top: 1px solid var(--border-light); margin-top: 100px;
+    padding-top: 40px; padding-bottom: 60px; color: var(--text-3);
+    font-size: 12px; display: flex; justify-content: space-between; align-items: center;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .page > section:first-child { animation: fadeUp 0.5s ease; }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .page { padding: 80px 20px 80px; }
+    .card-grid-2, .card-grid-3 { grid-template-columns: 1fr; }
+    h1 { font-size: 28px; }
+    .trust-grid { grid-template-columns: 1fr; }
+  }
+
+  /* SIDEBAR */
+  .sidebar { display: none; }
+
+  @media (min-width: 1100px) {
+    .sidebar {
+      display: flex; flex-direction: column; gap: 2px;
+      position: fixed; top: 52px; left: 0; width: 220px;
+      height: calc(100vh - 52px); overflow-y: auto;
+      padding: 24px 12px 32px; border-right: 1px solid var(--border-light);
+      background: var(--bg); z-index: 90;
+    }
+    .page { margin: 0; margin-left: 220px; max-width: 1040px; padding: 100px 40px 120px; }
+  }
+
+  .sidebar-phase-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--text-3); padding: 5px 8px;
+    border-radius: 5px; display: block; cursor: default; text-decoration: none;
+  }
+  .sidebar-phase-label:hover { color: var(--text); background: var(--bg-3); cursor: pointer; }
+  a.sidebar-phase-label { cursor: pointer; }
+
+  .sidebar-phase.active .sidebar-phase-label { color: var(--accent); background: var(--accent-glow); }
+
+  .sidebar-section-links { list-style: none; margin: 4px 0 8px 0; padding: 0; }
+  .sidebar-section-links a {
+    display: block; font-size: 12px; color: var(--text-3); text-decoration: none;
+    padding: 4px 8px 4px 16px; border-radius: 4px;
+    border-left: 2px solid transparent;
+    transition: color 0.15s, border-color 0.15s, background 0.15s; line-height: 1.5;
+  }
+  .sidebar-section-links a:hover { color: var(--text); background: var(--bg-3); }
+  .sidebar-section-links a.active { color: var(--text); border-left-color: var(--accent); background: var(--bg-3); }
+
+  .sidebar-divider { border: none; border-top: 1px solid var(--border-light); margin: 8px 0; }
+  .sidebar-coming-soon { display: flex; align-items: center; justify-content: space-between; padding: 5px 8px; border-radius: 5px; cursor: default; opacity: 0.5; }
+  .sidebar-cs-label { font-size: 12px; font-weight: 500; color: var(--text-3); letter-spacing: 0.02em; }
+  .sidebar-cs-badge { font-size: 9px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-3); background: var(--bg-3); border: 1px solid var(--border-light); padding: 2px 5px; border-radius: 3px; }
+  .sidebar-spacer { flex: 1; }
+
+  .sidebar-next {
+    padding: 12px; border: 1px solid var(--border-light);
+    border-radius: 6px; background: var(--bg-2); margin-top: 16px;
+  }
+  .sidebar-next-label {
+    font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--text-3); opacity: 0.6; margin-bottom: 4px;
+  }
+  .sidebar-next-content { font-size: 11px; color: var(--text-3); opacity: 0.6; line-height: 1.5; }
+
+  /* OBSERVATION CARDS */
+  .obs-card {
+    background: var(--bg-2); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 18px;
+  }
+  .obs-id {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 6px;
+  }
+  .obs-text { font-size: 13px; color: var(--text-2); line-height: 1.55; }
+  .obs-confirmed {
+    font-size: 11px; color: var(--green); font-weight: 600;
+    margin-top: 8px; display: flex; align-items: center; gap: 5px;
+  }
+
+  /* PERSONA CARDS */
+  .persona-card {
+    background: var(--bg-2); border: 1px solid var(--border);
+    border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 48px;
+  }
+  .persona-bar { height: 3px; }
+  .persona-bar-primary { background: var(--accent); }
+  .persona-bar-secondary { background: var(--amber); }
+  .persona-bar-later { background: var(--bg-4); }
+
+  .persona-header {
+    padding: 28px 28px 0; display: flex;
+    align-items: flex-start; gap: 20px;
+  }
+  .persona-avatar {
+    width: 48px; height: 48px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; font-weight: 700; flex-shrink: 0;
+  }
+  .persona-avatar-primary { background: var(--accent-glow); color: var(--accent); }
+  .persona-avatar-secondary { background: var(--amber-dim); color: var(--amber); }
+  .persona-avatar-later { background: var(--bg-4); color: var(--text-3); }
+
+  .persona-name-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 4px; }
+  .persona-name { font-size: 22px; font-weight: 700; color: var(--text); letter-spacing: -0.01em; }
+  .persona-role { font-size: 13px; color: var(--text-3); margin-top: 2px; }
+
+  .persona-body { padding: 20px 28px 28px; }
+
+  .persona-section-title {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--text-3);
+    margin-top: 28px; margin-bottom: 10px;
+    padding-top: 20px; border-top: 1px solid var(--border-light);
+  }
+  .persona-section-title.first { margin-top: 12px; padding-top: 0; border-top: none; }
+
+  .job-card {
+    background: var(--bg-3); border: 1px solid var(--border-light);
+    border-left: 3px solid var(--accent); border-radius: var(--radius);
+    padding: 14px 18px; margin-bottom: 10px;
+    font-size: 14px; color: var(--text-2); font-style: italic; line-height: 1.7;
+  }
+  .job-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--accent); font-style: normal;
+    margin-bottom: 6px;
+  }
+
+  .pain-item {
+    border-bottom: 1px solid var(--border-light); padding: 12px 0;
+  }
+  .pain-item:last-child { border-bottom: none; }
+  .pain-competitor { font-weight: 600; color: var(--text); font-size: 13px; }
+  .pain-detail { font-size: 13px; color: var(--text-2); margin-top: 3px; line-height: 1.55; }
+
+  .trust-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 4px; }
+  .trust-col-title {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; margin-bottom: 10px;
+  }
+  .trust-positive-title { color: var(--green); }
+  .trust-negative-title { color: var(--red); }
+
+  .trust-item { display: flex; gap: 8px; margin-bottom: 8px; font-size: 13px; color: var(--text-2); line-height: 1.55; }
+  .trust-dot { flex-shrink: 0; width: 6px; height: 6px; border-radius: 50%; margin-top: 5px; }
+  .trust-dot-positive { background: var(--green); }
+  .trust-dot-negative { background: var(--red); }
+
+  .quote-block {
+    background: var(--bg-3); border: 1px solid var(--border-light);
+    border-left: 3px solid var(--border); border-radius: var(--radius);
+    padding: 14px 18px; margin-top: 8px;
+  }
+  .quote-block.illustrative { border-left-color: var(--text-3); opacity: 0.7; }
+  .quote-illustrative-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--text-3); margin-bottom: 8px;
+  }
+  .quote-text { font-size: 14px; color: var(--text-2); font-style: italic; line-height: 1.7; }
+  .quote-citation { font-size: 11px; color: var(--text-3); margin-top: 6px; }
+
+  .claim-update {
+    background: var(--amber-dim); border: 1px solid rgba(232,168,56,0.25);
+    border-radius: var(--radius); padding: 12px 16px; margin-top: 10px;
+  }
+  .claim-update-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--amber); margin-bottom: 5px;
+  }
+  .claim-update-text { font-size: 13px; color: var(--text-2); line-height: 1.55; }
+
+  .decision-note {
+    background: rgba(124,106,247,0.06); border: 1px solid var(--accent-dim);
+    border-radius: var(--radius); padding: 14px 16px; margin-top: 12px;
+  }
+  .decision-note-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 6px;
+  }
+  .decision-note-text { font-size: 13px; color: var(--text-2); line-height: 1.55; }
+
+  .hypothesis-note { font-size: 12px; color: var(--text-3); font-style: italic; margin-top: 6px; }
+
+  /* CJM AS-IS ADDITIONS */
+  .sidebar-subsection a { padding-left: 28px; font-size: 11px; }
+
+  /* PHASE TRACK */
+  .phase-track {
+    display: flex; gap: 16px; overflow-x: auto;
+    padding: 4px 2px 18px; margin-top: 20px;
+    scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch;
+  }
+  .phase-card {
+    flex: 0 0 296px; scroll-snap-align: start;
+    background: var(--bg-2); border: 1px solid var(--border);
+    border-radius: var(--radius-lg); padding: 20px;
+    display: flex; flex-direction: column;
+  }
+  .phase-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .phase-num { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-3); }
+  .phase-name { font-size: 16px; font-weight: 650; color: var(--text); letter-spacing: -0.01em; margin: 6px 0 2px; }
+  .phase-senti { font-size: 11px; color: var(--text-3); margin-bottom: 4px; }
+  .phase-field { margin-top: 14px; }
+  .phase-field-label { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-3); margin-bottom: 4px; }
+  .phase-field-text { font-size: 12.5px; color: var(--text-2); line-height: 1.5; }
+  .phase-thought {
+    margin-top: 14px; background: var(--bg-3); border: 1px solid var(--border-light);
+    border-radius: var(--radius); padding: 10px 12px;
+    font-size: 12.5px; color: var(--text-2); font-style: italic; line-height: 1.55;
+  }
+  .phase-thought .phase-field-label { font-style: normal; }
+  .phase-barrier {
+    margin-top: 14px; background: var(--red-dim); border-left: 3px solid var(--red);
+    border-radius: var(--radius); padding: 10px 12px;
+    font-size: 12.5px; color: var(--text-2); line-height: 1.55;
+  }
+  .phase-barrier .phase-field-label { color: var(--red); }
+
+  /* EMOTIONAL CURVE */
+  .curve-wrap { width: 100%; max-width: 760px; margin: 8px 0 0; }
+  .curve-wrap svg { width: 100%; height: auto; display: block; }
+  .curve-wrap text { font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", system-ui, sans-serif; }
+  .cv-grid { stroke: var(--border-light); stroke-width: 1; }
+  .cv-base { stroke: var(--text-3); stroke-width: 1.5; stroke-dasharray: 5 4; }
+  .cv-line { fill: none; stroke: var(--red); stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; }
+  .cv-dot-pattern { fill: var(--red); stroke: var(--bg); stroke-width: 2; }
+  .cv-dot-signal { fill: var(--bg); stroke: var(--red); stroke-width: 2; }
+  .cv-neg-band { fill: var(--red); opacity: 0.05; }
+  .cv-ylabel { fill: var(--text-3); font-size: 12px; }
+  .cv-xlabel { fill: var(--text-2); font-size: 12px; font-weight: 600; }
+  .cv-xsub { fill: var(--text-3); font-size: 11px; }
+  .cv-val { fill: var(--red); font-size: 11px; font-weight: 700; }
+  .cv-floor { fill: var(--red); font-size: 11px; font-weight: 700; }
+  .cv-legend { fill: var(--text-3); font-size: 12px; }
+  .cv-note { fill: var(--text-3); font-size: 11px; font-style: italic; }
+
+  /* QUOTE GROUPS */
+  .qgroup { margin-top: 28px; }
+  .qgroup-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
+  .qgroup-name { font-size: 15px; font-weight: 650; color: var(--text); }
+  .qgroup-senti { font-size: 11px; color: var(--text-3); }
+  .qgroup-thought { font-size: 13px; color: var(--text-2); font-style: italic; margin-bottom: 10px; }
+  .qsub { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-3); margin: 16px 0 8px; }
+  .quote-citation a { color: var(--accent); text-decoration: none; }
+  .quote-citation a:hover { text-decoration: underline; }
+
+  /* GROWTH ZONES */
+  .gz-card {
+    background: var(--bg-2); border: 1px solid var(--border);
+    border-radius: var(--radius-lg); padding: 24px; margin-bottom: 16px;
+  }
+  .gz-card.gz-diff { border-color: var(--accent-dim); border-left: 3px solid var(--accent); background: rgba(124,106,247,0.04); }
+  .gz-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .gz-id { font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: var(--accent); }
+  .gz-card:not(.gz-diff) .gz-id { color: var(--text-3); }
+  .gz-title { font-size: 17px; font-weight: 650; color: var(--text); margin: 0; }
+  .gz-tags { margin-left: auto; display: flex; gap: 6px; flex-wrap: wrap; }
+  .gz-source { font-size: 11px; color: var(--text-3); margin-top: 6px; }
+  .gz-body { font-size: 13.5px; color: var(--text-2); line-height: 1.6; margin-top: 12px; }
+  .gz-field { font-size: 12.5px; color: var(--text-2); line-height: 1.55; margin-top: 10px; }
+  .gz-field-label { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-3); display: block; margin-bottom: 3px; }
+
+  @media (max-width: 768px) {
+    .phase-card { flex-basis: 82vw; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="research.html"><span>S</span>ift</a>
+  <ul class="nav-links">
+    <li><a href="#focus">Focus</a></li>
+    <li><a href="#path">As-Is Path</a></li>
+    <li><a href="#curve">Curve</a></li>
+    <li><a href="#growth">Growth Zones</a></li>
+    <li><a href="cjm-to-be.html" style="color:var(--text-3)">To-Be</a></li>
+  </ul>
+</nav>
+
+<aside class="sidebar">
+  <div class="sidebar-phase"><a class="sidebar-phase-label" href="research.html">Foundation Research</a></div>
+  <div class="sidebar-phase active">
+    <span class="sidebar-phase-label">User Research</span>
+    <ul class="sidebar-section-links">
+      <li><a href="personas.html">Personas</a></li>
+      <li><a href="jtbd.html">JTBD</a></li>
+      <li><a href="cjm-as-is.html" class="active">CJM As-Is</a></li>
+      <li class="sidebar-subsection"><a href="#focus">Focus</a></li>
+      <li class="sidebar-subsection"><a href="#path">As-Is Path</a></li>
+      <li class="sidebar-subsection"><a href="#curve">Emotional Curve</a></li>
+      <li class="sidebar-subsection"><a href="#growth">Growth Zones</a></li>
+      <li><a href="cjm-to-be.html">CJM To-Be</a></li>
+    </ul>
+  </div>
+  <hr class="sidebar-divider">
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Information Architecture</span><span class="sidebar-cs-badge">Next</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Wireframes</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Voice</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Concept</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">UI + Visual</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Tokens + Components</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Design System</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Responsive</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Animation</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Handoff</span><span class="sidebar-cs-badge">Soon</span></div>
+</aside>
+
+<div class="page">
+
+<!-- INTRO -->
+<section id="intro">
+  <div class="section-label">Customer Journey Map - As-Is - June 2026</div>
+  <h1>How the Overloaded PM does this today</h1>
+  <p class="lead">The current path, without Sift, which does not exist yet. As-Is is research, not invention: every emotion and every barrier stands on a real, sourced public quote. Strength of evidence is marked, a single mention is a signal, a repeat across sources is a pattern. Where the path is not covered by data, the gap is marked [?]. As-Is is a mirror, not a cure: no solutions live here, they belong to To-Be.</p>
+</section>
+
+<hr class="divider">
+
+<!-- FOCUS -->
+<section id="focus">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2>Focus</h2>
+  </div>
+  <p>One persona, one job. This map follows a single path: how the Overloaded PM does the roadmap-prep job today. Segment B (Product Lead) runs a lighter variant of the last three phases, aggregating the team's syntheses and presenting to the board, not a fundamentally different path.</p>
+
+  <div class="card" style="margin-top:22px">
+    <div class="persona-header" style="padding:0">
+      <div class="persona-avatar persona-avatar-primary">A</div>
+      <div>
+        <div class="persona-name-row">
+          <span class="persona-name">The Overloaded PM</span>
+          <span class="tag tag-primary">Primary</span>
+        </div>
+        <div class="persona-role">Alex - Product Manager, B2B SaaS, 150 employees</div>
+      </div>
+    </div>
+
+    <div class="job-card" style="margin-top:22px;margin-bottom:0">
+      <div class="job-label">Main Job</div>
+      "When I am preparing for a roadmap planning session and I have customer feedback spread across multiple tools I haven't had time to read, I want to feel certain I know what our customers actually need most, with the evidence behind it, so that I can walk into the session with a call I'll stand behind and defend if anyone pushes back."
+    </div>
+    <p class="hypothesis-note">Focus persona: <a href="user-research/docs/personas.md" style="color:var(--text-3);text-decoration:none">personas.md</a> (Persona A). Main job: <a href="user-research/docs/jtbd.md" style="color:var(--text-3);text-decoration:none">jtbd.md</a> (Main Job of the Product).</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- AS-IS PATH -->
+<section id="path">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2>The As-Is Path</h2>
+  </div>
+  <p>Six phases, derived from the real path of this job, not a generic funnel. Each card carries the phase goal (job link), what Alex actually does, the touchpoints, the live thought, and the barrier. Every barrier stands on a sourced quote shown in the Emotional Curve section below.</p>
+
+  <div class="phase-track">
+
+    <!-- PHASE 1 -->
+    <div class="phase-card">
+      <div class="phase-top">
+        <span class="phase-num">Phase 1</span>
+        <span class="tag tag-later">Signal</span>
+      </div>
+      <div class="phase-name">The session looms</div>
+      <div class="phase-senti">Emotion: negative, intensity 4</div>
+      <div class="phase-field">
+        <div class="phase-field-label">Goal (job link)</div>
+        <div class="phase-field-text">Register that a planning session is coming and that arriving without a defensible view is not an option. (Main Job; E2)</div>
+      </div>
+      <div class="phase-field">
+        <div class="phase-field-label">Actions today</div>
+        <div class="phase-field-text">Sees the planning session on the calendar; mentally braces; blocks time to "do the feedback review" before the meeting.</div>
+      </div>
+      <div class="phase-field">
+        <div class="phase-field-label">Touchpoints</div>
+        <div class="phase-field-text">Calendar; Jira / Linear sprint board</div>
+      </div>
+      <div class="phase-thought">
+        <div class="phase-field-label">Thought</div>
+        "What priorities do I have from product?" "Am I doing enough? Am I focusing on the right thing?"
+      </div>
+      <div class="phase-barrier">
+        <div class="phase-field-label">Barrier</div>
+        No synthesized point of view ready when planning arrives; fear that admitting this looks like incompetence, so the PM does not even ask for help.
+      </div>
+    </div>
+
+    <!-- PHASE 2 -->
+    <div class="phase-card">
+      <div class="phase-top">
+        <span class="phase-num">Phase 2</span>
+        <span class="tag tag-primary">Pattern</span>
+      </div>
+      <div class="phase-name">Gather the scattered signal</div>
+      <div class="phase-senti">Emotion: negative, intensity 4</div>
+      <div class="phase-field">
+        <div class="phase-field-label">Goal (job link)</div>
+        <div class="phase-field-text">Get the recent customer feedback in one place to work from. (J2, make sense of the incoming pile)</div>
+      </div>
+      <div class="phase-field">
+        <div class="phase-field-label">Actions today</div>
+        <div class="phase-field-text">Opens each source in turn and pulls recent items: support tickets, call recordings, helpdesk, reviews, interview notes; reads across many tabs.</div>
+      </div>
+      <div class="phase-field">
+        <div class="phase-field-label">Touchpoints</div>
+        <div class="phase-field-text">Intercom (support), Gong (sales calls), Zendesk (helpdesk), app store reviews, interview docs</div>
+      </div>
+      <div class="phase-thought">
+        <div class="phase-field-label">Thought</div>
+        "The information is all over the place and completely siloed." "There's gotta be a good way to get through the noise."
+      </div>
+      <div class="phase-barrier">
+        <div class="phase-field-label">Barrier</div>
+        Feedback is siloed across many disconnected channels; volume and noise make collection cumbersome before any thinking starts.
+      </div>
+    </div>
+
+    <!-- PHASE 3 -->
+    <div class="phase-card">
+      <div class="phase-top">
+        <span class="phase-num">Phase 3</span>
+        <span class="tag tag-primary">Pattern</span>
+      </div>
+      <div class="phase-name">Read and tag / cluster</div>
+      <div class="phase-senti">Emotion: negative, intensity 4</div>
+      <div class="phase-field">
+        <div class="phase-field-label">Goal (job link)</div>
+        <div class="phase-field-text">Turn raw items into themes and spot the real patterns, not just the loudest voices. (J2)</div>
+      </div>
+      <div class="phase-field">
+        <div class="phase-field-label">Actions today</div>
+        <div class="phase-field-text">Reads each item; tags by theme in a Notion database or Jira epics; hours of reading; tries to hold the emerging picture in memory.</div>
+      </div>
+      <div class="phase-field">
+        <div class="phase-field-label">Touchpoints</div>
+        <div class="phase-field-text">Notion database / Jira epics</div>
+      </div>
+      <div class="phase-thought">
+        <div class="phase-field-label">Thought</div>
+        "This is wayyyy too much for a human to go through." "I get sick of sifting through stuff."
+      </div>
+      <div class="phase-barrier">
+        <div class="phase-field-label">Barrier</div>
+        Manual reading and tagging is hours of low-leverage labor; volume exceeds human capacity; the output is often not even usable afterward.
+      </div>
+    </div>
+
+    <!-- PHASE 4 -->
+    <div class="phase-card">
+      <div class="phase-top">
+        <span class="phase-num">Phase 4</span>
+        <span class="tag tag-primary">Pattern</span>
+      </div>
+      <div class="phase-name">Synthesize and decide priority</div>
+      <div class="phase-senti">Emotion: neutral to negative, intensity 3</div>
+      <div class="phase-field">
+        <div class="phase-field-label">Goal (job link)</div>
+        <div class="phase-field-text">Reach a confident sense of the top customer problems and judge how strong the evidence is. (Main Job; J3, know how much to trust)</div>
+      </div>
+      <div class="phase-field">
+        <div class="phase-field-label">Actions today</div>
+        <div class="phase-field-text">Forms themes from memory; ranks them; decides what goes on the roadmap; privately wonders how solid each conclusion is.</div>
+      </div>
+      <div class="phase-field">
+        <div class="phase-field-label">Touchpoints</div>
+        <div class="phase-field-text">Notion / Jira; the PM's own judgement</div>
+      </div>
+      <div class="phase-thought">
+        <div class="phase-field-label">Thought</div>
+        "Any system that summarizes feedback will gloss over the key insights." "Plenty of things get missed."
+      </div>
+      <div class="phase-barrier">
+        <div class="phase-field-label">Barrier</div>
+        Summarizing flattens nuance; you cannot review everything so things get missed; hard to know whether the theme you land on is actually strong evidence, so the PM re-reads the raw data or refuses to act.
+      </div>
+    </div>
+
+    <!-- PHASE 5 -->
+    <div class="phase-card">
+      <div class="phase-top">
+        <span class="phase-num">Phase 5</span>
+        <span class="tag tag-later">Signal</span>
+      </div>
+      <div class="phase-name">The planning session</div>
+      <div class="phase-senti">Emotion: negative, intensity 3</div>
+      <div class="phase-field">
+        <div class="phase-field-label">Goal (job link)</div>
+        <div class="phase-field-text">Walk in and present a call worth standing behind. (Main Job; E2, certain, not defensive)</div>
+      </div>
+      <div class="phase-field">
+        <div class="phase-field-label">Actions today</div>
+        <div class="phase-field-text">Presents priorities to the team; references "what customers are saying" to justify the ranking.</div>
+      </div>
+      <div class="phase-field">
+        <div class="phase-field-label">Touchpoints</div>
+        <div class="phase-field-text">Planning meeting (room / Zoom); slides or the Jira / Linear roadmap</div>
+      </div>
+      <div class="phase-thought">
+        <div class="phase-field-label">Thought</div>
+        "They were uninterested." "They just did not understand anything I was saying."
+      </div>
+      <div class="phase-barrier">
+        <div class="phase-field-label">Barrier</div>
+        The prioritization rationale does not translate to the room; the audience questions or disengages; the PM cannot make the reasoning stick.
+      </div>
+    </div>
+
+    <!-- PHASE 6 -->
+    <div class="phase-card">
+      <div class="phase-top">
+        <span class="phase-num">Phase 6</span>
+        <span class="tag tag-primary">Pattern (strong)</span>
+      </div>
+      <div class="phase-name">Defend under challenge</div>
+      <div class="phase-senti">Emotion: negative, intensity 5, the floor</div>
+      <div class="phase-field">
+        <div class="phase-field-label">Goal (job link)</div>
+        <div class="phase-field-text">Hold the position with real evidence when pushed, not opinion. (J1, stakeholder defense; S1)</div>
+      </div>
+      <div class="phase-field">
+        <div class="phase-field-label">Actions today</div>
+        <div class="phase-field-text">A stakeholder pushes back ("my customer said X"); Alex tries to recall where they saw the signal; often "I think I saw this in several tickets"; may back down or scramble back to the source.</div>
+      </div>
+      <div class="phase-field">
+        <div class="phase-field-label">Touchpoints</div>
+        <div class="phase-field-text">The meeting; scrambling back into Intercom / Notion mid-conversation</div>
+      </div>
+      <div class="phase-thought">
+        <div class="phase-field-label">Thought</div>
+        "Customer says x but we believe y is better, with no data and no evidence." "Evidence is nothing in the face of a hippo."
+      </div>
+      <div class="phase-barrier">
+        <div class="phase-field-label">Barrier</div>
+        Stakeholder or executive opinion outweighs the evidence; the "my customer said X" anecdote trumps synthesized data; the PM has no leverage even when the data is on their side. The deepest point of the As-Is curve.
+      </div>
+    </div>
+
+  </div>
+
+  <p class="hypothesis-note">Scroll horizontally to follow all six phases. [?] Phase 3 tool split (how many PMs tag in Notion vs Jira vs a spreadsheet, and how long it takes) is unsourced: the activity is sourced, the distribution and duration are not. [?] Phases 5 and 6 in-room texture is sourced from the job statement and the "roadmap challenged by sales" pain, firmed up by mining below.</p>
+</section>
+
+<hr class="divider">
+
+<!-- EMOTIONAL CURVE -->
+<section id="curve">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2>Emotional Curve</h2>
+  </div>
+  <p>Sentiment by phase on a -5 (worst) to +5 (best) axis. Each point rests on a real, sourced emotion. Point weight encodes evidence strength: pattern-backed points are full filled dots, signal-backed points are smaller hollow dots, so a single mention is never shown as strong as a confirmed pattern. No point sits on a [?], nothing is interpolated.</p>
+  <p><strong style="color:var(--text)">Shape:</strong> a flat, entirely negative trough. The journey opens at -4, never rises above -3, and drops to its floor of -5 at the end. There is no positive point anywhere in the As-Is journey. The absence of any relief is itself the finding.</p>
+
+  <div class="curve-wrap">
+    <svg viewBox="0 0 760 390" role="img" aria-label="Line chart of As-Is sentiment across six phases, all in negative territory, dropping to a floor of -5 at Phase 6.">
+      <!-- negative band (0 down to -5) -->
+      <rect class="cv-neg-band" x="70" y="180" width="620" height="150"></rect>
+
+      <!-- gridlines -->
+      <line class="cv-grid" x1="70" y1="30" x2="690" y2="30"></line>
+      <line class="cv-grid" x1="70" y1="330" x2="690" y2="330"></line>
+      <!-- zero baseline -->
+      <line class="cv-base" x1="70" y1="180" x2="690" y2="180"></line>
+
+      <!-- y-axis labels -->
+      <text class="cv-ylabel" x="58" y="34" text-anchor="end">+5</text>
+      <text class="cv-ylabel" x="58" y="184" text-anchor="end">0</text>
+      <text class="cv-ylabel" x="58" y="334" text-anchor="end">-5</text>
+
+      <!-- legend (in the empty positive band) -->
+      <circle class="cv-dot-pattern" cx="95" cy="52" r="6"></circle>
+      <text class="cv-legend" x="108" y="56">filled = pattern</text>
+      <circle class="cv-dot-signal" cx="95" cy="78" r="5"></circle>
+      <text class="cv-legend" x="108" y="82">hollow = signal</text>
+
+      <!-- finding note in positive space -->
+      <text class="cv-note" x="410" y="110" text-anchor="middle">No positive point anywhere.</text>
+      <text class="cv-note" x="410" y="126" text-anchor="middle">The As-Is path is negative end to end.</text>
+
+      <!-- the line -->
+      <polyline class="cv-line" points="70,300 194,300 318,300 442,270 566,270 690,330"></polyline>
+
+      <!-- points: signals are hollow + smaller, patterns filled -->
+      <circle class="cv-dot-signal" cx="70" cy="300" r="5"></circle>
+      <circle class="cv-dot-pattern" cx="194" cy="300" r="7"></circle>
+      <circle class="cv-dot-pattern" cx="318" cy="300" r="7"></circle>
+      <circle class="cv-dot-pattern" cx="442" cy="270" r="7"></circle>
+      <circle class="cv-dot-signal" cx="566" cy="270" r="5"></circle>
+      <circle class="cv-dot-pattern" cx="690" cy="330" r="8"></circle>
+
+      <!-- value labels -->
+      <text class="cv-val" x="70" y="286" text-anchor="middle">-4</text>
+      <text class="cv-val" x="194" y="286" text-anchor="middle">-4</text>
+      <text class="cv-val" x="318" y="286" text-anchor="middle">-4</text>
+      <text class="cv-val" x="442" y="256" text-anchor="middle">-3</text>
+      <text class="cv-val" x="566" y="256" text-anchor="middle">-3</text>
+      <text class="cv-val" x="703" y="328" text-anchor="start">-5</text>
+      <text class="cv-floor" x="703" y="344" text-anchor="start">the floor</text>
+
+      <!-- x-axis labels -->
+      <text class="cv-xlabel" x="70" y="356" text-anchor="middle">P1</text>
+      <text class="cv-xsub" x="70" y="372" text-anchor="middle">Looms</text>
+      <text class="cv-xlabel" x="194" y="356" text-anchor="middle">P2</text>
+      <text class="cv-xsub" x="194" y="372" text-anchor="middle">Gather</text>
+      <text class="cv-xlabel" x="318" y="356" text-anchor="middle">P3</text>
+      <text class="cv-xsub" x="318" y="372" text-anchor="middle">Tag</text>
+      <text class="cv-xlabel" x="442" y="356" text-anchor="middle">P4</text>
+      <text class="cv-xsub" x="442" y="372" text-anchor="middle">Synthesize</text>
+      <text class="cv-xlabel" x="566" y="356" text-anchor="middle">P5</text>
+      <text class="cv-xsub" x="566" y="372" text-anchor="middle">Present</text>
+      <text class="cv-xlabel" x="690" y="356" text-anchor="middle">P6</text>
+      <text class="cv-xsub" x="690" y="372" text-anchor="middle">Defend</text>
+    </svg>
+  </div>
+
+  <p class="hypothesis-note">Bottom (deepest negative): Phase 6, defending the call under stakeholder challenge, strongest evidence and lowest sentiment. Peaks: none. Weakest-evidence points: Phases 1 and 5 (signals), the first candidates for firming up in interviews. Phase 4 was promoted to a pattern in Step 6 re-research.</p>
+
+  <h3 style="margin-top:40px">Supporting voices, grouped by phase</h3>
+  <p class="hypothesis-note" style="margin-bottom:4px">Every quote below is verbatim public feedback with its source URL. Screenshots of the source pages are saved in research/screens/ as durable evidence. Reddit is read via old.reddit.com.</p>
+
+  <!-- PHASE 1 QUOTES -->
+  <div class="qgroup">
+    <div class="qgroup-head">
+      <span class="qgroup-name">Phase 1, The session looms</span>
+      <span class="tag tag-later">Signal</span>
+      <span class="qgroup-senti">Negative, intensity 4, anticipatory dread and self-doubt</span>
+    </div>
+    <div class="qgroup-thought">Thoughts: "What priorities do I have from product?" "Am I doing enough? Am I focusing on the right thing?" "Is project A more important than project B?"</div>
+    <div class="quote-block">
+      <div class="quote-text">"I was working on roadmap items (discovery, PRD, planning, etc.), then came the Spring Planning and EM asked me 'what priorities you've from product?' I drew blank and felt I should be on top of every sprint and should have product priorities clearly aligned so I can get product work done. But I didn't have any."</div>
+      <div class="quote-text" style="margin-top:8px">"Asking for help openly feels like I'm showing the company I don't know my shit."</div>
+      <div class="quote-citation">u/lefarche, GPM at a Series C AI SaaS startup - <a href="https://old.reddit.com/r/ProductManagement/comments/1uvzmka/overwhelmed_cant_decide_if_its_my_skills_or_lack/">Reddit source</a> - Screenshot: research/screens/reddit-overwhelmed-drew-blank-planning.png</div>
+    </div>
+  </div>
+
+  <!-- PHASE 2 QUOTES -->
+  <div class="qgroup">
+    <div class="qgroup-head">
+      <span class="qgroup-name">Phase 2, Gather the scattered signal</span>
+      <span class="tag tag-primary">Pattern</span>
+      <span class="qgroup-senti">Negative, intensity 4, overwhelm and fatigue</span>
+    </div>
+    <div class="qgroup-thought">Barrier: feedback is siloed across many disconnected channels; volume and noise make collection cumbersome before any thinking starts.</div>
+    <div class="quote-block">
+      <div class="quote-text">"when it comes down to qualitative data, the information is all over the place, and completely siloed. I try to leverage data from zendesk tickets, user interviews and transcripts, feedback widget pop ups, sitting in sales calls, even whatsapp groups with the field teams etc. By having so many different channels where customer feedback is collected, it can be cumbersome to take all of this qualitative data and synthesize it."</div>
+      <div class="quote-citation">u/Mysterious-West3175 - <a href="https://old.reddit.com/r/ProductManagement/comments/1fcy20k/overloaded_with_qualitative_data/">Reddit source</a> - Screenshot: research/screens/reddit-overloaded-qualitative-data.png</div>
+    </div>
+    <div class="quote-block">
+      <div class="quote-text">"This shit sucks. Man, there's so many random people sending BS feedback to our email and other feedback channels, there's gotta be a good way to get through the noise."</div>
+      <div class="quote-citation">u/Little-Clothes-4574 - <a href="https://old.reddit.com/r/ProductManagement/comments/1klawf2/analyzing_customer_feedback_at_scale/">Reddit source</a> - Screenshot: research/screens/reddit-analyzing-feedback-at-scale.png</div>
+    </div>
+    <div class="quote-block">
+      <div class="quote-text">"I receive a lot of different input across many channels. With Product Board, I can use my Chrome extension and send everything there. Once a week a specific time is designated to search across all input and find the most valuable insights."</div>
+      <div class="quote-citation">Productboard reviewer, tool-specific, the same reality framed positively - <a href="https://www.capterra.com/p/160651/productboard/reviews/">Capterra source</a> - Screenshot: research/screens/capterra-productboard-1.png</div>
+    </div>
+  </div>
+
+  <!-- PHASE 3 QUOTES -->
+  <div class="qgroup">
+    <div class="qgroup-head">
+      <span class="qgroup-name">Phase 3, Read and tag / cluster</span>
+      <span class="tag tag-primary">Pattern</span>
+      <span class="qgroup-senti">Negative, intensity 4, tedium and exhaustion</span>
+    </div>
+    <div class="qgroup-thought">Barrier: manual reading and tagging is hours of low-leverage labor; volume exceeds human capacity; the output is often not even usable afterward.</div>
+    <div class="quote-block">
+      <div class="quote-text">"This process is often incredibly messy, tedious and highly intensive (in terms of labor). You're often living in sticky note hell and it's even more challenging to do this as a remote team."</div>
+      <div class="quote-citation">Sherif M., "Distinguished Product Manager," describing the general manual workflow before any tool - <a href="https://www.capterra.com/p/174077/Dovetail/reviews/">Capterra source</a> - Screenshot: research/screens/capterra-dovetail-tagging.png</div>
+    </div>
+    <div class="quote-block">
+      <div class="quote-text">"I spent 8+ hours 'tagging' nearly 20 research interviews, come to find out I can't generate any meaningful reports with the data I just transcribed and tagged. No easy way to show who answered what. In all, an entire waste of time and money."</div>
+      <div class="quote-citation">Andrew E., 1.0 star, Dovetail-specific, but the 8+ hours of tagging labor is the general pain - <a href="https://www.capterra.com/p/174077/Dovetail/reviews/">Capterra source</a> - Screenshot: research/screens/capterra-dovetail-tagging.png</div>
+    </div>
+    <div class="quote-block">
+      <div class="quote-text">"wayyyy too much for a human to go through." ... "There's so many random requests that I get sick of sifting through stuff."</div>
+      <div class="quote-citation">u/Little-Clothes-4574 - <a href="https://old.reddit.com/r/ProductManagement/comments/1klawf2/analyzing_customer_feedback_at_scale/">Reddit source</a> - Screenshot: research/screens/reddit-analyzing-feedback-at-scale.png</div>
+    </div>
+  </div>
+
+  <!-- PHASE 4 QUOTES -->
+  <div class="qgroup">
+    <div class="qgroup-head">
+      <span class="qgroup-name">Phase 4, Synthesize and decide priority</span>
+      <span class="tag tag-primary">Pattern</span>
+      <span class="qgroup-senti">Neutral to negative, intensity 3, low trust in the synthesis</span>
+    </div>
+    <div class="qgroup-thought">Barrier: summarizing flattens nuance; you cannot review everything so things get missed; hard to know whether the theme you land on is actually strong evidence, so the PM re-reads the raw data or refuses to act. This is the J3 "how much to trust a conclusion" gap, observed in the wild.</div>
+
+    <div class="qsub">Original thread</div>
+    <div class="quote-block">
+      <div class="quote-text">"The devil is in the details. Any system that will summarize feedback will gloss over the key insights coming from customers."</div>
+      <div class="quote-citation">u/miokk - <a href="https://old.reddit.com/r/ProductManagement/comments/1klawf2/analyzing_customer_feedback_at_scale/">Reddit source</a></div>
+    </div>
+    <div class="quote-block">
+      <div class="quote-text">"half the time our team isn't consistently reviewing all the transcripts so plenty of things get missed just from our laziness."</div>
+      <div class="quote-citation">u/kashin-k0ji, same thread - <a href="https://old.reddit.com/r/ProductManagement/comments/1klawf2/analyzing_customer_feedback_at_scale/">Reddit source</a> - Screenshot: research/screens/reddit-analyzing-feedback-at-scale.png</div>
+    </div>
+
+    <div class="qsub">Corroboration, Step 6 re-research, June 2026, promotes this phase to a pattern</div>
+    <div class="quote-block">
+      <div class="quote-text">"Surface-level summaries often miss nuance. I still need to go back to the source material to really trust the insight. Traceability is a big deal. If I cannot point to a verbatim quote to back up a theme, I am not using it in a decision. Biggest blocker: Trust. Execs (rightfully) want to know where insights came from. Any AI workflow that obscures the data trail is a non-starter."</div>
+      <div class="quote-citation">u/bo-peep-206, bullseye: restates the whole claim and names traceability as the trust condition, direct support for GZ1, GZ2 and H1 - <a href="https://old.reddit.com/r/ProductManagement/comments/1kqe9o7/ai_in_discovery_where_is_it_actually_saving_pms/">Reddit source</a> - Screenshot: research/screens/reddit-ai-summary-distrust-1.png</div>
+    </div>
+    <div class="quote-block">
+      <div class="quote-text">"AI summarizes 50 interviews and offers a label: 'pricing concerns'. ..but usually, AI does not reference specific interviews and times to note the specific quotes about pricing concerns."</div>
+      <div class="quote-citation">u/learning_more, the summary hides which evidence sits behind a theme - <a href="https://old.reddit.com/r/ProductManagement/comments/1kqe9o7/ai_in_discovery_where_is_it_actually_saving_pms/">Reddit source</a></div>
+    </div>
+    <div class="quote-block">
+      <div class="quote-text">"For interviews, I've tried using AI for summaries but like you said, they miss stuff. Still gotta do the manual tagging for themes."</div>
+      <div class="quote-citation">u/KoalaFiftyFour, same thread - <a href="https://old.reddit.com/r/ProductManagement/comments/1kqe9o7/ai_in_discovery_where_is_it_actually_saving_pms/">Reddit source</a></div>
+    </div>
+    <div class="quote-block">
+      <div class="quote-text">"Do you really trust an LLM at this stage to distill feedback for a problem and product it doesn't know?"</div>
+      <div class="quote-citation">u/Race_Bannon8 - <a href="https://old.reddit.com/r/ProductManagement/comments/1gmnjvd/ai_summary_for_customer_feedback/">Reddit source</a> - Screenshot: research/screens/reddit-ai-summary-distrust-2.png</div>
+    </div>
+    <div class="quote-block">
+      <div class="quote-text">"summaries always kind of ruin what user said ... so you can pull exact quotes without rewatching full calls and tag the moments that really matter."</div>
+      <div class="quote-citation">u/Latter-Purchase-8426 - <a href="https://old.reddit.com/r/ProductManagement/comments/1pojig7/user_feedback_gets_distorted_even_when_i_take/">Reddit source</a> - Screenshot: research/screens/reddit-ai-summary-distrust-3.png</div>
+    </div>
+    <div class="quote-block">
+      <div class="quote-text">"I also get nervous about the focus they're putting on AI. ... the AI features are annoying, unreliable, inaccurate."</div>
+      <div class="quote-citation">Olivia H., Principal User Researcher, cross-site Capterra Dovetail review, researcher role adjacent to PM - <a href="https://www.capterra.com/p/174077/Dovetail/reviews/">Capterra source</a> - Screenshot: research/screens/capterra-dovetail-ai-unreliable.png</div>
+    </div>
+    <div class="quote-block">
+      <div class="quote-text">"pick out the themes so you can bring those up to your team and stakeholders. you will be able to speak more confidently and feel more comfortable in your decisions over time."</div>
+      <div class="quote-citation">u/drteacherman, names the phase goal, confidence, aspirational not delivered by the current path - <a href="https://old.reddit.com/r/ProductManagement/comments/1fcy20k/overloaded_with_qualitative_data/">Reddit source</a> - Screenshot: research/screens/reddit-overloaded-qualitative-data.png</div>
+    </div>
+  </div>
+
+  <!-- PHASE 5 QUOTES -->
+  <div class="qgroup">
+    <div class="qgroup-head">
+      <span class="qgroup-name">Phase 5, The planning session</span>
+      <span class="tag tag-later">Signal</span>
+      <span class="qgroup-senti">Negative, intensity 3, deflation, not landing</span>
+    </div>
+    <div class="qgroup-thought">Barrier: the prioritization rationale does not translate to the room; the audience questions or disengages; the PM cannot make the reasoning stick.</div>
+    <div class="quote-block">
+      <div class="quote-text">"I tried to explain some really basic stuff.. RICE, GIST, Kano. They were uninterested."</div>
+      <div class="quote-text" style="margin-top:8px">"I presented a Now/Next/Later roadmap and explicitly state 'This does not correspond with a literal timeline.' The next question I got was 'Okay, but when is Next?'"</div>
+      <div class="quote-text" style="margin-top:8px">"I really don't know how to communicate to them that we need to be able to pivot. They just did not understand anything I was saying."</div>
+      <div class="quote-citation">u/TheLionMessiah - <a href="https://old.reddit.com/r/ProductManagement/comments/1jb6dmo/presented_roadmap_prioritization_to_the_dev_team/">Reddit source</a> - Screenshot: research/screens/reddit-presented-roadmap-went-over-heads.png</div>
+    </div>
+  </div>
+
+  <!-- PHASE 6 QUOTES -->
+  <div class="qgroup">
+    <div class="qgroup-head">
+      <span class="qgroup-name">Phase 6, Defend under challenge</span>
+      <span class="tag tag-primary">Pattern (strong)</span>
+      <span class="qgroup-senti">Negative, intensity 5, powerlessness and resignation, the floor</span>
+    </div>
+    <div class="qgroup-thought">Barrier: stakeholder or executive opinion outweighs the evidence; the "my customer said X" anecdote trumps synthesized data; the PM has no leverage even when the data is on their side. The deepest point of the As-Is curve and the sharpest argument for Sift.</div>
+    <div class="quote-block">
+      <div class="quote-text">"Because usually stakeholder agendas and egos are more heavily weighted than feedback from users"</div>
+      <div class="quote-citation">u/thegooseass (28 points) - <a href="https://old.reddit.com/r/ProductManagement/comments/1gf3f9g/why_is_collecting_managing_and_taking_action_on/">Reddit source</a> - Screenshot: research/screens/reddit-feedback-challenge-hippo.png</div>
+    </div>
+    <div class="quote-block">
+      <div class="quote-text">"This ends up being one of the hardest things to manage - customer says x but we believe y is better ... With no data and no evidence. You need to have success metrics and show why this doesn't work to make better data-driven decision"</div>
+      <div class="quote-citation">u/OkExpression8287, same thread - <a href="https://old.reddit.com/r/ProductManagement/comments/1gf3f9g/why_is_collecting_managing_and_taking_action_on/">Reddit source</a> - Screenshot: research/screens/reddit-feedback-challenge-hippo.png</div>
+    </div>
+    <div class="quote-block">
+      <div class="quote-text">"Evidence is nothing in the face of a hippo."</div>
+      <div class="quote-citation">u/Facelotion, same thread - <a href="https://old.reddit.com/r/ProductManagement/comments/1gf3f9g/why_is_collecting_managing_and_taking_action_on/">Reddit source</a> - Screenshot: research/screens/reddit-feedback-challenge-hippo.png</div>
+    </div>
+    <div class="quote-block">
+      <div class="quote-text">"Executive leadership thinks their gut fEeLiNgS are more accurate than quantitative data."</div>
+      <div class="quote-citation">u/plot_twist7, same thread - <a href="https://old.reddit.com/r/ProductManagement/comments/1gf3f9g/why_is_collecting_managing_and_taking_action_on/">Reddit source</a> - Screenshot: research/screens/reddit-feedback-challenge-hippo.png</div>
+    </div>
+    <div class="quote-block">
+      <div class="quote-text">"I'm a Junior PM. Almost broke down today due to getting into so many conflicts this week with multiple other PMs/stakeholders." ... "This is my first time dealing with so many conflicting opinions coming at me in all directions."</div>
+      <div class="quote-citation">u/yesqueen777, corroborating second thread, emotional intensity - <a href="https://old.reddit.com/r/ProductManagement/comments/1aypb87/how_to_deal_with_so_many_diff_opinions_and/">Reddit source</a> - Screenshot: research/screens/reddit-conflicting-stakeholder-opinions.png</div>
+    </div>
+    <div class="quote-block">
+      <div class="quote-text">"It can be difficult to say 'no' to a HiPPO, especially if the executive, investor, or another stakeholder behind it is of particularly high-authority."</div>
+      <div class="quote-citation">Blog corroboration, labeled: PM blog, not a user voice - <a href="https://www.productplan.com/learn/defend-product-roadmap">productplan.com source</a></div>
+    </div>
+  </div>
+
+  <div class="decision-note" style="margin-top:28px">
+    <div class="decision-note-label">Coverage and honesty summary</div>
+    <div class="decision-note-text">19 verbatim quotes, 10 public pages read, 8 screenshots saved as evidence. Every phase stands on a real quote; no phase is left on a drawn-in emotion. Strength split: Phases 2, 3, 4, 6 are patterns; Phases 1 and 5 remain signals (one strong voice with partial corroboration) and are the weaker points to firm up. Phase 6 is the deepest and strongest, Phase 4 is the second pillar, so both differentiator growth zones (GZ1, GZ2) stand on pattern-strength evidence.</div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- GROWTH ZONES -->
+<section id="growth">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2>Growth Zones</h2>
+  </div>
+  <p>Five places where today's experience hurts most and where Sift can win. Each is tied to a Step 4 barrier and, where one exists, a research gap. Zones backed by a pattern are prioritized over single signals. No solution is written here, that is To-Be. This is where it hurts and where the opening is, not how we fill it. "Differentiator vs table-stakes" is flagged because pattern-strength in the mining is not the same as a competitive opening. GZ1 and GZ2, the two differentiators, are emphasized.</p>
+
+  <!-- GZ1 -->
+  <div class="gz-card gz-diff" style="margin-top:24px">
+    <div class="gz-head">
+      <span class="gz-id">GZ1</span>
+      <h3 class="gz-title">Evidence that actually outweighs the anecdote</h3>
+      <div class="gz-tags">
+        <span class="tag tag-primary">Differentiator</span>
+        <span class="tag tag-later">Priority 1</span>
+      </div>
+    </div>
+    <div class="gz-source">From Phase 6, strong pattern, -5, the floor</div>
+    <p class="gz-body">Today the "my customer said X" anecdote plus executive ego beats synthesized data, because the PM's evidence is unciteable ("I think I saw this in several tickets"). The opening is the PM's total lack of leverage in the room even when the data is on their side. This is the deepest trough and the clearest unclaimed position, the safest ground for the MVP.</p>
+    <div class="gz-field"><span class="gz-field-label">Barrier</span>Phase 6, strong pattern, the floor of the curve at -5.</div>
+    <div class="gz-field"><span class="gz-field-label">Research gap</span>No competitor owns the PM "defend your roadmap with evidence" story (competitors.md O14; research.md gap "PM-specific positioning"). Jobs J1, S1, E2.</div>
+  </div>
+
+  <!-- GZ2 -->
+  <div class="gz-card gz-diff">
+    <div class="gz-head">
+      <span class="gz-id">GZ2</span>
+      <h3 class="gz-title">Trust the synthesis without re-reading everything</h3>
+      <div class="gz-tags">
+        <span class="tag tag-primary">Differentiator</span>
+        <span class="tag tag-later">Priority 2</span>
+      </div>
+    </div>
+    <div class="gz-source">From Phase 4, pattern (promoted in Step 6 re-research)</div>
+    <p class="gz-body">PMs distrust summaries they cannot trace: "surface-level summaries often miss nuance, I still need to go back to the source material to really trust the insight" (bo-peep-206). The opening is that the PM cannot trust a summary whose evidence trail is hidden, so they either re-read the raw data or refuse to act on it. Mining and research now agree, top-tier priority.</p>
+    <div class="gz-field"><span class="gz-field-label">Barrier</span>Phase 4, now a pattern: 5+ independent PM and researcher voices across three Reddit threads plus Capterra (Step 6 re-research).</div>
+    <div class="gz-field"><span class="gz-field-label">Research gap</span>J3 "know how much to trust a conclusion" is the clearest unclosed gap across all five competitors (jtbd matrix; research.md gap "honest confidence display"). This is also the riskiest assumption H1.</div>
+  </div>
+
+  <!-- GZ3 -->
+  <div class="gz-card">
+    <div class="gz-head">
+      <span class="gz-id">GZ3</span>
+      <h3 class="gz-title">Kill the hours of manual tagging</h3>
+      <div class="gz-tags">
+        <span class="tag tag-secondary">Partly table-stakes</span>
+        <span class="tag tag-later">Priority 3</span>
+      </div>
+    </div>
+    <div class="gz-source">From Phase 3, pattern</div>
+    <p class="gz-body">"Sticky note hell", "8+ hours tagging", "wayyyy too much for a human to go through." The opening is the low-leverage manual labor between raw signal and a usable picture. Competitors already auto-classify, so automating the labor alone is table-stakes here, not an edge.</p>
+    <div class="gz-field"><span class="gz-field-label">Barrier</span>Phase 3, pattern.</div>
+    <div class="gz-field"><span class="gz-field-label">Research gap</span>MVP AI synthesis; Objective 2 (time to decision); the core time-saving value. Necessary but partly served by competitors.</div>
+  </div>
+
+  <!-- GZ4 -->
+  <div class="gz-card">
+    <div class="gz-head">
+      <span class="gz-id">GZ4</span>
+      <h3 class="gz-title">One home for siloed signal</h3>
+      <div class="gz-tags">
+        <span class="tag tag-later">Table-stakes</span>
+        <span class="tag tag-later">Priority 4</span>
+      </div>
+    </div>
+    <div class="gz-source">From Phase 2, pattern</div>
+    <p class="gz-body">Feedback lives "all over the place, completely siloed" across Zendesk, Gong, interviews, widgets, WhatsApp, email; collection is cumbersome before any thinking starts. The opening is the fragmentation itself. Necessary but not differentiating, every competitor aggregates; this is the price of entry, not the edge.</p>
+    <div class="gz-field"><span class="gz-field-label">Barrier</span>Phase 2, pattern.</div>
+    <div class="gz-field"><span class="gz-field-label">Research gap</span>MVP ingestion (CSV + Intercom first, D3); aarrr Activation.</div>
+  </div>
+
+  <!-- GZ5 -->
+  <div class="gz-card">
+    <div class="gz-head">
+      <span class="gz-id">GZ5</span>
+      <h3 class="gz-title">Walk in ready, and make the reasoning land</h3>
+      <div class="gz-tags">
+        <span class="tag tag-later">Supporting</span>
+        <span class="tag tag-later">Priority 5</span>
+      </div>
+    </div>
+    <div class="gz-source">From Phases 1 and 5, signals</div>
+    <p class="gz-body">"I drew blank" when asked for priorities; "they did not understand anything I was saying." The opening is arriving with a synthesized point of view and a form of it the room can engage with. Lowest priority, rests on single signals, but it is the same evidence-brief artifact that GZ1 needs, so it comes largely for free.</p>
+    <div class="gz-field"><span class="gz-field-label">Barrier</span>Phases 1 and 5, signals.</div>
+    <div class="gz-field"><span class="gz-field-label">Research gap</span>S1 (give stakeholders something to engage with); the shareable evidence brief.</div>
+  </div>
+
+  <p class="hypothesis-note" style="margin-top:20px">Ordering logic: GZ1 and GZ2 are both deepest-pain and unclaimed-position, so they lead. GZ3 and GZ4 are real pattern pains but partly served by competitors, so they are necessary table-stakes rather than the edge. GZ5 supports GZ1 through the same artifact. To-Be must close GZ1 to GZ4 for the path to hold; GZ5 improves it.</p>
+
+  <div class="decision-note" style="margin-top:24px">
+    <div class="decision-note-label">Still open [?]</div>
+    <div class="decision-note-text">Exact per-planning-cycle synthesis duration is [?]: the "8+ hours to tag ~20 interviews" anchor is tool-specific, not per-cycle. Order of magnitude (hours to days) holds; the precise number stays [?] pending user interviews. Phases 1 and 5 remain signals and are the first candidates to firm up. Whether the evidence brief is used before (persuade) or after (defend) the decision is still open, deferred to beta observation.</div>
+  </div>
+</section>
+
+<footer>
+  <div>Sift - CJM As-Is - June 2026 - User Research phase</div>
+  <div style="text-align:right">
+    <a href="user-research/docs/cjm-as-is.md" style="color:var(--text-3);text-decoration:none">cjm-as-is.md</a>
+    <span style="margin:0 8px">-</span>
+    <a href="cjm-to-be.html" style="color:var(--text-3);text-decoration:none">cjm-to-be.html</a>
+  </div>
+</footer>
+
+</div>
+
+<script>
+  const sections = document.querySelectorAll('section[id]');
+  const sidebarLinks = document.querySelectorAll('.sidebar-section-links a[href^="#"]');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        sidebarLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + id) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+  }, { threshold: 0, rootMargin: '-15% 0px -75% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
