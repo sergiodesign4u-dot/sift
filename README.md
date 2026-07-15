@@ -42,7 +42,7 @@ jtbd.html            User Research: JTBD, deployed page
 research/
   docs/              All research markdown - the source of truth
   screens/           Captured competitor and benchmark screens
-user-research/       Formal User Research stage (skeleton)
+user-research/docs/  User Research markdown: personas, JTBD, CJM As-Is + To-Be
 ia/                  Information Architecture (skeleton)
 wireframes/          Core flow wireframes (skeleton)
 voice/               Voice and tone (skeleton)
@@ -68,7 +68,16 @@ Convention: raw markdown lives in each stage's `docs/`; the deployed HTML pages 
 - [benchmark.md](research/docs/benchmark.md) - Trust in synthesis: cross-category best-in-class scores and mechanisms
 - [aarrr.md](research/docs/aarrr.md) - AARRR funnel model with one metric and one MVP decision per stage
 - [ux-patterns.md](research/docs/ux-patterns.md) - UX pattern selection and rationale
-- [personas.md](user-research/docs/personas.md) - People observations and three personas (Overloaded PM, Product Lead, Signal Supplier)
-- [jtbd.md](user-research/docs/jtbd.md) - JTBD job hierarchy, matrix, and MVP core conclusions
 - [live-research.md](research/docs/live-research.md) - Adversarial verification artifact: 8 claims tested, 6 confirmed, 0 killed
 - [quality-check.md](research/docs/quality-check.md) - Source audit: every quantitative claim checked against a cited source
+
+---
+
+## User Research Documents (`user-research/docs/`)
+
+- [personas.md](user-research/docs/personas.md) - People observations and three personas (Overloaded PM, Product Lead, Signal Supplier)
+- [jtbd.md](user-research/docs/jtbd.md) - JTBD job hierarchy, matrix, and the 3 MVP-core jobs
+- [cjm-as-is.md](user-research/docs/cjm-as-is.md) - As-Is journey of the Overloaded PM: 6 phases, emotions and barriers from mined voice-of-customer (19 verbatim quotes, marked signal / pattern), the emotional curve, and 5 growth zones
+- [cjm-to-be.md](user-research/docs/cjm-to-be.md) - To-Be journey: each step traced to an As-Is barrier or job, the projected emotional curve, and the sharpened MVP backlog
+
+**Main CJM conclusion:** the deepest As-Is pain is Phase 6, defending the roadmap when a stakeholder's anecdote outweighs the PM's unciteable evidence ("evidence is nothing in the face of a hippo", sentiment -5, a strong pattern). To-Be inverts exactly that point (the largest lift, -5 to +4) with a live, traceable evidence chain (theme, to items, to verbatim quote) plus a shareable evidence brief.

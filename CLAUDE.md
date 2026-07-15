@@ -57,13 +57,17 @@ When I receive feedback from multiple sources (support, sales, interviews, revie
 
 ## MVP Feature Scope
 
-1. **Feedback ingestion** - connect 3-5 core sources (Intercom, Zendesk, Gong, app store reviews, manual import). Pull in and normalize the raw signal.
-2. **AI synthesis** - cluster feedback into themes automatically. Show volume, trend, and representative quotes per theme. Make the synthesis transparent: what went in, how themes were formed.
-3. **Evidence tracing** - every theme links back to the specific feedback items that support it. Every roadmap item links to the themes behind it. Full chain: decision - theme - signal.
-4. **Prioritization view** - score themes by volume, recency, customer segment, and revenue impact. Give the PM a ranked list they can interrogate, not a black-box ranking.
-5. **Confidence display** - honest handling of thin evidence. If a theme has 3 data points, say so. Show confidence level alongside every synthesis.
-6. **Roadmap link** - connect themes to roadmap items (native lightweight roadmap or Jira/Linear sync). Enable the traceable link from decision to signal.
-7. **Sharing** - shareable evidence briefs for stakeholders. "Here is what our customers are saying, here is why we're building this."
+*Sharpened by the CJM To-Be map (user-research/docs/cjm-to-be.md). One MVP definition, not two: the five-item spine below is the MVP; features that improve the path but do not break it are moved to Fast-follow. Every MVP item traces to an As-Is barrier the PM actually hits (user-research/docs/cjm-as-is.md).*
+
+**MVP spine (remove any one and the To-Be path breaks):**
+
+1. **Feedback ingestion - CSV + Intercom** - import and normalize the raw signal; PII scrubbed by default. CSV is the zero-friction day-one activation path; Intercom is the named Segment A source. Zendesk and Gong follow the same abstraction. (Closes: scattered, siloed feedback across tools. D3.)
+2. **AI synthesis** - cluster feedback into transparent themes with volume, recency, and evidence count; basic ranking by signal. (Closes: hours of manual reading and tagging. The time-saving magnitude rests on a baseline that is still [?] - order of magnitude hours, exact figure pending user interviews.)
+3. **Confidence display** - item count per theme (n=X) plus a "low signal" badge for thin evidence. Day-one scope only; source diversity and time range are v2. (Closes: cannot tell a strong theme from a thin one. D2, mandatory - this is the transparency condition the riskiest assumption H1 requires.)
+4. **Evidence drill-down + inline citation** - theme, to evidence items (n=X), to raw source text, in-context. Must work live in a meeting, not only in quiet analysis. (Closes: distrust of black-box summaries, and the inability to back a claim under stakeholder challenge. This is the differentiator.)
+5. **Shareable evidence brief** - a public link (no login to view) carrying top themes, evidence, source quotes, recommended priority. The go-to-market and referral artifact. (Closes: the rationale does not travel; the PM cannot defend the call with something a stakeholder can read. Kept in MVP; first candidate to move to Fast-follow if a leaner H1-only first test is wanted.)
+
+**Fast-follow (post-MVP, improves the path but does not break it):** multi-factor prioritization scoring (customer segment, revenue impact); "new signal since last session" digest (retention hook; its parent job H-J1 is still unconfirmed); roadmap link (native lightweight or Jira / Linear sync; serves the Product Lead more than the core PM journey).
 
 **Out of scope for MVP:** Custom NLP training, native video recording, in-app surveys, public changelog, white-labeling, offline mode.
 
@@ -151,3 +155,5 @@ Three founder decisions locked at end of research phase. Full rationale in resea
 - **D1 - MVP focus:** Segment A (Overloaded PM) only. Segment C (Signal Supplier) deferred as a PM retention dependency, not a separate backlog feature. The signal supplier's closure loop depends on Segment A's transparency design being built first.
 - **D2 - Confidence display:** Mandatory in MVP. Tied directly to H1 reformulation: transparency is the condition H1 requires. Day-one scope: item count per theme (n=X) plus a "low signal" badge. Source diversity, time range, and thresholds are v2.
 - **D3 - First integration set:** CSV + Intercom for MVP. Zendesk follows using the same abstraction pattern. No specific timeline committed for Zendesk.
+
+**User Research + CJM (June 2026):** The User Research phase now has four pages - Personas, JTBD, CJM As-Is, CJM To-Be (CJM is a separate status row). The MVP Feature Scope above is the CJM-sharpened core (one definition, not a fork). Deepest As-Is pain: Phase 6, evidence loses to the stakeholder anecdote (powerlessness, a strong pattern); To-Be inverts it with the live evidence drill-down and the shareable brief.
