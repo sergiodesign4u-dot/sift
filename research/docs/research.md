@@ -417,3 +417,24 @@ Research basis: personas.md (O2: Segment A tool stack names Intercom and Zendesk
 Note: the [?] about CSV vs. native integration preference at activation in personas.md is a separate data question. D3 is a build priority decision made under that uncertainty. Beta behavior will answer the preference question.
 
 Cross-reference updates: personas.md (gaps table: CSV vs. integration row updated to reflect D3 build decision).
+
+---
+
+## 10. Re-research for CJM (June 2026)
+
+*New live mining conducted for the Customer Journey Map (As-Is) of the Overloaded PM. Method: Playwright live browser on public / pre-login pages only. Key access finding: Reddit is reachable via old.reddit.com in the live browser (the earlier session's block was on www.reddit.com only). Full journey mapping in user-research/docs/cjm-as-is.md.*
+
+### What the CJM mining added
+
+- **19 verbatim voice-of-customer quotes across 10 public pages** (Capterra x2, r/ProductManagement x7, ProductPlan blog x1), each mapped to a journey phase with a screenshot in research/screens/. This is the first primary-source PM voice gathered for the project - it fills the [?] gaps flagged in personas.md ("real quotes from target PMs in their own words") and jtbd.md Danger List.
+
+### Findings that firm up earlier hypotheses
+
+- **PMs distrust AI/tool feedback summaries they cannot trace - CONFIRMED as a pattern (was a single signal).** Independent corroboration across three additional Reddit threads plus a cross-site Capterra source. Bullseye quote: "Surface-level summaries often miss nuance. I still need to go back to the source material to really trust the insight. Traceability is a big deal. If I cannot point to a verbatim quote to back up a theme, I am not using it in a decision. Biggest blocker: Trust." (u/bo-peep-206, https://old.reddit.com/r/ProductManagement/comments/1kqe9o7/ai_in_discovery_where_is_it_actually_saving_pms/). This is direct primary-voice support for the riskiest assumption H1 in its conditional form (transparency and traceability are the trust condition) and for J3.
+- **Stakeholder opinion outweighs evidence - CONFIRMED as a strong pattern.** "Because usually stakeholder agendas and egos are more heavily weighted than feedback from users" (u/thegooseass); "Evidence is nothing in the face of a hippo" (u/Facelotion). Source: https://old.reddit.com/r/ProductManagement/comments/1gf3f9g/why_is_collecting_managing_and_taking_action_on/. This is the deepest pain in the As-Is journey and the primary-voice basis for the PM "defend your roadmap" positioning gap (competitors.md O14).
+- **Manual synthesis is siloed and labor-heavy - CONFIRMED as a pattern.** "the information is all over the place, and completely siloed" (u/Mysterious-West3175); "sticky note hell ... incredibly messy, tedious and highly intensive (in terms of labor)" (Sherif M., Capterra Dovetail).
+
+### Still open [?]
+
+- **Exact per-planning-cycle synthesis time.** No source gave a per-cycle figure. Rough anchors only ("8+ hours to tag ~20 interviews"; "a few hours with tooling vs many days manually"), both tool-specific. Order of magnitude (hours to days) holds; exact number stays [?] for user interviews. This keeps the [?] already on the "3-5 hours per planning cycle" figure in Section 1.
+- **Evidence brief: used to persuade before, or defend after, the decision.** One voice leans defensive ("execs want to know where insights came from"), not enough to resolve. Deferred to beta observation.

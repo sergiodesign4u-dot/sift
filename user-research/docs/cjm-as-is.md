@@ -80,14 +80,27 @@
 ### Phase 4 - Synthesize and decide priority
 
 - **Thoughts / questions:** "Any system that summarizes feedback will gloss over the key insights." "Plenty of things get missed." The goal named by a peer: "speak more confidently and feel more comfortable in your decisions."
-- **Emotion:** Neutral-to-negative, intensity **3** (unease, low trust in the synthesis, fear of missing the real signal). **Strength: signal** (multiple corroborating voices within one thread).
-- **Barrier:** Summarizing flattens nuance; you cannot review everything so things get missed; hard to know whether the theme you land on is actually strong evidence. This is exactly the J3 "how much to trust a conclusion" gap, observed in the wild.
+- **Emotion:** Neutral-to-negative, intensity **3** (unease, low trust in the synthesis, fear of missing the real signal). **Strength: pattern** (promoted from signal in Step 6 re-research: 5+ independent PM and researcher voices across three additional Reddit threads plus Capterra corroborate this).
+- **Barrier:** Summarizing flattens nuance; you cannot review everything so things get missed; hard to know whether the theme you land on is actually strong evidence, so the PM re-reads the raw data or refuses to act. This is exactly the J3 "how much to trust a conclusion" gap, observed in the wild.
 - **Type:** General workflow.
-- **Quotes:**
+- **Quotes (original thread):**
   > "The devil is in the details. Any system that will summarize feedback will gloss over the key insights coming from customers."
   - u/miokk. Source: https://old.reddit.com/r/ProductManagement/comments/1klawf2/analyzing_customer_feedback_at_scale/
   > "half the time our team isn't consistently reviewing all the transcripts so plenty of things get missed just from our laziness."
   - u/kashin-k0ji. Source: same thread. Screenshot: research/screens/reddit-analyzing-feedback-at-scale.png
+- **Corroboration (Step 6 re-research, June 2026 - promotes this to a pattern across independent sources):**
+  > "Surface-level summaries often miss nuance. I still need to go back to the source material to really trust the insight. Traceability is a big deal. If I cannot point to a verbatim quote to back up a theme, I am not using it in a decision. Biggest blocker: Trust. Execs (rightfully) want to know where insights came from. Any AI workflow that obscures the data trail is a non-starter."
+  - u/bo-peep-206 (bullseye: restates the whole claim, and names traceability as the trust condition - direct support for GZ1, GZ2, and H1). Source: https://old.reddit.com/r/ProductManagement/comments/1kqe9o7/ai_in_discovery_where_is_it_actually_saving_pms/ . Screenshot: research/screens/reddit-ai-summary-distrust-1.png
+  > "AI summarizes 50 interviews and offers a label: 'pricing concerns'. ..but usually, AI does not reference specific interviews and times to note the specific quotes about pricing concerns."
+  - u/learning_more (the summary hides which evidence sits behind a theme, so the PM cannot judge its strength). Source: same thread.
+  > "For interviews, I've tried using AI for summaries but like you said, they miss stuff. Still gotta do the manual tagging for themes."
+  - u/KoalaFiftyFour. Source: same thread.
+  > "Do you really trust an LLM at this stage to distill feedback for a problem and product it doesn't know?"
+  - u/Race_Bannon8. Source: https://old.reddit.com/r/ProductManagement/comments/1gmnjvd/ai_summary_for_customer_feedback/ . Screenshot: research/screens/reddit-ai-summary-distrust-2.png
+  > "summaries always kind of ruin what user said ... so you can pull exact quotes without rewatching full calls and tag the moments that really matter."
+  - u/Latter-Purchase-8426. Source: https://old.reddit.com/r/ProductManagement/comments/1pojig7/user_feedback_gets_distorted_even_when_i_take/ . Screenshot: research/screens/reddit-ai-summary-distrust-3.png
+  > "I also get nervous about the focus they're putting on AI. ... the AI features are annoying, unreliable, inaccurate."
+  - Olivia H., Principal User Researcher (cross-site, Capterra Dovetail review; researcher role, adjacent to PM). Source: https://www.capterra.com/p/174077/Dovetail/reviews/ . Screenshot: research/screens/capterra-dovetail-ai-unreliable.png
   > "pick out the themes so you can bring those up to your team and stakeholders. you will be able to speak more confidently and feel more comfortable in your decisions over time."
   - u/drteacherman (names the phase goal: confidence). Source: https://old.reddit.com/r/ProductManagement/comments/1fcy20k/overloaded_with_qualitative_data/ . Screenshot: research/screens/reddit-overloaded-qualitative-data.png
 
@@ -129,7 +142,7 @@
 
 - 19 verbatim quotes, 10 public pages read (Capterra x2, r/ProductManagement x7, ProductPlan blog x1; Gleap vendor blog read but not used). 8 screenshots saved as evidence.
 - Every phase now stands on a real quote. No phase is left on a drawn-in emotion.
-- Strength honestly split: Phases 2, 3, 6 are patterns; Phases 1, 4, 5 are signals (one strong voice with partial corroboration) and are marked as the weaker points to firm up (Phase 6 is the strongest and deepest, and is where the MVP argument is safest).
+- Strength honestly split (after Step 6 re-research): Phases 2, 3, 4, 6 are patterns; Phases 1 and 5 remain signals (one strong voice with partial corroboration) and are marked as the weaker points to firm up. Phase 6 is the deepest and strongest, and Phase 4 (promoted to a pattern) is the second pillar, so both differentiator growth zones (GZ1, GZ2) now stand on pattern-strength evidence.
 - Still [?]: an exact baseline duration for the manual synthesis per planning cycle (Phase 3 gives "8+ hours" for 20 interviews, tool-specific, not a per-cycle figure). The order of magnitude (hours) holds; the precise number stays [?] pending interviews.
 
 ---
@@ -143,7 +156,7 @@
 | 1 The session looms | -4 | signal | light | Anticipatory dread; one strong first-person post |
 | 2 Gather the scattered signal | -4 | pattern | full | Siloed channels, overwhelm |
 | 3 Read and tag / cluster | -4 | pattern | full | Manual tagging labor, "waste of time" |
-| 4 Synthesize and decide | -3 | signal | light | Least-negative plateau; distrust of the summary |
+| 4 Synthesize and decide | -3 | **pattern** | full | Distrust of the summary; promoted from signal in Step 6 re-research |
 | 5 The planning session | -3 | signal | light | Rationale does not land in the room |
 | 6 Defend under challenge | **-5** | **pattern (strong)** | full | **The floor.** Evidence loses to the HiPPO |
 
@@ -151,7 +164,7 @@
 
 - **Bottom (deepest negative): Phase 6** - defending the call under stakeholder challenge. Strongest evidence (4+ voices, pattern) and lowest sentiment. This is the single most important place to win.
 - **Peaks: none.** There is no positive point in the As-Is journey. Even the "confidence" a peer describes in Phase 4 ("speak more confidently over time") is aspirational, not an experience the current path delivers. The absence of any relief is itself the finding: today's path is negative end to end.
-- **Weakest-evidence points: Phases 1, 4, 5** (signals). They are drawn lighter and are the first candidates for firming up in interviews; no MVP argument should rest on them alone.
+- **Weakest-evidence points: Phases 1 and 5** (signals). Phase 4 was promoted to a pattern in Step 6 re-research (independent corroboration found). Phases 1 and 5 stay lighter and are the first candidates for firming up in interviews; no MVP argument should rest on them alone.
 
 ---
 
@@ -163,10 +176,10 @@
 Today the "my customer said X" anecdote plus executive ego beats synthesized data, because the PM's evidence is unciteable ("I think I saw this in several tickets"). The opening is the PM's total lack of leverage in the room even when the data is on their side. Barrier: Phase 6 (strong pattern, -5, the floor). Research gap: no competitor owns the PM "defend your roadmap with evidence" story (competitors.md O14; research.md gap "PM-specific positioning"); jobs J1, S1, E2. This is the deepest trough and the clearest unclaimed position - the safest ground for the MVP.
 
 **GZ2 - Trust the synthesis without re-reading everything (from Phase 4).** *Priority 2. Differentiator.*
-PMs distrust black-box summaries: "any system will gloss over the key insights", "things get missed". The opening is calibrated trust - being able to tell a strong theme from a thin one and to spot-check rather than re-read. Barrier: Phase 4 (signal in the wild, but backed by the strongest research gap). Research gap: J3 "know how much to trust a conclusion" is the clearest unclosed gap across all five competitors (jtbd matrix; research.md gap "honest confidence display"); this is also the riskiest assumption H1. Signal-strength in mining, pattern-strength in research - high priority.
+PMs distrust summaries they cannot trace: "surface-level summaries often miss nuance, I still need to go back to the source material to really trust the insight" (bo-peep-206). The opening is that the PM cannot trust a summary whose evidence trail is hidden, so they either re-read the raw data or refuse to act on it. Barrier: Phase 4, now a pattern (5+ independent PM and researcher voices across three Reddit threads plus Capterra, Step 6 re-research). Research gap: J3 "know how much to trust a conclusion" is the clearest unclosed gap across all five competitors (jtbd matrix; research.md gap "honest confidence display"); this is also the riskiest assumption H1. Mining and research now agree - top-tier priority.
 
 **GZ3 - Kill the hours of manual tagging (from Phase 3).** *Priority 3. Partly table-stakes.*
-"Sticky note hell", "8+ hours tagging", "wayyyy too much for a human to go through." The opening is the low-leverage manual labor between raw signal and a usable picture. Barrier: Phase 3 (pattern). Research: MVP AI synthesis; Objective 2 (time to decision); the core time-saving value. Note: competitors already auto-classify, so the win here is doing it with traceability intact, not the automation alone.
+"Sticky note hell", "8+ hours tagging", "wayyyy too much for a human to go through." The opening is the low-leverage manual labor between raw signal and a usable picture. Barrier: Phase 3 (pattern). Research: MVP AI synthesis; Objective 2 (time to decision); the core time-saving value. Note: competitors already auto-classify, so automating the labor alone is table-stakes here, not an edge.
 
 **GZ4 - One home for siloed signal (from Phase 2).** *Priority 4. Table-stakes.*
 Feedback lives "all over the place, completely siloed" across Zendesk, Gong, interviews, widgets, WhatsApp, email; collection is cumbersome before any thinking starts. The opening is the fragmentation itself. Barrier: Phase 2 (pattern). Research: MVP ingestion (CSV + Intercom first, D3); aarrr Activation. Necessary but not differentiating - every competitor aggregates; this is the price of entry, not the edge.
@@ -175,6 +188,29 @@ Feedback lives "all over the place, completely siloed" across Zendesk, Gong, int
 "I drew blank" when asked for priorities; "they did not understand anything I was saying." The opening is arriving with a synthesized point of view and a form of it the room can engage with. Barrier: Phases 1 and 5 (signals). Research: S1 (give stakeholders something to engage with); the shareable evidence brief. Lowest priority - rests on single signals - but it is the same evidence-brief artifact that GZ1 needs, so it comes largely for free.
 
 *Ordering logic: GZ1 and GZ2 are both deepest-pain and unclaimed-position, so they lead. GZ3 and GZ4 are real pattern pains but partly served by competitors, so they are necessary table-stakes rather than the edge. GZ5 supports GZ1 through the same artifact. To-Be (Step 7) must close GZ1-GZ4 for the path to hold; GZ5 improves it.*
+
+---
+
+## Step 6 - Critique and Re-research (record)
+
+*Adversarial self-check of this As-Is map, then the re-research that resolved the most dangerous gap. Honesty rule: a [?] or a strength upgrade only changes with new data.*
+
+**Audit result:** every one of the 6 phases carries a real, sourced, verbatim quote for its emotion and barrier. Zero drawn-in emotions. No phase is an orphan - each links to a job (P1 Main/E2, P2 J2, P3 J2, P4 Main/J3, P5 Main/E2, P6 J1/S1). No cure leaked into the As-Is path itself; two growth-zone descriptions (GZ2, GZ3) brushed against To-Be mechanism language and were tightened back to pure "where it hurts."
+
+**Danger list and resolution:**
+
+| # | Risk | Resolution |
+|---|---|---|
+| D1 | Phase 4 (distrust of the synthesis) fed the GZ2 differentiator but stood on a single Reddit thread (signal) | **Resolved. Promoted to pattern.** Step 6 re-research found 4 independent new sources (3 Reddit threads + Capterra Dovetail), 5+ distinct voices, including a bullseye quote (bo-peep-206) restating the full claim and naming traceability as the trust condition. Both differentiator zones (GZ1, GZ2) now rest on pattern-strength evidence. |
+| D2 | Per-cycle manual-synthesis duration [?] feeds GZ3 and Objective 2 | **Still [?].** Re-research found no per-planning-cycle figure. Only rough anchors ("8+ hours to tag ~20 interviews"; "a few hours with tooling vs many days manually"), both tool-specific, not per-cycle. Order of magnitude (hours to days) holds; exact number stays [?] for user interviews. |
+| D3 | Phases 1 and 5 (signals) feed the low-priority GZ5 | Accepted as-is. GZ5 is supporting, not an MVP pillar; left as signals, flagged for firming up in interviews. |
+
+**Three questions - status:**
+1. Do PMs distrust AI/tool summaries beyond one thread? **Answered: yes, pattern** (D1 above).
+2. Real per-cycle synthesis hours? **Open [?]** - needs interviews (D2).
+3. Evidence brief used before (persuade) or after (defend) the decision? **Open** - not pursued this pass; deferred to beta observation. bo-peep-206 ("execs want to know where insights came from") leans toward the defensive/stakeholder use, but this is one voice, not a resolution.
+
+Full re-research method and source list: [research.md](../../research/docs/research.md) Section, "Re-research for CJM (June 2026)."
 
 
 
