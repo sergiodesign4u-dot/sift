@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sift - IA Concept Map</title>
+<style>
+  :root {
+    --bg: #0c0c0e;
+    --bg-2: #111115;
+    --bg-3: #17171c;
+    --bg-4: #1e1e25;
+    --border: #2a2a35;
+    --border-light: #1e1e28;
+    --text: #e8e8ec;
+    --text-2: #a0a0b0;
+    --text-3: #66667a;
+    --accent: #7c6af7;
+    --accent-dim: #3a3470;
+    --accent-glow: rgba(124,106,247,0.12);
+    --green: #3ecf8e;
+    --green-dim: rgba(62,207,142,0.12);
+    --amber: #e8a838;
+    --amber-dim: rgba(232,168,56,0.12);
+    --red: #f06060;
+    --red-dim: rgba(240,96,96,0.12);
+    --radius: 8px;
+    --radius-lg: 12px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", system-ui, sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.65; font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(12,12,14,0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-light);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 40px; height: 52px;
+  }
+  .nav-brand { font-size: 14px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text); text-decoration: none; }
+  .nav-brand span { color: var(--accent); }
+  .nav-links { display: flex; gap: 6px; list-style: none; }
+  .nav-links a { color: var(--text-3); text-decoration: none; font-size: 12px; font-weight: 500; letter-spacing: 0.03em; padding: 5px 10px; border-radius: 5px; transition: color 0.15s, background 0.15s; }
+  .nav-links a:hover { color: var(--text); background: var(--bg-3); }
+
+  .page { max-width: 1040px; margin: 0 auto; padding: 100px 40px 120px; }
+  section { padding-top: 80px; }
+
+  .section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+  h1 { font-size: 42px; font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; color: var(--text); margin-bottom: 20px; }
+  h2 { font-size: 26px; font-weight: 650; letter-spacing: -0.015em; color: var(--text); margin-bottom: 8px; }
+  h3 { font-size: 15px; font-weight: 600; color: var(--text); margin: 20px 0 8px; }
+  p { color: var(--text-2); margin-bottom: 14px; }
+  p:last-child { margin-bottom: 0; }
+  .lead { font-size: 17px; line-height: 1.7; color: var(--text-2); max-width: 720px; }
+  .divider { border: none; border-top: 1px solid var(--border-light); margin: 60px 0; }
+
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--border-light); }
+  .section-num { font-size: 13px; font-weight: 700; color: var(--text-3); white-space: nowrap; }
+
+  .caption { font-size: 13px; color: var(--text-3); font-style: italic; margin: 6px 0 16px; }
+
+  .diagram { background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px; margin: 16px 0; overflow-x: auto; }
+  .diagram pre.mermaid { background: transparent; text-align: center; margin: 0; }
+
+  /* nav model */
+  .nav-card { background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px; margin-bottom: 12px; }
+  .nav-card-title { font-size: 14px; font-weight: 650; color: var(--text); }
+  .nav-card-job { font-size: 11px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--accent); margin-left: 8px; }
+  .nav-card-note { font-size: 13px; color: var(--text-2); margin-top: 4px; }
+  .depth-stat { display: flex; gap: 14px; flex-wrap: wrap; margin: 14px 0; }
+  .depth-pill { background: var(--green-dim); border: 1px solid rgba(62,207,142,0.3); color: var(--green); border-radius: 20px; padding: 6px 14px; font-size: 13px; font-weight: 600; }
+  .split-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-top: 12px; }
+  .split-col { background: var(--bg-2); border: 1px solid var(--border-light); border-radius: var(--radius); padding: 14px 16px; }
+  .split-col h4 { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); margin-bottom: 8px; }
+  .split-col p { font-size: 13px; margin-bottom: 0; line-height: 1.55; }
+
+  /* matrix */
+  .table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius-lg); margin: 16px 0; }
+  table.matrix { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.matrix th, table.matrix td { padding: 10px 12px; border-bottom: 1px solid var(--border-light); text-align: center; }
+  table.matrix thead th { background: var(--bg-3); color: var(--text-3); font-weight: 600; font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; white-space: nowrap; border-bottom: 1px solid var(--border); }
+  table.matrix th[scope="row"] { text-align: left; color: var(--text-2); font-weight: 500; white-space: nowrap; }
+  table.matrix tr:last-child td, table.matrix tr:last-child th { border-bottom: none; }
+  .chk { color: var(--green); font-weight: 700; }
+  th.orphan-col, td.orphan-col { background: var(--red-dim); }
+  tr.orphan-row th[scope="row"] { color: var(--red); background: var(--red-dim); }
+  tr.orphan-row td { background: rgba(240,96,96,0.05); }
+  .matrix-legend { font-size: 12px; color: var(--text-3); margin-top: 10px; }
+  .matrix-legend span.swatch { display: inline-block; width: 11px; height: 11px; border-radius: 2px; background: var(--red-dim); border: 1px solid rgba(240,96,96,0.4); vertical-align: middle; margin: 0 4px 0 10px; }
+
+  footer { border-top: 1px solid var(--border-light); margin-top: 100px; padding-top: 40px; padding-bottom: 60px; color: var(--text-3); font-size: 12px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  footer a { color: var(--text-2); text-decoration: none; }
+  footer a:hover { color: var(--text); }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .page { padding: 80px 20px 80px; }
+    h1 { font-size: 28px; }
+    .split-grid { grid-template-columns: 1fr; }
+  }
+
+  /* SIDEBAR */
+  .sidebar { display: none; }
+  @media (min-width: 1100px) {
+    .sidebar { display: flex; flex-direction: column; gap: 2px; position: fixed; top: 52px; left: 0; width: 220px; height: calc(100vh - 52px); overflow-y: auto; padding: 24px 12px 32px; border-right: 1px solid var(--border-light); background: var(--bg); z-index: 90; }
+    .page { margin: 0; margin-left: 220px; max-width: 1040px; padding: 100px 40px 120px; }
+  }
+  .sidebar-phase-label { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-3); padding: 5px 8px; border-radius: 5px; display: block; cursor: default; text-decoration: none; }
+  .sidebar-phase-label:hover { color: var(--text); background: var(--bg-3); cursor: pointer; }
+  a.sidebar-phase-label { cursor: pointer; }
+  .sidebar-phase.active .sidebar-phase-label { color: var(--accent); background: var(--accent-glow); }
+  .sidebar-section-links { list-style: none; margin: 4px 0 8px 0; padding: 0; }
+  .sidebar-section-links a { display: block; font-size: 12px; color: var(--text-3); text-decoration: none; padding: 4px 8px 4px 16px; border-radius: 4px; border-left: 2px solid transparent; transition: color 0.15s, border-color 0.15s, background 0.15s; line-height: 1.5; }
+  .sidebar-section-links a:hover { color: var(--text); background: var(--bg-3); }
+  .sidebar-section-links a.active { color: var(--text); border-left-color: var(--accent); background: var(--bg-3); }
+  .sidebar-section-links a.sidebar-current { color: var(--text); border-left-color: var(--accent); background: var(--bg-3); font-weight: 600; }
+  .sidebar-subsection a { padding-left: 28px; font-size: 11px; }
+  .sidebar-group-label { list-style: none; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); padding: 8px 8px 4px; display: flex; align-items: center; gap: 8px; }
+  .sidebar-divider { border: none; border-top: 1px solid var(--border-light); margin: 8px 0; }
+  .sidebar-coming-soon { display: flex; align-items: center; justify-content: space-between; padding: 5px 8px; border-radius: 5px; cursor: default; opacity: 0.5; }
+  .sidebar-cs-label { font-size: 12px; font-weight: 500; color: var(--text-3); letter-spacing: 0.02em; }
+  .sidebar-cs-badge { font-size: 9px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-3); background: var(--bg-3); border: 1px solid var(--border-light); padding: 2px 5px; border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="../index.html"><span>S</span>ift</a>
+  <ul class="nav-links">
+    <li><a href="#schema">Schema</a></li>
+    <li><a href="#navigation">Navigation</a></li>
+    <li><a href="#matrix">Matrix</a></li>
+  </ul>
+</nav>
+
+<aside class="sidebar">
+  <div class="sidebar-phase">
+    <a class="sidebar-phase-label" href="../research/research.html">Foundation Research</a>
+  </div>
+  <div class="sidebar-phase">
+    <a class="sidebar-phase-label" href="../user-research/personas.html">User Research</a>
+  </div>
+  <div class="sidebar-phase active">
+    <span class="sidebar-phase-label">Information Architecture</span>
+    <ul class="sidebar-section-links">
+      <li class="sidebar-group-label">Basic Layer</li>
+      <li><a href="flows.html">Flows</a></li>
+      <li><a href="concept-map.html" class="sidebar-current">Concept Map</a></li>
+      <li class="sidebar-subsection"><a href="#schema">Schema by intent</a></li>
+      <li class="sidebar-subsection"><a href="#navigation">Navigation model</a></li>
+      <li class="sidebar-subsection"><a href="#matrix">Trace matrix</a></li>
+      <li class="sidebar-group-label" style="margin-top:6px">Detail Layer <span class="sidebar-cs-badge">Next</span></li>
+    </ul>
+  </div>
+  <hr class="sidebar-divider">
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Wireframes</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Voice</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Concept</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">UI + Visual</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Tokens + Components</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Design System</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Responsive</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Animation</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Handoff</span><span class="sidebar-cs-badge">Soon</span></div>
+</aside>
+
+<div class="page">
+
+<section id="intro">
+  <div class="section-label">Information Architecture - Basic Layer - July 2026</div>
+  <h1>Concept Map</h1>
+  <p class="lead">The concept structure for Sift, derived from jobs, not from a competitor menu: screens grouped by the person's intent, the navigation that moves between them, and the matrix that proves every screen closes a job and every job reaches a screen.</p>
+</section>
+
+<hr class="divider">
+
+<section id="schema">
+  <div class="section-header"><span class="section-num">01</span><h2>Schema by intent</h2></div>
+  <p class="caption">This is the concept: screens grouped by intent, with the job each one closes. States (empty / error / loading) live in the flows; page contents live in the detail layer. Neither belongs here.</p>
+  <div class="diagram">
+    <pre class="mermaid">
+graph TD
+    subgraph clA["A - Bring the signal in"]
+      A2["Connect / import (A2) - J2, D3"]
+      A1["Sources (A1) - J2"]
+    end
+    subgraph clB["B - See what customers are saying"]
+      B1["Synthesis view (B1) - Main, J2, J3"]
+      B2["Theme detail (B2) - Main, J3"]
+    end
+    subgraph clC["C - Trace the evidence"]
+      C1["Evidence source (C1) - J1, E2, J3"]
+    end
+    subgraph clD["D - Decide and defend"]
+      D1["Build brief (D1) - Main, S1, J1, J4"]
+      D2["Shared brief, public (D2) - S1, J1, J4"]
+    end
+    subgraph clP["Platform - no user job (ORPHAN)"]
+      P1["Auth (P1)"]
+      P2["Settings / Workspace (P2)"]
+    end
+    A2 --> A1
+    A1 --> B1
+    B1 --> B2
+    B2 --> C1
+    B1 --> D1
+    D1 --> D2
+
+    classDef screen fill:#17171c,stroke:#3a3a45,color:#e8e8ec;
+    classDef orphan fill:#1a1a1f,stroke:#3a3a45,color:#66667a;
+    class A1,A2,B1,B2,C1,D1,D2 screen;
+    class P1,P2 orphan;
+    style clA fill:#0f0f13,stroke:#2a2a35,color:#7c6af7;
+    style clB fill:#0f0f13,stroke:#2a2a35,color:#7c6af7;
+    style clC fill:#0f0f13,stroke:#2a2a35,color:#7c6af7;
+    style clD fill:#0f0f13,stroke:#2a2a35,color:#7c6af7;
+    style clP fill:#0f0f13,stroke:#2a2a35,color:#66667a;
+    </pre>
+  </div>
+  <p>Four intent clusters carry every user job; the Platform cluster (Auth, Settings) closes no jtbd job and is kept only as a platform and compliance necessity. The lines show the primary path between clusters, not the flow: the full routes, with states and dead-ends, are on the Flows page.</p>
+</section>
+
+<hr class="divider">
+
+<section id="navigation">
+  <div class="section-header"><span class="section-num">02</span><h2>Navigation model</h2></div>
+  <p>Global navigation is the primary persona's shortest path to the main job, not a menu copied from anyone. Three entries, one per top-level cluster, plus a low-prominence account corner.</p>
+
+  <div class="nav-card"><span class="nav-card-title">Synthesis</span><span class="nav-card-job">Main, J2, J3</span><div class="nav-card-note">The default landing and home (to B1). Why the PM opens Sift: the ranked picture of what customers need most. Synthesis-first, per behavioral pattern B1.</div></div>
+  <div class="nav-card"><span class="nav-card-title">Sources</span><span class="nav-card-job">J2</span><div class="nav-card-note">Manage and add signal inputs (to A1). Setup-heavy during activation, occasional afterward.</div></div>
+  <div class="nav-card"><span class="nav-card-title">Briefs</span><span class="nav-card-job">S1, J1, J4</span><div class="nav-card-note">The shareable artifacts (to the brief list and D1). Package the call, defend it, align the team.</div></div>
+  <div class="nav-card" style="opacity:0.7"><span class="nav-card-title">Account / Settings</span><span class="nav-card-job" style="color:var(--text-3)">Platform</span><div class="nav-card-note">In a corner, not a primary tab. Plan and limits, the PII-scrub default, sign out. No user job (ORPHAN), kept for the platform.</div></div>
+
+  <h3>Depth to the main job</h3>
+  <div class="depth-stat">
+    <span class="depth-pill">Main-job view: tap 0 (home)</span>
+    <span class="depth-pill">Trace to raw evidence: 2 taps</span>
+    <span class="depth-pill">Capture the call: 1 tap</span>
+  </div>
+  <p>The first screen after auth is the Synthesis view, which is itself the main-job surface, so the ranked, trustable picture is at tap 0. The deepest necessary path (B1 to B2 to C1, the raw source) is 2 taps, within the 3-tap budget. No restructure needed.</p>
+
+  <h3>Global, contextual, deep</h3>
+  <div class="split-grid">
+    <div class="split-col"><h4>Global</h4><p>The three entries (Synthesis, Sources, Briefs) and the account corner. Always visible.</p></div>
+    <div class="split-col"><h4>Contextual</h4><p>Theme detail, Evidence source (the drill-down chain), Connect / import, and Build brief. Appear inside a flow.</p></div>
+    <div class="split-col"><h4>Deep</h4><p>Settings / Workspace, Auth, source disconnect, brief manage. Rare. The public Shared brief sits outside the app nav (no login).</p></div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="matrix">
+  <div class="section-header"><span class="section-num">03</span><h2>Trace matrix</h2></div>
+  <p>Rows are every job from jtbd.md (the two hypothesis jobs are excluded). Columns are every screen. A check means the screen really participates in closing that job. Empty rows and columns are highlighted, so a defect is visible rather than hidden.</p>
+  <div class="table-wrap">
+    <table class="matrix">
+      <thead>
+        <tr>
+          <th scope="col" style="text-align:left">Job</th>
+          <th scope="col">A1</th>
+          <th scope="col">A2</th>
+          <th scope="col">B1</th>
+          <th scope="col">B2</th>
+          <th scope="col">C1</th>
+          <th scope="col">D1</th>
+          <th scope="col">D2</th>
+          <th scope="col" class="orphan-col">P1</th>
+          <th scope="col" class="orphan-col">P2</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">Main - defensible synthesis</th><td></td><td></td><td class="chk">X</td><td class="chk">X</td><td class="chk">X</td><td class="chk">X</td><td></td><td class="orphan-col"></td><td class="orphan-col"></td></tr>
+        <tr><th scope="row">J1 - stakeholder defense</th><td></td><td></td><td></td><td class="chk">X</td><td class="chk">X</td><td></td><td class="chk">X</td><td class="orphan-col"></td><td class="orphan-col"></td></tr>
+        <tr><th scope="row">J2 - make sense of the pile</th><td class="chk">X</td><td class="chk">X</td><td class="chk">X</td><td></td><td></td><td></td><td></td><td class="orphan-col"></td><td class="orphan-col"></td></tr>
+        <tr><th scope="row">J3 - know how much to trust</th><td></td><td></td><td class="chk">X</td><td class="chk">X</td><td class="chk">X</td><td></td><td></td><td class="orphan-col"></td><td class="orphan-col"></td></tr>
+        <tr><th scope="row">J4 - get the team to the same why</th><td></td><td></td><td></td><td></td><td></td><td class="chk">X</td><td class="chk">X</td><td class="orphan-col"></td><td class="orphan-col"></td></tr>
+        <tr class="orphan-row"><th scope="row">J5 - close the signal loop (deferred, D1)</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="orphan-col"></td><td class="orphan-col"></td></tr>
+        <tr><th scope="row">E1 - feel I actually understood it</th><td></td><td></td><td class="chk">X</td><td class="chk">X</td><td class="chk">X</td><td></td><td></td><td class="orphan-col"></td><td class="orphan-col"></td></tr>
+        <tr><th scope="row">E2 - feel certain when questioned</th><td></td><td></td><td></td><td class="chk">X</td><td class="chk">X</td><td></td><td class="chk">X</td><td class="orphan-col"></td><td class="orphan-col"></td></tr>
+        <tr><th scope="row">S1 - stakeholders can engage with it</th><td></td><td></td><td></td><td></td><td></td><td class="chk">X</td><td class="chk">X</td><td class="orphan-col"></td><td class="orphan-col"></td></tr>
+        <tr class="orphan-row"><th scope="row">S2 - shared evidence standard (deferred, fast-follow)</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="orphan-col"></td><td class="orphan-col"></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="matrix-legend">Highlighted<span class="swatch"></span>orphan rows (J5, S2) and columns (P1, P2). The two empty columns are the platform screens (no user job, kept for platform and compliance). The two empty rows are deferred jobs (Segment C by D1; Persona B team standard is fast-follow). Restricted to the MVP surface (A1 to D2, jobs Main and J1 to J4, E1, E2, S1), no row or column is empty.</p>
+</section>
+
+<footer>
+  <span>Sift - Information Architecture, Basic Layer. Source: ia/docs/sitemap.md</span>
+  <span><a href="flows.html">Flows</a> &nbsp; <a href="../index.html">Home</a></span>
+</footer>
+
+</div>
+
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'dark',
+    themeVariables: { fontFamily: '-apple-system, BlinkMacSystemFont, Inter, system-ui, sans-serif', fontSize: '13px', lineColor: '#5a5a6a' },
+    flowchart: { curve: 'basis', useMaxWidth: true, nodeSpacing: 40, rankSpacing: 50 }
+  });
+</script>
+
+<script>
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const sidebarLinks = document.querySelectorAll('.sidebar-section-links a');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navLinks.forEach(link => { link.style.color = ''; if (link.getAttribute('href') === '#' + id) link.style.color = 'var(--text)'; });
+        sidebarLinks.forEach(link => {
+          if (link.classList.contains('sidebar-current')) return;
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + id) link.classList.add('active');
+        });
+      }
+    });
+  }, { threshold: 0, rootMargin: '-15% 0px -75% 0px' });
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>

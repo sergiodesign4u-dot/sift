@@ -179,3 +179,39 @@ Deepest necessary path for the main job is 2 taps (to raw source). Within the 3-
 
 *Consistent with Design Principle 4 (one decision at a time): Synthesis is the single focal surface, Sources and Briefs are the before and after, and nothing competes with the ranked picture for attention on landing.*
 
+---
+
+## 4. Trace matrix
+
+*Rows: every job from jtbd.md (main, related J1 to J5, emotional E1 to E2, social S1 to S2). The two hypothesis jobs H-J1 and H-J2 are excluded, per the jtbd.md rule not to use unconfirmed jobs in the matrix. Columns: every screen from the concept-sitemap. A check means the screen really participates in closing that job. An empty row or column is a defect to resolve, not a silent gap.*
+
+| Job | A1 Sources | A2 Connect | B1 Synthesis | B2 Theme | C1 Evidence | D1 Build brief | D2 Shared brief | P1 Auth | P2 Settings |
+|---|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+| **Main** - defensible synthesis for planning | | | X | X | X | X | | | |
+| **J1** - stakeholder defense | | | | X | X | | X | | |
+| **J2** - make sense of the incoming pile | X | X | X | | | | | | |
+| **J3** - know how much to trust | | | X | X | X | | | | |
+| **J4** - get the team to the same why | | | | | | X | X | | |
+| **J5** - close the signal loop (deferred, D1) | | | | | | | | | |
+| **E1** - feel I actually understood it | | | X | X | X | | | | |
+| **E2** - feel certain when questioned | | | | X | X | | X | | |
+| **S1** - stakeholders can engage with it | | | | | | X | X | | |
+| **S2** - shared evidence standard (deferred, fast-follow) | | | | | | | | | |
+
+### Orphan screens (columns with no check)
+
+- **P1 - Auth** and **P2 - Settings / Workspace.** Both were already flagged [ORPHAN] in the concept-sitemap: they close no jtbd job. **Resolution: keep, do not delete.** They are platform and compliance necessities (Auth to enter the app; Settings to hold the plan and the PII-scrub default that GDPR requires day-one), not user jobs. They are attached to a platform requirement rather than a job, and kept minimal and low-prominence. No user-facing screen is an orphan.
+
+### Orphan jobs (rows with no check)
+
+- **J5 - close the signal loop (Segment C).** **Resolution: out of MVP, deferred by D1.** Not a hole: the Segment C closure loop is a PM retention dependency, and its future surface is the Segment A evidence chain (B and C) we are building now. It enters as a thin layer in the fast-follow, not as a missing MVP screen.
+- **S2 - shared evidence standard (Persona B).** **Resolution: out of MVP, fast-follow.** The team standard needs a team workspace (E7 note: the MVP Workspace is single-PM under D1). Served indirectly once a team adopts the same brief format (D2), but no MVP screen closes the team-standard job itself. Deliberate scope, consistent with the concept-sitemap deferred-jobs note.
+
+### Concept-sitemap versus flows reconciliation
+
+The flows (Step 4) introduced no screen that is absent from the concept-sitemap: every flow node is one of A1, A2, B1, B2, C1, D1, D2, or a state / real-world touchpoint. So the concept-sitemap needs no addition from the flows, and section 2 stands unchanged.
+
+### Result
+
+No accidental orphans. The two empty columns (P1, P2) are known platform screens, kept for platform and compliance reasons. The two empty rows (J5, S2) are known deferred jobs (Segment C and Persona B), out of the MVP by D1 and the fast-follow line. Restricting the matrix to the MVP surface (screens A1 to D2, jobs Main and J1 to J4, E1, E2, S1) leaves no empty row and no empty column: every MVP screen closes at least one MVP job, and every MVP job reaches at least one screen.
+
