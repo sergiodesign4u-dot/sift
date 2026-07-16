@@ -383,6 +383,21 @@ Theme + Feedback-item quotes ──> Evidence brief (public share link)
 - **Deliberately deferred, not holes:** J5 (close the signal loop, Segment C, deferred by D1) and S2 (shared evidence standard, Persona B, fast-follow) get no MVP node; served indirectly by the Segment A evidence chain and by the shared brief. No global feedback search in MVP.
 - **Count:** 10 clusters, 39 nodes (4 global elements, 35 pages / states / dialogs / sections). The map grows discover-as-you-go; new nodes are registered here and in _nav.js.
 
+### Canonical components (Step 3 discovery, defined once and referenced)
+
+Discovery pass over the node map and the entity inventory (section 1). **Beyond the header (0.1) and footer (0.2), Sift has no standalone global structural node.** There is no catalog or taxonomy tree (the product has no catalog), no marketplace-scale facet system, and no world-scale value list (the closest, the source-type enum, is tiny). What Sift has is a small set of canonical components, each defined once with its owner page and referenced everywhere else, never re-specified per page:
+
+- **Confidence indicator** (n=X plus low-signal badge). The differentiator, D2 mandatory, the transparency condition H1 requires. Owner: 2.0 Synthesis view (Step 4). Referenced by 4.0, 4.1, 6.1, 6.4.
+- **Theme card** (label, volume n=X, recency, confidence indicator). Owner: 2.0 Synthesis view (Step 4). Referenced by 6.1 selection and 6.4 shared brief.
+- **Evidence item / feedback snippet** (verbatim excerpt, channel, date, citation). Owner: 4.0 Theme detail (Step 5). Referenced by 5.0 and 6.4.
+- **Filter / sort control** (by source, recency, confidence). A page-level control, not a facet system. Owner: 2.0 Synthesis view (Step 4). Reused on 3.0 Sources.
+- **Source-type enum** (CSV, Intercom; Zendesk and Gong later, same abstraction, D3). Owner: 3.1 Connect / import (Step 5). Referenced by 3.0.
+- **Modal / dialog shell** (shared UI pattern). The concrete dialogs are already nodes (3.1 connect, 3.6 manage, 6.3 share-link, 8.3 cookie consent), so there is no separate global node; the shared shell is a component-stage concern.
+
+Rule: change a canonical component in its owner page, then walk its reference list above. This is the single-canonical-component record the Step 7 audit checks.
+
+**Gate:** global and structural nodes are exhausted (only 0.1 header and 0.2 footer stand alone). Proceed to pages, starting with Home (Step 4).
+
 ---
 
 ## 3. Navigation
