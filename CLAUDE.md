@@ -73,6 +73,29 @@ When I receive feedback from multiple sources (support, sales, interviews, revie
 
 ---
 
+## Information Architecture (Basic Layer)
+
+*Derived from the jobs (user-research/docs/jtbd.md), not copied from a competitor menu. Full artifact: ia/docs/sitemap.md and ia/docs/flows.md. Deployed: ia/concept-map.html, ia/flows.html.*
+
+**Core entities (7):** Feedback item, Source / Integration, Theme (Confidence is its attribute, D2), Evidence citation, Prioritization, Evidence brief, Workspace. Deliberately absent from the MVP concept: manual tag, roadmap link, team object.
+
+**Concept-sitemap (screens grouped by intent, each traced to a job):**
+- **A - Bring the signal in:** A1 Sources, A2 Connect / import source. (Job J2.)
+- **B - See what customers are saying:** B1 Synthesis view (the home and main-job surface: ranked themes plus confidence), B2 Theme detail. (Jobs Main, J2, J3, E1.)
+- **C - Trace the evidence:** C1 Evidence source, one raw feedback item in context, the end of the theme to items (n=X) to raw-quote chain. Contextual, not a global destination. (Jobs Main, J1, J3, E1, E2.)
+- **D - Decide and defend:** D1 Build evidence brief, D2 Shared brief (public, no login to view). (Jobs Main, S1, J1, J4.)
+- **Platform [ORPHAN] vs jobs, kept for platform and compliance:** P1 Auth, P2 Settings / Workspace (holds plan limits and the PII-scrub default).
+
+**Global navigation (3 entries plus account):** Synthesis (to B1, the default landing), Sources (to A1), Briefs (to D1 and the brief list). Order reads input to output (Sources, Synthesis, Briefs) but the default landing is Synthesis, the value surface. Account / Settings sits in a corner menu, low-prominence. Three entries, not five, is a deliberate calm-under-density choice.
+
+**Main flow (primary job):** Synthesis view (B1) to Theme detail (B2) to Evidence source (C1), then Build brief (D1) to Shared brief (D2). First run with no sources: an empty state on Synthesis routes to Connect a source (A2).
+
+**Depth to the main job (primary persona, Alex):** the ranked, trustable picture is at tap 0 (Synthesis is home); the full trust chain to raw evidence is B1 to B2 to C1 = 2 taps; capturing the defensible call is B1 to D1 = 1 tap. Deepest necessary path is 2 taps, within the 3-tap budget.
+
+**Deferred, not holes (trace matrix):** J5 close-the-signal-loop (Segment C, deferred by D1) and S2 shared-evidence-standard (Persona B, fast-follow) have no MVP screen by design. Every other MVP job reaches a screen and every MVP screen closes a job; no user-facing screen is an orphan.
+
+---
+
 ## Business Model Hypothesis
 
 **Model:** Seat-based SaaS subscription with a free plan.
@@ -138,7 +161,8 @@ When I receive feedback from multiple sources (support, sales, interviews, revie
 | Phase | Scope | Estimated duration |
 |---|---|---|
 | Research | Competitive analysis, strategy, AARRR, benchmarks, UX patterns, live re-research, personas, JTBD matrix - **Done. Founder decisions D1-D3 locked.** | 1-2 weeks |
-| Wireframes (current) | Core flows: ingestion, synthesis view, evidence trace, prioritization | 2-3 weeks |
+| Information Architecture (current) | Basic layer: entities, concept-sitemap, navigation, user flows, trace matrix - **Basic Layer done, Detail Layer next.** | 2-3 weeks |
+| Wireframes | Core flows: ingestion, synthesis view, evidence trace, prioritization | 2-3 weeks |
 | Concept | Visual language, brand direction, high-fidelity mockups | 3-4 weeks |
 | Design system | Tokens, components, patterns | 2-3 weeks |
 | Components | Coded component library | 3-4 weeks |

@@ -9,6 +9,8 @@ B2B SaaS that turns scattered customer feedback into clear, prioritized product 
 - User Research - JTBD: [https://sergiodesign4u-dot.github.io/sift/user-research/jtbd.html](https://sergiodesign4u-dot.github.io/sift/user-research/jtbd.html)
 - User Research - CJM As-Is: [https://sergiodesign4u-dot.github.io/sift/user-research/cjm-as-is.html](https://sergiodesign4u-dot.github.io/sift/user-research/cjm-as-is.html)
 - User Research - CJM To-Be: [https://sergiodesign4u-dot.github.io/sift/user-research/cjm-to-be.html](https://sergiodesign4u-dot.github.io/sift/user-research/cjm-to-be.html)
+- Information Architecture - User Flows: [https://sergiodesign4u-dot.github.io/sift/ia/flows.html](https://sergiodesign4u-dot.github.io/sift/ia/flows.html)
+- Information Architecture - Concept Map: [https://sergiodesign4u-dot.github.io/sift/ia/concept-map.html](https://sergiodesign4u-dot.github.io/sift/ia/concept-map.html)
 
 ---
 
@@ -19,7 +21,7 @@ B2B SaaS that turns scattered customer feedback into clear, prioritized product 
 | Foundation Research | Done (competitors, benchmark, Lean UX Canvas, strategy, AARRR, UX patterns, master synthesis, live re-research, quality check, founder decisions D1-D3 locked) |
 | User Research (Personas + JTBD) | Done (three personas, JTBD hierarchy + matrix) |
 | CJM (As-Is + To-Be) | Done (As-Is journey from mined VOC with emotional curve, To-Be traced path, sharpened MVP backlog) |
-| Information Architecture (Basic + Detailed) | Not started |
+| Information Architecture | In progress (Basic Layer done: entities, concept-sitemap, navigation, user flows, trace matrix; Detail Layer next) |
 | Wireframes | Not started |
 | Voice | Not started |
 | Concept | Not started |
@@ -48,7 +50,10 @@ user-research/
   cjm-as-is.html     User Research: CJM As-Is, deployed page
   cjm-to-be.html     User Research: CJM To-Be, deployed page
   docs/              User Research markdown: personas, JTBD, CJM As-Is + To-Be
-ia/                  Information Architecture (skeleton)
+ia/
+  flows.html         IA: user flows (Mermaid), deployed page
+  concept-map.html   IA: concept-sitemap, navigation, and trace matrix, deployed page
+  docs/              IA markdown: sitemap (entities, concept-sitemap, navigation, trace matrix) + flows
 wireframes/          Core flow wireframes (skeleton)
 voice/               Voice and tone (skeleton)
 concept/             Visual language and high-fidelity mockups (skeleton)
@@ -86,3 +91,12 @@ Convention: each stage owns one folder holding both its deployed HTML page(s) an
 - [cjm-to-be.md](user-research/docs/cjm-to-be.md) - To-Be journey: each step traced to an As-Is barrier or job, the projected emotional curve, and the sharpened MVP backlog
 
 **Main CJM conclusion:** the deepest As-Is pain is Phase 6, defending the roadmap when a stakeholder's anecdote outweighs the PM's unciteable evidence ("evidence is nothing in the face of a hippo", sentiment -5, a strong pattern). To-Be inverts exactly that point (the largest lift, -5 to +4) with a live, traceable evidence chain (theme, to items, to verbatim quote) plus a shareable evidence brief.
+
+---
+
+## Information Architecture Documents (`ia/docs/`)
+
+- [sitemap.md](ia/docs/sitemap.md) - Basic Layer concept: 7 core entities traced to jobs, the concept-sitemap (screens grouped by intent, clusters A to D plus platform orphans), the navigation model with depth to the main job in taps, and the job trace matrix
+- [flows.md](ia/docs/flows.md) - Five user flows (Mermaid) for the primary and related jobs, each traced to a CJM To-Be phase, with decision points, empty / error / loading states, and color by outcome
+
+**Main IA conclusion:** the concept-sitemap is derived from the jobs, not a competitor menu. The main-job surface (Synthesis view) is home at tap 0; the full trust chain to raw evidence is 2 taps; capturing the defensible call is 1 tap. No user-facing screen is an orphan, and two jobs (J5 Segment C, S2 Persona B) are deliberately deferred, not accidental gaps.
