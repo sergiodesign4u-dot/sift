@@ -75,7 +75,7 @@ When I receive feedback from multiple sources (support, sales, interviews, revie
 
 ## Information Architecture
 
-*Two layers. Basic Layer (done): the concept-sitemap, user flows, navigation model, and trace matrix. Detail Layer (in progress): per-page architecture, every screen and component specified before wireframes so a wireframe renders a ready structure instead of inventing it. Derived from the jobs (user-research/docs/jtbd.md), not copied from a competitor menu.*
+*Two layers, both done. Basic Layer: the concept-sitemap, user flows, navigation model, and trace matrix. Detail Layer: per-page architecture, every screen and component specified before wireframes so a wireframe renders a ready structure instead of inventing it. Derived from the jobs (user-research/docs/jtbd.md), not copied from a competitor menu.*
 
 **Platform stance (Detail Layer, governs every IA node):**
 - **Mobile-first, fully responsive.** Desktop and mobile are both designed deliberately, but mobile is the priority. Block order and the first screen are reasoned from mobile (360px base).
@@ -86,18 +86,27 @@ When I receive feedback from multiple sources (support, sales, interviews, revie
 
 **Core entities (7):** Feedback item, Source / Integration, Theme (Confidence is its attribute, D2), Evidence citation, Prioritization, Evidence brief, Workspace. Deliberately absent from the MVP concept: manual tag, roadmap link, team object.
 
-**Concept-sitemap (screens grouped by intent, each traced to a job):**
-- **A - Bring the signal in:** A1 Sources, A2 Connect / import source. (Job J2.)
-- **B - See what customers are saying:** B1 Synthesis view (the home and main-job surface: ranked themes plus confidence), B2 Theme detail. (Jobs Main, J2, J3, E1.)
-- **C - Trace the evidence:** C1 Evidence source, one raw feedback item in context, the end of the theme to items (n=X) to raw-quote chain. Contextual, not a global destination. (Jobs Main, J1, J3, E1, E2.)
-- **D - Decide and defend:** D1 Build evidence brief, D2 Shared brief (public, no login to view). (Jobs Main, S1, J1, J4.)
-- **Platform [ORPHAN] vs jobs, kept for platform and compliance:** P1 Auth, P2 Settings / Workspace (holds plan limits and the PII-scrub default).
+**Detail Layer structure (10 clusters, 39 nodes; the A to D intent clusters expanded):**
+- **0 Home + shell:** 0.0 Home (marketing landing, indexed), 0.1 Navigation, 0.2 Footer.
+- **1 Auth** (was P1): sign up, log in, reset password.
+- **2 Synthesis** (was B1, the app home and tap-0 main-job surface): 2.0 plus empty / loading / error. Owns the canonical confidence indicator, theme card, and filter.
+- **3 Sources / ingestion** (was A1, A2): list, connect chooser, CSV and Intercom import, states. Owns the source-type enum.
+- **4 Theme detail** (was B2): theme with evidence items and citations, plus the low-signal variant. Owns the evidence snippet.
+- **5 Evidence source** (was C1): the raw verbatim in context, the end of the trust chain, plus redacted / unavailable.
+- **6 Decide and defend / Briefs** (was D1, D2): list, build, thin-theme warning, share-link, the public shared brief, empty.
+- **7 Account / settings** (was P2): plan and limits (the conversion surface), data and privacy (PII-scrub default, GDPR), profile.
+- **8 System and global:** 404, 500, maintenance, cookie consent (EU law), toasts.
+- **9 Content / legal:** privacy, terms, security and GDPR.
 
-**Global navigation (3 entries plus account):** Synthesis (to B1, the default landing), Sources (to A1), Briefs (to D1 and the brief list). Order reads input to output (Sources, Synthesis, Briefs) but the default landing is Synthesis, the value surface. Account / Settings sits in a corner menu, low-prominence. Three entries, not five, is a deliberate calm-under-density choice.
+**Indexation (SEO ahead, B2B tool):** only Home (0.0) and Legal (9.x) are indexed with a full A-E SEO block. The whole application is noindex; the public Shared brief (6.4) is public to view but noindex (customer data). No marketplace-style landing grid; no global feedback search in MVP.
 
-**Main flow (primary job):** Synthesis view (B1) to Theme detail (B2) to Evidence source (C1), then Build brief (D1) to Shared brief (D2). First run with no sources: an empty state on Synthesis routes to Connect a source (A2).
+**Global navigation (3 entries plus account):** Synthesis (2.0, the default landing and value surface), Sources (3.0), Briefs (6.0). Account / Settings sits in a corner menu, low-prominence. Three entries, not five, is a deliberate calm-under-density choice; on mobile they are the bottom tabs plus Account.
 
-**Depth to the main job (primary persona, Alex):** the ranked, trustable picture is at tap 0 (Synthesis is home); the full trust chain to raw evidence is B1 to B2 to C1 = 2 taps; capturing the defensible call is B1 to D1 = 1 tap. Deepest necessary path is 2 taps, within the 3-tap budget.
+**Main flow (primary job):** Synthesis view (2.0) to Theme detail (4.0) to Evidence source (5.0), then Build brief (6.1) to Shared brief (6.4). First run with no sources: an empty Synthesis routes to Connect a source (3.1).
+
+**Depth to the main job (primary persona, Alex):** the ranked, trustable picture is at tap 0 (Synthesis is home); the full trust chain to raw evidence is 2.0 to 4.0 to 5.0 = 2 taps; capturing the defensible call is 2.0 to 6.1 = 1 tap. Deepest necessary path is 2 taps, within the 3-tap budget.
+
+**Canonical components (defined once, referenced):** confidence indicator, theme card, filter (owner 2.0); evidence snippet (owner 4.0); source-type enum (owner 3.1).
 
 **Deferred, not holes (trace matrix):** J5 close-the-signal-loop (Segment C, deferred by D1) and S2 shared-evidence-standard (Persona B, fast-follow) have no MVP screen by design. Every other MVP job reaches a screen and every MVP screen closes a job; no user-facing screen is an orphan.
 
@@ -168,8 +177,8 @@ When I receive feedback from multiple sources (support, sales, interviews, revie
 | Phase | Scope | Estimated duration |
 |---|---|---|
 | Research | Competitive analysis, strategy, AARRR, benchmarks, UX patterns, live re-research, personas, JTBD matrix - **Done. Founder decisions D1-D3 locked.** | 1-2 weeks |
-| Information Architecture (current) | Basic layer: entities, concept-sitemap, navigation, user flows, trace matrix - **Basic Layer done, Detail Layer next.** | 2-3 weeks |
-| Wireframes | Core flows: ingestion, synthesis view, evidence trace, prioritization | 2-3 weeks |
+| Information Architecture | Basic layer (entities, concept-sitemap, navigation, user flows, trace matrix) plus Detail layer (per-page IA, 39 nodes across 10 clusters, SEO ahead, B/W wireframes) - **Done.** | 2-3 weeks |
+| Wireframes (current) | Core flows: ingestion, synthesis view, evidence trace, prioritization | 2-3 weeks |
 | Concept | Visual language, brand direction, high-fidelity mockups | 3-4 weeks |
 | Design system | Tokens, components, patterns | 2-3 weeks |
 | Components | Coded component library | 3-4 weeks |

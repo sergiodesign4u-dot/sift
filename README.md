@@ -11,6 +11,8 @@ B2B SaaS that turns scattered customer feedback into clear, prioritized product 
 - User Research - CJM To-Be: [https://sergiodesign4u-dot.github.io/sift/user-research/cjm-to-be.html](https://sergiodesign4u-dot.github.io/sift/user-research/cjm-to-be.html)
 - Information Architecture - User Flows: [https://sergiodesign4u-dot.github.io/sift/ia/flows.html](https://sergiodesign4u-dot.github.io/sift/ia/flows.html)
 - Information Architecture - Concept Map: [https://sergiodesign4u-dot.github.io/sift/ia/concept-map.html](https://sergiodesign4u-dot.github.io/sift/ia/concept-map.html)
+- Information Architecture - Site Map: [https://sergiodesign4u-dot.github.io/sift/ia/sitemap.html](https://sergiodesign4u-dot.github.io/sift/ia/sitemap.html)
+- Information Architecture - Structure (node hub): [https://sergiodesign4u-dot.github.io/sift/ia/structure.html](https://sergiodesign4u-dot.github.io/sift/ia/structure.html)
 
 ---
 
@@ -21,8 +23,8 @@ B2B SaaS that turns scattered customer feedback into clear, prioritized product 
 | Foundation Research | Done (competitors, benchmark, Lean UX Canvas, strategy, AARRR, UX patterns, master synthesis, live re-research, quality check, founder decisions D1-D3 locked) |
 | User Research (Personas + JTBD) | Done (three personas, JTBD hierarchy + matrix) |
 | CJM (As-Is + To-Be) | Done (As-Is journey from mined VOC with emotional curve, To-Be traced path, sharpened MVP backlog) |
-| Information Architecture | In progress (Basic Layer done: entities, concept-sitemap, navigation, user flows, trace matrix; Detail Layer next) |
-| Wireframes | Not started |
+| Information Architecture | Done (Basic Layer: entities, concept-sitemap, navigation, user flows, trace matrix. Detail Layer: per-page IA for all 39 nodes across 10 clusters, SEO ahead, black-and-white wireframes, a site-map tree and a node hub) |
+| Wireframes | Next |
 | Voice | Not started |
 | Concept | Not started |
 | UI + Visual | Not started |
@@ -51,9 +53,18 @@ user-research/
   cjm-to-be.html     User Research: CJM To-Be, deployed page
   docs/              User Research markdown: personas, JTBD, CJM As-Is + To-Be
 ia/
-  flows.html         IA: user flows (Mermaid), deployed page
-  concept-map.html   IA: concept-sitemap, navigation, and trace matrix, deployed page
-  docs/              IA markdown: sitemap (entities, concept-sitemap, navigation, trace matrix) + flows
+  flows.html         IA Basic Layer: user flows (Mermaid)
+  concept-map.html   IA Basic Layer: concept-sitemap, navigation, trace matrix
+  sitemap.html       IA Detail Layer: site-map tree (Mermaid) of the 10 clusters
+  structure.html     IA Detail Layer: node hub, a chip for every node
+  _nav.js            IA Detail Layer: single node registry feeding the hub chips
+  navigation.html footer.html home.html synthesis.html sources.html
+  theme.html evidence.html briefs.html auth.html account.html
+  system.html legal.html   IA Detail Layer: one black-and-white wireframe per node
+  docs/
+    sitemap.md       IA source: entities, the detailed node map (39 nodes), navigation, trace matrix
+    flows.md         IA source: five user flows
+    pages/           IA Detail Layer: one markdown source per node + the page template
 wireframes/          Core flow wireframes (skeleton)
 voice/               Voice and tone (skeleton)
 concept/             Visual language and high-fidelity mockups (skeleton)
@@ -96,7 +107,8 @@ Convention: each stage owns one folder holding both its deployed HTML page(s) an
 
 ## Information Architecture Documents (`ia/docs/`)
 
-- [sitemap.md](ia/docs/sitemap.md) - Basic Layer concept: 7 core entities traced to jobs, the concept-sitemap (screens grouped by intent, clusters A to D plus platform orphans), the navigation model with depth to the main job in taps, and the job trace matrix
+- [sitemap.md](ia/docs/sitemap.md) - The IA data source: 7 core entities traced to jobs, the detailed node map (10 clusters, 39 nodes `X.Y` with type, group, index, includes, transitions), the navigation model with depth to the main job in taps, and the job trace matrix. The node map is the data behind sitemap.html (tree) and structure.html (hub).
 - [flows.md](ia/docs/flows.md) - Five user flows (Mermaid) for the primary and related jobs, each traced to a CJM To-Be phase, with decision points, empty / error / loading states, and color by outcome
+- [pages/](ia/docs/pages/) - Detail Layer: one markdown source per node (navigation, footer, home, synthesis, sources, theme, evidence, briefs, auth, account, system, legal) plus the per-page template. Each has a black-and-white wireframe under `ia/`.
 
-**Main IA conclusion:** the concept-sitemap is derived from the jobs, not a competitor menu. The main-job surface (Synthesis view) is home at tap 0; the full trust chain to raw evidence is 2 taps; capturing the defensible call is 1 tap. No user-facing screen is an orphan, and two jobs (J5 Segment C, S2 Persona B) are deliberately deferred, not accidental gaps.
+**Main IA conclusion:** the structure is derived from the jobs, not a competitor menu. The main-job surface (Synthesis view) is home at tap 0; the full trust chain to raw evidence is 2 taps; capturing the defensible call is 1 tap. No user-facing screen is an orphan. SEO ahead: only Home and Legal are indexed (full A-E block); the whole app is noindex, and the public Shared brief is public to view but noindex (customer data).
