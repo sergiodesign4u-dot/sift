@@ -18,7 +18,8 @@
 const IA_NODES = [
   // Nodes are appended here as each one is built (Steps 2 to 6).
   { key: '0.1', label: 'Navigation', type: 'global element', group: 'global', file: 'navigation.html' },
-  { key: '0.2', label: 'Footer', type: 'global element', group: 'global', file: 'footer.html' }
+  { key: '0.2', label: 'Footer', type: 'global element', group: 'global', file: 'footer.html' },
+  { key: '0.0', label: 'Home (marketing landing)', type: 'page', group: 'pages', file: 'home.html' }
 ];
 
 (function renderStructureHub() {

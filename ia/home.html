@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sift - IA Node 0.0 Home</title>
+<style>
+  :root {
+    --bg: #0c0c0e;
+    --bg-2: #111115;
+    --bg-3: #17171c;
+    --bg-4: #1e1e25;
+    --border: #2a2a35;
+    --border-light: #1e1e28;
+    --text: #e8e8ec;
+    --text-2: #a0a0b0;
+    --text-3: #66667a;
+    --accent: #7c6af7;
+    --accent-dim: #3a3470;
+    --accent-glow: rgba(124,106,247,0.12);
+    --green: #3ecf8e;
+    --green-dim: rgba(62,207,142,0.12);
+    --radius: 8px;
+    --radius-lg: 12px;
+    --w-bg: #0e0e11;
+    --w-bar: #141418;
+    --w-line: #262630;
+    --w-ink: #cfcfd6;
+    --w-ink-2: #9a9aa6;
+    --w-fill: #2a2a33;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", system-ui, sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.65; font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  nav.top {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(12,12,14,0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-light);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 40px; height: 52px;
+  }
+  .nav-brand { font-size: 14px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text); text-decoration: none; }
+  .nav-brand span { color: var(--accent); }
+  .nav-links { display: flex; gap: 6px; list-style: none; }
+  .nav-links a { color: var(--text-3); text-decoration: none; font-size: 12px; font-weight: 500; letter-spacing: 0.03em; padding: 5px 10px; border-radius: 5px; transition: color 0.15s, background 0.15s; }
+  .nav-links a:hover { color: var(--text); background: var(--bg-3); }
+
+  .page { max-width: 1040px; margin: 0 auto; padding: 100px 40px 120px; }
+  section { padding-top: 70px; }
+
+  .section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+  .node-tag { display: inline-flex; gap: 8px; align-items: center; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; flex-wrap: wrap; }
+  .node-tag b { color: var(--accent); }
+  .node-tag .t { background: var(--bg-3); border: 1px solid var(--border-light); border-radius: 3px; padding: 2px 6px; color: var(--text-2); }
+  .node-tag .idx { color: var(--green); border-color: rgba(62,207,142,0.3); background: var(--green-dim); }
+  h1 { font-size: 40px; font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; color: var(--text); margin-bottom: 18px; }
+  h2 { font-size: 24px; font-weight: 650; letter-spacing: -0.015em; color: var(--text); margin-bottom: 8px; }
+  h3 { font-size: 14px; font-weight: 600; color: var(--text); margin: 22px 0 8px; }
+  p { color: var(--text-2); margin-bottom: 14px; }
+  p:last-child { margin-bottom: 0; }
+  .lead { font-size: 17px; line-height: 1.7; color: var(--text-2); max-width: 720px; }
+  .divider { border: none; border-top: 1px solid var(--border-light); margin: 54px 0; }
+
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--border-light); }
+  .section-num { font-size: 13px; font-weight: 700; color: var(--text-3); white-space: nowrap; }
+  .caption { font-size: 13px; color: var(--text-3); font-style: italic; margin: 6px 0 16px; }
+
+  ul.notes { margin: 0 0 14px 18px; color: var(--text-2); font-size: 14px; }
+  ul.notes li { margin-bottom: 6px; }
+  ul.notes code, p code, td code { font-size: 12px; color: var(--text); background: var(--bg-3); padding: 1px 5px; border-radius: 3px; }
+
+  .table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius-lg); margin: 16px 0; }
+  table.grid { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.grid th, table.grid td { padding: 10px 12px; border-bottom: 1px solid var(--border-light); text-align: left; vertical-align: top; }
+  table.grid thead th { background: var(--bg-3); color: var(--text-3); font-weight: 600; font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; white-space: nowrap; border-bottom: 1px solid var(--border); }
+  table.grid th[scope="row"] { color: var(--text-2); font-weight: 600; white-space: nowrap; }
+  table.grid tr:last-child td, table.grid tr:last-child th { border-bottom: none; }
+
+  .seo-block { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+  .seo-card { background: var(--bg-2); border: 1px solid var(--border-light); border-radius: var(--radius); padding: 14px 16px; }
+  .seo-card h4 { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+  .seo-card p, .seo-card li { font-size: 12.5px; color: var(--text-2); line-height: 1.5; }
+  .seo-card ul { margin: 0 0 0 16px; }
+  .seo-card .val { color: var(--text); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11.5px; word-break: break-word; }
+  .seo-span { grid-column: 1 / -1; }
+
+  .callout { background: var(--bg-2); border: 1px solid var(--border-light); border-left: 2px solid var(--accent-dim); border-radius: var(--radius); padding: 12px 16px; font-size: 13px; color: var(--text-2); margin: 14px 0; }
+
+  /* WIREFRAME (black and white) */
+  .wire-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); margin: 22px 0 8px; }
+  .wsite { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--w-bg); margin-bottom: 12px; }
+  .wurl { font-size: 11px; color: var(--text-3); padding: 8px 14px; border-bottom: 1px solid var(--border-light); background: var(--bg-2); }
+  .wbar { display: flex; align-items: center; gap: 10px; padding: 12px 18px; background: var(--w-bar); border-bottom: 1px solid var(--w-line); }
+  .wbrand { font-weight: 700; letter-spacing: 0.06em; color: var(--w-ink); font-size: 13px; }
+  .wlink { font-size: 12px; color: var(--w-ink-2); padding: 6px 6px; }
+  .wbtn { font-size: 12px; color: var(--w-bg); background: var(--w-ink); border-radius: 5px; padding: 8px 14px; font-weight: 650; }
+  .wbtn-ghost { font-size: 12px; color: var(--w-ink); border: 1px solid #3a3a45; border-radius: 5px; padding: 8px 14px; }
+  .wspacer { flex: 1; }
+  .wblk { padding: 26px 22px; border-bottom: 1px solid var(--w-line); }
+  .wtag { font-size: 10px; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+  .whero { display: flex; gap: 26px; align-items: center; }
+  .whero-copy { flex: 1.2; }
+  .whero-vis { flex: 1; align-self: stretch; min-height: 168px; border: 1px dashed #3a3a45; border-radius: 8px; background: #121216; display: flex; align-items: center; justify-content: center; color: var(--text-3); font-size: 11px; text-align: center; padding: 12px; }
+  .wh1 { font-size: 26px; font-weight: 800; color: #f0f0f4; line-height: 1.18; letter-spacing: -0.01em; }
+  .wsub { font-size: 13px; color: var(--w-ink-2); margin-top: 12px; max-width: 480px; }
+  .wcta-row { display: flex; gap: 10px; margin-top: 18px; align-items: center; flex-wrap: wrap; }
+  .wstrip { display: flex; gap: 8px; flex-wrap: wrap; }
+  .wstrip span { font-size: 11px; color: var(--w-ink-2); border: 1px solid #2f2f39; border-radius: 20px; padding: 5px 11px; }
+  .wh2 { font-size: 17px; font-weight: 700; color: #e0e0e6; margin-bottom: 8px; }
+  .wtext { font-size: 12.5px; color: var(--w-ink-2); max-width: 620px; }
+  .w3up { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 16px; }
+  .wstep { border: 1px solid var(--w-line); border-radius: 8px; padding: 14px; }
+  .wstep-n { font-size: 11px; font-weight: 700; color: var(--w-ink); }
+  .wstep-t { font-size: 13px; color: #dcdce2; margin: 6px 0 4px; font-weight: 600; }
+  .wstep-d { font-size: 11px; color: var(--w-ink-2); line-height: 1.5; }
+  .wchain { display: flex; align-items: stretch; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
+  .wchain-card { border: 1px solid var(--w-line); border-radius: 8px; padding: 12px; flex: 1; min-width: 150px; }
+  .wchain-h { font-size: 12px; color: #dcdce2; font-weight: 600; }
+  .wchain-d { font-size: 11px; color: var(--w-ink-2); margin-top: 4px; line-height: 1.5; }
+  .wchain-arrow { align-self: center; color: var(--text-3); font-size: 20px; }
+  .wconf { display: inline-flex; gap: 6px; align-items: center; font-size: 10px; color: var(--w-ink); border: 1px solid #3a3a45; border-radius: 20px; padding: 3px 9px; margin-top: 8px; }
+  .wbadge-low { font-size: 9px; color: var(--w-ink-2); border: 1px solid #3a3a45; border-radius: 3px; padding: 1px 5px; }
+  .wplans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px; }
+  .wplan { border: 1px solid var(--w-line); border-radius: 8px; padding: 14px; }
+  .wplan-h { font-size: 13px; font-weight: 700; color: #dcdce2; }
+  .wplan-p { font-size: 11px; color: var(--w-ink-2); margin-top: 6px; line-height: 1.5; }
+  .wcenter { text-align: center; }
+  .wfoot-mini { padding: 16px 18px; font-size: 11px; color: var(--w-ink-2); display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .wpersonal { background: #141418; border: 1px solid var(--w-line); border-radius: 8px; padding: 12px 14px; display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+  .wpersonal .wtext { margin: 0; }
+
+  .phone { width: 300px; border: 1px solid var(--border); border-radius: 18px; overflow: hidden; background: var(--w-bg); }
+  .phone-cap { font-size: 11px; color: var(--text-3); padding: 6px 12px; border-bottom: 1px solid var(--border-light); background: var(--bg-2); text-align: center; }
+  .phone .wblk { padding: 18px 14px; }
+  .phone .wh1 { font-size: 20px; }
+  .phone .w3up, .phone .wplans { grid-template-columns: 1fr; }
+  .phone .whero { flex-direction: column; align-items: stretch; }
+  .phone .wcta-row .wbtn, .phone .wcta-row .wbtn-ghost { flex: 1; text-align: center; }
+
+  footer.pagefoot { border-top: 1px solid var(--border-light); margin-top: 90px; padding-top: 40px; padding-bottom: 60px; color: var(--text-3); font-size: 12px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  footer.pagefoot a { color: var(--text-2); text-decoration: none; }
+  footer.pagefoot a:hover { color: var(--text); }
+
+  @media (max-width: 768px) {
+    nav.top { padding: 0 20px; }
+    .nav-links { display: none; }
+    .page { padding: 80px 20px 80px; }
+    h1 { font-size: 27px; }
+    .seo-block { grid-template-columns: 1fr; }
+    .whero { flex-direction: column; align-items: stretch; }
+    .w3up, .wplans { grid-template-columns: 1fr; }
+  }
+
+  /* SIDEBAR */
+  .sidebar { display: none; }
+  @media (min-width: 1100px) {
+    .sidebar { display: flex; flex-direction: column; gap: 2px; position: fixed; top: 52px; left: 0; width: 220px; height: calc(100vh - 52px); overflow-y: auto; padding: 24px 12px 32px; border-right: 1px solid var(--border-light); background: var(--bg); z-index: 90; }
+    .page { margin: 0; margin-left: 220px; max-width: 1040px; padding: 100px 40px 120px; }
+  }
+  .sidebar-phase-label { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-3); padding: 5px 8px; border-radius: 5px; display: block; cursor: default; text-decoration: none; }
+  .sidebar-phase-label:hover { color: var(--text); background: var(--bg-3); cursor: pointer; }
+  a.sidebar-phase-label { cursor: pointer; }
+  .sidebar-phase.active .sidebar-phase-label { color: var(--accent); background: var(--accent-glow); }
+  .sidebar-section-links { list-style: none; margin: 4px 0 8px 0; padding: 0; }
+  .sidebar-section-links a { display: block; font-size: 12px; color: var(--text-3); text-decoration: none; padding: 4px 8px 4px 16px; border-radius: 4px; border-left: 2px solid transparent; transition: color 0.15s, border-color 0.15s, background 0.15s; line-height: 1.5; }
+  .sidebar-section-links a:hover { color: var(--text); background: var(--bg-3); }
+  .sidebar-section-links a.sidebar-current { color: var(--text); border-left-color: var(--accent); background: var(--bg-3); font-weight: 600; }
+  .sidebar-group-label { list-style: none; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); padding: 8px 8px 4px; display: flex; align-items: center; gap: 8px; }
+  .sidebar-divider { border: none; border-top: 1px solid var(--border-light); margin: 8px 0; }
+  .sidebar-coming-soon { display: flex; align-items: center; justify-content: space-between; padding: 5px 8px; border-radius: 5px; cursor: default; opacity: 0.5; }
+  .sidebar-cs-label { font-size: 12px; font-weight: 500; color: var(--text-3); letter-spacing: 0.02em; }
+  .sidebar-cs-badge { font-size: 9px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-3); background: var(--bg-3); border: 1px solid var(--border-light); padding: 2px 5px; border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <a class="nav-brand" href="../index.html"><span>S</span>ift</a>
+  <ul class="nav-links">
+    <li><a href="#spec">Spec</a></li>
+    <li><a href="#mockups">Mockups</a></li>
+    <li><a href="#seo">SEO A-E</a></li>
+    <li><a href="structure.html#0.0">Structure</a></li>
+  </ul>
+</nav>
+
+<aside class="sidebar">
+  <div class="sidebar-phase">
+    <a class="sidebar-phase-label" href="../research/research.html">Foundation Research</a>
+  </div>
+  <div class="sidebar-phase">
+    <a class="sidebar-phase-label" href="../user-research/personas.html">User Research</a>
+  </div>
+  <div class="sidebar-phase active">
+    <span class="sidebar-phase-label">Information Architecture</span>
+    <ul class="sidebar-section-links">
+      <li class="sidebar-group-label">Basic Layer</li>
+      <li><a href="flows.html">Flows</a></li>
+      <li><a href="concept-map.html">Concept Map</a></li>
+      <li class="sidebar-group-label" style="margin-top:6px">Detail Layer</li>
+      <li><a href="sitemap.html">Site map</a></li>
+      <li><a href="structure.html#0.0" class="sidebar-current">Structure</a></li>
+    </ul>
+  </div>
+  <hr class="sidebar-divider">
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Wireframes</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Voice</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Concept</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">UI + Visual</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Tokens + Components</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Design System</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Responsive</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Animation</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Handoff</span><span class="sidebar-cs-badge">Soon</span></div>
+</aside>
+
+<div class="page">
+
+<section id="intro" style="padding-top:0">
+  <div class="section-label">Information Architecture - Detail Layer - July 2026</div>
+  <div class="node-tag"><b>Node 0.0</b> <span class="t">page</span> <span class="t">group: pages</span> <span class="t idx">indexed</span></div>
+  <h1>Home (marketing landing)</h1>
+  <p class="lead">The exemplar page: it sets the bar every other page follows. The public front door, indexed, that turns a visitor into a trial and returns a logged-in PM to the main job in one clear step. Source: ia/docs/pages/home.md, following the per-page template.</p>
+</section>
+
+<hr class="divider">
+
+<section id="spec">
+  <div class="section-header"><span class="section-num">01</span><h2>Blocks, components, states</h2></div>
+  <p>Block order is reasoned from the 360px mobile view first, then promoted to desktop.</p>
+  <div class="table-wrap">
+    <table class="grid">
+      <thead><tr><th scope="col">#</th><th scope="col">Block</th><th scope="col">Purpose</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">1</th><td>Hero + personal strip</td><td>H1 value, primary CTA; state-dependent next step</td></tr>
+        <tr><th scope="row">2</th><td>Trust strip</td><td>GDPR, EU residency, PII scrubbed, SOC 2 (planned)</td></tr>
+        <tr><th scope="row">3</th><td>The problem</td><td>Scattered feedback, the roadmap pays for it</td></tr>
+        <tr><th scope="row">4</th><td>How it works (3 steps)</td><td>Connect, synthesize with confidence, trace</td></tr>
+        <tr><th scope="row">5</th><td>The differentiator</td><td>Theme to items (n=X) to verbatim quote</td></tr>
+        <tr><th scope="row">6</th><td>Shareable brief teaser</td><td>Public link, no login, the referral artifact</td></tr>
+        <tr><th scope="row">7</th><td>Pricing teaser</td><td>Free plus paid, the conversion nudge</td></tr>
+        <tr><th scope="row">8</th><td>Final CTA</td><td>Start free, restated</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <h3>Components (referenced, not re-specified)</h3>
+  <ul class="notes">
+    <li><b>Navigation</b> (<code>0.1</code>), guest and logged-in variants. <b>Footer</b> (<code>0.2</code>), marketing context.</li>
+    <li><b>Confidence indicator</b> and <b>Theme card</b> (canonical, owned by <code>2.0</code>) appear as a static demo in block 5.</li>
+  </ul>
+  <h3>States and CTA</h3>
+  <ul class="notes">
+    <li><b>Guest</b> (default): primary CTA Start free (to <code>1.0</code>), secondary Log in (to <code>1.1</code>).</li>
+    <li><b>Logged-in:</b> personal strip greets the PM and swaps the hero CTA to Go to Synthesis (to <code>2.0</code>).</li>
+  </ul>
+</section>
+
+<hr class="divider">
+
+<section id="mockups">
+  <div class="section-header"><span class="section-num">02</span><h2>Mockups</h2></div>
+  <p class="caption">Wireframe level, black and white. H1 and H2 carry the ready copy from the SEO block, so the wireframe stage renders them verbatim. Color, brand, imagery arrive at the concept stage (06).</p>
+
+  <div class="wire-label">Desktop - guest landing (full scroll)</div>
+  <div class="wsite">
+    <div class="wurl">https://sift.app/</div>
+    <div class="wbar">
+      <span class="wbrand">SIFT</span>
+      <span class="wspacer"></span>
+      <span class="wlink">Product</span>
+      <span class="wlink">Pricing</span>
+      <span class="wlink">Security</span>
+      <span class="wbtn-ghost">Log in</span>
+      <span class="wbtn">Start free</span>
+    </div>
+
+    <div class="wblk">
+      <div class="wtag">1 - Hero (H1)</div>
+      <div class="whero">
+        <div class="whero-copy">
+          <div class="wh1">Turn scattered customer feedback into decisions you can defend.</div>
+          <div class="wsub">Sift reads your support tickets, sales calls, reviews, and interviews, and gives you a ranked, evidence-backed picture of what customers need most, with every claim traceable to the quote behind it.</div>
+          <div class="wcta-row">
+            <span class="wbtn">Start free</span>
+            <span class="wbtn-ghost">Log in</span>
+          </div>
+        </div>
+        <div class="whero-vis">product preview<br>(Synthesis view, static)</div>
+      </div>
+    </div>
+
+    <div class="wblk">
+      <div class="wtag">2 - Trust strip</div>
+      <div class="wstrip">
+        <span>GDPR-ready</span><span>EU data residency</span><span>PII scrubbed by default</span><span>SOC 2 Type II (planned)</span>
+      </div>
+    </div>
+
+    <div class="wblk">
+      <div class="wtag">3 - Problem (H2)</div>
+      <div class="wh2">Your signal is scattered. Your roadmap pays for it.</div>
+      <div class="wtext">Feedback lives in Intercom, CSV exports, call recordings, and app-store reviews. Reading and tagging it by hand takes hours, and the roadmap still comes down to whoever spoke loudest in the room.</div>
+    </div>
+
+    <div class="wblk">
+      <div class="wtag">4 - How it works (H2)</div>
+      <div class="wh2">How Sift works</div>
+      <div class="w3up">
+        <div class="wstep"><div class="wstep-n">01</div><div class="wstep-t">Connect a source</div><div class="wstep-d">CSV or Intercom. PII scrubbed by default.</div></div>
+        <div class="wstep"><div class="wstep-n">02</div><div class="wstep-t">See themes with confidence</div><div class="wstep-d">Ranked themes, each with an evidence count and a low-signal badge.</div></div>
+        <div class="wstep"><div class="wstep-n">03</div><div class="wstep-t">Trace every claim</div><div class="wstep-d">Open a theme, read the exact customer quotes behind it.</div></div>
+      </div>
+    </div>
+
+    <div class="wblk">
+      <div class="wtag">5 - Differentiator (H2) - canonical confidence indicator + theme card demo</div>
+      <div class="wh2">Every theme traces to the quote behind it</div>
+      <div class="wchain">
+        <div class="wchain-card">
+          <div class="wchain-h">Theme: Onboarding is confusing</div>
+          <div class="wchain-d">Volume and recency at a glance.</div>
+          <span class="wconf">n=42 <span class="wbadge-low">strong</span></span>
+        </div>
+        <div class="wchain-arrow">-&gt;</div>
+        <div class="wchain-card">
+          <div class="wchain-h">Evidence items (n=42)</div>
+          <div class="wchain-d">Snippets with inline citations.</div>
+        </div>
+        <div class="wchain-arrow">-&gt;</div>
+        <div class="wchain-card">
+          <div class="wchain-h">Raw verbatim quote</div>
+          <div class="wchain-d">"I could not tell where to start after signing up." Intercom, Mar 4.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wblk">
+      <div class="wtag">6 - Shareable brief (H2)</div>
+      <div class="wh2">Share a brief the room can read</div>
+      <div class="wtext">Build an evidence brief and share a public link. Stakeholders read the themes, the evidence, and the recommended priority without a login and without a Sift seat.</div>
+    </div>
+
+    <div class="wblk">
+      <div class="wtag">7 - Pricing teaser (H2)</div>
+      <div class="wh2">Pricing</div>
+      <div class="wplans">
+        <div class="wplan"><div class="wplan-h">Free</div><div class="wplan-p">A monthly signal limit. Theme clusters, no drill-down.</div></div>
+        <div class="wplan"><div class="wplan-h">Starter</div><div class="wplan-p">Unlimited signal, full traceability, 3 integrations.</div></div>
+        <div class="wplan"><div class="wplan-h">Growth</div><div class="wplan-p">Team collaboration, all integrations, usage analytics.</div></div>
+      </div>
+    </div>
+
+    <div class="wblk wcenter">
+      <div class="wtag">8 - Final CTA (H2)</div>
+      <div class="wh2">Start with your own feedback</div>
+      <div class="wcta-row" style="justify-content:center">
+        <span class="wbtn">Start free</span>
+      </div>
+    </div>
+
+    <div class="wfoot-mini">
+      <span>Trust strip + columns + SEO block (node 0.2)</span>
+      <span class="wspacer"></span>
+      <span>© 2026 Sift</span>
+    </div>
+  </div>
+
+  <div class="wire-label">Desktop - logged-in hero variant (personal strip)</div>
+  <div class="wsite">
+    <div class="wurl">https://sift.app/ - signed in</div>
+    <div class="wbar">
+      <span class="wbrand">SIFT</span>
+      <span class="wspacer"></span>
+      <span class="wlink">Product</span>
+      <span class="wlink">Pricing</span>
+      <span style="width:26px;height:26px;border-radius:50%;background:var(--w-fill);border:1px solid #3a3a45"></span>
+    </div>
+    <div class="wblk">
+      <div class="wpersonal">
+        <div class="wtext" style="color:var(--w-ink)">Welcome back. Your synthesis for this cycle is ready.</div>
+        <span class="wspacer"></span>
+        <span class="wbtn">Go to Synthesis</span>
+      </div>
+      <div class="whero">
+        <div class="whero-copy">
+          <div class="wh1" style="font-size:22px">Pick up where you left off.</div>
+          <div class="wsub">The returning PM does not re-read the pitch; the hero collapses to a single next step into the app.</div>
+        </div>
+        <div class="whero-vis">Synthesis view (2.0)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wire-label">Mobile (360px base) - guest stack</div>
+  <div class="phone">
+    <div class="phone-cap">single column, CTA above the fold</div>
+    <div class="wbar" style="padding:11px 14px">
+      <span class="wbrand">SIFT</span>
+      <span class="wspacer"></span>
+      <span class="wbtn-ghost" style="padding:6px 10px">Log in</span>
+    </div>
+    <div class="wblk">
+      <div class="wh1">Turn scattered feedback into decisions you can defend.</div>
+      <div class="wsub">Ranked, evidence-backed themes, every claim traceable to the quote.</div>
+      <div class="wcta-row"><span class="wbtn">Start free</span></div>
+    </div>
+    <div class="wblk">
+      <div class="wstrip"><span>GDPR-ready</span><span>PII scrubbed</span></div>
+    </div>
+    <div class="wblk">
+      <div class="wh2" style="font-size:15px">How Sift works</div>
+      <div class="w3up">
+        <div class="wstep"><div class="wstep-n">01</div><div class="wstep-t">Connect a source</div></div>
+        <div class="wstep"><div class="wstep-n">02</div><div class="wstep-t">See themes with confidence</div></div>
+        <div class="wstep"><div class="wstep-n">03</div><div class="wstep-t">Trace every claim</div></div>
+      </div>
+    </div>
+    <div class="wblk">
+      <div class="wh2" style="font-size:15px">Traces to the quote</div>
+      <div class="wchain">
+        <div class="wchain-card"><div class="wchain-h">Theme</div><span class="wconf">n=42</span></div>
+        <div class="wchain-arrow">&#8595;</div>
+        <div class="wchain-card"><div class="wchain-h">Items (n=42)</div></div>
+        <div class="wchain-arrow">&#8595;</div>
+        <div class="wchain-card"><div class="wchain-h">Verbatim quote</div></div>
+      </div>
+    </div>
+    <div class="wfoot-mini"><span>© 2026 Sift</span></div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="seo">
+  <div class="section-header"><span class="section-num">03</span><h2>SEO block (A-E)</h2></div>
+  <p class="caption">On every indexed page. Home is indexed; the app and the public brief are noindex. Ready copy, not placeholders; only final query volumes stay [?] until production.</p>
+  <div class="seo-block">
+    <div class="seo-card">
+      <h4>A. Meta tags</h4>
+      <p><b>title</b> (50): <span class="val">Sift - Turn customer feedback into clear decisions</span></p>
+      <p><b>description</b> (147): <span class="val">Sift turns scattered customer feedback into ranked, evidence-backed themes. Every roadmap call traces to the real user quote behind it. Start free.</span></p>
+      <p><b>canonical:</b> <span class="val">https://sift.app/</span> · <b>robots:</b> <span class="val">index, follow</span> · <b>hreflang:</b> en, en-GB</p>
+      <p>OG / Twitter: title = H1, description = meta, og:type website, og:image branded (concept stage).</p>
+    </div>
+    <div class="seo-card">
+      <h4>B. Headings (one H1, then H2)</h4>
+      <ul>
+        <li><b>H1</b> Turn scattered customer feedback into decisions you can defend.</li>
+        <li>H2 Your signal is scattered. Your roadmap pays for it.</li>
+        <li>H2 How Sift works</li>
+        <li>H2 Every theme traces to the quote behind it</li>
+        <li>H2 Share a brief the room can read</li>
+        <li>H2 Pricing</li>
+        <li>H2 Start with your own feedback</li>
+      </ul>
+    </div>
+    <div class="seo-card seo-span">
+      <h4>C. Ready SEO text</h4>
+      <p><b>Hero subhead:</b> Sift reads your support tickets, sales calls, reviews, and interviews, and gives you a ranked, evidence-backed picture of what customers need most, with every claim traceable to the quote behind it.</p>
+      <p><b>Problem:</b> Feedback lives in Intercom, CSV exports, call recordings, and app-store reviews. Reading and tagging it by hand takes hours, and the roadmap still comes down to whoever spoke loudest in the room.</p>
+      <p><b>How it works:</b> Connect a source (CSV or Intercom). Sift clusters the feedback into themes and shows how strong each one is. Open any theme to read the exact customer quotes behind it.</p>
+      <p><b>Differentiator:</b> No black box. Each theme shows its evidence count (n=X) and a low-signal badge when the evidence is thin, and drills down to the verbatim source. If a claim cannot be traced, it is marked, not dressed up.</p>
+    </div>
+    <div class="seo-card">
+      <h4>D. Structured data</h4>
+      <p><span class="val">SoftwareApplication</span> (Sift, BusinessApplication, free-tier offer) plus <span class="val">Organization</span>. No BreadcrumbList at the root.</p>
+    </div>
+    <div class="seo-card">
+      <h4>E. Optimization checklist</h4>
+      <ul>
+        <li>Exactly one H1 (the hero).</li>
+        <li>LCP is the hero heading and CTA, text-based.</li>
+        <li>All destinations crawlable <code>&lt;a&gt;</code>.</li>
+        <li>canonical + hreflang set.</li>
+        <li>Copy is real text, never in an image.</li>
+        <li>CWV: no hero layout shift, below-fold images lazy.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout">This A-E block is the template every indexed page repeats. The next pages (Step 5) fill the same five parts; private and transactional zones drop the schema and set robots to noindex.</div>
+</section>
+
+<footer class="pagefoot">
+  <span>Sift - IA Detail Layer, node 0.0 Home. Source: ia/docs/pages/home.md</span>
+  <span><a href="structure.html#0.0">Structure</a> &nbsp; <a href="footer.html">Footer</a> &nbsp; <a href="../index.html">Home</a></span>
+</footer>
+
+</div>
+
+<script>
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const sections = document.querySelectorAll('section[id]');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navLinks.forEach(link => { link.style.color = ''; if (link.getAttribute('href') === '#' + id) link.style.color = 'var(--text)'; });
+      }
+    });
+  }, { threshold: 0, rootMargin: '-15% 0px -75% 0px' });
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
