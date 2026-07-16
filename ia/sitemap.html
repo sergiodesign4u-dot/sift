@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sift - IA Site Map</title>
+<style>
+  :root {
+    --bg: #0c0c0e;
+    --bg-2: #111115;
+    --bg-3: #17171c;
+    --bg-4: #1e1e25;
+    --border: #2a2a35;
+    --border-light: #1e1e28;
+    --text: #e8e8ec;
+    --text-2: #a0a0b0;
+    --text-3: #66667a;
+    --accent: #7c6af7;
+    --accent-dim: #3a3470;
+    --accent-glow: rgba(124,106,247,0.12);
+    --green: #3ecf8e;
+    --green-dim: rgba(62,207,142,0.12);
+    --amber: #e8a838;
+    --amber-dim: rgba(232,168,56,0.12);
+    --red: #f06060;
+    --red-dim: rgba(240,96,96,0.12);
+    --radius: 8px;
+    --radius-lg: 12px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", system-ui, sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.65; font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(12,12,14,0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-light);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 40px; height: 52px;
+  }
+  .nav-brand { font-size: 14px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text); text-decoration: none; }
+  .nav-brand span { color: var(--accent); }
+  .nav-links { display: flex; gap: 6px; list-style: none; }
+  .nav-links a { color: var(--text-3); text-decoration: none; font-size: 12px; font-weight: 500; letter-spacing: 0.03em; padding: 5px 10px; border-radius: 5px; transition: color 0.15s, background 0.15s; }
+  .nav-links a:hover { color: var(--text); background: var(--bg-3); }
+
+  .page { max-width: 1040px; margin: 0 auto; padding: 100px 40px 120px; }
+  section { padding-top: 80px; }
+
+  .section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+  h1 { font-size: 42px; font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; color: var(--text); margin-bottom: 20px; }
+  h2 { font-size: 26px; font-weight: 650; letter-spacing: -0.015em; color: var(--text); margin-bottom: 8px; }
+  h3 { font-size: 15px; font-weight: 600; color: var(--text); margin: 20px 0 8px; }
+  p { color: var(--text-2); margin-bottom: 14px; }
+  p:last-child { margin-bottom: 0; }
+  .lead { font-size: 17px; line-height: 1.7; color: var(--text-2); max-width: 720px; }
+  .divider { border: none; border-top: 1px solid var(--border-light); margin: 60px 0; }
+
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--border-light); }
+  .section-num { font-size: 13px; font-weight: 700; color: var(--text-3); white-space: nowrap; }
+  .caption { font-size: 13px; color: var(--text-3); font-style: italic; margin: 6px 0 16px; }
+
+  .diagram { background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px; margin: 16px 0; overflow-x: auto; }
+  .diagram pre.mermaid { background: transparent; text-align: center; margin: 0; }
+
+  /* cluster pills */
+  .cluster-pills { display: flex; gap: 8px; flex-wrap: wrap; margin: 14px 0 4px; }
+  .cluster-pill { background: var(--bg-2); border: 1px solid var(--border); color: var(--text-2); border-radius: 20px; padding: 5px 12px; font-size: 12px; font-weight: 500; white-space: nowrap; }
+  .cluster-pill b { color: var(--text); font-weight: 650; }
+  .cluster-pill span { color: var(--text-3); font-variant-numeric: tabular-nums; }
+
+  /* legend */
+  .legend-row { display: flex; gap: 18px; flex-wrap: wrap; font-size: 12px; color: var(--text-3); margin-top: 12px; }
+  .legend-row span { display: inline-flex; align-items: center; gap: 6px; }
+  .sw { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+  .sw-node { background: #17171c; border: 1px solid #3a3a45; }
+  .sw-idx { background: #12351f; border: 1px solid #3ecf8e; }
+  .sw-glob { background: #1a1a1f; border: 1px solid #7c6af7; }
+
+  .note-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 12px; }
+  .note-col { background: var(--bg-2); border: 1px solid var(--border-light); border-radius: var(--radius); padding: 14px 16px; }
+  .note-col h4 { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); margin-bottom: 8px; }
+  .note-col p { font-size: 13px; margin-bottom: 0; line-height: 1.55; }
+
+  footer { border-top: 1px solid var(--border-light); margin-top: 100px; padding-top: 40px; padding-bottom: 60px; color: var(--text-3); font-size: 12px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  footer a { color: var(--text-2); text-decoration: none; }
+  footer a:hover { color: var(--text); }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .page { padding: 80px 20px 80px; }
+    h1 { font-size: 28px; }
+    .note-grid { grid-template-columns: 1fr; }
+  }
+
+  /* SIDEBAR */
+  .sidebar { display: none; }
+  @media (min-width: 1100px) {
+    .sidebar { display: flex; flex-direction: column; gap: 2px; position: fixed; top: 52px; left: 0; width: 220px; height: calc(100vh - 52px); overflow-y: auto; padding: 24px 12px 32px; border-right: 1px solid var(--border-light); background: var(--bg); z-index: 90; }
+    .page { margin: 0; margin-left: 220px; max-width: 1040px; padding: 100px 40px 120px; }
+  }
+  .sidebar-phase-label { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-3); padding: 5px 8px; border-radius: 5px; display: block; cursor: default; text-decoration: none; }
+  .sidebar-phase-label:hover { color: var(--text); background: var(--bg-3); cursor: pointer; }
+  a.sidebar-phase-label { cursor: pointer; }
+  .sidebar-phase.active .sidebar-phase-label { color: var(--accent); background: var(--accent-glow); }
+  .sidebar-section-links { list-style: none; margin: 4px 0 8px 0; padding: 0; }
+  .sidebar-section-links a { display: block; font-size: 12px; color: var(--text-3); text-decoration: none; padding: 4px 8px 4px 16px; border-radius: 4px; border-left: 2px solid transparent; transition: color 0.15s, border-color 0.15s, background 0.15s; line-height: 1.5; }
+  .sidebar-section-links a:hover { color: var(--text); background: var(--bg-3); }
+  .sidebar-section-links a.active { color: var(--text); border-left-color: var(--accent); background: var(--bg-3); }
+  .sidebar-section-links a.sidebar-current { color: var(--text); border-left-color: var(--accent); background: var(--bg-3); font-weight: 600; }
+  .sidebar-subsection a { padding-left: 28px; font-size: 11px; }
+  .sidebar-group-label { list-style: none; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); padding: 8px 8px 4px; display: flex; align-items: center; gap: 8px; }
+  .sidebar-divider { border: none; border-top: 1px solid var(--border-light); margin: 8px 0; }
+  .sidebar-coming-soon { display: flex; align-items: center; justify-content: space-between; padding: 5px 8px; border-radius: 5px; cursor: default; opacity: 0.5; }
+  .sidebar-cs-label { font-size: 12px; font-weight: 500; color: var(--text-3); letter-spacing: 0.02em; }
+  .sidebar-cs-badge { font-size: 9px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-3); background: var(--bg-3); border: 1px solid var(--border-light); padding: 2px 5px; border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="../index.html"><span>S</span>ift</a>
+  <ul class="nav-links">
+    <li><a href="#map">Map</a></li>
+    <li><a href="#clusters">Clusters</a></li>
+    <li><a href="structure.html">Structure</a></li>
+  </ul>
+</nav>
+
+<aside class="sidebar">
+  <div class="sidebar-phase">
+    <a class="sidebar-phase-label" href="../research/research.html">Foundation Research</a>
+  </div>
+  <div class="sidebar-phase">
+    <a class="sidebar-phase-label" href="../user-research/personas.html">User Research</a>
+  </div>
+  <div class="sidebar-phase active">
+    <span class="sidebar-phase-label">Information Architecture</span>
+    <ul class="sidebar-section-links">
+      <li class="sidebar-group-label">Basic Layer</li>
+      <li><a href="flows.html">Flows</a></li>
+      <li><a href="concept-map.html">Concept Map</a></li>
+      <li class="sidebar-group-label" style="margin-top:6px">Detail Layer</li>
+      <li><a href="sitemap.html" class="sidebar-current">Site map</a></li>
+      <li><a href="structure.html">Structure</a></li>
+    </ul>
+  </div>
+  <hr class="sidebar-divider">
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Wireframes</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Voice</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Concept</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">UI + Visual</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Tokens + Components</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Design System</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Responsive</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Animation</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Handoff</span><span class="sidebar-cs-badge">Soon</span></div>
+</aside>
+
+<div class="page">
+
+<section id="intro">
+  <div class="section-label">Information Architecture - Detail Layer - July 2026</div>
+  <h1>Site map</h1>
+  <p class="lead">The full node tree for Sift: ten flow-clusters (0 to 9) expanded from the four concept clusters, with the primary paths between them. This is the overview. The node cards (type, includes, transitions) live in ia/docs/sitemap.md; the node pages and hub are on the Structure page.</p>
+</section>
+
+<hr class="divider">
+
+<section id="map">
+  <div class="section-header"><span class="section-num">01</span><h2>Node tree</h2></div>
+  <p class="caption">Clusters 0 to 9, each holding its nodes X.Y. Arrows show the primary journey, not every transition (the full transitions are in sitemap.md). States, dialogs, and system nodes sit inside their cluster. Green = indexed public surface; purple = global element. Wireframe level, black and white.</p>
+  <div class="diagram">
+    <pre class="mermaid">
+graph TD
+    subgraph c0["0 - Home + shell"]
+      n00["0.0 Home (marketing)"]
+      n01["0.1 Navigation"]
+      n02["0.2 Footer"]
+    end
+    subgraph c1["1 - Auth"]
+      n10["1.0 Sign up"]
+      n11["1.1 Log in"]
+      n12["1.2 Reset password"]
+    end
+    subgraph c2["2 - Synthesis (app home)"]
+      n20["2.0 Synthesis view"]
+      n21["2.1 Empty, first run"]
+      n22["2.2 Loading"]
+      n23["2.3 Error"]
+    end
+    subgraph c3["3 - Sources"]
+      n30["3.0 Sources"]
+      n31["3.1 Connect / import"]
+      n32["3.2 CSV + mapping"]
+      n33["3.3 Intercom OAuth"]
+      n34["3.4 Empty"]
+      n35["3.5 Sync error"]
+      n36["3.6 Manage"]
+    end
+    subgraph c4["4 - Theme detail"]
+      n40["4.0 Theme detail"]
+      n41["4.1 Low-signal"]
+    end
+    subgraph c5["5 - Evidence"]
+      n50["5.0 Evidence source"]
+      n51["5.1 Redacted / unavailable"]
+    end
+    subgraph c6["6 - Briefs"]
+      n60["6.0 Briefs"]
+      n61["6.1 Build brief"]
+      n62["6.2 Thin warning"]
+      n63["6.3 Link generated"]
+      n64["6.4 Shared brief, public"]
+      n65["6.5 Empty"]
+    end
+    subgraph c7["7 - Account"]
+      n70["7.0 Settings shell"]
+      n71["7.1 Plan + limits"]
+      n72["7.2 Data + privacy"]
+      n73["7.3 Profile"]
+    end
+    subgraph c8["8 - System + global"]
+      n80["8.0 404"]
+      n81["8.1 500"]
+      n82["8.2 Maintenance"]
+      n83["8.3 Cookie consent"]
+      n84["8.4 Toast"]
+    end
+    subgraph c9["9 - Legal"]
+      n90["9.0 Privacy"]
+      n91["9.1 Terms"]
+      n92["9.2 Security / GDPR"]
+    end
+
+    n00 --> n10
+    n00 --> n11
+    n10 --> n21
+    n11 --> n20
+    n20 --> n40
+    n40 --> n50
+    n20 --> n61
+    n61 --> n63
+    n63 --> n64
+    n20 --> n30
+    n30 --> n31
+    n31 --> n32
+    n31 --> n33
+    n32 --> n20
+    n33 --> n20
+    n01 --> n20
+    n01 --> n30
+    n01 --> n60
+    n01 --> n70
+    n60 --> n61
+    n70 --> n71
+    n70 --> n72
+    n02 --> n90
+
+    classDef node fill:#17171c,stroke:#3a3a45,color:#e8e8ec;
+    classDef indexed fill:#12351f,stroke:#3ecf8e,color:#eafff9;
+    classDef glob fill:#1a1a1f,stroke:#7c6af7,color:#c9c9d2;
+    class n10,n11,n12,n20,n21,n22,n23,n30,n31,n32,n33,n34,n35,n36,n40,n41,n50,n51,n60,n61,n62,n63,n64,n65,n70,n71,n72,n73,n80,n81,n82 node;
+    class n00,n90,n91,n92 indexed;
+    class n01,n02,n83,n84 glob;
+    style c0 fill:#0f0f13,stroke:#2a2a35,color:#7c6af7;
+    style c1 fill:#0f0f13,stroke:#2a2a35,color:#7c6af7;
+    style c2 fill:#0f0f13,stroke:#2a2a35,color:#7c6af7;
+    style c3 fill:#0f0f13,stroke:#2a2a35,color:#7c6af7;
+    style c4 fill:#0f0f13,stroke:#2a2a35,color:#7c6af7;
+    style c5 fill:#0f0f13,stroke:#2a2a35,color:#7c6af7;
+    style c6 fill:#0f0f13,stroke:#2a2a35,color:#7c6af7;
+    style c7 fill:#0f0f13,stroke:#2a2a35,color:#7c6af7;
+    style c8 fill:#0f0f13,stroke:#2a2a35,color:#7c6af7;
+    style c9 fill:#0f0f13,stroke:#2a2a35,color:#7c6af7;
+    </pre>
+  </div>
+  <div class="legend-row">
+    <span><span class="sw sw-node"></span> Page / state / dialog (noindex app)</span>
+    <span><span class="sw sw-idx"></span> Indexed public surface (Home, Legal)</span>
+    <span><span class="sw sw-glob"></span> Global element (nav, footer, cookie, toast)</span>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="clusters">
+  <div class="section-header"><span class="section-num">02</span><h2>Clusters</h2></div>
+  <p>Ten clusters, thirty-nine nodes. The four concept clusters (a) expand here: B to Synthesis and Theme detail, C to Evidence, A to Sources, D to Briefs; platform P1 and P2 become Auth and Account; and the Detail Layer surfaces the structural clusters (Home, System, Legal).</p>
+  <div class="cluster-pills">
+    <span class="cluster-pill"><b>0</b> Home + shell <span>3</span></span>
+    <span class="cluster-pill"><b>1</b> Auth <span>3</span></span>
+    <span class="cluster-pill"><b>2</b> Synthesis <span>4</span></span>
+    <span class="cluster-pill"><b>3</b> Sources <span>7</span></span>
+    <span class="cluster-pill"><b>4</b> Theme detail <span>2</span></span>
+    <span class="cluster-pill"><b>5</b> Evidence <span>2</span></span>
+    <span class="cluster-pill"><b>6</b> Briefs <span>6</span></span>
+    <span class="cluster-pill"><b>7</b> Account <span>4</span></span>
+    <span class="cluster-pill"><b>8</b> System + global <span>5</span></span>
+    <span class="cluster-pill"><b>9</b> Legal <span>3</span></span>
+  </div>
+  <div class="note-grid">
+    <div class="note-col"><h4>Indexed surface is small</h4><p>Sift is a private, authed tool. Only the marketing Home (0.0) and the legal pages (9.x) are indexed. Clusters 1 to 7 are noindex, and the public Shared brief (6.4) is public to view but noindex, because it carries customer data.</p></div>
+    <div class="note-col"><h4>States are nodes</h4><p>Empty, loading, error, low-signal, and thin-warning are their own nodes, taken from the flows, not afterthoughts. No node is a dead-end: each recovery routes back toward the goal.</p></div>
+  </div>
+  <p style="margin-top:14px">This tree is the overview only. Open the <a href="structure.html" style="color:var(--accent);text-decoration:none">Structure</a> hub for every node as a chip, and ia/docs/sitemap.md for the full node cards.</p>
+</section>
+
+<footer>
+  <span>Sift - Information Architecture, Detail Layer. Source: ia/docs/sitemap.md</span>
+  <span><a href="structure.html">Structure</a> &nbsp; <a href="concept-map.html">Concept Map</a> &nbsp; <a href="../index.html">Home</a></span>
+</footer>
+
+</div>
+
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'dark',
+    themeVariables: { fontFamily: '-apple-system, BlinkMacSystemFont, Inter, system-ui, sans-serif', fontSize: '12px', lineColor: '#5a5a6a' },
+    flowchart: { curve: 'basis', useMaxWidth: true, nodeSpacing: 34, rankSpacing: 46 }
+  });
+</script>
+
+<script>
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const sections = document.querySelectorAll('section[id]');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navLinks.forEach(link => { link.style.color = ''; if (link.getAttribute('href') === '#' + id) link.style.color = 'var(--text)'; });
+      }
+    });
+  }, { threshold: 0, rootMargin: '-15% 0px -75% 0px' });
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>

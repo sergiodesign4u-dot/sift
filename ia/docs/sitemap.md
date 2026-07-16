@@ -1,8 +1,8 @@
-# IA - Sitemap (Basic Layer) - Sift
+# IA - Sitemap - Sift
 
-*Concept layer of Information Architecture. Built step by step from the finished personas.md and jtbd.md.*
-*Contents grow across the stage: Entities (Step 1), Concept-sitemap (Step 2), Navigation (Step 3), Trace matrix (Step 5).*
-*Rule: every screen serves a job from jtbd.md. Structure is derived from jobs, not copied from a competitor menu.*
+*Information Architecture data source. Basic Layer (concept) built from personas.md and jtbd.md; the Detail Layer expands it into the node map in section 2.*
+*Contents: Entities (section 1), Detailed node map (section 2, Detail Layer), Navigation (section 3), Trace matrix (section 4).*
+*Rule: every screen serves a job from jtbd.md. Structure is derived from jobs, not copied from a competitor menu. The node map is the data behind sitemap.html (site-map tree) and structure.html (hub chips, via _nav.js).*
 
 ---
 
@@ -90,53 +90,298 @@ Theme + Feedback-item quotes ──> Evidence brief (public share link)
 
 ---
 
-## 2. Concept-sitemap
+## 2. Detailed node map (Detail Layer)
 
-*Screens grouped by the person's intent, not by site sections. Each screen carries the job it serves (jtbd.md code). [ORPHAN] marks a screen with no job. No states (empty / error / loading) here, those live in the flows (Step 4). No page contents or cards here, those are the detail layer (b). Depth is kept minimal. Cluster names are human, verb-first, and trace the CJM To-Be arc.*
+*The Detail Layer expands the concept-sitemap into a node map: the four intent clusters (A to D) plus the platform screens grow into ten flow-clusters (0 to 9), and every screen, state, dialog, and system page becomes a numbered node X.Y. This section is the DATA source: from it the site-map tree (sitemap.html) and the Structure hub chips (structure.html, via _nav.js) are built. It replaces the earlier concept-sitemap list (one list, not two side by side). Cards are deliberately light here (type, group, index, short INCLUDES, transitions); the full per-page specification lives in ia/docs/pages/ (Steps 4 to 6).*
 
-### Cluster A - Bring the signal in
-*Intent: my feedback is scattered across tools; get it in, cleaned, and let me see what is in the pile.*
+**Node card fields:** NUMBER X.Y (X = cluster, Y = node), NAME, TYPE (page | dialog | state | flow | section | global element | component), GROUP (`global` | `pages`, the value used in _nav.js and the hub sections), INDEX (indexed | noindex), INCLUDES (blocks on the node), TRANSITIONS (arrows out, with the flow they trace), SERVES (persona / job).
 
-- **A1 - Sources** - list of connected sources with status, item counts, last sync, PII-scrub state. Primary (Alex). Job: J2 (know the pile is in and where from).
-- **A2 - Connect / import source** - CSV upload (with column mapping) or Intercom connection. Primary. Job: J2. (D3 sets the MVP source pair, CSV + Intercom.)
+**How the concept clusters (a) map here:** B (See what customers say) to clusters 2 Synthesis + 4 Theme detail; C (Trace evidence) to 5 Evidence; A (Bring signal in) to 3 Sources; D (Decide and defend) to 6 Briefs; P1 Auth to 1; P2 Settings to 7. New structural clusters, surfaced by the Detail Layer and the SEO-ahead stance: 0 Home + shell, 8 System, 9 Legal.
 
-### Cluster B - See what customers are saying
-*Intent: show me the coherent picture first, ranked, so I know what matters most.*
+**Indexation stance (SEO ahead, adapted for a B2B tool):** Sift is mostly a private, authed tool, so the indexed surface is small: only the marketing Home (0.0) and the legal pages (9.x). The whole application (clusters 1 to 7) is noindex, and the public Shared brief (6.4) is public to view but noindex because it carries customer data. There are no city or category landing pages (that is a marketplace pattern, not this product) and no global feedback search node in MVP (deferred at the Basic Layer).
 
-- **B1 - Synthesis view** - ranked Themes, each with label, volume (n=X), recency, and the confidence indicator + low-signal badge. The main-job landing surface. Primary. Job: Main, J2, J3, E1.
-- **B2 - Theme detail** - one Theme: summary, confidence, and the list of its evidence items (n=X) with snippets and inline citations. Primary. Job: Main, J1, J3, E1, E2.
+---
 
-### Cluster C - Trace the evidence
-*Intent: let me verify a theme by seeing the actual customer voice, live if challenged.*
+### Cluster 0 - Home + global shell
 
-- **C1 - Evidence source** - a single raw Feedback item in context (full verbatim text, channel, date), reached from a citation or an item in B2. The theme to items (n=X) to raw-source chain ends here. Primary. Job: Main, J1, J3, E1, E2 (spot-check to trust, defend with the actual voice, feel certain when questioned).
+#### 0.0 - Home (marketing landing)
+- Type: page · Group: pages · Index: indexed
+- INCLUDES: hero (value proposition + primary CTA), how-it-works, trust strip, pricing teaser, footer link block.
+- TRANSITIONS: -> 1.0 Sign up, -> 1.1 Log in; a logged-in visitor -> 2.0 Synthesis (Flow 0 entry).
+- Serves: Acquisition (AARRR), the guest visitor. The only public app-adjacent surface besides legal.
 
-### Cluster D - Decide and defend
-*Intent: turn the picture into a call, and give stakeholders something they can read and challenge.*
+#### 0.1 - Navigation (header + account menu + mobile tabs)
+- Type: global element · Group: global · Index: n/a (inherited, no H1)
+- INCLUDES: brand, primary entries (Synthesis / Sources / Briefs), account corner; mobile bottom tabs. State matrix by auth and role, detailed in Step 2.
+- TRANSITIONS: -> every primary cluster. The main internal-linking plane.
+- Serves: all personas; the shortest path to the main job.
 
-- **D1 - Build evidence brief** - select top Themes, state recommended priority + rationale, generate the public share link. This is where the prioritization call is captured. Primary (Alex), secondary (Morgan). Job: Main (the call), S1, J4.
-- **D2 - Shared brief (public)** - read-only public view, no login: top themes, evidence, source quotes, recommended priority. The audience is the stakeholder. Secondary / anonymous viewer. Job: S1, J1, J4, E2.
+#### 0.2 - Footer
+- Type: global element · Group: global · Index: n/a (inherited)
+- INCLUDES: trust strip, service / legal link columns, SEO link block, bottom row (copyright, socials). Detailed in Step 3.
+- TRANSITIONS: -> 9.x legal, -> support, -> marketing sections. The second internal-linking plane.
+- Serves: trust and crawlable internal linking.
 
-### Platform screens (no user job - [ORPHAN])
-*Flagged honestly, not dressed up. Left for Step 6 (orphans) to resolve: keep minimal / attach to a job / backlog.*
+---
 
-- **P1 - Auth (sign up / log in)** - [ORPHAN] vs jtbd. Platform necessity. The public brief (D2) is deliberately outside auth (no login to view).
-- **P2 - Settings / Workspace** - [ORPHAN] vs jtbd. Holds plan and limits (conversion) and the PII-scrub default (GDPR day-one). Not a user job; a platform and compliance necessity. Keep thin.
+### Cluster 1 - Auth (was P1)
 
-### Persona coverage
-- **Primary** (Alex, the Overloaded PM): A1, A2, B1, B2, C1, D1.
-- **Secondary** (Morgan / stakeholder, mostly anonymous viewer): D2.
-- **Platform, no persona job:** P1, P2 [ORPHAN].
+#### 1.0 - Sign up
+- Type: page · Group: pages · Index: noindex
+- INCLUDES: email / SSO form, value reminder, link to log in.
+- TRANSITIONS: -> 2.1 Synthesis first-run empty (new workspace); -> 1.1 Log in.
+- Serves: platform entry. No jtbd job (was ORPHAN P1), kept as a necessity.
 
-### Depth to the main job (full check at Step 3)
-- Alex lands on B1 (Synthesis view) at tap 1, then B2 Theme detail (tap 2), then C1 raw evidence (tap 3). Within 3 taps.
-- Build the call: B1 to D1 (tap 2).
+#### 1.1 - Log in
+- Type: page · Group: pages · Index: noindex
+- INCLUDES: email / SSO form, forgot-password link.
+- TRANSITIONS: -> 2.0 Synthesis; -> 1.2 Forgot / reset.
+- Serves: return entry.
 
-### Jobs deliberately NOT given an MVP screen (not silent holes)
-- **S2** (shared evidence standard, Persona B) - the team standard is fast-follow; served weakly by D2 as a viewer, no dedicated screen.
-- **J5** (close the signal loop, Segment C) - deferred by D1; no MVP screen. Its future surface is the Segment A evidence chain (B and C).
+#### 1.2 - Forgot / reset password
+- Type: state · Group: pages · Index: noindex
+- INCLUDES: request-reset form, sent confirmation, set-new-password.
+- TRANSITIONS: -> 1.1 Log in.
+- Serves: account recovery.
 
-These will appear in the trace matrix (Step 5) as intentionally deferred, not accidental gaps. Flows (Step 4) may reveal a missing screen (for example a first-run path that forces A2); any new screen is added here with its job tag then.
+---
+
+### Cluster 2 - Synthesis (app home, main job · was B1)
+
+#### 2.0 - Synthesis view
+- Type: page · Group: pages · Index: noindex
+- INCLUDES: ranked themes (label, volume n=X, recency), confidence indicator + low-signal badge, priority action, create-brief action.
+- TRANSITIONS: -> 4.0 Theme detail (Flow 0); -> 6.1 Build brief (1 tap); first run or stale -> 2.1 empty or 3.1 Connect.
+- Serves: Main, J2, J3, E1. The tap-0 main-job surface. (was B1)
+
+#### 2.1 - Synthesis: first-run empty (no sources)
+- Type: state · Group: pages
+- INCLUDES: empty explanation, single CTA to connect a source.
+- TRANSITIONS: -> 3.1 Connect / import (Flow 1).
+- Serves: activation; routes the PM to the first source.
+
+#### 2.2 - Synthesis: loading / synthesizing
+- Type: state · Group: pages
+- INCLUDES: progress for ingest + cluster, skeleton themes.
+- TRANSITIONS: -> 2.0 populated on completion.
+- Serves: honest wait state (Flow 0, Flow 1).
+
+#### 2.3 - Synthesis: error
+- Type: state · Group: pages
+- INCLUDES: synthesis-failed message, retry, contact.
+- TRANSITIONS: -> retry 2.2; -> 3.0 Sources.
+- Serves: failure recovery, never a dead-end.
+
+---
+
+### Cluster 3 - Sources / ingestion (was A1, A2)
+
+#### 3.0 - Sources (list)
+- Type: page · Group: pages · Index: noindex
+- INCLUDES: connected sources with status, item counts, last sync, PII-scrub state; add-source action.
+- TRANSITIONS: -> 3.1 Connect; -> 3.6 manage; empty -> 3.4.
+- Serves: J2. (was A1)
+
+#### 3.1 - Connect / import source (chooser)
+- Type: page · Group: pages
+- INCLUDES: source-type chooser (CSV / Intercom, Zendesk later), PII-scrub default note.
+- TRANSITIONS: -> 3.2 CSV, -> 3.3 Intercom.
+- Serves: J2, D3. (was A2)
+
+#### 3.2 - CSV upload + column mapping
+- Type: flow · Group: pages
+- INCLUDES: file drop, column-mapping step, unmapped-column error, normalize + PII-scrub loading.
+- TRANSITIONS: error -> re-map; success -> 2.2 synthesizing (Flow 1).
+- Serves: J2, the zero-friction day-one path.
+
+#### 3.3 - Intercom connect (OAuth)
+- Type: flow · Group: pages
+- INCLUDES: authorize step, auth-failed error, sync loading.
+- TRANSITIONS: error -> retry; success -> 2.2 synthesizing (Flow 1).
+- Serves: J2, the named Segment A live source.
+
+#### 3.4 - Sources: empty (none connected)
+- Type: state · Group: pages
+- INCLUDES: empty explanation, connect CTA.
+- TRANSITIONS: -> 3.1 Connect.
+- Serves: activation.
+
+#### 3.5 - Source: sync error / unavailable
+- Type: state · Group: pages
+- INCLUDES: sync-failed / source-unavailable message, affected-themes note, retry.
+- TRANSITIONS: -> retry; -> 3.6 manage. Ties to the citation-cannot-resolve guard (Flow 2).
+- Serves: J3 traceability honesty.
+
+#### 3.6 - Source: manage (disconnect / re-import)
+- Type: dialog · Group: pages
+- INCLUDES: source detail, re-import, disconnect confirm.
+- TRANSITIONS: -> 3.0 Sources.
+- Serves: source housekeeping.
+
+---
+
+### Cluster 4 - Theme detail (was B2)
+
+#### 4.0 - Theme detail
+- Type: page · Group: pages · Index: noindex
+- INCLUDES: theme summary, confidence (n=X), evidence-item list with snippets and inline citations, priority action.
+- TRANSITIONS: -> 5.0 Evidence source (Flow 0, Flow 2); -> 6.1 add to brief.
+- Serves: Main, J1, J3, E1, E2. (was B2)
+
+#### 4.1 - Theme: low-signal / thin-evidence variant
+- Type: state · Group: pages
+- INCLUDES: low-signal badge, thin-evidence caution, still-drillable items.
+- TRANSITIONS: -> 5.0; -> discard back to 2.0.
+- Serves: J3, honest confidence (D2 mandatory).
+
+---
+
+### Cluster 5 - Evidence trace (was C1)
+
+#### 5.0 - Evidence source (raw feedback item in context)
+- Type: page · Group: pages · Index: noindex
+- INCLUDES: full verbatim text, channel, date, PII-scrubbed author ref, back-to-theme.
+- TRANSITIONS: -> back 4.0. The theme to items (n=X) to raw chain ends here.
+- Serves: Main, J1, J3, E1, E2. The differentiator. (was C1)
+
+#### 5.1 - Evidence: item redacted (PII) / unavailable
+- Type: state · Group: pages
+- INCLUDES: redacted or unavailable notice, why (PII / source removed), affected-citation note.
+- TRANSITIONS: -> back 4.0.
+- Serves: GDPR honesty and the traceability guard (Flow 2).
+
+---
+
+### Cluster 6 - Decide and defend / briefs (was D1, D2)
+
+#### 6.0 - Briefs (list)
+- Type: page · Group: pages · Index: noindex
+- INCLUDES: saved briefs with title, date, share status; new-brief action.
+- TRANSITIONS: -> 6.1 Build; empty -> 6.5.
+- Serves: J1, S1, J4.
+
+#### 6.1 - Build evidence brief
+- Type: page · Group: pages · Index: noindex
+- INCLUDES: theme selection, recommended priority + rationale, thin-theme warning, generate-link action.
+- TRANSITIONS: thin -> 6.2 warning; generate -> 6.3 link (Flow 4).
+- Serves: Main (the call), S1, J4. (was D1)
+
+#### 6.2 - Brief: thin-theme warning
+- Type: state · Group: pages
+- INCLUDES: which themes are low-signal, label-do-not-hide prompt.
+- TRANSITIONS: -> back to 6.1.
+- Serves: honest confidence in the shared artifact (Flow 4).
+
+#### 6.3 - Brief: share-link generated
+- Type: dialog · Group: pages
+- INCLUDES: public link, copy action, link-generation loading, access note (no login to view).
+- TRANSITIONS: -> 6.4 Shared brief (preview).
+- Serves: S1, the referral artifact.
+
+#### 6.4 - Shared brief (public, no login)
+- Type: page · Group: pages · Index: noindex (customer data)
+- INCLUDES: top themes, evidence, source quotes, recommended priority; read-only, no app nav.
+- TRANSITIONS: standalone; reached by the share link only.
+- Serves: S1, J1, J4, E2; the stakeholder / anonymous viewer. (was D2)
+
+#### 6.5 - Briefs: empty
+- Type: state · Group: pages
+- INCLUDES: empty explanation, build-first-brief CTA.
+- TRANSITIONS: -> 6.1 Build.
+- Serves: onboarding to the output step.
+
+---
+
+### Cluster 7 - Account / settings (was P2)
+
+#### 7.0 - Account / settings shell
+- Type: page · Group: pages · Index: noindex
+- INCLUDES: section nav mirroring the account areas; one shell, not N pages.
+- TRANSITIONS: -> 7.1, 7.2, 7.3.
+- Serves: platform. No jtbd job (was ORPHAN P2), kept thin.
+
+#### 7.1 - Plan and limits (billing)
+- Type: section · Group: pages
+- INCLUDES: current plan, signal-volume usage vs limit, upgrade. The free-to-paid conversion surface.
+- TRANSITIONS: -> upgrade / billing.
+- Serves: business model (seat-based, volume limit).
+
+#### 7.2 - Data and privacy
+- Type: section · Group: pages
+- INCLUDES: PII-scrub default toggle, data-residency note, export / delete (GDPR / CCPA).
+- TRANSITIONS: -> 9.2 Security / GDPR.
+- Serves: compliance day-one (GDPR).
+
+#### 7.3 - Profile / sign out
+- Type: section · Group: pages
+- INCLUDES: name, email, password, sign out.
+- TRANSITIONS: sign out -> 0.0 Home.
+- Serves: account basics.
+
+---
+
+### Cluster 8 - System and global (built in Step 6)
+
+#### 8.0 - 404 not found
+- Type: page · Group: pages · Index: 404 + noindex
+- INCLUDES: full page with header / footer, search or quick links, never a soft-404.
+- TRANSITIONS: -> 2.0 Synthesis, -> 0.0 Home.
+- Serves: no-dead-end recovery.
+
+#### 8.1 - 500 server error
+- Type: page · Group: pages
+- INCLUDES: minimal backend-independent template, retry, contact.
+- TRANSITIONS: -> retry.
+- Serves: failure honesty.
+
+#### 8.2 - Maintenance (503)
+- Type: page · Group: pages
+- INCLUDES: minimal template, 503 + Retry-After.
+- TRANSITIONS: -> retry later.
+- Serves: planned downtime.
+
+#### 8.3 - Cookie consent
+- Type: component / dialog · Group: global
+- INCLUDES: prior-consent banner (EU law), accept / reject equally easy, link to policy; analytics / marketing opt-in off by default. Grounded in law at Step 6.
+- TRANSITIONS: -> 9.0 Privacy.
+- Serves: GDPR / ePrivacy compliance.
+
+#### 8.4 - Toast / notification
+- Type: component · Group: global
+- INCLUDES: transient success / error / info messages, aria-live; no SEO impact.
+- TRANSITIONS: n/a.
+- Serves: system feedback across the app.
+
+---
+
+### Cluster 9 - Content / legal (surfaced by the footer, Step 3)
+
+#### 9.0 - Privacy policy
+- Type: page · Group: pages · Index: indexed
+- INCLUDES: data handling, PII, cookies, rights. Template map with 9.1 and 9.2.
+- TRANSITIONS: -> footer, -> 8.3 cookie.
+- Serves: compliance, trust.
+
+#### 9.1 - Terms of service
+- Type: page · Group: pages · Index: indexed
+- INCLUDES: terms, acceptable use, liability.
+- TRANSITIONS: -> footer.
+- Serves: compliance.
+
+#### 9.2 - Security / GDPR / DPA
+- Type: page · Group: pages · Index: indexed
+- INCLUDES: security posture, SOC 2 plan, data residency, DPA request.
+- TRANSITIONS: -> footer, -> 7.2 data settings.
+- Serves: mid-market / enterprise trust.
+
+---
+
+### Coverage, personas, deferred jobs
+
+- **Every concept-sitemap screen is represented:** A1 -> 3.0, A2 -> 3.1, B1 -> 2.0, B2 -> 4.0, C1 -> 5.0, D1 -> 6.1, D2 -> 6.4, P1 -> cluster 1, P2 -> cluster 7. States, dialogs, system, and legal are added as their own nodes, as the flows require.
+- **Primary persona (Alex):** clusters 2, 3, 4, 5, 6 and account. **Secondary (Morgan / stakeholder):** 6.4 Shared brief. **Guest / anonymous:** 0.0 Home, 6.4.
+- **Deliberately deferred, not holes:** J5 (close the signal loop, Segment C, deferred by D1) and S2 (shared evidence standard, Persona B, fast-follow) get no MVP node; served indirectly by the Segment A evidence chain and by the shared brief. No global feedback search in MVP.
+- **Count:** 10 clusters, 39 nodes (4 global elements, 35 pages / states / dialogs / sections). The map grows discover-as-you-go; new nodes are registered here and in _nav.js.
 
 ---
 
