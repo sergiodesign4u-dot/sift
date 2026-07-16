@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sift - IA Node 5.0 Evidence source</title>
+<style>
+  :root {
+    --bg: #0c0c0e; --bg-2: #111115; --bg-3: #17171c; --bg-4: #1e1e25;
+    --border: #2a2a35; --border-light: #1e1e28;
+    --text: #e8e8ec; --text-2: #a0a0b0; --text-3: #66667a;
+    --accent: #7c6af7; --accent-dim: #3a3470; --accent-glow: rgba(124,106,247,0.12);
+    --green: #3ecf8e; --radius: 8px; --radius-lg: 12px;
+    --w-bg: #0e0e11; --w-bar: #141418; --w-line: #262630;
+    --w-ink: #cfcfd6; --w-ink-2: #9a9aa6; --w-fill: #2a2a33;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.65; font-size: 15px; -webkit-font-smoothing: antialiased; }
+
+  nav.top { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(12,12,14,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-light); display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 52px; }
+  .nav-brand { font-size: 14px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text); text-decoration: none; }
+  .nav-brand span { color: var(--accent); }
+  .nav-links { display: flex; gap: 6px; list-style: none; }
+  .nav-links a { color: var(--text-3); text-decoration: none; font-size: 12px; font-weight: 500; letter-spacing: 0.03em; padding: 5px 10px; border-radius: 5px; transition: color 0.15s, background 0.15s; }
+  .nav-links a:hover { color: var(--text); background: var(--bg-3); }
+
+  .page { max-width: 1040px; margin: 0 auto; padding: 100px 40px 120px; }
+  section { padding-top: 70px; }
+
+  .section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+  .node-tag { display: inline-flex; gap: 8px; align-items: center; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; flex-wrap: wrap; }
+  .node-tag b { color: var(--accent); }
+  .node-tag .t { background: var(--bg-3); border: 1px solid var(--border-light); border-radius: 3px; padding: 2px 6px; color: var(--text-2); }
+  .node-tag .ni { color: var(--text-3); }
+  h1 { font-size: 40px; font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; color: var(--text); margin-bottom: 18px; }
+  h2 { font-size: 24px; font-weight: 650; letter-spacing: -0.015em; color: var(--text); margin-bottom: 8px; }
+  h3 { font-size: 14px; font-weight: 600; color: var(--text); margin: 22px 0 8px; }
+  p { color: var(--text-2); margin-bottom: 14px; }
+  p:last-child { margin-bottom: 0; }
+  .lead { font-size: 17px; line-height: 1.7; color: var(--text-2); max-width: 720px; }
+  .divider { border: none; border-top: 1px solid var(--border-light); margin: 54px 0; }
+
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--border-light); }
+  .section-num { font-size: 13px; font-weight: 700; color: var(--text-3); white-space: nowrap; }
+  .caption { font-size: 13px; color: var(--text-3); font-style: italic; margin: 6px 0 16px; }
+
+  ul.notes { margin: 0 0 14px 18px; color: var(--text-2); font-size: 14px; }
+  ul.notes li { margin-bottom: 6px; }
+  ul.notes code, p code, td code { font-size: 12px; color: var(--text); background: var(--bg-3); padding: 1px 5px; border-radius: 3px; }
+
+  .table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius-lg); margin: 16px 0; }
+  table.grid { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.grid th, table.grid td { padding: 10px 12px; border-bottom: 1px solid var(--border-light); text-align: left; vertical-align: top; }
+  table.grid thead th { background: var(--bg-3); color: var(--text-3); font-weight: 600; font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; white-space: nowrap; border-bottom: 1px solid var(--border); }
+  table.grid th[scope="row"] { color: var(--text-2); font-weight: 600; white-space: nowrap; }
+  table.grid tr:last-child td, table.grid tr:last-child th { border-bottom: none; }
+
+  .callout { background: var(--bg-2); border: 1px solid var(--border-light); border-left: 2px solid var(--accent-dim); border-radius: var(--radius); padding: 12px 16px; font-size: 13px; color: var(--text-2); margin: 14px 0; }
+
+  /* WIREFRAME */
+  .wire-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); margin: 22px 0 8px; }
+  .wsite { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--w-bg); margin-bottom: 12px; }
+  .wappbar { display: flex; align-items: center; gap: 10px; padding: 12px 16px; background: var(--w-bar); border-bottom: 1px solid var(--w-line); }
+  .wbrand { font-weight: 700; letter-spacing: 0.06em; color: var(--w-ink); font-size: 13px; }
+  .wtab { font-size: 12px; color: var(--w-ink-2); padding: 7px 10px; border-radius: 5px; }
+  .wtab-active { color: #fff; font-weight: 650; box-shadow: inset 0 -2px 0 var(--w-ink); }
+  .wspacer { flex: 1; }
+  .wavatar { width: 26px; height: 26px; border-radius: 50%; background: var(--w-fill); border: 1px solid #3a3a45; }
+  .wbtn { font-size: 12px; color: var(--w-bg); background: var(--w-ink); border-radius: 5px; padding: 8px 14px; font-weight: 650; }
+  .wbtn-ghost { font-size: 12px; color: var(--w-ink); border: 1px solid #3a3a45; border-radius: 5px; padding: 8px 14px; }
+  .wcrumb { font-size: 11px; color: var(--w-ink-2); padding: 10px 16px; border-bottom: 1px solid var(--w-line); }
+  .wcite { font-size: 10px; color: var(--w-ink); border: 1px solid #3a3a45; border-radius: 4px; padding: 2px 6px; }
+  .wevihero { padding: 22px 18px; border-bottom: 1px solid var(--w-line); }
+  .wbigquote { font-size: 17px; color: #f0f0f4; line-height: 1.55; font-style: italic; }
+  .wevimeta { font-size: 12px; color: var(--w-ink-2); margin-top: 16px; display: flex; gap: 16px; flex-wrap: wrap; }
+  .wprov { padding: 16px 18px; }
+  .wprov-h { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-3); margin-bottom: 10px; }
+  .wprov-item { display: flex; align-items: center; gap: 10px; font-size: 13px; color: #dcdce2; padding: 8px 0; border-bottom: 1px solid var(--w-line); }
+  .wprov-item:last-child { border-bottom: none; }
+  .wactions { padding: 14px 18px; border-top: 1px solid var(--w-line); display: flex; gap: 8px; }
+  .wredact { padding: 26px 18px; text-align: center; }
+  .wredact-ic { width: 40px; height: 40px; border-radius: 10px; background: var(--w-fill); margin: 0 auto 12px; }
+  .wredact-t { font-size: 14px; color: #dcdce2; font-weight: 600; }
+  .wredact-d { font-size: 12px; color: var(--w-ink-2); margin: 6px auto 14px; max-width: 360px; }
+  .wnotice { font-size: 11.5px; color: var(--w-ink); border: 1px solid #4a4a55; background: #17171c; border-radius: 6px; padding: 9px 12px; margin: 0 18px 16px; }
+  .wnotice b { color: #fff; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .two-col .wsite { margin-bottom: 0; }
+  .state-cap { font-size: 11px; color: var(--text-3); padding: 6px 12px; border-bottom: 1px solid var(--border-light); background: var(--bg-2); }
+
+  .phone { width: 300px; border: 1px solid var(--border); border-radius: 18px; overflow: hidden; background: var(--w-bg); }
+  .phone-cap { font-size: 11px; color: var(--text-3); padding: 6px 12px; border-bottom: 1px solid var(--border-light); background: var(--bg-2); text-align: center; }
+
+  footer.pagefoot { border-top: 1px solid var(--border-light); margin-top: 90px; padding-top: 40px; padding-bottom: 60px; color: var(--text-3); font-size: 12px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  footer.pagefoot a { color: var(--text-2); text-decoration: none; }
+  footer.pagefoot a:hover { color: var(--text); }
+
+  @media (max-width: 768px) {
+    nav.top { padding: 0 20px; }
+    .nav-links { display: none; }
+    .page { padding: 80px 20px 80px; }
+    h1 { font-size: 27px; }
+    .two-col { grid-template-columns: 1fr; }
+  }
+
+  /* SIDEBAR */
+  .sidebar { display: none; }
+  @media (min-width: 1100px) {
+    .sidebar { display: flex; flex-direction: column; gap: 2px; position: fixed; top: 52px; left: 0; width: 220px; height: calc(100vh - 52px); overflow-y: auto; padding: 24px 12px 32px; border-right: 1px solid var(--border-light); background: var(--bg); z-index: 90; }
+    .page { margin: 0; margin-left: 220px; max-width: 1040px; padding: 100px 40px 120px; }
+  }
+  .sidebar-phase-label { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-3); padding: 5px 8px; border-radius: 5px; display: block; cursor: default; text-decoration: none; }
+  .sidebar-phase-label:hover { color: var(--text); background: var(--bg-3); cursor: pointer; }
+  a.sidebar-phase-label { cursor: pointer; }
+  .sidebar-phase.active .sidebar-phase-label { color: var(--accent); background: var(--accent-glow); }
+  .sidebar-section-links { list-style: none; margin: 4px 0 8px 0; padding: 0; }
+  .sidebar-section-links a { display: block; font-size: 12px; color: var(--text-3); text-decoration: none; padding: 4px 8px 4px 16px; border-radius: 4px; border-left: 2px solid transparent; transition: color 0.15s, border-color 0.15s, background 0.15s; line-height: 1.5; }
+  .sidebar-section-links a:hover { color: var(--text); background: var(--bg-3); }
+  .sidebar-section-links a.sidebar-current { color: var(--text); border-left-color: var(--accent); background: var(--bg-3); font-weight: 600; }
+  .sidebar-group-label { list-style: none; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); padding: 8px 8px 4px; display: flex; align-items: center; gap: 8px; }
+  .sidebar-divider { border: none; border-top: 1px solid var(--border-light); margin: 8px 0; }
+  .sidebar-coming-soon { display: flex; align-items: center; justify-content: space-between; padding: 5px 8px; border-radius: 5px; cursor: default; opacity: 0.5; }
+  .sidebar-cs-label { font-size: 12px; font-weight: 500; color: var(--text-3); letter-spacing: 0.02em; }
+  .sidebar-cs-badge { font-size: 9px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-3); background: var(--bg-3); border: 1px solid var(--border-light); padding: 2px 5px; border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <a class="nav-brand" href="../index.html"><span>S</span>ift</a>
+  <ul class="nav-links">
+    <li><a href="#spec">Spec</a></li>
+    <li><a href="#mockups">Mockups</a></li>
+    <li><a href="#seo">SEO / a11y</a></li>
+    <li><a href="structure.html#5.0">Structure</a></li>
+  </ul>
+</nav>
+
+<aside class="sidebar">
+  <div class="sidebar-phase">
+    <a class="sidebar-phase-label" href="../research/research.html">Foundation Research</a>
+  </div>
+  <div class="sidebar-phase">
+    <a class="sidebar-phase-label" href="../user-research/personas.html">User Research</a>
+  </div>
+  <div class="sidebar-phase active">
+    <span class="sidebar-phase-label">Information Architecture</span>
+    <ul class="sidebar-section-links">
+      <li class="sidebar-group-label">Basic Layer</li>
+      <li><a href="flows.html">Flows</a></li>
+      <li><a href="concept-map.html">Concept Map</a></li>
+      <li class="sidebar-group-label" style="margin-top:6px">Detail Layer</li>
+      <li><a href="sitemap.html">Site map</a></li>
+      <li><a href="structure.html#5.0" class="sidebar-current">Structure</a></li>
+    </ul>
+  </div>
+  <hr class="sidebar-divider">
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Wireframes</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Voice</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Concept</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">UI + Visual</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Tokens + Components</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Design System</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Responsive</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Animation</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Handoff</span><span class="sidebar-cs-badge">Soon</span></div>
+</aside>
+
+<div class="page">
+
+<section id="intro" style="padding-top:0">
+  <div class="section-label">Information Architecture - Detail Layer - July 2026</div>
+  <div class="node-tag"><b>Nodes 5.0, 5.1</b> <span class="t">page</span> <span class="t">group: pages</span> <span class="t ni">noindex</span></div>
+  <h1>Evidence source</h1>
+  <p class="lead">A single raw feedback item in context: the full verbatim text, its channel, date, source, and the theme it supports. The end of the trust chain and the surface the PM pulls up to defend the call live. Source: ia/docs/pages/evidence.md.</p>
+</section>
+
+<hr class="divider">
+
+<section id="spec">
+  <div class="section-header"><span class="section-num">01</span><h2>Blocks and states</h2></div>
+  <div class="table-wrap">
+    <table class="grid">
+      <thead><tr><th scope="col">#</th><th scope="col">Block</th><th scope="col">Purpose</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">1</th><td>App header (0.1)</td><td>primary destinations</td></tr>
+        <tr><th scope="row">2</th><td>Breadcrumb</td><td>Synthesis &gt; Theme &gt; Evidence, the full chain</td></tr>
+        <tr><th scope="row">3</th><td>Raw item</td><td>full verbatim, channel, date, scrubbed author, source</td></tr>
+        <tr><th scope="row">4</th><td>Provenance + links</td><td>which theme it supports, citation, back to theme</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <h3>States (nodes)</h3>
+  <ul class="notes">
+    <li><b><code>5.0</code> default:</b> the full item in context.</li>
+    <li><b><code>5.1</code> redacted / unavailable:</b> PII-scrubbed beyond display, or the source was removed or cannot resolve. An honest notice, the affected-citation note, and back to theme. The Flow 2 traceability guard: honesty over a false citation.</li>
+  </ul>
+  <div class="callout">The chain ends here: theme (4.0) to items (n=X) to this raw source. There is no deeper node, this is the ground truth every claim resolves to (traceable or it does not exist).</div>
+</section>
+
+<hr class="divider">
+
+<section id="mockups">
+  <div class="section-header"><span class="section-num">02</span><h2>Mockups</h2></div>
+  <p class="caption">Wireframe level, black and white. The verbatim is real, selectable text, so it can be quoted live in a meeting.</p>
+
+  <div class="wire-label">Desktop - 5.0 raw item in context</div>
+  <div class="wsite">
+    <div class="wappbar">
+      <span class="wbrand">SIFT</span>
+      <span class="wtab wtab-active">Synthesis</span>
+      <span class="wtab">Sources</span>
+      <span class="wtab">Briefs</span>
+      <span class="wspacer"></span>
+      <span class="wavatar"></span>
+    </div>
+    <div class="wcrumb">Synthesis &gt; Onboarding is confusing &gt; Evidence <span class="wcite" style="margin-left:6px">[1]</span></div>
+    <div class="wevihero">
+      <div class="wbigquote">"I could not tell where to start after signing up. The setup steps felt out of order and I gave up halfway."</div>
+      <div class="wevimeta">
+        <span>Channel: Intercom</span>
+        <span>Date: Mar 4, 2026</span>
+        <span>Author: scrubbed (PII)</span>
+      </div>
+    </div>
+    <div class="wprov">
+      <div class="wprov-h">Provenance</div>
+      <div class="wprov-item"><span class="wspacer">Source</span><span>Intercom connection</span></div>
+      <div class="wprov-item"><span class="wspacer">Supports theme</span><span>Onboarding is confusing [1]</span></div>
+      <div class="wprov-item"><span class="wspacer">Item id</span><span>ic_4821</span></div>
+    </div>
+    <div class="wactions">
+      <span class="wbtn-ghost">Copy quote</span>
+      <span class="wspacer"></span>
+      <span class="wbtn">Back to theme</span>
+    </div>
+  </div>
+
+  <div class="wire-label">5.1 redacted / unavailable (traceability guard)</div>
+  <div class="two-col">
+    <div class="wsite">
+      <div class="state-cap">5.1 PII redacted beyond display</div>
+      <div class="wcrumb">Synthesis &gt; Onboarding is confusing &gt; Evidence <span class="wcite" style="margin-left:6px">[7]</span></div>
+      <div class="wredact">
+        <div class="wredact-ic"></div>
+        <div class="wredact-t">Item redacted for privacy</div>
+        <div class="wredact-d">This item contained personal data that was scrubbed. The full text cannot be shown, but it still counts toward the theme.</div>
+        <span class="wbtn">Back to theme</span>
+      </div>
+    </div>
+    <div class="wsite">
+      <div class="state-cap">5.1 source unavailable (Flow 2)</div>
+      <div class="wcrumb">Synthesis &gt; Slow export &gt; Evidence <span class="wcite" style="margin-left:6px">[3]</span></div>
+      <div class="wnotice"><b>Source unavailable.</b> The Intercom sync failed, so this citation cannot resolve right now. The theme is flagged until it does.</div>
+      <div class="wredact" style="padding-top:6px">
+        <div class="wredact-d">Sift will not show a quote it cannot verify. Honesty over a false citation.</div>
+        <span class="wbtn-ghost" style="margin-right:8px">Back to theme</span><span class="wbtn">Go to Sources</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wire-label">Mobile (360px base) - 5.0</div>
+  <div class="phone">
+    <div class="phone-cap">verbatim on top, provenance stacks, back is one tap</div>
+    <div class="wappbar" style="padding:11px 14px">
+      <span class="wbrand">SIFT</span><span class="wspacer"></span><span class="wavatar" style="width:24px;height:24px"></span>
+    </div>
+    <div class="wcrumb" style="padding:9px 14px">&lt; Onboarding is confusing [1]</div>
+    <div class="wevihero" style="padding:16px 14px">
+      <div class="wbigquote" style="font-size:15px">"I could not tell where to start after signing up."</div>
+      <div class="wevimeta" style="gap:10px"><span>Intercom</span><span>Mar 4</span><span>scrubbed</span></div>
+    </div>
+    <div class="wprov" style="padding:14px">
+      <div class="wprov-item"><span class="wspacer">Supports</span><span>Onboarding is confusing [1]</span></div>
+    </div>
+    <div class="wactions" style="padding:12px 14px"><span class="wbtn" style="width:100%;text-align:center">Back to theme</span></div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="components">
+  <div class="section-header"><span class="section-num">03</span><h2>Component reference</h2></div>
+  <ul class="notes">
+    <li>This page is the expanded, in-context form of the <b>evidence snippet</b> (canonical, owned by <code>4.0</code>). It does not re-define the snippet; it renders the full item.</li>
+    <li>Uses <b>Navigation</b> (<code>0.1</code>) and <b>Footer</b> (<code>0.2</code>, app minimal).</li>
+  </ul>
+</section>
+
+<hr class="divider">
+
+<section id="seo">
+  <div class="section-header"><span class="section-num">04</span><h2>SEO and accessibility</h2></div>
+  <ul class="notes">
+    <li><b>noindex</b> (private app), <code>robots: noindex, follow</code>, no schema. Customer verbatim data must never be indexed.</li>
+    <li>The verbatim text is real, selectable, copyable text (needed to quote it in a meeting).</li>
+    <li>The redaction notice (<code>5.1</code>) is a clear labeled region, never a silent blank.</li>
+    <li>Back-to-theme and citation links have accessible names; targets at least 44px.</li>
+  </ul>
+</section>
+
+<footer class="pagefoot">
+  <span>Sift - IA Detail Layer, nodes 5.0 / 5.1 Evidence source. Source: ia/docs/pages/evidence.md</span>
+  <span><a href="structure.html#5.0">Structure</a> &nbsp; <a href="theme.html">Theme detail</a> &nbsp; <a href="../index.html">Home</a></span>
+</footer>
+
+</div>
+
+<script>
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const sections = document.querySelectorAll('section[id]');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navLinks.forEach(link => { link.style.color = ''; if (link.getAttribute('href') === '#' + id) link.style.color = 'var(--text)'; });
+      }
+    });
+  }, { threshold: 0, rootMargin: '-15% 0px -75% 0px' });
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
