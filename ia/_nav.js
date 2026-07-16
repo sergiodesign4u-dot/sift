@@ -20,7 +20,8 @@ const IA_NODES = [
   { key: '0.1', label: 'Navigation', type: 'global element', group: 'global', file: 'navigation.html' },
   { key: '0.2', label: 'Footer', type: 'global element', group: 'global', file: 'footer.html' },
   { key: '0.0', label: 'Home (marketing landing)', type: 'page', group: 'pages', file: 'home.html' },
-  { key: '2.0', label: 'Synthesis view', type: 'page', group: 'pages', file: 'synthesis.html' }
+  { key: '2.0', label: 'Synthesis view', type: 'page', group: 'pages', file: 'synthesis.html' },
+  { key: '3.0', label: 'Sources / ingestion', type: 'page', group: 'pages', file: 'sources.html' }
 ];
 
 (function renderStructureHub() {
