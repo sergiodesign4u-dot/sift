@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sift - IA Node 0.1 Navigation</title>
+<style>
+  :root {
+    --bg: #0c0c0e;
+    --bg-2: #111115;
+    --bg-3: #17171c;
+    --bg-4: #1e1e25;
+    --border: #2a2a35;
+    --border-light: #1e1e28;
+    --text: #e8e8ec;
+    --text-2: #a0a0b0;
+    --text-3: #66667a;
+    --accent: #7c6af7;
+    --accent-dim: #3a3470;
+    --accent-glow: rgba(124,106,247,0.12);
+    --green: #3ecf8e;
+    --green-dim: rgba(62,207,142,0.12);
+    --amber: #e8a838;
+    --red: #f06060;
+    --red-dim: rgba(240,96,96,0.12);
+    --radius: 8px;
+    --radius-lg: 12px;
+    /* wireframe grays (mockups only, no product color) */
+    --w-bg: #0e0e11;
+    --w-bar: #141418;
+    --w-line: #262630;
+    --w-ink: #cfcfd6;
+    --w-ink-2: #9a9aa6;
+    --w-fill: #2a2a33;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", system-ui, sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.65; font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  nav.top {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(12,12,14,0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-light);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 40px; height: 52px;
+  }
+  .nav-brand { font-size: 14px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text); text-decoration: none; }
+  .nav-brand span { color: var(--accent); }
+  .nav-links { display: flex; gap: 6px; list-style: none; }
+  .nav-links a { color: var(--text-3); text-decoration: none; font-size: 12px; font-weight: 500; letter-spacing: 0.03em; padding: 5px 10px; border-radius: 5px; transition: color 0.15s, background 0.15s; }
+  .nav-links a:hover { color: var(--text); background: var(--bg-3); }
+
+  .page { max-width: 1040px; margin: 0 auto; padding: 100px 40px 120px; }
+  section { padding-top: 70px; }
+
+  .section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+  .node-tag { display: inline-flex; gap: 8px; align-items: center; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
+  .node-tag b { color: var(--accent); }
+  .node-tag .t { background: var(--bg-3); border: 1px solid var(--border-light); border-radius: 3px; padding: 2px 6px; color: var(--text-2); }
+  h1 { font-size: 40px; font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; color: var(--text); margin-bottom: 18px; }
+  h2 { font-size: 24px; font-weight: 650; letter-spacing: -0.015em; color: var(--text); margin-bottom: 8px; }
+  h3 { font-size: 14px; font-weight: 600; color: var(--text); margin: 22px 0 8px; }
+  p { color: var(--text-2); margin-bottom: 14px; }
+  p:last-child { margin-bottom: 0; }
+  .lead { font-size: 17px; line-height: 1.7; color: var(--text-2); max-width: 720px; }
+  .divider { border: none; border-top: 1px solid var(--border-light); margin: 54px 0; }
+  a.ref { color: var(--accent); text-decoration: none; }
+
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--border-light); }
+  .section-num { font-size: 13px; font-weight: 700; color: var(--text-3); white-space: nowrap; }
+  .caption { font-size: 13px; color: var(--text-3); font-style: italic; margin: 6px 0 16px; }
+
+  ul.notes { margin: 0 0 14px 18px; color: var(--text-2); font-size: 14px; }
+  ul.notes li { margin-bottom: 6px; }
+
+  /* tables */
+  .table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius-lg); margin: 16px 0; }
+  table.grid { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.grid th, table.grid td { padding: 10px 12px; border-bottom: 1px solid var(--border-light); text-align: left; vertical-align: top; }
+  table.grid thead th { background: var(--bg-3); color: var(--text-3); font-weight: 600; font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; white-space: nowrap; border-bottom: 1px solid var(--border); }
+  table.grid th[scope="row"] { color: var(--text-2); font-weight: 600; white-space: nowrap; }
+  table.grid tr:last-child td, table.grid tr:last-child th { border-bottom: none; }
+  table.grid code { font-size: 12px; color: var(--text); background: var(--bg-3); padding: 1px 5px; border-radius: 3px; }
+
+  /* WIREFRAME MOCKUPS (black and white) */
+  .wire-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); margin: 22px 0 8px; }
+  .device { border: 1px solid var(--border); border-radius: 10px; background: var(--w-bg); overflow: hidden; margin-bottom: 10px; position: relative; }
+  .device-cap { font-size: 11px; color: var(--text-3); padding: 6px 12px; border-bottom: 1px solid var(--border-light); background: var(--bg-2); }
+  .wbar { display: flex; align-items: center; gap: 12px; padding: 13px 16px; background: var(--w-bar); border-bottom: 1px solid var(--w-line); }
+  .wbrand { font-weight: 700; letter-spacing: 0.06em; color: var(--w-ink); font-size: 13px; }
+  .wtab { font-size: 12px; color: var(--w-ink-2); padding: 8px 12px; border-radius: 5px; min-height: 34px; display: inline-flex; align-items: center; }
+  .wtab-active { color: #ffffff; font-weight: 650; box-shadow: inset 0 -2px 0 var(--w-ink); }
+  .wlink { font-size: 12px; color: var(--w-ink-2); padding: 8px 8px; }
+  .wspacer { flex: 1; }
+  .wbtn { font-size: 12px; color: var(--w-bg); background: var(--w-ink); border-radius: 5px; padding: 8px 14px; font-weight: 650; }
+  .wbtn-ghost { font-size: 12px; color: var(--w-ink); border: 1px solid #3a3a45; border-radius: 5px; padding: 8px 14px; }
+  .wavatar { width: 28px; height: 28px; border-radius: 50%; background: var(--w-fill); border: 1px solid #3a3a45; }
+  .wham { width: 22px; height: 16px; border-top: 2px solid var(--w-ink-2); border-bottom: 2px solid var(--w-ink-2); position: relative; }
+  .wham::after { content: ""; position: absolute; top: 5px; left: 0; right: 0; border-top: 2px solid var(--w-ink-2); }
+  .wmenu { border: 1px solid var(--w-line); border-radius: 8px; background: #16161b; width: 210px; padding: 6px; position: absolute; right: 16px; top: 58px; z-index: 3; }
+  .wmenu-item { font-size: 12px; color: var(--w-ink-2); padding: 9px 10px; border-radius: 5px; }
+  .wmenu-item + .wmenu-item { border-top: 1px solid var(--w-line); }
+
+  .device-row { display: flex; gap: 20px; flex-wrap: wrap; }
+
+  /* phone */
+  .phone { width: 288px; border: 1px solid var(--border); border-radius: 18px; overflow: hidden; background: var(--w-bg); }
+  .phone-cap { font-size: 11px; color: var(--text-3); padding: 6px 12px; border-bottom: 1px solid var(--border-light); background: var(--bg-2); text-align: center; }
+  .phone-top { display: flex; align-items: center; gap: 10px; padding: 11px 14px; background: var(--w-bar); border-bottom: 1px solid var(--w-line); }
+  .phone-body { min-height: 240px; padding: 16px 14px; position: relative; }
+  .skel { height: 10px; border-radius: 3px; background: #1b1b21; margin-bottom: 10px; }
+  .skel.s1 { width: 70%; } .skel.s2 { width: 90%; } .skel.s3 { width: 55%; } .skel.s4 { width: 82%; }
+  .phone-tabs { display: flex; border-top: 1px solid var(--w-line); background: var(--w-bar); }
+  .ptab { flex: 1; text-align: center; padding: 9px 0 8px; }
+  .ptab .pico { width: 22px; height: 22px; border-radius: 6px; background: var(--w-fill); margin: 0 auto 5px; }
+  .ptab .plabel { font-size: 10px; color: var(--w-ink-2); }
+  .ptab-active .pico { background: var(--w-ink); }
+  .ptab-active .plabel { color: #ffffff; font-weight: 650; }
+  .sheet { position: absolute; inset: 0; background: rgba(8,8,10,0.86); padding: 16px; display: flex; flex-direction: column; gap: 4px; }
+  .sheet-item { font-size: 13px; color: var(--w-ink); padding: 12px 8px; border-bottom: 1px solid var(--w-line); }
+  .sheet-cta { margin-top: auto; display: flex; gap: 8px; }
+
+  .callout { background: var(--bg-2); border: 1px solid var(--border-light); border-left: 2px solid var(--accent-dim); border-radius: var(--radius); padding: 12px 16px; font-size: 13px; color: var(--text-2); margin: 12px 0; }
+
+  footer { border-top: 1px solid var(--border-light); margin-top: 90px; padding-top: 40px; padding-bottom: 60px; color: var(--text-3); font-size: 12px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  footer a { color: var(--text-2); text-decoration: none; }
+  footer a:hover { color: var(--text); }
+
+  @media (max-width: 768px) {
+    nav.top { padding: 0 20px; }
+    .nav-links { display: none; }
+    .page { padding: 80px 20px 80px; }
+    h1 { font-size: 27px; }
+  }
+
+  /* SIDEBAR */
+  .sidebar { display: none; }
+  @media (min-width: 1100px) {
+    .sidebar { display: flex; flex-direction: column; gap: 2px; position: fixed; top: 52px; left: 0; width: 220px; height: calc(100vh - 52px); overflow-y: auto; padding: 24px 12px 32px; border-right: 1px solid var(--border-light); background: var(--bg); z-index: 90; }
+    .page { margin: 0; margin-left: 220px; max-width: 1040px; padding: 100px 40px 120px; }
+  }
+  .sidebar-phase-label { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-3); padding: 5px 8px; border-radius: 5px; display: block; cursor: default; text-decoration: none; }
+  .sidebar-phase-label:hover { color: var(--text); background: var(--bg-3); cursor: pointer; }
+  a.sidebar-phase-label { cursor: pointer; }
+  .sidebar-phase.active .sidebar-phase-label { color: var(--accent); background: var(--accent-glow); }
+  .sidebar-section-links { list-style: none; margin: 4px 0 8px 0; padding: 0; }
+  .sidebar-section-links a { display: block; font-size: 12px; color: var(--text-3); text-decoration: none; padding: 4px 8px 4px 16px; border-radius: 4px; border-left: 2px solid transparent; transition: color 0.15s, border-color 0.15s, background 0.15s; line-height: 1.5; }
+  .sidebar-section-links a:hover { color: var(--text); background: var(--bg-3); }
+  .sidebar-section-links a.active { color: var(--text); border-left-color: var(--accent); background: var(--bg-3); }
+  .sidebar-section-links a.sidebar-current { color: var(--text); border-left-color: var(--accent); background: var(--bg-3); font-weight: 600; }
+  .sidebar-group-label { list-style: none; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); padding: 8px 8px 4px; display: flex; align-items: center; gap: 8px; }
+  .sidebar-divider { border: none; border-top: 1px solid var(--border-light); margin: 8px 0; }
+  .sidebar-coming-soon { display: flex; align-items: center; justify-content: space-between; padding: 5px 8px; border-radius: 5px; cursor: default; opacity: 0.5; }
+  .sidebar-cs-label { font-size: 12px; font-weight: 500; color: var(--text-3); letter-spacing: 0.02em; }
+  .sidebar-cs-badge { font-size: 9px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-3); background: var(--bg-3); border: 1px solid var(--border-light); padding: 2px 5px; border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <a class="nav-brand" href="../index.html"><span>S</span>ift</a>
+  <ul class="nav-links">
+    <li><a href="#states">States</a></li>
+    <li><a href="#mockups">Mockups</a></li>
+    <li><a href="#seo">SEO / a11y</a></li>
+    <li><a href="structure.html#0.1">Structure</a></li>
+  </ul>
+</nav>
+
+<aside class="sidebar">
+  <div class="sidebar-phase">
+    <a class="sidebar-phase-label" href="../research/research.html">Foundation Research</a>
+  </div>
+  <div class="sidebar-phase">
+    <a class="sidebar-phase-label" href="../user-research/personas.html">User Research</a>
+  </div>
+  <div class="sidebar-phase active">
+    <span class="sidebar-phase-label">Information Architecture</span>
+    <ul class="sidebar-section-links">
+      <li class="sidebar-group-label">Basic Layer</li>
+      <li><a href="flows.html">Flows</a></li>
+      <li><a href="concept-map.html">Concept Map</a></li>
+      <li class="sidebar-group-label" style="margin-top:6px">Detail Layer</li>
+      <li><a href="sitemap.html">Site map</a></li>
+      <li><a href="structure.html#0.1" class="sidebar-current">Structure</a></li>
+    </ul>
+  </div>
+  <hr class="sidebar-divider">
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Wireframes</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Voice</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Concept</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">UI + Visual</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Tokens + Components</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Design System</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Responsive</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Animation</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Handoff</span><span class="sidebar-cs-badge">Soon</span></div>
+</aside>
+
+<div class="page">
+
+<section id="intro" style="padding-top:0">
+  <div class="section-label">Information Architecture - Detail Layer - July 2026</div>
+  <div class="node-tag"><b>Node 0.1</b> <span class="t">global element</span> <span class="t">group: global</span></div>
+  <h1>Navigation</h1>
+  <p class="lead">The header, account menu, and mobile tab bar. One global element on every page except the public Shared brief, changing shape by auth state: a marketing header for the guest, an app navigation for the logged-in PM. The shortest path to the main job, and the main plane of internal linking. Source: ia/docs/pages/navigation.md.</p>
+</section>
+
+<hr class="divider">
+
+<section id="research">
+  <div class="section-header"><span class="section-num">01</span><h2>Pattern research</h2></div>
+  <p class="caption">Grounded in sources, not decided on the eye.</p>
+  <ul class="notes">
+    <li><b>Keep primary navigation visible.</b> A hidden menu is out of sight, out of mind (NN/g). Synthesis, Sources, and Briefs stay on screen in the app, not behind a hamburger.</li>
+    <li><b>Few top-level items.</b> More than 5 do not fit a bar at an optimum touch target (NN/g). Sift uses 3 app destinations plus account, and 4 mobile tabs.</li>
+    <li><b>Icon and label.</b> Labels accompany icons (NN/g); mobile tabs are never icon-only.</li>
+    <li><b>Targets at least 44 x 44.</b> Apple HIG hit target and WCAG 2.5.5 Target Size.</li>
+    <li><b>Bottom bar on mobile, top bar on desktop.</b> Tabs at the bottom for thumb reach; a thin top bar for brand and account.</li>
+  </ul>
+  <p style="font-size:12px;color:var(--text-3)">Sources: NN/g Mobile Navigation Patterns; Apple HIG Tab Bars; WCAG 2.5.5. The Material 3 navigation-bar page is JS-rendered and was not fetched, so the numbers rest on NN/g and the documented 44px standard, not a guess.</p>
+</section>
+
+<hr class="divider">
+
+<section id="states">
+  <div class="section-header"><span class="section-num">02</span><h2>State matrix</h2></div>
+  <p>Zones by auth state and device. Exactly one destination is active per surface (aria-current).</p>
+  <div class="table-wrap">
+    <table class="grid">
+      <thead>
+        <tr>
+          <th scope="col">Zone</th>
+          <th scope="col">Guest, desktop</th>
+          <th scope="col">Guest, mobile</th>
+          <th scope="col">Logged-in, desktop</th>
+          <th scope="col">Logged-in, mobile</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">Brand</th><td>Sift logo to <code>0.0</code></td><td>Sift logo, top bar</td><td>Sift logo to <code>2.0</code></td><td>Sift logo, thin top bar, to <code>2.0</code></td></tr>
+        <tr><th scope="row">Primary destinations</th><td>none (marketing)</td><td>none</td><td>Synthesis / Sources / Briefs</td><td>bottom tabs: Synthesis, Sources, Briefs, Account</td></tr>
+        <tr><th scope="row">Marketing links</th><td>Product, Pricing, Security</td><td>inside the menu sheet</td><td>none</td><td>none</td></tr>
+        <tr><th scope="row">Auth / account</th><td>Log in + Sign up</td><td>Log in + menu toggle</td><td>account avatar (opens menu)</td><td>Account is the 4th tab</td></tr>
+        <tr><th scope="row">Utility</th><td>none</td><td>menu (hamburger)</td><td>none (no feedback search in MVP)</td><td>none</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <h3>Transitional states</h3>
+  <ul class="notes">
+    <li><b>Account menu open</b> (logged-in): Settings (to <code>7.0</code>), Plan and limits (to <code>7.1</code>), Sign out (to <code>0.0</code>).</li>
+    <li><b>Menu sheet open</b> (guest, mobile): marketing links plus Log in and Sign up.</li>
+    <li><b>Scrolled:</b> navigation is sticky; the mobile bottom tabs never scroll away.</li>
+    <li><b>Active destination:</b> one per surface, aria-current, shown as a bold label with an indicator bar (color at the concept stage).</li>
+  </ul>
+</section>
+
+<hr class="divider">
+
+<section id="anatomy">
+  <div class="section-header"><span class="section-num">03</span><h2>Anatomy</h2></div>
+  <div class="table-wrap">
+    <table class="grid">
+      <thead><tr><th scope="col">Element</th><th scope="col">Behavior</th><th scope="col">Leads to</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Brand logo</th><td>click</td><td><code>2.0</code> app / <code>0.0</code> guest</td></tr>
+        <tr><th scope="row">Synthesis</th><td>click; active on Synthesis</td><td><code>2.0</code></td></tr>
+        <tr><th scope="row">Sources</th><td>click</td><td><code>3.0</code></td></tr>
+        <tr><th scope="row">Briefs</th><td>click</td><td><code>6.0</code></td></tr>
+        <tr><th scope="row">Account (avatar / tab)</th><td>desktop opens menu; mobile opens shell</td><td><code>7.0</code> + menu</td></tr>
+        <tr><th scope="row">Menu: Settings</th><td>click</td><td><code>7.0</code></td></tr>
+        <tr><th scope="row">Menu: Plan and limits</th><td>click</td><td><code>7.1</code></td></tr>
+        <tr><th scope="row">Menu: Sign out</th><td>click</td><td><code>0.0</code></td></tr>
+        <tr><th scope="row">Log in (guest)</th><td>click</td><td><code>1.1</code></td></tr>
+        <tr><th scope="row">Sign up (guest)</th><td>click</td><td><code>1.0</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="mockups">
+  <div class="section-header"><span class="section-num">04</span><h2>Mockups</h2></div>
+  <p class="caption">Wireframe level, black and white. Color, brand, and real icons arrive at the concept stage (06).</p>
+
+  <div class="wire-label">Desktop - logged-in (app header)</div>
+  <div class="device">
+    <div class="device-cap">app header, Synthesis active</div>
+    <div class="wbar">
+      <span class="wbrand">SIFT</span>
+      <span class="wtab wtab-active">Synthesis</span>
+      <span class="wtab">Sources</span>
+      <span class="wtab">Briefs</span>
+      <span class="wspacer"></span>
+      <span class="wavatar"></span>
+    </div>
+  </div>
+
+  <div class="wire-label">Desktop - logged-in, account menu open</div>
+  <div class="device">
+    <div class="device-cap">avatar opens the account menu</div>
+    <div class="wbar">
+      <span class="wbrand">SIFT</span>
+      <span class="wtab wtab-active">Synthesis</span>
+      <span class="wtab">Sources</span>
+      <span class="wtab">Briefs</span>
+      <span class="wspacer"></span>
+      <span class="wavatar"></span>
+    </div>
+    <div class="wmenu">
+      <div class="wmenu-item">Settings &nbsp; to 7.0</div>
+      <div class="wmenu-item">Plan and limits &nbsp; to 7.1</div>
+      <div class="wmenu-item">Sign out &nbsp; to 0.0</div>
+    </div>
+    <div style="height:74px"></div>
+  </div>
+
+  <div class="wire-label">Desktop - guest (marketing header)</div>
+  <div class="device">
+    <div class="device-cap">guest header on 0.0 Home</div>
+    <div class="wbar">
+      <span class="wbrand">SIFT</span>
+      <span class="wspacer"></span>
+      <span class="wlink">Product</span>
+      <span class="wlink">Pricing</span>
+      <span class="wlink">Security</span>
+      <span class="wbtn-ghost">Log in</span>
+      <span class="wbtn">Sign up</span>
+    </div>
+  </div>
+
+  <div class="wire-label">Mobile (360px base)</div>
+  <div class="device-row">
+    <div class="phone">
+      <div class="phone-cap">logged-in: top bar + bottom tabs</div>
+      <div class="phone-top">
+        <span class="wbrand">SIFT</span>
+        <span class="wspacer"></span>
+        <span class="wavatar" style="width:24px;height:24px"></span>
+      </div>
+      <div class="phone-body">
+        <div class="skel s1"></div><div class="skel s2"></div><div class="skel s3"></div><div class="skel s4"></div><div class="skel s2"></div>
+      </div>
+      <div class="phone-tabs">
+        <div class="ptab ptab-active"><div class="pico"></div><div class="plabel">Synthesis</div></div>
+        <div class="ptab"><div class="pico"></div><div class="plabel">Sources</div></div>
+        <div class="ptab"><div class="pico"></div><div class="plabel">Briefs</div></div>
+        <div class="ptab"><div class="pico"></div><div class="plabel">Account</div></div>
+      </div>
+    </div>
+
+    <div class="phone">
+      <div class="phone-cap">guest: menu sheet open</div>
+      <div class="phone-top">
+        <span class="wbrand">SIFT</span>
+        <span class="wspacer"></span>
+        <span class="wbtn-ghost" style="padding:6px 10px">Log in</span>
+        <span class="wham"></span>
+      </div>
+      <div class="phone-body">
+        <div class="sheet">
+          <div class="sheet-item">Product</div>
+          <div class="sheet-item">Pricing</div>
+          <div class="sheet-item">Security</div>
+          <div class="sheet-cta">
+            <span class="wbtn-ghost" style="flex:1;text-align:center">Log in</span>
+            <span class="wbtn" style="flex:1;text-align:center">Sign up</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout">Mobile-first read: on 360px the four tabs sit at thumb reach, each a 44px target with icon and label; the guest surface collapses marketing links into a menu sheet while keeping Log in one tap away. Desktop promotes the same destinations into a single top header.</div>
+</section>
+
+<hr class="divider">
+
+<section id="seo">
+  <div class="section-header"><span class="section-num">05</span><h2>SEO and accessibility</h2></div>
+  <ul class="notes">
+    <li><b>No H1 here.</b> A global component does not own the page heading; each page node sets its own H1.</li>
+    <li><b>Main internal-linking plane.</b> Destinations are crawlable <code>&lt;a&gt;</code> links; the marketing header links to Product, Pricing, and Security (the indexable surface).</li>
+    <li><b>Semantics.</b> A <code>&lt;nav&gt;</code> landmark with aria-label; <code>aria-current="page"</code> on the active destination; the mobile tab bar carries visible text labels.</li>
+    <li><b>Targets.</b> Every tap target is at least 44px; icon plus label on mobile tabs.</li>
+    <li><b>Breadcrumbs</b> are not part of the global nav; where a drill path needs them (Theme detail to Evidence source) they are page-level, on those nodes.</li>
+    <li><b>Exception.</b> The public Shared brief (<code>6.4</code>) renders none of this: standalone, no app chrome.</li>
+  </ul>
+</section>
+
+<footer>
+  <span>Sift - IA Detail Layer, node 0.1 Navigation. Source: ia/docs/pages/navigation.md</span>
+  <span><a href="structure.html#0.1">Structure</a> &nbsp; <a href="sitemap.html">Site map</a> &nbsp; <a href="../index.html">Home</a></span>
+</footer>
+
+</div>
+
+<script>
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const sections = document.querySelectorAll('section[id]');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navLinks.forEach(link => { link.style.color = ''; if (link.getAttribute('href') === '#' + id) link.style.color = 'var(--text)'; });
+      }
+    });
+  }, { threshold: 0, rootMargin: '-15% 0px -75% 0px' });
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
