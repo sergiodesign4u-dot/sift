@@ -24,7 +24,8 @@ const IA_NODES = [
   { key: '3.0', label: 'Sources / ingestion', type: 'page', group: 'pages', file: 'sources.html' },
   { key: '4.0', label: 'Theme detail', type: 'page', group: 'pages', file: 'theme.html' },
   { key: '5.0', label: 'Evidence source', type: 'page', group: 'pages', file: 'evidence.html' },
-  { key: '6.0', label: 'Decide and defend / Briefs', type: 'page', group: 'pages', file: 'briefs.html' }
+  { key: '6.0', label: 'Decide and defend / Briefs', type: 'page', group: 'pages', file: 'briefs.html' },
+  { key: '1.0', label: 'Auth (sign up / log in)', type: 'page', group: 'pages', file: 'auth.html' }
 ];
 
 (function renderStructureHub() {
@@ -39,7 +40,8 @@ const IA_NODES = [
 
   let html = '';
   for (const g of groups) {
-    const items = IA_NODES.filter(n => n.group === g.id);
+    const items = IA_NODES.filter(n => n.group === g.id)
+      .sort((a, b) => a.key.localeCompare(b.key, undefined, { numeric: true }));
     html += '<div class="hub-group">';
     html += '<h3 class="hub-group-title">' + g.title + ' <span class="hub-count">' + items.length + '</span></h3>';
     if (!items.length) {
