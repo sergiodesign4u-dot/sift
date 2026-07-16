@@ -190,19 +190,19 @@
     <pre class="mermaid">
 graph TD
     subgraph clA["A - Bring the signal in"]
-      A2["Connect / import (A2) - J2, D3"]
+      A2["Connect / import (A2) - J2"]
       A1["Sources (A1) - J2"]
     end
     subgraph clB["B - See what customers are saying"]
-      B1["Synthesis view (B1) - Main, J2, J3"]
-      B2["Theme detail (B2) - Main, J3"]
+      B1["Synthesis view (B1) - Main, J2, J3, E1"]
+      B2["Theme detail (B2) - Main, J1, J3, E1, E2"]
     end
     subgraph clC["C - Trace the evidence"]
-      C1["Evidence source (C1) - J1, E2, J3"]
+      C1["Evidence source (C1) - Main, J1, J3, E1, E2"]
     end
     subgraph clD["D - Decide and defend"]
-      D1["Build brief (D1) - Main, S1, J1, J4"]
-      D2["Shared brief, public (D2) - S1, J1, J4"]
+      D1["Build brief (D1) - Main, S1, J4"]
+      D2["Shared brief, public (D2) - S1, J1, J4, E2"]
     end
     subgraph clP["Platform - no user job (ORPHAN)"]
       P1["Auth (P1)"]

@@ -97,25 +97,25 @@ Theme + Feedback-item quotes ──> Evidence brief (public share link)
 ### Cluster A - Bring the signal in
 *Intent: my feedback is scattered across tools; get it in, cleaned, and let me see what is in the pile.*
 
-- **A1 - Sources** - list of connected sources with status, item counts, last sync, PII-scrub state. Primary (Alex). Job: J2 (know the pile is in and where from); supports J3 (provenance feeds the n=X count).
-- **A2 - Connect / import source** - CSV upload (with column mapping) or Intercom connection. Primary. Job: J2, D3.
+- **A1 - Sources** - list of connected sources with status, item counts, last sync, PII-scrub state. Primary (Alex). Job: J2 (know the pile is in and where from).
+- **A2 - Connect / import source** - CSV upload (with column mapping) or Intercom connection. Primary. Job: J2. (D3 sets the MVP source pair, CSV + Intercom.)
 
 ### Cluster B - See what customers are saying
 *Intent: show me the coherent picture first, ranked, so I know what matters most.*
 
-- **B1 - Synthesis view** - ranked Themes, each with label, volume (n=X), recency, and the confidence indicator + low-signal badge. The main-job landing surface. Primary. Job: Main, J2, J3.
-- **B2 - Theme detail** - one Theme: summary, confidence, and the list of its evidence items (n=X) with snippets and inline citations. Primary. Job: Main, J3.
+- **B1 - Synthesis view** - ranked Themes, each with label, volume (n=X), recency, and the confidence indicator + low-signal badge. The main-job landing surface. Primary. Job: Main, J2, J3, E1.
+- **B2 - Theme detail** - one Theme: summary, confidence, and the list of its evidence items (n=X) with snippets and inline citations. Primary. Job: Main, J1, J3, E1, E2.
 
 ### Cluster C - Trace the evidence
 *Intent: let me verify a theme by seeing the actual customer voice, live if challenged.*
 
-- **C1 - Evidence source** - a single raw Feedback item in context (full verbatim text, channel, date), reached from a citation or an item in B2. The theme to items (n=X) to raw-source chain ends here. Primary. Job: J1 (defend with the actual voice), E2 (feel certain when questioned), J3 (spot-check to trust).
+- **C1 - Evidence source** - a single raw Feedback item in context (full verbatim text, channel, date), reached from a citation or an item in B2. The theme to items (n=X) to raw-source chain ends here. Primary. Job: Main, J1, J3, E1, E2 (spot-check to trust, defend with the actual voice, feel certain when questioned).
 
 ### Cluster D - Decide and defend
 *Intent: turn the picture into a call, and give stakeholders something they can read and challenge.*
 
-- **D1 - Build evidence brief** - select top Themes, state recommended priority + rationale, generate the public share link. This is where the prioritization call is captured. Primary (Alex), secondary (Morgan). Job: Main (the call), S1, J1, J4.
-- **D2 - Shared brief (public)** - read-only public view, no login: top themes, evidence, source quotes, recommended priority. The audience is the stakeholder. Secondary / anonymous viewer. Job: S1, J1, J4.
+- **D1 - Build evidence brief** - select top Themes, state recommended priority + rationale, generate the public share link. This is where the prioritization call is captured. Primary (Alex), secondary (Morgan). Job: Main (the call), S1, J4.
+- **D2 - Shared brief (public)** - read-only public view, no login: top themes, evidence, source quotes, recommended priority. The audience is the stakeholder. Secondary / anonymous viewer. Job: S1, J1, J4, E2.
 
 ### Platform screens (no user job - [ORPHAN])
 *Flagged honestly, not dressed up. Left for Step 6 (orphans) to resolve: keep minimal / attach to a job / backlog.*
@@ -214,4 +214,6 @@ The flows (Step 4) introduced no screen that is absent from the concept-sitemap:
 ### Result
 
 No accidental orphans. The two empty columns (P1, P2) are known platform screens, kept for platform and compliance reasons. The two empty rows (J5, S2) are known deferred jobs (Segment C and Persona B), out of the MVP by D1 and the fast-follow line. Restricting the matrix to the MVP surface (screens A1 to D2, jobs Main and J1 to J4, E1, E2, S1) leaves no empty row and no empty column: every MVP screen closes at least one MVP job, and every MVP job reaches at least one screen.
+
+*Consistency (Step 7): the screen job-tags in section 2 and in concept-map.html are reconciled to this matrix, so the concept-sitemap, the schema, and the matrix now agree on which jobs each screen serves.*
 
