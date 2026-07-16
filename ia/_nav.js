@@ -25,7 +25,8 @@ const IA_NODES = [
   { key: '4.0', label: 'Theme detail', type: 'page', group: 'pages', file: 'theme.html' },
   { key: '5.0', label: 'Evidence source', type: 'page', group: 'pages', file: 'evidence.html' },
   { key: '6.0', label: 'Decide and defend / Briefs', type: 'page', group: 'pages', file: 'briefs.html' },
-  { key: '1.0', label: 'Auth (sign up / log in)', type: 'page', group: 'pages', file: 'auth.html' }
+  { key: '1.0', label: 'Auth (sign up / log in)', type: 'page', group: 'pages', file: 'auth.html' },
+  { key: '7.0', label: 'Account / settings', type: 'page', group: 'pages', file: 'account.html' }
 ];
 
 (function renderStructureHub() {
