@@ -23,7 +23,8 @@ const IA_NODES = [
   { key: '2.0', label: 'Synthesis view', type: 'page', group: 'pages', file: 'synthesis.html' },
   { key: '3.0', label: 'Sources / ingestion', type: 'page', group: 'pages', file: 'sources.html' },
   { key: '4.0', label: 'Theme detail', type: 'page', group: 'pages', file: 'theme.html' },
-  { key: '5.0', label: 'Evidence source', type: 'page', group: 'pages', file: 'evidence.html' }
+  { key: '5.0', label: 'Evidence source', type: 'page', group: 'pages', file: 'evidence.html' },
+  { key: '6.0', label: 'Decide and defend / Briefs', type: 'page', group: 'pages', file: 'briefs.html' }
 ];
 
 (function renderStructureHub() {
