@@ -73,9 +73,16 @@ When I receive feedback from multiple sources (support, sales, interviews, revie
 
 ---
 
-## Information Architecture (Basic Layer)
+## Information Architecture
 
-*Derived from the jobs (user-research/docs/jtbd.md), not copied from a competitor menu. Full artifact: ia/docs/sitemap.md and ia/docs/flows.md. Deployed: ia/concept-map.html, ia/flows.html.*
+*Two layers. Basic Layer (done): the concept-sitemap, user flows, navigation model, and trace matrix. Detail Layer (in progress): per-page architecture, every screen and component specified before wireframes so a wireframe renders a ready structure instead of inventing it. Derived from the jobs (user-research/docs/jtbd.md), not copied from a competitor menu.*
+
+**Platform stance (Detail Layer, governs every IA node):**
+- **Mobile-first, fully responsive.** Desktop and mobile are both designed deliberately, but mobile is the priority. Block order and the first screen are reasoned from mobile (360px base).
+- **Two IA layers.** Global (Basic Layer, done) and per-page (Detail Layer, this phase). Each screen gets a specification: content blocks, states, components, SEO.
+- **SEO ahead.** The structural SEO layer (URL / slug, H1 / H2, breadcrumbs, schema, indexation, internal linking) is defined here in IA, now. Wireframes only validate the layout; production adds the final copy and the real query volumes.
+
+**Artifacts.** Basic Layer: ia/docs/sitemap.md, ia/docs/flows.md; deployed ia/concept-map.html, ia/flows.html. Detail Layer: ia/docs/pages/ (per-page sources, one md per node), ia/sitemap.html (site-map tree), ia/structure.html (node hub), ia/_nav.js (single node registry feeding the hub chips).
 
 **Core entities (7):** Feedback item, Source / Integration, Theme (Confidence is its attribute, D2), Evidence citation, Prioritization, Evidence brief, Workspace. Deliberately absent from the MVP concept: manual tag, roadmap link, team object.
 
