@@ -14,67 +14,37 @@
 -->
 <body>
 
-<div id="wf-topnav"></div>
-<div id="wf-sidebar"></div>
+<div id="wf-topbar" data-node="2.0" data-state="loading"></div>
 
-<div class="page">
+<div class="wf-shell">
+  <div id="wf-rail" data-node="2.0" data-state="loading"></div>
 
-  <div class="page-intro">
-    <div class="page-eyebrow">Wireframes - State - Node 2.2</div>
-    <div class="wf-deliv-title">Synthesis view · loading</div>
-    <p>Ingesting, scrubbing PII, and clustering the feedback into themes. Skeleton cards stand in for the ranked list, so the wait is legible and transitions to the populated view. Source: ia/docs/pages/synthesis.md.</p>
-  </div>
+  <div class="wf-stage">
+    <div class="wf-canvas">
+      <div class="wf-app">
 
-  <div id="wf-statebar" data-node="2.0" data-state="loading"></div>
+        <div data-wf="header" data-active="synthesis"></div>
 
-  <template id="wf-screen">
-    <div class="wf-app">
+        <main class="wf-main">
+          <div class="wf-main-head">
+            <h1 class="wf-h1">Synthesis</h1>
+            <p class="wf-sub">Synthesizing your feedback. Ingesting, scrubbing PII, and clustering into themes.</p>
+          </div>
+          <ul class="wf-list" aria-busy="true">
+            <li class="wf-skelcard"><div class="wf-skel a"></div><div class="wf-skel b"></div></li>
+            <li class="wf-skelcard"><div class="wf-skel c"></div><div class="wf-skel b"></div></li>
+            <li class="wf-skelcard"><div class="wf-skel a"></div><div class="wf-skel b"></div></li>
+            <li class="wf-skelcard"><div class="wf-skel c"></div><div class="wf-skel b"></div></li>
+            <li class="wf-skelcard"><div class="wf-skel a"></div><div class="wf-skel b"></div></li>
+          </ul>
+        </main>
 
-      <div data-wf="header" data-active="synthesis"></div>
+        <div data-wf="appfoot"></div>
+        <div data-wf="bottomtabs" data-active="synthesis"></div>
 
-      <main class="wf-main">
-        <div class="wf-main-head">
-          <h1 class="wf-h1">Synthesis</h1>
-          <p class="wf-sub">Synthesizing your feedback. Ingesting, scrubbing PII, and clustering into themes.</p>
-        </div>
-        <ul class="wf-list" aria-busy="true">
-          <li class="wf-skelcard"><div class="wf-skel a"></div><div class="wf-skel b"></div></li>
-          <li class="wf-skelcard"><div class="wf-skel c"></div><div class="wf-skel b"></div></li>
-          <li class="wf-skelcard"><div class="wf-skel a"></div><div class="wf-skel b"></div></li>
-          <li class="wf-skelcard"><div class="wf-skel c"></div><div class="wf-skel b"></div></li>
-          <li class="wf-skelcard"><div class="wf-skel a"></div><div class="wf-skel b"></div></li>
-        </ul>
-      </main>
-
-      <div data-wf="appfoot"></div>
-      <div data-wf="bottomtabs" data-active="synthesis"></div>
-
+      </div>
     </div>
-  </template>
-
-  <div class="wf-viewport">
-    <div class="wf-viewport-head">
-      <span class="wf-viewport-num">01</span>
-      <span class="wf-viewport-title">Desktop</span>
-      <span class="wf-viewport-note">skeleton cards in place of the ranked list</span>
-    </div>
-    <div class="wf-frame wf-frame--desktop" data-screen></div>
   </div>
-
-  <div class="wf-viewport">
-    <div class="wf-viewport-head">
-      <span class="wf-viewport-num">02</span>
-      <span class="wf-viewport-title">Mobile · 360</span>
-      <span class="wf-viewport-note">same skeletons, bottom tabs</span>
-    </div>
-    <div class="wf-frame wf-frame--mobile" data-screen></div>
-  </div>
-
-  <footer class="pagefoot">
-    <span>Sift - Wireframe 2.2 Synthesis loading. Source: ia/docs/pages/synthesis.md</span>
-    <span><a href="synthesis.html">Populated</a> &nbsp; <a href="index.html">All screens</a></span>
-  </footer>
-
 </div>
 
 <script src="_nav.js"></script>
