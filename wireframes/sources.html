@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift - Wireframe 3.0 Sources</title>
+<link rel="stylesheet" href="_wf.css">
+<style>
+  /* 3.0 Sources list row (grey, table-like on desktop, stacked on mobile) */
+  .src-row { display: flex; align-items: center; gap: 16px; padding: 14px 16px; border-bottom: 1px solid var(--w-line); flex-wrap: wrap; }
+  .src-row:hover { background: var(--w-surface); }
+  .src-ic { width: 34px; height: 34px; border-radius: 7px; background: var(--w-fill); border: 1px solid var(--w-line-2); flex: none; }
+  .src-main { flex: 1 1 150px; min-width: 0; }
+  .src-name { font-size: 14px; font-weight: 600; color: var(--w-ink); display: block; }
+  .src-sub { font-size: 11px; color: var(--w-ink-2); margin-top: 3px; display: block; }
+  .src-stats { display: flex; gap: 22px; flex-wrap: wrap; }
+  .src-stat { display: flex; flex-direction: column; gap: 2px; }
+  .src-stat-l { font-size: 10px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--w-ink-3); }
+  .src-stat-v { font-size: 12px; color: var(--w-ink); font-variant-numeric: tabular-nums; }
+  .src-manage { flex: none; font-size: 12px; color: var(--w-ink); text-decoration: none; border: 1px solid var(--w-line-2); border-radius: 5px; padding: 8px 13px; }
+  .src-manage:hover { background: var(--w-surface); border-color: var(--w-ink-3); }
+</style>
+</head>
+<!-- 3.0 Sources (list). Source ia/docs/pages/sources.md. Grey, responsive.
+     Two connected sources as a semantic list of rows: CSV import (batch) and Intercom (live). -->
+<body>
+
+<div id="wf-topbar" data-node="3.0" data-state="base"></div>
+
+<div class="wf-shell">
+  <div id="wf-rail" data-node="3.0" data-state="base"></div>
+
+  <div class="wf-stage">
+    <div class="wf-canvas">
+      <div class="wf-app">
+
+        <div data-wf="header" data-active="sources"></div>
+
+        <div class="wf-toolbar">
+          <button class="wf-chip">Status: all</button>
+          <button class="wf-chip">Type: all</button>
+          <span class="wf-spacer"></span>
+          <a class="wf-btn" href="connect.html">Add source</a>
+        </div>
+
+        <main class="wf-main">
+          <header class="wf-main-head">
+            <h1 class="wf-h1">Sources</h1>
+            <p class="wf-sub">2 sources connected, 3,750 items in. Every source is PII scrubbed by default.</p>
+          </header>
+
+          <ul class="wf-list">
+            <li class="src-row">
+              <span class="src-ic" aria-hidden="true"></span>
+              <div class="src-main">
+                <span class="src-name">CSV import</span>
+                <span class="src-sub">Batch import</span>
+              </div>
+              <div class="src-stats">
+                <div class="src-stat"><span class="src-stat-l">Status</span><span class="src-stat-v">Imported</span></div>
+                <div class="src-stat"><span class="src-stat-l">Items</span><span class="src-stat-v">840</span></div>
+                <div class="src-stat"><span class="src-stat-l">Imported</span><span class="src-stat-v">2 days ago</span></div>
+                <div class="src-stat"><span class="src-stat-l">PII scrub</span><span class="src-stat-v">On</span></div>
+              </div>
+              <a class="src-manage" href="sources-manage.html">Manage</a>
+            </li>
+            <li class="src-row">
+              <span class="src-ic" aria-hidden="true"></span>
+              <div class="src-main">
+                <span class="src-name">Intercom</span>
+                <span class="src-sub">Live connection</span>
+              </div>
+              <div class="src-stats">
+                <div class="src-stat"><span class="src-stat-l">Status</span><span class="src-stat-v">Synced</span></div>
+                <div class="src-stat"><span class="src-stat-l">Items</span><span class="src-stat-v">2,910</span></div>
+                <div class="src-stat"><span class="src-stat-l">Last sync</span><span class="src-stat-v">2 days ago</span></div>
+                <div class="src-stat"><span class="src-stat-l">PII scrub</span><span class="src-stat-v">On</span></div>
+              </div>
+              <a class="src-manage" href="sources-manage.html">Manage</a>
+            </li>
+          </ul>
+        </main>
+
+        <div data-wf="appfoot"></div>
+        <div data-wf="bottomtabs" data-active="sources"></div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="_nav.js"></script>
+</body>
+</html>

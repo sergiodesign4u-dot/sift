@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift - Wireframe 6.0 Briefs list</title>
+<link rel="stylesheet" href="_wf.css">
+<style>
+  /* Inline grey component: the saved-brief row (title, created date, share status, actions).
+     Grey tokens only, structure not appearance. */
+  .brief-topbar { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+  .brief-topbar .wf-main-head { margin-bottom: 0; }
+  .brief-topbar .wf-btn { flex: none; }
+
+  .brief-row { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-bottom: 1px solid var(--w-line); }
+  .brief-row:hover { background: var(--w-surface); }
+  .brief-main { flex: 1; min-width: 0; }
+  .brief-title { font-size: 14px; color: var(--w-ink); font-weight: 600; text-decoration: none; display: block; }
+  .brief-title:hover { text-decoration: underline; }
+  .brief-meta { font-size: 11px; color: var(--w-ink-2); margin-top: 3px; }
+  .brief-status { font-size: 9px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--w-ink-2); border: 1px solid var(--w-line-2); border-radius: 3px; padding: 2px 6px; white-space: nowrap; flex: none; }
+  .brief-actions { display: flex; gap: 8px; flex: none; }
+
+  @container (max-width: 599px) {
+    .brief-row { flex-wrap: wrap; }
+    .brief-actions { width: 100%; }
+    .brief-actions .wf-btn--ghost { flex: 1; text-align: center; }
+  }
+</style>
+</head>
+<!--
+  Wireframe 6.0 Briefs list - populated (success). Saved briefs with title, created date, and
+  share status, plus a New brief action. Text from ia/docs/pages/briefs.md.
+  Canonical briefs reused across the prototype:
+    Q3 roadmap: what customers need most   3 themes   shared 2 days ago
+    Onboarding deep-dive                   1 theme    draft   1 week ago
+-->
+<body>
+
+<div id="wf-topbar" data-node="6.0" data-state="base"></div>
+
+<div class="wf-shell">
+  <div id="wf-rail" data-node="6.0" data-state="base"></div>
+
+  <div class="wf-stage">
+    <div class="wf-canvas">
+      <div class="wf-app">
+
+        <div data-wf="header" data-active="briefs"></div>
+
+        <main class="wf-main">
+          <div class="brief-topbar">
+            <div class="wf-main-head">
+              <h1 class="wf-h1">Briefs</h1>
+              <p class="wf-sub">Saved briefs package your themes, evidence, and a recommended priority into a link a stakeholder can read and challenge without a Sift seat.</p>
+            </div>
+            <a class="wf-btn" href="build-brief.html">New brief</a>
+          </div>
+
+          <ul class="wf-list">
+            <li class="brief-row">
+              <div class="brief-main">
+                <a class="brief-title" href="shared-brief.html">Q3 roadmap: what customers need most</a>
+                <div class="brief-meta">3 themes · shared 2 days ago</div>
+              </div>
+              <span class="brief-status">Shared</span>
+              <div class="brief-actions">
+                <a class="wf-btn--ghost" href="shared-brief.html">View</a>
+                <a class="wf-btn--ghost" href="build-brief.html">Edit</a>
+              </div>
+            </li>
+            <li class="brief-row">
+              <div class="brief-main">
+                <a class="brief-title" href="build-brief.html">Onboarding deep-dive</a>
+                <div class="brief-meta">1 theme · created 1 week ago</div>
+              </div>
+              <span class="brief-status">Draft</span>
+              <div class="brief-actions">
+                <a class="wf-btn--ghost" href="build-brief.html">Edit</a>
+              </div>
+            </li>
+          </ul>
+        </main>
+
+        <div data-wf="appfoot"></div>
+        <div data-wf="bottomtabs" data-active="briefs"></div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="_nav.js"></script>
+</body>
+</html>

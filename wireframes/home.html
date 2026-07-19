@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift - Wireframe 0.0 Home (marketing)</title>
+<link rel="stylesheet" href="_wf.css">
+<style>
+  /* 0.0 Home - grey marketing sections. Structural only, --w-* tokens, no hue / gradient / icon. */
+  .mk-hero { padding: 26px 0 28px; border-bottom: 1px solid var(--w-line); }
+  .mk-h1 { font-size: 28px; line-height: 1.22; font-weight: 700; color: var(--w-ink); letter-spacing: -0.02em; margin: 8px 0 0; max-width: 720px; }
+  .mk-lead { font-size: 15px; color: var(--w-ink-2); line-height: 1.6; margin: 14px 0 0; max-width: 640px; }
+  .mk-cta { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 22px; }
+  .mk-cta .wf-btn, .mk-cta .wf-btn--ghost { padding: 11px 20px; font-size: 13px; }
+  .mk-note { font-size: 11px; color: var(--w-ink-3); margin-top: 12px; }
+
+  .mk-section { padding: 28px 0; border-bottom: 1px solid var(--w-line); }
+  .mk-h2 { font-size: 20px; font-weight: 700; color: var(--w-ink); letter-spacing: -0.01em; }
+  .mk-section-sub { font-size: 13px; color: var(--w-ink-2); margin-top: 6px; max-width: 620px; line-height: 1.55; }
+
+  .mk-steps { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-top: 18px; }
+  .mk-step { background: var(--w-surface); border: 1px solid var(--w-line); border-radius: 8px; padding: 16px; }
+  .mk-step-n { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; border: 1px solid var(--w-line-2); font-size: 12px; font-weight: 700; color: var(--w-ink-2); }
+  .mk-step-t { font-size: 14px; font-weight: 650; color: var(--w-ink); margin: 12px 0 6px; }
+  .mk-step-d { font-size: 12.5px; color: var(--w-ink-2); line-height: 1.55; }
+  .mk-step .wf-conf { margin-top: 12px; }
+
+  .mk-trust { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 20px; margin-top: 18px; }
+  .mk-trust-item { padding: 14px 0 4px; border-top: 2px solid var(--w-line-2); }
+  .mk-trust-t { font-size: 13px; font-weight: 650; color: var(--w-ink); margin-bottom: 6px; }
+  .mk-trust-d { font-size: 12.5px; color: var(--w-ink-2); line-height: 1.55; }
+
+  .mk-pricing { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 18px; }
+  .mk-tier { display: flex; flex-direction: column; background: var(--w-surface); border: 1px solid var(--w-line); border-radius: 8px; padding: 16px; }
+  .mk-tier-name { font-size: 14px; font-weight: 700; color: var(--w-ink); }
+  .mk-tier-price { font-size: 19px; font-weight: 700; color: var(--w-ink); margin: 8px 0 2px; }
+  .mk-tier-unit { font-size: 11px; color: var(--w-ink-3); font-weight: 400; }
+  .mk-tier-feat { list-style: none; margin: 12px 0 0; display: flex; flex-direction: column; gap: 7px; }
+  .mk-tier-feat li { font-size: 12px; color: var(--w-ink-2); line-height: 1.45; padding-left: 14px; position: relative; }
+  .mk-tier-feat li::before { content: ""; position: absolute; left: 0; top: 6px; width: 6px; height: 6px; border-radius: 1px; background: var(--w-fill); }
+  .mk-pricing-cta { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; align-items: center; }
+  .mk-pricing-cta .wf-btn, .mk-pricing-cta .wf-btn--ghost { padding: 10px 18px; font-size: 13px; }
+
+  /* Block 5: footer link block (composes with .wf-appfoot). */
+  .mk-footer { display: flex; flex-wrap: wrap; gap: 22px 48px; align-items: flex-start; padding: 26px 16px 30px; }
+  .mk-foot-brand { display: flex; flex-direction: column; gap: 8px; min-width: 200px; flex: 1; }
+  .mk-foot-tag { font-size: 12px; color: var(--w-ink-2); max-width: 260px; line-height: 1.5; }
+  .mk-foot-cols { display: flex; gap: 48px; flex-wrap: wrap; }
+  .mk-foot-col { display: flex; flex-direction: column; gap: 9px; }
+  .mk-foot-h { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--w-ink-3); }
+  .mk-foot-col a { font-size: 12px; color: var(--w-ink-2); text-decoration: none; }
+  .mk-foot-col a:hover { color: var(--w-ink); }
+  .mk-foot-legal { flex-basis: 100%; font-size: 11px; color: var(--w-ink-3); border-top: 1px solid var(--w-line); padding-top: 16px; }
+</style>
+</head>
+<!--
+  Wireframe 0.0 Home (marketing landing). PUBLIC / pre-login (Skeleton B): a light Sift
+  bar, no app tabs. Guest state. Text pulled verbatim from ia/docs/pages/home.md (A to E).
+  Grey, structure only. Block order reasoned mobile-first.
+
+  The reviewer chrome (top bar + left rail) is injected by _nav.js; the SCREEN carries no
+  app header or bottom tabs because a first-time visitor lands here before any login.
+
+  This grey prototype is noindex. In PRODUCTION 0.0 is the one indexed app-side page, with
+  the SEO block from the IA node (validated here as heading structure + crawlable links):
+    title:       Sift - Turn customer feedback into clear decisions
+    description: Sift turns scattered customer feedback into ranked, evidence-backed themes.
+                 Every roadmap call traces to the real user quote behind it. Start free.
+    canonical:   https://sift.app/   robots: index, follow   hreflang: en, en-GB
+    schema:      SoftwareApplication (free tier) + Organization
+-->
+<body>
+
+<div id="wf-topbar" data-node="0.0" data-state="base"></div>
+
+<div class="wf-shell">
+  <div id="wf-rail" data-node="0.0" data-state="base"></div>
+
+  <div class="wf-stage">
+    <div class="wf-canvas">
+      <div class="wf-app">
+
+        <div class="wf-public-bar">
+          <span class="wf-brand">SIFT</span>
+          <span class="wf-public-tag">Turn customer feedback into decisions you can defend</span>
+        </div>
+
+        <main class="wf-main wf-public-main" style="max-width:1000px">
+
+          <!-- Block 1: Hero -->
+          <section class="mk-hero">
+            <div class="wf-public-eyebrow">For product teams drowning in scattered signal</div>
+            <h1 class="mk-h1">Turn scattered customer feedback into decisions you can defend.</h1>
+            <p class="mk-lead">Sift reads your support tickets, sales calls, reviews, and interviews, and gives you a ranked, evidence-backed picture of what customers need most, with every claim traceable to the quote behind it.</p>
+            <div class="mk-cta">
+              <a class="wf-btn" href="auth-signup.html">Start free</a>
+              <a class="wf-btn--ghost" href="auth.html">Log in</a>
+            </div>
+            <p class="mk-note">Free plan, no card required. Start with a CSV export or connect Intercom.</p>
+          </section>
+
+          <!-- Block 2: How it works (3 steps) -->
+          <section class="mk-section">
+            <h2 class="mk-h2">How Sift works</h2>
+            <p class="mk-section-sub">Three steps from scattered signal to a call you can stand behind. It mirrors the path you take inside the app.</p>
+            <ol class="mk-steps">
+              <li class="mk-step">
+                <span class="mk-step-n">1</span>
+                <h3 class="mk-step-t">Connect a source</h3>
+                <p class="mk-step-d">Import a CSV export or connect Intercom. Feedback is normalized on the way in, and PII is scrubbed by default.</p>
+              </li>
+              <li class="mk-step">
+                <span class="mk-step-n">2</span>
+                <h3 class="mk-step-t">See ranked themes with confidence</h3>
+                <p class="mk-step-d">Sift clusters the feedback into themes and shows how strong each one is, so you can tell a real pattern from a thin one.</p>
+                <span class="wf-conf"><span class="wf-conf-n">n=42</span></span>
+              </li>
+              <li class="mk-step">
+                <span class="mk-step-n">3</span>
+                <h3 class="mk-step-t">Trace every claim to evidence</h3>
+                <p class="mk-step-d">Open any theme to read the exact customer quotes behind it. If a claim cannot be traced, it is marked, not dressed up.</p>
+              </li>
+            </ol>
+          </section>
+
+          <!-- Block 3: Trust strip -->
+          <section class="mk-section">
+            <h2 class="mk-h2">Built to be trusted, not taken on faith</h2>
+            <p class="mk-section-sub">Sift handles sensitive feedback, so the same signal shows up here and in the footer.</p>
+            <ul class="mk-trust">
+              <li class="mk-trust-item">
+                <h3 class="mk-trust-t">Transparency</h3>
+                <p class="mk-trust-d">No black box. Every synthesis conclusion links to the evidence behind it, and confidence is shown honestly. Thin evidence is never dressed up as strong signal.</p>
+              </li>
+              <li class="mk-trust-item">
+                <h3 class="mk-trust-t">Traceability</h3>
+                <p class="mk-trust-d">Theme, to evidence items (n=X), to the verbatim quote. Every priority traces to the real user voice behind it, so you can defend the call under challenge.</p>
+              </li>
+              <li class="mk-trust-item">
+                <h3 class="mk-trust-t">PII scrubbed by default</h3>
+                <p class="mk-trust-d">Names and email addresses are stripped from feedback on import. GDPR-ready with EU data residency, so sensitive customer data stays safe.</p>
+              </li>
+            </ul>
+          </section>
+
+          <!-- Block 4: Pricing teaser -->
+          <section class="mk-section">
+            <h2 class="mk-h2">Pricing</h2>
+            <p class="mk-section-sub">Start free with a monthly signal limit. Upgrade when you need full coverage and traceability. Plan names, limits, and prices are early hypotheses, not final.</p>
+            <ul class="mk-pricing">
+              <li class="mk-tier">
+                <h3 class="mk-tier-name">Free</h3>
+                <p class="mk-tier-price">$0</p>
+                <ul class="mk-tier-feat">
+                  <li>Up to 500 feedback items per month</li>
+                  <li>Theme clusters, basic synthesis</li>
+                  <li>1 integration source</li>
+                </ul>
+              </li>
+              <li class="mk-tier">
+                <h3 class="mk-tier-name">Starter</h3>
+                <p class="mk-tier-price">$30 to $60 <span class="mk-tier-unit">per seat / month</span></p>
+                <ul class="mk-tier-feat">
+                  <li>Unlimited signal volume</li>
+                  <li>Full synthesis with traceability</li>
+                  <li>3 integrations, 1 to 3 seats</li>
+                </ul>
+              </li>
+              <li class="mk-tier">
+                <h3 class="mk-tier-name">Growth</h3>
+                <p class="mk-tier-price">Custom <span class="mk-tier-unit">per seat, scales down</span></p>
+                <ul class="mk-tier-feat">
+                  <li>All integrations, 5 to 15 seats</li>
+                  <li>Team collaboration</li>
+                  <li>Roadmap sync and usage analytics</li>
+                </ul>
+              </li>
+              <li class="mk-tier">
+                <h3 class="mk-tier-name">Enterprise</h3>
+                <p class="mk-tier-price">Custom</p>
+                <ul class="mk-tier-feat">
+                  <li>Unlimited seats</li>
+                  <li>SSO and audit log</li>
+                  <li>Dedicated support and SLA</li>
+                </ul>
+              </li>
+            </ul>
+            <div class="mk-pricing-cta">
+              <a class="wf-btn" href="auth-signup.html">Start free</a>
+              <a class="wf-btn--ghost" href="account-plan.html">See plans and limits</a>
+            </div>
+          </section>
+
+        </main>
+
+        <!-- Block 5: Footer link block (marketing footer, node 0.2) -->
+        <footer class="wf-appfoot mk-footer">
+          <div class="mk-foot-brand">
+            <span class="wf-brand">SIFT</span>
+            <span class="mk-foot-tag">Turn scattered customer feedback into decisions you can defend.</span>
+          </div>
+          <nav class="mk-foot-cols" aria-label="Footer">
+            <div class="mk-foot-col">
+              <span class="mk-foot-h">Product</span>
+              <a href="auth-signup.html">Start free</a>
+              <a href="auth.html">Log in</a>
+            </div>
+            <div class="mk-foot-col">
+              <span class="mk-foot-h">Legal</span>
+              <a href="privacy.html">Privacy policy</a>
+              <a href="terms.html">Terms of service</a>
+              <a href="security.html">Security and GDPR</a>
+            </div>
+          </nav>
+          <div class="mk-foot-legal">Sift · signal from CSV and Intercom, PII scrubbed by default · GDPR-ready, EU data residency</div>
+        </footer>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="_nav.js"></script>
+</body>
+</html>

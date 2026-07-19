@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift - Wireframe 7.0 Account</title>
+<link rel="stylesheet" href="_wf.css">
+<style>
+/* 7.0 Account / settings - grey section-shell components (new to this cluster) */
+.acct-layout { display: flex; flex-direction: column; gap: 16px; }
+.acct-nav { border: 1px solid var(--w-line); border-radius: 8px; background: var(--w-surface); padding: 6px; display: flex; flex-direction: column; gap: 2px; }
+.acct-nav-home { display: block; font-size: 12px; font-weight: 700; color: var(--w-ink); text-decoration: none; padding: 8px 10px 6px; }
+.acct-nav-home:hover { color: var(--w-ink-2); }
+.acct-nav-link { display: flex; align-items: baseline; gap: 8px; padding: 10px; border-radius: 6px; font-size: 13px; color: var(--w-ink-2); text-decoration: none; border-left: 2px solid transparent; }
+.acct-nav-link:hover { color: var(--w-ink); background: var(--w-bg); }
+.acct-nav-link.is-current { color: var(--w-ink); background: var(--w-bg); border-left-color: var(--w-ink); font-weight: 650; }
+.acct-nav-node { font-size: 10px; color: var(--w-ink-3); font-weight: 700; min-width: 22px; flex: none; }
+.acct-panel { flex: 1; min-width: 0; }
+.acct-id { display: flex; align-items: center; gap: 12px; padding-bottom: 14px; margin-bottom: 14px; border-bottom: 1px solid var(--w-line); }
+.acct-id-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--w-fill); border: 1px solid var(--w-line-2); flex: none; }
+.acct-id-name { font-size: 14px; color: var(--w-ink); font-weight: 650; }
+.acct-id-meta { font-size: 12px; color: var(--w-ink-2); margin-top: 2px; }
+.acct-section-t { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--w-ink-2); margin: 18px 0 6px; }
+.acct-section-t:first-child { margin-top: 0; }
+.acct-row { display: flex; align-items: flex-start; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--w-line); }
+.acct-row-main { flex: 1; min-width: 0; }
+.acct-row-t { display: block; font-size: 13px; color: var(--w-ink); font-weight: 600; }
+.acct-row-d { display: block; font-size: 12px; color: var(--w-ink-2); margin-top: 3px; line-height: 1.55; }
+.acct-check { width: 20px; height: 20px; flex: none; margin-top: 2px; accent-color: #6b6b78; }
+.acct-meter { height: 10px; border-radius: 5px; background: var(--w-skel); border: 1px solid var(--w-line-2); overflow: hidden; margin: 8px 0 6px; }
+.acct-meter-fill { height: 100%; background: var(--w-fill); }
+.acct-meter-label { font-size: 12px; color: var(--w-ink-2); }
+.acct-plan-name { font-size: 16px; color: var(--w-ink); font-weight: 700; }
+.acct-card-t { display: block; font-size: 13px; color: var(--w-ink); font-weight: 650; }
+.acct-card-d { display: block; font-size: 12px; color: var(--w-ink-2); margin-top: 3px; line-height: 1.55; }
+.acct-seclink { font-size: 12px; color: var(--w-ink-2); margin-top: 14px; }
+.acct-seclink a { color: var(--w-ink); }
+@container (min-width: 600px) {
+  .acct-layout { flex-direction: row; align-items: flex-start; }
+  .acct-nav { width: 208px; flex: none; }
+}
+</style>
+</head>
+<!-- 7.0 Account (shell). Source ia/docs/pages/account.md. Grey, responsive. -->
+<body>
+<div id="wf-topbar" data-node="7.0" data-state="base"></div>
+<div class="wf-shell">
+  <div id="wf-rail" data-node="7.0" data-state="base"></div>
+  <div class="wf-stage">
+    <div class="wf-canvas">
+      <div class="wf-app">
+
+        <div data-wf="header" data-active="account"></div>
+
+        <main class="wf-main">
+          <div class="wf-main-head">
+            <h1 class="wf-h1">Account</h1>
+            <p class="wf-sub">Your plan, your data controls, and your profile for the Northwind workspace.</p>
+          </div>
+
+          <div class="acct-id">
+            <span class="acct-id-avatar" aria-hidden="true"></span>
+            <div>
+              <div class="acct-id-name">Alex Rivera</div>
+              <div class="acct-id-meta">alex@northwind.io · Northwind workspace</div>
+            </div>
+          </div>
+
+          <div class="acct-layout">
+            <nav class="acct-nav" aria-label="Account sections">
+              <a class="acct-nav-home" href="account.html">Account</a>
+              <a class="acct-nav-link" href="account-plan.html"><span class="acct-nav-node">7.1</span>Plan and limits</a>
+              <a class="acct-nav-link" href="account-data.html"><span class="acct-nav-node">7.2</span>Data and privacy</a>
+              <a class="acct-nav-link" href="account-profile.html"><span class="acct-nav-node">7.3</span>Profile</a>
+            </nav>
+
+            <div class="acct-panel">
+              <ul class="wf-list">
+                <li>
+                  <a class="wf-card" href="account-plan.html">
+                    <strong class="acct-card-t">Plan and limits</strong>
+                    <span class="acct-card-d">Free plan. 3,750 of 5,000 items used this month. Review usage and upgrade.</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="wf-card" href="account-data.html">
+                    <strong class="acct-card-t">Data and privacy</strong>
+                    <span class="acct-card-d">PII scrub on by default, EU data residency, export or delete your data.</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="wf-card" href="account-profile.html">
+                    <strong class="acct-card-t">Profile</strong>
+                    <span class="acct-card-d">Your name, email, and password. Sign out of this workspace.</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </main>
+
+        <div data-wf="appfoot"></div>
+        <div data-wf="bottomtabs" data-active="account"></div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<script src="_nav.js"></script>
+</body>
+</html>

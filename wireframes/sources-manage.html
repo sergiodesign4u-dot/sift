@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift - Wireframe 3.6 Source: manage</title>
+<link rel="stylesheet" href="_wf.css">
+<style>
+  /* 3.6 Source manage: detail + re-import + disconnect confirm */
+  .src-note { font-size: 12px; color: var(--w-ink-2); line-height: 1.55; margin-bottom: 10px; }
+  .src-actions { display: flex; gap: 8px; flex-wrap: wrap; margin: 4px 0 4px; }
+  .src-confirm { border: 1px solid var(--w-line-2); border-radius: 8px; background: var(--w-surface); padding: 16px; }
+</style>
+</head>
+<!-- 3.6 Source: manage (disconnect / re-import). Source detail for the Intercom connection,
+     a Re-import action, and a Disconnect confirm (a real button). Back to sources.html.
+     Source ia/docs/pages/sources.md. Grey, responsive. -->
+<body>
+
+<div id="wf-topbar" data-node="3.0" data-state="manage"></div>
+
+<div class="wf-shell">
+  <div id="wf-rail" data-node="3.0" data-state="manage"></div>
+
+  <div class="wf-stage">
+    <div class="wf-canvas">
+      <div class="wf-app">
+
+        <div data-wf="header" data-active="sources"></div>
+
+        <nav class="wf-breadcrumb" aria-label="Breadcrumb"><a href="sources.html">Sources</a> &rsaquo; <span>Intercom</span></nav>
+
+        <main class="wf-main">
+          <header class="wf-main-head">
+            <h1 class="wf-h1">Manage Intercom</h1>
+            <p class="wf-sub">Live connection, synced 2 days ago. PII is scrubbed by default.</p>
+          </header>
+
+          <h2 class="wf-evi-title">Source detail</h2>
+          <ul class="wf-prov-list">
+            <li><b>Type</b> Live connection, OAuth</li>
+            <li><b>Status</b> Synced</li>
+            <li><b>Items</b> 2,910</li>
+            <li><b>Last sync</b> 2 days ago</li>
+            <li><b>PII scrub</b> On, default</li>
+          </ul>
+
+          <h2 class="wf-evi-title">Re-import</h2>
+          <p class="src-note">Pull the history from Intercom again. Existing items are de-duplicated and PII is scrubbed on the way in.</p>
+          <div class="src-actions">
+            <button class="wf-btn--ghost" type="button">Re-import from Intercom</button>
+          </div>
+
+          <h2 class="wf-evi-title">Disconnect</h2>
+          <div class="src-confirm">
+            <p class="src-note">Disconnecting stops the live sync and removes the connection. Imported feedback and existing citations stay, but no new signal comes in.</p>
+            <div class="src-actions">
+              <a class="wf-btn--ghost" href="sources.html">Cancel</a>
+              <button class="wf-btn" type="button">Disconnect Intercom</button>
+            </div>
+          </div>
+        </main>
+
+        <div data-wf="appfoot"></div>
+        <div data-wf="bottomtabs" data-active="sources"></div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="_nav.js"></script>
+</body>
+</html>

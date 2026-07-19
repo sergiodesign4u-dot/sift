@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift - Wireframe 3.2 CSV upload and column mapping</title>
+<link rel="stylesheet" href="_wf.css">
+<style>
+  /* 3.2 CSV upload: file drop + column mapping (source column -> Sift field) */
+  .src-drop { border: 1px dashed var(--w-line-2); border-radius: 8px; background: var(--w-surface); padding: 26px 20px; text-align: center; margin: 4px 0 10px; }
+  .src-drop-ic { width: 36px; height: 36px; border-radius: 8px; background: var(--w-fill); margin: 0 auto 12px; }
+  .src-drop-t { font-size: 13px; color: var(--w-ink); }
+  .src-drop-d { font-size: 11px; color: var(--w-ink-2); margin: 4px 0 12px; }
+  .src-file { font-size: 12px; color: var(--w-ink-2); margin-bottom: 8px; }
+  .src-file b { color: var(--w-ink); font-weight: 600; }
+  .src-map-head { display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--w-ink-2); padding: 0 0 4px; }
+  .src-map-row { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--w-line); }
+  .src-map-col { font-size: 12px; color: var(--w-ink); }
+  .src-map-arrow { color: var(--w-ink-3); font-size: 14px; }
+  select.wf-input { -webkit-appearance: none; appearance: none; }
+</style>
+</head>
+<!-- 3.2 CSV upload + column mapping. File drop, a column-mapping step, an unmapped-column error,
+     then normalize and PII-scrub loading. Traces Flow 1 (CSV branch). Source ia/docs/pages/sources.md. -->
+<body>
+
+<div id="wf-topbar" data-node="3.0" data-state="csv"></div>
+
+<div class="wf-shell">
+  <div id="wf-rail" data-node="3.0" data-state="csv"></div>
+
+  <div class="wf-stage">
+    <div class="wf-canvas">
+      <div class="wf-app">
+
+        <div data-wf="header" data-active="sources"></div>
+
+        <nav class="wf-breadcrumb" aria-label="Breadcrumb"><a href="sources.html">Sources</a> &rsaquo; <a href="connect.html">Connect a source</a> &rsaquo; <span>CSV upload</span></nav>
+
+        <main class="wf-main">
+          <header class="wf-main-head">
+            <h1 class="wf-h1">Import a CSV</h1>
+            <p class="wf-sub">Upload your file, then map each column to a Sift field. PII is scrubbed on the way in.</p>
+          </header>
+
+          <div class="src-drop">
+            <div class="src-drop-ic" aria-hidden="true"></div>
+            <div class="src-drop-t">Drop your CSV here</div>
+            <div class="src-drop-d">or choose a file from your computer</div>
+            <button class="wf-btn--ghost" type="button">Choose file</button>
+          </div>
+          <p class="src-file"><b>feedback-export.csv</b>, 840 rows, 5 columns detected.</p>
+
+          <h2 class="wf-evi-title">Map columns</h2>
+          <div class="src-map-head">
+            <span>Source column</span>
+            <span></span>
+            <span>Sift field</span>
+          </div>
+          <div class="src-map">
+            <div class="src-map-row">
+              <span class="src-map-col">customer_message</span>
+              <span class="src-map-arrow" aria-hidden="true">&rarr;</span>
+              <select class="wf-input" aria-label="Sift field for customer_message">
+                <option>Feedback text</option>
+                <option>Date</option>
+                <option>Source channel</option>
+                <option>Contact (PII scrubbed)</option>
+                <option>Rating</option>
+                <option>Do not import</option>
+              </select>
+            </div>
+            <div class="src-map-row">
+              <span class="src-map-col">created_at</span>
+              <span class="src-map-arrow" aria-hidden="true">&rarr;</span>
+              <select class="wf-input" aria-label="Sift field for created_at">
+                <option>Date</option>
+                <option>Feedback text</option>
+                <option>Source channel</option>
+                <option>Contact (PII scrubbed)</option>
+                <option>Rating</option>
+                <option>Do not import</option>
+              </select>
+            </div>
+            <div class="src-map-row">
+              <span class="src-map-col">channel</span>
+              <span class="src-map-arrow" aria-hidden="true">&rarr;</span>
+              <select class="wf-input" aria-label="Sift field for channel">
+                <option>Source channel</option>
+                <option>Feedback text</option>
+                <option>Date</option>
+                <option>Contact (PII scrubbed)</option>
+                <option>Rating</option>
+                <option>Do not import</option>
+              </select>
+            </div>
+            <div class="src-map-row">
+              <span class="src-map-col">email</span>
+              <span class="src-map-arrow" aria-hidden="true">&rarr;</span>
+              <select class="wf-input" aria-label="Sift field for email">
+                <option>Contact (PII scrubbed)</option>
+                <option>Feedback text</option>
+                <option>Date</option>
+                <option>Source channel</option>
+                <option>Rating</option>
+                <option>Do not import</option>
+              </select>
+            </div>
+            <div class="src-map-row">
+              <span class="src-map-col">priority</span>
+              <span class="src-map-arrow" aria-hidden="true">&rarr;</span>
+              <select class="wf-input" aria-label="Sift field for priority">
+                <option selected>Choose a field</option>
+                <option>Feedback text</option>
+                <option>Date</option>
+                <option>Source channel</option>
+                <option>Contact (PII scrubbed)</option>
+                <option>Rating</option>
+                <option>Do not import</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="wf-notice">1 column is not mapped. "priority" has no Sift field yet. Map it or set it to Do not import before you import.</div>
+
+          <div class="wf-actionbar">
+            <span class="wf-actionbar-note">1 column unmapped</span>
+            <a class="wf-btn--ghost" href="connect.html">Back to chooser</a>
+            <a class="wf-btn" href="synthesis-loading.html">Import 840 items</a>
+          </div>
+        </main>
+
+        <div data-wf="appfoot"></div>
+        <div data-wf="bottomtabs" data-active="sources"></div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="_nav.js"></script>
+</body>
+</html>

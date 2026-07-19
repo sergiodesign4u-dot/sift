@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift - Wireframe 1.0 Auth (sign up)</title>
+<link rel="stylesheet" href="_wf.css">
+<style>
+  /* Auth card: a centered form on a quiet public surface (IA node 1.0, content block 1).
+     Genuinely new component, kept grey on the --w-* tokens. No app navigation here. */
+  .wf-auth-wrap { max-width: 380px; margin: 32px auto; }
+  .wf-auth-card { background: var(--w-surface); border: 1px solid var(--w-line-2); border-radius: 10px; padding: 24px; }
+  .wf-auth-card + .wf-auth-card { margin-top: 16px; }
+  .wf-auth-value { font-size: 12px; color: var(--w-ink-2); line-height: 1.55; margin: 4px 0 18px; }
+  .wf-auth-h2 { font-size: 13px; font-weight: 650; color: var(--w-ink); margin-bottom: 4px; }
+  .wf-auth-step { display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--w-ink-3); margin-bottom: 6px; }
+  .wf-label-row { display: flex; justify-content: space-between; align-items: baseline; }
+  .wf-auth-forgot { font-size: 11px; color: var(--w-ink-2); text-decoration: none; }
+  .wf-auth-forgot:hover { color: var(--w-ink); }
+  .wf-auth-btn { width: 100%; text-align: center; padding: 12px 14px; }
+  .wf-auth-or { display: flex; align-items: center; gap: 10px; font-size: 11px; color: var(--w-ink-3); margin: 14px 0; }
+  .wf-auth-or::before, .wf-auth-or::after { content: ""; flex: 1; height: 1px; background: var(--w-line); }
+  .wf-auth-switch { font-size: 12px; color: var(--w-ink-2); text-align: center; margin-top: 18px; }
+  .wf-auth-switch a { color: var(--w-ink); }
+  .wf-auth-sent { font-size: 12px; color: var(--w-ink-2); background: var(--w-bg); border: 1px solid var(--w-line); border-radius: 6px; padding: 12px; line-height: 1.55; }
+  .wf-appfoot a { color: var(--w-ink-2); text-decoration: none; }
+  .wf-appfoot a:hover { color: var(--w-ink); }
+</style>
+</head>
+<!--
+  Wireframe 1.0 Auth, state signup = Sign up (1.0). Public / pre-login (Skeleton B): NO app header
+  tabs, NO bottom tabs, only a light Sift mark and a centered form card. Email + SSO, a short value
+  reminder, and a switch to log in (1.1). Submit creates a new empty workspace and lands on Synthesis
+  first-run empty (2.1). Text from ia/docs/pages/auth.md. Grey, responsive, noindex.
+-->
+<body>
+
+<div id="wf-topbar" data-node="1.0" data-state="signup"></div>
+
+<div class="wf-shell">
+  <div id="wf-rail" data-node="1.0" data-state="signup"></div>
+
+  <div class="wf-stage">
+    <div class="wf-canvas">
+      <div class="wf-app">
+
+        <div class="wf-public-bar">
+          <span class="wf-brand">SIFT</span>
+          <span class="wf-public-tag">Feedback synthesis for product teams</span>
+        </div>
+
+        <main class="wf-main wf-public-main">
+          <div class="wf-auth-wrap">
+            <section class="wf-auth-card">
+              <h1 class="wf-h1">Create your account</h1>
+              <p class="wf-auth-value">Sift turns support tickets, sales calls, reviews, and interviews into themes you can trace back to the customer voices behind them. See which problems have the most signal.</p>
+
+              <form action="synthesis-empty.html" method="get">
+                <div class="wf-field">
+                  <label class="wf-label" for="signup-email">Work email</label>
+                  <input class="wf-input" id="signup-email" name="email" type="email" autocomplete="email" placeholder="alex@northwind.io">
+                </div>
+                <div class="wf-field">
+                  <label class="wf-label" for="signup-password">Create a password</label>
+                  <input class="wf-input" id="signup-password" name="password" type="password" autocomplete="new-password" placeholder="At least 8 characters">
+                </div>
+                <button class="wf-btn wf-auth-btn" type="submit">Create workspace</button>
+                <div class="wf-auth-or">or</div>
+                <button class="wf-btn wf-btn--ghost wf-auth-btn" type="submit" formaction="synthesis-empty.html">Continue with SSO</button>
+              </form>
+
+              <p class="wf-auth-switch">Already have an account? <a href="auth.html">Log in</a></p>
+            </section>
+          </div>
+        </main>
+
+        <footer class="wf-appfoot">Sift &middot; <a href="privacy.html">Privacy</a> &middot; <a href="terms.html">Terms</a></footer>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="_nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift - Wireframe 3.1 Connect a source</title>
+<link rel="stylesheet" href="_wf.css">
+<style>
+  /* 3.1 Connect chooser: source-type cards (owner of the canonical source-type enum) */
+  .src-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin: 4px 0 4px; }
+  .src-type-card { display: flex; gap: 14px; align-items: flex-start; padding: 16px; border: 1px solid var(--w-line-2); border-radius: 8px; background: var(--w-surface); text-decoration: none; color: inherit; }
+  a.src-type-card:hover { border-color: var(--w-ink-3); }
+  .src-type-card.is-later { opacity: 0.5; cursor: not-allowed; }
+  .src-type-ic { width: 36px; height: 36px; border-radius: 8px; background: var(--w-fill); border: 1px solid var(--w-line-2); flex: none; }
+  .src-type-body { flex: 1; min-width: 0; }
+  .src-type-name { font-size: 14px; font-weight: 600; color: var(--w-ink); display: flex; align-items: center; gap: 8px; }
+  .src-type-method { font-size: 11px; color: var(--w-ink-2); margin-top: 5px; line-height: 1.5; }
+  .src-type-later { font-size: 9px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--w-ink-2); border: 1px solid var(--w-line-2); border-radius: 3px; padding: 1px 5px; }
+  @container (min-width: 600px) { .src-grid { grid-template-columns: 1fr 1fr; } }
+</style>
+</head>
+<!-- 3.1 Connect / import (chooser). Owner of the canonical source-type enum.
+     CSV (upload) and Intercom (OAuth) are MVP; Zendesk and Gong are the same abstraction, later (D3).
+     PII-scrub-default note. Source ia/docs/pages/sources.md. Grey, responsive. -->
+<body>
+
+<div id="wf-topbar" data-node="3.0" data-state="connect"></div>
+
+<div class="wf-shell">
+  <div id="wf-rail" data-node="3.0" data-state="connect"></div>
+
+  <div class="wf-stage">
+    <div class="wf-canvas">
+      <div class="wf-app">
+
+        <div data-wf="header" data-active="sources"></div>
+
+        <nav class="wf-breadcrumb" aria-label="Breadcrumb"><a href="sources.html">Sources</a> &rsaquo; <span>Connect a source</span></nav>
+
+        <main class="wf-main">
+          <header class="wf-main-head">
+            <h1 class="wf-h1">Connect a source</h1>
+            <p class="wf-sub">Pick where your feedback lives. Sift normalizes and clusters it after it comes in.</p>
+          </header>
+
+          <div class="src-grid">
+            <a class="src-type-card" href="connect-csv.html">
+              <span class="src-type-ic" aria-hidden="true"></span>
+              <span class="src-type-body">
+                <span class="src-type-name">CSV upload</span>
+                <span class="src-type-method">Upload a file. A one-off import batch, mapped to Sift fields.</span>
+              </span>
+            </a>
+            <a class="src-type-card" href="connect-intercom.html">
+              <span class="src-type-ic" aria-hidden="true"></span>
+              <span class="src-type-body">
+                <span class="src-type-name">Intercom</span>
+                <span class="src-type-method">Connect with OAuth. A live connection that syncs new conversations.</span>
+              </span>
+            </a>
+            <div class="src-type-card is-later" aria-disabled="true">
+              <span class="src-type-ic" aria-hidden="true"></span>
+              <span class="src-type-body">
+                <span class="src-type-name">Zendesk <span class="src-type-later">Later</span></span>
+                <span class="src-type-method">Same connection pattern as Intercom. Coming later.</span>
+              </span>
+            </div>
+            <div class="src-type-card is-later" aria-disabled="true">
+              <span class="src-type-ic" aria-hidden="true"></span>
+              <span class="src-type-body">
+                <span class="src-type-name">Gong <span class="src-type-later">Later</span></span>
+                <span class="src-type-method">Same connection pattern as Intercom. Coming later.</span>
+              </span>
+            </div>
+          </div>
+
+          <div class="wf-notice">PII is scrubbed by default on every source. Names and email addresses in your feedback are redacted before synthesis. You can review this in Data and privacy.</div>
+
+          <div class="wf-actionbar">
+            <a class="wf-btn--ghost" href="sources.html">Back to sources</a>
+          </div>
+        </main>
+
+        <div data-wf="appfoot"></div>
+        <div data-wf="bottomtabs" data-active="sources"></div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="_nav.js"></script>
+</body>
+</html>

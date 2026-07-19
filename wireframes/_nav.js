@@ -19,11 +19,11 @@
 
 const WF_CLUSTERS = [
   { id: '0', title: 'Home + shell', screens: [
-    { key: '0.0', label: 'Home (marketing)', file: 'home.html', status: 'spec', states: [
+    { key: '0.0', label: 'Home (marketing)', file: 'home.html', status: 'built', states: [
       { key: 'base', label: 'landing', file: 'home.html' } ] },
   ]},
   { id: '1', title: 'Auth', screens: [
-    { key: '1.0', label: 'Auth', file: 'auth.html', status: 'spec', states: [
+    { key: '1.0', label: 'Auth', file: 'auth.html', status: 'built', states: [
       { key: 'base', label: 'log in (1.1)', file: 'auth.html' },
       { key: 'signup', label: 'sign up (1.0)', file: 'auth-signup.html' },
       { key: 'reset', label: 'forgot / reset (1.2)', file: 'auth-reset.html' } ] },
@@ -36,7 +36,7 @@ const WF_CLUSTERS = [
       { key: 'error', label: 'error (2.3)', file: 'synthesis-error.html' } ] },
   ]},
   { id: '3', title: 'Sources / ingestion', screens: [
-    { key: '3.0', label: 'Sources', file: 'sources.html', status: 'spec', states: [
+    { key: '3.0', label: 'Sources', file: 'sources.html', status: 'built', states: [
       { key: 'base', label: 'list', file: 'sources.html' },
       { key: 'empty', label: 'none connected (3.4)', file: 'sources-empty.html' },
       { key: 'connect', label: 'connect chooser (3.1)', file: 'connect.html' },
@@ -58,7 +58,7 @@ const WF_CLUSTERS = [
       { key: 'redacted', label: 'redacted / unavailable (5.1)', file: 'evidence-redacted.html' } ] },
   ]},
   { id: '6', title: 'Decide and defend / Briefs', screens: [
-    { key: '6.0', label: 'Briefs list', file: 'briefs.html', status: 'spec', flow: '4', states: [
+    { key: '6.0', label: 'Briefs list', file: 'briefs.html', status: 'built', flow: '4', states: [
       { key: 'base', label: 'list', file: 'briefs.html' },
       { key: 'empty', label: 'empty (6.5)', file: 'briefs-empty.html' } ] },
     { key: '6.1', label: 'Build brief', file: 'build-brief.html', status: 'built', flow: '0', states: [
@@ -71,21 +71,21 @@ const WF_CLUSTERS = [
       { key: 'base', label: 'read-only', file: 'shared-brief.html' } ] },
   ]},
   { id: '7', title: 'Account / settings', screens: [
-    { key: '7.0', label: 'Account', file: 'account.html', status: 'spec', states: [
+    { key: '7.0', label: 'Account', file: 'account.html', status: 'built', states: [
       { key: 'base', label: 'shell', file: 'account.html' },
       { key: 'plan', label: 'plan and limits (7.1)', file: 'account-plan.html' },
       { key: 'data', label: 'data and privacy (7.2)', file: 'account-data.html' },
       { key: 'profile', label: 'profile (7.3)', file: 'account-profile.html' } ] },
   ]},
   { id: '8', title: 'System', screens: [
-    { key: '8.0', label: '404 not found', file: '404.html', status: 'spec', states: [ { key: 'base', label: '404', file: '404.html' } ] },
-    { key: '8.1', label: '500 server error', file: '500.html', status: 'spec', states: [ { key: 'base', label: '500', file: '500.html' } ] },
-    { key: '8.2', label: 'Maintenance (503)', file: 'maintenance.html', status: 'spec', states: [ { key: 'base', label: '503', file: 'maintenance.html' } ] },
+    { key: '8.0', label: '404 not found', file: '404.html', status: 'built', states: [ { key: 'base', label: '404', file: '404.html' } ] },
+    { key: '8.1', label: '500 server error', file: '500.html', status: 'built', states: [ { key: 'base', label: '500', file: '500.html' } ] },
+    { key: '8.2', label: 'Maintenance (503)', file: 'maintenance.html', status: 'built', states: [ { key: 'base', label: '503', file: 'maintenance.html' } ] },
   ]},
   { id: '9', title: 'Content / legal', screens: [
-    { key: '9.0', label: 'Privacy policy', file: 'privacy.html', status: 'spec', states: [ { key: 'base', label: 'policy', file: 'privacy.html' } ] },
-    { key: '9.1', label: 'Terms of service', file: 'terms.html', status: 'spec', states: [ { key: 'base', label: 'terms', file: 'terms.html' } ] },
-    { key: '9.2', label: 'Security / GDPR', file: 'security.html', status: 'spec', states: [ { key: 'base', label: 'security', file: 'security.html' } ] },
+    { key: '9.0', label: 'Privacy policy', file: 'privacy.html', status: 'built', states: [ { key: 'base', label: 'policy', file: 'privacy.html' } ] },
+    { key: '9.1', label: 'Terms of service', file: 'terms.html', status: 'built', states: [ { key: 'base', label: 'terms', file: 'terms.html' } ] },
+    { key: '9.2', label: 'Security / GDPR', file: 'security.html', status: 'built', states: [ { key: 'base', label: 'security', file: 'security.html' } ] },
   ]},
 ];
 

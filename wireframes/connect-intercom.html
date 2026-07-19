@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift - Wireframe 3.3 Intercom connect (OAuth)</title>
+<link rel="stylesheet" href="_wf.css">
+<style>
+  /* 3.3 Intercom OAuth: authorize step */
+  .src-panel { border: 1px solid var(--w-line-2); border-radius: 8px; background: var(--w-surface); padding: 18px; margin: 4px 0 12px; }
+  .src-panel h2 { font-size: 14px; color: var(--w-ink); font-weight: 600; margin-bottom: 4px; }
+  .src-panel p { font-size: 12px; color: var(--w-ink-2); line-height: 1.55; }
+  .src-scopes { list-style: none; margin: 12px 0 16px; }
+  .src-scopes li { font-size: 12px; color: var(--w-ink-2); padding: 8px 0; border-bottom: 1px solid var(--w-line); display: flex; gap: 10px; align-items: flex-start; }
+  .src-scope-ic { width: 16px; height: 16px; border-radius: 4px; background: var(--w-fill); flex: none; margin-top: 1px; }
+</style>
+</head>
+<!-- 3.3 Intercom connect (OAuth). Authorize, an auth-failed error, then sync loading.
+     Traces Flow 1 (Intercom branch). Source ia/docs/pages/sources.md. Grey, responsive. -->
+<body>
+
+<div id="wf-topbar" data-node="3.0" data-state="intercom"></div>
+
+<div class="wf-shell">
+  <div id="wf-rail" data-node="3.0" data-state="intercom"></div>
+
+  <div class="wf-stage">
+    <div class="wf-canvas">
+      <div class="wf-app">
+
+        <div data-wf="header" data-active="sources"></div>
+
+        <nav class="wf-breadcrumb" aria-label="Breadcrumb"><a href="sources.html">Sources</a> &rsaquo; <a href="connect.html">Connect a source</a> &rsaquo; <span>Intercom</span></nav>
+
+        <main class="wf-main">
+          <header class="wf-main-head">
+            <h1 class="wf-h1">Connect Intercom</h1>
+            <p class="wf-sub">Authorize Sift to read your Intercom conversations. Feedback is normalized and PII scrubbed on the way in.</p>
+          </header>
+
+          <div class="wf-notice">Authorization failed. Intercom did not confirm access, so nothing was connected. Check that you approved the request in the Intercom window, then try again.</div>
+
+          <section class="src-panel">
+            <h2>Authorize Sift</h2>
+            <p>When you continue, Intercom opens its approval window. Sift will be allowed to:</p>
+            <ul class="src-scopes">
+              <li><span class="src-scope-ic" aria-hidden="true"></span> Read conversations and their tags</li>
+              <li><span class="src-scope-ic" aria-hidden="true"></span> Sync new conversations as they arrive</li>
+              <li><span class="src-scope-ic" aria-hidden="true"></span> Scrub names and email addresses before synthesis</li>
+            </ul>
+            <a class="wf-btn" href="synthesis-loading.html">Retry authorization</a>
+          </section>
+
+          <div class="wf-actionbar">
+            <a class="wf-btn--ghost" href="connect.html">Back to chooser</a>
+          </div>
+        </main>
+
+        <div data-wf="appfoot"></div>
+        <div data-wf="bottomtabs" data-active="sources"></div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="_nav.js"></script>
+</body>
+</html>

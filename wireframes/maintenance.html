@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift - Wireframe 8.2 Maintenance</title>
+<link rel="stylesheet" href="_wf.css">
+</head>
+<!--
+  Wireframe 8.2 Maintenance (503). Standalone node. Minimal planned-downtime template
+  (Skeleton B): no app header or tabs, only the light Sift mark. In production this returns
+  HTTP 503 with Retry-After so crawlers come back. A short message, an expected-back note,
+  and a retry-later action. Text from ia/docs/pages/system.md (8.2).
+-->
+<body>
+
+<div id="wf-topbar" data-node="8.2" data-state="base"></div>
+
+<div class="wf-shell">
+  <div id="wf-rail" data-node="8.2" data-state="base"></div>
+
+  <div class="wf-stage">
+    <div class="wf-canvas">
+      <div class="wf-app">
+
+        <div class="wf-public-bar">
+          <span class="wf-brand">SIFT</span>
+          <span class="wf-public-tag">Customer feedback, synthesized</span>
+        </div>
+
+        <main class="wf-main wf-public-main">
+          <div class="wf-state">
+            <div class="wf-state-ic"></div>
+            <h1 class="wf-state-t">Down for maintenance</h1>
+            <div class="wf-state-d">Sift is briefly offline for planned maintenance. Your workspace and data are safe. We expect to be back shortly, please check again in a few minutes.</div>
+            <div class="wf-notice">This is planned downtime. Nothing to do on your end, just retry later.</div>
+            <div class="wf-state-actions">
+              <a class="wf-btn--ghost" href="maintenance.html">Try again</a>
+            </div>
+          </div>
+        </main>
+
+        <footer class="wf-appfoot">Sift · customer feedback synthesis · back soon</footer>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="_nav.js"></script>
+</body>
+</html>

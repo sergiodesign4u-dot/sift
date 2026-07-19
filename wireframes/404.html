@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift - Wireframe 8.0 Page not found</title>
+<link rel="stylesheet" href="_wf.css">
+</head>
+<!--
+  Wireframe 8.0 404 not found. Standalone node (not a state of another screen).
+  Full app screen (Skeleton A) so it keeps the app header and footer, never a soft-404:
+  a real 404 + noindex must carry recovery. Two visible exits: Go to Synthesis (2.0) and
+  Home (0.0). Text from ia/docs/pages/system.md (8.0).
+-->
+<body>
+
+<div id="wf-topbar" data-node="8.0" data-state="base"></div>
+
+<div class="wf-shell">
+  <div id="wf-rail" data-node="8.0" data-state="base"></div>
+
+  <div class="wf-stage">
+    <div class="wf-canvas">
+      <div class="wf-app">
+
+        <div data-wf="header" data-active=""></div>
+
+        <main class="wf-main">
+          <div class="wf-state">
+            <div class="wf-state-ic"></div>
+            <h1 class="wf-state-t">Page not found</h1>
+            <div class="wf-state-d">The page you are looking for does not exist or has moved. Nothing in your workspace is lost. Head back to your synthesis, or start from home.</div>
+            <div class="wf-state-actions">
+              <a class="wf-btn--ghost" href="home.html">Home</a>
+              <a class="wf-btn" href="synthesis.html">Go to Synthesis</a>
+            </div>
+          </div>
+        </main>
+
+        <div data-wf="appfoot"></div>
+        <div data-wf="bottomtabs" data-active=""></div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="_nav.js"></script>
+</body>
+</html>
