@@ -14,6 +14,7 @@ B2B SaaS that turns scattered customer feedback into clear, prioritized product 
 - Information Architecture - Site Map: [https://sergiodesign4u-dot.github.io/sift/ia/sitemap.html](https://sergiodesign4u-dot.github.io/sift/ia/sitemap.html)
 - Information Architecture - Structure (node hub): [https://sergiodesign4u-dot.github.io/sift/ia/structure.html](https://sergiodesign4u-dot.github.io/sift/ia/structure.html)
 - Wireframes - All screens (clickable prototype): [https://sergiodesign4u-dot.github.io/sift/wireframes/index.html](https://sergiodesign4u-dot.github.io/sift/wireframes/index.html)
+- Voice - How Sift speaks: [https://sergiodesign4u-dot.github.io/sift/voice/voice.html](https://sergiodesign4u-dot.github.io/sift/voice/voice.html)
 
 ---
 
@@ -26,8 +27,8 @@ B2B SaaS that turns scattered customer feedback into clear, prioritized product 
 | CJM (As-Is + To-Be) | Done (As-Is journey from mined VOC with emotional curve, To-Be traced path, sharpened MVP backlog) |
 | Information Architecture | Done (Basic Layer: entities, concept-sitemap, navigation, user flows, trace matrix. Detail Layer: per-page IA for all 39 nodes across 10 clusters, SEO ahead, black-and-white wireframes, a site-map tree and a node hub) |
 | Wireframes | Done (the whole product as a grey responsive clickable prototype: 17 screens / 39 pages across 10 clusters, page rail + per-screen state switcher, every flow linked, audited by four read-only subagents) |
-| Voice | Next |
-| Concept | Not started |
+| Voice | Done (voice.md: 4 principles, dictionary, forbidden list, microcopy rules; all 17 screens rewritten to the voice by an eight-agent fanout, reconciled and audited; voice.html deployed) |
+| Concept | Next |
 | UI + Visual | Not started |
 | Tokens + Components | Not started |
 | Design System | Not started |
@@ -72,7 +73,9 @@ wireframes/          Grey responsive clickable prototype of the whole product, d
   _nav.js            Single registry (nodes, states, flows) + the prototype chrome (top bar, page rail, state switcher)
   <screen>.html      One base page per screen + <screen>-<state>.html per real state
   docs/              screens.md (screen x state matrix), conventions.md (grey contract), critique.md (audit log)
-voice/               Voice and tone (skeleton)
+voice/               Voice: how Sift speaks, deployed
+  voice.html         Voice visualization (principles, dictionary, forbidden, microcopy)
+  docs/              voice.md (the rulebook), microcopy.md (text inventory + was / now log)
 concept/             Visual language and high-fidelity mockups (skeleton)
 ui-visual/           UI and visual design (skeleton)
 tokens-components/   Design tokens and coded components (skeleton)

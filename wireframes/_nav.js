@@ -226,7 +226,7 @@ function wfBottomTabsHTML(active) {
   function bt(id, label, file) { return '<a class="wf-btab' + (id === active ? ' wf-btab--active' : '') + '" href="' + file + '"><span class="ico"></span><span class="lbl">' + label + '</span></a>'; }
   return '<nav class="wf-bottomtabs" aria-label="Primary">' + bt('synthesis', 'Synthesis', 'synthesis.html') + bt('sources', 'Sources', 'sources.html') + bt('briefs', 'Briefs', 'briefs.html') + bt('account', 'Account', 'account.html') + '</nav>';
 }
-function wfAppFootHTML() { return '<footer class="wf-appfoot">Sift workspace · signal from CSV and Intercom, PII scrubbed by default</footer>'; }
+function wfAppFootHTML() { return '<footer class="wf-appfoot">Sift workspace · feedback from CSV and Intercom, PII scrubbed by default</footer>'; }
 
 function wfMountGlobals() {
   document.querySelectorAll('[data-wf]').forEach(function (el) {
@@ -247,7 +247,7 @@ function wfRoadmap() {
   let links = '';
   for (const f of WF_FLOWS) links += '<li><a href="index.html#flow-' + f.id + '">' + wfFlowShort(f) + '</a></li>';
   links += '<li><a href="index.html" class="sidebar-current">All screens</a></li>';
-  const soon = [['Concept', 'Soon'], ['UI + Visual', 'Soon'], ['Tokens + Components', 'Soon'], ['Design System', 'Soon'], ['Responsive', 'Soon'], ['Animation', 'Soon'], ['Handoff', 'Soon']]
+  const soon = [['Concept', 'Next'], ['UI + Visual', 'Soon'], ['Tokens + Components', 'Soon'], ['Design System', 'Soon'], ['Responsive', 'Soon'], ['Animation', 'Soon'], ['Handoff', 'Soon']]
     .map(function (p) { return '<div class="sidebar-coming-soon"><span class="sidebar-cs-label">' + p[0] + '</span><span class="sidebar-cs-badge">' + p[1] + '</span></div>'; }).join('');
   m.outerHTML =
     '<aside class="sidebar">' +

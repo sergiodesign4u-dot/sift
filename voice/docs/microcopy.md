@@ -443,3 +443,104 @@ Voice governs the interface around these, never the text inside them:
 - **A user's own CSV schema** (feedback-export.csv, and the column names customer_message,
   created_at, channel, email, priority): the customer's data, not our labels. The Sift-field
   option names in the mapping dropdown ARE ours and are in scope.
+
+---
+
+## Rewrite log (was / now)
+
+Every line changed while rewriting screens to `voice.md`, accumulated across Steps 6 and 7. This is
+the "was / now" record the stage requires. A screen may also carry lines that were already on voice
+and were kept as is; those are not logged here, only the changes are.
+
+### Step 6 - etalon: 2.0 Synthesis (base, empty, loading, error)
+
+| Screen | Zone | Was | Now | Rule |
+|---|---|---|---|---|
+| 2.0 Synthesis | Theme card meta (x6) | latest signal 2 days ago | latest feedback 2 days ago | DIV-1. "signal" is reserved for "low signal" and "signal rank"; recency uses the feedback vocabulary. |
+| 2.1 Synthesis empty | State title | No sources connected yet | Nothing to synthesize yet | DIV-11. Fits the Synthesis screen and separates it from the Sources-empty title "No sources connected". |
+| 2.3 Synthesis error | Recovery button | Retry | Try again | DIV-4. One recovery label across the product. |
+
+Kept as already on voice (the etalon was written to the grey contract with a level voice): the
+subhead "Your feedback, clustered into ranked themes. Open one to trace the evidence behind it.";
+the filter chips ("Source: all", "Last 30 days", "Confidence: all", "Sort: signal rank"); the
+action bar ("Set priority", "Build brief"); the empty-state body and CTA "Connect a source"; the
+whole loading line "Synthesizing your feedback. Ingesting, scrubbing PII, and clustering into
+themes."; and the error body "We could not build the picture this time. Your sources are still
+connected, so nothing is lost."
+
+Deferred to Step 7 (global chrome, changes every screen so it rolls out with the fanout): the app
+footer "Sift workspace · signal from CSV and Intercom, PII scrubbed by default" (DIV-1, "signal" to
+"feedback").
+
+### Step 7 - rollout to the remaining screens
+
+Rolled out by eight subagents, one per screen cluster, each writing to `voice.md`, then reconciled
+by a grep sweep for cross-screen consistency. Global chrome and a few volume-sense "signal" lines
+the cluster agents did not own were fixed in the reconcile.
+
+| Screen | Zone | Was | Now | Rule |
+|---|---|---|---|---|
+| 0.0 Home | trust strip | Names and email addresses are stripped from feedback | ... are scrubbed from feedback | DIV-6 |
+| 0.0 Home | pricing Free | 1 integration source | 1 source | DIV-2 |
+| 0.0 Home | pricing Starter | 3 integrations, 1 to 3 seats | 3 sources, 1 to 3 seats | DIV-2 |
+| 0.0 Home | pricing Growth | All integrations, 5 to 15 seats | All sources, 5 to 15 seats | DIV-2 |
+| 0.0 Home | pricing subhead | a monthly signal limit | a monthly feedback limit | DIV-1 |
+| 0.0 Home | pricing Starter feature | Unlimited signal volume | Unlimited feedback volume | DIV-1 |
+| 0.0 Home | footer legal | signal from CSV and Intercom | feedback from CSV and Intercom | DIV-1 |
+| 1.0 Auth (x3) | public-bar tagline | Feedback synthesis for product teams | Turn customer feedback into decisions you can defend. | DIV-8 |
+| 1.0 Auth signup | h1 | Create your account | Create your workspace | DIV-7 |
+| 3.0 Sources | toolbar button | Add source | Connect a source | DIV-3 |
+| 3.1 Connect | PII notice | ... are redacted before synthesis | ... are scrubbed before synthesis | DIV-6 |
+| 3.3 Intercom | authorize button | Retry authorization | Try again | DIV-4 |
+| 3.5 Sync error | notice | only new signal is paused | only new feedback is paused | DIV-1 |
+| 3.5 Sync error | button | Retry sync | Try again | DIV-4 |
+| 3.6 Manage | disconnect warning | but no new signal comes in | but no new feedback comes in | DIV-1 |
+| 4.0 Theme (base, low-signal, loading) | header meta | latest signal | latest feedback | DIV-1 |
+| 4.0 Theme error | button | Retry | Try again | DIV-4 |
+| 5.0 Evidence | provenance author | Author: redacted | Author: not shown | DIV-6 |
+| 6.0 Briefs | button | New brief | Build brief | DIV-5 |
+| 6.5 Briefs empty | CTA | Build first brief | Build your first brief | DIV-5 |
+| 6.1 Build brief (base, thin) | h1 | Build evidence brief | Build a brief | DIV-5, DIV-10 |
+| 6.1 Build brief (base, thin) | theme meta | latest signal | latest feedback | DIV-1 |
+| 7.0 Account | profile card | Sign out of this workspace | Log out of this workspace | DIV-7 |
+| 7.1 Plan | subhead | this month's signal usage | this month's feedback usage | DIV-1 |
+| 7.1 Plan | plan body | one integration source ... 5,000 signal items | one source ... 5,000 feedback items | DIV-2, DIV-1 |
+| 7.1 Plan | section heading | Signal volume this month | Feedback this month | DIV-1 |
+| 7.2 Data and privacy | scrub row | are redacted on ingest | are scrubbed on ingest | DIV-6 |
+| 7.3 Profile | button | Sign out | Log out | DIV-7 |
+| 8.1 500 | public-bar | Customer feedback, synthesized | Customer feedback synthesis. | DIV-8 |
+| 8.1 500 | state title | Something went wrong | Could not load this page | DIV-9 |
+| 8.2 Maintenance | public-bar | Customer feedback, synthesized | Customer feedback synthesis. | DIV-8 |
+| 8.2 Maintenance | notice | ... on your end, just retry later | ... on your end, check back shortly | Forbidden: minimizer "just" |
+| 9.0 Privacy | data-we-handle | This is the raw signal Sift clusters | This is the raw feedback Sift clusters | DIV-1 |
+| 9.1 Terms | agreement | the Free plan carries a monthly signal limit | ... a monthly feedback limit | DIV-1 |
+| Global chrome (`_nav.js`) | app footer | signal from CSV and Intercom | feedback from CSV and Intercom | DIV-1 |
+
+Kept intentionally:
+- "Wants Salesforce integration" (theme name) and the quote "Any plan for a Salesforce
+  integration?": user content, the customer's own word for a feature, not our source-type term.
+- "just" inside customer quotes on Theme, Evidence, and Shared brief: verbatim, untouched.
+- Allowed "signal" uses: "low signal", "signal rank", "weak signal", "strong signal", "most
+  signal", "scattered signal" (brand or evidence-strength senses, per the Dictionary).
+- The one "Build evidence brief" left is in a source comment (the IA node name 6.1), not visible
+  copy.
+
+### Consistency after reconcile (verified by grep)
+
+Zero residual: integration (our sense), redacted, stripped, "Add source", "latest signal",
+"Sign out", "Create your account", "Something went wrong", "successfully", the old taglines, and
+signal-as-volume. Action labels uniform: "Try again" on all six recover surfaces (no "Retry"),
+"Connect a source" everywhere (no "Add source"), "Log out" (no "Sign out"). No em dash anywhere.
+
+### Step 8 - audit fixes
+
+The audit found five items; two were fixed, three accepted with rationale.
+
+| Screen | Zone | Was | Now | Rule |
+|---|---|---|---|---|
+| 8.2 Maintenance | body | We expect to be back shortly, please check again in a few minutes. | We expect to be back shortly. Check back in a few minutes. | Forbidden: filler "please". |
+| 0.0 Home | trust-strip subhead | so the same signal shows up here and in the footer | so the same commitments appear here and in the footer | DIV-1: "signal" used loosely; clarity. |
+
+Accepted (not defects): "Done" on the share-link success dialog and "Continue" on the share-link
+loading dialog (idiomatic finish and transit affordances); "Please read them alongside ..." in the
+Terms intro (legal register, a genuine ask).

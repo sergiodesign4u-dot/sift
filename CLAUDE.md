@@ -125,6 +125,28 @@ When I receive feedback from multiple sources (support, sales, interviews, revie
 
 ---
 
+## Voice
+
+*Stage 05 (done). The product's voice: the rules by which Sift speaks, so every line is written the same way, by a person or by Claude. Voice is rules, not a mood. At this stage only text changed, never the markup (that is 06 to 08). Derived from the research and personas, not from taste. Live: https://sergiodesign4u-dot.github.io/sift/voice/voice.html*
+
+**Artifacts:** `voice/docs/voice.md` (principles, dictionary, forbidden, microcopy), `voice/docs/microcopy.md` (the full text inventory of every screen plus the was / now rewrite log), `voice/voice.html` (the deployed visualization, built on the research.html template).
+
+**Tone orientation:** Sift sounds like a trusted analyst colleague who shows their work: plain, exact, honest about limits. Not a salesperson (no overclaiming), not a cheerleader (no celebration).
+
+**Four principles (each traced to a data line):**
+1. **Earn the claim, do not assert it.** State what the evidence shows, let the number carry the weight, say so when it is thin (Design Principle 1 and 5; personas O10).
+2. **Speak the customer's words, not the product's.** Themes in the customer's plain language, never marketing vocabulary (personas, Persona A).
+3. **Calm, not loud.** Say it once, level; weight through hierarchy, never exclamation, celebration, or alarm (Design Principle 2).
+4. **Every state names the next move.** Error, empty, and wait each name the one action forward (Design Principle 4).
+
+**Dictionary core (one concept, one word):** feedback / feedback item / item (not signal item); source (not integration); theme; evidence, feedback item, citation (kept to their rung); brief, with evidence brief at first mention (not report); build a brief; priority; workspace; scrub / scrubbed (not redact / strip); Log in / Log out, Sign up, Create workspace; Try again (not Retry). "signal" is reserved for "low signal" and "signal rank". Confidence is n=X plus a low-signal badge (D2).
+
+**Forbidden:** stock error cliches ("Something went wrong"), greetings and celebration, the word "successfully", exclamation marks and emoji in system copy, motivational tone in-app, overclaiming the AI, hype adjectives, "just" / "simply" minimizers, blaming the reader, filler "please".
+
+**Status: Done.** voice.md complete; all 17 screens (39 pages) rewritten to the voice by an eight-agent fanout, reconciled and audited (2 fixes, 3 accepted). Roadmap advanced: Voice active, the "Next" badge moved to Concept.
+
+---
+
 ## Business Model Hypothesis
 
 **Model:** Seat-based SaaS subscription with a free plan.
@@ -192,6 +214,7 @@ When I receive feedback from multiple sources (support, sales, interviews, revie
 | Research | Competitive analysis, strategy, AARRR, benchmarks, UX patterns, live re-research, personas, JTBD matrix - **Done. Founder decisions D1-D3 locked.** | 1-2 weeks |
 | Information Architecture | Basic layer (entities, concept-sitemap, navigation, user flows, trace matrix) plus Detail layer (per-page IA, 39 nodes across 10 clusters, SEO ahead, B/W wireframes) - **Done.** | 2-3 weeks |
 | Wireframes | The whole product as a grey responsive clickable prototype: 17 screens / 39 pages across 10 clusters, all flows linked - **Done.** | 2-3 weeks |
+| Voice | Product voice: principles, dictionary, forbidden list, microcopy rules; voice.html; every screen rewritten - **Done.** | 1 week |
 | Concept (current) | Visual language, brand direction, high-fidelity mockups | 3-4 weeks |
 | Design system | Tokens, components, patterns | 2-3 weeks |
 | Components | Coded component library | 3-4 weeks |
