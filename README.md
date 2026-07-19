@@ -13,6 +13,7 @@ B2B SaaS that turns scattered customer feedback into clear, prioritized product 
 - Information Architecture - Concept Map: [https://sergiodesign4u-dot.github.io/sift/ia/concept-map.html](https://sergiodesign4u-dot.github.io/sift/ia/concept-map.html)
 - Information Architecture - Site Map: [https://sergiodesign4u-dot.github.io/sift/ia/sitemap.html](https://sergiodesign4u-dot.github.io/sift/ia/sitemap.html)
 - Information Architecture - Structure (node hub): [https://sergiodesign4u-dot.github.io/sift/ia/structure.html](https://sergiodesign4u-dot.github.io/sift/ia/structure.html)
+- Wireframes - All screens (clickable prototype): [https://sergiodesign4u-dot.github.io/sift/wireframes/index.html](https://sergiodesign4u-dot.github.io/sift/wireframes/index.html)
 
 ---
 
@@ -24,8 +25,8 @@ B2B SaaS that turns scattered customer feedback into clear, prioritized product 
 | User Research (Personas + JTBD) | Done (three personas, JTBD hierarchy + matrix) |
 | CJM (As-Is + To-Be) | Done (As-Is journey from mined VOC with emotional curve, To-Be traced path, sharpened MVP backlog) |
 | Information Architecture | Done (Basic Layer: entities, concept-sitemap, navigation, user flows, trace matrix. Detail Layer: per-page IA for all 39 nodes across 10 clusters, SEO ahead, black-and-white wireframes, a site-map tree and a node hub) |
-| Wireframes | Next |
-| Voice | Not started |
+| Wireframes | Done (the whole product as a grey responsive clickable prototype: 17 screens / 39 pages across 10 clusters, page rail + per-screen state switcher, every flow linked, audited by four read-only subagents) |
+| Voice | Next |
 | Concept | Not started |
 | UI + Visual | Not started |
 | Tokens + Components | Not started |
@@ -65,7 +66,12 @@ ia/
     sitemap.md       IA source: entities, the detailed node map (39 nodes), navigation, trace matrix
     flows.md         IA source: five user flows
     pages/           IA Detail Layer: one markdown source per node + the page template
-wireframes/          Core flow wireframes (skeleton)
+wireframes/          Grey responsive clickable prototype of the whole product, deployed
+  index.html         All screens: walk by flow + coverage map (17 built, 0 in spec)
+  _wf.css            Shared grey stylesheet (inherits the IA B/W tokens); stays the structural contract
+  _nav.js            Single registry (nodes, states, flows) + the prototype chrome (top bar, page rail, state switcher)
+  <screen>.html      One base page per screen + <screen>-<state>.html per real state
+  docs/              screens.md (screen x state matrix), conventions.md (grey contract), critique.md (audit log)
 voice/               Voice and tone (skeleton)
 concept/             Visual language and high-fidelity mockups (skeleton)
 ui-visual/           UI and visual design (skeleton)
