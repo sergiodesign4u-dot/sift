@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sift - Voice</title>
+<style>
+  :root {
+    --bg: #0c0c0e;
+    --bg-2: #111115;
+    --bg-3: #17171c;
+    --bg-4: #1e1e25;
+    --border: #2a2a35;
+    --border-light: #1e1e28;
+    --text: #e8e8ec;
+    --text-2: #a0a0b0;
+    --text-3: #66667a;
+    --accent: #7c6af7;
+    --accent-dim: #3a3470;
+    --accent-glow: rgba(124,106,247,0.12);
+    --green: #3ecf8e;
+    --green-dim: rgba(62,207,142,0.12);
+    --amber: #e8a838;
+    --amber-dim: rgba(232,168,56,0.12);
+    --red: #f06060;
+    --red-dim: rgba(240,96,96,0.12);
+    --radius: 8px;
+    --radius-lg: 12px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    font-size: 15px;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(12,12,14,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-light);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 40px; height: 52px;
+  }
+  .nav-brand { font-size: 14px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text); text-decoration: none; }
+  .nav-brand span { color: var(--accent); }
+  .nav-links { display: flex; gap: 6px; list-style: none; }
+  .nav-links a { color: var(--text-3); text-decoration: none; font-size: 12px; font-weight: 500; letter-spacing: 0.03em; padding: 5px 10px; border-radius: 5px; transition: color 0.15s, background 0.15s; }
+  .nav-links a:hover { color: var(--text); background: var(--bg-3); }
+
+  /* LAYOUT */
+  .page { max-width: 1040px; margin: 0 auto; padding: 100px 40px 120px; }
+
+  /* SECTIONS */
+  section { padding-top: 80px; }
+  .section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+  h1 { font-size: 42px; font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; color: var(--text); margin-bottom: 20px; }
+  h2 { font-size: 26px; font-weight: 650; letter-spacing: -0.015em; color: var(--text); margin-bottom: 8px; }
+  h3 { font-size: 17px; font-weight: 600; color: var(--text); margin-bottom: 10px; }
+  p { color: var(--text-2); margin-bottom: 14px; }
+  p:last-child { margin-bottom: 0; }
+  .lead { font-size: 17px; line-height: 1.7; color: var(--text-2); max-width: 720px; }
+  .divider { border: none; border-top: 1px solid var(--border-light); margin: 60px 0; }
+  .cite { font-size: 11px; color: var(--text-3); font-weight: 500; }
+
+  /* CARDS */
+  .card { background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; }
+  .card-grid { display: grid; gap: 16px; }
+  .card-grid-2 { grid-template-columns: 1fr 1fr; }
+
+  /* TABLES */
+  .table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius-lg); margin: 20px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { background: var(--bg-3); color: var(--text-3); font-weight: 600; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  td { padding: 12px 16px; border-bottom: 1px solid var(--border-light); color: var(--text-2); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--bg-3); }
+
+  /* FOOTER */
+  footer { border-top: 1px solid var(--border-light); margin-top: 100px; padding-top: 40px; padding-bottom: 60px; color: var(--text-3); font-size: 12px; display: flex; justify-content: space-between; align-items: center; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  .page > section:first-child { animation: fadeUp 0.5s ease; }
+
+  /* VOICE: principle cards */
+  .vp { background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; margin-bottom: 16px; }
+  .vp-num { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+  .vp-rule { font-size: 18px; font-weight: 650; color: var(--text); letter-spacing: -0.01em; margin-bottom: 8px; line-height: 1.35; }
+  .vp-said { font-size: 13px; color: var(--text-2); margin-bottom: 14px; line-height: 1.6; }
+  .vp-lines { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+  .vp-block { border-radius: var(--radius); padding: 14px 16px; }
+  .vp-good { background: var(--green-dim); border: 1px solid rgba(62,207,142,0.25); }
+  .vp-bad { background: var(--red-dim); border: 1px solid rgba(240,96,96,0.22); }
+  .vp-block-label { font-size: 9px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px; display: block; }
+  .vp-good .vp-block-label { color: var(--green); }
+  .vp-bad .vp-block-label { color: var(--red); }
+  .vp-block ul { list-style: none; margin: 0; padding: 0; }
+  .vp-block li { font-size: 13px; color: var(--text-2); margin-bottom: 6px; line-height: 1.5; }
+  .vp-block li:last-child { margin-bottom: 0; }
+  .vp-why { font-size: 12.5px; color: var(--text-3); line-height: 1.6; border-top: 1px solid var(--border-light); padding-top: 12px; }
+  .vp-why b { color: var(--text-2); font-weight: 600; }
+
+  /* VOICE: dictionary + microcopy helpers */
+  .use-yes { color: var(--green); font-weight: 600; }
+  .use-no { color: var(--text-3); }
+  .mc-item { border-bottom: 1px solid var(--border-light); padding: 16px 0; }
+  .mc-item:first-child { padding-top: 4px; }
+  .mc-item:last-child { border-bottom: none; padding-bottom: 4px; }
+  .mc-el { font-size: 12px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+  .mc-rule { font-size: 14px; color: var(--text); margin-bottom: 6px; line-height: 1.55; }
+  .mc-ex { font-size: 13px; color: var(--text-2); line-height: 1.55; }
+  .mc-ex .g { color: var(--green); font-weight: 600; }
+  .mc-ex .b { color: var(--red); font-weight: 600; }
+  .sub-card + h3 { margin-top: 24px; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .page { padding: 80px 20px 80px; }
+    .card-grid-2 { grid-template-columns: 1fr; }
+    .vp-lines { grid-template-columns: 1fr; }
+    h1 { font-size: 28px; }
+  }
+
+  /* SIDEBAR - mobile first */
+  .sidebar { display: none; }
+  @media (min-width: 1100px) {
+    .sidebar {
+      display: flex; flex-direction: column; gap: 2px;
+      position: fixed; top: 52px; left: 0; width: 220px; height: calc(100vh - 52px);
+      overflow-y: auto; padding: 24px 12px 32px;
+      border-right: 1px solid var(--border-light); background: var(--bg); z-index: 90;
+    }
+    .page { margin: 0; margin-left: 220px; max-width: 1040px; padding: 100px 40px 120px; }
+  }
+  .sidebar-phase-label { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-3); padding: 5px 8px; border-radius: 5px; display: block; cursor: default; }
+  .sidebar-phase.active .sidebar-phase-label { color: var(--accent); background: var(--accent-glow); }
+  a.sidebar-phase-label { cursor: pointer; }
+  a.sidebar-phase-label:hover { color: var(--text); background: var(--bg-3); }
+  .sidebar-section-links { list-style: none; margin: 4px 0 8px 0; padding: 0; }
+  .sidebar-section-links a { display: block; font-size: 12px; color: var(--text-3); text-decoration: none; padding: 4px 8px 4px 16px; border-radius: 4px; border-left: 2px solid transparent; transition: color 0.15s, border-color 0.15s, background 0.15s; line-height: 1.5; }
+  .sidebar-section-links a:hover { color: var(--text); background: var(--bg-3); }
+  .sidebar-section-links a.active { color: var(--text); border-left-color: var(--accent); background: var(--bg-3); }
+  .sidebar-divider { border: none; border-top: 1px solid var(--border-light); margin: 8px 0; }
+  .sidebar-coming-soon { display: flex; align-items: center; justify-content: space-between; padding: 5px 8px; border-radius: 5px; cursor: default; opacity: 0.5; }
+  .sidebar-cs-label { font-size: 12px; font-weight: 500; color: var(--text-3); letter-spacing: 0.02em; }
+  .sidebar-cs-badge { font-size: 9px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-3); background: var(--bg-3); border: 1px solid var(--border-light); padding: 2px 5px; border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="../index.html"><span>S</span>ift</a>
+  <ul class="nav-links">
+    <li><a href="#principles">Principles</a></li>
+    <li><a href="#dictionary">Dictionary</a></li>
+    <li><a href="#forbidden">Forbidden</a></li>
+    <li><a href="#microcopy">Microcopy</a></li>
+  </ul>
+</nav>
+
+<!-- SIDEBAR NAV: 12-stage roadmap, flat. Four done as collapsed links, Voice active, rest Soon. -->
+<aside class="sidebar">
+  <div class="sidebar-phase"><a class="sidebar-phase-label" href="../research/research.html">Foundation Research</a></div>
+  <div class="sidebar-phase"><a class="sidebar-phase-label" href="../user-research/personas.html">User Research</a></div>
+  <hr class="sidebar-divider">
+  <div class="sidebar-phase"><a class="sidebar-phase-label" href="../ia/flows.html">Information Architecture</a></div>
+  <div class="sidebar-phase"><a class="sidebar-phase-label" href="../wireframes/index.html">Wireframes</a></div>
+  <div class="sidebar-phase active">
+    <span class="sidebar-phase-label">Voice</span>
+    <ul class="sidebar-section-links">
+      <li><a href="#principles">Principles</a></li>
+      <li><a href="#dictionary">Dictionary</a></li>
+      <li><a href="#forbidden">Forbidden</a></li>
+      <li><a href="#microcopy">Microcopy</a></li>
+    </ul>
+  </div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Concept</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">UI + Visual</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Tokens + Components</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Design System</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Responsive</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Animation</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Handoff</span><span class="sidebar-cs-badge">Soon</span></div>
+</aside>
+
+<div class="page">
+
+<!-- INTRO -->
+<section id="intro">
+  <div class="section-label">Voice - July 2026</div>
+  <h1>How Sift speaks</h1>
+  <p class="lead">Voice is rules, not a mood: a principle you can write a button from, not an adjective. This is the rulebook every Sift string comes from, whether a person writes it or Claude does. The principles set the register, the dictionary fixes the words, the forbidden list sets the floor, and the microcopy rules cover each element and state. Built from the research, not from taste. On this stage only text changes, never the markup.</p>
+
+  <div class="card" style="border-color:var(--accent-dim);background:rgba(124,106,247,0.04);margin-top:28px">
+    <div class="vp-num">Tone orientation</div>
+    <p style="font-size:15px;color:var(--text)">Sift sounds like a trusted analyst colleague who shows their work: plain, exact, and honest about limits. Not a salesperson, so no overclaiming. Not a cheerleader, so no celebration.</p>
+    <p class="cite" style="margin-top:10px">Grounded in personas.md O10 ("one bad synthesis experience destroys trust permanently") and the emotion the product designs for, "Confidence and calm instead of overload" (CLAUDE.md).</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- PRINCIPLES -->
+<section id="principles">
+  <div class="section-label">The register</div>
+  <h2>Principles</h2>
+  <p>Four rules you can write a button from. Each carries a line that keeps it, a line that breaks it, and the source it comes from.</p>
+
+  <div class="vp">
+    <div class="vp-num">Principle 1</div>
+    <div class="vp-rule">Earn the claim, do not assert it</div>
+    <p class="vp-said">State plainly what the evidence shows and let the number carry the weight; never claim more certainty than the evidence gives, and say so out loud when it is thin.</p>
+    <div class="vp-lines">
+      <div class="vp-block vp-good">
+        <span class="vp-block-label">Written to the rule</span>
+        <ul>
+          <li>"Thin evidence. Six mentions is a weak signal, not a confirmed pattern."</li>
+          <li>"n=42" beside the theme; "low signal" beside "n=4".</li>
+        </ul>
+      </div>
+      <div class="vp-block vp-bad">
+        <span class="vp-block-label">Breaks the rule</span>
+        <ul>
+          <li>"AI identified this as your top priority."</li>
+          <li>A theme shown the same whether it rests on 4 mentions or 400.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="vp-why"><b>Why.</b> Design Principle 1 "Show your work" and 5 "Traceable or it doesn't exist" (CLAUDE.md); personas.md O10, "a tool that admits 'this is based on 3 data points' earns trust when it says 'this is based on 200'". Where every rival sounds certain ("30% better than live teams", Canny; "Wisdom AI", Enterpret, competitors.md), Sift differentiates by sounding honest.</div>
+  </div>
+
+  <div class="vp">
+    <div class="vp-num">Principle 2</div>
+    <div class="vp-rule">Speak the customer's words, not the product's</div>
+    <p class="vp-said">Name themes and problems in the customer's plain language, the way it was actually said; never re-dress feedback in product or marketing vocabulary.</p>
+    <div class="vp-lines">
+      <div class="vp-block vp-good">
+        <span class="vp-block-label">Written to the rule</span>
+        <ul>
+          <li>"Onboarding is confusing"</li>
+          <li>"New users cannot tell what to do first."</li>
+        </ul>
+      </div>
+      <div class="vp-block vp-bad">
+        <span class="vp-block-label">Breaks the rule</span>
+        <ul>
+          <li>"Activation-funnel friction opportunities"</li>
+          <li>"Drive delight in the first-run journey."</li>
+        </ul>
+      </div>
+    </div>
+    <div class="vp-why"><b>Why.</b> The trust chain breaks the moment the language sounds invented: "if the themes sound like they were written by a marketing team, not derived from real tickets, Alex will not trust them" (personas.md, Persona A). It sharpens the best competitor register worth beating, Dovetail's "Build with facts, not vibes": Sift's facts are the customer's own words.</div>
+  </div>
+
+  <div class="vp">
+    <div class="vp-num">Principle 3</div>
+    <div class="vp-rule">Calm, not loud</div>
+    <p class="vp-said">Say it once, in a level voice; carry weight with plain statements and hierarchy, never with exclamation, celebration, or alarm.</p>
+    <div class="vp-lines">
+      <div class="vp-block vp-good">
+        <span class="vp-block-label">Written to the rule</span>
+        <ul>
+          <li>"Share link ready."</li>
+          <li>"Synthesis failed. Your sources are still connected, so nothing is lost."</li>
+        </ul>
+      </div>
+      <div class="vp-block vp-bad">
+        <span class="vp-block-label">Breaks the rule</span>
+        <ul>
+          <li>"Success! Your brief is live."</li>
+          <li>"Oops, something went wrong!"</li>
+        </ul>
+      </div>
+    </div>
+    <div class="vp-why"><b>Why.</b> Design Principle 2 "Calm under density ... hierarchy, weight, and whitespace do the work of focus, not color, badges, or alerts" (CLAUDE.md), and the emotion "Confidence and calm instead of overload". The reader works in short focused sessions ("10-15 focused minutes", personas.md O8); loud copy is friction, not delight.</div>
+  </div>
+
+  <div class="vp">
+    <div class="vp-num">Principle 4</div>
+    <div class="vp-rule">Every state names the next move</div>
+    <p class="vp-said">Every screen and state tells the reader what to do next; an error, an empty, or a wait names the one action that moves forward, so the reader is never stranded.</p>
+    <div class="vp-lines">
+      <div class="vp-block vp-good">
+        <span class="vp-block-label">Written to the rule</span>
+        <ul>
+          <li>"No sources connected yet. Connect a source to see your first synthesis." with a "Connect a source" action.</li>
+          <li>"Synthesis failed ... Try again, or check your sources."</li>
+        </ul>
+      </div>
+      <div class="vp-block vp-bad">
+        <span class="vp-block-label">Breaks the rule</span>
+        <ul>
+          <li>"Something went wrong." (a full stop with no way out)</li>
+          <li>An empty state that explains the emptiness but offers no action.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="vp-why"><b>Why.</b> Design Principle 4 "One decision at a time ... every view has a clear 'what should I do next' orientation" (CLAUDE.md), realized in the IA as the no-dead-end rule. It also serves activation: "if the PM cannot reach a synthesis output with their own data within 20 minutes, they leave" (personas.md O12).</div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- DICTIONARY -->
+<section id="dictionary">
+  <div class="section-label">The words</div>
+  <h2>Dictionary</h2>
+  <p>One concept, one word. The terms are the IA core entities and the research vocabulary, not new inventions. This settles the twelve divergences the Step 1 inventory surfaced; each <span class="cite">DIV-n</span> points back to microcopy.md.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Use this</th><th>Not this</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td class="use-yes">feedback; feedback item / item</td><td class="use-no">signal item, a signal (as a count)</td><td>Core entity "Feedback item". Keep the countable unit to one word. (DIV-1)</td></tr>
+        <tr><td class="use-yes">signal (only in "low signal" and "signal rank")</td><td class="use-no">signal as a count; "signal volume / usage"</td><td>"signal" carries evidence strength, not raw count. "low signal" is the locked confidence badge, D2. (DIV-1)</td></tr>
+        <tr><td class="use-yes">source (types: live connection, batch import)</td><td class="use-no">integration, connector</td><td>Core entity "Source". You connect sources; the Sources screen lists them. (DIV-2)</td></tr>
+        <tr><td class="use-yes">connect (a source)</td><td class="use-no">add a source</td><td>One verb to bring a source in. (DIV-3)</td></tr>
+        <tr><td class="use-yes">theme</td><td class="use-no">cluster, topic, tag</td><td>Core entity "Theme"; the synthesis output the reader reads.</td></tr>
+        <tr><td class="use-yes">evidence; feedback item; citation</td><td class="use-no">the three as synonyms</td><td>Chain: theme, to evidence items, to one feedback item; a citation is the numbered pointer.</td></tr>
+        <tr><td class="use-yes">brief; evidence brief (first mention, public title)</td><td class="use-no">report, summary, deck</td><td>Core entity "Evidence brief". Short form in-app, full form to introduce it. (DIV-10)</td></tr>
+        <tr><td class="use-yes">build (a brief)</td><td class="use-no">create, generate, make a brief</td><td>One verb to make a brief. "generate" stays only for the share link. (DIV-5)</td></tr>
+        <tr><td class="use-yes">priority; Set priority; Recommended priority</td><td class="use-no">"rank / ranking" as the noun</td><td>Core entity "Prioritization". "signal rank" is the sort; "priority" is the decision. (DIV-12)</td></tr>
+        <tr><td class="use-yes">workspace</td><td class="use-no">account (as the team container), org, tenant</td><td>Core entity "Workspace". A person signs up and gets a workspace. (DIV-7)</td></tr>
+        <tr><td class="use-yes">confidence: n=X plus low signal</td><td class="use-no">score, rating, "AI confidence %"</td><td>D2 day-one scope: count plus the badge. No invented score.</td></tr>
+        <tr><td class="use-yes">scrub / scrubbed (PII)</td><td class="use-no">redact, strip, mask, anonymize</td><td>"PII scrubbed by default" is the locked product phrase (CLAUDE.md). (DIV-6)</td></tr>
+        <tr><td class="use-yes">Log in / Log out; Sign up; Start free (Home only)</td><td class="use-no">Sign in; Sign out for log out; Register</td><td>Sessions log in and out; acquisition signs up; the marketing entry is "Start free". (DIV-7)</td></tr>
+        <tr><td class="use-yes">Create workspace (the sign-up action)</td><td class="use-no">Create your account</td><td>Sign-up creates a workspace, the product's unit. (DIV-7)</td></tr>
+        <tr><td class="use-yes">Try again</td><td class="use-no">Retry, Retry sync, Retry authorization</td><td>One recovery label; the screen makes the object obvious. (DIV-4)</td></tr>
+        <tr><td class="use-yes">Turn customer feedback into decisions you can defend. (tagline)</td><td class="use-no">"Feedback synthesis for product teams"; "Customer feedback, synthesized"</td><td>One value line for public surfaces, one short descriptor ("Customer feedback synthesis") for footers. (DIV-8)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin-top:32px">Person and address</h3>
+  <div class="card sub-card">
+    <p style="margin-bottom:8px"><b style="color:var(--text)">You.</b> The reader is "you", second person and direct: "your feedback", "you can review this in Data and privacy".</p>
+    <p style="margin-bottom:8px"><b style="color:var(--text)">Sift.</b> The product is "Sift", third person, for what it does: "Sift clusters your feedback".</p>
+    <p><b style="color:var(--text)">We.</b> Only the company and its people, that is support, legal, and planned downtime: "we could not build the picture this time", "we expect to be back shortly". Never "I".</p>
+  </div>
+
+  <h3 style="margin-top:24px">Casing and numbers</h3>
+  <div class="card sub-card">
+    <p style="margin-bottom:8px">Capitalize the nav destinations as proper section names: <b style="color:var(--text)">Synthesis, Sources, Briefs, Account</b>. Lowercase the same words as common nouns: "your synthesis", "a source".</p>
+    <p style="margin-bottom:8px">Confidence is lowercase <b style="color:var(--text)">n=42</b>. Thousands take a comma: <b style="color:var(--text)">3,750</b>, <b style="color:var(--text)">5,000</b>.</p>
+    <p><b style="color:var(--text)">PII</b> is uppercase, as are CSV, OAuth, SSO, GDPR, CCPA, SOC 2, DPA. Product names stay as given: Intercom, Zendesk, Gong, Salesforce. Time reads "2 days ago".</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- FORBIDDEN -->
+<section id="forbidden">
+  <div class="section-label">The floor</div>
+  <h2>Forbidden</h2>
+  <p>What Sift never writes. Without this list the model default returns with every new prompt: enthusiasm, exclamation marks, emoji, and celebration. Each row gives the fix.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Never</th><th>Was, then should be</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td>Stock error cliches</td><td><span class="use-no">"Something went wrong."</span> to <span class="use-yes">"Could not load this page."</span></td><td>Vague and evasive; name what failed. Principle 1. (DIV-9)</td></tr>
+        <tr><td>"Oops" / "Uh-oh" / "Whoops"</td><td><span class="use-no">"Oops, something went wrong!"</span> to <span class="use-yes">"Could not load this page."</span></td><td>Jokey on a trust surface. Principle 3.</td></tr>
+        <tr><td>Greetings and celebration</td><td><span class="use-no">"Welcome aboard!"</span> to <span class="use-yes">"Your workspace is ready."</span></td><td>Sift states the fact and the next step. Principle 3.</td></tr>
+        <tr><td>The word "successfully"</td><td><span class="use-no">"Saved successfully."</span> to <span class="use-yes">"Saved."</span></td><td>If it saved, say so; the word is filler. Principle 3.</td></tr>
+        <tr><td>Exclamation marks in system copy</td><td><span class="use-no">"Intercom connected!"</span> to <span class="use-yes">"Intercom connected."</span></td><td>Level voice. Principle 3.</td></tr>
+        <tr><td>Emoji in system messages</td><td><span class="use-no">"Import complete."</span> plus a check emoji, to <span class="use-yes">"Import complete."</span></td><td>Calm under density; no decoration in copy. Principle 3.</td></tr>
+        <tr><td>Motivational or marketing tone in-app</td><td><span class="use-no">"Start your journey to better decisions."</span> to <span class="use-yes">"Connect a source to see your first synthesis."</span></td><td>In-app copy points at the next step. Principle 4.</td></tr>
+        <tr><td>Overclaiming the AI</td><td><span class="use-no">"AI identified your top priority."</span> to <span class="use-yes">"Onboarding is confusing. n=42."</span></td><td>Let the evidence make the claim. Principle 1.</td></tr>
+        <tr><td>Hype adjectives (powerful, seamless, effortless)</td><td><span class="use-no">"Powerful, seamless synthesis."</span> to <span class="use-yes">"Feedback clustered into ranked themes, each with the evidence behind it."</span></td><td>Specifics earn trust; adjectives ask for it. Principle 1.</td></tr>
+        <tr><td>"just" / "simply" as minimizers</td><td><span class="use-no">"Just connect a source."</span> to <span class="use-yes">"Connect a source."</span></td><td>Minimizers presume it is easy. Principle 3.</td></tr>
+        <tr><td>Blaming the reader</td><td><span class="use-no">"You entered an invalid email."</span> to <span class="use-yes">"Enter a work email."</span></td><td>Say what to fix, not what they did wrong. Principle 4.</td></tr>
+        <tr><td>Filler "please"</td><td><span class="use-no">"Please try again."</span> to <span class="use-yes">"Try again."</span></td><td>Plain instruction. Principle 3.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- MICROCOPY -->
+<section id="microcopy">
+  <div class="section-label">Each element, each state</div>
+  <h2>Microcopy</h2>
+  <p>The rule for each kind of element, and the tone for each state. Each rule is checked against the principles and the dictionary above, and each carries one real line from the product.</p>
+
+  <div class="card" style="padding:8px 24px">
+    <div class="mc-item">
+      <div class="mc-el">Button and action</div>
+      <div class="mc-rule">The verb of the action, and you can see the result in it. No bare "OK" or "Submit" where a specific verb and object fit.</div>
+      <div class="mc-ex"><span class="g">Written to the rule:</span> "Connect a source", "Build brief", "Generate share link", "Copy quote". <span class="b">Not:</span> "OK", "Submit", "Go".</div>
+    </div>
+    <div class="mc-item">
+      <div class="mc-el">Screen heading and subhead</div>
+      <div class="mc-rule">The h1 names the place in dictionary words. The subhead says what you can do here and why, in one plain sentence.</div>
+      <div class="mc-ex"><span class="g">Written to the rule:</span> "Synthesis" plus "Your feedback, clustered into ranked themes. Open one to trace the evidence behind it." <span class="b">Not:</span> "Welcome to your dashboard".</div>
+    </div>
+    <div class="mc-item">
+      <div class="mc-el">Form field</div>
+      <div class="mc-rule">The label says what to enter, in the reader's words. The placeholder shows the shape, not an instruction. A validation error says the one thing to fix, not what the reader did wrong.</div>
+      <div class="mc-ex"><span class="g">Written to the rule:</span> label "Work email", validation "Enter a work email." <span class="b">Not:</span> "Invalid input", "You entered an invalid email".</div>
+    </div>
+    <div class="mc-item">
+      <div class="mc-el">Confidence and honesty note</div>
+      <div class="mc-rule">State the strength as a number, and when it is thin, say so plainly right next to it. Principle 1 as microcopy, mandatory under D2.</div>
+      <div class="mc-ex"><span class="g">Written to the rule:</span> "n=6  low signal" plus "Thin evidence. Six mentions is a weak signal, not a confirmed pattern. Treat it as a lead to watch, not a decision."</div>
+    </div>
+    <div class="mc-item">
+      <div class="mc-el">Empty state</div>
+      <div class="mc-rule">Say why it is empty and give the one action that fills it. An empty is a starting line, not a wall.</div>
+      <div class="mc-ex"><span class="g">Written to the rule:</span> "No sources connected" plus "Connect a source to bring your feedback in ..." and a "Connect a source" action. <span class="b">Not:</span> "No data."</div>
+    </div>
+    <div class="mc-item">
+      <div class="mc-el">Error state</div>
+      <div class="mc-rule">Say what happened and what to do next. Reassure with a fact (nothing is lost), never a joke or an apology. One recovery action, plus a way back.</div>
+      <div class="mc-ex"><span class="g">Written to the rule:</span> "Synthesis failed. Your sources are still connected, so nothing is lost. Try again, or check your sources." <span class="b">Not:</span> "Something went wrong", "Oops".</div>
+    </div>
+    <div class="mc-item">
+      <div class="mc-el">Loading state</div>
+      <div class="mc-rule">A wait stays silent (a skeleton) or says exactly what is running. It never fills the silence with chatter.</div>
+      <div class="mc-ex"><span class="g">Written to the rule:</span> "Synthesizing your feedback. Ingesting, scrubbing PII, and clustering into themes." <span class="b">Not:</span> "Hang tight!", "Working some magic".</div>
+    </div>
+    <div class="mc-item">
+      <div class="mc-el">Success and confirmation</div>
+      <div class="mc-rule">Name the fact and the next step. Do not celebrate, and do not say "successfully".</div>
+      <div class="mc-ex"><span class="g">Written to the rule:</span> "Share link ready." plus "Copy" and "Preview brief". <span class="b">Not:</span> "Success!", "Your brief is live".</div>
+    </div>
+    <div class="mc-item">
+      <div class="mc-el">Dangerous or irreversible action</div>
+      <div class="mc-rule">Before the action, say what will happen and what cannot be undone. The confirm button names the specific act, not "Yes".</div>
+      <div class="mc-ex"><span class="g">Written to the rule:</span> "Disconnecting stops the live sync and removes the connection ..." plus a "Disconnect Intercom" button. <span class="b">Not:</span> a confirm that reads "OK".</div>
+    </div>
+    <div class="mc-item">
+      <div class="mc-el">Notice and guard line</div>
+      <div class="mc-rule">When Sift withholds or flags something for honesty, it states the reason and what still holds. The honesty is the point, so the line is plain and specific.</div>
+      <div class="mc-ex"><span class="g">Written to the rule:</span> "The raw quote was scrubbed beyond display to protect personal data ... The theme still stands on its other evidence."</div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:32px">Tone by state</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>State</th><th>Tone rule</th><th>One line</th></tr></thead>
+      <tbody>
+        <tr><td>Success (base)</td><td>State the fact, point at the next step. No celebration.</td><td>"Share link ready."</td></tr>
+        <tr><td>Empty</td><td>Say why, give the one action.</td><td>"No sources connected" plus "Connect a source".</td></tr>
+        <tr><td>Loading</td><td>Silent skeleton, or name what runs. No chatter.</td><td>"Synthesizing your feedback ..."</td></tr>
+        <tr><td>Error</td><td>What happened, what to do, one reassuring fact. No joke, no apology.</td><td>"Synthesis failed ... Try again".</td></tr>
+        <tr><td>Low signal / thin</td><td>Admit the weakness plainly, keep it open.</td><td>"Thin evidence ... a lead to watch, not a decision."</td></tr>
+        <tr><td>Redacted / withheld</td><td>Name the reason and what still holds.</td><td>"scrubbed beyond display ... the theme still stands".</td></tr>
+        <tr><td>Dangerous</td><td>Warn before, name what cannot be undone; confirm verb is the act.</td><td>"Disconnect Intercom".</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin-top:32px">From the inventory: twelve divergences resolved</h3>
+  <p>The full per-screen text inventory lives in <a href="docs/microcopy.md" style="color:var(--accent)">microcopy.md</a>. Its payload, the divergences the one table surfaced and the canon each resolves to:</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>DIV</th><th>Canon</th><th>Instead of</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td class="use-yes">feedback / feedback item / item</td><td class="use-no">signal item; signal as a count</td></tr>
+        <tr><td>2</td><td class="use-yes">source</td><td class="use-no">integration, connection (as the source)</td></tr>
+        <tr><td>3</td><td class="use-yes">Connect a source</td><td class="use-no">Add source</td></tr>
+        <tr><td>4</td><td class="use-yes">Try again</td><td class="use-no">Retry / Retry sync / Retry authorization</td></tr>
+        <tr><td>5</td><td class="use-yes">build a brief</td><td class="use-no">create / generate / new brief</td></tr>
+        <tr><td>6</td><td class="use-yes">scrub / scrubbed</td><td class="use-no">redact / strip / mask</td></tr>
+        <tr><td>7</td><td class="use-yes">Log in / Log out; Sign up; Create workspace</td><td class="use-no">Sign in; Sign out; Create your account</td></tr>
+        <tr><td>8</td><td class="use-yes">Turn customer feedback into decisions you can defend.</td><td class="use-no">three different taglines</td></tr>
+        <tr><td>9</td><td class="use-yes">Could not load this page</td><td class="use-no">Something went wrong</td></tr>
+        <tr><td>10</td><td class="use-yes">brief (evidence brief at first mention)</td><td class="use-no">report / summary</td></tr>
+        <tr><td>11</td><td class="use-yes">"nothing to synthesize yet" vs "No sources connected"</td><td class="use-no">two near-identical titles</td></tr>
+        <tr><td>12</td><td class="use-yes">priority (Set priority / Recommended priority)</td><td class="use-no">mixing priority with "rank"</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<footer>
+  <div>Sift - Voice - July 2026 - Rules from data, not mood</div>
+  <div style="text-align:right">
+    <a href="docs/voice.md" style="color:var(--text-3);text-decoration:none">voice.md</a>
+    <span style="margin:0 8px">-</span>
+    <a href="docs/microcopy.md" style="color:var(--text-3);text-decoration:none">microcopy.md</a>
+  </div>
+</footer>
+
+</div>
+
+<script>
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const sidebarLinks = document.querySelectorAll('.sidebar-section-links a');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navLinks.forEach(link => {
+          link.style.color = '';
+          if (link.getAttribute('href') === '#' + id) {
+            link.style.color = 'var(--text)';
+          }
+        });
+        sidebarLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + id) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+  }, { threshold: 0, rootMargin: '-15% 0px -75% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>

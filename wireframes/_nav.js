@@ -247,7 +247,7 @@ function wfRoadmap() {
   let links = '';
   for (const f of WF_FLOWS) links += '<li><a href="index.html#flow-' + f.id + '">' + wfFlowShort(f) + '</a></li>';
   links += '<li><a href="index.html" class="sidebar-current">All screens</a></li>';
-  const soon = [['Voice', 'Next'], ['Concept', 'Soon'], ['UI + Visual', 'Soon'], ['Tokens + Components', 'Soon'], ['Design System', 'Soon'], ['Responsive', 'Soon'], ['Animation', 'Soon'], ['Handoff', 'Soon']]
+  const soon = [['Concept', 'Soon'], ['UI + Visual', 'Soon'], ['Tokens + Components', 'Soon'], ['Design System', 'Soon'], ['Responsive', 'Soon'], ['Animation', 'Soon'], ['Handoff', 'Soon']]
     .map(function (p) { return '<div class="sidebar-coming-soon"><span class="sidebar-cs-label">' + p[0] + '</span><span class="sidebar-cs-badge">' + p[1] + '</span></div>'; }).join('');
   m.outerHTML =
     '<aside class="sidebar">' +
@@ -255,6 +255,7 @@ function wfRoadmap() {
       '<div class="sidebar-phase"><a class="sidebar-phase-label" href="../user-research/personas.html">User Research</a></div>' +
       '<div class="sidebar-phase"><a class="sidebar-phase-label" href="../ia/structure.html">Information Architecture</a></div>' +
       '<div class="sidebar-phase active"><span class="sidebar-phase-label">Wireframes</span><ul class="sidebar-section-links">' + links + '</ul></div>' +
+      '<div class="sidebar-phase"><a class="sidebar-phase-label" href="../voice/voice.html">Voice</a></div>' +
       '<hr class="sidebar-divider">' + soon +
     '</aside>';
 }
