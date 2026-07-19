@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift - Wireframes - All screens</title>
+<link rel="stylesheet" href="_wf.css">
+<style>
+  /* index-only: flow entries + coverage map. Grey, structure over decoration. */
+  .wf-h2 { font-size: 18px; font-weight: 650; color: var(--text); margin: 0 0 14px; letter-spacing: -0.01em; }
+  .wf-flows { margin-top: 8px; }
+
+  .wf-flow { border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: 14px 16px; margin-bottom: 12px; background: var(--bg-2); }
+  .wf-flow-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px; }
+  .wf-flow-id { font-size: 12px; font-weight: 700; color: var(--accent); white-space: nowrap; }
+  .wf-flow-label { font-size: 13px; color: var(--text-2); }
+  .wf-flow-screens { list-style: none; display: flex; flex-direction: column; gap: 6px; margin: 0; padding: 0; }
+  .wf-fscreen { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 6px 0; border-top: 1px solid var(--border-light); }
+  .wf-fscreen:first-child { border-top: none; }
+  .wf-fs-node { font-size: 11px; font-weight: 700; color: var(--text-3); min-width: 30px; }
+  .wf-fs-label { font-size: 13px; color: var(--text); text-decoration: none; font-weight: 550; min-width: 150px; }
+  a.wf-fs-label:hover { color: var(--accent); }
+  .wf-fs-states { display: flex; gap: 5px; flex-wrap: wrap; margin-left: auto; }
+  .wf-schip { font-size: 10px; color: var(--text-3); border: 1px solid var(--border-light); border-radius: 20px; padding: 2px 8px; text-decoration: none; }
+  a.wf-schip:hover { color: var(--text); background: var(--bg-3); }
+  .wf-fscreen.is-spec .wf-fs-label { color: var(--text-2); }
+
+  .wf-coverage { margin-top: 40px; }
+  .wf-cov-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .wf-counter { font-size: 12px; color: var(--text-3); }
+  .wf-counter b { color: var(--text); }
+  .wf-legend { display: flex; gap: 16px; margin: 6px 0 18px; font-size: 11px; color: var(--text-3); }
+  .wf-lg { display: inline-flex; align-items: center; gap: 6px; }
+  .wf-lg::before { content: ""; width: 16px; height: 12px; border-radius: 3px; }
+  .wf-lg--built::before { border: 1.5px solid var(--text-3); background: var(--bg-3); }
+  .wf-lg--spec::before { border: 1.5px dashed var(--border); }
+
+  .wf-cluster { margin-bottom: 18px; }
+  .wf-cluster-title { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-3); margin: 0 0 8px; }
+  .wf-cluster-screens { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 8px; }
+  .wf-tile { display: flex; flex-direction: column; gap: 3px; padding: 10px 12px; border-radius: var(--radius); text-decoration: none; }
+  .wf-tile.is-spec { border: 1px dashed var(--border); background: transparent; }
+  .wf-tile.is-built { border: 1px solid var(--border); background: var(--bg-2); }
+  a.wf-tile.is-built:hover { border-color: var(--accent-dim); background: var(--bg-3); }
+  .wf-tile-node { font-size: 10px; font-weight: 700; color: var(--text-3); }
+  .wf-tile-label { font-size: 13px; color: var(--text); font-weight: 550; }
+  .wf-tile.is-spec .wf-tile-label { color: var(--text-2); }
+  .wf-tile-meta { font-size: 10px; color: var(--text-3); }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <a class="nav-brand" href="../index.html"><span>S</span>ift</a>
+  <a class="nav-top-right" href="../ia/structure.html">IA structure</a>
+</nav>
+
+<aside class="sidebar">
+  <div class="sidebar-phase">
+    <a class="sidebar-phase-label" href="../research/research.html">Foundation Research</a>
+  </div>
+  <div class="sidebar-phase">
+    <a class="sidebar-phase-label" href="../user-research/personas.html">User Research</a>
+  </div>
+  <div class="sidebar-phase">
+    <a class="sidebar-phase-label" href="../ia/structure.html">Information Architecture</a>
+  </div>
+  <div class="sidebar-phase active">
+    <span class="sidebar-phase-label">Wireframes</span>
+    <ul class="sidebar-section-links" id="wf-side-links">
+      <!-- Flow 0..N + All screens, rendered from _nav.js -->
+    </ul>
+  </div>
+  <hr class="sidebar-divider">
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Voice</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Concept</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">UI + Visual</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Tokens + Components</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Design System</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Responsive</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Animation</span><span class="sidebar-cs-badge">Soon</span></div>
+  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Handoff</span><span class="sidebar-cs-badge">Soon</span></div>
+</aside>
+
+<div class="page">
+
+  <div class="page-intro">
+    <div class="page-eyebrow">Wireframes - Stage 04 - July 2026</div>
+    <h1>All screens</h1>
+    <p>The grey clickable prototype of Sift, rendered from the detail IA. Walk the product by flow, or scan the full coverage map. Solid tiles are built; dashed tiles are still in spec. Every screen carries its real states and both viewports (mobile 360 and desktop). Structure only, no color yet. Source: wireframes/docs/screens.md.</p>
+  </div>
+
+  <div id="wf-index">
+    <!-- flow entries + coverage map, rendered from _nav.js -->
+  </div>
+
+  <footer class="pagefoot">
+    <span>Sift - Wireframes, Stage 04. Coverage tracked from wireframes/_nav.js.</span>
+    <span><a href="../ia/structure.html">IA structure</a> &nbsp; <a href="../ia/sitemap.html">Site map</a> &nbsp; <a href="../index.html">Home</a></span>
+  </footer>
+
+</div>
+
+<script src="_nav.js"></script>
+</body>
+</html>

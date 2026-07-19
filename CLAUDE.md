@@ -112,6 +112,18 @@ When I receive feedback from multiple sources (support, sales, interviews, revie
 
 ---
 
+## Wireframes
+
+*Stage 04 (current). A grey clickable prototype of the whole product in HTML, rendered from the detail IA. Structure, not appearance: grey semantic HTML, real copy pulled verbatim from the IA A to E blocks, real proportions, every state its own page, screens linked along the flows so the product can be walked by clicks. Mobile-first (360 base) scaling to desktop. The wireframe invents nothing; a block, page, or state that appears here first is an IA defect, fixed upstream in IA, then rendered. This is the first code layer of the product: it lives in the same repo as IA and grows into the real UI without rework (copy 05, visual 06, tokens and components 07-08). From stage 06 the color lands on copies in ui-visual/, not on the grey files, which stay the structural source of truth.*
+
+**Artifacts:** `wireframes/docs/screens.md` (screen x state matrix), `wireframes/docs/conventions.md` (the grey contract), `wireframes/docs/critique.md` (defect log); `wireframes/_nav.js` (single navigation and globals registry), `wireframes/_wf.css` (shared grey stylesheet inheriting the IA B/W tokens); `wireframes/index.html` ("All screens" flow-first index + coverage map); `wireframes/<screen>.html` (base = success) and `wireframes/<screen>-<state>.html` (one per real state).
+
+- **Etalon (reference screen): 2.0 Synthesis view** (`wireframes/synthesis.html`). The workhorse with maximum reuse: it owns the confidence indicator, theme card, and filter / sort control (rendered on 4.0, 4.1, 6.1, 6.4) and sets the app shell and the four-state floor that every app screen inherits. Later stages (Voice 05, Concept 06) take the etalon from here and do not re-derive it.
+- **First flow assembled: Flow 0, the main job spine** (2.0 -> 4.0 -> 5.0 -> 6.1 -> 6.3 -> 6.4). The path that reuses the etalon the most and the primary persona's (Alex) route to the main job.
+- The screen x state matrix (screens, states, jobs, flow positions, viewports) is the source of truth in `wireframes/docs/screens.md`; navigation "All screens" walks every screen for stages 05-08.
+
+---
+
 ## Business Model Hypothesis
 
 **Model:** Seat-based SaaS subscription with a free plan.
