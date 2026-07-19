@@ -31,7 +31,7 @@ const WF_CLUSTERS = [
       { key: 'reset', label: 'forgot / reset (1.2)', file: 'auth-reset.html' } ] },
   ]},
   { id: '2', title: 'Synthesis', screens: [
-    { key: '2.0', label: 'Synthesis view', file: 'synthesis.html', status: 'spec', flow: '0', states: [
+    { key: '2.0', label: 'Synthesis view', file: 'synthesis.html', status: 'built', flow: '0', states: [
       { key: 'base', label: 'populated', file: 'synthesis.html' },
       { key: 'empty', label: 'first-run empty (2.1)', file: 'synthesis-empty.html' },
       { key: 'loading', label: 'synthesizing (2.2)', file: 'synthesis-loading.html' },
@@ -166,20 +166,104 @@ function renderWireframeIndex() {
   mount.innerHTML = html;
 }
 
-/* ---- render: sidebar wireframe sub-links (Flow 0..N + All screens) ---- */
-function renderSidebarFlows() {
-  const mount = document.getElementById('wf-side-links');
-  if (!mount) return;
-  const onIndex = /(^|\/)index\.html$/.test(location.pathname) || location.pathname.endsWith('/wireframes/');
-  let html = '';
-  for (const f of WF_FLOWS) {
-    html += '<li><a href="index.html#flow-' + f.id + '">Flow ' + f.id + ' · ' + wfEsc(f.label.split(':')[0].split('(')[0].trim()) + '</a></li>';
-  }
-  html += '<li><a href="index.html"' + (onIndex ? ' class="sidebar-current"' : '') + '>All screens</a></li>';
-  mount.innerHTML = html;
+/* ============================================================= *
+ * Deliverable chrome + in-frame globals, rendered from here so    *
+ * every screen page stays thin. Page placeholders:                *
+ *   #wf-topnav, #wf-sidebar, #wf-statebar (with data-node,         *
+ *   data-state). Inside <template id="wf-screen">, in-frame        *
+ *   globals are [data-wf="header"|"appfoot"|"bottomtabs"] with a   *
+ *   data-active tab id. The template is cloned into both frames,   *
+ *   then the globals are filled in every clone.                    *
+ * ============================================================= */
+
+function wfFlowShort(f) { return 'Flow ' + f.id + ' · ' + wfEsc(f.label.split(':')[0].split('(')[0].trim()); }
+function wfSet(id, html) { const m = document.getElementById(id); if (m) m.outerHTML = html; }
+
+function wfTopNav() {
+  wfSet('wf-topnav',
+    '<nav class="top">' +
+      '<a class="nav-brand" href="../index.html"><span>S</span>ift</a>' +
+      '<a class="nav-top-right" href="index.html">All screens</a>' +
+    '</nav>');
 }
 
-(function () {
-  renderWireframeIndex();
-  renderSidebarFlows();
+function wfSidebar() {
+  const m = document.getElementById('wf-sidebar');
+  if (!m) return;
+  const onIndex = /(?:^|\/)index\.html$/.test(location.pathname) || location.pathname.endsWith('/wireframes/');
+  let links = '';
+  for (const f of WF_FLOWS) links += '<li><a href="index.html#flow-' + f.id + '">' + wfFlowShort(f) + '</a></li>';
+  links += '<li><a href="index.html"' + (onIndex ? ' class="sidebar-current"' : '') + '>All screens</a></li>';
+  const soon = ['Voice', 'Concept', 'UI + Visual', 'Tokens + Components', 'Design System', 'Responsive', 'Animation', 'Handoff']
+    .map(function (x) { return '<div class="sidebar-coming-soon"><span class="sidebar-cs-label">' + x + '</span><span class="sidebar-cs-badge">Soon</span></div>'; }).join('');
+  m.outerHTML =
+    '<aside class="sidebar">' +
+      '<div class="sidebar-phase"><a class="sidebar-phase-label" href="../research/research.html">Foundation Research</a></div>' +
+      '<div class="sidebar-phase"><a class="sidebar-phase-label" href="../user-research/personas.html">User Research</a></div>' +
+      '<div class="sidebar-phase"><a class="sidebar-phase-label" href="../ia/structure.html">Information Architecture</a></div>' +
+      '<div class="sidebar-phase active"><span class="sidebar-phase-label">Wireframes</span><ul class="sidebar-section-links">' + links + '</ul></div>' +
+      '<hr class="sidebar-divider">' + soon +
+    '</aside>';
+}
+
+function wfStateBar() {
+  const m = document.getElementById('wf-statebar');
+  if (!m) return;
+  const s = wfScreen(m.getAttribute('data-node'));
+  if (!s) { m.outerHTML = ''; return; }
+  const cur = m.getAttribute('data-state') || 'base';
+  let chips = '';
+  for (const st of s.states) {
+    chips += '<a class="sb-state' + (st.key === cur ? ' sb-active' : '') + '" href="' + st.file + '">' + wfEsc(st.label) + '</a>';
+  }
+  const flow = s.flow ? WF_FLOWS.find(function (f) { return f.id === s.flow; }) : null;
+  const flowLink = flow ? '<a class="sb-flow" href="index.html#flow-' + flow.id + '">' + wfFlowShort(flow) + '</a>' : '';
+  m.outerHTML =
+    '<div class="wf-statebar">' +
+      '<span class="sb-node">' + s.key + '</span>' +
+      '<span class="sb-name">' + wfEsc(s.label) + '</span>' +
+      '<span class="sb-states">' + chips + flowLink + '<a class="sb-state" href="index.html">All screens</a></span>' +
+    '</div>';
+}
+
+/* in-frame globals */
+function wfHeaderHTML(active) {
+  function tab(id, label, file) { return '<a class="wf-tab' + (id === active ? ' wf-tab--active' : '') + '" href="' + file + '"' + (id === active ? ' aria-current="page"' : '') + '>' + label + '</a>'; }
+  return '<header class="wf-appbar">' +
+      '<span class="wf-brand">SIFT</span>' +
+      '<nav class="wf-navtabs" aria-label="Primary">' + tab('synthesis', 'Synthesis', 'synthesis.html') + tab('sources', 'Sources', 'sources.html') + tab('briefs', 'Briefs', 'briefs.html') + '</nav>' +
+      '<span class="wf-spacer"></span>' +
+      '<a class="wf-avatar" href="account.html" aria-label="Account"></a>' +
+    '</header>';
+}
+function wfBottomTabsHTML(active) {
+  function bt(id, label, file) { return '<a class="wf-btab' + (id === active ? ' wf-btab--active' : '') + '" href="' + file + '"><span class="ico"></span><span class="lbl">' + label + '</span></a>'; }
+  return '<nav class="wf-bottomtabs" aria-label="Primary">' + bt('synthesis', 'Synthesis', 'synthesis.html') + bt('sources', 'Sources', 'sources.html') + bt('briefs', 'Briefs', 'briefs.html') + bt('account', 'Account', 'account.html') + '</nav>';
+}
+function wfAppFootHTML() { return '<footer class="wf-appfoot">Sift workspace · signal from CSV and Intercom, PII scrubbed by default</footer>'; }
+
+function wfCloneScreen() {
+  const tpl = document.getElementById('wf-screen');
+  if (!tpl) return;
+  document.querySelectorAll('[data-screen]').forEach(function (mount) { mount.appendChild(tpl.content.cloneNode(true)); });
+}
+function wfMountGlobals() {
+  document.querySelectorAll('[data-wf]').forEach(function (el) {
+    const kind = el.getAttribute('data-wf');
+    const active = el.getAttribute('data-active') || '';
+    let html = '';
+    if (kind === 'header') html = wfHeaderHTML(active);
+    else if (kind === 'bottomtabs') html = wfBottomTabsHTML(active);
+    else if (kind === 'appfoot') html = wfAppFootHTML();
+    if (html) el.outerHTML = html;
+  });
+}
+
+(function wfBoot() {
+  renderWireframeIndex();  // index.html only (no-op elsewhere)
+  wfTopNav();
+  wfSidebar();
+  wfStateBar();
+  wfCloneScreen();
+  wfMountGlobals();
 })();

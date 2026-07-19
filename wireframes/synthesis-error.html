@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift - Wireframe 2.3 Synthesis error</title>
+<link rel="stylesheet" href="_wf.css">
+</head>
+<!--
+  Wireframe 2.3 Synthesis: error. State of node 2.0.
+  Synthesis failed. Two visible exits: retry (to the loading state) or go to Sources (3.0).
+  Never a dead end. Text from ia/docs/pages/synthesis.md (states).
+-->
+<body>
+
+<div id="wf-topnav"></div>
+<div id="wf-sidebar"></div>
+
+<div class="page">
+
+  <div class="page-intro">
+    <div class="page-eyebrow">Wireframes - State - Node 2.3</div>
+    <div class="wf-deliv-title">Synthesis view · error</div>
+    <p>Synthesis could not complete. The sources are still connected, so the PM recovers by retrying or heading to Sources. This screen is never a dead end. Source: ia/docs/pages/synthesis.md.</p>
+  </div>
+
+  <div id="wf-statebar" data-node="2.0" data-state="error"></div>
+
+  <template id="wf-screen">
+    <div class="wf-app">
+
+      <div data-wf="header" data-active="synthesis"></div>
+
+      <main class="wf-main">
+        <div class="wf-state">
+          <div class="wf-state-ic"></div>
+          <h1 class="wf-state-t">Synthesis failed</h1>
+          <div class="wf-state-d">We could not build the picture this time. Your sources are still connected, so nothing is lost. Try again, or check your sources.</div>
+          <div class="wf-state-actions">
+            <a class="wf-btn--ghost" href="sources.html">Go to Sources</a>
+            <a class="wf-btn" href="synthesis-loading.html">Retry</a>
+          </div>
+        </div>
+      </main>
+
+      <div data-wf="appfoot"></div>
+      <div data-wf="bottomtabs" data-active="synthesis"></div>
+
+    </div>
+  </template>
+
+  <div class="wf-viewport">
+    <div class="wf-viewport-head">
+      <span class="wf-viewport-num">01</span>
+      <span class="wf-viewport-title">Desktop</span>
+      <span class="wf-viewport-note">centered error state, retry plus a way out</span>
+    </div>
+    <div class="wf-frame wf-frame--desktop" data-screen></div>
+  </div>
+
+  <div class="wf-viewport">
+    <div class="wf-viewport-head">
+      <span class="wf-viewport-num">02</span>
+      <span class="wf-viewport-title">Mobile · 360</span>
+      <span class="wf-viewport-note">same block, bottom tabs</span>
+    </div>
+    <div class="wf-frame wf-frame--mobile" data-screen></div>
+  </div>
+
+  <footer class="pagefoot">
+    <span>Sift - Wireframe 2.3 Synthesis error. Source: ia/docs/pages/synthesis.md</span>
+    <span><a href="synthesis.html">Populated</a> &nbsp; <a href="index.html">All screens</a></span>
+  </footer>
+
+</div>
+
+<script src="_nav.js"></script>
+</body>
+</html>

@@ -99,6 +99,9 @@ nav.top {
 .page-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
 .page-intro h1 { font-size: 30px; font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; color: var(--text); margin-bottom: 10px; }
 .page-intro p { color: var(--text-2); max-width: 720px; font-size: 14px; }
+/* Screen deliverable title. A div, not an H1, so the only H1 on the page is the product
+   screen's own H1 inside the frame. */
+.wf-deliv-title { font-size: 22px; font-weight: 700; color: var(--text); letter-spacing: -0.02em; margin-bottom: 6px; }
 
 footer.pagefoot { border-top: 1px solid var(--border-light); margin-top: 80px; padding: 32px 0 60px; color: var(--text-3); font-size: 12px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
 footer.pagefoot a { color: var(--text-2); text-decoration: none; }
@@ -212,15 +215,53 @@ footer.pagefoot a:hover { color: var(--text); }
 /* App footer (canonical global 0.2, minimal in the app) */
 .wf-appfoot { padding: 12px 16px; border-top: 1px solid var(--w-line); font-size: 11px; color: var(--w-ink-3); }
 
+/* ============================================================= *
+ * 5. CANONICAL COMPONENTS  (owned by 2.0 Synthesis view)        *
+ *    Defined once here, referenced by 4.0, 4.1, 6.1, 6.4.       *
+ *    Locked by the etalon (Step 4).                             *
+ * ============================================================= */
+
+/* Main region heading (exactly one H1 per screen) */
+.wf-main-head { margin-bottom: 12px; }
+.wf-h1 { font-size: 19px; font-weight: 700; color: var(--w-ink); letter-spacing: -0.01em; }
+.wf-sub { font-size: 12px; color: var(--w-ink-2); margin-top: 4px; }
+
+/* Filter / sort control: full on desktop, compact on mobile (toggled by frame width) */
+.wf-filter-full { display: none; flex: 1; gap: 8px; align-items: center; flex-wrap: wrap; }
+.wf-filter-compact { display: flex; flex: 1; gap: 8px; align-items: center; }
+.wf-check { width: 16px; height: 16px; flex: none; accent-color: #6b6b78; }
+
+/* Theme card: label, source, recency, confidence, drill. The list is semantic (ul/li). */
+.wf-theme { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-bottom: 1px solid var(--w-line); }
+.wf-theme:hover { background: var(--w-surface); }
+.wf-theme-main { flex: 1; min-width: 0; text-decoration: none; color: inherit; display: block; }
+.wf-theme-label { font-size: 14px; color: var(--w-ink); font-weight: 600; display: block; }
+.wf-theme-meta { font-size: 11px; color: var(--w-ink-2); margin-top: 3px; display: block; }
+.wf-theme-drill { color: var(--w-ink-3); font-size: 18px; text-decoration: none; flex: none; padding: 0 2px; }
+.wf-theme-drill:hover { color: var(--w-ink); }
+
+/* Confidence indicator (D2 mandatory): n=X count plus a low-signal badge. Not color-only:
+   the count and the badge word carry the meaning, so it survives grayscale. */
+.wf-conf { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; color: var(--w-ink); border: 1px solid var(--w-line-2); border-radius: 20px; padding: 3px 10px; white-space: nowrap; flex: none; }
+.wf-conf-n { font-variant-numeric: tabular-nums; }
+.wf-badge-low { font-size: 9px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--w-ink-2); border: 1px solid var(--w-line-2); border-radius: 3px; padding: 1px 5px; }
+
+/* Selection action bar (select themes, set priority, build brief) */
+.wf-actionbar-note { font-size: 11px; color: var(--w-ink-2); margin-right: auto; }
+
 /* --- Container-query responsiveness: layout switches on FRAME width --- */
 @container (min-width: 600px) {
-  .wf-navtabs { display: flex; }     /* desktop: top tabs */
+  .wf-navtabs { display: flex; }        /* desktop: top tabs */
   .wf-bottomtabs { display: none; }
   .wf-main { padding: 20px 24px; }
+  .wf-filter-full { display: flex; }    /* desktop: full filter row */
+  .wf-filter-compact { display: none; }
 }
 @container (max-width: 599px) {
-  .wf-navtabs { display: none; }     /* mobile: bottom tabs */
+  .wf-navtabs { display: none; }        /* mobile: bottom tabs */
   .wf-bottomtabs { display: flex; }
+  .wf-filter-full { display: none; }    /* mobile: compact filter button */
+  .wf-filter-compact { display: flex; }
 }
 
 /* Page-level small screens (the deliverable page, not the product frame) */
