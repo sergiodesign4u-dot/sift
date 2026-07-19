@@ -240,8 +240,28 @@ function wfMountGlobals() {
   });
 }
 
+/* ---- index hub: project roadmap sidebar (shared with research / IA pages) ---- */
+function wfRoadmap() {
+  const m = document.getElementById('wf-roadmap');
+  if (!m) return;
+  let links = '';
+  for (const f of WF_FLOWS) links += '<li><a href="index.html#flow-' + f.id + '">' + wfFlowShort(f) + '</a></li>';
+  links += '<li><a href="index.html" class="sidebar-current">All screens</a></li>';
+  const soon = ['Voice', 'Concept', 'UI + Visual', 'Tokens + Components', 'Design System', 'Responsive', 'Animation', 'Handoff']
+    .map(function (x) { return '<div class="sidebar-coming-soon"><span class="sidebar-cs-label">' + x + '</span><span class="sidebar-cs-badge">Soon</span></div>'; }).join('');
+  m.outerHTML =
+    '<aside class="sidebar">' +
+      '<div class="sidebar-phase"><a class="sidebar-phase-label" href="../research/research.html">Foundation Research</a></div>' +
+      '<div class="sidebar-phase"><a class="sidebar-phase-label" href="../user-research/personas.html">User Research</a></div>' +
+      '<div class="sidebar-phase"><a class="sidebar-phase-label" href="../ia/structure.html">Information Architecture</a></div>' +
+      '<div class="sidebar-phase active"><span class="sidebar-phase-label">Wireframes</span><ul class="sidebar-section-links">' + links + '</ul></div>' +
+      '<hr class="sidebar-divider">' + soon +
+    '</aside>';
+}
+
 (function wfBoot() {
   renderWireframeIndex();  // index.html hub only (no-op elsewhere)
+  wfRoadmap();             // index.html hub only
   wfTopbar();
   wfRail();
   wfMountGlobals();
