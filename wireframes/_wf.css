@@ -202,6 +202,11 @@ a.wf-rail-link:hover { color: var(--text); background: var(--bg-3); }
 
 .wf-actionbar-note { font-size: 11px; color: var(--w-ink-2); margin-right: auto; }
 
+/* Theme detail header + evidence list heading (compose with the evidence snippet above) */
+.wf-theme-headmeta { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; font-size: 12px; color: var(--w-ink-2); margin: 8px 0 10px; }
+.wf-theme-headactions { margin-bottom: 4px; }
+.wf-evi-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--w-ink-2); margin: 16px 0 2px; padding-top: 14px; border-top: 1px solid var(--w-line); }
+
 /* ============================================================= *
  * 4. CONTAINER-QUERY RESPONSIVENESS  (layout follows canvas)    *
  * ============================================================= */

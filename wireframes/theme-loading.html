@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift - Wireframe 4.0 Theme detail (loading)</title>
+<link rel="stylesheet" href="_wf.css">
+</head>
+<!--
+  Wireframe 4.0 Theme detail - loading (fetching evidence items). State of node 4.0.
+  The theme header is known; the evidence list streams in as skeletons, then resolves to
+  the snippet list. Text from ia/docs/pages/theme.md (states inherit the app loading pattern).
+-->
+<body>
+
+<div id="wf-topbar" data-node="4.0" data-state="loading"></div>
+
+<div class="wf-shell">
+  <div id="wf-rail" data-node="4.0" data-state="loading"></div>
+
+  <div class="wf-stage">
+    <div class="wf-canvas">
+      <div class="wf-app">
+
+        <div data-wf="header" data-active="synthesis"></div>
+
+        <nav class="wf-breadcrumb" aria-label="Breadcrumb"><a href="synthesis.html">Synthesis</a> &rsaquo; <span>Onboarding is confusing</span></nav>
+
+        <main class="wf-main">
+          <header class="wf-main-head">
+            <h1 class="wf-h1">Onboarding is confusing</h1>
+            <div class="wf-theme-headmeta">
+              <span class="wf-conf"><span class="wf-conf-n">n=42</span></span>
+              <span>latest signal 2 days ago</span>
+            </div>
+          </header>
+
+          <h2 class="wf-evi-title">Evidence · loading</h2>
+          <ul class="wf-list" aria-busy="true">
+            <li class="wf-skelcard"><div class="wf-skel c"></div><div class="wf-skel c"></div><div class="wf-skel b"></div></li>
+            <li class="wf-skelcard"><div class="wf-skel c"></div><div class="wf-skel a"></div><div class="wf-skel b"></div></li>
+            <li class="wf-skelcard"><div class="wf-skel c"></div><div class="wf-skel c"></div><div class="wf-skel b"></div></li>
+            <li class="wf-skelcard"><div class="wf-skel a"></div><div class="wf-skel c"></div><div class="wf-skel b"></div></li>
+          </ul>
+        </main>
+
+        <div data-wf="appfoot"></div>
+        <div data-wf="bottomtabs" data-active="synthesis"></div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="_nav.js"></script>
+</body>
+</html>
