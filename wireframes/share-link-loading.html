@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift - Wireframe 6.3 Share-link generating</title>
+<link rel="stylesheet" href="_wf.css">
+</head>
+<!--
+  Wireframe 6.3 Brief: share-link generating (loading). Publishing the brief and creating the
+  public link, then it resolves to the generated state. Text from ia/docs/pages/briefs.md.
+-->
+<body>
+
+<div id="wf-topbar" data-node="6.3" data-state="loading"></div>
+
+<div class="wf-shell">
+  <div id="wf-rail" data-node="6.3" data-state="loading"></div>
+
+  <div class="wf-stage">
+    <div class="wf-canvas">
+      <div class="wf-app">
+
+        <div data-wf="header" data-active="briefs"></div>
+
+        <main class="wf-main">
+          <div class="wf-dialog" aria-busy="true">
+            <h1>Generating share link</h1>
+            <p>Publishing the brief and creating a public link. This takes a moment.</p>
+            <div class="wf-skel c"></div>
+            <div class="wf-skel a"></div>
+            <div class="wf-theme-headactions">
+              <a class="wf-btn" href="share-link.html">Continue</a>
+            </div>
+          </div>
+        </main>
+
+        <div data-wf="appfoot"></div>
+        <div data-wf="bottomtabs" data-active="briefs"></div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="_nav.js"></script>
+</body>
+</html>

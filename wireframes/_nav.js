@@ -53,7 +53,7 @@ const WF_CLUSTERS = [
       { key: 'error', label: 'error', file: 'theme-error.html' } ] },
   ]},
   { id: '5', title: 'Evidence trace', screens: [
-    { key: '5.0', label: 'Evidence source', file: 'evidence.html', status: 'spec', flow: '0', states: [
+    { key: '5.0', label: 'Evidence source', file: 'evidence.html', status: 'built', flow: '0', states: [
       { key: 'base', label: 'raw in context', file: 'evidence.html' },
       { key: 'redacted', label: 'redacted / unavailable (5.1)', file: 'evidence-redacted.html' } ] },
   ]},
@@ -61,13 +61,13 @@ const WF_CLUSTERS = [
     { key: '6.0', label: 'Briefs list', file: 'briefs.html', status: 'spec', flow: '4', states: [
       { key: 'base', label: 'list', file: 'briefs.html' },
       { key: 'empty', label: 'empty (6.5)', file: 'briefs-empty.html' } ] },
-    { key: '6.1', label: 'Build brief', file: 'build-brief.html', status: 'spec', flow: '0', states: [
+    { key: '6.1', label: 'Build brief', file: 'build-brief.html', status: 'built', flow: '0', states: [
       { key: 'base', label: 'building', file: 'build-brief.html' },
       { key: 'thin-warning', label: 'thin-theme warning (6.2)', file: 'build-brief-thin-warning.html' } ] },
-    { key: '6.3', label: 'Share-link', file: 'share-link.html', status: 'spec', flow: '0', states: [
+    { key: '6.3', label: 'Share-link', file: 'share-link.html', status: 'built', flow: '0', states: [
       { key: 'base', label: 'generated', file: 'share-link.html' },
       { key: 'loading', label: 'generating', file: 'share-link-loading.html' } ] },
-    { key: '6.4', label: 'Shared brief (public)', file: 'shared-brief.html', status: 'spec', flow: '0', states: [
+    { key: '6.4', label: 'Shared brief (public)', file: 'shared-brief.html', status: 'built', flow: '0', states: [
       { key: 'base', label: 'read-only', file: 'shared-brief.html' } ] },
   ]},
   { id: '7', title: 'Account / settings', screens: [

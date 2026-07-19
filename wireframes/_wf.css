@@ -207,6 +207,39 @@ a.wf-rail-link:hover { color: var(--text); background: var(--bg-3); }
 .wf-theme-headactions { margin-bottom: 4px; }
 .wf-evi-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--w-ink-2); margin: 16px 0 2px; padding-top: 14px; border-top: 1px solid var(--w-line); }
 
+/* Evidence source (5.0): the expanded, in-context verbatim + provenance */
+.wf-raw-meta { font-size: 11px; color: var(--w-ink-2); margin-bottom: 10px; display: flex; gap: 8px; flex-wrap: wrap; }
+.wf-raw-quote { font-size: 15px; line-height: 1.7; color: var(--w-ink); border-left: 2px solid var(--w-line-2); padding-left: 14px; margin: 4px 0 10px; }
+.wf-prov-list { list-style: none; font-size: 12px; color: var(--w-ink-2); margin: 4px 0 12px; }
+.wf-prov-list li { padding: 6px 0; border-bottom: 1px solid var(--w-line); }
+.wf-prov-list b { color: var(--w-ink); font-weight: 600; }
+.wf-prov-list a { color: var(--w-ink); }
+
+/* Build brief (6.1): recommended-priority list */
+.wf-prio { list-style: none; margin: 4px 0 14px; }
+.wf-prio li { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--w-line); font-size: 13px; color: var(--w-ink); }
+.wf-prio-n { font-size: 11px; font-weight: 700; color: var(--w-ink-2); min-width: 20px; }
+.wf-prio .wf-conf { margin-left: auto; }
+textarea.wf-input { resize: vertical; line-height: 1.5; }
+
+/* Share-link dialog (6.3) */
+.wf-main:has(> .wf-dialog) { display: flex; align-items: center; justify-content: center; }
+.wf-dialog { max-width: 460px; width: 100%; background: var(--w-surface); border: 1px solid var(--w-line-2); border-radius: 10px; padding: 22px; }
+.wf-dialog h1 { font-size: 17px; color: var(--w-ink); margin-bottom: 6px; }
+.wf-dialog p { font-size: 12px; color: var(--w-ink-2); margin-bottom: 14px; line-height: 1.55; }
+.wf-linkrow { display: flex; gap: 8px; margin-bottom: 14px; }
+
+/* Shared brief (6.4): public standalone document, no app nav */
+.wf-public-bar { display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-bottom: 1px solid var(--w-line); background: var(--w-bar); }
+.wf-public-tag { font-size: 11px; color: var(--w-ink-2); letter-spacing: 0.03em; }
+.wf-public-main { max-width: 720px; margin: 0 auto; }
+.wf-public-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--w-ink-2); margin-bottom: 8px; }
+.wf-pub-theme { padding: 14px 0; border-top: 1px solid var(--w-line); }
+.wf-pub-theme h3 { font-size: 14px; color: var(--w-ink); display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+.wf-pub-theme h3 .wf-conf { margin-left: auto; }
+.wf-pub-theme p { font-size: 12px; color: var(--w-ink-2); margin-bottom: 8px; }
+.wf-pub-quote { font-size: 13px; color: var(--w-ink); border-left: 2px solid var(--w-line-2); padding-left: 12px; margin: 6px 0; line-height: 1.55; }
+
 /* ============================================================= *
  * 4. CONTAINER-QUERY RESPONSIVENESS  (layout follows canvas)    *
  * ============================================================= */

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift - Wireframe 6.4 Shared brief (public)</title>
+<link rel="stylesheet" href="_wf.css">
+</head>
+<!--
+  Wireframe 6.4 Shared brief - public, no login. Standalone: NO app navigation, only a light
+  Sift mark. Read-only: recommended priority, top themes, confidence, and source quotes. Public
+  to view but noindex (customer data). Text from ia/docs/pages/briefs.md.
+  Note: the prototype chrome (top bar + rail) is for the reviewer; the SCREEN itself carries no
+  app header or tabs, because a stakeholder opens this cold from a link.
+-->
+<body>
+
+<div id="wf-topbar" data-node="6.4" data-state="base"></div>
+
+<div class="wf-shell">
+  <div id="wf-rail" data-node="6.4" data-state="base"></div>
+
+  <div class="wf-stage">
+    <div class="wf-canvas">
+      <div class="wf-app">
+
+        <div class="wf-public-bar">
+          <span class="wf-brand">SIFT</span>
+          <span class="wf-public-tag">Shared evidence brief · read-only</span>
+        </div>
+
+        <main class="wf-main wf-public-main">
+          <header>
+            <div class="wf-public-eyebrow">Evidence brief · no login required</div>
+            <h1 class="wf-h1" style="font-size:24px">Q3 roadmap: what customers need most</h1>
+            <p class="wf-sub">Built from 187 feedback items across CSV and Intercom, PII scrubbed. Prepared by the product team. Every theme below links back to the customer voices behind it.</p>
+          </header>
+
+          <h2 class="wf-evi-title">Recommended priority</h2>
+          <ol class="wf-prio">
+            <li><span class="wf-prio-n">1</span> Onboarding is confusing <span class="wf-conf"><span class="wf-conf-n">n=42</span></span></li>
+            <li><span class="wf-prio-n">2</span> Slow export on large accounts <span class="wf-conf"><span class="wf-conf-n">n=28</span></span></li>
+            <li><span class="wf-prio-n">3</span> Confusing billing and invoices <span class="wf-conf"><span class="wf-conf-n">n=19</span></span></li>
+          </ol>
+
+          <h2 class="wf-evi-title">Themes and evidence</h2>
+
+          <section class="wf-pub-theme">
+            <h3>1 · Onboarding is confusing <span class="wf-conf"><span class="wf-conf-n">n=42</span></span></h3>
+            <p>New users cannot tell what to do first. The setup steps, the blank first-run screen, and the initial import are the most cited friction.</p>
+            <blockquote class="wf-pub-quote">"I signed up and just stared at an empty dashboard. No idea what to do first."</blockquote>
+            <blockquote class="wf-pub-quote">"My team gave up during setup because the first-run screen was blank with no guidance."</blockquote>
+          </section>
+
+          <section class="wf-pub-theme">
+            <h3>2 · Slow export on large accounts <span class="wf-conf"><span class="wf-conf-n">n=28</span></span></h3>
+            <p>Exports time out or lag for accounts with large datasets, blocking reporting workflows.</p>
+            <blockquote class="wf-pub-quote">"Exporting our account data takes minutes and sometimes just fails."</blockquote>
+            <blockquote class="wf-pub-quote">"The bigger our workspace gets, the slower export becomes."</blockquote>
+          </section>
+
+          <section class="wf-pub-theme">
+            <h3>3 · Confusing billing and invoices <span class="wf-conf"><span class="wf-conf-n">n=19</span></span></h3>
+            <p>Invoices are hard to read and the plan limits are unclear, driving billing tickets.</p>
+            <blockquote class="wf-pub-quote">"I could not tell what I was being charged for on the invoice."</blockquote>
+            <blockquote class="wf-pub-quote">"The plan limits are not clear until you hit them."</blockquote>
+          </section>
+        </main>
+
+        <footer class="wf-appfoot">Shared with Sift · sift.app · read-only, no login required · PII scrubbed</footer>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="_nav.js"></script>
+</body>
+</html>

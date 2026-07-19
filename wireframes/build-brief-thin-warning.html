@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift - Wireframe 6.2 Build brief (thin-theme warning)</title>
+<link rel="stylesheet" href="_wf.css">
+</head>
+<!--
+  Wireframe 6.2 Brief: thin-theme warning. State of node 6.1.
+  A selected theme is low signal. Sift labels it, it does not hide it: honest confidence in the
+  shared artifact. Recoverable (label and continue). Text from ia/docs/pages/briefs.md.
+-->
+<body>
+
+<div id="wf-topbar" data-node="6.1" data-state="thin-warning"></div>
+
+<div class="wf-shell">
+  <div id="wf-rail" data-node="6.1" data-state="thin-warning"></div>
+
+  <div class="wf-stage">
+    <div class="wf-canvas">
+      <div class="wf-app">
+
+        <div data-wf="header" data-active="briefs"></div>
+
+        <main class="wf-main">
+          <header class="wf-main-head">
+            <h1 class="wf-h1">Build evidence brief</h1>
+            <p class="wf-sub">Pick the themes to include, set a recommended priority, then generate a link your stakeholders can read without a login.</p>
+          </header>
+
+          <p class="wf-notice">One selected theme is low signal. Label it, do not hide it. A stakeholder should see it is a weak signal, not a confirmed pattern. You can still include it.</p>
+
+          <h2 class="wf-evi-title">Select themes</h2>
+          <ul class="wf-list">
+            <li class="wf-theme">
+              <input type="checkbox" class="wf-check" aria-label="Include Onboarding is confusing" checked>
+              <span class="wf-theme-main">
+                <span class="wf-theme-label">Onboarding is confusing</span>
+                <span class="wf-theme-meta">CSV, Intercom · latest signal 2 days ago</span>
+              </span>
+              <span class="wf-conf"><span class="wf-conf-n">n=42</span></span>
+            </li>
+            <li class="wf-theme">
+              <input type="checkbox" class="wf-check" aria-label="Include Slow export on large accounts" checked>
+              <span class="wf-theme-main">
+                <span class="wf-theme-label">Slow export on large accounts</span>
+                <span class="wf-theme-meta">Intercom · latest signal 5 days ago</span>
+              </span>
+              <span class="wf-conf"><span class="wf-conf-n">n=28</span></span>
+            </li>
+            <li class="wf-theme">
+              <input type="checkbox" class="wf-check" aria-label="Include Dark mode requested" checked>
+              <span class="wf-theme-main">
+                <span class="wf-theme-label">Dark mode requested</span>
+                <span class="wf-theme-meta">CSV · latest signal 12 days ago · flagged low signal</span>
+              </span>
+              <span class="wf-conf"><span class="wf-conf-n">n=4</span> <span class="wf-badge-low">low signal</span></span>
+            </li>
+          </ul>
+
+          <h2 class="wf-evi-title">Recommended priority</h2>
+          <ol class="wf-prio">
+            <li><span class="wf-prio-n">1</span> Onboarding is confusing <span class="wf-conf"><span class="wf-conf-n">n=42</span></span></li>
+            <li><span class="wf-prio-n">2</span> Slow export on large accounts <span class="wf-conf"><span class="wf-conf-n">n=28</span></span></li>
+            <li><span class="wf-prio-n">3</span> Dark mode requested <span class="wf-conf"><span class="wf-conf-n">n=4</span> <span class="wf-badge-low">low signal</span></span></li>
+          </ol>
+
+          <div class="wf-actionbar">
+            <span class="wf-actionbar-note">3 themes selected · 1 low signal</span>
+            <a class="wf-btn--ghost" href="build-brief.html">Review selection</a>
+            <a class="wf-btn" href="share-link-loading.html">Label and generate link</a>
+          </div>
+        </main>
+
+        <div data-wf="appfoot"></div>
+        <div data-wf="bottomtabs" data-active="briefs"></div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="_nav.js"></script>
+</body>
+</html>
