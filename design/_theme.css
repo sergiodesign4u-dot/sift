@@ -22,6 +22,11 @@
 * { box-sizing:border-box; margin:0; padding:0; }
 html { scroll-behavior:smooth; }
 body { font-family:var(--font-ui); background:var(--canvas); color:var(--porcelain); line-height:1.5; font-size:14px; letter-spacing:-0.011em; -webkit-font-smoothing:antialiased; padding-top:52px; }
+/* Focus. The colour layer had no designed focus state, only the user agent ring, which on a
+   dark instrument is barely a ring at all. Cyan is signed for the active state (A1), and focus
+   is the keyboard's version of active. :focus-visible, so a mouse click does not draw it. */
+:focus-visible { outline:2px solid var(--cyan); outline-offset:2px; border-radius:var(--r-sm); }
+
 .sprite { position:absolute; width:0; height:0; }
 .ic { display:inline-block; vertical-align:middle; stroke:currentColor; fill:none; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; }
 
@@ -54,16 +59,18 @@ nav.top { position:fixed; top:0; left:0; right:0; z-index:100; height:52px; disp
 .brand { display:flex; align-items:center; gap:8px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; font-size:13px; color:var(--porcelain); }
 .brand .mark { color:var(--cyan); }
 .navtabs { display:flex; gap:2px; }
-.navtabs a { font-size:13.5px; color:var(--ash); text-decoration:none; padding:6px 12px; border-radius:var(--r); transition:color .15s,background .15s; }
+.navtabs a { display:inline-flex; align-items:center; min-height:44px; font-size:13.5px; color:var(--ash); text-decoration:none; padding:0 12px; border-radius:var(--r); transition:color .15s,background .15s; }
 .navtabs a:hover { color:var(--porcelain); }
 .navtabs a.active { color:var(--porcelain); background:var(--elevated); }
 .spacer { flex:1; }
-.avatar { width:28px; height:28px; border-radius:50%; background:var(--elevated); border:1px solid var(--line); display:block; }
+/* reads at 28px, hit at 44 through an overlay: the visual and the target may differ */
+.avatar { position:relative; width:28px; height:28px; border-radius:50%; background:var(--elevated); border:1px solid var(--line); display:block; }
+.avatar::after { content:""; position:absolute; inset:-8px; border-radius:50%; }
 
 .appmain { flex:1; padding:20px 22px; }
 
 .toolbar { display:flex; align-items:center; gap:8px; flex-wrap:wrap; padding-bottom:14px; margin-bottom:6px; border-bottom:1px solid var(--line); }
-.chip { display:inline-flex; align-items:center; gap:6px; font-size:12.5px; color:var(--ash); background:var(--surface); border:1px solid var(--line); border-radius:var(--r); padding:5px 10px; cursor:pointer; transition:color .15s,border-color .15s; }
+.chip { display:inline-flex; align-items:center; gap:6px; min-height:44px; font-size:12.5px; color:var(--ash); background:var(--surface); border:1px solid var(--line); border-radius:var(--r); padding:0 12px; cursor:pointer; transition:color .15s,border-color .15s; }
 .chip:hover { color:var(--porcelain); border-color:#333c44; }
 .chip .ic { width:14px; height:14px; }
 /* Facet counts, and the active facet marked by TONE rather than by hue. Cyan could be read as
@@ -73,7 +80,7 @@ nav.top { position:fixed; top:0; left:0; right:0; z-index:100; height:52px; disp
 .chip-count { font-family:var(--font-mono); font-size:11.5px; color:var(--ash); }
 .chip.is-on { color:var(--porcelain); background:var(--elevated); border-color:#3a444c; }
 .chip.is-on .chip-count { color:var(--porcelain); }
-.clear { font-size:12px; color:var(--ash); background:none; border:0; text-decoration:underline; cursor:pointer; padding:6px 2px; font-family:inherit; }
+.clear { display:inline-flex; align-items:center; min-height:44px; font-size:12px; color:var(--ash); background:none; border:0; text-decoration:underline; cursor:pointer; padding:0 4px; font-family:inherit; }
 .clear:hover { color:var(--porcelain); }
 
 .sortnote { font-size:12.5px; color:var(--ash); margin-left:auto; }
@@ -115,7 +122,9 @@ nav.top { position:fixed; top:0; left:0; right:0; z-index:100; height:52px; disp
    customer's words are set plainly, recessed, behind a hairline rather than in a card. */
 .theme-quote { display:block; font-size:12.5px; color:var(--ash); line-height:1.55; margin-top:7px; padding-left:11px; border-left:1px solid var(--line); max-width:78ch; }
 .theme-prov { display:block; font-family:var(--font-mono); font-size:11px; color:var(--ash); margin-top:7px; }
-.check { appearance:none; -webkit-appearance:none; width:16px; height:16px; border:1px solid var(--gunmetal,#3a444c); border-radius:4px; background:var(--elevated); cursor:pointer; position:relative; }
+/* 24px, the AA floor, not 44: a 44px checkbox would double the height of every row in a
+   ranked list. Same named exception the grey contract carries. */
+.check { appearance:none; -webkit-appearance:none; width:24px; height:24px; border:1px solid var(--gunmetal,#3a444c); border-radius:4px; background:var(--elevated); cursor:pointer; position:relative; }
 .check:checked { background:var(--cyan); border-color:var(--cyan); }
 .check:checked::after { content:""; position:absolute; left:5px; top:2px; width:4px; height:8px; border:solid var(--canvas); border-width:0 2px 2px 0; transform:rotate(45deg); }
 .theme-main { text-decoration:none; color:inherit; min-width:0; }
@@ -124,7 +133,7 @@ nav.top { position:fixed; top:0; left:0; right:0; z-index:100; height:52px; disp
 .conf { display:inline-flex; align-items:center; gap:8px; justify-content:flex-end; }
 .conf-n { font-family:var(--font-mono); font-size:12.5px; color:var(--porcelain); }
 .badge-low { font-family:var(--font-mono); font-size:11px; color:var(--amber); background:rgba(217,164,65,0.10); border:1px solid rgba(217,164,65,0.32); border-radius:var(--r-sm); padding:1px 6px; white-space:nowrap; }
-.theme-drill { color:var(--ash); font-size:18px; text-decoration:none; line-height:1; transition:color .15s,transform .15s var(--ease); }
+.theme-drill { display:inline-flex; align-items:center; justify-content:center; min-width:44px; min-height:44px; color:var(--ash); font-size:18px; text-decoration:none; line-height:1; transition:color .15s,transform .15s var(--ease); }
 .theme:hover .theme-drill { color:var(--porcelain); transform:translateX(2px); }
 
 /* Load more carries the remainder, so the denominator stays true as the list grows (A4). */
@@ -140,10 +149,10 @@ nav.top { position:fixed; top:0; left:0; right:0; z-index:100; height:52px; disp
 
 .actionbar { display:flex; align-items:center; gap:10px; padding-top:18px; }
 .actionbar-note { font-size:12.5px; color:var(--ash); margin-right:auto; }
-.btn { display:inline-flex; align-items:center; gap:7px; font-family:var(--font-ui); font-size:13.5px; font-weight:500; color:var(--canvas); background:var(--cyan); border:0; border-radius:var(--r); padding:8px 14px; cursor:pointer; text-decoration:none; transition:filter .15s var(--ease); }
+.btn { display:inline-flex; align-items:center; justify-content:center; gap:7px; min-height:44px; font-family:var(--font-ui); font-size:13.5px; font-weight:500; color:var(--canvas); background:var(--cyan); border:0; border-radius:var(--r); padding:0 16px; cursor:pointer; text-decoration:none; transition:filter .15s var(--ease); }
 .btn:hover { filter:brightness(1.08); }
 .btn .ic { width:15px; height:15px; }
-.btn--ghost { display:inline-flex; align-items:center; gap:7px; font-size:13.5px; font-weight:500; color:var(--porcelain); background:transparent; border:1px solid var(--line); border-radius:var(--r); padding:8px 14px; cursor:pointer; text-decoration:none; transition:border-color .15s; }
+.btn--ghost { display:inline-flex; align-items:center; justify-content:center; gap:7px; min-height:44px; font-size:13.5px; font-weight:500; color:var(--porcelain); background:transparent; border:1px solid var(--line); border-radius:var(--r); padding:0 16px; cursor:pointer; text-decoration:none; transition:border-color .15s; }
 .btn--ghost:hover { border-color:#3a444c; }
 
 /* ---- phase strip (2.1, 2.2): the three phases of ingestion, named before the user commits.
@@ -157,7 +166,7 @@ nav.top { position:fixed; top:0; left:0; right:0; z-index:100; height:52px; disp
 .step.is-done .step-n { color:var(--porcelain); border-color:#3a444c; }
 .step.is-current { color:var(--porcelain); }
 .step.is-current .step-n { color:var(--porcelain); border-color:var(--porcelain); background:var(--elevated); }
-.step-sep { color:var(--line); }
+.step-sep { color:var(--ash); opacity:0.7; }
 
 /* the theme-card skeleton mirrors the real row, so the wait promises what arrives (A4) */
 .skelrow { display:grid; grid-template-columns:22px 20px 1fr; gap:6px 14px; padding:13px 8px; border-bottom:1px solid var(--line); }

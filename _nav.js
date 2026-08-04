@@ -47,7 +47,7 @@ window.NAV = [
 
   { id: 'concept', label: 'Concept', pages: [
     { label: 'Directions', page: 'design/concept/directions.html', done: true },
-    { label: 'Concept',    page: 'design/concept/concept.html',    done: false } ] },
+    { label: 'Concept',    page: 'design/concept/concept.html',    done: true } ] },
 
   { id: 'ui-visual',     label: 'UI + Visual',         pages: [ { label: 'UI + Visual',         page: null, done: false } ] },
   { id: 'tokens',        label: 'Tokens + Components', pages: [ { label: 'Tokens + Components', page: null, done: false } ] },

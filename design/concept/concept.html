@@ -174,6 +174,26 @@
     .img-note { grid-template-columns:1fr; }
   }
   @media (prefers-reduced-motion:reduce) { * { transition:none !important; scroll-behavior:auto; } }
+
+  .live-actions { display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:18px; }
+  .live-note { color:var(--ash); font-size:12.5px; max-width:60ch; }
+  .live-note code { font-family:var(--font-mono); color:var(--porcelain); }
+  .deferred-note { border:1px solid var(--line); border-left:2px solid var(--amber); border-radius:var(--r); padding:13px 16px; margin-bottom:14px; font-size:13px; line-height:1.65; color:var(--ash); }
+  .deferred-note b { color:var(--porcelain); font-weight:500; }
+  .sample.is-deferred { opacity:0.72; }
+  .plate { margin:0 0 20px; }
+  .plate img { width:100%; height:auto; display:block; border:1px solid var(--line); border-radius:var(--r); }
+  .plate figcaption { font-size:12.5px; line-height:1.65; color:var(--ash); margin-top:10px; }
+  .plate figcaption b { color:var(--porcelain); font-weight:500; }
+  .plate-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px; margin-bottom:22px; }
+  .plate--sm figcaption { font-size:12px; }
+  .ba-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:18px; margin-bottom:22px; }
+  .ba { margin:0; }
+  .ba img { width:100%; height:auto; display:block; border:1px solid var(--line); border-radius:var(--r); }
+  .ba figcaption { font-size:12px; line-height:1.6; color:var(--ash); margin-top:9px; }
+  .ba figcaption b { color:var(--porcelain); font-weight:500; }
+  .sec-note { font-size:12.5px; color:var(--ash); margin-top:12px; }
+  .sec-note code { font-family:var(--font-mono); color:var(--porcelain); }
 </style>
 <link rel="stylesheet" href="../../_nav.css">
 </head>
@@ -211,20 +231,30 @@
   <header id="top">
     <div class="kicker">Sift / Concept / Stage 06</div>
     <h1 class="title">The visual language</h1>
-    <p class="lead">One brand, Command center, on the chosen layout, Split evidence. Every color, type, and form decision below is signed with the attribute it comes from. The page chrome is the portfolio theme; everything framed is the product brand it documents.</p>
+    <p class="lead">One brand, Command center, on the ranked ledger the etalon actually is. Every color, type, and form decision below is signed with the attribute it comes from. The page chrome is the portfolio theme; everything framed is the product brand it documents.</p>
   </header>
 
   <!-- LIVE -->
   <section id="live">
     <div class="sec-label">The language alive</div>
-    <h2>Synthesis, in the chosen layout</h2>
-    <p class="sec-intro">The etalon surface as it will look: ranked themes on the left, the live evidence for the selected theme on the right. Everything below this is the specification behind it.</p>
-    <p style="margin-bottom:18px">
+    <h2>Synthesis, and the brief a stranger reads</h2>
+    <p class="sec-intro">Two screens carry the language: the etalon, a dense ranked instrument its owner reads at a desk, and the public brief, one column of reading matter opened cold from a link by someone with no account. Same language, opposite density. Everything below this is the specification behind them.</p>
+    <p class="live-actions">
       <a class="btn" href="../../design/synthesis.html">Open the etalon in color</a>
-      <span style="color:var(--ash);font-size:12.5px;margin-left:10px">Colored copies in <code style="font-family:var(--font-mono);color:var(--porcelain)">design/</code>: populated, empty, loading, error. The grey wireframe stays the source of truth. The colored etalon colors the current wireframe structure (single column); this stand shows the Split-evidence direction, realized product-wide at Stage 07.</span>
+      <a class="btn-ghost" href="../../design/shared-brief.html">Open the shared brief</a>
+      <span class="live-note">Colored copies in <code>design/</code>: the etalon with its empty, loading and error states, plus the public brief. The grey wireframe stays the source of truth.</span>
     </p>
 
-    <div class="sample">
+    <div class="deferred-note">
+      <b>Below: the Split-evidence direction, deferred.</b> It was chosen at Step 5 to put evidence
+      in front of the eye before the click. The block bank then delivered that inside one column,
+      with a representative verbatim on every card and the scope line stating the denominator, so
+      the attribute is served without the structural change. The pane stays on record as a later
+      deepening of the drill; it is a change to node 2.0, and structure belongs to the IA and the
+      wireframes rather than to a colour copy. See <code>docs/decisions.md</code>.
+    </div>
+
+    <div class="sample is-deferred">
       <div class="sample-top">
         <span class="brand"><svg class="ic mark" width="16" height="16"><use href="#i-signal"/></svg> Sift</span>
         <nav><a class="on">Synthesis</a><a>Sources</a><a>Briefs</a></nav>
@@ -401,8 +431,84 @@
     </div>
   </section>
 
+  <!-- BRAND AND REFERENCES -->
+  <section id="brand">
+    <div class="sec-label">Brand and references</div>
+    <h2>Where the language came from</h2>
+    <p class="sec-intro">Three brand toolkit plates were generated against the emotions in the personas and against what the competitors already look like, and one was chosen at a glance. Every value in the palette above traces to a pixel of that plate or to a character decision recorded beside it.</p>
+
+    <figure class="plate">
+      <img src="assets/brand-plate-b.png" alt="Brand plate B, Command center: the chosen toolkit spread, showing the mark, the dark layered palette, the type pairing, and the UI tone" loading="lazy">
+      <figcaption><b>Chosen: Plate B, Command center.</b> The most product-native of the three, and the etalon is exactly this dense dark surface. The fixing scene is a PM at 9pm in a dim room, the screen the only light, the interface receding so the signal stands out. Two corrections were applied on the way into <code>DESIGN-artifacts.md</code>: the mark was flattened to monochrome, because a gradient would break the single-accent discipline, and Cyan was fixed as the one accent.</figcaption>
+    </figure>
+
+    <div class="plate-row">
+      <figure class="plate plate--sm">
+        <img src="assets/brand-plate-a.png" alt="Brand plate A, Analyst's desk: light off-white and deep teal with an editorial serif" loading="lazy">
+        <figcaption><b>Not chosen: A, Analyst's desk.</b> Light, warmer, closest to the Stripe and Perplexity end of the taste. Its serif for theme statements is kept on record as an open option.</figcaption>
+      </figure>
+      <figure class="plate plate--sm">
+        <img src="assets/brand-plate-c.png" alt="Brand plate C, Evidence ledger: stark monochrome on a ruled ledger grid with one semantic red" loading="lazy">
+        <figcaption><b>Not chosen: C, Evidence ledger.</b> The most ownable brand idea of the three and the coldest. Kept on record; nothing stops a later return to it.</figcaption>
+      </figure>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Borrowed</th><th>From</th><th>Which anxiety it answers</th></tr></thead>
+        <tbody>
+          <tr><td>One accent on layered neutrals, weight from hierarchy</td><td>Linear (base)</td><td>Alex works in 10 to 15 minute sessions; loud copy and loud color are friction, not delight</td></tr>
+          <tr><td>Inline citation marker plus a source panel</td><td>Perplexity, Parallel</td><td>"Confident presentation with no visible reasoning" is the named stop-trust trigger</td></tr>
+          <tr><td>Ranked rows with a count and a drill</td><td>Mercury, Amplitude</td><td>The synthesis is the value and the drill is the trust mechanism, so the first screen ranks rather than dumps</td></tr>
+          <tr><td>A tiny semantic accent on a monochrome field</td><td>shadcn/ui</td><td>Thin evidence has to read as information, not as an alarm</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="sec-note">A reference says HOW something is done; an attribute says WHY it is right for us. A technique with no attribute behind it is borrowing without a reason. Full table in <code>design/concept/docs/references.md</code>.</p>
+  </section>
+
+  <!-- CRITIQUE -->
+  <section id="critique">
+    <div class="sec-label">Critique</div>
+    <h2>Before and after, and what the audit found</h2>
+    <p class="sec-intro">The colour copy was made before the wireframes were rebuilt on the block bank. The gap was not cosmetic: the screen could not demonstrate two of its own five attributes.</p>
+
+    <div class="ba-grid">
+      <figure class="ba">
+        <img src="screens/etalon-color-before-1440.png" alt="The etalon in color before the rebuild: no rank numbers, no quote on the card, no scope line, and a permanently visible action bar" loading="lazy">
+        <figcaption><b>Before, 1440.</b> No rank number, no quote on the card, no denominator, no remainder on the load control, and an action bar that never went away, so the screen carried two primary actions at once.</figcaption>
+      </figure>
+      <figure class="ba">
+        <img src="screens/etalon-color-after-1440.png" alt="The etalon in color after the rebuild: rank, representative quote, scope line, facet counts, load more with the remainder" loading="lazy">
+        <figcaption><b>After, 1440.</b> A2 is answered on the surface by the quote and the scope line; A4 by the rank and the remainder. The one action sits in the head at rest and swaps for the selection bar the moment a row is picked.</figcaption>
+      </figure>
+      <figure class="ba">
+        <img src="screens/etalon-color-before-360.png" alt="The etalon in color before the rebuild at 360px" loading="lazy">
+        <figcaption><b>Before, 360.</b></figcaption>
+      </figure>
+      <figure class="ba">
+        <img src="screens/etalon-color-after-360.png" alt="The etalon in color after the rebuild at 360px, with the quote clamped to two lines and the confidence pill on its own row" loading="lazy">
+        <figcaption><b>After, 360.</b> The quote clamps to two lines and the confidence pill takes its own row, so the theme label never gets squeezed to three.</figcaption>
+      </figure>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Found</th><th>Severity</th><th>Resolution</th></tr></thead>
+        <tbody>
+          <tr><td>No control in the colour layer met the 44px target floor: checkbox 16, drill 18, chips 27, tabs 32, buttons 36. The grey contract had just been fixed to meet it; the colour copy had drifted from it.</td><td>P1</td><td>Fixed in <code>_theme.css</code>. Three exceptions are named rather than averaged: the checkbox at the 24px AA floor, links inside running text, and the avatar which reads at 28 and is hit at 44 through an overlay.</td></tr>
+          <tr><td>No designed focus state anywhere in the colour layer, only the browser default ring, which on a dark instrument is barely a ring.</td><td>P1</td><td>Fixed. <code>:focus-visible</code> draws the accent, because focus is the keyboard's version of the active state.</td></tr>
+          <tr><td>The separator between phases sat at 1.39:1. Decorative and aria-hidden, so not a WCAG failure, but a separator nobody can see is not doing its job.</td><td>P3</td><td>Fixed. Raised to Ash at reduced opacity.</td></tr>
+          <tr><td>The detector flags Inter as an overused face: every wave of generated UI converges on it.</td><td>Accepted, with the argument</td><td>Kept. Inter is signed to A5 and to the named taste, it is self-hostable, and the pairing carries its contrast on the mono half, where the counts live. Recorded rather than waved away, because "the reflex answer happens to be right" is a claim that has to be made out loud. Revisit when fonts become tokens at Stage 07.</td></tr>
+          <tr><td>Every text pair measured in the browser against its real background: 5 pages, both viewports.</td><td>Pass</td><td>No failures. Ash on Canvas is the dimmest pair that carries text, at about 5.5:1.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="sec-note">Run with <code>/impeccable audit</code> plus a browser pass that measured contrast, target size, focus, landmarks and overflow on every page at 1440 and 360. Full record in <code>docs/decisions.md</code>.</p>
+  </section>
+
   <footer>
-    Brand from <code>DESIGN-artifacts.md</code>, attributes from <code>design/concept/docs/concept.md</code>, canonical data from <code>wireframes/synthesis.html</code>. The two app screens in color come next (Steps 6 and 7) in <code>design/</code>; the full product in color is Stage 07.
+    Brand from <code>DESIGN-artifacts.md</code>, attributes from <code>design/concept/docs/concept.md</code>, canonical data from <code>wireframes/synthesis.html</code>. The two app screens in color are live in <code>design/</code>: the etalon with its states, and the public brief. The full product in color is Stage 07.
   </footer>
 
   </div>
@@ -411,7 +517,7 @@
 
 <script>
 window.NAV_BASE = '../../';
-window.NAV_SECTIONS = [{"id": "palette", "label": "Palette"}, {"id": "type", "label": "Typography"}, {"id": "form", "label": "Form"}, {"id": "imagery", "label": "Imagery"}, {"id": "icons", "label": "Icons"}, {"id": "components", "label": "Components"}];
+window.NAV_SECTIONS = [{"id": "live", "label": "The language alive"}, {"id": "palette", "label": "Palette"}, {"id": "type", "label": "Typography"}, {"id": "form", "label": "Form"}, {"id": "imagery", "label": "Imagery"}, {"id": "icons", "label": "Icons"}, {"id": "components", "label": "Components"}, {"id": "contrast", "label": "Contrast"}, {"id": "brand", "label": "Brand and references"}, {"id": "critique", "label": "Critique"}];
 </script>
 <script src="../../_nav.js"></script>
 </body>

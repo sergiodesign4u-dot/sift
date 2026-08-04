@@ -239,3 +239,21 @@ Left open and written where it was found: 2.0 says its themes are counted "from 
 items in the last 30 days" while 4.0 counts a theme over the whole corpus. Whether the date filter
 narrows the ranking or only the list is an IA question, and it is recorded on the screen rather
 than settled by a colour copy.
+
+**Concept audit, and the one finding kept rather than fixed (August 2026).**
+Step 8 ran `/impeccable audit` plus a browser pass that measured contrast, target size, focus,
+landmarks and overflow on every colour page at 1440 and 360. Two P1s, both design-system drift
+between the grey contract and the colour copy rather than fresh mistakes: not one control in the
+colour layer met the 44px floor the grey wireframes had just been fixed to meet, and the colour
+layer had no designed focus state at all, only the browser's default ring, which on a dark surface
+is barely a ring. Both fixed, with the same three named exceptions the grey contract carries.
+
+The finding kept is the font. The detector flags Inter as an overused face, and it is right about
+the pattern: every wave of generated interface converges on it, which is exactly the model reflex
+this stage exists to catch. It is kept anyway, and the argument is written down rather than
+assumed. Inter is signed to A5 and to the named taste (Vercel, Linear), it is self-hostable on
+GitHub Pages, and the pairing carries its contrast on the mono half, where the counts and citations
+live and where the trust surface actually is. Recorded as a challenge answered, not a warning
+waved away, and it is revisited when fonts become tokens at Stage 07.
+Rejected: swapping the face to score better against a detector. A face chosen to avoid a warning is
+as unowned as a face chosen by reflex.
