@@ -12,10 +12,16 @@
   Full app screen (Skeleton A) so it keeps the app header and footer, never a soft-404:
   a real 404 + noindex must carry recovery. Two visible exits: Go to Synthesis (2.0) and
   Home (0.0). Text from ia/docs/pages/system.md (8.0).
+
+  Composition from ia/docs/blocks.md, Type 12 (system page, light pass):
+    1 a full page with header and footer, never a soft 404
+    2 quick links out: Synthesis and Home
+  ABSENT deliberately: search on the 404 (row 5). There is no search in MVP, and offering one
+  would be a broken promise. No apology copy and no mascot (row 6): the generic
+  failure sentence is on the forbidden list by name.
 -->
 <body>
 
-<div id="wf-topbar" data-node="8.0" data-state="base"></div>
 
 <div class="wf-shell">
   <div id="wf-rail" data-node="8.0" data-state="base"></div>
@@ -32,7 +38,7 @@
             <h1 class="wf-state-t">Page not found</h1>
             <div class="wf-state-d">The page you are looking for does not exist or has moved. Nothing in your workspace is lost. Head back to your synthesis, or start from home.</div>
             <div class="wf-state-actions">
-              <a class="wf-btn--ghost" href="home.html">Home</a>
+              <a class="wf-btn wf-btn--ghost" href="index.html">Home</a>
               <a class="wf-btn" href="synthesis.html">Go to Synthesis</a>
             </div>
           </div>

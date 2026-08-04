@@ -35,7 +35,13 @@ Account is a single shell with a section list that mirrors the account areas, no
 
 ## States
 
-- Free plan (shows the usage bar and the upgrade path) versus paid (shows the plan and billing). Near-limit and over-limit are emphasis states on 7.1 (the conversion moment). Toggles on 7.2 have on and off. Nothing here is a dead-end.
+- Free plan (shows the usage bar against 250 items a month and the upgrade path) versus paid (shows
+  the plan, the seat meter and billing). Near-limit and over-limit are emphasis states on 7.1 (the
+  conversion moment). **The canonical workspace is on a paid plan**, and that is not a detail: it has
+  two sources, evidence drill-down and a public shared brief, and `strategy.md` makes all three paid.
+  A prototype that demonstrates paid features on a free plan has to invent a limit to stay consistent,
+  which is exactly what happened before this was resolved. The free plan is stated on 7.1 as the
+  reference beside the current one, so the conversion surface still names what is being bought. Toggles on 7.2 have on and off. Nothing here is a dead-end.
 
 ## Primary CTA
 
@@ -49,9 +55,9 @@ Account is a single shell with a section list that mirrors the account areas, no
 ## SEO and accessibility
 
 - **noindex** (private app), `robots: noindex, follow`, no schema.
-- The usage bar is not color-only (a number plus a label, "480 of 500 items this month"); toggles have labels and states; the destructive delete-data action has a confirm; targets at least 44px.
+- The usage bar is not color-only (a number plus a label, "230 of 250 items this month"); toggles have labels and states; the destructive delete-data action has a confirm; targets at least 44px.
 - Data export and delete are reachable by keyboard and clearly labeled (a compliance and trust expectation).
 
 ## Mockup notes (ia/account.html)
 
-Black and white, wireframe level, desktop and mobile (360px). Shows the shell with the three sections: plan and limits with the usage bar near the free limit (7.1), data and privacy with the PII-scrub toggle (7.2), and profile with sign out (7.3). Color, brand, real data arrive at the concept stage (06).
+Black and white, wireframe level, desktop and mobile (360px). Shows the shell with the three sections: plan and limits with the seat meter at its limit (7.1), data and privacy with the PII-scrub toggle (7.2), and profile with sign out (7.3). Color, brand, real data arrive at the concept stage (06).

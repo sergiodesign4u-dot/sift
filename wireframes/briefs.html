@@ -6,39 +6,32 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Sift - Wireframe 6.0 Briefs list</title>
 <link rel="stylesheet" href="_wf.css">
-<style>
-  /* Inline grey component: the saved-brief row (title, created date, share status, actions).
-     Grey tokens only, structure not appearance. */
-  .brief-topbar { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
-  .brief-topbar .wf-main-head { margin-bottom: 0; }
-  .brief-topbar .wf-btn { flex: none; }
-
-  .brief-row { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-bottom: 1px solid var(--w-line); }
-  .brief-row:hover { background: var(--w-surface); }
-  .brief-main { flex: 1; min-width: 0; }
-  .brief-title { font-size: 14px; color: var(--w-ink); font-weight: 600; text-decoration: none; display: block; }
-  .brief-title:hover { text-decoration: underline; }
-  .brief-meta { font-size: 11px; color: var(--w-ink-2); margin-top: 3px; }
-  .brief-status { font-size: 9px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--w-ink-2); border: 1px solid var(--w-line-2); border-radius: 3px; padding: 2px 6px; white-space: nowrap; flex: none; }
-  .brief-actions { display: flex; gap: 8px; flex: none; }
-
-  @container (max-width: 599px) {
-    .brief-row { flex-wrap: wrap; }
-    .brief-actions { width: 100%; }
-    .brief-actions .wf-btn--ghost { flex: 1; text-align: center; }
-  }
-</style>
 </head>
 <!--
-  Wireframe 6.0 Briefs list - populated (success). Saved briefs with title, created date, and
-  share status, plus a New brief action. Text from ia/docs/pages/briefs.md.
-  Canonical briefs reused across the prototype:
-    Q3 roadmap: what customers need most   3 themes   shared 2 days ago
-    Onboarding deep-dive                   1 theme    draft   1 week ago
+  Wireframe 6.0 Briefs list - populated (success).
+
+  Composition from ia/docs/blocks.md, Type 3 (managed object list with status). A saved brief
+  is a managed object with a lifecycle, like a source:
+    2 two groups on one screen. For sources the split is connected and available; for briefs
+      it is shared and draft, which is the split that already exists in the data and the one
+      that changes what the row can do
+    3 status per row, including the transitional one: a link being generated is neither a
+      draft nor shared, and it must not look like either
+    4 per-object stat line. The count that matters on a brief is the evidence behind it, so
+      the row carries themes AND the number of feedback items under them: 3 themes is a size,
+      89 items is a claim
+    8 one way in per row, not a row of icons. What that one way is depends on the status
+
+  Block 3 of Type 2 (the scope line) is reused here for the same reason it exists on 2.0: a
+  list of documents built from a corpus should say which corpus, or a brief from a month ago
+  reads as current.
+
+  Text from ia/docs/pages/briefs.md. Canonical briefs reused across the prototype:
+    Q3 roadmap: what customers need most   3 themes, 89 items   shared 2 days ago
+    Onboarding deep-dive                    1 theme,  42 items   draft, 1 week ago
 -->
 <body>
 
-<div id="wf-topbar" data-node="6.0" data-state="base"></div>
 
 <div class="wf-shell">
   <div id="wf-rail" data-node="6.0" data-state="base"></div>
@@ -49,38 +42,50 @@
 
         <div data-wf="header" data-active="briefs"></div>
 
-        <main class="wf-main">
-          <div class="brief-topbar">
-            <div class="wf-main-head">
+        <header class="wf-screenhead">
+          <div class="wf-screenhead-row">
+            <div class="wf-head-text">
               <h1 class="wf-h1">Briefs</h1>
-              <p class="wf-sub">Saved briefs package your themes, evidence, and a recommended priority into a link a stakeholder can read and challenge without a Sift seat.</p>
+              <p class="wf-sub">A brief packages themes, their evidence, and your recommended order into a link a stakeholder can read and challenge without a Sift seat.</p>
             </div>
-            <a class="wf-btn" href="build-brief.html">Build brief</a>
+            <a class="wf-btn wf-head-action" href="build-brief.html">Build brief</a>
           </div>
+          <p class="wf-scope">
+            <b>2</b> briefs, built from the 12 themes on Synthesis. A brief keeps the evidence it
+            was built from, so an old link stays readable even after the themes move on.
+          </p>
+        </header>
 
+        <main class="wf-main wf-main--flush">
+
+          <div class="wf-evi-group">Shared &middot; 1</div>
           <ul class="wf-list">
             <li class="brief-row">
               <div class="brief-main">
                 <a class="brief-title" href="shared-brief.html">Q3 roadmap: what customers need most</a>
-                <div class="brief-meta">3 themes · shared 2 days ago</div>
+                <div class="brief-meta">3 themes &middot; 89 feedback items behind them &middot; shared 2 days ago by Alex Rivera &middot; link is live</div>
               </div>
               <span class="brief-status">Shared</span>
               <div class="brief-actions">
-                <a class="wf-btn--ghost" href="shared-brief.html">View</a>
-                <a class="wf-btn--ghost" href="build-brief.html">Edit</a>
-              </div>
-            </li>
-            <li class="brief-row">
-              <div class="brief-main">
-                <a class="brief-title" href="build-brief.html">Onboarding deep-dive</a>
-                <div class="brief-meta">1 theme · created 1 week ago</div>
-              </div>
-              <span class="brief-status">Draft</span>
-              <div class="brief-actions">
-                <a class="wf-btn--ghost" href="build-brief.html">Edit</a>
+                <a class="wf-btn wf-btn--ghost" href="shared-brief.html">Open</a>
               </div>
             </li>
           </ul>
+
+          <div class="wf-evi-group">Drafts &middot; 1</div>
+          <ul class="wf-list">
+            <li class="brief-row">
+              <div class="brief-main">
+                <a class="brief-title" href="build-brief.html">Onboarding deep-dive</a>
+                <div class="brief-meta">1 theme &middot; 42 feedback items behind it &middot; started 1 week ago &middot; no link yet, so nobody outside can see it</div>
+              </div>
+              <span class="brief-status">Draft</span>
+              <div class="brief-actions">
+                <a class="wf-btn wf-btn--ghost" href="build-brief.html">Continue</a>
+              </div>
+            </li>
+          </ul>
+
         </main>
 
         <div data-wf="appfoot"></div>

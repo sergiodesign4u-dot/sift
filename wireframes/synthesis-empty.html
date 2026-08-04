@@ -8,13 +8,26 @@
 <link rel="stylesheet" href="_wf.css">
 </head>
 <!--
-  Wireframe 2.1 Synthesis: first-run empty (no sources). State of node 2.0.
-  The activation fork of Flow 1: one explanation and one CTA, Connect a source (to 3.1).
-  Visible exit, no dead end. Text from ia/docs/pages/synthesis.md (states).
+  Wireframe 2.1 Synthesis: first-run empty (no sources connected). State of node 2.0.
+  The activation fork of Flow 1.
+
+  Composition from ia/docs/blocks.md, Type 2, States:
+    the screen keeps its identity (block 1 app header, block 2 screen head), so the user sees
+      WHICH screen is empty and not only that something is;
+    block 3, the scope line, states the denominator in its zero form: nothing is counted
+      because nothing has come in, which is the difference between "empty" and "broken";
+    the step strip is Type 4 block 1 applied to activation. The As-Is barrier here is that
+      ingestion is a black box, so the three phases are named before the user starts, with
+      the one they are on marked;
+    then one explanation and exactly one action, to 3.0 Sources, which carries the
+      available sources as its own group (3.1 was folded into it, see docs/decisions.md).
+
+  ABSENT deliberately: the filter toolbar (there is nothing to filter, and its facets carry
+  counts that do not exist yet) and the head action Build brief (nothing to build from).
+  One primary action on the screen, per design principle 4.
 -->
 <body>
 
-<div id="wf-topbar" data-node="2.0" data-state="empty"></div>
 
 <div class="wf-shell">
   <div id="wf-rail" data-node="2.0" data-state="empty"></div>
@@ -25,13 +38,34 @@
 
         <div data-wf="header" data-active="synthesis"></div>
 
-        <main class="wf-main">
+        <header class="wf-screenhead">
+          <div class="wf-screenhead-row">
+            <div class="wf-head-text">
+              <h1 class="wf-h1">Synthesis</h1>
+              <p class="wf-sub">Your feedback, clustered into ranked themes. Open one to trace the evidence behind it.</p>
+            </div>
+          </div>
+          <p class="wf-scope">
+            <b>0</b> themes from <b>0</b> feedback items, across 0 sources. Nothing has come in
+            yet, so there is nothing to count.
+          </p>
+        </header>
+
+        <nav class="wf-steps" aria-label="Getting to your first synthesis">
+          <span class="wf-step is-current"><span class="wf-step-n">1</span> Connect a source</span>
+          <span aria-hidden="true">&rsaquo;</span>
+          <span class="wf-step"><span class="wf-step-n">2</span> Scrub and cluster</span>
+          <span aria-hidden="true">&rsaquo;</span>
+          <span class="wf-step"><span class="wf-step-n">3</span> Ranked themes with evidence</span>
+        </nav>
+
+        <main class="wf-main wf-main--flush">
           <div class="wf-state">
             <div class="wf-state-ic"></div>
-            <h1 class="wf-state-t">Nothing to synthesize yet</h1>
-            <div class="wf-state-d">Connect a source to see your first synthesis. Sift clusters your feedback into ranked themes, each with the evidence behind it. Your data is PII scrubbed by default.</div>
+            <h2 class="wf-state-t">Nothing to synthesize yet</h2>
+            <div class="wf-state-d">Connect a source to see your first synthesis. Sift reads your feedback, removes personal details, then clusters what is left into ranked themes. Every theme keeps the items behind it, so you can open any conclusion and read the words it came from.</div>
             <div class="wf-state-actions">
-              <a class="wf-btn" href="connect.html">Connect a source</a>
+              <a class="wf-btn" href="sources-empty.html">Connect a source</a>
             </div>
           </div>
         </main>

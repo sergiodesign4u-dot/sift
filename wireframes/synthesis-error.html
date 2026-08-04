@@ -9,12 +9,21 @@
 </head>
 <!--
   Wireframe 2.3 Synthesis: error. State of node 2.0.
-  Synthesis failed. Two visible exits: retry (to the loading state) or go to Sources (3.0).
-  Never a dead end. Text from ia/docs/pages/synthesis.md (states).
+
+  Composition from ia/docs/blocks.md, Type 2, States: name the failure, offer Try again, and
+  offer Sources as the way out, so it is never a dead end.
+    block 2 screen head, kept, so the failure is attached to a screen and not to the product;
+    block 3 scope line in its failed form, and this is the block that does the real work here:
+      the previous synthesis did not disappear when this run failed, so the line states when
+      it was made and links to it. Design principle 3: what is still true is stated, not
+      implied by an empty screen;
+    then the failure, what is unharmed, and two exits.
+
+  ABSENT deliberately: the filter toolbar and the head action, for the same reason as 2.1 and
+  2.2. Exactly one primary action, Try again.
 -->
 <body>
 
-<div id="wf-topbar" data-node="2.0" data-state="error"></div>
 
 <div class="wf-shell">
   <div id="wf-rail" data-node="2.0" data-state="error"></div>
@@ -25,13 +34,26 @@
 
         <div data-wf="header" data-active="synthesis"></div>
 
-        <main class="wf-main">
+        <header class="wf-screenhead">
+          <div class="wf-screenhead-row">
+            <div class="wf-head-text">
+              <h1 class="wf-h1">Synthesis</h1>
+              <p class="wf-sub">Your feedback, clustered into ranked themes. Open one to trace the evidence behind it.</p>
+            </div>
+          </div>
+          <p class="wf-scope">
+            The last complete synthesis is from <b>2 hours ago</b>, over 12 themes and 3,750
+            feedback items. It is still readable: <a href="synthesis.html">open the version from 2 hours ago</a>.
+          </p>
+        </header>
+
+        <main class="wf-main wf-main--flush">
           <div class="wf-state">
             <div class="wf-state-ic"></div>
-            <h1 class="wf-state-t">Synthesis failed</h1>
-            <div class="wf-state-d">We could not build the picture this time. Your sources are still connected, so nothing is lost. Try again, or check your sources.</div>
+            <h2 class="wf-state-t">Synthesis failed</h2>
+            <div class="wf-state-d">We could not build the picture this time. Your sources are still connected and no feedback was lost, so a new run starts from the same 3,750 items.</div>
             <div class="wf-state-actions">
-              <a class="wf-btn--ghost" href="sources.html">Go to Sources</a>
+              <a class="wf-btn wf-btn--ghost" href="sources.html">Go to Sources</a>
               <a class="wf-btn" href="synthesis-loading.html">Try again</a>
             </div>
           </div>

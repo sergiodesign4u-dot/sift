@@ -9,12 +9,23 @@
 </head>
 <!--
   Wireframe 2.2 Synthesis: loading / synthesizing. State of node 2.0.
-  Skeleton theme cards while ingest and cluster run. An honest wait, not a bare spinner.
-  Transitions to the populated success on completion. Text from ia/docs/pages/synthesis.md.
+
+  Composition from ia/docs/blocks.md, Type 2, States: an honest wait that names the two
+  phases (ingest, cluster) rather than a spinner.
+    block 2 screen head, so the screen stays recognizable while it works;
+    block 3 scope line in its in-progress form. The denominator is already known, the items
+      are in; only the numerator is missing, and saying that is the difference between a wait
+      and a hang;
+    the step strip carries the phase, with ingest already marked done;
+    the skeleton rows are shaped like the REAL theme card (label, quote, provenance). A
+      skeleton that does not match what arrives is a promise the screen breaks.
+
+  ABSENT deliberately: the filter toolbar. Its facets carry counts (Type 2 row 4) and the
+  counts do not exist yet, so the toolbar here would be a control that lies. The step strip
+  sits in the same band, so nothing jumps when the themes land.
 -->
 <body>
 
-<div id="wf-topbar" data-node="2.0" data-state="loading"></div>
 
 <div class="wf-shell">
   <div id="wf-rail" data-node="2.0" data-state="loading"></div>
@@ -25,17 +36,35 @@
 
         <div data-wf="header" data-active="synthesis"></div>
 
-        <main class="wf-main">
-          <div class="wf-main-head">
-            <h1 class="wf-h1">Synthesis</h1>
-            <p class="wf-sub">Synthesizing your feedback. Ingesting, scrubbing PII, and clustering into themes.</p>
+        <header class="wf-screenhead">
+          <div class="wf-screenhead-row">
+            <div class="wf-head-text">
+              <h1 class="wf-h1">Synthesis</h1>
+              <p class="wf-sub">Your feedback, clustered into ranked themes. Open one to trace the evidence behind it.</p>
+            </div>
           </div>
+          <p class="wf-scope">
+            Reading <b>3,750</b> feedback items from 2 sources. Themes and their counts appear
+            when clustering finishes. You can leave this screen, the work carries on.
+          </p>
+        </header>
+
+        <nav class="wf-steps" aria-label="Synthesis progress">
+          <span class="wf-step"><span class="wf-step-n">&#10003;</span> Ingested, 3,750 items</span>
+          <span aria-hidden="true">&rsaquo;</span>
+          <span class="wf-step is-current"><span class="wf-step-n">2</span> Scrubbing and clustering</span>
+          <span aria-hidden="true">&rsaquo;</span>
+          <span class="wf-step"><span class="wf-step-n">3</span> Ranking by signal</span>
+        </nav>
+
+        <main class="wf-main wf-main--flush">
           <ul class="wf-list" aria-busy="true">
-            <li class="wf-skelcard"><div class="wf-skel a"></div><div class="wf-skel b"></div></li>
-            <li class="wf-skelcard"><div class="wf-skel c"></div><div class="wf-skel b"></div></li>
-            <li class="wf-skelcard"><div class="wf-skel a"></div><div class="wf-skel b"></div></li>
-            <li class="wf-skelcard"><div class="wf-skel c"></div><div class="wf-skel b"></div></li>
-            <li class="wf-skelcard"><div class="wf-skel a"></div><div class="wf-skel b"></div></li>
+            <li class="wf-skelcard"><div class="wf-skel a"></div><div class="wf-skel c"></div><div class="wf-skel b"></div></li>
+            <li class="wf-skelcard"><div class="wf-skel c"></div><div class="wf-skel c"></div><div class="wf-skel b"></div></li>
+            <li class="wf-skelcard"><div class="wf-skel a"></div><div class="wf-skel c"></div><div class="wf-skel b"></div></li>
+            <li class="wf-skelcard"><div class="wf-skel c"></div><div class="wf-skel a"></div><div class="wf-skel b"></div></li>
+            <li class="wf-skelcard"><div class="wf-skel a"></div><div class="wf-skel c"></div><div class="wf-skel b"></div></li>
+            <li class="wf-skelcard"><div class="wf-skel c"></div><div class="wf-skel c"></div><div class="wf-skel b"></div></li>
           </ul>
         </main>
 

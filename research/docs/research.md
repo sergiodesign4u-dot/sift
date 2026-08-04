@@ -422,7 +422,7 @@ Cross-reference updates: personas.md (gaps table: CSV vs. integration row update
 
 ## 10. Re-research for CJM (June 2026)
 
-*New live mining conducted for the Customer Journey Map (As-Is) of the Overloaded PM. Method: Playwright live browser on public / pre-login pages only. Key access finding: Reddit is reachable via old.reddit.com in the live browser (the earlier session's block was on www.reddit.com only). Full journey mapping in user-research/docs/cjm-as-is.md.*
+*New live mining conducted for the Customer Journey Map (As-Is) of the Overloaded PM. Method: Playwright live browser on public / pre-login pages only. Key access finding: Reddit is reachable via old.reddit.com in the live browser (the earlier session's block was on www.reddit.com only). Full journey mapping in research/docs/cjm-as-is.md.*
 
 ### What the CJM mining added
 

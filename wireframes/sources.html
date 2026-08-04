@@ -6,27 +6,21 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Sift - Wireframe 3.0 Sources</title>
 <link rel="stylesheet" href="_wf.css">
-<style>
-  /* 3.0 Sources list row (grey, table-like on desktop, stacked on mobile) */
-  .src-row { display: flex; align-items: center; gap: 16px; padding: 14px 16px; border-bottom: 1px solid var(--w-line); flex-wrap: wrap; }
-  .src-row:hover { background: var(--w-surface); }
-  .src-ic { width: 34px; height: 34px; border-radius: 7px; background: var(--w-fill); border: 1px solid var(--w-line-2); flex: none; }
-  .src-main { flex: 1 1 150px; min-width: 0; }
-  .src-name { font-size: 14px; font-weight: 600; color: var(--w-ink); display: block; }
-  .src-sub { font-size: 11px; color: var(--w-ink-2); margin-top: 3px; display: block; }
-  .src-stats { display: flex; gap: 22px; flex-wrap: wrap; }
-  .src-stat { display: flex; flex-direction: column; gap: 2px; }
-  .src-stat-l { font-size: 10px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--w-ink-3); }
-  .src-stat-v { font-size: 12px; color: var(--w-ink); font-variant-numeric: tabular-nums; }
-  .src-manage { flex: none; font-size: 12px; color: var(--w-ink); text-decoration: none; border: 1px solid var(--w-line-2); border-radius: 5px; padding: 8px 13px; }
-  .src-manage:hover { background: var(--w-surface); border-color: var(--w-ink-3); }
-</style>
 </head>
 <!-- 3.0 Sources (list). Source ia/docs/pages/sources.md. Grey, responsive.
-     Two connected sources as a semantic list of rows: CSV import (batch) and Intercom (live). -->
+
+     Composition from ia/docs/blocks.md, Type 3 (managed object list with status):
+       2 connected AND available on one screen, the structural find of this type. It is why
+         3.4 is not a separate design but this screen with an empty first group
+       3 status per row, including the transitional one
+       4 per-source stat line: items, last sync, scrub state
+       6 availability stated per source, so "not connectable yet" is said and not hidden
+       8 one Manage entry per row, because disconnecting has consequences that need a screen
+
+     The .src-* components live in _wf.css, not inline here: 3.4 and 3.5 are this same screen
+     with different groups filled, and a copied inline block is where two editions start. -->
 <body>
 
-<div id="wf-topbar" data-node="3.0" data-state="base"></div>
 
 <div class="wf-shell">
   <div id="wf-rail" data-node="3.0" data-state="base"></div>
@@ -37,28 +31,30 @@
 
         <div data-wf="header" data-active="sources"></div>
 
-        <div class="wf-toolbar">
-          <button class="wf-chip">Status: all</button>
-          <button class="wf-chip">Type: all</button>
-          <span class="wf-spacer"></span>
-          <a class="wf-btn" href="connect.html">Connect a source</a>
-        </div>
+        <header class="wf-screenhead">
+          <div class="wf-screenhead-row">
+            <div class="wf-head-text">
+              <h1 class="wf-h1">Sources</h1>
+              <p class="wf-sub">Where your feedback comes from. Every source is scrubbed of personal details on the way in.</p>
+            </div>
+          </div>
+          <p class="wf-scope">
+            <b>2</b> sources connected, <b>3,750</b> items in. This is the corpus every theme on
+            Synthesis is counted from.
+          </p>
+        </header>
 
-        <main class="wf-main">
-          <header class="wf-main-head">
-            <h1 class="wf-h1">Sources</h1>
-            <p class="wf-sub">2 sources connected, 3,750 items in. Every source is PII scrubbed by default.</p>
-          </header>
-
+        <main class="wf-main wf-main--flush">
+          <div class="wf-evi-group">Connected &middot; 2</div>
           <ul class="wf-list">
             <li class="src-row">
               <span class="src-ic" aria-hidden="true"></span>
               <div class="src-main">
-                <span class="src-name">CSV import</span>
+                <span class="src-name">CSV import <span class="src-status">Imported</span></span>
                 <span class="src-sub">Batch import</span>
               </div>
               <div class="src-stats">
-                <div class="src-stat"><span class="src-stat-l">Status</span><span class="src-stat-v">Imported</span></div>
+                
                 <div class="src-stat"><span class="src-stat-l">Items</span><span class="src-stat-v">840</span></div>
                 <div class="src-stat"><span class="src-stat-l">Imported</span><span class="src-stat-v">2 days ago</span></div>
                 <div class="src-stat"><span class="src-stat-l">PII scrub</span><span class="src-stat-v">On</span></div>
@@ -68,11 +64,11 @@
             <li class="src-row">
               <span class="src-ic" aria-hidden="true"></span>
               <div class="src-main">
-                <span class="src-name">Intercom</span>
+                <span class="src-name">Intercom <span class="src-status">Syncing</span></span>
                 <span class="src-sub">Live connection</span>
               </div>
               <div class="src-stats">
-                <div class="src-stat"><span class="src-stat-l">Status</span><span class="src-stat-v">Synced</span></div>
+                
                 <div class="src-stat"><span class="src-stat-l">Items</span><span class="src-stat-v">2,910</span></div>
                 <div class="src-stat"><span class="src-stat-l">Last sync</span><span class="src-stat-v">2 days ago</span></div>
                 <div class="src-stat"><span class="src-stat-l">PII scrub</span><span class="src-stat-v">On</span></div>
@@ -80,6 +76,28 @@
               <a class="src-manage" href="sources-manage.html">Manage</a>
             </li>
           </ul>
+
+          <div class="wf-evi-group">Available to connect</div>
+          <div class="src-avail">
+            <div class="src-card">
+              <span class="src-card-ic" aria-hidden="true"></span>
+              <span class="src-card-name">CSV or spreadsheet</span>
+              <span class="src-card-d">Sift reads the feedback text, its date and its channel. You choose which columns are read, and you can leave contact columns out entirely.</span>
+              <a class="wf-btn wf-btn--ghost" href="connect-csv.html">Import a file</a>
+            </div>
+            <div class="src-card">
+              <span class="src-card-ic" aria-hidden="true"></span>
+              <span class="src-card-name">Intercom</span>
+              <span class="src-card-d">Sift reads conversations, not contacts. New conversations arrive on their own once connected.</span>
+              <a class="wf-btn wf-btn--ghost" href="connect-intercom.html">Connect</a>
+            </div>
+            <div class="src-card">
+              <span class="src-card-ic" aria-hidden="true"></span>
+              <span class="src-card-name">Zendesk</span>
+              <span class="src-card-d">Sift will read tickets and their replies, the same way it reads Intercom conversations.</span>
+              <span class="src-card-note">Not connectable yet. Import your tickets as a CSV in the meantime.</span>
+            </div>
+          </div>
         </main>
 
         <div data-wf="appfoot"></div>

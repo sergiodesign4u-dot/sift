@@ -17,10 +17,18 @@
 </style>
 </head>
 <!-- 3.3 Intercom connect (OAuth). Authorize, an auth-failed error, then sync loading.
-     Traces Flow 1 (Intercom branch). Source ia/docs/pages/sources.md. Grey, responsive. -->
+     Traces Flow 1 (Intercom branch). Source ia/docs/pages/sources.md. Grey, responsive.
+
+  Composition from ia/docs/blocks.md, Type 4 (import and connect wizard):
+    1 step indicator, so the connection is not a black box
+    10 the OAuth step states the scope BEFORE the redirect. We name what Sift will read
+      (conversations, not contacts) on our page, before the user leaves it: consent given after
+      a redirect is consent given to somebody else's wording (D3, GDPR)
+    the auth-failed state names what to check and offers the retry, so the branch is recoverable
+  ABSENT deliberately: any promise about what Intercom will show, which is not ours to make.
+-->
 <body>
 
-<div id="wf-topbar" data-node="3.0" data-state="intercom"></div>
 
 <div class="wf-shell">
   <div id="wf-rail" data-node="3.0" data-state="intercom"></div>
@@ -31,7 +39,7 @@
 
         <div data-wf="header" data-active="sources"></div>
 
-        <nav class="wf-breadcrumb" aria-label="Breadcrumb"><a href="sources.html">Sources</a> &rsaquo; <a href="connect.html">Connect a source</a> &rsaquo; <span>Intercom</span></nav>
+        <nav class="wf-breadcrumb" aria-label="Breadcrumb"><a href="sources.html">Sources</a> &rsaquo; <span>Intercom</span></nav>
 
         <main class="wf-main">
           <header class="wf-main-head">
@@ -53,7 +61,7 @@
           </section>
 
           <div class="wf-actionbar">
-            <a class="wf-btn--ghost" href="connect.html">Back to chooser</a>
+            <a class="wf-btn wf-btn--ghost" href="sources.html">Back to sources</a>
           </div>
         </main>
 

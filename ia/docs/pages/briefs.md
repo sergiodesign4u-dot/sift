@@ -26,12 +26,32 @@
 
 ## Content blocks (priority, mobile-first)
 
+*6.1, 6.2 and 6.3 take their composition from `ia/docs/blocks.md`, Type 6 (artifact composer). 6.0 and
+6.5 belong to Type 3 and 6.4 to Type 7, both still to be done.*
+
 1. **App header** (Navigation 0.1) on 6.0 to 6.3, 6.5. **6.4 has no app header** (standalone public page with only a light Sift mark).
 2. **6.0 list** of briefs, or the 6.5 empty state.
-3. **6.1 build:** theme selection, priority and rationale, the thin-theme warning (6.2), the Generate link action.
-4. **6.3 dialog:** the link, copy, and the no-login note.
+3. **6.1 build**, in order:
+   a. **Stage indicator**: Build, Share, What they see. The PM builds this before a meeting and has to
+      see how many steps are left.
+   b. **Brief title with a draft marker.** A brief with no name is one nobody finds again in 6.0, and
+      the draft dot says out loud that nothing has been shared yet.
+   c. **Ordered list of the selected themes, reorderable.** The order IS the recommended priority, so
+      it is editable and pre-filled by signal rank. Each row keeps its `n=X` and its low-signal badge
+      while it moves, so a thin theme cannot be quietly promoted without the promoter seeing it is thin.
+   d. **The PM's rationale, in its own field,** visually separate from the evidence, so a reader can
+      always tell the claim from what supports it.
+   e. **Thin-theme warning (6.2)** before publishing: which themes are thin, and label rather than drop.
+   f. **Preview** of 6.4 exactly as the stakeholder will see it, then the Generate link action.
+4. **6.3 dialog:** a plain sentence naming the consequence (anyone with the link can read it without
+   logging in, and it contains scrubbed customer feedback), the link shown in full, Copy, and
+   **Disable link**.
 5. **6.4 public view:** brief title, recommended priority, each theme with its confidence and a few evidence quotes, a light Sift mark, no app nav.
 6. **App footer** (0.2) on the private pages; 6.4 has only a minimal public line.
+
+**Deliberately not built: an editor for the content of a brief item.** Every composer source has one.
+We do not, because the brief carries each theme as the synthesis produced it; a rewritten quote would
+break the chain the whole product rests on (Design principle 5). What the PM adds goes in block 3d.
 
 ## Components
 
@@ -41,11 +61,31 @@
 
 ## States
 
-- 6.0 populated or 6.5 empty; 6.1 building; 6.2 thin-theme warning (recoverable, label and continue); 6.3 generating link (loading) then generated; a share revoke [?] is a fast-follow. An ignored public brief is not a dead-end (Flow 4 hands off to defend live).
+- **6.0 populated and 6.5 empty are one screen** with the groups filled or not (`blocks.md` Type 3,
+  row 2), the same rule that joins 3.0 and 3.4. A saved brief is a managed object with a lifecycle,
+  so the list splits into Shared and Drafts: that split already exists in the data and it decides
+  what the row's one action is, Open for a shared brief and Continue for a draft. The scope line says
+  what the briefs were built from, because a list of documents with no denominator lets a brief from
+  a month ago read as current.
+- **6.5 empty** is the only state where the head action moves. On 3.4 the available-sources group
+  carries the action, so the head can stay empty; here there is no second group, so the single action
+  sits in the empty block and the head does not repeat it. Two "Build brief" buttons on one screen
+  would be two primary actions in the same second.
+- **6.1 building**; **6.2 thin-theme warning** is 6.1 with a notice and nothing removed, and the
+  notice fires on the thing worth interrupting for: not that a thin theme is in the brief, but that
+  it has been ranked above themes with several times its evidence. It is recoverable (label and
+  continue) and the row keeps its `n` and its low-signal badge at whatever position it is dragged to,
+  so a thin theme cannot be quietly promoted. **6.3 generating link** (loading) then generated. An
+  ignored public brief is not a dead-end (Flow 4 hands off to defend live).
+- **Changed decision: revoking a share link moves from fast-follow to MVP.** The first pass marked it
+  `[?] fast-follow`. The block bank (Type 6, row 11) overturns that, and the reason is not a feature
+  argument: the shared brief is a public URL over customer feedback, so a link with no off switch is a
+  compliance hole rather than a missing nicety. It is the same stance as PII-scrub-by-default, and it
+  costs one control in the dialog that already exists. Recorded in `docs/decisions.md`.
 
 ## Primary CTA
 
-- 6.0: New brief. 6.1: Generate share link. 6.4: none (read-only); the implicit action is that the stakeholder reads and is convinced.
+- 6.0: Build brief, in the screen head. 6.1: Generate share link. 6.4: none (read-only); the implicit action is that the stakeholder reads and is convinced.
 
 ## Adaptive
 

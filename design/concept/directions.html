@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift - Concept - Layout directions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ---- Brand B tokens (from DESIGN-artifacts.md). Identical across all three directions. ---- */
+  :root {
+    --canvas:   #0B0E11;
+    --surface:  #151A1F;
+    --elevated: #1E252B;
+    --line:     #262D34;
+    --porcelain:#EAEEF2;
+    --ash:      #868F99;
+    --cyan:     #33C4CC;
+    --amber:    #D9A441;
+    --red:      #E5484D;
+
+    --bar-track: #20272E;
+    --bar-fill:  rgba(51,196,204,0.32); /* magnitude in the brand hue, low saturation, not the full accent */
+
+    --font-ui: "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+    --r: 6px;      /* card / button radius */
+    --r-sm: 4px;   /* badge radius */
+    --gap: 8px;
+
+    --z-nav: 50;
+
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+    /* ---- Portfolio roadmap rail (purple, shared with research.html) ---- */
+    --pf-bg:#0c0c0e; --pf-bg-3:#17171c; --pf-border-light:#1e1e28;
+    --pf-text:#e8e8ec; --pf-text-3:#66667a; --pf-accent:#7c6af7; --pf-accent-glow:rgba(124,106,247,0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-ui);
+    background: var(--canvas);
+    color: var(--porcelain);
+    line-height: 1.5;
+    font-size: 14px;
+    letter-spacing: -0.011em;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    padding-top: 52px;
+  }
+
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---- Portfolio top nav ---- */
+  nav.top { position:fixed; top:0; left:0; right:0; z-index:100; height:52px; display:flex; align-items:center; justify-content:space-between; padding:0 24px; background:rgba(12,12,14,0.92); backdrop-filter:blur(12px); border-bottom:1px solid var(--pf-border-light); }
+  .nav-brand { font-size:14px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; color:var(--pf-text); text-decoration:none; }
+  .nav-brand span { color:var(--pf-accent); }
+  .nav-links { display:flex; gap:6px; list-style:none; }
+  .nav-links a { color:var(--pf-text-3); text-decoration:none; font-size:12px; font-weight:500; padding:5px 10px; border-radius:5px; transition:color .15s,background .15s; }
+  .nav-links a:hover { color:var(--pf-text); background:var(--pf-bg-3); }
+  @media (min-width:1100px) {
+    body { padding-left:220px; }
+  }
+  @media (max-width:760px) { nav.top .nav-links { display:none; } }
+
+  /* ---- Page intro ---- */
+  .page-head { padding: 56px 0 28px; border-bottom: 1px solid var(--line); }
+  .page-kicker { font-family: var(--font-mono); font-size: 12px; color: var(--cyan); letter-spacing: 0; margin-bottom: 14px; }
+  .page-title { font-size: clamp(28px, 4vw, 40px); font-weight: 590; letter-spacing: -0.03em; line-height: 1.1; text-wrap: balance; }
+  .page-lead { color: var(--ash); font-size: 16px; margin-top: 12px; max-width: 62ch; }
+
+  /* fixed-brand legend: makes "same brand across all three" explicit */
+  .brandbar { display: flex; flex-wrap: wrap; gap: 22px 34px; align-items: center; margin-top: 26px; padding: 16px 18px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); }
+  .brandbar-group { display: flex; align-items: center; gap: 10px; }
+  .brandbar-label { font-family: var(--font-mono); font-size: 11px; color: var(--ash); text-transform: uppercase; letter-spacing: 0.04em; }
+  .swatches { display: flex; gap: 6px; }
+  .sw { width: 18px; height: 18px; border-radius: 3px; border: 1px solid rgba(255,255,255,0.06); }
+  .type-samp { font-size: 13px; color: var(--porcelain); }
+  .type-samp .mono { font-family: var(--font-mono); color: var(--cyan); }
+
+  /* ---- Sticky segmented jump nav ---- */
+  .jump { position: sticky; top: 52px; z-index: var(--z-nav); background: rgba(11,14,17,0.86); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  .jump-inner { display: flex; gap: 6px; padding: 10px 0; }
+  .jump a { font-size: 13px; color: var(--ash); text-decoration: none; padding: 6px 12px; border-radius: var(--r); border: 1px solid transparent; transition: color .15s var(--ease), background .15s var(--ease); }
+  .jump a:hover { color: var(--porcelain); background: var(--surface); }
+  .jump a .n { font-family: var(--font-mono); color: var(--cyan); margin-right: 6px; }
+
+  /* ---- Direction section shell ---- */
+  .dir { padding: 48px 0 8px; scroll-margin-top: 60px; }
+  .dir-head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin-bottom: 6px; }
+  .dir-num { font-family: var(--font-mono); font-size: 13px; color: var(--cyan); }
+  .dir-name { font-size: 22px; font-weight: 590; letter-spacing: -0.02em; }
+  .dir-why { color: var(--ash); font-size: 14px; max-width: 70ch; margin-bottom: 20px; }
+  .dir-why strong { color: var(--porcelain); font-weight: 500; }
+
+  /* the app canvas frame */
+  .canvas { background: var(--canvas); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.4); }
+  .app-top { display: flex; align-items: center; gap: 10px; height: 44px; padding: 0 16px; border-bottom: 1px solid var(--line); background: var(--surface); }
+  .app-top .brand { display: flex; align-items: center; gap: 8px; font-weight: 590; letter-spacing: -0.02em; font-size: 15px; }
+  .app-top .brand .mark { color: var(--cyan); }
+  .app-top nav { display: flex; gap: 4px; margin-left: 14px; }
+  .app-top nav a { font-size: 13px; color: var(--ash); text-decoration: none; padding: 5px 10px; border-radius: var(--r); }
+  .app-top nav a.on { color: var(--porcelain); background: var(--elevated); }
+  .app-top .sp { flex: 1; }
+  .app-top .avatar { width: 24px; height: 24px; border-radius: 50%; background: var(--elevated); border: 1px solid var(--line); }
+
+  /* ---- shared components (identical brand across directions) ---- */
+  .h1 { font-size: 20px; font-weight: 590; letter-spacing: -0.02em; }
+  .sub { color: var(--ash); font-size: 13.5px; margin-top: 4px; }
+
+  .toolbar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .chip { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--ash); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 5px 10px; cursor: pointer; transition: color .15s var(--ease), border-color .15s var(--ease); }
+  .chip:hover { color: var(--porcelain); border-color: #333c44; }
+  .chip .ic { width: 14px; height: 14px; color: var(--ash); }
+  .sortnote { font-size: 12.5px; color: var(--ash); margin-left: auto; }
+  .sortnote b { color: var(--porcelain); font-weight: 500; }
+
+  .btn { display: inline-flex; align-items: center; gap: 7px; font-family: var(--font-ui); font-size: 13.5px; font-weight: 500; color: var(--canvas); background: var(--cyan); border: 0; border-radius: var(--r); padding: 8px 14px; cursor: pointer; text-decoration: none; transition: filter .15s var(--ease); }
+  .btn:hover { filter: brightness(1.08); }
+  .btn .ic { width: 15px; height: 15px; }
+  .btn-ghost { display: inline-flex; align-items: center; gap: 7px; font-family: var(--font-ui); font-size: 13.5px; font-weight: 500; color: var(--porcelain); background: transparent; border: 1px solid var(--line); border-radius: var(--r); padding: 8px 14px; cursor: pointer; text-decoration: none; transition: border-color .15s var(--ease); }
+  .btn-ghost:hover { border-color: #3a444c; }
+
+  .nX { font-family: var(--font-mono); font-size: 12.5px; color: var(--porcelain); }
+  .low { font-family: var(--font-mono); font-size: 11px; color: var(--amber); background: rgba(217,164,65,0.10); border: 1px solid rgba(217,164,65,0.32); border-radius: var(--r-sm); padding: 1px 6px; white-space: nowrap; }
+
+  .bar { height: 5px; border-radius: 3px; background: var(--bar-track); overflow: hidden; }
+  .bar > span { display: block; height: 100%; background: var(--bar-fill); border-radius: 3px; }
+
+  .ic { display: inline-block; vertical-align: middle; stroke: currentColor; fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .drill { color: var(--ash); width: 18px; height: 18px; transition: color .15s var(--ease), transform .15s var(--ease); }
+  a:hover > .drill, .row:hover .drill { color: var(--porcelain); transform: translateX(2px); }
+
+  /* ============ DIRECTION 1: DENSE LEDGER ============ */
+  .d1 .body { padding: 14px 16px 18px; }
+  .d1 .toolbar { padding-bottom: 12px; margin-bottom: 4px; border-bottom: 1px solid var(--line); }
+  .d1 .head { padding: 4px 0 12px; }
+  .d1 .ledger { display: grid; }
+  .d1 .row {
+    display: grid; grid-template-columns: 22px 1.6fr 120px 64px 18px; align-items: center; gap: 12px;
+    padding: 9px 8px; border-bottom: 1px solid var(--line); text-decoration: none; color: inherit;
+    transition: background .12s var(--ease);
+  }
+  .d1 .row:hover { background: var(--surface); }
+  .d1 .row.sel { background: var(--surface); box-shadow: inset 2px 0 0 var(--cyan); }
+  .d1 .rank { font-family: var(--font-mono); font-size: 12px; color: var(--ash); text-align: center; }
+  .d1 .tlabel { display: block; font-size: 13.5px; color: var(--porcelain); font-weight: 500; }
+  .d1 .tmeta { display: block; font-family: var(--font-mono); font-size: 11px; color: var(--ash); margin-top: 2px; }
+  .d1 .cell-conf { display: flex; align-items: center; justify-content: flex-end; gap: 8px; }
+  .d1 .colhead { display: grid; grid-template-columns: 22px 1.6fr 120px 64px 18px; gap: 12px; padding: 0 8px 7px; font-family: var(--font-mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ash); }
+  .d1 .colhead .r { text-align: right; }
+  .d1 .actionbar { display: flex; align-items: center; gap: 10px; padding: 14px 0 2px; }
+  .d1 .actionbar .note { font-size: 12.5px; color: var(--ash); margin-right: auto; }
+
+  /* ============ DIRECTION 2: FOCUS COLUMN ============ */
+  .d2 .body { padding: 30px 0; }
+  .d2 .col { max-width: 640px; margin: 0 auto; padding: 0 28px; }
+  .d2 .toolbar { margin: 18px 0 26px; }
+  .d2 .head { margin-bottom: 22px; }
+  .d2 .h1 { font-size: 24px; }
+  .d2 .feature { border: 1px solid var(--line); border-radius: 10px; background: var(--surface); padding: 22px; margin-bottom: 22px; }
+  .d2 .feature .stmt { font-size: 21px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.28; text-wrap: balance; }
+  .d2 .feature .metaline { display: flex; align-items: center; gap: 12px; margin-top: 12px; color: var(--ash); font-family: var(--font-mono); font-size: 11.5px; }
+  .d2 .feature .metaline .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--ash); }
+  .d2 .feature .bar { margin-top: 16px; }
+  .d2 .evidence { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line); display: grid; gap: 12px; }
+  .d2 .ev { display: grid; grid-template-columns: 24px 1fr; gap: 12px; }
+  .d2 .ev .cnum { font-family: var(--font-mono); font-size: 11px; color: var(--cyan); padding-top: 2px; }
+  .d2 .ev .quote { font-size: 14.5px; color: var(--porcelain); line-height: 1.55; }
+  .d2 .ev .src { font-family: var(--font-mono); font-size: 11px; color: var(--ash); margin-top: 5px; }
+  .d2 .feature .cta { display: flex; gap: 10px; margin-top: 20px; }
+  .d2 .rest { display: grid; gap: 2px; }
+  .d2 .rrow { display: grid; grid-template-columns: 1fr 90px 60px 18px; align-items: center; gap: 14px; padding: 12px 4px; border-bottom: 1px solid var(--line); text-decoration: none; color: inherit; }
+  .d2 .rrow:hover { background: var(--surface); }
+  .d2 .rrow .tlabel { font-size: 14px; color: var(--porcelain); font-weight: 500; }
+  .d2 .rrow .cell-conf { display: flex; align-items: center; justify-content: flex-end; gap: 8px; }
+  .d2 .resthead { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ash); margin-bottom: 4px; }
+
+  /* ============ DIRECTION 3: SPLIT EVIDENCE ============ */
+  .d3 .split { display: grid; grid-template-columns: 1.15fr 1fr; min-height: 480px; }
+  .d3 .left { border-right: 1px solid var(--line); padding: 16px; }
+  .d3 .right { background: var(--surface); padding: 20px; }
+  .d3 .toolbar { padding-bottom: 12px; margin-bottom: 6px; border-bottom: 1px solid var(--line); }
+  .d3 .head { margin-bottom: 12px; }
+  .d3 .row { display: grid; grid-template-columns: 20px 1fr 56px 16px; align-items: center; gap: 10px; padding: 11px 8px; border-radius: var(--r); text-decoration: none; color: inherit; transition: background .12s var(--ease); }
+  .d3 .row:hover { background: var(--surface); }
+  .d3 .row.sel { background: var(--elevated); }
+  .d3 .row .rank { font-family: var(--font-mono); font-size: 12px; color: var(--ash); text-align: center; }
+  .d3 .row .tlabel { font-size: 13.5px; color: var(--porcelain); font-weight: 500; }
+  .d3 .row .bar { margin-top: 5px; }
+  .d3 .row .cell-conf { display: flex; align-items: center; justify-content: flex-end; }
+  .d3 .panel-kicker { display: flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ash); margin-bottom: 12px; }
+  .d3 .panel-kicker .ic { width: 14px; height: 14px; color: var(--cyan); }
+  .d3 .panel-stmt { font-size: 17px; font-weight: 590; letter-spacing: -0.02em; }
+  .d3 .panel-meta { display: flex; align-items: center; gap: 10px; margin: 10px 0 18px; }
+  .d3 .evcard { background: var(--canvas); border: 1px solid var(--line); border-radius: var(--r); padding: 14px; margin-bottom: 12px; }
+  .d3 .evcard .quote { font-size: 14px; line-height: 1.55; color: var(--porcelain); }
+  .d3 .evcard .foot { display: flex; align-items: center; gap: 10px; margin-top: 10px; font-family: var(--font-mono); font-size: 11px; color: var(--ash); }
+  .d3 .evcard .cnum { color: var(--cyan); }
+  .d3 .panel-cta { display: flex; gap: 10px; margin-top: 6px; }
+
+  /* ---- footnote ---- */
+  .foot { padding: 40px 0 72px; color: var(--ash); font-size: 13px; border-top: 1px solid var(--line); margin-top: 40px; }
+  .foot code { font-family: var(--font-mono); color: var(--porcelain); font-size: 12px; }
+
+  @media (max-width: 760px) {
+    .d1 .row, .d1 .colhead { grid-template-columns: 20px 1fr 56px 16px; }
+    .d1 .row .cell-bar, .d1 .colhead .c-bar { display: none; }
+    .d3 .split { grid-template-columns: 1fr; }
+    .d3 .left { border-right: 0; border-bottom: 1px solid var(--line); }
+    .app-top nav { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; scroll-behavior: auto; }
+    a:hover > .drill, .row:hover .drill { transform: none; }
+  }
+</style>
+<link rel="stylesheet" href="../../_nav.css">
+</head>
+<body>
+
+<!-- Inline Solar-style icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-filter" viewBox="0 0 24 24"><path d="M3 5.5h18l-7 8v5l-4 2v-7z"/></symbol>
+    <symbol id="i-flag" viewBox="0 0 24 24"><path d="M6 3v18"/><path d="M6 4h12l-2.5 4L18 12H6"/></symbol>
+    <symbol id="i-share" viewBox="0 0 24 24"><circle cx="6" cy="12" r="2.4"/><circle cx="18" cy="6" r="2.4"/><circle cx="18" cy="18" r="2.4"/><path d="M8.1 11l7.8-4M8.1 13l7.8 4"/></symbol>
+    <symbol id="i-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 6.5"/></symbol>
+    <symbol id="i-source" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.66 3.13 3 7 3s7-1.34 7-3V6"/><path d="M5 12v6c0 1.66 3.13 3 7 3s7-1.34 7-3v-6"/></symbol>
+    <symbol id="i-evidence" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-4 4v-4H4z"/><path d="M8.5 10.5h7M8.5 13h4"/></symbol>
+    <symbol id="i-cite" viewBox="0 0 24 24"><path d="M9.5 4L7.5 20M17 4l-2 16M4 9h16M3.5 15h16"/></symbol>
+    <symbol id="i-signal" viewBox="0 0 24 24"><path d="M6 18v-3.5M12 18v-8M18 18v-12.5"/></symbol>
+  </defs>
+</svg>
+
+<nav class="top">
+  <a class="nav-brand" href="../../index.html"><span>S</span>ift</a>
+  <ul class="nav-links">
+    <li><a href="#d1">Dense ledger</a></li>
+    <li><a href="#d2">Focus column</a></li>
+    <li><a href="#d3">Split evidence</a></li>
+    <li><a href="concept.html">Concept</a></li>
+  </ul>
+</nav>
+
+<aside id="sidebar"></aside>
+
+<div class="wrap">
+  <header class="page-head">
+    <div class="page-kicker">Sift / Concept / Stage 06</div>
+    <h1 class="page-title">Three layout directions of one brand</h1>
+    <p class="page-lead">One chosen brand, Command center. Palette, typography, and icon language are identical across all three below. Only the composition changes: density, rhythm, where the evidence sits. Open each, then pick the layout.</p>
+
+    <div class="brandbar">
+      <div class="brandbar-group">
+        <span class="brandbar-label">Palette</span>
+        <div class="swatches">
+          <span class="sw" style="background:#0B0E11" title="Canvas #0B0E11"></span>
+          <span class="sw" style="background:#151A1F" title="Surface #151A1F"></span>
+          <span class="sw" style="background:#1E252B" title="Elevated #1E252B"></span>
+          <span class="sw" style="background:#EAEEF2" title="Porcelain #EAEEF2"></span>
+          <span class="sw" style="background:#868F99" title="Ash #868F99"></span>
+          <span class="sw" style="background:#33C4CC" title="Cyan #33C4CC (accent)"></span>
+          <span class="sw" style="background:#D9A441" title="Amber #D9A441 (low signal)"></span>
+        </div>
+      </div>
+      <div class="brandbar-group">
+        <span class="brandbar-label">Type</span>
+        <span class="type-samp">Inter UI &nbsp;/&nbsp; <span class="mono">IBM Plex Mono n=42</span></span>
+      </div>
+      <div class="brandbar-group">
+        <span class="brandbar-label">Accent</span>
+        <span class="type-samp">Cyan, one action only</span>
+      </div>
+    </div>
+  </header>
+</div>
+
+<div class="jump">
+  <div class="wrap"><div class="jump-inner">
+    <a href="#d1"><span class="n">1</span>Dense ledger</a>
+    <a href="#d2"><span class="n">2</span>Focus column</a>
+    <a href="#d3"><span class="n">3</span>Split evidence</a>
+  </div></div>
+</div>
+
+<div class="wrap">
+
+  <!-- ============ DIRECTION 1 ============ -->
+  <section class="dir d1" id="d1">
+    <div class="dir-head"><span class="dir-num">01</span><span class="dir-name">Dense ledger</span></div>
+    <p class="dir-why">Maximum density. The ranked themes read as a tight ledger: rank, theme, volume, count, all on one line. Answers <strong>A4 ranked clarity</strong> and <strong>A1 quiet</strong> the hardest, the whole month of feedback visible without scrolling, chrome stripped to nothing.</p>
+
+    <div class="canvas">
+      <div class="app-top">
+        <span class="brand"><svg class="ic mark" width="16" height="16"><use href="#i-signal"/></svg> Sift</span>
+        <nav><a class="on">Synthesis</a><a>Sources</a><a>Briefs</a></nav>
+        <span class="sp"></span>
+        <span class="avatar"></span>
+      </div>
+      <div class="body">
+        <div class="head">
+          <div class="h1">Synthesis</div>
+          <div class="sub">Your feedback, clustered into ranked themes. Open one to trace the evidence behind it.</div>
+        </div>
+        <div class="toolbar">
+          <button class="chip"><svg class="ic" width="14" height="14"><use href="#i-source"/></svg> Source: all</button>
+          <button class="chip">Last 30 days</button>
+          <button class="chip"><svg class="ic" width="14" height="14"><use href="#i-signal"/></svg> Confidence: all</button>
+          <span class="sortnote">Sort: <b>signal rank</b></span>
+        </div>
+
+        <div class="colhead"><span></span><span>Theme</span><span class="c-bar">Volume</span><span class="r">Evidence</span><span></span></div>
+        <div class="ledger">
+          <a class="row sel" href="#d1">
+            <span class="rank">1</span>
+            <span><span class="tlabel">Onboarding is confusing</span><span class="tmeta">CSV, Intercom · 2 days ago</span></span>
+            <span class="cell-bar"><span class="bar"><span style="width:100%"></span></span></span>
+            <span class="cell-conf"><span class="nX">n=42</span></span>
+            <svg class="ic drill" width="18" height="18"><use href="#i-chev"/></svg>
+          </a>
+          <a class="row" href="#d1">
+            <span class="rank">2</span>
+            <span><span class="tlabel">Slow export on large accounts</span><span class="tmeta">Intercom · 5 days ago</span></span>
+            <span class="cell-bar"><span class="bar"><span style="width:67%"></span></span></span>
+            <span class="cell-conf"><span class="nX">n=28</span></span>
+            <svg class="ic drill" width="18" height="18"><use href="#i-chev"/></svg>
+          </a>
+          <a class="row" href="#d1">
+            <span class="rank">3</span>
+            <span><span class="tlabel">Confusing billing and invoices</span><span class="tmeta">CSV · 3 days ago</span></span>
+            <span class="cell-bar"><span class="bar"><span style="width:45%"></span></span></span>
+            <span class="cell-conf"><span class="nX">n=19</span></span>
+            <svg class="ic drill" width="18" height="18"><use href="#i-chev"/></svg>
+          </a>
+          <a class="row" href="#d1">
+            <span class="rank">4</span>
+            <span><span class="tlabel">Mobile app crashes on upload</span><span class="tmeta">Intercom · 1 week ago</span></span>
+            <span class="cell-bar"><span class="bar"><span style="width:33%"></span></span></span>
+            <span class="cell-conf"><span class="nX">n=14</span></span>
+            <svg class="ic drill" width="18" height="18"><use href="#i-chev"/></svg>
+          </a>
+          <a class="row" href="#d1">
+            <span class="rank">5</span>
+            <span><span class="tlabel">Wants Salesforce integration</span><span class="tmeta">Intercom · 9 days ago</span></span>
+            <span class="cell-bar"><span class="bar"><span style="width:14%"></span></span></span>
+            <span class="cell-conf"><span class="nX">n=6</span> <span class="low">low signal</span></span>
+            <svg class="ic drill" width="18" height="18"><use href="#i-chev"/></svg>
+          </a>
+          <a class="row" href="#d1">
+            <span class="rank">6</span>
+            <span><span class="tlabel">Dark mode requested</span><span class="tmeta">CSV · 12 days ago</span></span>
+            <span class="cell-bar"><span class="bar"><span style="width:9%"></span></span></span>
+            <span class="cell-conf"><span class="nX">n=4</span> <span class="low">low signal</span></span>
+            <svg class="ic drill" width="18" height="18"><use href="#i-chev"/></svg>
+          </a>
+        </div>
+
+        <div class="actionbar">
+          <span class="note">1 theme selected</span>
+          <button class="btn-ghost"><svg class="ic" width="15" height="15"><use href="#i-flag"/></svg> Set priority</button>
+          <a class="btn" href="#d1"><svg class="ic" width="15" height="15"><use href="#i-evidence"/></svg> Build brief</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DIRECTION 2 ============ -->
+  <section class="dir d2" id="d2">
+    <div class="dir-head"><span class="dir-num">02</span><span class="dir-name">Focus column</span></div>
+    <p class="dir-why">A calm single reading column. The top theme is given room, its statement large and its evidence quotes open right there. Answers <strong>A5 the customer's words</strong> and <strong>one decision at a time</strong>, you read one finding at a time, the rest waits below.</p>
+
+    <div class="canvas">
+      <div class="app-top">
+        <span class="brand"><svg class="ic mark" width="16" height="16"><use href="#i-signal"/></svg> Sift</span>
+        <nav><a class="on">Synthesis</a><a>Sources</a><a>Briefs</a></nav>
+        <span class="sp"></span>
+        <span class="avatar"></span>
+      </div>
+      <div class="body">
+        <div class="col">
+          <div class="head">
+            <div class="h1">Synthesis</div>
+            <div class="sub">Your feedback, clustered into ranked themes. Open one to trace the evidence behind it.</div>
+          </div>
+          <div class="toolbar">
+            <button class="chip"><svg class="ic" width="14" height="14"><use href="#i-source"/></svg> Source: all</button>
+            <button class="chip">Last 30 days</button>
+            <button class="chip"><svg class="ic" width="14" height="14"><use href="#i-signal"/></svg> Confidence: all</button>
+            <span class="sortnote">Sort: <b>signal rank</b></span>
+          </div>
+
+          <div class="feature">
+            <div class="stmt">Onboarding is confusing</div>
+            <div class="metaline"><span>CSV, Intercom</span><span class="dot"></span><span>latest 2 days ago</span><span class="dot"></span><span class="nX" style="color:var(--porcelain)">n=42</span></div>
+            <div class="bar"><span style="width:100%"></span></div>
+
+            <div class="evidence">
+              <div class="ev">
+                <span class="cnum">[1]</span>
+                <div>
+                  <div class="quote">&ldquo;I signed up and just stared at the empty screen. No idea what to do first.&rdquo;</div>
+                  <div class="src">Intercom · author scrubbed · 2 days ago</div>
+                </div>
+              </div>
+              <div class="ev">
+                <span class="cnum">[2]</span>
+                <div>
+                  <div class="quote">&ldquo;Our new PMs cannot tell where to start without someone walking them through it.&rdquo;</div>
+                  <div class="src">CSV · author scrubbed · 4 days ago</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="cta">
+              <a class="btn" href="#d2"><svg class="ic" width="15" height="15"><use href="#i-cite"/></svg> Trace all 42 items</a>
+              <button class="btn-ghost"><svg class="ic" width="15" height="15"><use href="#i-flag"/></svg> Set priority</button>
+            </div>
+          </div>
+
+          <div class="resthead">Ranked below</div>
+          <div class="rest">
+            <a class="rrow" href="#d2"><span class="tlabel">Slow export on large accounts</span><span class="bar"><span style="width:67%"></span></span><span class="cell-conf"><span class="nX">n=28</span></span><svg class="ic drill" width="18" height="18"><use href="#i-chev"/></svg></a>
+            <a class="rrow" href="#d2"><span class="tlabel">Confusing billing and invoices</span><span class="bar"><span style="width:45%"></span></span><span class="cell-conf"><span class="nX">n=19</span></span><svg class="ic drill" width="18" height="18"><use href="#i-chev"/></svg></a>
+            <a class="rrow" href="#d2"><span class="tlabel">Mobile app crashes on upload</span><span class="bar"><span style="width:33%"></span></span><span class="cell-conf"><span class="nX">n=14</span></span><svg class="ic drill" width="18" height="18"><use href="#i-chev"/></svg></a>
+            <a class="rrow" href="#d2"><span class="tlabel">Wants Salesforce integration</span><span class="bar"><span style="width:14%"></span></span><span class="cell-conf"><span class="nX">n=6</span> <span class="low">low signal</span></span><svg class="ic drill" width="18" height="18"><use href="#i-chev"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DIRECTION 3 ============ -->
+  <section class="dir d3" id="d3">
+    <div class="dir-head"><span class="dir-num">03</span><span class="dir-name">Split evidence</span></div>
+    <p class="dir-why">Two panes. Ranked themes on the left, the live evidence for the selected theme on the right, so the drill happens without leaving the view. Answers <strong>A2 evidence on the surface</strong> the hardest, the citation is always one glance away, never a navigation.</p>
+
+    <div class="canvas">
+      <div class="app-top">
+        <span class="brand"><svg class="ic mark" width="16" height="16"><use href="#i-signal"/></svg> Sift</span>
+        <nav><a class="on">Synthesis</a><a>Sources</a><a>Briefs</a></nav>
+        <span class="sp"></span>
+        <span class="avatar"></span>
+      </div>
+      <div class="split">
+        <div class="left">
+          <div class="head">
+            <div class="h1">Synthesis</div>
+          </div>
+          <div class="toolbar">
+            <button class="chip"><svg class="ic" width="14" height="14"><use href="#i-filter"/></svg> Filter</button>
+            <span class="sortnote">Sort: <b>signal rank</b></span>
+          </div>
+          <a class="row sel" href="#d3">
+            <span class="rank">1</span>
+            <span><span class="tlabel">Onboarding is confusing</span><span class="bar"><span style="width:100%"></span></span></span>
+            <span class="cell-conf"><span class="nX">n=42</span></span>
+            <svg class="ic drill" width="16" height="16"><use href="#i-chev"/></svg>
+          </a>
+          <a class="row" href="#d3">
+            <span class="rank">2</span>
+            <span><span class="tlabel">Slow export on large accounts</span><span class="bar"><span style="width:67%"></span></span></span>
+            <span class="cell-conf"><span class="nX">n=28</span></span>
+            <svg class="ic drill" width="16" height="16"><use href="#i-chev"/></svg>
+          </a>
+          <a class="row" href="#d3">
+            <span class="rank">3</span>
+            <span><span class="tlabel">Confusing billing and invoices</span><span class="bar"><span style="width:45%"></span></span></span>
+            <span class="cell-conf"><span class="nX">n=19</span></span>
+            <svg class="ic drill" width="16" height="16"><use href="#i-chev"/></svg>
+          </a>
+          <a class="row" href="#d3">
+            <span class="rank">4</span>
+            <span><span class="tlabel">Mobile app crashes on upload</span><span class="bar"><span style="width:33%"></span></span></span>
+            <span class="cell-conf"><span class="nX">n=14</span></span>
+            <svg class="ic drill" width="16" height="16"><use href="#i-chev"/></svg>
+          </a>
+          <a class="row" href="#d3">
+            <span class="rank">5</span>
+            <span><span class="tlabel">Wants Salesforce integration</span><span class="bar"><span style="width:14%"></span></span></span>
+            <span class="cell-conf"><span class="nX">n=6</span></span>
+            <svg class="ic drill" width="16" height="16"><use href="#i-chev"/></svg>
+          </a>
+        </div>
+        <div class="right">
+          <div class="panel-kicker"><svg class="ic" width="14" height="14"><use href="#i-evidence"/></svg> Evidence · 42 items</div>
+          <div class="panel-stmt">Onboarding is confusing</div>
+          <div class="panel-meta"><span class="nX">n=42</span><span class="chip" style="cursor:default">CSV, Intercom</span></div>
+
+          <div class="evcard">
+            <div class="quote">&ldquo;I signed up and just stared at the empty screen. No idea what to do first.&rdquo;</div>
+            <div class="foot"><span class="cnum">[1]</span><span>Intercom</span><span>·</span><span>scrubbed</span><span>·</span><span>2 days ago</span></div>
+          </div>
+          <div class="evcard">
+            <div class="quote">&ldquo;Our new PMs cannot tell where to start without someone walking them through it.&rdquo;</div>
+            <div class="foot"><span class="cnum">[2]</span><span>CSV</span><span>·</span><span>scrubbed</span><span>·</span><span>4 days ago</span></div>
+          </div>
+
+          <div class="panel-cta">
+            <a class="btn" href="#d3"><svg class="ic" width="15" height="15"><use href="#i-cite"/></svg> Open source</a>
+            <button class="btn-ghost"><svg class="ic" width="15" height="15"><use href="#i-share"/></svg> Add to brief</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="foot">
+    Same brand across all three: palette, type, and icons come from <code>DESIGN-artifacts.md</code>. The only variable is composition. Pick one direction (by number and name); the stand <code>concept.html</code> and the sidebar come next, on Step 5. Canonical data from <code>wireframes/synthesis.html</code>.
+  </div>
+
+</div>
+
+
+<script>
+window.NAV_BASE = '../../';
+window.NAV_SECTIONS = [{"id": "d1", "label": "Dense ledger"}, {"id": "d2", "label": "Focus column"}, {"id": "d3", "label": "Split evidence"}];
+</script>
+<script src="../../_nav.js"></script>
+</body>
+</html>

@@ -9,13 +9,33 @@
 </head>
 <!--
   Wireframe 4.1 Theme detail - low-signal / thin-evidence variant. State of node 4.0.
-  The confidence indicator shows the low-signal badge and a caution line, but the items are
-  still fully drillable (transparency, not suppression). Text from ia/docs/pages/theme.md.
-  Canonical theme: T5 "Wants Salesforce integration", n=6, low signal.
+
+  Composition from ia/docs/blocks.md, Type 5, States: "no source has a thin-evidence state,
+  because none of them admits its data can be thin. Ours keeps every block and adds the
+  caution plus what would make the theme trustworthy."
+
+  So this screen carries the SAME blocks as 4.0 and drops none of them. Thin evidence is
+  labelled, never hidden and never thinned out further:
+    2 breadcrumb
+    4 theme header with the confidence indicator, the rank, and one primary action
+    5 the denominator split by source. On this theme the split is the finding: all six items
+      came through one channel, and the line says so instead of leaving the reader to count
+    6 summary with an inline citation on every claim. It is two sentences here, because six
+      items do not support more, and a longer summary would be the screen inventing certainty
+    7 why these items cluster, and what was left out
+    the caution notice, unique to this state
+    8 group by source, 9 numbered snippets, and the closing line in place of block 10, because
+      there is no eleventh item to load
+
+  Fixed here (was a contradiction between screens): the third item used to read "CSV import"
+  while the theme card on 2.0 reads "Intercom only". Six of six are Intercom, which is what
+  makes the theme thin, so the item was wrong, not the card.
+
+  Grey, responsive. Text from ia/docs/pages/theme.md.
+  Canonical theme: T5 "Wants Salesforce integration", n=6, Intercom 6, low signal.
 -->
 <body>
 
-<div id="wf-topbar" data-node="4.0" data-state="low-signal"></div>
 
 <div class="wf-shell">
   <div id="wf-rail" data-node="4.0" data-state="low-signal"></div>
@@ -28,61 +48,99 @@
 
         <nav class="wf-breadcrumb" aria-label="Breadcrumb"><a href="synthesis.html">Synthesis</a> &rsaquo; <span>Wants Salesforce integration</span></nav>
 
-        <main class="wf-main">
-          <header class="wf-main-head">
-            <h1 class="wf-h1">Wants Salesforce integration</h1>
-            <div class="wf-theme-headmeta">
-              <span class="wf-conf"><span class="wf-conf-n">n=6</span> <span class="wf-badge-low">low signal</span></span>
-              <span>latest feedback 9 days ago</span>
-              <span>Intercom</span>
+        <header class="wf-screenhead">
+          <div class="wf-screenhead-row">
+            <div class="wf-head-text">
+              <h1 class="wf-h1">Wants Salesforce integration</h1>
+              <div class="wf-theme-headmeta">
+                <span class="wf-conf"><span class="wf-conf-n">n=6</span> <span class="wf-badge-low">low signal</span></span>
+                <span>latest feedback 9 days ago</span>
+                <span>rank 5 of 12 by signal</span>
+              </div>
             </div>
-            <p class="wf-sub">A handful of accounts ask to push themes into Salesforce so their CS and RevOps teams can see them.</p>
-            <div class="wf-theme-headactions">
-              <a class="wf-btn" href="build-brief.html">Add to brief</a>
-            </div>
-          </header>
+            <a class="wf-btn wf-head-action" href="build-brief.html">Add to brief</a>
+          </div>
 
-          <p class="wf-notice">Thin evidence. Six mentions is a weak signal, not a confirmed pattern. Treat it as a lead to watch, not a decision. The items are still fully open below.</p>
+          <p class="wf-scope">
+            <b>6</b> items from 1 source: <b>Intercom 6</b>, <b>CSV 0</b>.
+            First seen 5 weeks ago, latest 9 days ago.
+          </p>
 
-          <h2 class="wf-evi-title">Evidence · 6 items</h2>
+          <p class="wf-summary">
+            Six accounts ask to push themes into Salesforce so their CS and RevOps teams can see
+            them without a Sift seat
+            <span class="wf-cited"><a class="wf-citechip" href="#e1">Intercom +4</a>.</span>
+            Two of the six name it as the reason a wider rollout is on hold
+            <span class="wf-cited"><a class="wf-citechip" href="#e4">Intercom +2</a>.</span>
+          </p>
+
+          <p class="wf-reason">
+            <b>Why these items are one theme:</b> all six name Salesforce specifically and ask for
+            the same direction of travel, out of Sift and into their CRM. Requests to import
+            Salesforce records into Sift were left out: that is the opposite direction and it sits
+            under "Wants CRM context on feedback", which has 2 items and is below the reporting
+            floor.
+          </p>
+        </header>
+
+        <p class="wf-notice">Thin evidence. Six mentions is a weak signal, not a confirmed pattern, so treat this as a lead to watch rather than a decision. All six arrived through Intercom, which means this is one channel's view of the problem. What would change it is more of the same over time, and the count above is the thing to watch. Every item is open below, exactly as on a strong theme.</p>
+
+        <div class="wf-toolbar">
+          <h2 class="wf-evi-title">Evidence &middot; 6 items</h2>
+          <div class="wf-evi-controls">
+            <button class="wf-chip is-on">Group by source</button>
+            <button class="wf-chip">Intercom <span class="wf-chip-count">6</span></button>
+            <button class="wf-chip">CSV <span class="wf-chip-count">0</span></button>
+          </div>
+          <span class="wf-sort">Sort: most recent</span>
+        </div>
+
+        <main class="wf-main wf-main--flush">
+
+          <div class="wf-evi-group">Intercom &middot; 6 items</div>
           <ul class="wf-list">
-            <li>
+            <li id="e1">
               <a class="wf-snippet" href="evidence.html">
                 <div class="wf-snippet-quote">"We'd adopt this fully if it pushed themes into Salesforce so our CS team sees them."</div>
-                <div class="wf-snippet-meta"><span class="wf-cite">1</span> Intercom · 9 days ago · Customer, enterprise</div>
+                <div class="wf-snippet-meta"><span class="wf-cite">1</span> Intercom &middot; 9 days ago &middot; Customer, enterprise</div>
               </a>
             </li>
             <li>
               <a class="wf-snippet" href="evidence.html">
                 <div class="wf-snippet-quote">"Any plan for a Salesforce integration? That is where our account data lives."</div>
-                <div class="wf-snippet-meta"><span class="wf-cite">2</span> Intercom · 2 weeks ago · Sales call note</div>
+                <div class="wf-snippet-meta"><span class="wf-cite">2</span> Intercom &middot; 2 weeks ago &middot; Sales call note</div>
               </a>
             </li>
             <li>
               <a class="wf-snippet" href="evidence.html">
                 <div class="wf-snippet-quote">"Would be great to link feedback to Salesforce opportunities."</div>
-                <div class="wf-snippet-meta"><span class="wf-cite">3</span> CSV import · 3 weeks ago · Survey response</div>
+                <div class="wf-snippet-meta"><span class="wf-cite">3</span> Intercom &middot; 3 weeks ago &middot; Customer, SMB</div>
               </a>
             </li>
-            <li>
+            <li id="e4">
               <a class="wf-snippet" href="evidence.html">
                 <div class="wf-snippet-quote">"Salesforce sync is the one thing keeping us from rolling this out wider."</div>
-                <div class="wf-snippet-meta"><span class="wf-cite">4</span> Intercom · 3 weeks ago · Customer, mid-market</div>
+                <div class="wf-snippet-meta"><span class="wf-cite">4</span> Intercom &middot; 3 weeks ago &middot; Customer, mid-market</div>
               </a>
             </li>
             <li>
               <a class="wf-snippet" href="evidence.html">
                 <div class="wf-snippet-quote">"Can this connect to Salesforce? We do not want another silo."</div>
-                <div class="wf-snippet-meta"><span class="wf-cite">5</span> Intercom · 1 month ago · Support ticket</div>
+                <div class="wf-snippet-meta"><span class="wf-cite">5</span> Intercom &middot; 1 month ago &middot; Support ticket</div>
               </a>
             </li>
             <li>
               <a class="wf-snippet" href="evidence.html">
                 <div class="wf-snippet-quote">"Plus one for Salesforce. Our RevOps team asked about it."</div>
-                <div class="wf-snippet-meta"><span class="wf-cite">6</span> Intercom · 1 month ago · Customer, enterprise</div>
+                <div class="wf-snippet-meta"><span class="wf-cite">6</span> Intercom &middot; 1 month ago &middot; Customer, enterprise</div>
               </a>
             </li>
           </ul>
+
+          <div class="wf-evi-group">CSV &middot; 0 items</div>
+          <p class="wf-listnote">No CSV item mentions Salesforce. The group is shown so the gap is visible rather than assumed.</p>
+
+          <p class="wf-listnote">All 6 items are on this screen. There is nothing further to load.</p>
         </main>
 
         <div data-wf="appfoot"></div>

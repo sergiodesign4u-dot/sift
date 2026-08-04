@@ -8,13 +8,29 @@
 <link rel="stylesheet" href="_wf.css">
 </head>
 <!--
-  Wireframe 6.1 Build evidence brief - building (success). Select themes (canonical theme
-  card), state a recommended priority and rationale, then generate the share link.
-  Text from ia/docs/pages/briefs.md. Canonical themes reused from 2.0.
+  Wireframe 6.1 Build evidence brief - building (success). The end of the main flow:
+  the decision becomes a document someone else will read.
+
+  Composition from ia/docs/blocks.md, Type 6 (artifact composer):
+    1 stage indicator, named after the outcome, not the tooling
+    2 brief title with a draft marker
+    3 ordered themes, reorderable, because THE ORDER IS THE RECOMMENDATION.
+      Each row keeps its n=X and its low-signal badge while it moves, so a thin theme
+      cannot be quietly promoted without the promoter seeing that it is thin
+    5 the PM's rationale in its own field, visually separate from the evidence
+    7 preview of 6.4 exactly as the stakeholder sees it, then Generate share link
+
+  DELIBERATELY ABSENT (blocks.md Type 6 row 4): no editor for the content of an item.
+  Every composer source has one. The brief carries each theme as the synthesis produced it;
+  a rewritten quote would break the chain the product rests on. What the PM adds is block 5.
+
+  The brief row is a DIFFERENT component from the theme card: the zones differ (drag and
+  remove appear, the quote does not), so it is not a variant of it.
+
+  Grey, responsive. Text from ia/docs/pages/briefs.md. Canonical data as elsewhere.
 -->
 <body>
 
-<div id="wf-topbar" data-node="6.1" data-state="base"></div>
 
 <div class="wf-shell">
   <div id="wf-rail" data-node="6.1" data-state="base"></div>
@@ -25,65 +41,78 @@
 
         <div data-wf="header" data-active="briefs"></div>
 
-        <main class="wf-main">
-          <header class="wf-main-head">
-            <h1 class="wf-h1">Build a brief</h1>
-            <p class="wf-sub">Pick the themes to include, set a recommended priority, then generate a link your stakeholders can read without a login.</p>
-          </header>
+        <nav class="wf-steps" aria-label="Brief steps">
+          <span class="wf-step is-current"><span class="wf-step-n">1</span> Build</span>
+          <span aria-hidden="true">&rsaquo;</span>
+          <span class="wf-step"><span class="wf-step-n">2</span> Share</span>
+          <span aria-hidden="true">&rsaquo;</span>
+          <span class="wf-step"><span class="wf-step-n">3</span> What they see</span>
+        </nav>
 
-          <h2 class="wf-evi-title">Select themes</h2>
-          <ul class="wf-list">
-            <li class="wf-theme">
-              <input type="checkbox" class="wf-check" aria-label="Include Onboarding is confusing" checked>
-              <span class="wf-theme-main">
-                <span class="wf-theme-label">Onboarding is confusing</span>
-                <span class="wf-theme-meta">CSV, Intercom · latest feedback 2 days ago</span>
+        <header class="wf-screenhead">
+          <h1 class="wf-vh">Build a brief</h1>
+          <div class="wf-titlerow">
+            <label class="wf-label wf-vh" for="brief-title">Brief title</label>
+            <input class="wf-titleinput" id="brief-title" value="Q3 roadmap: what customers need most">
+            <span class="wf-draft">Draft</span>
+          </div>
+          <p class="wf-sub">Order the themes, say why, then generate a link your stakeholders can read without a login.</p>
+        </header>
+
+        <div class="wf-toolbar">
+          <h2 class="wf-evi-title">In this brief &middot; 3 themes</h2>
+          <div class="wf-evi-controls">
+            <button class="wf-chip">Add themes</button>
+          </div>
+          <span class="wf-sort">Order = recommended priority</span>
+        </div>
+
+        <main class="wf-main wf-main--flush">
+          <ol class="wf-list">
+            <li class="wf-briefrow">
+              <span class="wf-drag" aria-hidden="true">&#8942;&#8942;</span>
+              <span class="wf-rank">1</span>
+              <span class="wf-briefrow-main">
+                <span class="wf-briefrow-label">Onboarding is confusing</span>
+                <span class="wf-briefrow-meta">CSV, Intercom &middot; latest feedback 2 days ago</span>
               </span>
               <span class="wf-conf"><span class="wf-conf-n">n=42</span></span>
+              <button class="wf-remove" aria-label="Remove Onboarding is confusing from this brief">&times;</button>
             </li>
-            <li class="wf-theme">
-              <input type="checkbox" class="wf-check" aria-label="Include Slow export on large accounts" checked>
-              <span class="wf-theme-main">
-                <span class="wf-theme-label">Slow export on large accounts</span>
-                <span class="wf-theme-meta">Intercom · latest feedback 5 days ago</span>
+            <li class="wf-briefrow">
+              <span class="wf-drag" aria-hidden="true">&#8942;&#8942;</span>
+              <span class="wf-rank">2</span>
+              <span class="wf-briefrow-main">
+                <span class="wf-briefrow-label">Slow export on large accounts</span>
+                <span class="wf-briefrow-meta">Intercom &middot; latest feedback 5 days ago</span>
               </span>
               <span class="wf-conf"><span class="wf-conf-n">n=28</span></span>
+              <button class="wf-remove" aria-label="Remove Slow export on large accounts from this brief">&times;</button>
             </li>
-            <li class="wf-theme">
-              <input type="checkbox" class="wf-check" aria-label="Include Confusing billing and invoices" checked>
-              <span class="wf-theme-main">
-                <span class="wf-theme-label">Confusing billing and invoices</span>
-                <span class="wf-theme-meta">CSV · latest feedback 3 days ago</span>
+            <li class="wf-briefrow">
+              <span class="wf-drag" aria-hidden="true">&#8942;&#8942;</span>
+              <span class="wf-rank">3</span>
+              <span class="wf-briefrow-main">
+                <span class="wf-briefrow-label">Confusing billing and invoices</span>
+                <span class="wf-briefrow-meta">CSV &middot; latest feedback 3 days ago</span>
               </span>
               <span class="wf-conf"><span class="wf-conf-n">n=19</span></span>
+              <button class="wf-remove" aria-label="Remove Confusing billing and invoices from this brief">&times;</button>
             </li>
-            <li class="wf-theme">
-              <input type="checkbox" class="wf-check" aria-label="Include Mobile app crashes on upload">
-              <span class="wf-theme-main">
-                <span class="wf-theme-label">Mobile app crashes on upload</span>
-                <span class="wf-theme-meta">Intercom · latest feedback 1 week ago</span>
-              </span>
-              <span class="wf-conf"><span class="wf-conf-n">n=14</span></span>
-            </li>
-          </ul>
-
-          <h2 class="wf-evi-title">Recommended priority</h2>
-          <ol class="wf-prio">
-            <li><span class="wf-prio-n">1</span> Onboarding is confusing <span class="wf-conf"><span class="wf-conf-n">n=42</span></span></li>
-            <li><span class="wf-prio-n">2</span> Slow export on large accounts <span class="wf-conf"><span class="wf-conf-n">n=28</span></span></li>
-            <li><span class="wf-prio-n">3</span> Confusing billing and invoices <span class="wf-conf"><span class="wf-conf-n">n=19</span></span></li>
           </ol>
-          <div class="wf-field">
-            <label class="wf-label" for="rationale">Rationale (why this order)</label>
+
+          <div class="wf-block">
+            <label class="wf-label" for="rationale">Why this order (your words, kept separate from the evidence)</label>
             <textarea class="wf-input" id="rationale" rows="3">Onboarding blocks activation for every new account, so it leads. Export and billing are high volume but affect existing users, so they follow.</textarea>
           </div>
-
-          <div class="wf-actionbar">
-            <span class="wf-actionbar-note">3 themes selected</span>
-            <a class="wf-btn--ghost" href="briefs.html">Save draft</a>
-            <a class="wf-btn" href="share-link-loading.html">Generate share link</a>
-          </div>
         </main>
+
+        <div class="wf-selbar wf-selbar--static">
+          <span class="wf-selbar-note">3 themes, 89 feedback items behind them</span>
+          <a class="wf-btn wf-btn--ghost" href="briefs.html">Save draft</a>
+          <a class="wf-btn wf-btn--ghost" href="shared-brief.html">Preview</a>
+          <a class="wf-btn" href="share-link-loading.html">Generate share link</a>
+        </div>
 
         <div data-wf="appfoot"></div>
         <div data-wf="bottomtabs" data-active="briefs"></div>

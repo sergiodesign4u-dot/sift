@@ -6,45 +6,32 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Sift - Wireframe 7.0 Account - Plan and limits</title>
 <link rel="stylesheet" href="_wf.css">
-<style>
-/* 7.0 Account / settings - grey section-shell components (new to this cluster) */
-.acct-layout { display: flex; flex-direction: column; gap: 16px; }
-.acct-nav { border: 1px solid var(--w-line); border-radius: 8px; background: var(--w-surface); padding: 6px; display: flex; flex-direction: column; gap: 2px; }
-.acct-nav-home { display: block; font-size: 12px; font-weight: 700; color: var(--w-ink); text-decoration: none; padding: 8px 10px 6px; }
-.acct-nav-home:hover { color: var(--w-ink-2); }
-.acct-nav-link { display: flex; align-items: baseline; gap: 8px; padding: 10px; border-radius: 6px; font-size: 13px; color: var(--w-ink-2); text-decoration: none; border-left: 2px solid transparent; }
-.acct-nav-link:hover { color: var(--w-ink); background: var(--w-bg); }
-.acct-nav-link.is-current { color: var(--w-ink); background: var(--w-bg); border-left-color: var(--w-ink); font-weight: 650; }
-.acct-nav-node { font-size: 10px; color: var(--w-ink-3); font-weight: 700; min-width: 22px; flex: none; }
-.acct-panel { flex: 1; min-width: 0; }
-.acct-id { display: flex; align-items: center; gap: 12px; padding-bottom: 14px; margin-bottom: 14px; border-bottom: 1px solid var(--w-line); }
-.acct-id-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--w-fill); border: 1px solid var(--w-line-2); flex: none; }
-.acct-id-name { font-size: 14px; color: var(--w-ink); font-weight: 650; }
-.acct-id-meta { font-size: 12px; color: var(--w-ink-2); margin-top: 2px; }
-.acct-section-t { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--w-ink-2); margin: 18px 0 6px; }
-.acct-section-t:first-child { margin-top: 0; }
-.acct-row { display: flex; align-items: flex-start; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--w-line); }
-.acct-row-main { flex: 1; min-width: 0; }
-.acct-row-t { display: block; font-size: 13px; color: var(--w-ink); font-weight: 600; }
-.acct-row-d { display: block; font-size: 12px; color: var(--w-ink-2); margin-top: 3px; line-height: 1.55; }
-.acct-check { width: 20px; height: 20px; flex: none; margin-top: 2px; accent-color: #6b6b78; }
-.acct-meter { height: 10px; border-radius: 5px; background: var(--w-skel); border: 1px solid var(--w-line-2); overflow: hidden; margin: 8px 0 6px; }
-.acct-meter-fill { height: 100%; background: var(--w-fill); }
-.acct-meter-label { font-size: 12px; color: var(--w-ink-2); }
-.acct-plan-name { font-size: 16px; color: var(--w-ink); font-weight: 700; }
-.acct-card-t { display: block; font-size: 13px; color: var(--w-ink); font-weight: 650; }
-.acct-card-d { display: block; font-size: 12px; color: var(--w-ink-2); margin-top: 3px; line-height: 1.55; }
-.acct-seclink { font-size: 12px; color: var(--w-ink-2); margin-top: 14px; }
-.acct-seclink a { color: var(--w-ink); }
-@container (min-width: 600px) {
-  .acct-layout { flex-direction: row; align-items: flex-start; }
-  .acct-nav { width: 208px; flex: none; }
-}
-</style>
 </head>
-<!-- 7.1 Plan and limits (in 7.0 shell). Source ia/docs/pages/account.md. Grey, responsive. -->
+<!--
+  7.1 Plan and limits (in 7.0 shell). Source ia/docs/pages/account.md. Grey, responsive.
+
+  Composition from ia/docs/blocks.md, Type 8 (settings shell and sections):
+    1 the shell, with 7.1 current
+    2 every limit as used / limit, not a bar alone: a bar shows a proportion, a fraction shows
+      the facts
+    3 "Unlimited" stated as a value in the same column, because which dimensions are NOT
+      metered is as useful as which are
+    4 upgrade beside the thing that is limited. On a paid plan the metered thing is seats, not
+      volume, so the action sits beside the seat meter rather than being a generic wall
+    5 plan, price and renewal date together
+    6 the at-limit notice, visible and non-punitive: all 5 seats are taken
+  ABSENT deliberately: the plan comparison table (row 7). Pricing lives on 0.0, and two places
+  to compare plans is two places to keep in sync.
+
+  RESOLVED (was [?] on this screen): the free plan is 250 feedback items a month, the value
+  research/docs/strategy.md sets out with its reasoning; the 500 on the home page was a stale
+  v1 number and the 5,000 here was invented at this stage. The deeper defect was not the
+  number. This workspace has 2 sources, evidence drill-down and a public shared brief, and
+  strategy.md makes all three paid, so it was never a free workspace: the screen had to invent
+  a limit because it had put the canonical scenario on the wrong plan. It is on Growth, and the
+  free plan is stated beside it as the reference it always was.
+-->
 <body>
-<div id="wf-topbar" data-node="7.0" data-state="plan"></div>
 <div class="wf-shell">
   <div id="wf-rail" data-node="7.0" data-state="plan"></div>
   <div class="wf-stage">
@@ -69,19 +56,44 @@
 
             <div class="acct-panel">
               <div class="acct-section-t">Current plan</div>
-              <div class="acct-plan-name">Free</div>
-              <p class="acct-row-d">Basic synthesis with theme clusters, one source, up to 5,000 feedback items a month.</p>
+              <div class="acct-plan-name">Growth</div>
+              <p class="acct-row-d">Full synthesis with evidence drill-down, up to 3 sources, team workspace, shareable briefs. 5 seats, billed annually. Renews 1 September 2026.</p>
 
-              <div class="acct-section-t">Feedback this month</div>
-              <div class="acct-meter" aria-hidden="true"><div class="acct-meter-fill" style="width: 75%;"></div></div>
-              <div class="acct-meter-label">3,750 of 5,000 items this month. 1,250 remaining.</div>
+              <div class="acct-section-t">This month</div>
+              <ul class="acct-limits">
+                <li class="acct-limit">
+                  <span class="acct-limit-n">Feedback items ingested</span>
+                  <span class="acct-limit-v">3,750, unlimited</span>
+                </li>
+                <li class="acct-limit">
+                  <span class="acct-limit-n">Connected sources</span>
+                  <span class="acct-limit-v">2 of 3</span>
+                </li>
+                <li class="acct-limit">
+                  <span class="acct-limit-n">Seats used</span>
+                  <span class="acct-limit-v">5 of 5</span>
+                </li>
+                <li class="acct-limit">
+                  <span class="acct-limit-n">Evidence drill-down</span>
+                  <span class="acct-limit-v">Included</span>
+                </li>
+                <li class="acct-limit">
+                  <span class="acct-limit-n">Shareable briefs</span>
+                  <span class="acct-limit-v">Included</span>
+                </li>
+              </ul>
 
-              <div class="wf-notice">You are close to the free monthly limit. Upgrade to keep every source flowing and unlock full evidence traceability.</div>
+              <div class="acct-section-t">Seats</div>
+              <div class="acct-meter" aria-hidden="true"><div class="acct-meter-fill acct-meter-fill--full"></div></div>
+              <p class="acct-meter-label">All 5 seats are taken. Anyone you invite now needs a seat added first.</p>
 
-              <div class="wf-actionbar">
-                <span class="wf-actionbar-note">Free plan</span>
-                <button class="wf-btn" type="button">Upgrade plan</button>
+              <div class="acct-actionrow">
+                <button class="wf-btn wf-btn--ghost" type="button">Compare plans</button>
+                <button class="wf-btn" type="button">Add seats</button>
               </div>
+
+              <div class="acct-section-t">Free plan, for reference</div>
+              <p class="acct-row-d">Up to 250 feedback items a month, 1 source, theme names and counts only. Evidence drill-down, shareable briefs and a team workspace are paid. This workspace has been past the free limit since its first import.</p>
             </div>
           </div>
         </main>

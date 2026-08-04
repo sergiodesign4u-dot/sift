@@ -11,24 +11,30 @@
   Wireframe 2.0 Synthesis view - the ETALON. Success / populated state.
   A real, full, responsive screen: it fills the browser and collapses to mobile as the
   window narrows (via @container queries on .wf-canvas). Grey, structure only.
+
+  Composition from ia/docs/blocks.md, Type 2 (ranked decision list). Eight blocks:
+    1 app header · 2 screen head + one primary action at rest · 3 scope line
+    4 filter and sort with facet counts · 5 ranked theme list · 6 load more with remainder
+    7 selection action bar (present only while something is selected) · 8 app footer
   Text from ia/docs/pages/synthesis.md. Node from ia/docs/sitemap.md.
 
-  The prototype chrome (top bar with the back button and state switcher, and the left
-  page rail) is rendered from _nav.js into #wf-topbar and #wf-rail. The in-frame app
-  globals (header, footer, bottom tabs) fill the [data-wf] placeholders. Only the screen's
-  unique zone (toolbar + main) is authored here.
+  The prototype chrome is ONE panel, rendered from _nav.js into #wf-rail: hub button and
+  stage badge, the screen tree, the current node opened onto its states, and cross-links out
+  of the prototype. The in-frame app globals (header, footer, bottom tabs) fill the [data-wf]
+  placeholders. Only the screen's unique zone is authored here.
 
   Canonical illustrative data (reused across the prototype so neighbouring screens agree):
+    corpus  CSV 840 + Intercom 2,910 = 3,750 items · 2,904 of them in the last 30 days
     T1 Onboarding is confusing         CSV, Intercom   2 days ago    n=42
     T2 Slow export on large accounts   Intercom        5 days ago    n=28
     T3 Confusing billing and invoices  CSV             3 days ago    n=19
     T4 Mobile app crashes on upload    Intercom        1 week ago    n=14
     T5 Wants Salesforce integration    Intercom        9 days ago    n=6   low signal
     T6 Dark mode requested             CSV             12 days ago   n=4   low signal
+  Row quotes are the same verbatim strings the trust chain shows on 4.0 and 5.0.
 -->
 <body>
 
-<div id="wf-topbar" data-node="2.0" data-state="base"></div>
 
 <div class="wf-shell">
   <div id="wf-rail" data-node="2.0" data-state="base"></div>
@@ -40,88 +46,120 @@
 
         <div data-wf="header" data-active="synthesis"></div>
 
+        <header class="wf-screenhead">
+          <div class="wf-screenhead-row">
+            <div class="wf-head-text">
+              <h1 class="wf-h1">Synthesis</h1>
+              <p class="wf-sub">Your feedback, clustered into ranked themes. Open one to trace the evidence behind it.</p>
+            </div>
+            <a class="wf-btn wf-head-action" href="build-brief.html">Build brief</a>
+          </div>
+          <p class="wf-scope">
+            <b>12</b> themes from <b>2,904</b> of 3,750 feedback items in the last 30 days,
+            across 2 sources. Synthesized 2 hours ago.
+          </p>
+        </header>
+
         <div class="wf-toolbar">
           <div class="wf-filter-full">
-            <button class="wf-chip">Source: all</button>
-            <button class="wf-chip">Last 30 days</button>
-            <button class="wf-chip">Confidence: all</button>
+            <button class="wf-chip">Source: all <span class="wf-chip-count">2</span></button>
+            <button class="wf-chip is-on">Last 30 days <span class="wf-chip-count">2,904</span></button>
+            <button class="wf-chip">Confidence: all <span class="wf-chip-count">12</span></button>
+            <button class="wf-clear">Clear filters</button>
             <span class="wf-sort">Sort: signal rank</span>
           </div>
           <div class="wf-filter-compact">
-            <button class="wf-chip">Filter</button>
+            <button class="wf-chip is-on">Filter <span class="wf-chip-count">1</span></button>
+            <button class="wf-clear">Clear</button>
             <span class="wf-sort">signal rank</span>
           </div>
         </div>
 
-        <main class="wf-main">
-          <div class="wf-main-head">
-            <h1 class="wf-h1">Synthesis</h1>
-            <p class="wf-sub">Your feedback, clustered into ranked themes. Open one to trace the evidence behind it.</p>
-          </div>
-
+        <main class="wf-main wf-main--flush">
           <ul class="wf-list">
+
             <li class="wf-theme">
-              <input type="checkbox" class="wf-check" aria-label="Select theme: Onboarding is confusing" checked>
+              <input type="checkbox" class="wf-check" aria-label="Select theme: Onboarding is confusing">
+              <span class="wf-rank" aria-hidden="true">1</span>
               <a class="wf-theme-main" href="theme.html">
                 <span class="wf-theme-label">Onboarding is confusing</span>
-                <span class="wf-theme-meta">CSV, Intercom · latest feedback 2 days ago</span>
+                <span class="wf-theme-quote">"I signed up and just stared at an empty dashboard. No idea what to do first."</span>
+                <span class="wf-theme-prov">CSV, Intercom · latest feedback 2 days ago</span>
               </a>
               <span class="wf-conf"><span class="wf-conf-n">n=42</span></span>
               <a class="wf-theme-drill" href="theme.html" aria-label="Open theme: Onboarding is confusing">&rsaquo;</a>
             </li>
+
             <li class="wf-theme">
               <input type="checkbox" class="wf-check" aria-label="Select theme: Slow export on large accounts">
+              <span class="wf-rank" aria-hidden="true">2</span>
               <a class="wf-theme-main" href="theme.html">
                 <span class="wf-theme-label">Slow export on large accounts</span>
-                <span class="wf-theme-meta">Intercom · latest feedback 5 days ago</span>
+                <span class="wf-theme-quote">"Exporting our account data takes minutes and sometimes just fails."</span>
+                <span class="wf-theme-prov">Intercom · latest feedback 5 days ago</span>
               </a>
               <span class="wf-conf"><span class="wf-conf-n">n=28</span></span>
               <a class="wf-theme-drill" href="theme.html" aria-label="Open theme: Slow export on large accounts">&rsaquo;</a>
             </li>
+
             <li class="wf-theme">
               <input type="checkbox" class="wf-check" aria-label="Select theme: Confusing billing and invoices">
+              <span class="wf-rank" aria-hidden="true">3</span>
               <a class="wf-theme-main" href="theme.html">
                 <span class="wf-theme-label">Confusing billing and invoices</span>
-                <span class="wf-theme-meta">CSV · latest feedback 3 days ago</span>
+                <span class="wf-theme-quote">"I could not tell what I was being charged for on the invoice."</span>
+                <span class="wf-theme-prov">CSV · latest feedback 3 days ago</span>
               </a>
               <span class="wf-conf"><span class="wf-conf-n">n=19</span></span>
               <a class="wf-theme-drill" href="theme.html" aria-label="Open theme: Confusing billing and invoices">&rsaquo;</a>
             </li>
+
             <li class="wf-theme">
               <input type="checkbox" class="wf-check" aria-label="Select theme: Mobile app crashes on upload">
+              <span class="wf-rank" aria-hidden="true">4</span>
               <a class="wf-theme-main" href="theme.html">
                 <span class="wf-theme-label">Mobile app crashes on upload</span>
-                <span class="wf-theme-meta">Intercom · latest feedback 1 week ago</span>
+                <span class="wf-theme-quote">"The app closes itself every time I attach a file over a few megabytes."</span>
+                <span class="wf-theme-prov">Intercom · latest feedback 1 week ago</span>
               </a>
               <span class="wf-conf"><span class="wf-conf-n">n=14</span></span>
               <a class="wf-theme-drill" href="theme.html" aria-label="Open theme: Mobile app crashes on upload">&rsaquo;</a>
             </li>
+
             <li class="wf-theme">
               <input type="checkbox" class="wf-check" aria-label="Select theme: Wants Salesforce integration">
+              <span class="wf-rank" aria-hidden="true">5</span>
               <a class="wf-theme-main" href="theme.html">
                 <span class="wf-theme-label">Wants Salesforce integration</span>
-                <span class="wf-theme-meta">Intercom · latest feedback 9 days ago</span>
+                <span class="wf-theme-quote">"We keep our accounts in Salesforce, so right now I copy things across by hand."</span>
+                <span class="wf-theme-prov">Intercom only · latest feedback 9 days ago</span>
               </a>
               <span class="wf-conf"><span class="wf-conf-n">n=6</span> <span class="wf-badge-low">low signal</span></span>
               <a class="wf-theme-drill" href="theme.html" aria-label="Open theme: Wants Salesforce integration">&rsaquo;</a>
             </li>
+
             <li class="wf-theme">
               <input type="checkbox" class="wf-check" aria-label="Select theme: Dark mode requested">
+              <span class="wf-rank" aria-hidden="true">6</span>
               <a class="wf-theme-main" href="theme.html">
                 <span class="wf-theme-label">Dark mode requested</span>
-                <span class="wf-theme-meta">CSV · latest feedback 12 days ago</span>
+                <span class="wf-theme-quote">"Reading this at night is rough. A dark theme would help."</span>
+                <span class="wf-theme-prov">CSV only · latest feedback 12 days ago</span>
               </a>
               <span class="wf-conf"><span class="wf-conf-n">n=4</span> <span class="wf-badge-low">low signal</span></span>
               <a class="wf-theme-drill" href="theme.html" aria-label="Open theme: Dark mode requested">&rsaquo;</a>
             </li>
+
           </ul>
 
-          <div class="wf-actionbar">
-            <span class="wf-actionbar-note">1 theme selected</span>
-            <button class="wf-btn--ghost">Set priority</button>
-            <a class="wf-btn" href="build-brief.html">Build brief</a>
-          </div>
+          <button class="wf-loadmore">Load 6 more themes</button>
         </main>
+
+        <div class="wf-selbar">
+          <span class="wf-selbar-note">1 theme selected</span>
+          <button class="wf-btn wf-btn--ghost">Set priority</button>
+          <a class="wf-btn" href="build-brief.html">Build brief</a>
+        </div>
 
         <div data-wf="appfoot"></div>
         <div data-wf="bottomtabs" data-active="synthesis"></div>

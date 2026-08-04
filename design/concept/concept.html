@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift - Concept</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* ---- Product brand B (from DESIGN-artifacts.md) ---- */
+    --canvas:#0B0E11; --surface:#151A1F; --elevated:#1E252B; --line:#262D34;
+    --porcelain:#EAEEF2; --ash:#868F99; --cyan:#33C4CC; --amber:#D9A441; --red:#E5484D;
+    --bar-track:#20272E; --bar-fill:rgba(51,196,204,0.32);
+    --font-ui:"Inter",-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+    --font-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+    --r:6px; --r-sm:4px;
+    --ease:cubic-bezier(0.22,1,0.36,1);
+
+    /* ---- Portfolio roadmap rail (purple, shared with research.html) ---- */
+    --pf-bg:#0c0c0e; --pf-bg-3:#17171c; --pf-border-light:#1e1e28;
+    --pf-text:#e8e8ec; --pf-text-3:#66667a; --pf-accent:#7c6af7; --pf-accent-glow:rgba(124,106,247,0.12);
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html { scroll-behavior:smooth; }
+  body { font-family:var(--font-ui); background:var(--canvas); color:var(--porcelain); line-height:1.55; font-size:14px; letter-spacing:-0.011em; -webkit-font-smoothing:antialiased; }
+
+  /* ---- Portfolio top nav ---- */
+  nav.top { position:fixed; top:0; left:0; right:0; z-index:100; height:52px; display:flex; align-items:center; justify-content:space-between; padding:0 24px; background:rgba(12,12,14,0.92); backdrop-filter:blur(12px); border-bottom:1px solid var(--pf-border-light); }
+  .nav-brand { font-size:14px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; color:var(--pf-text); text-decoration:none; }
+  .nav-brand span { color:var(--pf-accent); }
+  .nav-links { display:flex; gap:6px; list-style:none; }
+  .nav-links a { color:var(--pf-text-3); text-decoration:none; font-size:12px; font-weight:500; padding:5px 10px; border-radius:5px; transition:color .15s,background .15s; }
+  .nav-links a:hover { color:var(--pf-text); background:var(--pf-bg-3); }
+  @media (min-width:1100px) {
+    .page { margin-left:220px; }
+  }
+
+  /* ---- Page ---- */
+  .page { max-width:1000px; padding:88px 40px 120px; }
+  .wrapc { max-width:900px; }
+  .kicker { font-family:var(--font-mono); font-size:12px; color:var(--cyan); margin-bottom:14px; }
+  h1.title { font-size:clamp(30px,4vw,44px); font-weight:590; letter-spacing:-0.03em; line-height:1.08; text-wrap:balance; }
+  .lead { color:var(--ash); font-size:16px; margin-top:14px; max-width:64ch; }
+
+  section { padding-top:64px; scroll-margin-top:64px; }
+  .sec-label { font-family:var(--font-mono); font-size:11px; text-transform:uppercase; letter-spacing:0.06em; color:var(--cyan); margin-bottom:10px; }
+  h2 { font-size:24px; font-weight:590; letter-spacing:-0.02em; margin-bottom:8px; }
+  .sec-intro { color:var(--ash); font-size:14.5px; max-width:70ch; margin-bottom:22px; }
+  .attr { font-family:var(--font-mono); font-size:11px; color:var(--cyan); }
+
+  /* ---- shared product components ---- */
+  .btn { display:inline-flex; align-items:center; gap:7px; font-family:var(--font-ui); font-size:13.5px; font-weight:500; color:var(--canvas); background:var(--cyan); border:0; border-radius:var(--r); padding:8px 14px; cursor:pointer; text-decoration:none; transition:filter .15s var(--ease); }
+  .btn:hover { filter:brightness(1.08); }
+  .btn-ghost { display:inline-flex; align-items:center; gap:7px; font-size:13.5px; font-weight:500; color:var(--porcelain); background:transparent; border:1px solid var(--line); border-radius:var(--r); padding:8px 14px; cursor:pointer; }
+  .btn-ghost:hover { border-color:#3a444c; }
+  .btn .ic, .btn-ghost .ic { width:15px; height:15px; }
+  .chip { display:inline-flex; align-items:center; gap:6px; font-size:12.5px; color:var(--ash); background:var(--surface); border:1px solid var(--line); border-radius:var(--r); padding:5px 10px; }
+  .nX { font-family:var(--font-mono); font-size:12.5px; color:var(--porcelain); }
+  .low { font-family:var(--font-mono); font-size:11px; color:var(--amber); background:rgba(217,164,65,0.10); border:1px solid rgba(217,164,65,0.32); border-radius:var(--r-sm); padding:1px 6px; }
+  .bar { height:5px; border-radius:3px; background:var(--bar-track); overflow:hidden; }
+  .bar > span { display:block; height:100%; background:var(--bar-fill); }
+  .ic { display:inline-block; vertical-align:middle; stroke:currentColor; fill:none; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; }
+
+  /* ---- live split sample ---- */
+  .sample { border:1px solid var(--line); border-radius:10px; overflow:hidden; box-shadow:0 2px 4px rgba(0,0,0,0.4); background:var(--canvas); }
+  .sample-top { display:flex; align-items:center; gap:10px; height:44px; padding:0 16px; border-bottom:1px solid var(--line); background:var(--surface); }
+  .sample-top .brand { display:flex; align-items:center; gap:8px; font-weight:590; font-size:15px; letter-spacing:-0.02em; }
+  .sample-top .brand .mark { color:var(--cyan); }
+  .sample-top nav { display:flex; gap:4px; margin-left:12px; }
+  .sample-top nav a { font-size:13px; color:var(--ash); text-decoration:none; padding:5px 10px; border-radius:var(--r); }
+  .sample-top nav a.on { color:var(--porcelain); background:var(--elevated); }
+  .sample-top .sp { flex:1; }
+  .sample-top .avatar { width:24px; height:24px; border-radius:50%; background:var(--elevated); border:1px solid var(--line); }
+  .split { display:grid; grid-template-columns:1.15fr 1fr; min-height:380px; }
+  .split .left { border-right:1px solid var(--line); padding:16px; }
+  .split .right { background:var(--surface); padding:20px; }
+  .split .h1 { font-size:20px; font-weight:590; letter-spacing:-0.02em; }
+  .split .toolbar { display:flex; align-items:center; gap:8px; padding:10px 0 12px; margin-bottom:6px; border-bottom:1px solid var(--line); }
+  .split .sortnote { font-size:12.5px; color:var(--ash); margin-left:auto; } .split .sortnote b { color:var(--porcelain); font-weight:500; }
+  .row { display:grid; grid-template-columns:20px 1fr 56px 16px; align-items:center; gap:10px; padding:11px 8px; border-radius:var(--r); text-decoration:none; color:inherit; transition:background .12s var(--ease); }
+  .row:hover { background:var(--surface); }
+  .row.sel { background:var(--elevated); }
+  .row .rank { font-family:var(--font-mono); font-size:12px; color:var(--ash); text-align:center; }
+  .row .tlabel { font-size:13.5px; color:var(--porcelain); font-weight:500; }
+  .row .bar { margin-top:5px; }
+  .row .cell-conf { display:flex; justify-content:flex-end; }
+  .row .drill { color:var(--ash); width:16px; height:16px; }
+  .row:hover .drill { color:var(--porcelain); }
+  .panel-kicker { display:flex; align-items:center; gap:8px; font-family:var(--font-mono); font-size:11px; text-transform:uppercase; letter-spacing:0.05em; color:var(--ash); margin-bottom:12px; }
+  .panel-kicker .ic { width:14px; height:14px; color:var(--cyan); }
+  .panel-stmt { font-size:17px; font-weight:590; letter-spacing:-0.02em; }
+  .panel-meta { display:flex; align-items:center; gap:10px; margin:10px 0 18px; }
+  .evcard { background:var(--canvas); border:1px solid var(--line); border-radius:var(--r); padding:14px; margin-bottom:12px; }
+  .evcard .quote { font-size:14px; line-height:1.55; color:var(--porcelain); }
+  .evcard .foot { display:flex; align-items:center; gap:8px; margin-top:10px; font-family:var(--font-mono); font-size:11px; color:var(--ash); }
+  .evcard .cnum { color:var(--cyan); }
+  .panel-cta { display:flex; gap:10px; margin-top:6px; }
+
+  /* ---- palette ---- */
+  .swatch-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(196px,1fr)); gap:12px; }
+  .swatch { border:1px solid var(--line); border-radius:var(--r); overflow:hidden; background:var(--surface); }
+  .swatch .chipcol { height:64px; border-bottom:1px solid var(--line); }
+  .swatch .meta { padding:10px 12px; }
+  .swatch .nm { font-size:13px; font-weight:500; color:var(--porcelain); }
+  .swatch .hex { font-family:var(--font-mono); font-size:11.5px; color:var(--ash); margin-top:2px; }
+  .swatch .role { font-size:11.5px; color:var(--ash); margin-top:6px; line-height:1.45; }
+  .swatch .role .attr { display:block; margin-top:3px; }
+
+  /* ---- type ---- */
+  .type-row { display:flex; align-items:baseline; gap:16px; padding:14px 0; border-bottom:1px solid var(--line); flex-wrap:wrap; }
+  .type-row:last-child { border-bottom:0; }
+  .type-spec { font-family:var(--font-mono); font-size:11px; color:var(--ash); width:150px; flex-shrink:0; }
+  .specimen { display:grid; gap:10px; }
+  .specimen .disp { font-size:30px; font-weight:590; letter-spacing:-0.02em; }
+  .specimen .alpha { font-size:15px; color:var(--ash); }
+  .specimen .monos { font-family:var(--font-mono); font-size:15px; color:var(--cyan); }
+
+  /* ---- form (spec grid) ---- */
+  .spec-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:12px; }
+  .spec-cell { border:1px solid var(--line); border-radius:var(--r); padding:14px; background:var(--surface); }
+  .spec-cell .demo { height:44px; display:flex; align-items:center; justify-content:center; margin-bottom:10px; }
+  .spec-cell .rk { background:var(--elevated); border:1px solid var(--line); }
+  .spec-cell .k { font-family:var(--font-mono); font-size:11.5px; color:var(--porcelain); }
+  .spec-cell .v { font-size:11.5px; color:var(--ash); margin-top:2px; }
+
+  /* ---- imagery ---- */
+  .img-note { display:grid; grid-template-columns:220px 1fr; gap:20px; align-items:start; }
+  .img-note img { width:100%; border-radius:var(--r); border:1px solid var(--line); display:block; }
+  .img-cap { font-family:var(--font-mono); font-size:11px; color:var(--ash); margin-top:8px; }
+
+  /* ---- icons ---- */
+  .icon-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(110px,1fr)); gap:10px; }
+  .icon-cell { display:flex; flex-direction:column; align-items:center; gap:8px; padding:18px 10px; border:1px solid var(--line); border-radius:var(--r); background:var(--surface); }
+  .icon-cell .ic { width:22px; height:22px; color:var(--porcelain); }
+  .icon-cell .cap { font-size:11px; color:var(--ash); }
+
+  /* ---- components ---- */
+  .comp-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px; }
+  .comp { border:1px solid var(--line); border-radius:var(--r); background:var(--surface); padding:18px; }
+  .comp h3 { font-size:12px; font-family:var(--font-mono); text-transform:uppercase; letter-spacing:0.05em; color:var(--ash); margin-bottom:14px; font-weight:500; }
+  .comp .demo { display:flex; flex-direction:column; gap:12px; }
+  .field label { display:block; font-size:12px; color:var(--ash); margin-bottom:6px; }
+  .field input { width:100%; background:var(--elevated); border:1px solid var(--line); border-radius:var(--r); color:var(--porcelain); font-family:var(--font-ui); font-size:13.5px; padding:9px 12px; }
+  .field input::placeholder { color:#5c6470; }
+  .field input:focus { outline:none; border-color:var(--cyan); box-shadow:0 0 0 1px var(--cyan); }
+  .field .hint { font-size:11.5px; color:var(--ash); margin-top:6px; }
+  .tcard { border:1px solid var(--line); border-radius:var(--r); background:var(--canvas); padding:14px; }
+  .tcard .t { font-size:14px; font-weight:500; color:var(--porcelain); }
+  .tcard .m { font-family:var(--font-mono); font-size:11px; color:var(--ash); margin:4px 0 10px; }
+  .tcard .conf { display:flex; align-items:center; gap:8px; margin-top:10px; }
+  .conf-strong { display:inline-flex; align-items:center; gap:8px; }
+
+  /* ---- contrast table ---- */
+  .table-wrap { overflow-x:auto; border:1px solid var(--line); border-radius:var(--r); }
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+  th { background:var(--surface); color:var(--ash); font-weight:500; font-size:11px; letter-spacing:0.05em; text-transform:uppercase; padding:11px 14px; text-align:left; border-bottom:1px solid var(--line); font-family:var(--font-mono); white-space:nowrap; }
+  td { padding:11px 14px; border-bottom:1px solid var(--line); color:var(--ash); vertical-align:middle; }
+  tr:last-child td { border-bottom:0; }
+  td .mono { font-family:var(--font-mono); color:var(--porcelain); font-size:12px; }
+  .pass { color:var(--cyan); font-family:var(--font-mono); font-size:12px; }
+  .dot { width:14px; height:14px; border-radius:3px; display:inline-block; vertical-align:middle; border:1px solid rgba(255,255,255,0.08); }
+
+  footer { margin-top:72px; padding-top:28px; border-top:1px solid var(--line); color:var(--ash); font-size:12.5px; }
+  footer code { font-family:var(--font-mono); color:var(--porcelain); font-size:12px; }
+
+  @media (max-width:820px) {
+    .page { padding:80px 20px 80px; }
+    .split { grid-template-columns:1fr; }
+    .split .left { border-right:0; border-bottom:1px solid var(--line); }
+    .sample-top nav { display:none; }
+    .img-note { grid-template-columns:1fr; }
+  }
+  @media (prefers-reduced-motion:reduce) { * { transition:none !important; scroll-behavior:auto; } }
+</style>
+<link rel="stylesheet" href="../../_nav.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-filter" viewBox="0 0 24 24"><path d="M3 5.5h18l-7 8v5l-4 2v-7z"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M6 3v18"/><path d="M6 4h12l-2.5 4L18 12H6"/></symbol>
+  <symbol id="i-share" viewBox="0 0 24 24"><circle cx="6" cy="12" r="2.4"/><circle cx="18" cy="6" r="2.4"/><circle cx="18" cy="18" r="2.4"/><path d="M8.1 11l7.8-4M8.1 13l7.8 4"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 6.5"/></symbol>
+  <symbol id="i-source" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.66 3.13 3 7 3s7-1.34 7-3V6"/><path d="M5 12v6c0 1.66 3.13 3 7 3s7-1.34 7-3v-6"/></symbol>
+  <symbol id="i-evidence" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-4 4v-4H4z"/><path d="M8.5 10.5h7M8.5 13h4"/></symbol>
+  <symbol id="i-cite" viewBox="0 0 24 24"><path d="M9.5 4L7.5 20M17 4l-2 16M4 9h16M3.5 15h16"/></symbol>
+  <symbol id="i-signal" viewBox="0 0 24 24"><path d="M6 18v-3.5M12 18v-8M18 18v-12.5"/></symbol>
+  <symbol id="i-brief" viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h7"/></symbol>
+  <symbol id="i-priority" viewBox="0 0 24 24"><path d="M12 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L3.5 9.2l5.9-.9z"/></symbol>
+</defs></svg>
+
+<nav class="top">
+  <a class="nav-brand" href="../../index.html"><span>S</span>ift</a>
+  <ul class="nav-links">
+    <li><a href="#palette">Palette</a></li>
+    <li><a href="#type">Type</a></li>
+    <li><a href="#components">Components</a></li>
+    <li><a href="directions.html">Directions</a></li>
+  </ul>
+</nav>
+
+<aside id="sidebar"></aside>
+
+<div class="page">
+  <div class="wrapc">
+
+  <header id="top">
+    <div class="kicker">Sift / Concept / Stage 06</div>
+    <h1 class="title">The visual language</h1>
+    <p class="lead">One brand, Command center, on the chosen layout, Split evidence. Every color, type, and form decision below is signed with the attribute it comes from. The page chrome is the portfolio theme; everything framed is the product brand it documents.</p>
+  </header>
+
+  <!-- LIVE -->
+  <section id="live">
+    <div class="sec-label">The language alive</div>
+    <h2>Synthesis, in the chosen layout</h2>
+    <p class="sec-intro">The etalon surface as it will look: ranked themes on the left, the live evidence for the selected theme on the right. Everything below this is the specification behind it.</p>
+    <p style="margin-bottom:18px">
+      <a class="btn" href="../../design/synthesis.html">Open the etalon in color</a>
+      <span style="color:var(--ash);font-size:12.5px;margin-left:10px">Colored copies in <code style="font-family:var(--font-mono);color:var(--porcelain)">design/</code>: populated, empty, loading, error. The grey wireframe stays the source of truth. The colored etalon colors the current wireframe structure (single column); this stand shows the Split-evidence direction, realized product-wide at Stage 07.</span>
+    </p>
+
+    <div class="sample">
+      <div class="sample-top">
+        <span class="brand"><svg class="ic mark" width="16" height="16"><use href="#i-signal"/></svg> Sift</span>
+        <nav><a class="on">Synthesis</a><a>Sources</a><a>Briefs</a></nav>
+        <span class="sp"></span><span class="avatar"></span>
+      </div>
+      <div class="split">
+        <div class="left">
+          <div class="h1">Synthesis</div>
+          <div class="toolbar">
+            <button class="chip"><svg class="ic" width="14" height="14"><use href="#i-filter"/></svg> Filter</button>
+            <span class="sortnote">Sort: <b>signal rank</b></span>
+          </div>
+          <a class="row sel" href="#live"><span class="rank">1</span><span><span class="tlabel">Onboarding is confusing</span><span class="bar" style="margin-top:5px"><span style="width:100%"></span></span></span><span class="cell-conf"><span class="nX">n=42</span></span><svg class="ic drill" width="16" height="16"><use href="#i-chev"/></svg></a>
+          <a class="row" href="#live"><span class="rank">2</span><span><span class="tlabel">Slow export on large accounts</span><span class="bar" style="margin-top:5px"><span style="width:67%"></span></span></span><span class="cell-conf"><span class="nX">n=28</span></span><svg class="ic drill" width="16" height="16"><use href="#i-chev"/></svg></a>
+          <a class="row" href="#live"><span class="rank">3</span><span><span class="tlabel">Confusing billing and invoices</span><span class="bar" style="margin-top:5px"><span style="width:45%"></span></span></span><span class="cell-conf"><span class="nX">n=19</span></span><svg class="ic drill" width="16" height="16"><use href="#i-chev"/></svg></a>
+          <a class="row" href="#live"><span class="rank">4</span><span><span class="tlabel">Mobile app crashes on upload</span><span class="bar" style="margin-top:5px"><span style="width:33%"></span></span></span><span class="cell-conf"><span class="nX">n=14</span></span><svg class="ic drill" width="16" height="16"><use href="#i-chev"/></svg></a>
+          <a class="row" href="#live"><span class="rank">5</span><span><span class="tlabel">Wants Salesforce integration</span><span class="bar" style="margin-top:5px"><span style="width:14%"></span></span></span><span class="cell-conf"><span class="nX">n=6</span></span><svg class="ic drill" width="16" height="16"><use href="#i-chev"/></svg></a>
+        </div>
+        <div class="right">
+          <div class="panel-kicker"><svg class="ic" width="14" height="14"><use href="#i-evidence"/></svg> Evidence · 42 items</div>
+          <div class="panel-stmt">Onboarding is confusing</div>
+          <div class="panel-meta"><span class="nX">n=42</span><span class="chip">CSV, Intercom</span></div>
+          <div class="evcard"><div class="quote">&ldquo;I signed up and just stared at the empty screen. No idea what to do first.&rdquo;</div><div class="foot"><span class="cnum">[1]</span><span>Intercom</span><span>·</span><span>scrubbed</span><span>·</span><span>2 days ago</span></div></div>
+          <div class="evcard"><div class="quote">&ldquo;Our new PMs cannot tell where to start without someone walking them through it.&rdquo;</div><div class="foot"><span class="cnum">[2]</span><span>CSV</span><span>·</span><span>scrubbed</span><span>·</span><span>4 days ago</span></div></div>
+          <div class="panel-cta"><a class="btn" href="#live"><svg class="ic" width="15" height="15"><use href="#i-cite"/></svg> Open source</a><button class="btn-ghost"><svg class="ic" width="15" height="15"><use href="#i-share"/></svg> Add to brief</button></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PALETTE -->
+  <section id="palette">
+    <div class="sec-label">Palette</div>
+    <h2>Layered neutrals, one accent</h2>
+    <p class="sec-intro">Depth from tone and hairline borders, not shadow. The accent is the only saturated color on a working screen, reserved for the one next action and strong confidence. The neutrals tilt faintly cool toward the accent, never warm. Each color is signed with its attribute.</p>
+    <div class="swatch-grid">
+      <div class="swatch"><div class="chipcol" style="background:#0B0E11"></div><div class="meta"><div class="nm">Canvas</div><div class="hex">#0B0E11</div><div class="role">Page background, deepest surface.<span class="role attr">A1 quiet</span></div></div></div>
+      <div class="swatch"><div class="chipcol" style="background:#151A1F"></div><div class="meta"><div class="nm">Surface</div><div class="hex">#151A1F</div><div class="role">Card and panel, one step up.<span class="role attr">A1 · A4</span></div></div></div>
+      <div class="swatch"><div class="chipcol" style="background:#1E252B"></div><div class="meta"><div class="nm">Elevated</div><div class="hex">#1E252B</div><div class="role">Raised panel, focused row.<span class="role attr">A1</span></div></div></div>
+      <div class="swatch"><div class="chipcol" style="background:#262D34"></div><div class="meta"><div class="nm">Line</div><div class="hex">#262D34</div><div class="role">Hairline borders and dividers.<span class="role attr">A1 depth, no shadow</span></div></div></div>
+      <div class="swatch"><div class="chipcol" style="background:#EAEEF2"></div><div class="meta"><div class="nm">Porcelain</div><div class="hex">#EAEEF2</div><div class="role">Primary text and the mark.<span class="role attr">A5 type leads</span></div></div></div>
+      <div class="swatch"><div class="chipcol" style="background:#868F99"></div><div class="meta"><div class="nm">Ash</div><div class="hex">#868F99</div><div class="role">Secondary text, metadata.<span class="role attr">A1 secondary recedes</span></div></div></div>
+      <div class="swatch"><div class="chipcol" style="background:#33C4CC"></div><div class="meta"><div class="nm">Cyan (accent)</div><div class="hex">#33C4CC</div><div class="role">The one accent: primary action, active, strong confidence.<span class="role attr">A1 · A2 · A4</span></div></div></div>
+      <div class="swatch"><div class="chipcol" style="background:#D9A441"></div><div class="meta"><div class="nm">Amber</div><div class="hex">#D9A441</div><div class="role">Low signal only. A quiet tag, never an alarm.<span class="role attr">A3 honest about thin</span></div></div></div>
+      <div class="swatch"><div class="chipcol" style="background:#E5484D"></div><div class="meta"><div class="nm">Red</div><div class="hex">#E5484D</div><div class="role">Error only, paired with the next move.<span class="role attr">A3 · Voice P4</span></div></div></div>
+    </div>
+  </section>
+
+  <!-- TYPOGRAPHY -->
+  <section id="type">
+    <div class="sec-label">Typography</div>
+    <h2>Inter for the interface, mono for the numbers</h2>
+    <p class="sec-intro">A humanist grotesque plus a monospace, a real contrast axis. The count reads in mono because the number carries the weight (Voice Principle 1). The theme is set as an editorial finding in normal case, never a colored label chip (A5).</p>
+    <div class="specimen">
+      <div class="type-row"><div class="type-spec">Inter · display<br>590 · -0.02em</div><div class="disp">Onboarding is confusing</div></div>
+      <div class="type-row"><div class="type-spec">Inter · body<br>400 / 500</div><div><div class="alpha">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz</div></div></div>
+      <div class="type-row"><div class="type-spec">IBM Plex Mono<br>counts, citations</div><div class="monos">n=42&nbsp;&nbsp;n=6&nbsp;&nbsp;0123456789&nbsp;&nbsp;[1] [2]</div></div>
+      <div class="type-row"><div class="type-spec">Type scale</div><div><span style="font-size:30px;font-weight:590">30</span> &nbsp; <span style="font-size:24px;font-weight:590">24</span> &nbsp; <span style="font-size:20px;font-weight:590">20</span> &nbsp; <span style="font-size:17px;font-weight:500">17</span> &nbsp; <span style="font-size:14px">14</span> &nbsp; <span style="font-size:12.5px;color:var(--ash)">12.5</span> &nbsp; <span class="nX">11 mono</span></div></div>
+    </div>
+  </section>
+
+  <!-- FORM -->
+  <section id="form">
+    <div class="sec-label">Form</div>
+    <h2>Radius, spacing, elevation</h2>
+    <p class="sec-intro">Compact and consistent. 6px on cards, buttons, and inputs; 4px on badges. Depth is one or two tonal steps plus a hairline, not a diffuse shadow (A1).</p>
+    <div class="spec-grid">
+      <div class="spec-cell"><div class="demo"><div class="rk" style="width:44px;height:44px;border-radius:6px"></div></div><div class="k">6px</div><div class="v">card / button / input</div></div>
+      <div class="spec-cell"><div class="demo"><div class="rk" style="width:44px;height:24px;border-radius:4px"></div></div><div class="k">4px</div><div class="v">badge / tag</div></div>
+      <div class="spec-cell"><div class="demo"><div class="rk" style="width:60px;height:44px;border-radius:6px;box-shadow:0 2px 4px rgba(0,0,0,0.4)"></div></div><div class="k">shadow</div><div class="v">0 2px 4px /.4, contained</div></div>
+      <div class="spec-cell"><div class="demo"><div style="display:flex;gap:8px"><span style="width:8px;height:24px;background:var(--elevated);border:1px solid var(--line)"></span><span style="width:8px;height:24px;background:var(--elevated);border:1px solid var(--line)"></span></div></div><div class="k">8px</div><div class="v">element gap</div></div>
+      <div class="spec-cell"><div class="demo"><div style="width:60px;height:44px;background:var(--surface);border:1px solid var(--line);border-radius:6px"></div></div><div class="k">1px</div><div class="v">hairline border, Line</div></div>
+      <div class="spec-cell"><div class="demo"><div style="width:44px;height:44px;background:var(--canvas);border:1px solid var(--line);border-radius:6px;position:relative"><div style="position:absolute;inset:8px;background:var(--surface);border-radius:3px"></div></div></div><div class="k">16px</div><div class="v">card padding</div></div>
+    </div>
+  </section>
+
+  <!-- IMAGERY -->
+  <section id="imagery">
+    <div class="sec-label">Imagery</div>
+    <h2>Data first, not photo first</h2>
+    <p class="sec-intro">Sift is a data tool, not a photo product. The app surfaces carry no decorative photography; the evidence is text, and the calm comes from hierarchy and whitespace (Design Principle 2, A1). Photography appears in one place only: the marketing Home hero (0.0), a single restrained real photograph, never a grey placeholder and never on an app screen.</p>
+    <div class="img-note">
+      <div>
+        <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=560&q=80&auto=format&fit=crop" alt="A calm office workspace, the one context where Sift uses photography (marketing Home hero)">
+        <div class="img-cap">Home hero only. Unsplash: photo-1497215728101-856f4ea42174</div>
+      </div>
+      <div>
+        <p style="color:var(--ash);font-size:14px;line-height:1.6">Rule for the app: no stock imagery, no illustration, no avatars of invented people (feedback authors are PII-scrubbed, so a face would be a lie). Where a source needs a face, it is a channel token (Intercom, Zendesk, CSV), monochrome. The photograph on the left is documented here for reproducibility and belongs to the marketing surface, outside the two app screens this stage colors.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ICONS -->
+  <section id="icons">
+    <div class="sec-label">Icons</div>
+    <h2>Solar Linear, monochrome</h2>
+    <p class="sec-intro">One line weight, inline SVG (not a CDN script), Porcelain or Ash by default, Cyan only on the active or selected icon (A1). Coverage: the nav, metadata, badges, buttons, and states.</p>
+    <div class="icon-grid">
+      <div class="icon-cell"><svg class="ic"><use href="#i-source"/></svg><span class="cap">source</span></div>
+      <div class="icon-cell"><svg class="ic"><use href="#i-signal"/></svg><span class="cap">confidence</span></div>
+      <div class="icon-cell"><svg class="ic"><use href="#i-evidence"/></svg><span class="cap">evidence</span></div>
+      <div class="icon-cell"><svg class="ic"><use href="#i-cite"/></svg><span class="cap">citation</span></div>
+      <div class="icon-cell"><svg class="ic"><use href="#i-brief"/></svg><span class="cap">brief</span></div>
+      <div class="icon-cell"><svg class="ic"><use href="#i-filter"/></svg><span class="cap">filter</span></div>
+      <div class="icon-cell"><svg class="ic"><use href="#i-priority"/></svg><span class="cap">priority</span></div>
+      <div class="icon-cell"><svg class="ic"><use href="#i-share"/></svg><span class="cap">share</span></div>
+      <div class="icon-cell"><svg class="ic" style="color:var(--cyan)"><use href="#i-chev"/></svg><span class="cap">drill (active)</span></div>
+      <div class="icon-cell"><svg class="ic"><use href="#i-check"/></svg><span class="cap">select</span></div>
+    </div>
+  </section>
+
+  <!-- COMPONENTS -->
+  <section id="components">
+    <div class="sec-label">Components</div>
+    <h2>Three live components</h2>
+    <p class="sec-intro">The product's real controls, built from the language above. Each carries its attribute.</p>
+    <div class="comp-grid">
+      <div class="comp">
+        <h3>Action button <span class="attr">A1</span></h3>
+        <div class="demo">
+          <a class="btn" href="#components"><svg class="ic" width="15" height="15"><use href="#i-evidence"/></svg> Build brief</a>
+          <button class="btn-ghost"><svg class="ic" width="15" height="15"><use href="#i-flag"/></svg> Set priority</button>
+          <span style="font-size:11.5px;color:var(--ash)">One primary (Cyan) per view; secondary is ghost.</span>
+        </div>
+      </div>
+      <div class="comp">
+        <h3>Theme card + confidence <span class="attr">A2 · A3</span></h3>
+        <div class="demo">
+          <div class="tcard">
+            <div class="t">Onboarding is confusing</div>
+            <div class="m">CSV, Intercom · 2 days ago</div>
+            <div class="bar"><span style="width:100%"></span></div>
+            <div class="conf"><span class="nX">n=42</span></div>
+          </div>
+          <div class="tcard">
+            <div class="t">Dark mode requested</div>
+            <div class="m">CSV · 12 days ago</div>
+            <div class="bar"><span style="width:9%"></span></div>
+            <div class="conf"><span class="nX">n=4</span> <span class="low">low signal</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="comp">
+        <h3>Form field <span class="attr">Voice P4</span></h3>
+        <div class="demo">
+          <div class="field">
+            <label for="we">Work email</label>
+            <input id="we" type="email" placeholder="alex@northwind.io">
+            <div class="hint">Enter a work email.</div>
+          </div>
+          <a class="btn" href="#components"><svg class="ic" width="15" height="15"><use href="#i-check"/></svg> Create workspace</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTRAST -->
+  <section id="contrast">
+    <div class="sec-label">Contrast</div>
+    <h2>WCAG AA, verified</h2>
+    <p class="sec-intro">Every text pair passes AA. Ash is the dimmest tone used for text; nothing darker carries text. Any new pair introduced later is measured before it ships.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Foreground</th><th>Background</th><th>Ratio</th><th>Use</th></tr></thead>
+        <tbody>
+          <tr><td><span class="dot" style="background:#EAEEF2"></span> <span class="mono">Porcelain</span></td><td><span class="dot" style="background:#0B0E11"></span> <span class="mono">Canvas</span></td><td class="pass">~16:1 AA</td><td>Primary text</td></tr>
+          <tr><td><span class="dot" style="background:#868F99"></span> <span class="mono">Ash</span></td><td><span class="dot" style="background:#0B0E11"></span> <span class="mono">Canvas</span></td><td class="pass">~5.5:1 AA</td><td>Secondary text</td></tr>
+          <tr><td><span class="dot" style="background:#33C4CC"></span> <span class="mono">Cyan</span></td><td><span class="dot" style="background:#0B0E11"></span> <span class="mono">Canvas</span></td><td class="pass">~9:1 AA</td><td>Accent text, icons</td></tr>
+          <tr><td><span class="dot" style="background:#0B0E11"></span> <span class="mono">Canvas</span></td><td><span class="dot" style="background:#33C4CC"></span> <span class="mono">Cyan fill</span></td><td class="pass">~9.5:1 AA</td><td>Text on primary button</td></tr>
+          <tr><td><span class="dot" style="background:#D9A441"></span> <span class="mono">Amber</span></td><td><span class="dot" style="background:#0B0E11"></span> <span class="mono">Canvas</span></td><td class="pass">~8.5:1 AA</td><td>Low-signal tag</td></tr>
+          <tr><td><span class="dot" style="background:#E5484D"></span> <span class="mono">Red</span></td><td><span class="dot" style="background:#0B0E11"></span> <span class="mono">Canvas</span></td><td class="pass">~5:1 AA</td><td>Error text</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>
+    Brand from <code>DESIGN-artifacts.md</code>, attributes from <code>design/concept/docs/concept.md</code>, canonical data from <code>wireframes/synthesis.html</code>. The two app screens in color come next (Steps 6 and 7) in <code>design/</code>; the full product in color is Stage 07.
+  </footer>
+
+  </div>
+</div>
+
+
+<script>
+window.NAV_BASE = '../../';
+window.NAV_SECTIONS = [{"id": "palette", "label": "Palette"}, {"id": "type", "label": "Typography"}, {"id": "form", "label": "Form"}, {"id": "imagery", "label": "Imagery"}, {"id": "icons", "label": "Icons"}, {"id": "components", "label": "Components"}];
+</script>
+<script src="../../_nav.js"></script>
+</body>
+</html>

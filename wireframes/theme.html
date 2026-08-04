@@ -10,12 +10,23 @@
 <!--
   Wireframe 4.0 Theme detail - strong theme (success). Owner of the canonical evidence snippet.
   The middle of the trust chain: Synthesis > Theme > Evidence. Each snippet drills to 5.0.
+
+  Composition from ia/docs/blocks.md, Type 5 (record detail with evidence):
+    2 breadcrumb · 4 theme header with confidence and one primary action
+    5 evidence denominator broken down by source
+    6 summary with an inline citation on EVERY claim, naming the source and the count
+    7 why these items cluster, one line, including what was left out
+    8 group by source with counts, sort by recency
+    9 evidence snippets, numbered so the tie runs both ways
+    10 load more with the remainder
+  Block 3 (superseded notice) is not present here: this theme resolves. It is rendered on the
+  variants that need it.
+
   Grey, responsive (narrow the window to see mobile). Text from ia/docs/pages/theme.md.
-  Canonical theme: T1 "Onboarding is confusing", n=42, CSV + Intercom.
+  Canonical theme: T1 "Onboarding is confusing", n=42, Intercom 30 + CSV 12.
 -->
 <body>
 
-<div id="wf-topbar" data-node="4.0" data-state="base"></div>
 
 <div class="wf-shell">
   <div id="wf-rail" data-node="4.0" data-state="base"></div>
@@ -28,59 +39,100 @@
 
         <nav class="wf-breadcrumb" aria-label="Breadcrumb"><a href="synthesis.html">Synthesis</a> &rsaquo; <span>Onboarding is confusing</span></nav>
 
-        <main class="wf-main">
-          <header class="wf-main-head">
-            <h1 class="wf-h1">Onboarding is confusing</h1>
-            <div class="wf-theme-headmeta">
-              <span class="wf-conf"><span class="wf-conf-n">n=42</span></span>
-              <span>latest feedback 2 days ago</span>
-              <span>CSV, Intercom</span>
+        <header class="wf-screenhead">
+            <div class="wf-screenhead-row">
+              <div class="wf-head-text">
+                <h1 class="wf-h1">Onboarding is confusing</h1>
+                <div class="wf-theme-headmeta">
+                  <span class="wf-conf"><span class="wf-conf-n">n=42</span></span>
+                  <span>latest feedback 2 days ago</span>
+                  <span>rank 1 of 12 by signal</span>
+                </div>
+              </div>
+              <a class="wf-btn wf-head-action" href="build-brief.html">Add to brief</a>
             </div>
-            <p class="wf-sub">New users cannot tell what to do first. The setup steps, the empty first-run screen, and the initial import are the most cited points of friction.</p>
-            <div class="wf-theme-headactions">
-              <a class="wf-btn" href="build-brief.html">Add to brief</a>
-            </div>
-          </header>
 
-          <h2 class="wf-evi-title">Evidence · 42 items</h2>
+            <p class="wf-scope">
+              <b>42</b> items from 2 sources: <b>Intercom 30</b>, <b>CSV 12</b>.
+              First seen 5 weeks ago, latest 2 days ago.
+            </p>
+
+            <p class="wf-summary">
+              New users cannot tell what to do first
+              <span class="wf-cited"><a class="wf-citechip" href="#e1">Intercom +11</a>,</span> and the empty first-run screen is
+              the most cited single point of friction
+              <span class="wf-cited"><a class="wf-citechip" href="#e1">Intercom +8</a>.</span>
+              A second group describes the same problem from the import side: setup does not make it
+              clear that feedback has to be brought in before anything appears
+              <span class="wf-cited"><a class="wf-citechip" href="#e2">CSV +6</a>.</span>
+              Several accounts abandoned setup entirely
+              <span class="wf-cited"><a class="wf-citechip" href="#e5">Intercom +4</a>.</span>
+            </p>
+
+            <p class="wf-reason">
+              <b>Why these items are one theme:</b> all 42 describe not knowing the first action after
+              sign-up, across both sources and both segments. Items about pricing confusion during
+              sign-up were left out and sit under "Confusing billing and invoices" instead.
+            </p>
+        </header>
+
+        <div class="wf-toolbar">
+          <h2 class="wf-evi-title">Evidence &middot; 42 items</h2>
+          <div class="wf-evi-controls">
+            <button class="wf-chip is-on">Group by source</button>
+            <button class="wf-chip">Intercom <span class="wf-chip-count">30</span></button>
+            <button class="wf-chip">CSV <span class="wf-chip-count">12</span></button>
+          </div>
+          <span class="wf-sort">Sort: most recent</span>
+        </div>
+
+        <main class="wf-main wf-main--flush">
+
+          <div class="wf-evi-group">Intercom &middot; 30 items</div>
           <ul class="wf-list">
-            <li>
+            <li id="e1">
               <a class="wf-snippet" href="evidence.html">
                 <div class="wf-snippet-quote">"I signed up and just stared at an empty dashboard. No idea what to do first, or where my data was supposed to come from."</div>
-                <div class="wf-snippet-meta"><span class="wf-cite">1</span> Intercom · 2 days ago · Customer, mid-market</div>
-              </a>
-            </li>
-            <li>
-              <a class="wf-snippet" href="evidence.html">
-                <div class="wf-snippet-quote">"The setup skipped right past connecting a source, so I landed on a blank screen with nothing to look at."</div>
-                <div class="wf-snippet-meta"><span class="wf-cite">2</span> CSV import · 4 days ago · Support ticket</div>
+                <div class="wf-snippet-meta"><span class="wf-cite">1</span> Intercom &middot; 2 days ago &middot; Customer, mid-market</div>
               </a>
             </li>
             <li>
               <a class="wf-snippet" href="evidence.html">
                 <div class="wf-snippet-quote">"Took me three tries to understand I had to import feedback before anything would show up."</div>
-                <div class="wf-snippet-meta"><span class="wf-cite">3</span> Intercom · 5 days ago · Customer, SMB</div>
+                <div class="wf-snippet-meta"><span class="wf-cite">3</span> Intercom &middot; 5 days ago &middot; Customer, SMB</div>
               </a>
             </li>
-            <li>
-              <a class="wf-snippet" href="evidence.html">
-                <div class="wf-snippet-quote">"Onboarding assumed I already knew the product. A short 'do this first' would have saved me an hour."</div>
-                <div class="wf-snippet-meta"><span class="wf-cite">4</span> CSV import · 1 week ago · Survey response</div>
-              </a>
-            </li>
-            <li>
+            <li id="e5">
               <a class="wf-snippet" href="evidence.html">
                 <div class="wf-snippet-quote">"My team gave up during setup because the first-run screen was blank with no guidance."</div>
-                <div class="wf-snippet-meta"><span class="wf-cite">5</span> Intercom · 9 days ago · Customer, enterprise</div>
+                <div class="wf-snippet-meta"><span class="wf-cite">5</span> Intercom &middot; 9 days ago &middot; Customer, enterprise</div>
               </a>
             </li>
             <li>
               <a class="wf-snippet" href="evidence.html">
                 <div class="wf-snippet-quote">"Where do I even start? The empty state should just tell me to connect Intercom or upload a CSV."</div>
-                <div class="wf-snippet-meta"><span class="wf-cite">6</span> Intercom · 11 days ago · Customer, mid-market</div>
+                <div class="wf-snippet-meta"><span class="wf-cite">6</span> Intercom &middot; 11 days ago &middot; Customer, mid-market</div>
               </a>
             </li>
           </ul>
+
+          <div class="wf-evi-group">CSV &middot; 12 items</div>
+          <ul class="wf-list">
+            <li id="e2">
+              <a class="wf-snippet" href="evidence.html">
+                <div class="wf-snippet-quote">"The setup skipped right past connecting a source, so I landed on a blank screen with nothing to look at."</div>
+                <div class="wf-snippet-meta"><span class="wf-cite">2</span> CSV import &middot; 4 days ago &middot; Support ticket</div>
+              </a>
+            </li>
+            <li>
+              <a class="wf-snippet" href="evidence.html">
+                <div class="wf-snippet-quote">"Onboarding assumed I already knew the product. A short 'do this first' would have saved me an hour."</div>
+                <div class="wf-snippet-meta"><span class="wf-cite">4</span> CSV import &middot; 1 week ago &middot; Survey response</div>
+              </a>
+            </li>
+          </ul>
+
+          <button class="wf-loadmore">Load 36 more items</button>
         </main>
 
         <div data-wf="appfoot"></div>

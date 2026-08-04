@@ -12,10 +12,16 @@
   (Skeleton B): no app header or tabs, only the light Sift mark. In production this returns
   HTTP 503 with Retry-After so crawlers come back. A short message, an expected-back note,
   and a retry-later action. Text from ia/docs/pages/system.md (8.2).
+
+  Composition from ia/docs/blocks.md, Type 12 (system page, light pass):
+    2 a way out, and here it is the retry itself
+    4 503 with Retry-After, the correct status for planned downtime rather than a 200 page
+      that tells search engines the site is fine
+  ABSENT deliberately: apology copy and mascots (row 6), and the minimizer "just", which the
+  voice audit removed from this page by name.
 -->
 <body>
 
-<div id="wf-topbar" data-node="8.2" data-state="base"></div>
 
 <div class="wf-shell">
   <div id="wf-rail" data-node="8.2" data-state="base"></div>
@@ -36,7 +42,7 @@
             <div class="wf-state-d">Sift is briefly offline for planned maintenance. Your workspace and data are safe. We expect to be back shortly. Check back in a few minutes.</div>
             <div class="wf-notice">This is planned downtime. Nothing to do on your end, check back shortly.</div>
             <div class="wf-state-actions">
-              <a class="wf-btn--ghost" href="maintenance.html">Try again</a>
+              <a class="wf-btn wf-btn--ghost" href="maintenance.html">Try again</a>
             </div>
           </div>
         </main>

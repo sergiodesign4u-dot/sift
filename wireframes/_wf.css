@@ -3,17 +3,17 @@
 
    Each wireframe is a REAL, full, responsive screen: it fills the browser and collapses
    from desktop to mobile as the window narrows (via @container queries on the canvas).
-   It is not a gallery of framed mockups. Around the screen sits the prototype chrome:
-   a top bar with a back button to All screens, and a left rail listing every page so you
-   always know where you are.
+   It is not a gallery of framed mockups. Around the screen sits ONE piece of prototype
+   chrome: the stage panel, which carries the way back to the hub, the whole screen tree,
+   the states of the screen you are on, and the links out of the prototype.
 
    Two layers, on purpose:
-     1. Prototype chrome (top bar, page rail). Color (the accent) lives here only.
+     1. Prototype chrome (the stage panel). Color (the accent) lives here only.
      2. Product screen (the wireframe). Pure grey on the --w-* tokens, real proportions,
         semantic HTML. No brand, no hue, no icon art, no shadow. That is stages 06 to 08.
 
    It inherits the black-and-white tokens of the IA pages. It stays grey and is the
-   structural contract; stage 06 lays color on COPIES in ui-visual/, never on this file.
+   structural contract; stage 06 lays color on COPIES in design/, never on this file.
    No em dash anywhere in output files. */
 
 :root {
@@ -23,7 +23,6 @@
   --text: #e8e8ec; --text-2: #a0a0b0; --text-3: #66667a;
   --accent: #7c6af7; --accent-dim: #3a3470; --accent-glow: rgba(124,106,247,0.12);
   --radius: 8px; --radius-lg: 12px;
-  --topbar-h: 48px;
 
   /* Product screen, pure grey */
   --w-bg: #0e0e11;      /* screen background */
@@ -50,34 +49,40 @@ body {
 a { color: inherit; }
 
 /* ============================================================= *
- * 1. PROTOTYPE CHROME  (top bar + page rail, from _nav.js)      *
+ * 1. PROTOTYPE CHROME  (one stage panel, from _nav.js)          *
+ *                                                               *
+ * Four blocks top to bottom: header with the hub button, the     *
+ * stage badge and one subtitle line; the screen tree; the        *
+ * current node opened onto its states; cross-links out of the    *
+ * prototype. There is no thin state strip above the screen, and  *
+ * there is exactly one navigation: a top bar carrying the same   *
+ * states as the tree was two editions of one control.            *
  * ============================================================= */
 
-/* Top bar: back to All screens, current node and name, state switcher */
-.wf-topbar {
-  position: sticky; top: 0; z-index: 100; height: var(--topbar-h);
-  display: flex; align-items: center; gap: 12px; padding: 0 16px;
-  background: rgba(12,12,14,0.92); backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border-light);
+.wf-shell { display: flex; align-items: flex-start; min-height: 100vh; }
+
+.wf-panel {
+  width: 252px; flex: none; align-self: stretch;
+  border-right: 1px solid var(--border-light); background: var(--bg);
+  position: sticky; top: 0; height: 100vh; overflow: hidden;
+  display: flex; flex-direction: column;
 }
-.wf-back { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; color: var(--text-2); text-decoration: none; padding: 6px 11px; border: 1px solid var(--border-light); border-radius: 6px; white-space: nowrap; }
-.wf-back:hover { color: var(--text); background: var(--bg-3); }
-.wf-topbar-node { font-size: 11px; font-weight: 700; color: var(--accent); letter-spacing: 0.03em; }
-.wf-topbar-title { font-size: 13px; color: var(--text); font-weight: 600; }
-.wf-brandmark { font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: var(--text); text-transform: uppercase; text-decoration: none; }
-.wf-brandmark span { color: var(--accent); }
-.wf-states { display: flex; gap: 4px; flex-wrap: wrap; margin-left: auto; }
-.wf-state-chip { font-size: 11px; color: var(--text-3); text-decoration: none; padding: 4px 9px; border: 1px solid var(--border-light); border-radius: 20px; white-space: nowrap; }
-.wf-state-chip:hover { color: var(--text); background: var(--bg-3); }
-.wf-state-chip.is-current { color: var(--text); border-color: var(--accent-dim); background: var(--accent-glow); }
-.wf-topbar-link { font-size: 12px; color: var(--text-3); text-decoration: none; margin-left: auto; padding: 6px 10px; border-radius: 6px; }
-.wf-topbar-link:hover { color: var(--text); background: var(--bg-3); }
 
-/* Shell: rail + stage */
-.wf-shell { display: flex; align-items: flex-start; min-height: calc(100vh - var(--topbar-h)); }
+/* 1. header */
+.wf-panel-head { flex: none; padding: 14px 12px 12px; border-bottom: 1px solid var(--border-light); }
+.wf-panel-hub { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; color: var(--text-2); text-decoration: none; padding: 6px 11px; border: 1px solid var(--border-light); border-radius: 6px; }
+.wf-panel-hub:hover { color: var(--text); background: var(--bg-3); }
+.wf-panel-badge { display: block; margin-top: 12px; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+.wf-panel-sub { margin-top: 5px; font-size: 12.5px; color: var(--text); font-weight: 600; line-height: 1.45; }
+.wf-panel-node { font-size: 10px; font-weight: 700; color: var(--text-3); margin-right: 4px; }
+.wf-panel-state { display: block; font-size: 11px; font-weight: 500; color: var(--text-3); margin-top: 2px; }
 
-/* Page rail: every screen, grouped by cluster, current highlighted */
-.wf-rail { width: 244px; flex: none; align-self: stretch; border-right: 1px solid var(--border-light); background: var(--bg); position: sticky; top: var(--topbar-h); height: calc(100vh - var(--topbar-h)); overflow-y: auto; padding: 14px 10px 32px; }
+/* 2 + 3. the tree, current node opened onto its states */
+/* the tree is the only part that scrolls, so the cross-links stay reachable at the
+   bottom of the panel instead of being pushed off the screen by a long tree */
+.wf-panel-tree { flex: 1; min-height: 0; overflow-y: auto; }
+.wf-panel-toggle { display: none; }
+.wf-tree { padding: 10px 8px 20px; }
 .wf-rail-group { margin-bottom: 8px; }
 .wf-rail-title { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); padding: 8px 8px 4px; }
 .wf-rail-link { display: flex; align-items: baseline; gap: 8px; font-size: 12.5px; color: var(--text-2); text-decoration: none; padding: 5px 8px; border-radius: 5px; border-left: 2px solid transparent; }
@@ -86,31 +91,60 @@ a.wf-rail-link:hover { color: var(--text); background: var(--bg-3); }
 .wf-rail-link.is-spec { color: var(--text-3); opacity: 0.5; }
 .wf-rail-node { font-size: 10px; color: var(--text-3); font-weight: 700; min-width: 26px; flex: none; }
 .wf-rail-states { list-style: none; margin: 1px 0 6px; padding: 0; }
-.wf-rail-state { display: block; font-size: 11.5px; color: var(--text-3); text-decoration: none; padding: 3px 8px 3px 36px; border-radius: 4px; border-left: 2px solid transparent; }
+.wf-rail-state { display: block; font-size: 11.5px; color: var(--text-3); text-decoration: none; padding: 4px 8px 4px 36px; border-radius: 4px; border-left: 2px solid transparent; }
 .wf-rail-state:hover { color: var(--text); background: var(--bg-3); }
-.wf-rail-state.is-current { color: var(--text); border-left-color: var(--accent-dim); }
+.wf-rail-state.is-current { color: var(--text); border-left-color: var(--accent-dim); background: var(--accent-glow); }
+
+/* 4. cross-links out of the artifact */
+.wf-panel-links { flex: none; border-top: 1px solid var(--border-light); padding: 12px; display: flex; flex-direction: column; gap: 2px; }
+.wf-panel-links-t { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); margin-bottom: 4px; }
+.wf-panel-links a { font-size: 11.5px; color: var(--text-2); text-decoration: none; padding: 4px 0; }
+.wf-panel-links a:hover { color: var(--text); }
 
 /* Stage: the canvas is the container the screen responds to */
 .wf-stage { flex: 1; min-width: 0; display: flex; }
 .wf-canvas { flex: 1; min-width: 0; container-type: inline-size; background: var(--w-bg); }
 
-/* Below 900px the rail steps aside so the screen can show its true narrow layout. */
-@media (max-width: 900px) { .wf-rail { display: none; } }
+/* Below 900px there is no room for a column, so the panel becomes its own header above the
+   screen and the tree folds behind a disclosure. It is still the one navigation, in a second
+   layout; it never becomes a strip that duplicates what the tree already says. */
+@media (max-width: 900px) {
+  /* align-items must go back to stretch here: the shell is a COLUMN below this width, so
+     flex-start would size the panel and the stage to their content instead of the viewport,
+     and a centred state block would hang off the left edge. */
+  .wf-shell { flex-direction: column; align-items: stretch; }
+  .wf-panel { width: 100%; height: auto; overflow: visible; position: static; border-right: none; border-bottom: 1px solid var(--border-light); }
+  .wf-panel-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 10px 12px; border-bottom: none; }
+  .wf-panel-badge { margin-top: 0; }
+  .wf-panel-sub { margin-top: 0; width: 100%; }
+  .wf-panel-state { display: inline; margin-left: 6px; }
+  .wf-panel-toggle { display: block; cursor: pointer; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 700; color: var(--text-3); padding: 8px 12px; border-top: 1px solid var(--border-light); }
+  .wf-panel-toggle:hover { color: var(--text); }
+  .wf-panel-tree { flex: none; overflow: visible; }
+  .wf-tree { max-height: 60vh; overflow-y: auto; }
+  .wf-panel-links { flex-direction: row; flex-wrap: wrap; gap: 12px; }
+  .wf-panel-links-t { width: 100%; margin-bottom: 0; }
+  /* the way out of the prototype travels with the tree here: closed, the chrome is a header
+     and the screen starts immediately; open, everything the panel offers is in one place. */
+  .wf-panel-tree:not([open]) ~ .wf-panel-links { display: none; }
+}
 
 /* ============================================================= *
  * 2. PRODUCT SCREEN PRIMITIVES  (pure grey, real proportions)   *
  * ============================================================= */
 
-.wf-app { display: flex; flex-direction: column; min-height: calc(100vh - var(--topbar-h)); color: var(--w-ink); background: var(--w-bg); }
+.wf-app { display: flex; flex-direction: column; min-height: 100vh; color: var(--w-ink); background: var(--w-bg); }
 
 /* App header (canonical global 0.1) */
 .wf-appbar { display: flex; align-items: center; gap: 10px; padding: 12px 16px; background: var(--w-bar); border-bottom: 1px solid var(--w-line); }
 .wf-brand { font-weight: 700; letter-spacing: 0.06em; color: var(--w-ink); font-size: 13px; }
 .wf-navtabs { display: none; gap: 4px; margin-left: 8px; }
-.wf-tab { font-size: 12px; color: var(--w-ink-2); padding: 7px 10px; border-radius: 5px; text-decoration: none; }
+.wf-tab { display: inline-flex; align-items: center; min-height: 44px; font-size: 12px; color: var(--w-ink-2); padding: 0 10px; border-radius: 5px; text-decoration: none; }
 .wf-tab--active { color: var(--w-ink); font-weight: 650; box-shadow: inset 0 -2px 0 var(--w-ink); }
 .wf-spacer { flex: 1; }
-.wf-avatar { width: 26px; height: 26px; border-radius: 50%; background: var(--w-fill); border: 1px solid var(--w-line-2); }
+/* The avatar reads at 26px and is hit at 44: the ring is the visual, the ::after is the target */
+.wf-avatar { position: relative; width: 26px; height: 26px; border-radius: 50%; background: var(--w-fill); border: 1px solid var(--w-line-2); }
+.wf-avatar::after { content: ""; position: absolute; inset: -9px; border-radius: 50%; }
 
 /* Bottom tabs (mobile nav, canonical global 0.1) */
 .wf-bottomtabs { display: none; border-top: 1px solid var(--w-line); background: var(--w-bar); margin-top: auto; position: sticky; bottom: 0; }
@@ -122,14 +156,17 @@ a.wf-rail-link:hover { color: var(--text); background: var(--bg-3); }
 
 /* Main content region */
 .wf-main { padding: 16px; flex: 1; width: 100%; }
-.wf-main:has(> .wf-state) { display: flex; align-items: center; justify-content: center; }
+/* A state block that IS the screen is centred in the canvas. :only-child is load-bearing:
+   once an empty state became a group inside a populated screen (3.4, 6.5), a main holding a
+   state plus its neighbours would have laid all of them out in a flex ROW. */
+.wf-main:has(> .wf-state:only-child) { display: flex; align-items: center; justify-content: center; }
 .wf-breadcrumb { font-size: 11px; color: var(--w-ink-2); padding: 10px 16px; border-bottom: 1px solid var(--w-line); }
 .wf-breadcrumb a { text-decoration: none; color: var(--w-ink-2); }
 .wf-breadcrumb a:hover { color: var(--w-ink); }
 
 /* Toolbar (holds the canonical filter / sort control) */
 .wf-toolbar { display: flex; gap: 8px; padding: 12px 16px; border-bottom: 1px solid var(--w-line); flex-wrap: wrap; align-items: center; background: #101014; }
-.wf-chip { font-size: 11px; color: var(--w-ink-2); border: 1px solid var(--w-line-2); border-radius: 20px; padding: 6px 12px; background: none; cursor: pointer; }
+.wf-chip { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-size: 11px; color: var(--w-ink-2); border: 1px solid var(--w-line-2); border-radius: 22px; padding: 0 14px; background: none; cursor: pointer; }
 .wf-sort { margin-left: auto; font-size: 11px; color: var(--w-ink-2); }
 
 /* Generic list + card */
@@ -138,14 +175,16 @@ a.wf-rail-link:hover { color: var(--text); background: var(--bg-3); }
 .wf-card:hover { background: var(--w-surface); }
 
 /* Buttons */
-.wf-btn { display: inline-block; font-size: 12px; color: var(--w-bg); background: var(--w-ink); border: none; border-radius: 5px; padding: 9px 14px; font-weight: 650; text-decoration: none; cursor: pointer; }
+/* Targets: 44px is the floor for anything a thumb aims at. The exceptions are named in
+   conventions.md section 5 and they are exceptions, not an average. */
+.wf-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; font-size: 12px; color: var(--w-bg); background: var(--w-ink); border: none; border-radius: 5px; padding: 0 16px; font-weight: 650; text-decoration: none; cursor: pointer; }
 .wf-btn--ghost { color: var(--w-ink); background: none; border: 1px solid var(--w-line-2); }
 .wf-actionbar { padding: 12px 16px; display: flex; gap: 8px; align-items: center; justify-content: flex-end; border-top: 1px solid var(--w-line); }
 
 /* Form fields */
 .wf-field { display: block; margin-bottom: 12px; }
 .wf-label { display: block; font-size: 11px; color: var(--w-ink-2); margin-bottom: 5px; }
-.wf-input { width: 100%; background: var(--w-surface); border: 1px solid var(--w-line-2); border-radius: 6px; padding: 10px 12px; color: var(--w-ink); font-size: 13px; font-family: inherit; }
+.wf-input { width: 100%; min-height: 44px; background: var(--w-surface); border: 1px solid var(--w-line-2); border-radius: 6px; padding: 10px 12px; color: var(--w-ink); font-size: 13px; font-family: inherit; }
 
 /* Skeleton (loading state) */
 .wf-skelcard { padding: 15px 16px; border-bottom: 1px solid var(--w-line); }
@@ -177,15 +216,55 @@ a.wf-rail-link:hover { color: var(--text); background: var(--bg-3); }
 /* Filter / sort control: full on desktop, compact on mobile (toggled by canvas width) */
 .wf-filter-full { display: none; flex: 1; gap: 8px; align-items: center; flex-wrap: wrap; }
 .wf-filter-compact { display: flex; flex: 1; gap: 8px; align-items: center; }
-.wf-check { width: 16px; height: 16px; flex: none; accent-color: #6b6b78; }
+/* The native checkbox and the inline citation chip are the two named exceptions to the 44px
+   floor (conventions.md section 5): a 44px checkbox would double the height of every row in a
+   ranked list, and an inline link inside running text is exempt for the same reason WCAG
+   exempts it. Both sit at the 24px AA floor instead. */
+.wf-check { width: 24px; height: 24px; flex: none; accent-color: #6b6b78; }
+
+/* Screen head (owner 2.0): H1, the line that names the next move, and the ONE primary
+   action at rest. The action hides while the selection bar is up, so the screen never
+   shows two primary actions. */
+.wf-screenhead { padding: 16px; border-bottom: 1px solid var(--w-line); }
+.wf-screenhead-row { display: flex; align-items: flex-start; gap: 12px; flex-wrap: wrap; }
+.wf-head-text { flex: 1; min-width: 0; }
+.wf-head-action { flex: none; }
+
+/* Scope line (owner 2.0, referenced by 3.0 and 6.1): the denominator of the ranking.
+   A ranked list with no denominator cannot be checked. It restates itself under a filter. */
+.wf-scope { font-size: 11.5px; color: var(--w-ink-2); margin-top: 10px; line-height: 1.55; }
+.wf-scope b { color: var(--w-ink); font-weight: 650; font-variant-numeric: tabular-nums; }
+
+/* Filter facets carry counts; an active facet reads its value and can be cleared */
+.wf-chip-count { color: var(--w-ink-3); font-variant-numeric: tabular-nums; }
+.wf-chip.is-on { color: var(--w-ink); border-color: var(--w-ink-3); }
+.wf-clear { display: inline-flex; align-items: center; min-height: 44px; font-size: 11px; color: var(--w-ink-2); background: none; border: none; text-decoration: underline; cursor: pointer; padding: 0 4px; font-family: inherit; }
+.wf-clear:hover { color: var(--w-ink); }
+
+/* Load more keeps the remainder visible instead of a bare "more" */
+.wf-loadmore { display: block; width: 100%; min-height: 44px; text-align: center; padding: 13px 16px; font-size: 12px; color: var(--w-ink-2); background: none; border: none; border-bottom: 1px solid var(--w-line); cursor: pointer; font-family: inherit; }
+.wf-loadmore:hover { color: var(--w-ink); background: var(--w-surface); }
+
+/* Selection bar: present only while at least one theme is selected, and while it is up the
+   head action is gone, so the screen never carries two primary actions. Pure CSS on :has(),
+   so the prototype really demonstrates both states on a click. On mobile it sits in flow
+   above the bottom tabs. */
+.wf-selbar { display: none; align-items: center; gap: 8px; flex-wrap: wrap; padding: 11px 16px; border-top: 1px solid var(--w-line-2); background: var(--w-surface); }
+.wf-selbar-note { font-size: 11.5px; color: var(--w-ink-2); margin-right: auto; }
+.wf-app:has(.wf-check:checked) .wf-selbar { display: flex; }
+/* On the composer the bar is always present: there is nothing to select, the artifact IS the selection. */
+.wf-selbar--static { display: flex; }
+.wf-app:has(.wf-check:checked) .wf-head-action { display: none; }
 
 /* Theme card */
-.wf-theme { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-bottom: 1px solid var(--w-line); }
+.wf-theme { display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px; border-bottom: 1px solid var(--w-line); }
+.wf-rank { font-size: 11px; font-weight: 700; color: var(--w-ink-3); font-variant-numeric: tabular-nums; min-width: 18px; flex: none; padding-top: 2px; }
+.wf-theme-quote { display: block; font-size: 12px; color: var(--w-ink-2); line-height: 1.5; margin-top: 6px; border-left: 2px solid var(--w-line-2); padding-left: 10px; max-width: 78ch; }
+.wf-theme-prov { display: block; font-size: 11px; color: var(--w-ink-3); margin-top: 6px; }
 .wf-theme:hover { background: var(--w-surface); }
 .wf-theme-main { flex: 1; min-width: 0; text-decoration: none; color: inherit; display: block; }
 .wf-theme-label { font-size: 14px; color: var(--w-ink); font-weight: 600; display: block; }
-.wf-theme-meta { font-size: 11px; color: var(--w-ink-2); margin-top: 3px; display: block; }
-.wf-theme-drill { color: var(--w-ink-3); font-size: 18px; text-decoration: none; flex: none; padding: 0 2px; }
+.wf-theme-drill { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; color: var(--w-ink-3); font-size: 18px; text-decoration: none; flex: none; }
 .wf-theme-drill:hover { color: var(--w-ink); }
 
 /* Confidence indicator (D2 mandatory): n=X count + low-signal badge. Not color-only. */
@@ -196,7 +275,7 @@ a.wf-rail-link:hover { color: var(--text); background: var(--bg-3); }
 /* Evidence snippet (owned by 4.0, referenced by 5.0, 6.4) */
 .wf-snippet { padding: 14px 16px; border-bottom: 1px solid var(--w-line); text-decoration: none; color: inherit; display: block; }
 .wf-snippet:hover { background: var(--w-surface); }
-.wf-snippet-quote { font-size: 13px; color: var(--w-ink); line-height: 1.55; }
+.wf-snippet-quote { font-size: 13px; color: var(--w-ink); line-height: 1.55; max-width: 92ch; }
 .wf-snippet-meta { font-size: 11px; color: var(--w-ink-2); margin-top: 6px; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
 .wf-cite { font-size: 10px; color: var(--w-ink-2); border: 1px solid var(--w-line-2); border-radius: 3px; padding: 1px 5px; font-variant-numeric: tabular-nums; }
 
@@ -205,7 +284,25 @@ a.wf-rail-link:hover { color: var(--text); background: var(--bg-3); }
 /* Theme detail header + evidence list heading (compose with the evidence snippet above) */
 .wf-theme-headmeta { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; font-size: 12px; color: var(--w-ink-2); margin: 8px 0 10px; }
 .wf-theme-headactions { margin-bottom: 4px; }
-.wf-evi-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--w-ink-2); margin: 16px 0 2px; padding-top: 14px; border-top: 1px solid var(--w-line); }
+.wf-evi-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--w-ink-2); }
+
+/* Theme detail (4.0): the summary carries a citation on every claim, and the citation names
+   the SOURCE and how many items stand behind it, so diversity is legible without a click.
+   The chip is a real link into the evidence list, and the same number ties back from the item. */
+.wf-citechip { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; color: var(--w-ink-2); border: 1px solid var(--w-line-2); border-radius: 3px; padding: 1px 5px; text-decoration: none; white-space: nowrap; vertical-align: baseline; font-variant-numeric: tabular-nums; }
+.wf-citechip:hover { color: var(--w-ink); background: var(--w-surface); }
+/* A citation chip is an atomic inline, so the line can break between it and the sentence's
+   full stop, leaving a line that opens with a period. Chip and punctuation travel together. */
+.wf-cited { white-space: nowrap; }
+.wf-summary { font-size: 13px; color: var(--w-ink); line-height: 1.75; margin: 10px 0 0; max-width: 92ch; }
+
+/* Why these items cluster: one line, so the clustering is explained and not asserted */
+.wf-reason { font-size: 12px; color: var(--w-ink-2); line-height: 1.6; border-left: 2px solid var(--w-line-2); padding-left: 12px; margin: 14px 0 0; max-width: 92ch; }
+.wf-reason b { color: var(--w-ink); font-weight: 600; }
+
+/* Evidence list controls: group by source with counts, sort by recency */
+.wf-evi-controls { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.wf-evi-group { padding: 14px 16px 6px; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--w-ink-3); }
 
 /* Evidence source (5.0): the expanded, in-context verbatim + provenance */
 .wf-raw-meta { font-size: 11px; color: var(--w-ink-2); margin-bottom: 10px; display: flex; gap: 8px; flex-wrap: wrap; }
@@ -215,30 +312,82 @@ a.wf-rail-link:hover { color: var(--text); background: var(--bg-3); }
 .wf-prov-list b { color: var(--w-ink); font-weight: 600; }
 .wf-prov-list a { color: var(--w-ink); }
 
-/* Build brief (6.1): recommended-priority list */
-.wf-prio { list-style: none; margin: 4px 0 14px; }
-.wf-prio li { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--w-line); font-size: 13px; color: var(--w-ink); }
-.wf-prio-n { font-size: 11px; font-weight: 700; color: var(--w-ink-2); min-width: 20px; }
 .wf-prio .wf-conf { margin-left: auto; }
 textarea.wf-input { resize: vertical; line-height: 1.5; }
 
+/* Artifact composer (owner 6.1). The brief is built under time pressure before a meeting,
+   so the steps left are visible, and the ORDER of the rows is the recommendation itself. */
+.wf-steps { display: flex; align-items: center; gap: 8px; padding: 10px 16px; border-bottom: 1px solid var(--w-line); background: #101014; font-size: 11px; color: var(--w-ink-3); flex-wrap: wrap; }
+.wf-step { display: inline-flex; align-items: center; gap: 6px; }
+.wf-step-n { display: inline-flex; align-items: center; justify-content: center; width: 17px; height: 17px; border-radius: 50%; border: 1px solid var(--w-line-2); font-size: 9px; font-variant-numeric: tabular-nums; flex: none; }
+.wf-step.is-current { color: var(--w-ink); font-weight: 650; }
+.wf-step.is-current .wf-step-n { border-color: var(--w-ink); color: var(--w-ink); }
+
+/* Title the PM will look for later in 6.0, plus a marker saying nothing has been shared yet */
+.wf-titlerow { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.wf-titleinput { flex: 1; min-width: 180px; min-height: 44px; background: none; border: none; border-bottom: 1px dashed var(--w-line-2); color: var(--w-ink); font-size: 19px; font-weight: 700; font-family: inherit; padding: 2px 0 5px; letter-spacing: -0.01em; }
+.wf-vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.wf-draft { font-size: 10px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--w-ink-2); border: 1px solid var(--w-line-2); border-radius: 3px; padding: 2px 6px; flex: none; }
+
+/* Brief row: a DIFFERENT component from the theme card, because the zones differ (drag and
+   remove appear, the quote does not). Same content, different anatomy, so not a variant. */
+.wf-briefrow { display: flex; align-items: center; gap: 12px; padding: 13px 16px; border-bottom: 1px solid var(--w-line); }
+.wf-briefrow-main { flex: 1; min-width: 0; }
+.wf-briefrow-label { font-size: 13.5px; color: var(--w-ink); font-weight: 600; display: block; }
+.wf-briefrow-meta { font-size: 11px; color: var(--w-ink-2); margin-top: 2px; display: block; }
+.wf-drag { color: var(--w-ink-3); font-size: 13px; flex: none; cursor: grab; line-height: 1; }
+.wf-remove { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; background: none; border: none; color: var(--w-ink-3); font-size: 15px; cursor: pointer; flex: none; padding: 0; font-family: inherit; line-height: 1; }
+.wf-remove:hover { color: var(--w-ink); }
+
+/* A padded block inside a flush main */
+.wf-block { padding: 16px; border-bottom: 1px solid var(--w-line); }
+
 /* Share-link dialog (6.3) */
-.wf-main:has(> .wf-dialog) { display: flex; align-items: center; justify-content: center; }
+.wf-main:has(> .wf-dialog:only-child) { display: flex; align-items: center; justify-content: center; }
 .wf-dialog { max-width: 460px; width: 100%; background: var(--w-surface); border: 1px solid var(--w-line-2); border-radius: 10px; padding: 22px; }
 .wf-dialog h1 { font-size: 17px; color: var(--w-ink); margin-bottom: 6px; }
 .wf-dialog p { font-size: 12px; color: var(--w-ink-2); margin-bottom: 14px; line-height: 1.55; }
 .wf-linkrow { display: flex; gap: 8px; margin-bottom: 14px; }
+/* A destructive action never sits next to the primary one. */
+.wf-dialog-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-top: 14px; }
+.wf-action-apart { margin-right: auto; }
 
 /* Shared brief (6.4): public standalone document, no app nav */
 .wf-public-bar { display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-bottom: 1px solid var(--w-line); background: var(--w-bar); }
 .wf-public-tag { font-size: 11px; color: var(--w-ink-2); letter-spacing: 0.03em; }
 .wf-public-main { max-width: 720px; margin: 0 auto; }
+/* The marketing home reads at a wider measure than a legal document does, and a legal H1
+   sits at document scale rather than app scale. Both are appearance, so both live here. */
+.wf-public-main--wide { max-width: 1000px; }
+.wf-h1--doc { font-size: 24px; }
+.wf-pub-h1 { font-size: 24px; font-weight: 700; color: var(--w-ink); letter-spacing: -0.015em; line-height: 1.25; }
 .wf-public-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--w-ink-2); margin-bottom: 8px; }
 .wf-pub-theme { padding: 14px 0; border-top: 1px solid var(--w-line); }
 .wf-pub-theme h3 { font-size: 14px; color: var(--w-ink); display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
 .wf-pub-theme h3 .wf-conf { margin-left: auto; }
 .wf-pub-theme p { font-size: 12px; color: var(--w-ink-2); margin-bottom: 8px; }
 .wf-pub-quote { font-size: 13px; color: var(--w-ink); border-left: 2px solid var(--w-line-2); padding-left: 12px; margin: 6px 0; line-height: 1.55; }
+
+
+/* Shared brief (6.4) additions: the artifact has to work for a reader who will not scroll
+   and cannot open the app, so the claim, its provenance and its citations all resolve
+   inside the document. */
+.wf-pub-meta { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 11px; color: var(--w-ink-2); border-top: 1px solid var(--w-line); border-bottom: 1px solid var(--w-line); padding: 12px 0; margin: 16px 0; }
+.wf-pub-meta b { color: var(--w-ink); font-weight: 600; }
+.wf-pub-key { border: 1px solid var(--w-line-2); border-radius: 8px; padding: 14px 16px; margin: 18px 0; }
+.wf-pub-key h2 { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--w-ink-2); margin-bottom: 8px; }
+.wf-pub-key ol { list-style: none; }
+.wf-pub-key li { display: flex; align-items: baseline; gap: 10px; padding: 5px 0; font-size: 13px; color: var(--w-ink); }
+.wf-pub-key .wf-conf { margin-left: auto; }
+.wf-pub-method { font-size: 11.5px; color: var(--w-ink-3); line-height: 1.6; margin: 14px 0 0; }
+.wf-pub-rationale { font-size: 12.5px; color: var(--w-ink-2); line-height: 1.65; border-left: 2px solid var(--w-line-2); padding-left: 12px; margin: 16px 0; }
+.wf-pub-rationale b { color: var(--w-ink); font-weight: 600; }
+.wf-pub-cites { list-style: none; margin: 8px 0 0; counter-reset: none; }
+.wf-pub-cites li { display: flex; gap: 10px; padding: 10px 0; border-top: 1px solid var(--w-line); font-size: 12px; color: var(--w-ink-2); line-height: 1.6; }
+.wf-pub-cites .wf-cite { flex: none; }
+.wf-pub-sources { font-size: 12px; color: var(--w-ink-2); }
+.wf-pub-sources li { padding: 7px 0; border-top: 1px solid var(--w-line); list-style: none; display: flex; gap: 10px; }
+.wf-pub-sources b { color: var(--w-ink); font-weight: 600; font-variant-numeric: tabular-nums; margin-left: auto; }
 
 /* ============================================================= *
  * 4. CONTAINER-QUERY RESPONSIVENESS  (layout follows canvas)    *
@@ -249,17 +398,218 @@ textarea.wf-input { resize: vertical; line-height: 1.5; }
   .wf-main { padding: 22px 24px; }
   .wf-filter-full { display: flex; }    /* desktop: full filter row */
   .wf-filter-compact { display: none; }
+  .wf-screenhead { padding: 20px 24px; }
+  .wf-toolbar { padding: 12px 24px; }
+  .wf-theme { padding: 15px 24px; }
+  .wf-selbar { padding: 12px 24px; }
+  .wf-snippet { padding: 15px 24px; }
+  .wf-evi-group { padding: 16px 24px 6px; }
+  .wf-steps { padding: 10px 24px; }
+  .wf-block { padding: 20px 24px; }
+  .wf-briefrow { padding: 13px 24px; }
 }
 @container (max-width: 599px) {
   .wf-navtabs { display: none; }        /* mobile: bottom tabs */
   .wf-bottomtabs { display: flex; }
   .wf-filter-full { display: none; }    /* mobile: compact filter button */
   .wf-filter-compact { display: flex; }
+  .wf-head-action { width: 100%; text-align: center; }
+  /* the quote clamps so a long verbatim never pushes the next rank off the screen */
+  .wf-theme-quote { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  /* At 360 the confidence pill plus the low-signal badge would squeeze the theme label to
+     three lines, so the card becomes a grid and the pill takes its own row under the body.
+     Reading order is unchanged: rank, label, quote, provenance, confidence. */
+  .wf-theme {
+    display: grid;
+    grid-template-columns: auto auto minmax(0, 1fr) auto;
+    grid-template-areas: "check rank main drill" ".     .    conf conf";
+    column-gap: 10px; row-gap: 8px; align-items: start;
+  }
+  .wf-check { grid-area: check; margin-top: 3px; }
+  .wf-rank { grid-area: rank; padding-top: 1px; }
+  .wf-theme-main { grid-area: main; }
+  .wf-theme-drill { grid-area: drill; }
+  .wf-conf { grid-area: conf; justify-self: start; }
+}
+
+/* The prototype top bar is chrome, not product, but it has to survive 360 too: at narrow
+   widths the state chips wrap instead of spilling over the screen below. */
+@media (max-width: 640px) {
+}
+
+/* Sources list (owner 3.0, referenced by its empty state 3.4 and its sync error 3.5).
+   These three are ONE screen with different groups filled, per blocks.md Type 3 row 2, so
+   their components live in the stylesheet rather than inline on the base screen: an inline
+   block would have to be copied to the states, and a copy is where two editions start. */
+.src-row { display: flex; align-items: center; gap: 16px; padding: 14px 16px; border-bottom: 1px solid var(--w-line); flex-wrap: wrap; }
+.src-row:hover { background: var(--w-surface); }
+.src-ic { width: 34px; height: 34px; border-radius: 7px; background: var(--w-fill); border: 1px solid var(--w-line-2); flex: none; }
+.src-main { flex: 1 1 150px; min-width: 0; }
+.src-name { font-size: 14px; font-weight: 600; color: var(--w-ink); display: block; }
+.src-sub { font-size: 11px; color: var(--w-ink-2); margin-top: 3px; display: block; }
+.src-stats { display: flex; gap: 22px; flex-wrap: wrap; }
+.src-stat { display: flex; flex-direction: column; gap: 2px; }
+.src-stat-l { font-size: 10px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--w-ink-3); }
+.src-stat-v { font-size: 12px; color: var(--w-ink); font-variant-numeric: tabular-nums; }
+.src-manage { display: inline-flex; align-items: center; min-height: 44px; flex: none; font-size: 12px; color: var(--w-ink); text-decoration: none; border: 1px solid var(--w-line-2); border-radius: 5px; padding: 0 14px; }
+.src-manage:hover { background: var(--w-surface); border-color: var(--w-ink-3); }
+.src-status { font-size: 10px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--w-ink-2); border: 1px solid var(--w-line-2); border-radius: 3px; padding: 2px 6px; }
+/* A failed or transitional source must not read like a healthy one (Type 3 row 3) */
+.src-status.is-alert { color: var(--w-ink); border-color: var(--w-ink-3); border-style: dashed; }
+.src-rowactions { display: flex; gap: 8px; flex: none; align-items: center; }
+
+/* Available sources sit on the SAME screen as the connected ones, so the next action is
+   never one navigation away, and the empty state is this screen with an empty first group. */
+.src-avail { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; padding: 4px 16px 16px; }
+.src-card { border: 1px solid var(--w-line); border-radius: 8px; padding: 14px; display: flex; flex-direction: column; gap: 8px; }
+.src-card-ic { width: 28px; height: 28px; border-radius: 6px; background: var(--w-fill); border: 1px solid var(--w-line-2); }
+.src-card-name { font-size: 13px; font-weight: 600; color: var(--w-ink); }
+.src-card-d { font-size: 11.5px; color: var(--w-ink-2); line-height: 1.5; flex: 1; }
+.src-card-note { font-size: 11px; color: var(--w-ink-3); }
+@container (min-width: 600px) { .src-avail { padding: 4px 24px 20px; } }
+
+/* A notice that sits in the screen frame rather than inside a padded main (4.1, 3.5, 6.2)
+   has to bring the screen's own gutter with it, or it runs to the edge of the canvas. */
+.wf-app > .wf-notice, .wf-main--flush > .wf-notice { margin: 14px 16px; }
+@container (min-width: 600px) {
+  .wf-app > .wf-notice, .wf-main--flush > .wf-notice { margin: 16px 24px; }
+}
+
+/* Saved-brief row (owner 6.0, referenced by its empty state 6.5). A saved brief is a managed
+   object like a source, so it is Type 3 and not a variant of the composer row on 6.1: this one
+   has a status and one way in, that one has a handle and a remove. */
+.brief-row { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-bottom: 1px solid var(--w-line); }
+.brief-row:hover { background: var(--w-surface); }
+.brief-main { position: relative; flex: 1; min-width: 0; }
+.brief-title { font-size: 14px; color: var(--w-ink); font-weight: 600; text-decoration: none; display: block; }
+.brief-title:hover { text-decoration: underline; }
+/* the title reads at its own size and is hit across the row's title zone */
+.brief-title::after { content: ""; position: absolute; inset: -11px 0 -11px 0; }
+.brief-meta { font-size: 11px; color: var(--w-ink-2); margin-top: 4px; line-height: 1.5; }
+.brief-status { font-size: 9px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--w-ink-2); border: 1px solid var(--w-line-2); border-radius: 3px; padding: 2px 6px; white-space: nowrap; flex: none; }
+.brief-actions { display: flex; gap: 8px; flex: none; }
+@container (min-width: 600px) { .brief-row { padding: 14px 24px; } }
+@container (max-width: 599px) {
+  .brief-row { flex-wrap: wrap; }
+  .brief-actions { width: 100%; }
+  .brief-actions .wf-btn--ghost, .brief-actions .wf-btn { flex: 1; text-align: center; }
+}
+
+/* Account shell (owner 7.0, referenced by 7.1, 7.2, 7.3). Four screens share it, so it lives
+   here and not inline: the same block was pasted into all four, which is exactly the copy the
+   contract forbids. */
+.acct-layout { display: flex; flex-direction: column; gap: 16px; }
+.acct-nav { border: 1px solid var(--w-line); border-radius: 8px; background: var(--w-surface); padding: 6px; display: flex; flex-direction: column; gap: 2px; }
+.acct-nav-home { display: flex; align-items: center; min-height: 44px; font-size: 12px; font-weight: 700; color: var(--w-ink); text-decoration: none; padding: 4px 10px; }
+.acct-nav-home:hover { color: var(--w-ink-2); }
+.acct-nav-link { display: flex; align-items: center; min-height: 44px; gap: 8px; padding: 10px; border-radius: 6px; font-size: 13px; color: var(--w-ink-2); text-decoration: none; border-left: 2px solid transparent; }
+.acct-nav-link:hover { color: var(--w-ink); background: var(--w-bg); }
+.acct-nav-link.is-current { color: var(--w-ink); background: var(--w-bg); border-left-color: var(--w-ink); font-weight: 650; }
+.acct-nav-node { font-size: 10px; color: var(--w-ink-3); font-weight: 700; min-width: 22px; flex: none; }
+.acct-panel { flex: 1; min-width: 0; }
+.acct-id { display: flex; align-items: center; gap: 12px; padding-bottom: 14px; margin-bottom: 14px; border-bottom: 1px solid var(--w-line); }
+.acct-id-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--w-fill); border: 1px solid var(--w-line-2); flex: none; }
+.acct-id-name { font-size: 14px; color: var(--w-ink); font-weight: 650; }
+.acct-id-meta { font-size: 12px; color: var(--w-ink-2); margin-top: 2px; }
+.acct-section-t { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--w-ink-2); margin: 18px 0 6px; }
+.acct-section-t:first-child { margin-top: 0; }
+.acct-row { display: flex; align-items: flex-start; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--w-line); }
+.acct-row-main { flex: 1; min-width: 0; }
+.acct-row-t { display: block; font-size: 13px; color: var(--w-ink); font-weight: 600; }
+.acct-row-d { display: block; font-size: 12px; color: var(--w-ink-2); margin-top: 3px; line-height: 1.55; }
+.acct-check { width: 24px; height: 24px; flex: none; margin-top: 2px; accent-color: #6b6b78; }
+.acct-meter { height: 10px; border-radius: 5px; background: var(--w-skel); border: 1px solid var(--w-line-2); overflow: hidden; margin: 8px 0 6px; }
+.acct-meter-fill { height: 100%; background: var(--w-fill); }
+.acct-meter-label { font-size: 12px; color: var(--w-ink-2); }
+.acct-meter-fill { width: 75%; }
+.acct-meter-fill--full { width: 100%; }
+/* a row of plan actions inside the settings panel, not a screen-level action bar */
+.acct-actionrow { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0 4px; }
+/* Limits read as used / limit, not as a bar alone: a bar shows a proportion, a fraction
+   shows the facts. "Unlimited" is a value in the same column, because which dimensions are
+   NOT metered is as useful as which are. */
+.acct-limits { list-style: none; margin: 2px 0 4px; }
+.acct-limit { display: flex; align-items: baseline; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--w-line); font-size: 12.5px; color: var(--w-ink-2); }
+.acct-limit-n { flex: 1; min-width: 0; }
+.acct-limit-v { color: var(--w-ink); font-variant-numeric: tabular-nums; font-weight: 600; }
+.acct-plan-name { font-size: 16px; color: var(--w-ink); font-weight: 700; }
+.acct-card-t { display: block; font-size: 13px; color: var(--w-ink); font-weight: 650; }
+.acct-card-d { display: block; font-size: 12px; color: var(--w-ink-2); margin-top: 3px; line-height: 1.55; }
+.acct-seclink { font-size: 12px; color: var(--w-ink-2); margin-top: 14px; }
+.acct-seclink a { color: var(--w-ink); }
+@container (min-width: 600px) {
+  .acct-layout { flex-direction: row; align-items: flex-start; }
+  .acct-nav { width: 208px; flex: none; }
+}
+
+/* Auth shell (owner 1.0, referenced by 1.1 sign up and 1.2 reset). Three screens share it,
+   so it is owned here: an identical block pasted into three files is three editions waiting
+   to disagree. Grey on the --w-* tokens. No app navigation on these screens. */
+  .wf-auth-wrap { max-width: 380px; margin: 32px auto; }
+  .wf-auth-card { background: var(--w-surface); border: 1px solid var(--w-line-2); border-radius: 10px; padding: 24px; }
+  .wf-auth-card + .wf-auth-card { margin-top: 16px; }
+  .wf-auth-value { font-size: 12px; color: var(--w-ink-2); line-height: 1.55; margin: 4px 0 18px; }
+  .wf-auth-h2 { font-size: 13px; font-weight: 650; color: var(--w-ink); margin-bottom: 4px; }
+  .wf-auth-step { display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--w-ink-3); margin-bottom: 6px; }
+  .wf-label-row { display: flex; justify-content: space-between; align-items: baseline; }
+  .wf-auth-forgot { display: inline-flex; align-items: center; min-height: 44px; font-size: 11px; color: var(--w-ink-2); text-decoration: none; }
+  .wf-auth-forgot:hover { color: var(--w-ink); }
+  .wf-auth-btn { width: 100%; text-align: center; padding: 12px 14px; }
+  .wf-auth-or { display: flex; align-items: center; gap: 10px; font-size: 11px; color: var(--w-ink-3); margin: 14px 0; }
+  .wf-auth-or::before, .wf-auth-or::after { content: ""; flex: 1; height: 1px; background: var(--w-line); }
+  .wf-auth-switch { font-size: 12px; color: var(--w-ink-2); text-align: center; margin-top: 18px; }
+  .wf-auth-switch a { color: var(--w-ink); }
+  .wf-auth-sent { font-size: 12px; color: var(--w-ink-2); background: var(--w-bg); border: 1px solid var(--w-line); border-radius: 6px; padding: 12px; line-height: 1.55; }
+  .wf-appfoot a { color: var(--w-ink-2); text-decoration: none; }
+  .wf-appfoot a:hover { color: var(--w-ink); }
+
+/* Legal prose (owner 9.0, referenced by 9.1 Terms and 9.2 Security). A readable content
+   column, grey on the --w-* tokens. Shared by three screens, so it is owned here. */
+  .legal-crumb { font-size: 11px; color: var(--w-ink-2); margin-bottom: 16px; }
+  .legal-crumb a { color: var(--w-ink-2); text-decoration: none; }
+  .legal-crumb a:hover { color: var(--w-ink); }
+  .legal-crumb span { color: var(--w-ink-3); }
+  .legal-meta { font-size: 11px; color: var(--w-ink-3); margin-top: 6px; }
+  .legal-toc { margin: 16px 0 8px; padding: 12px 14px; border: 1px solid var(--w-line); border-radius: 6px; background: var(--w-surface); }
+  .legal-toc-t { font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--w-ink-2); margin-bottom: 8px; }
+  .legal-toc ul { list-style: none; display: flex; flex-wrap: wrap; column-gap: 18px; }
+  .legal-toc a { display: inline-flex; align-items: center; min-height: 44px; font-size: 12px; color: var(--w-ink-2); text-decoration: none; }
+  .legal-toc a:hover { color: var(--w-ink); }
+  .legal-prose { color: var(--w-ink-2); font-size: 13px; line-height: 1.7; }
+  .legal-prose h2 { font-size: 15px; color: var(--w-ink); font-weight: 650; margin: 26px 0 8px; padding-top: 18px; border-top: 1px solid var(--w-line); scroll-margin-top: 60px; }
+  .legal-prose p { margin: 0 0 10px; }
+  .legal-prose ul { margin: 4px 0 12px; padding-left: 20px; }
+  .legal-prose li { margin-bottom: 6px; }
+  .legal-prose a { color: var(--w-ink); }
+  .legal-related { margin-top: 26px; padding-top: 14px; border-top: 1px solid var(--w-line-2); font-size: 12px; color: var(--w-ink-2); }
+  .legal-related a { display: inline-flex; align-items: center; min-height: 44px; color: var(--w-ink); text-decoration: none; margin-right: 16px; }
+  .legal-related a:hover { text-decoration: underline; }
+
+/* An empty GROUP inside a screen that is otherwise populated. blocks.md Type 3 row 2 makes
+   3.4 and 6.5 the same screen as 3.0 and 6.0 with an empty first group, so the empty copy has
+   to sit in the flow of a list rather than take the whole canvas. Left-aligned and compact,
+   because the next action is further down the screen, not in this block. */
+.wf-state--inline { padding: 20px 16px 22px; text-align: left; border-bottom: 1px solid var(--w-line); }
+.wf-state--inline .wf-state-ic { margin: 0 0 12px; }
+.wf-state--inline .wf-state-d { margin: 6px 0 16px; max-width: 60ch; }
+.wf-state--inline .wf-state-actions { justify-content: flex-start; }
+
+/* The line that closes a list when there is no "load more": an unterminated list reads as
+   truncated, and on a thin theme "all of it is here" is the point. */
+.wf-listnote { padding: 13px 16px; font-size: 11.5px; color: var(--w-ink-3); border-bottom: 1px solid var(--w-line); }
+
+/* Row-level status inside a list (Type 3 row 3): a source mid-sync or failed must not look
+   identical to one that finished. */
+.wf-rowalert { display: block; font-size: 11px; color: var(--w-ink-2); margin-top: 6px; border-left: 2px solid var(--w-line-2); padding-left: 9px; }
+
+@container (min-width: 600px) {
+  .wf-state--inline { padding: 22px 24px 24px; }
+  .wf-listnote { padding: 14px 24px; }
 }
 
 /* ============================================================= *
  * 5. ROADMAP CHROME  (index hub, shared with research / IA)    *
- *    index.html carries the project roadmap sidebar so the hub  *
+ *    overview.html carries the project roadmap sidebar so the hub  *
  *    sits in the same site as research and IA. Screen pages use *
  *    the prototype chrome (top bar + page rail) instead.        *
  * ============================================================= */
@@ -276,25 +626,14 @@ nav.top { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: 
 .page-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
 .page-intro h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 8px; }
 .page-intro p { color: var(--text-2); max-width: 760px; font-size: 14px; }
-
-.sidebar { display: none; }
 @media (min-width: 1100px) {
-  .sidebar { display: flex; flex-direction: column; gap: 2px; position: fixed; top: 52px; left: 0; width: 220px; height: calc(100vh - 52px); overflow-y: auto; padding: 24px 12px 32px; border-right: 1px solid var(--border-light); background: var(--bg); z-index: 90; }
   .page { margin-left: 220px; }
 }
-.sidebar-phase-label { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-3); padding: 5px 8px; border-radius: 5px; display: block; text-decoration: none; cursor: pointer; }
-.sidebar-phase-label:hover { color: var(--text); background: var(--bg-3); }
-.sidebar-phase.active .sidebar-phase-label { color: var(--accent); background: var(--accent-glow); }
-.sidebar-section-links { list-style: none; margin: 4px 0 8px 0; padding: 0; }
-.sidebar-section-links a { display: block; font-size: 12px; color: var(--text-3); text-decoration: none; padding: 4px 8px 4px 16px; border-radius: 4px; border-left: 2px solid transparent; line-height: 1.5; }
-.sidebar-section-links a:hover { color: var(--text); background: var(--bg-3); }
-.sidebar-section-links a.sidebar-current { color: var(--text); border-left-color: var(--accent); background: var(--bg-3); font-weight: 600; }
-.sidebar-group-label { list-style: none; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); padding: 8px 8px 4px; }
-.sidebar-divider { border: none; border-top: 1px solid var(--border-light); margin: 8px 0; }
-.sidebar-coming-soon { display: flex; align-items: center; justify-content: space-between; padding: 5px 8px; border-radius: 5px; opacity: 0.5; }
-.sidebar-cs-label { font-size: 12px; font-weight: 500; color: var(--text-3); letter-spacing: 0.02em; }
-.sidebar-cs-badge { font-size: 9px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-3); background: var(--bg-3); border: 1px solid var(--border-light); padding: 2px 5px; border-radius: 3px; }
 
 .pagefoot { border-top: 1px solid var(--border-light); margin-top: 40px; padding: 28px 0 0; color: var(--text-3); font-size: 12px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
 .pagefoot a { color: var(--text-2); text-decoration: none; }
 .pagefoot a:hover { color: var(--text); }
+
+/* A main that holds nothing but full-bleed rows carries no padding of its own: the rows do.
+   Last in the file on purpose, so it wins over the container-query padding above. */
+.wf-main--flush { padding: 0; }

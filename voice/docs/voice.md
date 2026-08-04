@@ -80,8 +80,8 @@ sharpens the strongest competitor register worth beating, Dovetail's "Build with
 with exclamation, celebration, or alarm.
 
 **Example (written to the rule).**
-- "Share link ready."
-- "Synthesis failed. Your sources are still connected, so nothing is lost."
+- "The link is live."
+- "Synthesis failed. Your sources are still connected and no feedback was lost."
 - "3,750 of 5,000 items this month. 1,250 remaining."
 
 **Anti-example (breaks the rule).**
@@ -101,9 +101,10 @@ personas.md O8); loud copy is friction, not delight.
 wait names the one action that moves forward, so the reader is never stranded.
 
 **Example (written to the rule).**
-- "No sources connected yet. Connect a source to see your first synthesis."  with a
+- "Nothing to synthesize yet. Connect a source to see your first synthesis."  with a
   "Connect a source" action.
-- "Synthesis failed ... Try again, or check your sources."  with "Retry" and "Go to Sources".
+- "Synthesis failed ... a new run starts from the same 3,750 items."  with "Try again" and
+  "Go to Sources".
 
 **Anti-example (breaks the rule).**
 - "Something went wrong."  (a full stop with no way out)
@@ -177,7 +178,7 @@ enthusiasm, exclamation marks, emoji, and celebration. Each row gives the fix.
 |---|---|---|
 | Stock error clichés | "Something went wrong." to "Could not load this page." | Vague and evasive; name what failed, plainly. Principle 1. (DIV-9) |
 | "Oops" / "Uh-oh" / "Whoops" | "Oops, something went wrong!" to "Could not load this page." | Jokey on a trust surface where the reader is defending a decision. Principle 3. |
-| Greetings and celebration | "Welcome aboard!" / "Success! Your brief is live." to "Your workspace is ready." / "Share link ready." | Sift states the fact and the next step; it does not celebrate. Principle 3. |
+| Greetings and celebration | "Welcome aboard!" / "Success! Your brief is live." to "Your workspace is ready." / "The link is live." | Sift states the fact and the next step; it does not celebrate. Principle 3. |
 | The word "successfully" | "Saved successfully." to "Saved." | If it saved, say so; "successfully" is filler. Principle 3. |
 | Exclamation marks in system copy | "Intercom connected!" to "Intercom connected." | Level voice. Principle 3. |
 | Emoji in system messages | "Import complete ✅" to "Import complete." | Calm under density; no decoration in copy. Principle 3. |
@@ -256,9 +257,13 @@ microcopy, and it is mandatory (D2), not optional.
 Say why it is empty and give the one action that fills it. An empty is a starting line, not a wall.
 The first-run synthesis empty differs from a list empty (DIV-11).
 
-- Written to the rule: title "No sources connected"; body "Connect a source to bring your feedback
-  in. Sift normalizes it, scrubs PII by default, then clusters it into ranked themes with the
-  evidence behind each one."; action "Connect a source".
+- Written to the rule: title "No sources connected"; body "Bring your feedback in and Sift
+  normalizes it, scrubs personal details by default, then clusters it into ranked themes with the
+  evidence behind each one. Pick a source below."; action: the source cards on the same screen.
+- **The one action does not have to be a button in the block.** Since the sources list and the
+  briefs list carry an empty first group rather than a separate empty screen (`ia/docs/blocks.md`,
+  Type 3), the action can be the thing itself, already on the screen. The copy then points at it
+  instead of repeating it, because two routes to the same act are two primary actions.
 - Breaks it: "No data.", an empty that describes the emptiness and offers no action.
 
 ### Error state
@@ -267,8 +272,12 @@ Say what happened and what to do next. Reassure with a fact (nothing is lost), n
 an apology. One recovery action, plus a way back.
 
 - Written to the rule: title "Synthesis failed"; body "We could not build the picture this time.
-  Your sources are still connected, so nothing is lost. Try again, or check your sources."; actions
-  "Try again" and "Go to Sources".
+  Your sources are still connected and no feedback was lost, so a new run starts from the same
+  3,750 items."; actions "Try again" and "Go to Sources".
+- **The reassuring fact is a fact, not a reassurance.** "Nothing is lost" asks to be believed;
+  "no feedback was lost, so a new run starts from the same 3,750 items" can be checked. Where a
+  state can name what is still true and link to it, it does: the synthesis error says the last
+  complete run is still readable and links to it.
 - Breaks it: "Something went wrong", "Oops", "Sorry for the inconvenience", an error with no exit.
 
 ### Loading state
@@ -276,17 +285,20 @@ an apology. One recovery action, plus a way back.
 A wait stays silent (a skeleton) or says exactly what is running. It never fills the silence with
 chatter.
 
-- Written to the rule: "Synthesizing your feedback. Ingesting, scrubbing PII, and clustering into
-  themes."
+- Written to the rule: "Reading 3,750 feedback items from 2 sources. Themes and their counts
+  appear when clustering finishes. You can leave this screen, the work carries on." plus a phase
+  strip, "Ingested, 3,750 items / Scrubbing and clustering / Ranking by signal".
+- A wait says what is already known and what is not yet. The denominator is known the moment the
+  items are in, so withholding it would be silence for its own sake.
 - Breaks it: "Hang tight!", "Almost there!", "Working some magic".
 
 ### Success and confirmation
 
 Name the fact and the next step. Do not celebrate, and do not say "successfully".
 
-- Written to the rule: title "Share link ready"; body "Anyone with this link can read the brief. No
-  login needed to view, and the data is PII scrubbed like everywhere else."; actions "Copy" and
-  "Preview brief".
+- Written to the rule: title "The link is live"; body "Anyone with this link can read the brief
+  without logging in. It carries customer feedback, scrubbed of personal details. Disable the link
+  and it stops working for everyone."; actions "Copy" and "See what they see".
 - Breaks it: "Success!", "Your brief is live", any confirmation with an exclamation mark or emoji.
 
 ### Dangerous or irreversible action
@@ -323,9 +335,9 @@ The trail in Dictionary words, with the current place unlinked.
 
 | State | Tone rule | One line |
 |---|---|---|
-| Success (base) | State the fact, point at the next step. No celebration. | "Share link ready." |
-| Empty | Say why, give the one action. | "No sources connected" plus "Connect a source". |
-| Loading | Silent skeleton, or name what runs. No chatter. | "Synthesizing your feedback ..." |
+| Success (base) | State the fact, point at the next step. No celebration. | "The link is live." |
+| Empty | Say why, give the one action; the action may be the thing itself on the screen. | "No sources connected" plus the source cards below it. |
+| Loading | Skeleton plus what is known and what is not. No chatter. | "Reading 3,750 feedback items from 2 sources ..." |
 | Error | What happened, what to do, one reassuring fact. No joke, no apology. | "Synthesis failed ... Try again". |
 | Low signal / thin | Admit the weakness plainly, keep it open. | "Thin evidence ... a lead to watch, not a decision." |
 | Redacted / withheld | Name the reason and what still holds. | "scrubbed beyond display ... the theme still stands". |

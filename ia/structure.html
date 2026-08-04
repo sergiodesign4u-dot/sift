@@ -84,27 +84,11 @@
     .page { padding: 80px 20px 80px; }
     h1 { font-size: 28px; }
   }
-
-  /* SIDEBAR */
-  .sidebar { display: none; }
   @media (min-width: 1100px) {
-    .sidebar { display: flex; flex-direction: column; gap: 2px; position: fixed; top: 52px; left: 0; width: 220px; height: calc(100vh - 52px); overflow-y: auto; padding: 24px 12px 32px; border-right: 1px solid var(--border-light); background: var(--bg); z-index: 90; }
     .page { margin: 0; margin-left: 220px; max-width: 1040px; padding: 100px 40px 120px; }
   }
-  .sidebar-phase-label { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-3); padding: 5px 8px; border-radius: 5px; display: block; cursor: default; text-decoration: none; }
-  .sidebar-phase-label:hover { color: var(--text); background: var(--bg-3); cursor: pointer; }
-  a.sidebar-phase-label { cursor: pointer; }
-  .sidebar-phase.active .sidebar-phase-label { color: var(--accent); background: var(--accent-glow); }
-  .sidebar-section-links { list-style: none; margin: 4px 0 8px 0; padding: 0; }
-  .sidebar-section-links a { display: block; font-size: 12px; color: var(--text-3); text-decoration: none; padding: 4px 8px 4px 16px; border-radius: 4px; border-left: 2px solid transparent; transition: color 0.15s, border-color 0.15s, background 0.15s; line-height: 1.5; }
-  .sidebar-section-links a:hover { color: var(--text); background: var(--bg-3); }
-  .sidebar-section-links a.active { color: var(--text); border-left-color: var(--accent); background: var(--bg-3); }
-  .sidebar-section-links a.sidebar-current { color: var(--text); border-left-color: var(--accent); background: var(--bg-3); font-weight: 600; }
-  .sidebar-divider { border: none; border-top: 1px solid var(--border-light); margin: 8px 0; }
-  .sidebar-coming-soon { display: flex; align-items: center; justify-content: space-between; padding: 5px 8px; border-radius: 5px; cursor: default; opacity: 0.5; }
-  .sidebar-cs-label { font-size: 12px; font-weight: 500; color: var(--text-3); letter-spacing: 0.02em; }
-  .sidebar-cs-badge { font-size: 9px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-3); background: var(--bg-3); border: 1px solid var(--border-light); padding: 2px 5px; border-radius: 3px; }
 </style>
+<link rel="stylesheet" href="../_nav.css">
 </head>
 <body>
 
@@ -117,37 +101,7 @@
   </ul>
 </nav>
 
-<aside class="sidebar">
-  <div class="sidebar-phase">
-    <a class="sidebar-phase-label" href="../research/research.html">Foundation Research</a>
-  </div>
-  <div class="sidebar-phase">
-    <a class="sidebar-phase-label" href="../user-research/personas.html">User Research</a>
-  </div>
-  <div class="sidebar-phase active">
-    <span class="sidebar-phase-label">Information Architecture</span>
-    <ul class="sidebar-section-links">
-      <li class="sidebar-group-label">Basic Layer</li>
-      <li><a href="flows.html">Flows</a></li>
-      <li><a href="concept-map.html">Concept Map</a></li>
-      <li class="sidebar-group-label" style="margin-top:6px">Detail Layer</li>
-      <li><a href="sitemap.html">Site map</a></li>
-      <li><a href="structure.html" class="sidebar-current">Structure</a></li>
-    </ul>
-  </div>
-  <hr class="sidebar-divider">
-  <div class="sidebar-phase">
-    <a class="sidebar-phase-label" href="../wireframes/index.html">Wireframes</a>
-  </div>
-  <div class="sidebar-phase"><a class="sidebar-phase-label" href="../voice/voice.html">Voice</a></div>
-  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Concept</span><span class="sidebar-cs-badge">Next</span></div>
-  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">UI + Visual</span><span class="sidebar-cs-badge">Soon</span></div>
-  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Tokens + Components</span><span class="sidebar-cs-badge">Soon</span></div>
-  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Design System</span><span class="sidebar-cs-badge">Soon</span></div>
-  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Responsive</span><span class="sidebar-cs-badge">Soon</span></div>
-  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Animation</span><span class="sidebar-cs-badge">Soon</span></div>
-  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Handoff</span><span class="sidebar-cs-badge">Soon</span></div>
-</aside>
+<aside id="sidebar"></aside>
 
 <div class="page">
 
@@ -161,6 +115,33 @@
 
 <div id="ia-structure"></div>
 
+<hr class="divider">
+
+<section id="blocks">
+  <div class="section-label">Detail Layer - Step 4</div>
+  <h2>Block bank by page type</h2>
+  <p class="lead">Where the composition of a page comes from. Before this existed, the node template said "content blocks: 1, 2, 3" and named no origin, so the composition was the median of everything a model has seen. Every block below traces to a job, a barrier from the CJM, or an SEO requirement; a block with no trace is not taken, and the reason is written down. Built per page TYPE, not per node: 39 nodes are 12 types. Source: <a href="docs/blocks.md">ia/docs/blocks.md</a>.</p>
+
+  <div class="table-wrap">
+    <table class="grid">
+      <thead><tr><th scope="col">Type</th><th scope="col">Nodes</th><th scope="col">Domain half</th><th scope="col">What it changed</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">1 Marketing landing</th><td>0.0</td><td>Full, three competitors read live</td><td>Problem block second; a real shared brief linked as a live example; FAQ with earned FAQPage schema; internal links to the pages that are actually indexed</td></tr>
+        <tr><th scope="row">2 Ranked decision list</th><td>2.0 to 2.3</td><td>Partial, public boards only</td><td>Facet counts; active-filter state; the count and scope line; an explicit rank number; a representative quote on the card; selection-triggered action bar; load more with the remainder</td></tr>
+        <tr><th scope="row">3 Managed object list</th><td>3.0, 3.4, 6.0, 6.5</td><td>None, fallback</td><td>Connected and available on one screen, which makes the empty state the same screen rather than a separate design; transitional status; Zendesk stated as not connectable yet</td></tr>
+        <tr><th scope="row">4 Import and connect wizard</th><td>3.2, 3.3, 3.5, 3.6</td><td>None, fallback</td><td>Step indicator; a sample-data column so a mapping can be verified; per-column import toggle; a review before committing</td></tr>
+        <tr><th scope="row">5 Record detail with evidence</th><td>4.0, 4.1</td><td>Full</td><td>Denominator split by source; an inline citation on every claim; one line on why the items cluster; group by source; load more; the superseded notice that finally gives the Flow 2 guard a home</td></tr>
+        <tr><th scope="row">6 Artifact composer</th><td>6.1 to 6.3</td><td>None, documentation only</td><td>Stage indicator; reorder as the recommendation itself; the rationale in its own field; a consequence sentence; disable link. No editor for item content, deliberately</td></tr>
+        <tr><th scope="row">7 Public read-only document</th><td>6.4</td><td>Full</td><td>Metadata panel; key takeaways; inline numbered citations plus a citations block quoting each source; source list with counts; a method line</td></tr>
+        <tr><th scope="row">8 Settings shell and sections</th><td>7.0 to 7.3</td><td>None, fallback</td><td>Limits as used / limit rather than a bar alone; "Unlimited" as a value; upgrade beside the thing that is limited</td></tr>
+        <tr><th scope="row">9 to 12 Light pass</th><td>1.x, 5.x, 8.0 to 8.2, 9.x</td><td>Convention and law</td><td>Auth, terminal record, legal and system pages: composition close to invariant, so the decisions recorded are editorial and technical rather than compositional</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="caption">Coverage: 12 types over 38 nodes. 23 nodes had the full round (competitors via Playwright plus Refero); 11 had the light pass; 4 are global elements that are not page types. The two things the bank deliberately left to the owner were both answered in August 2026 and are recorded in <code>docs/decisions.md</code>: the free plan is 250 feedback items a month, the value <code>strategy.md</code> sets out with its reasoning, and the connect chooser (3.1) is folded into the sources list, which takes a screen out of the activation path.</p>
+</section>
+
 <footer>
   <span>Sift - Information Architecture, Detail Layer. Registry: ia/_nav.js</span>
   <span><a href="sitemap.html">Site map</a> &nbsp; <a href="../index.html">Home</a></span>
@@ -168,6 +149,11 @@
 
 </div>
 
+<script>
+window.NAV_BASE = '../';
+window.NAV_SECTIONS = [{"id": "ia-structure", "label": "Nodes"}, {"id": "blocks", "label": "Block bank by type"}];
+</script>
+<script src="../_nav.js"></script>
 <script src="_nav.js"></script>
 
 </body>

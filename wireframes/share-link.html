@@ -11,10 +11,18 @@
   Wireframe 6.3 Brief: share-link generated (success). The public link, a copy action, and the
   access note (no login to view). Reached after the brief is built. Leads to the public preview
   (6.4). Text from ia/docs/pages/briefs.md.
+
+  Composition from ia/docs/blocks.md, Type 6 (artifact composer), the share step:
+    9 the link itself with one copy action
+    10 who can see it, stated before it is sent, not after
+    11 disable the link, in MVP: a public URL over customer data with no off switch is a
+      compliance hole rather than a missing convenience (recorded in docs/decisions.md)
+    13 the confirmation states what is now true, instead of claiming success (forbidden)
+  ABSENT deliberately: expiry dates and per-recipient access, which belong to a permissions
+  model the MVP does not have.
 -->
 <body>
 
-<div id="wf-topbar" data-node="6.3" data-state="base"></div>
 
 <div class="wf-shell">
   <div id="wf-rail" data-node="6.3" data-state="base"></div>
@@ -25,17 +33,27 @@
 
         <div data-wf="header" data-active="briefs"></div>
 
+        <nav class="wf-steps" aria-label="Brief steps">
+          <span class="wf-step"><span class="wf-step-n">1</span> Build</span>
+          <span aria-hidden="true">&rsaquo;</span>
+          <span class="wf-step is-current"><span class="wf-step-n">2</span> Share</span>
+          <span aria-hidden="true">&rsaquo;</span>
+          <span class="wf-step"><span class="wf-step-n">3</span> What they see</span>
+        </nav>
+
         <main class="wf-main">
           <div class="wf-dialog">
-            <h1>Share link ready</h1>
-            <p>Anyone with this link can read the brief. No login needed to view, and the data is PII scrubbed like everywhere else.</p>
+            <h1>The link is live</h1>
+            <p>Anyone with this link can read the brief without logging in. It carries customer feedback, scrubbed of personal details. Disable the link and it stops working for everyone.</p>
             <div class="wf-linkrow">
               <input class="wf-input" type="text" value="https://sift.app/b/7fq2-k9xa" readonly aria-label="Public brief link">
               <button class="wf-btn">Copy</button>
             </div>
-            <div class="wf-theme-headactions">
-              <a class="wf-btn--ghost" href="briefs.html">Done</a>
-              <a class="wf-btn" href="shared-brief.html">Preview brief</a>
+            <p class="wf-sub">Created 2 minutes ago by Alex Rivera. Not opened yet.</p>
+            <div class="wf-dialog-actions">
+              <button class="wf-btn wf-btn--ghost wf-action-apart">Disable link</button>
+              <a class="wf-btn wf-btn--ghost" href="briefs.html">Done</a>
+              <a class="wf-btn" href="shared-brief.html">See what they see</a>
             </div>
           </div>
         </main>

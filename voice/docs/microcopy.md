@@ -544,3 +544,136 @@ The audit found five items; two were fixed, three accepted with rationale.
 Accepted (not defects): "Done" on the share-link success dialog and "Continue" on the share-link
 loading dialog (idiomatic finish and transit affordances); "Please read them alongside ..." in the
 Terms intro (legal register, a genuine ask).
+
+---
+
+## Stage 04 reopened: screens rebuilt on the block bank (August 2026)
+
+The Voice stage closed on the wireframes as they stood in July. Stage 04 was then reopened, because
+the composition of the screens had no origin: the node template said "content blocks: 1, 2, 3" and
+named no source, so every screen was the median list page. `ia/docs/blocks.md` was built to fix that,
+and the screens were rebuilt from it. New blocks mean new lines, and this section is their record.
+
+**The rule holds in both directions.** These lines were written to `voice.md`, not merely added: no
+"Something went wrong", no "successfully", no exclamation marks, no "just" or "simply" outside a
+customer quote, no filler "please", every state names the next move, and the claim is earned rather
+than asserted. What follows is what changed and why. The tables above stay the July snapshot; this
+section is the delta, the same way Steps 6 to 8 recorded theirs.
+
+### Lines that changed meaning
+
+| Screen | Zone | Was | Now | Rule |
+|---|---|---|---|---|
+| 2.1 Synthesis empty | State body | Connect a source to see your first synthesis. Sift clusters your feedback into ranked themes, each with the evidence behind it. Your data is PII scrubbed by default. | Connect a source to see your first synthesis. Sift reads your feedback, removes personal details, then clusters what is left into ranked themes. Every theme keeps the items behind it, so you can open any conclusion and read the words it came from. | Earn the claim. "Each with the evidence behind it" asserts traceability; the new line says what the reader can do with it. |
+| 2.3 Synthesis error | State body | ... Your sources are still connected, so nothing is lost. Try again, or check your sources. | ... Your sources are still connected and no feedback was lost, so a new run starts from the same 3,750 items. | Names what is still true with a number instead of the reassurance "nothing is lost". The two exits are buttons, so the body no longer narrates them. |
+| 3.4 Sources empty | State body | Connect a source to bring your feedback in. Sift normalizes it, scrubs PII by default, then clusters it into ranked themes with the evidence behind each one. | Bring your feedback in and Sift normalizes it, scrubs personal details by default, then clusters it into ranked themes with the evidence behind each one. Pick a source below. You can add the second one later, and the themes recount when you do. | The CTA left the block and became the source cards on the same screen, so the body points at them and answers the question that stops people picking: whether the first choice is final. |
+| 3.5 Sync error | h1 | Intercom sync failed | Sources | One source failing is not the screen failing. The old h1 has become the opening of the notice, where it describes the row it is about. |
+| 3.5 Sync error | Notice | Affected themes: 3 themes cite Intercom evidence ... only new feedback is paused until the sync recovers. | Intercom sync failed. 3 themes cite Intercom evidence, including "Onboarding is confusing" and "Slow export on large accounts". Those citations still open, because the items already ingested are stored in Sift. What is paused is new feedback arriving. | Says WHY the citations still resolve. A promise with its reason attached is checkable; without it the reader has to trust us. |
+| 4.1 Low-signal | Notice | Thin evidence. Six mentions is a weak signal, not a confirmed pattern. Treat it as a lead to watch, not a decision. The items are still fully open below. | Thin evidence. Six mentions is a weak signal, not a confirmed pattern, so treat this as a lead to watch rather than a decision. All six arrived through Intercom, which means this is one channel's view of the problem. What would change it is more of the same over time, and the count above is the thing to watch. Every item is open below, exactly as on a strong theme. | blocks.md Type 5, States: the caution now also says what would make the theme trustworthy. The channel sentence is provenance, not a diversity metric: source diversity stays out of MVP confidence (D2). |
+| 4.0 Theme error | State body | The evidence for this theme did not come back this time. Nothing is lost. Try again, or go back to the ranked themes. | The evidence for this theme did not come back this time. Nothing is lost and no item was removed. Until it opens, treat the count above as unverified: the point of this screen is that you can check it. | The count stays on screen in this state, so the copy has to say what it is worth. Design principle 5. |
+| 6.0 Briefs | Head subhead | Saved briefs package your themes, evidence, and a recommended priority into a link ... | A brief packages themes, their evidence, and your recommended order into a link a stakeholder can read and challenge without a Sift seat. | "Your recommended order" matches what the composer actually does: the order IS the recommendation. |
+| 6.0 Briefs | Row actions | View / Edit (two ghost buttons per row) | Open (shared) / Continue (draft), one per row | blocks.md Type 3 row 8: one way in per row. What that way is depends on the status. |
+| 6.5 Briefs empty | State body | A brief packages your top themes ... Build one before your next roadmap session. | Pick the themes that should drive the next roadmap conversation, put them in the order you would defend, and say why. Sift keeps every quote attached, so the people reading it can check the claim instead of taking your word for it. | Describes the act, not the artifact. "Build one before your next roadmap session" told the reader when to work. |
+| 6.5 Briefs empty | Button | Build first brief | Build your first brief | Grammar; the July log had already moved the product to full sentences elsewhere. |
+| 6.2 Thin warning | Notice | One selected theme is low signal. Label it, do not hide it. A stakeholder should see it is a weak signal, not a confirmed pattern. You can still include it. | "Dark mode requested" is at position 2, above two themes with several times its evidence. Four mentions is a weak signal, not a confirmed pattern. Sift labels it and leaves it where you put it: the order is your call. In the shared brief it carries the same "low signal" label it has here, so the people reading it see what you saw. | The old line addressed the wrong event. Including a thin theme is not worth an interruption; RANKING it above stronger ones is, because that is the claim the PM will defend. Also names the consequence in the shared artifact. |
+| 6.2 Thin warning | Action helper | 3 themes selected · 1 low signal / Review selection / Label and generate link | 4 themes, 93 feedback items behind them · 1 low signal / Save draft / Preview / Generate share link | The state is now 6.1 plus a notice rather than a different screen, so it carries 6.1's bar. "Label and generate link" also promised a labelling step that does not exist: the label is already on the row. |
+
+### Lines with no predecessor (new blocks)
+
+| Screen | Zone | Line | Type |
+|---|---|---|---|
+| 2.1 Synthesis empty | Scope | 0 themes from 0 feedback items, across 0 sources. Nothing has come in yet, so there is nothing to count. | helper |
+| 2.1 Synthesis empty | Steps | Connect a source / Scrub and cluster / Ranked themes with evidence | step |
+| 2.2 Synthesis loading | Scope | Reading 3,750 feedback items from 2 sources. Themes and their counts appear when clustering finishes. You can leave this screen, the work carries on. | helper |
+| 2.2 Synthesis loading | Steps | Ingested, 3,750 items / Scrubbing and clustering / Ranking by signal | step |
+| 2.3 Synthesis error | Scope | The last complete synthesis is from 2 hours ago, over 12 themes and 3,750 feedback items. It is still readable: open the version from 2 hours ago. | helper / link |
+| 3.4 Sources empty | Scope | 0 sources connected, 0 items in. Synthesis counts from this corpus, so it has nothing to show until one source is here. | helper |
+| 3.4 Sources empty | Group heads | Connected · 0 / Available to connect | h2 |
+| 3.4 Sources empty | Card body | ... Nothing to authorize, so this is the quickest way to see your own data in the product. | body |
+| 3.5 Sync error | Scope | 2 sources connected, 3,750 items in. Intercom was last reached 2 days ago, so nothing new has been added since then and today's ranking is counted from the same corpus as two days ago. | helper |
+| 3.5 Sync error | Row status | Sync failed | badge |
+| 3.5 Sync error | Row alert | Sift could not reach Intercom on the last sync. The source may be unavailable, or the connection may need reauthorizing. | body |
+| 4.1 Low-signal | Scope | 6 items from 1 source: Intercom 6, CSV 0. First seen 5 weeks ago, latest 9 days ago. | helper |
+| 4.1 Low-signal | Summary | Six accounts ask to push themes into Salesforce so their CS and RevOps teams can see them without a Sift seat [Intercom +4]. Two of the six name it as the reason a wider rollout is on hold [Intercom +2]. | body `[UGC]` synthesis output |
+| 4.1 Low-signal | Reason | Why these items are one theme: all six name Salesforce specifically and ask for the same direction of travel, out of Sift and into their CRM. Requests to import Salesforce records into Sift were left out ... | body |
+| 4.1 Low-signal | Group heads | Intercom · 6 items / CSV · 0 items | h2 |
+| 4.1 Low-signal | List note | No CSV item mentions Salesforce. The group is shown so the gap is visible rather than assumed. | helper |
+| 4.1 Low-signal | List note | All 6 items are on this screen. There is nothing further to load. | helper |
+| 4.0 Theme loading | Scope | 42 items from 2 sources: Intercom 30, CSV 12. Opening the items and their citations. | helper |
+| 4.0 Theme error | Scope | 42 items from 2 sources: Intercom 30, CSV 12. The count comes from the ranked list and still holds. What did not load is the items behind it. | helper |
+| 6.0 Briefs | Scope | 2 briefs, built from the 12 themes on Synthesis. A brief keeps the evidence it was built from, so an old link stays readable even after the themes move on. | helper |
+| 6.0 Briefs | Group heads | Shared · 1 / Drafts · 1 | h2 |
+| 6.0 Briefs | Row meta | 3 themes · 89 feedback items behind them · shared 2 days ago by Alex Rivera · link is live | meta |
+| 6.0 Briefs | Row meta | 1 theme · 42 feedback items behind it · started 1 week ago · no link yet, so nobody outside can see it | meta |
+| 6.5 Briefs empty | Scope | 0 briefs. There are 12 themes on Synthesis to build one from, and the top three carry 89 feedback items between them. | helper |
+| 6.5 Briefs empty | Group head | Your briefs · 0 | h2 |
+
+### Canonical data corrected while rebuilding
+
+Two contradictions between screens were found by reading a screen against its own numbers. Both are
+data, not voice, but they are recorded here because the strings carry them.
+
+- **T5 "Wants Salesforce integration" said "Intercom only" on 2.0 and listed a CSV item on 4.1.**
+  Six of six are Intercom. Single-channel concentration is what makes the theme thin, so the item was
+  wrong, not the card. Item 3 is now Intercom, Customer, SMB.
+- **The brief title differed between the composer and the document it produces:** "Q3 planning ..."
+  on 6.1 and 6.0, "Q3 roadmap ..." on 6.4. One artifact cannot have two names along one chain. All
+  four screens now carry the recorded title, "Q3 roadmap: what customers need most".
+
+### Still open, and it is not a voice decision
+
+The free-plan monthly item limit is `[?]` on 7.1 and remains so. Four values exist across the repo
+(250, 500, 5,000, and a demo corpus of 3,750). The screen states the question rather than inventing
+an answer. See `ia/docs/blocks.md`, Type 8.
+
+### Strings the inventory was missing (found by the Codex pass, Step 9)
+
+The rewrite log above recorded the lines that CHANGED. These are lines that were added to a screen
+during the rebuild and never entered the inventory at all, which is the same defect seen from the
+other side: a string with no owner. They are recorded here, and each was checked against `voice.md`
+rather than merely transcribed.
+
+| Screen | Zone | Line | Type |
+|---|---|---|---|
+| 2.0 Synthesis | Toolbar | Clear filters | ghost-button |
+| 2.0 Synthesis | List foot | Load 6 more themes | button |
+| 4.0 Theme | Evidence controls | Group by source | chip |
+| 4.0 Theme | List foot | Load 36 more items | button |
+| 3.2 CSV | Drop zone | Choose a different file | ghost-button |
+| 6.3 Share-link | Dialog | Disable link | ghost-button |
+| 7.1 Plan | Action bar | Compare plans | ghost-button |
+| 7.1 Plan | Action bar | Upgrade to unlock evidence | button |
+
+Two of them are worth a note rather than a row. **"Load 6 more themes" and "Load 36 more items"**
+carry the remainder rather than reading "Load more": the count is the point, because a list that hides
+its remainder cannot be checked against its own denominator. **"Upgrade to unlock evidence"** names
+the feature the reader was trying to reach instead of the transaction, which is what `aarrr.md` asks
+for in as many words: surface the thing the user wanted, not a generic wall.
+
+### Two owner decisions, and what they did to the strings (August 2026)
+
+Both were recorded as open in `ia/docs/blocks.md` and both were answered by the owner. They are here
+because each one retired or rewrote product copy.
+
+**The free plan is 250 feedback items a month.** `research/docs/strategy.md` is the only source that
+sets a value with a reason attached, so it wins: the 500 in the pricing block on 0.0 was a stale v1
+number, and the 5,000 that 7.1 used to show was invented at the wireframe stage. The number was the
+smaller half of the finding. The canonical Northwind workspace has two sources, evidence drill-down
+and a public shared brief, all of which `strategy.md` puts behind the paywall, so it was never a free
+workspace; 7.1 had to invent a limit because it had put the scenario on the wrong plan.
+
+| Screen | Zone | Was | Now | Rule |
+|---|---|---|---|---|
+| 0.0 Home | Pricing, free tier | Up to 500 feedback items per month | Up to 250 feedback items per month | The value with a reason attached wins. |
+| 7.1 Plan | Plan name | Free | Growth | The workspace uses three paid capabilities. A screen cannot demonstrate them on a plan that excludes them. |
+| 7.1 Plan | Limits | 3,750 of [?] · 2 of 1 sources · Evidence drill-down: paid plans only | 3,750, unlimited · 2 of 3 sources · 5 of 5 seats · Evidence drill-down: included | The metered dimension on a paid plan is seats, not volume. "2 of 1" was the wrong plan showing through. |
+| 7.1 Plan | Action | Upgrade to unlock evidence | Add seats | Type 8 block 4 asks for the upgrade to sit beside the thing that is limited. On this plan that is the seat count. |
+| 7.1 Plan | Notice | The monthly item limit is [?] and is not resolved ... | Up to 250 feedback items a month, 1 source, theme names and counts only ... This workspace has been past the free limit since its first import. | The free plan stays on screen as the reference the conversion surface needs, stated as fact rather than as an open question. |
+
+**3.1 Connect chooser is folded into 3.0.** The chooser showed the three options 3.0 already shows and
+stood between the user and the source on the activation path. Its strings are retired: the head
+"Connect a source", the subhead "Pick where your feedback lives ...", the three source cards, the PII
+notice and "Back to sources" no longer appear anywhere, because the available-sources group on 3.0
+carries its own copy. The July rows for Connect (3.1) stay in the inventory above as the record of
+what existed. Two lines moved rather than died: "Back to chooser" on 3.2 and 3.3 became **"Back to
+sources"**, since there is no chooser to go back to.

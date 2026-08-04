@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift - Wireframes - All screens</title>
+<link rel="stylesheet" href="_wf.css">
+<link rel="stylesheet" href="../_nav.css">
+<style>
+  /* index-only: flow entries + coverage map. Grey, structure over decoration. */
+  .wf-h2 { font-size: 18px; font-weight: 650; color: var(--text); margin: 0 0 14px; letter-spacing: -0.01em; }
+  .wf-flows { margin-top: 8px; }
+
+  /* the grey contract, on the page that shows what it produced */
+  .wf-rules-sec { margin-top: 44px; padding-top: 32px; border-top: 1px solid var(--border-light); }
+  .wf-rules-lead { font-size: 13px; color: var(--text-2); max-width: 760px; margin: 0 0 20px; }
+  .wf-rules-lead code, .wf-rules dd code { font-size: 12px; color: var(--text-2); background: var(--bg-3); border-radius: 4px; padding: 1px 5px; }
+  .wf-rules { display: grid; gap: 2px; }
+  .wf-rules dt { font-size: 13px; font-weight: 650; color: var(--text); margin-top: 16px; }
+  .wf-rules dd { font-size: 13px; color: var(--text-2); margin: 4px 0 0; max-width: 820px; line-height: 1.65; }
+  .wf-rules dd a { color: var(--text); }
+  .wf-rules-note { margin-top: 20px; }
+
+  /* before and after: four columns, the reason last because it is the part worth reading */
+  .table-wrap { overflow-x: auto; border: 1px solid var(--border-light); border-radius: var(--radius); }
+  table.ba { width: 100%; border-collapse: collapse; font-size: 12.5px; min-width: 720px; }
+  table.ba th, table.ba td { text-align: left; vertical-align: top; padding: 11px 14px; border-bottom: 1px solid var(--border-light); }
+  table.ba thead th { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); background: var(--bg-2); }
+  table.ba tbody th { color: var(--text); font-weight: 650; width: 15%; }
+  table.ba td { color: var(--text-2); line-height: 1.6; }
+  table.ba td:last-child { color: var(--text); }
+  table.ba tbody tr:last-child th, table.ba tbody tr:last-child td { border-bottom: none; }
+  table.ba code { font-size: 11.5px; background: var(--bg-3); border-radius: 4px; padding: 1px 5px; }
+
+  .wf-flow { border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: 14px 16px; margin-bottom: 12px; background: var(--bg-2); }
+  .wf-flow-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px; }
+  .wf-flow-id { font-size: 12px; font-weight: 700; color: var(--accent); white-space: nowrap; }
+  .wf-flow-label { font-size: 13px; color: var(--text-2); }
+  .wf-flow-screens { list-style: none; display: flex; flex-direction: column; gap: 6px; margin: 0; padding: 0; }
+  .wf-fscreen { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 6px 0; border-top: 1px solid var(--border-light); }
+  .wf-fscreen:first-child { border-top: none; }
+  .wf-fs-node { font-size: 11px; font-weight: 700; color: var(--text-3); min-width: 30px; }
+  .wf-fs-label { font-size: 13px; color: var(--text); text-decoration: none; font-weight: 550; min-width: 150px; }
+  a.wf-fs-label:hover { color: var(--accent); }
+  .wf-fs-states { display: flex; gap: 5px; flex-wrap: wrap; margin-left: auto; }
+  .wf-schip { font-size: 10px; color: var(--text-3); border: 1px solid var(--border-light); border-radius: 20px; padding: 2px 8px; text-decoration: none; }
+  a.wf-schip:hover { color: var(--text); background: var(--bg-3); }
+  .wf-fscreen.is-spec .wf-fs-label { color: var(--text-2); }
+
+  .wf-coverage { margin-top: 40px; }
+  .wf-cov-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .wf-counter { font-size: 12px; color: var(--text-3); }
+  .wf-counter b { color: var(--text); }
+  .wf-legend { display: flex; gap: 16px; margin: 6px 0 18px; font-size: 11px; color: var(--text-3); }
+  .wf-lg { display: inline-flex; align-items: center; gap: 6px; }
+  .wf-lg::before { content: ""; width: 16px; height: 12px; border-radius: 3px; }
+  .wf-lg--built::before { border: 1.5px solid var(--text-3); background: var(--bg-3); }
+  .wf-lg--spec::before { border: 1.5px dashed var(--border); }
+
+  .wf-cluster { margin-bottom: 18px; }
+  .wf-cluster-title { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-3); margin: 0 0 8px; }
+  .wf-cluster-screens { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 8px; }
+  .wf-tile { display: flex; flex-direction: column; gap: 3px; padding: 10px 12px; border-radius: var(--radius); text-decoration: none; }
+  .wf-tile.is-spec { border: 1px dashed var(--border); background: transparent; }
+  .wf-tile.is-built { border: 1px solid var(--border); background: var(--bg-2); }
+  a.wf-tile.is-built:hover { border-color: var(--accent-dim); background: var(--bg-3); }
+  .wf-tile-node { font-size: 10px; font-weight: 700; color: var(--text-3); }
+  .wf-tile-label { font-size: 13px; color: var(--text); font-weight: 550; }
+  .wf-tile.is-spec .wf-tile-label { color: var(--text-2); }
+  .wf-tile-meta { font-size: 10px; color: var(--text-3); }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <a class="nav-brand" href="../index.html"><span>S</span>ift</a>
+  <a class="nav-top-right" href="../ia/structure.html">IA structure</a>
+</nav>
+
+<aside id="sidebar"></aside>
+
+<div class="page">
+
+  <div class="page-intro">
+    <div class="page-eyebrow">Wireframes - Stage 04 - July 2026</div>
+    <h1>All screens</h1>
+    <p>The grey clickable prototype of Sift, rendered from the detail IA. Each screen is a real, responsive page: open it, then narrow the window to see it collapse to mobile. Walk the product by flow, or scan the full coverage map. Solid tiles are built; dashed tiles are still in spec. Structure only, no color yet. The contract every screen follows is written out below. Source: wireframes/docs/screens.md and wireframes/docs/conventions.md.</p>
+  </div>
+
+  <div id="wf-index">
+    <!-- flow entries + coverage map, rendered from _nav.js -->
+  </div>
+
+  <section id="conventions" class="wf-rules-sec">
+    <h2 class="wf-h2">The grey contract</h2>
+    <p class="wf-rules-lead">The rules every screen above follows, and the reason each one exists. Full text: <code>wireframes/docs/conventions.md</code>.</p>
+    <dl class="wf-rules">
+      <dt>Composition has an origin</dt>
+      <dd>The blocks of a screen come from the block bank (<a href="../ia/structure.html#blocks">ia/docs/blocks.md</a>), built per page type. 39 nodes are 12 types. Every screen file opens with a comment naming its type, its blocks row by row, and what is deliberately absent. Absence is a decision and it is the one a reviewer cannot see on the screen.</dd>
+
+      <dt>A block with no trace is not drawn</dt>
+      <dd>The trace is a job, a barrier from the As-Is journey, or an SEO requirement. A reference is an input, never an output: a screen that matches one source one to one is a copy.</dd>
+
+      <dt>Text has owners, and no line exists twice</dt>
+      <dd>SEO copy belongs to the IA node; interface strings belong to <a href="../voice/voice.html">voice/docs/microcopy.md</a>; customer quotes and theme names are user content and are not rewritten. Change a string on a screen and the same step records it in the rewrite log, with was, now, and the rule.</dd>
+
+      <dt>One live screen, checked by narrowing</dt>
+      <dd>Not a desktop mock plus a mobile mock. The markup responds to the canvas through container queries, breaking at 600px of canvas width. 360px is a hard gate, checked programmatically. But block order and density are reasoned from the desktop, because a PM does this work at a desk.</dd>
+
+      <dt>A state keeps the blocks of its screen</dt>
+      <dd>It fills them with what it can honestly say, including zero, so the reader can see which screen is in this state and what the denominator is. A state drops a block only when that block would have to lie: the filter toolbar is absent from the synthesis empty and loading states because its facets carry counts and the counts do not exist yet.</dd>
+
+      <dt>An empty state is a group, not a screen</dt>
+      <dd>Wherever the screen already carries a second group offering the next action, the empty state is that screen with the first group at zero. A full-canvas empty leading to a chooser that holds the same options is a corridor. A failure the size of a row is drawn as a row, for the same reason.</dd>
+
+      <dt>One primary action, and one navigation</dt>
+      <dd>Where a screen has an action at rest and an action on selection, the two are mutually exclusive in CSS, not by hope. The prototype chrome is one panel with four blocks and no thin state strip: a top bar repeating the states the tree already lists was two editions of one control.</dd>
+
+      <dt>Grey, and appearance lives in the stylesheet</dt>
+      <dd>No color, no brand, no icon art inside a product screen; color appears only in the chrome. A component used by more than one screen belongs in <code>_wf.css</code> with the comment naming its owner. A <code>style</code> attribute is not a home for appearance.</dd>
+
+      <dt>Acceptance is in the browser</dt>
+      <dd>Open it, walk every state, narrow to 360, and confirm nothing overflows. Then check the set at once: no em dash, no forbidden word, no broken local link, no inline appearance, no string missing from the microcopy inventory. Fixes come as prompts, because a hand edit does not survive the next clone.</dd>
+    </dl>
+  </section>
+
+  <section id="before-after" class="wf-rules-sec">
+    <h2 class="wf-h2">Before and after</h2>
+    <p class="wf-rules-lead">Stage 04 was reopened in August. The screens were not thickened, they were rebuilt from a source that did not exist before: the block bank in <a href="../ia/structure.html#blocks">ia/docs/blocks.md</a>, built per page type from competitors and craft references. What follows is what changed and why. Full record: <code>wireframes/docs/critique.md</code> and <code>docs/decisions.md</code>.</p>
+
+    <div class="table-wrap">
+      <table class="ba">
+        <thead><tr><th scope="col">What</th><th scope="col">Was</th><th scope="col">Now</th><th scope="col">Why</th></tr></thead>
+        <tbody>
+          <tr>
+            <th scope="row">Where composition came from</th>
+            <td>The node template said "content blocks: 1, 2, 3" and named no origin.</td>
+            <td>12 page types over 39 nodes, each block tracing to a job, a barrier or an SEO requirement, and each screen file naming its type, its blocks and its deliberate absences.</td>
+            <td>With no origin rule, a screen is the median of every list page a model has seen. That is exactly what the first pass produced.</td>
+          </tr>
+          <tr>
+            <th scope="row">2.0 Synthesis</th>
+            <td>Header, three filter chips, six rows, an action bar.</td>
+            <td>Facet counts, an active-filter state, the scope line stating the denominator, an explicit rank, a representative quote per card, load more with the remainder, and a selection bar that appears only on selection.</td>
+            <td>A ranked list with no denominator cannot be checked, and a card with no quote is a label rather than evidence.</td>
+          </tr>
+          <tr>
+            <th scope="row">4.0 Theme</th>
+            <td>A summary, a flat evidence list, one number.</td>
+            <td>Denominator split by source, an inline citation on every claim naming its source and count, one line on why the items cluster and what was left out, grouping by source, and load more.</td>
+            <td>The product's whole claim is that a conclusion can be checked. A summary with no citation asks to be believed.</td>
+          </tr>
+          <tr>
+            <th scope="row">Empty states</th>
+            <td>A full canvas, one sentence, one button leading to a chooser that held the same three options.</td>
+            <td>3.4 and 6.5 are the list screen with an empty first group. The next action is already on the screen.</td>
+            <td>A corridor is not an empty state. The block that puts available sources beside connected ones removes the corridor for free.</td>
+          </tr>
+          <tr>
+            <th scope="row">3.5 Sync error</th>
+            <td>A full-canvas failure page headed "Intercom sync failed".</td>
+            <td>The sources list, with the failed row carrying its own status, explanation and retry, and the scope line carrying the consequence.</td>
+            <td>One source failing is not the screen failing. Blanking the list overstates the failure and hides the half that still works.</td>
+          </tr>
+          <tr>
+            <th scope="row">6.2 Thin-theme warning</th>
+            <td>A separate screen with a checkbox list and a parallel priority list, interrupting because a thin theme was included.</td>
+            <td>6.1 with a notice, interrupting because a thin theme has been ranked above themes with several times its evidence, with the badge travelling with the row.</td>
+            <td>Including a thin theme is not worth an interruption; the product's stance is to label it. Ranking it high is a claim the PM will have to defend.</td>
+          </tr>
+          <tr>
+            <th scope="row">Prototype chrome</th>
+            <td>A top bar with the hub button, the node name and a row of state chips, above a rail that listed the same states again.</td>
+            <td>One stage panel: header with the hub button and the current node, the screen tree, the current node opened onto its states, and cross-links out of the prototype.</td>
+            <td>Two editions of one control. A reviewer had to learn which one to trust, and the two could disagree the moment one was edited.</td>
+          </tr>
+          <tr>
+            <th scope="row">Targets</th>
+            <td>Every interactive control sat under the 44px minimum the contract claimed: buttons 37, tabs 33, chips 27, remove 15.</td>
+            <td>Controls, tabs, chips, fields, row actions and link lists meet 44. Three exceptions are named rather than averaged.</td>
+            <td>The rule had been written and never enforced. Only measuring the rendered box found it.</td>
+          </tr>
+          <tr>
+            <th scope="row">Where appearance lives</th>
+            <td>Component CSS pasted inline into 4 account, 3 auth and 3 legal screens, plus loose <code>style</code> attributes.</td>
+            <td>Shared components owned by <code>_wf.css</code> with the owner named beside each. No <code>style</code> attribute anywhere in the stage.</td>
+            <td>A copied block is where two editions start; the copies were already drifting.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="wf-rules-lead wf-rules-note">Two contradictions in the canonical data were found by reading screens against each other rather than by looking for defects: theme T5 was "Intercom only" on 2.0 while listing a CSV item on 4.1, and the public brief counted 89 items against the whole corpus instead of the 30-day window it named. Both are fixed and recorded. Two questions the rebuild deliberately did not answer are recorded where they were found: the free-plan monthly limit, which has four different values in the repo, and whether the connect chooser should fold into the sources list.</p>
+  </section>
+
+  <footer class="pagefoot">
+    <span>Sift - Wireframes, Stage 04. Coverage tracked from wireframes/_nav.js.</span>
+    <span><a href="../ia/structure.html">IA structure</a> &nbsp; <a href="../ia/sitemap.html">Site map</a> &nbsp; <a href="../index.html">Home</a></span>
+  </footer>
+
+</div>
+
+<script>
+window.NAV_BASE = '../';
+window.NAV_SECTIONS = [{"id": "wf-index", "label": "Flows and coverage"}, {"id": "conventions", "label": "The grey contract"}, {"id": "before-after", "label": "Before and after"}];
+</script>
+<script src="../_nav.js"></script>
+<script src="_nav.js"></script>
+</body>
+</html>

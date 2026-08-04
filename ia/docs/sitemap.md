@@ -151,13 +151,13 @@ Theme + Feedback-item quotes ──> Evidence brief (public share link)
 #### 2.0 - Synthesis view
 - Type: page · Group: pages · Index: noindex
 - INCLUDES: ranked themes (label, volume n=X, recency), confidence indicator + low-signal badge, priority action, create-brief action.
-- TRANSITIONS: -> 4.0 Theme detail (Flow 0); -> 6.1 Build brief (1 tap); first run or stale -> 2.1 empty or 3.1 Connect.
+- TRANSITIONS: -> 4.0 Theme detail (Flow 0); -> 6.1 Build brief (1 tap); first run or stale -> 2.1 empty or 3.0 Sources.
 - Serves: Main, J2, J3, E1. The tap-0 main-job surface. (was B1)
 
 #### 2.1 - Synthesis: first-run empty (no sources)
 - Type: state · Group: pages
 - INCLUDES: empty explanation, single CTA to connect a source.
-- TRANSITIONS: -> 3.1 Connect / import (Flow 1).
+- TRANSITIONS: -> 3.0 Sources (Flow 1).
 - Serves: activation; routes the PM to the first source.
 
 #### 2.2 - Synthesis: loading / synthesizing
@@ -178,15 +178,14 @@ Theme + Feedback-item quotes ──> Evidence brief (public share link)
 
 #### 3.0 - Sources (list)
 - Type: page · Group: pages · Index: noindex
-- INCLUDES: connected sources with status, item counts, last sync, PII-scrub state; add-source action.
-- TRANSITIONS: -> 3.1 Connect; -> 3.6 manage; empty -> 3.4.
+- INCLUDES: connected sources with status, item counts, last sync, PII-scrub state, AND the available sources with their connect method; owner of the source-type enum.
+- TRANSITIONS: -> 3.2 CSV; -> 3.3 Intercom; -> 3.6 manage; empty -> 3.4.
 - Serves: J2. (was A1)
 
-#### 3.1 - Connect / import source (chooser)
-- Type: page · Group: pages
-- INCLUDES: source-type chooser (CSV / Intercom, Zendesk later), PII-scrub default note.
-- TRANSITIONS: -> 3.2 CSV, -> 3.3 Intercom.
-- Serves: J2, D3. (was A2)
+*3.1 Connect / import source (chooser) was folded into 3.0 in August 2026. The chooser duplicated the
+available-sources group that 3.0 already carries, and it stood between the user and the source on the
+activation path. Each available card now leads straight to its connect flow (3.2 or 3.3), and 3.0 owns
+the source-type enum. Recorded in `docs/decisions.md` and in `blocks.md` Type 3.*
 
 #### 3.2 - CSV upload + column mapping
 - Type: flow · Group: pages
@@ -202,8 +201,8 @@ Theme + Feedback-item quotes ──> Evidence brief (public share link)
 
 #### 3.4 - Sources: empty (none connected)
 - Type: state · Group: pages
-- INCLUDES: empty explanation, connect CTA.
-- TRANSITIONS: -> 3.1 Connect.
+- INCLUDES: the same screen as 3.0 with the connected group empty; the explanation sits in the flow of the list and the available sources are already on screen.
+- TRANSITIONS: -> 3.2 CSV; -> 3.3 Intercom.
 - Serves: activation.
 
 #### 3.5 - Source: sync error / unavailable
@@ -378,7 +377,7 @@ Theme + Feedback-item quotes ──> Evidence brief (public share link)
 
 ### Coverage, personas, deferred jobs
 
-- **Every concept-sitemap screen is represented:** A1 -> 3.0, A2 -> 3.1, B1 -> 2.0, B2 -> 4.0, C1 -> 5.0, D1 -> 6.1, D2 -> 6.4, P1 -> cluster 1, P2 -> cluster 7. States, dialogs, system, and legal are added as their own nodes, as the flows require.
+- **Every concept-sitemap screen is represented:** A1 -> 3.0, A2 -> 3.0 (folded), B1 -> 2.0, B2 -> 4.0, C1 -> 5.0, D1 -> 6.1, D2 -> 6.4, P1 -> cluster 1, P2 -> cluster 7. States, dialogs, system, and legal are added as their own nodes, as the flows require.
 - **Primary persona (Alex):** clusters 2, 3, 4, 5, 6 and account. **Secondary (Morgan / stakeholder):** 6.4 Shared brief. **Guest / anonymous:** 0.0 Home, 6.4.
 - **Deliberately deferred, not holes:** J5 (close the signal loop, Segment C, deferred by D1) and S2 (shared evidence standard, Persona B, fast-follow) get no MVP node; served indirectly by the Segment A evidence chain and by the shared brief. No global feedback search in MVP.
 - **Count:** 10 clusters, 39 nodes (4 global elements, 35 pages / states / dialogs / sections). The map grows discover-as-you-go; new nodes are registered here and in _nav.js.
@@ -391,8 +390,8 @@ Discovery pass over the node map and the entity inventory (section 1). **Beyond 
 - **Theme card** (label, volume n=X, recency, confidence indicator). Owner: 2.0 Synthesis view (Step 4). Referenced by 6.1 selection and 6.4 shared brief.
 - **Evidence item / feedback snippet** (verbatim excerpt, channel, date, citation). Owner: 4.0 Theme detail (Step 5). Referenced by 5.0 and 6.4.
 - **Filter / sort control** (by source, recency, confidence). A page-level control, not a facet system. Owner: 2.0 Synthesis view (Step 4). Reused on 3.0 Sources.
-- **Source-type enum** (CSV, Intercom; Zendesk and Gong later, same abstraction, D3). Owner: 3.1 Connect / import (Step 5). Referenced by 3.0.
-- **Modal / dialog shell** (shared UI pattern). The concrete dialogs are already nodes (3.1 connect, 3.6 manage, 6.3 share-link, 8.3 cookie consent), so there is no separate global node; the shared shell is a component-stage concern.
+- **Source-type enum** (CSV, Intercom; Zendesk and Gong later, same abstraction, D3). Owner: 3.0 Sources. Referenced by 3.2 and 3.3.
+- **Modal / dialog shell** (shared UI pattern). The concrete dialogs are already nodes (3.6 manage, 6.3 share-link, 8.3 cookie consent), so there is no separate global node; the shared shell is a component-stage concern.
 
 Rule: change a canonical component in its owner page, then walk its reference list above. This is the single-canonical-component record the Step 7 audit checks.
 

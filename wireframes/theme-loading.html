@@ -9,12 +9,19 @@
 </head>
 <!--
   Wireframe 4.0 Theme detail - loading (fetching evidence items). State of node 4.0.
-  The theme header is known; the evidence list streams in as skeletons, then resolves to
-  the snippet list. Text from ia/docs/pages/theme.md (states inherit the app loading pattern).
+
+  Composition from ia/docs/blocks.md, Type 5, States: "no source has either. Ours follows the
+  Type 2 rule: name the wait, name the failure, always offer the way back to 2.0."
+
+  What is already known is drawn as itself, not as a skeleton: the theme name, the confidence
+  indicator, the rank, and the denominator all come from the ranked list the user just left,
+  so redrawing them as grey bars would hide facts the product already has. Only the parts that
+  need a fetch are skeletons: the summary with its citations, and the evidence groups.
+
+  The head action stays enabled: adding a theme to a brief does not wait on its evidence list.
 -->
 <body>
 
-<div id="wf-topbar" data-node="4.0" data-state="loading"></div>
 
 <div class="wf-shell">
   <div id="wf-rail" data-node="4.0" data-state="loading"></div>
@@ -27,21 +34,48 @@
 
         <nav class="wf-breadcrumb" aria-label="Breadcrumb"><a href="synthesis.html">Synthesis</a> &rsaquo; <span>Onboarding is confusing</span></nav>
 
-        <main class="wf-main">
-          <header class="wf-main-head">
-            <h1 class="wf-h1">Onboarding is confusing</h1>
-            <div class="wf-theme-headmeta">
-              <span class="wf-conf"><span class="wf-conf-n">n=42</span></span>
-              <span>latest feedback 2 days ago</span>
+        <header class="wf-screenhead">
+          <div class="wf-screenhead-row">
+            <div class="wf-head-text">
+              <h1 class="wf-h1">Onboarding is confusing</h1>
+              <div class="wf-theme-headmeta">
+                <span class="wf-conf"><span class="wf-conf-n">n=42</span></span>
+                <span>latest feedback 2 days ago</span>
+                <span>rank 1 of 12 by signal</span>
+              </div>
             </div>
-          </header>
+            <a class="wf-btn wf-head-action" href="build-brief.html">Add to brief</a>
+          </div>
 
-          <h2 class="wf-evi-title">Evidence · loading</h2>
+          <p class="wf-scope">
+            <b>42</b> items from 2 sources: <b>Intercom 30</b>, <b>CSV 12</b>.
+            Opening the items and their citations.
+          </p>
+
+          <div aria-busy="true">
+            <div class="wf-skel c"></div>
+            <div class="wf-skel c"></div>
+            <div class="wf-skel a"></div>
+          </div>
+        </header>
+
+        <div class="wf-toolbar">
+          <h2 class="wf-evi-title">Evidence &middot; 42 items</h2>
+          <span class="wf-sort">Sort: most recent</span>
+        </div>
+
+        <main class="wf-main wf-main--flush">
+          <div class="wf-evi-group">Intercom &middot; 30 items</div>
           <ul class="wf-list" aria-busy="true">
             <li class="wf-skelcard"><div class="wf-skel c"></div><div class="wf-skel c"></div><div class="wf-skel b"></div></li>
             <li class="wf-skelcard"><div class="wf-skel c"></div><div class="wf-skel a"></div><div class="wf-skel b"></div></li>
             <li class="wf-skelcard"><div class="wf-skel c"></div><div class="wf-skel c"></div><div class="wf-skel b"></div></li>
+          </ul>
+
+          <div class="wf-evi-group">CSV &middot; 12 items</div>
+          <ul class="wf-list" aria-busy="true">
             <li class="wf-skelcard"><div class="wf-skel a"></div><div class="wf-skel c"></div><div class="wf-skel b"></div></li>
+            <li class="wf-skelcard"><div class="wf-skel c"></div><div class="wf-skel c"></div><div class="wf-skel b"></div></li>
           </ul>
         </main>
 

@@ -9,12 +9,33 @@
 </head>
 <!--
   Wireframe 6.2 Brief: thin-theme warning. State of node 6.1.
-  A selected theme is low signal. Sift labels it, it does not hide it: honest confidence in the
-  shared artifact. Recoverable (label and continue). Text from ia/docs/pages/briefs.md.
+
+  Composition from ia/docs/blocks.md, Type 6, States: "own, no source has it. It interrupts
+  before publishing, not after."
+
+  WAS a different screen from 6.1: a checkbox list headed "Select themes" plus a separate
+  "Recommended priority" list underneath. That was the old model, where selection happened
+  here and the order was a second, parallel list of the same three names. 6.1 was rebuilt on
+  Type 6: selection happens on 2.0, and the ORDER OF THE ROWS IS THE RECOMMENDATION, so there
+  is one list, not two. This state has to be the same screen or the warning appears to change
+  what the user was doing.
+
+  NOW 6.1 with three additions and nothing removed:
+    the notice, which fires on the thing that actually deserves an interruption. It is not
+      "a thin theme is in the brief", it is "a thin theme has been ranked above themes with
+      several times its evidence", which is a claim about priority the PM will have to defend
+    row 2 keeps its n=4 and its low-signal badge WHILE IT SITS AT 2 (Type 6 block 3): the
+      badge travels with the row, so a thin theme cannot be quietly promoted
+    the consequence sentence, stating what the reader of the brief will see. The warning is
+      not an obstacle, it is a preview of the shared artifact
+
+  Recoverable and not blocking: the generate action stays live, because the brief is the PM's
+  argument and Sift's job is to make its evidence visible, not to overrule it.
+
+  Text from ia/docs/pages/briefs.md.
 -->
 <body>
 
-<div id="wf-topbar" data-node="6.1" data-state="thin-warning"></div>
 
 <div class="wf-shell">
   <div id="wf-rail" data-node="6.1" data-state="thin-warning"></div>
@@ -25,55 +46,90 @@
 
         <div data-wf="header" data-active="briefs"></div>
 
-        <main class="wf-main">
-          <header class="wf-main-head">
-            <h1 class="wf-h1">Build a brief</h1>
-            <p class="wf-sub">Pick the themes to include, set a recommended priority, then generate a link your stakeholders can read without a login.</p>
-          </header>
+        <nav class="wf-steps" aria-label="Brief steps">
+          <span class="wf-step is-current"><span class="wf-step-n">1</span> Build</span>
+          <span aria-hidden="true">&rsaquo;</span>
+          <span class="wf-step"><span class="wf-step-n">2</span> Share</span>
+          <span aria-hidden="true">&rsaquo;</span>
+          <span class="wf-step"><span class="wf-step-n">3</span> What they see</span>
+        </nav>
 
-          <p class="wf-notice">One selected theme is low signal. Label it, do not hide it. A stakeholder should see it is a weak signal, not a confirmed pattern. You can still include it.</p>
+        <header class="wf-screenhead">
+          <h1 class="wf-vh">Build a brief</h1>
+          <div class="wf-titlerow">
+            <label class="wf-label wf-vh" for="brief-title">Brief title</label>
+            <input class="wf-titleinput" id="brief-title" value="Q3 roadmap: what customers need most">
+            <span class="wf-draft">Draft</span>
+          </div>
+          <p class="wf-sub">Order the themes, say why, then generate a link your stakeholders can read without a login.</p>
+        </header>
 
-          <h2 class="wf-evi-title">Select themes</h2>
-          <ul class="wf-list">
-            <li class="wf-theme">
-              <input type="checkbox" class="wf-check" aria-label="Include Onboarding is confusing" checked>
-              <span class="wf-theme-main">
-                <span class="wf-theme-label">Onboarding is confusing</span>
-                <span class="wf-theme-meta">CSV, Intercom · latest feedback 2 days ago</span>
+        <p class="wf-notice">"Dark mode requested" is at position 2, above two themes with several times its evidence. Four mentions is a weak signal, not a confirmed pattern. Sift labels it and leaves it where you put it: the order is your call. In the shared brief it carries the same "low signal" label it has here, so the people reading it see what you saw.</p>
+
+        <div class="wf-toolbar">
+          <h2 class="wf-evi-title">In this brief &middot; 4 themes</h2>
+          <div class="wf-evi-controls">
+            <button class="wf-chip">Add themes</button>
+          </div>
+          <span class="wf-sort">Order = recommended priority</span>
+        </div>
+
+        <main class="wf-main wf-main--flush">
+          <ol class="wf-list">
+            <li class="wf-briefrow">
+              <span class="wf-drag" aria-hidden="true">&#8942;&#8942;</span>
+              <span class="wf-rank">1</span>
+              <span class="wf-briefrow-main">
+                <span class="wf-briefrow-label">Onboarding is confusing</span>
+                <span class="wf-briefrow-meta">CSV, Intercom &middot; latest feedback 2 days ago</span>
               </span>
               <span class="wf-conf"><span class="wf-conf-n">n=42</span></span>
+              <button class="wf-remove" aria-label="Remove Onboarding is confusing from this brief">&times;</button>
             </li>
-            <li class="wf-theme">
-              <input type="checkbox" class="wf-check" aria-label="Include Slow export on large accounts" checked>
-              <span class="wf-theme-main">
-                <span class="wf-theme-label">Slow export on large accounts</span>
-                <span class="wf-theme-meta">Intercom · latest feedback 5 days ago</span>
-              </span>
-              <span class="wf-conf"><span class="wf-conf-n">n=28</span></span>
-            </li>
-            <li class="wf-theme">
-              <input type="checkbox" class="wf-check" aria-label="Include Dark mode requested" checked>
-              <span class="wf-theme-main">
-                <span class="wf-theme-label">Dark mode requested</span>
-                <span class="wf-theme-meta">CSV · latest feedback 12 days ago · flagged low signal</span>
+            <li class="wf-briefrow">
+              <span class="wf-drag" aria-hidden="true">&#8942;&#8942;</span>
+              <span class="wf-rank">2</span>
+              <span class="wf-briefrow-main">
+                <span class="wf-briefrow-label">Dark mode requested</span>
+                <span class="wf-briefrow-meta">CSV only &middot; latest feedback 12 days ago</span>
               </span>
               <span class="wf-conf"><span class="wf-conf-n">n=4</span> <span class="wf-badge-low">low signal</span></span>
+              <button class="wf-remove" aria-label="Remove Dark mode requested from this brief">&times;</button>
             </li>
-          </ul>
-
-          <h2 class="wf-evi-title">Recommended priority</h2>
-          <ol class="wf-prio">
-            <li><span class="wf-prio-n">1</span> Onboarding is confusing <span class="wf-conf"><span class="wf-conf-n">n=42</span></span></li>
-            <li><span class="wf-prio-n">2</span> Slow export on large accounts <span class="wf-conf"><span class="wf-conf-n">n=28</span></span></li>
-            <li><span class="wf-prio-n">3</span> Dark mode requested <span class="wf-conf"><span class="wf-conf-n">n=4</span> <span class="wf-badge-low">low signal</span></span></li>
+            <li class="wf-briefrow">
+              <span class="wf-drag" aria-hidden="true">&#8942;&#8942;</span>
+              <span class="wf-rank">3</span>
+              <span class="wf-briefrow-main">
+                <span class="wf-briefrow-label">Slow export on large accounts</span>
+                <span class="wf-briefrow-meta">Intercom &middot; latest feedback 5 days ago</span>
+              </span>
+              <span class="wf-conf"><span class="wf-conf-n">n=28</span></span>
+              <button class="wf-remove" aria-label="Remove Slow export on large accounts from this brief">&times;</button>
+            </li>
+            <li class="wf-briefrow">
+              <span class="wf-drag" aria-hidden="true">&#8942;&#8942;</span>
+              <span class="wf-rank">4</span>
+              <span class="wf-briefrow-main">
+                <span class="wf-briefrow-label">Confusing billing and invoices</span>
+                <span class="wf-briefrow-meta">CSV &middot; latest feedback 3 days ago</span>
+              </span>
+              <span class="wf-conf"><span class="wf-conf-n">n=19</span></span>
+              <button class="wf-remove" aria-label="Remove Confusing billing and invoices from this brief">&times;</button>
+            </li>
           </ol>
 
-          <div class="wf-actionbar">
-            <span class="wf-actionbar-note">3 themes selected · 1 low signal</span>
-            <a class="wf-btn--ghost" href="build-brief.html">Review selection</a>
-            <a class="wf-btn" href="share-link-loading.html">Label and generate link</a>
+          <div class="wf-block">
+            <label class="wf-label" for="rationale">Why this order (your words, kept separate from the evidence)</label>
+            <textarea class="wf-input" id="rationale" rows="3">Onboarding blocks activation for every new account, so it leads. Dark mode has four mentions and I am ranking it second anyway, because it is the cheapest thing on this list to ship. Treat that one as a judgement call, not a finding.</textarea>
           </div>
         </main>
+
+        <div class="wf-selbar wf-selbar--static">
+          <span class="wf-selbar-note">4 themes, 93 feedback items behind them &middot; 1 low signal</span>
+          <a class="wf-btn wf-btn--ghost" href="briefs.html">Save draft</a>
+          <a class="wf-btn wf-btn--ghost" href="shared-brief.html">Preview</a>
+          <a class="wf-btn" href="share-link-loading.html">Generate share link</a>
+        </div>
 
         <div data-wf="appfoot"></div>
         <div data-wf="bottomtabs" data-active="briefs"></div>

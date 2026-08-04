@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift - 2.3 Synthesis error (in color)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="_theme.css">
+<link rel="stylesheet" href="../_nav.css">
+</head>
+<!--
+  design 2.3 Synthesis error. COLOR COPY of wireframes/synthesis-error.html.
+  Visual layer only. Structure and text from wireframes/. Not-yet-colored links point to ../wireframes/.
+-->
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-signal" viewBox="0 0 24 24"><path d="M6 18v-3.5M12 18v-8M18 18v-12.5"/></symbol>
+  <symbol id="i-source" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.66 3.13 3 7 3s7-1.34 7-3V6"/><path d="M5 12v6c0 1.66 3.13 3 7 3s7-1.34 7-3v-6"/></symbol>
+  <symbol id="i-brief" viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h7"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 19c0-3.6 2.9-5.5 6.5-5.5s6.5 1.9 6.5 5.5"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 4l9 15H3z"/><path d="M12 10v4M12 17h.02"/></symbol>
+</defs></svg>
+
+<nav class="top">
+  <a class="nav-brand" href="../index.html"><span>S</span>ift</a>
+  <ul class="nav-links">
+    <li><a href="../design/concept/concept.html">Concept stand</a></li>
+    <li><a href="../design/concept/directions.html">Directions</a></li>
+    <li><a href="../wireframes/synthesis-error.html">Grey wireframe</a></li>
+  </ul>
+</nav>
+
+<aside id="sidebar"></aside>
+
+<div class="page">
+
+  <div class="proofbar">
+    <a class="back" href="../design/concept/concept.html">&larr; Concept stand</a>
+    <span class="label">Etalon 2.0 Synthesis, in color</span>
+    <span class="states">
+      <a href="synthesis.html">populated</a>
+      <a href="synthesis-empty.html">empty</a>
+      <a href="synthesis-loading.html">loading</a>
+      <a href="synthesis-error.html" class="cur">error</a>
+    </span>
+    <span class="note">wireframe stays grey</span>
+  </div>
+
+  <div class="appframe">
+    <header class="appbar">
+      <span class="brand"><svg class="ic mark" width="15" height="15"><use href="#i-signal"/></svg> Sift</span>
+      <nav class="navtabs" aria-label="Primary">
+        <a class="active" href="synthesis.html" aria-current="page">Synthesis</a>
+        <a href="../wireframes/sources.html">Sources</a>
+        <a href="../wireframes/briefs.html">Briefs</a>
+      </nav>
+      <span class="spacer"></span>
+      <a class="avatar" href="../wireframes/account.html" aria-label="Account"></a>
+    </header>
+
+    <main class="appmain">
+      <div class="state">
+        <div class="state-ic"><svg class="ic"><use href="#i-alert"/></svg></div>
+        <h1 class="state-t">Synthesis failed</h1>
+        <div class="state-d">We could not build the picture this time. Your sources are still connected, so nothing is lost. Try again, or check your sources.</div>
+        <div class="state-actions">
+          <a class="btn--ghost" href="../wireframes/sources.html">Go to Sources</a>
+          <a class="btn" href="synthesis-loading.html">Try again</a>
+        </div>
+      </div>
+    </main>
+
+    <footer class="appfoot">Sift workspace · feedback from CSV and Intercom, PII scrubbed by default</footer>
+
+    <nav class="bottomtabs" aria-label="Primary">
+      <a class="btab active" href="synthesis.html"><span class="ico"><svg class="ic"><use href="#i-signal"/></svg></span><span class="lbl">Synthesis</span></a>
+      <a class="btab" href="../wireframes/sources.html"><span class="ico"><svg class="ic"><use href="#i-source"/></svg></span><span class="lbl">Sources</span></a>
+      <a class="btab" href="../wireframes/briefs.html"><span class="ico"><svg class="ic"><use href="#i-brief"/></svg></span><span class="lbl">Briefs</span></a>
+      <a class="btab" href="../wireframes/account.html"><span class="ico"><svg class="ic"><use href="#i-user"/></svg></span><span class="lbl">Account</span></a>
+    </nav>
+  </div>
+
+</div>
+
+<script>
+window.NAV_BASE = '../';
+window.NAV_ACTIVE = 'design/concept/concept.html';
+window.NAV_ACTIVE_LABEL = '2.3 Synthesis error (color)';
+</script>
+<script src="../_nav.js"></script>
+</body>
+</html>

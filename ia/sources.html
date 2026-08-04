@@ -136,27 +136,11 @@
     h1 { font-size: 27px; }
     .state-row, .two-col, .wchoose { grid-template-columns: 1fr; }
   }
-
-  /* SIDEBAR */
-  .sidebar { display: none; }
   @media (min-width: 1100px) {
-    .sidebar { display: flex; flex-direction: column; gap: 2px; position: fixed; top: 52px; left: 0; width: 220px; height: calc(100vh - 52px); overflow-y: auto; padding: 24px 12px 32px; border-right: 1px solid var(--border-light); background: var(--bg); z-index: 90; }
     .page { margin: 0; margin-left: 220px; max-width: 1040px; padding: 100px 40px 120px; }
   }
-  .sidebar-phase-label { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-3); padding: 5px 8px; border-radius: 5px; display: block; cursor: default; text-decoration: none; }
-  .sidebar-phase-label:hover { color: var(--text); background: var(--bg-3); cursor: pointer; }
-  a.sidebar-phase-label { cursor: pointer; }
-  .sidebar-phase.active .sidebar-phase-label { color: var(--accent); background: var(--accent-glow); }
-  .sidebar-section-links { list-style: none; margin: 4px 0 8px 0; padding: 0; }
-  .sidebar-section-links a { display: block; font-size: 12px; color: var(--text-3); text-decoration: none; padding: 4px 8px 4px 16px; border-radius: 4px; border-left: 2px solid transparent; transition: color 0.15s, border-color 0.15s, background 0.15s; line-height: 1.5; }
-  .sidebar-section-links a:hover { color: var(--text); background: var(--bg-3); }
-  .sidebar-section-links a.sidebar-current { color: var(--text); border-left-color: var(--accent); background: var(--bg-3); font-weight: 600; }
-  .sidebar-group-label { list-style: none; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); padding: 8px 8px 4px; display: flex; align-items: center; gap: 8px; }
-  .sidebar-divider { border: none; border-top: 1px solid var(--border-light); margin: 8px 0; }
-  .sidebar-coming-soon { display: flex; align-items: center; justify-content: space-between; padding: 5px 8px; border-radius: 5px; cursor: default; opacity: 0.5; }
-  .sidebar-cs-label { font-size: 12px; font-weight: 500; color: var(--text-3); letter-spacing: 0.02em; }
-  .sidebar-cs-badge { font-size: 9px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-3); background: var(--bg-3); border: 1px solid var(--border-light); padding: 2px 5px; border-radius: 3px; }
 </style>
+<link rel="stylesheet" href="../_nav.css">
 </head>
 <body>
 
@@ -170,37 +154,7 @@
   </ul>
 </nav>
 
-<aside class="sidebar">
-  <div class="sidebar-phase">
-    <a class="sidebar-phase-label" href="../research/research.html">Foundation Research</a>
-  </div>
-  <div class="sidebar-phase">
-    <a class="sidebar-phase-label" href="../user-research/personas.html">User Research</a>
-  </div>
-  <div class="sidebar-phase active">
-    <span class="sidebar-phase-label">Information Architecture</span>
-    <ul class="sidebar-section-links">
-      <li class="sidebar-group-label">Basic Layer</li>
-      <li><a href="flows.html">Flows</a></li>
-      <li><a href="concept-map.html">Concept Map</a></li>
-      <li class="sidebar-group-label" style="margin-top:6px">Detail Layer</li>
-      <li><a href="sitemap.html">Site map</a></li>
-      <li><a href="structure.html#3.0" class="sidebar-current">Structure</a></li>
-    </ul>
-  </div>
-  <hr class="sidebar-divider">
-  <div class="sidebar-phase">
-    <a class="sidebar-phase-label" href="../wireframes/index.html">Wireframes</a>
-  </div>
-  <div class="sidebar-phase"><a class="sidebar-phase-label" href="../voice/voice.html">Voice</a></div>
-  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Concept</span><span class="sidebar-cs-badge">Next</span></div>
-  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">UI + Visual</span><span class="sidebar-cs-badge">Soon</span></div>
-  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Tokens + Components</span><span class="sidebar-cs-badge">Soon</span></div>
-  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Design System</span><span class="sidebar-cs-badge">Soon</span></div>
-  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Responsive</span><span class="sidebar-cs-badge">Soon</span></div>
-  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Animation</span><span class="sidebar-cs-badge">Soon</span></div>
-  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Handoff</span><span class="sidebar-cs-badge">Soon</span></div>
-</aside>
+<aside id="sidebar"></aside>
 
 <div class="page">
 
@@ -219,8 +173,7 @@
     <table class="grid">
       <thead><tr><th scope="col">Node</th><th scope="col">Name</th><th scope="col">Type</th></tr></thead>
       <tbody>
-        <tr><th scope="row">3.0</th><td>Sources (list)</td><td>page</td></tr>
-        <tr><th scope="row">3.1</th><td>Connect / import (chooser)</td><td>page, owns source-type enum</td></tr>
+        <tr><th scope="row">3.0</th><td>Sources (list, connected + available)</td><td>page, owns source-type enum</td></tr>
         <tr><th scope="row">3.2</th><td>CSV upload + column mapping</td><td>flow (+ unmapped error)</td></tr>
         <tr><th scope="row">3.3</th><td>Intercom connect (OAuth)</td><td>flow (+ auth-failed error)</td></tr>
         <tr><th scope="row">3.4</th><td>Sources: empty</td><td>state</td></tr>
@@ -229,6 +182,16 @@
       </tbody>
     </table>
   </div>
+
+  <h3>States (nodes)</h3>
+  <p class="caption"><b>3.1 was folded into 3.0 in August 2026.</b> The chooser showed the three options that 3.0 already shows, and it stood between the user and the source on the activation path. Each available card now leads straight to its own connect flow, and 3.0 owns the source-type enum. Recorded in <code>docs/decisions.md</code>.</p>
+  <p class="caption"><b>3.0, 3.4 and 3.5 are one screen with different groups filled</b> (<code>ia/docs/blocks.md</code>, Type 3, row 2). Connected sources and the ones still available to connect sit on the same screen, which is why the empty state is not a separate design and why the next action is never one navigation away.</p>
+  <ul class="notes">
+    <li><b>Populated list</b> (default): the Connected group with its rows, then Available to connect.</li>
+    <li><b><code>3.4</code> empty:</b> the same screen with Connected at 0. The explanation sits in the flow of the list rather than taking the canvas, and the one primary action is on the CSV card, because CSV is the path that does not wait on anyone else (D3, and the As-Is barrier that a PM cannot get an admin to authorize an integration before they know the product works).</li>
+    <li><b><code>3.5</code> sync error:</b> the same screen with the failed source carrying its own status, its own explanation and the retry. One source failing is not the screen failing, and blanking the list would overstate the failure and hide the half that still works. The scope line carries the consequence: the corpus has not moved since the last successful sync, so today's ranking is counted from two-day-old data.</li>
+    <li>Plus the recoverable errors inside the flows (unmapped columns in <code>3.2</code>, auth failed in <code>3.3</code>). Recoveries loop back into the connect step; the only true dead-end lives in Flow 1, not on a screen.</li>
+  </ul>
 </section>
 
 <hr class="divider">
@@ -271,10 +234,10 @@
     </div>
   </div>
 
-  <div class="wire-label">3.1 Connect chooser + 3.2 CSV mapping</div>
+  <div class="wire-label">3.0 Available to connect (was 3.1) + 3.2 CSV mapping</div>
   <div class="two-col">
     <div class="wsite">
-      <div class="state-cap">3.1 connect chooser (source-type enum)</div>
+      <div class="state-cap">3.0 available-to-connect group (source-type enum)</div>
       <div class="wchoose">
         <div class="wchoose-card"><div class="wchoose-t">CSV upload</div><div class="wchoose-d">One-off import batch, with column mapping.</div></div>
         <div class="wchoose-card"><div class="wchoose-t">Intercom</div><div class="wchoose-d">Live connection, syncs new conversations.</div></div>
@@ -418,5 +381,11 @@
   sections.forEach(s => observer.observe(s));
 </script>
 
+<script>
+window.NAV_BASE = '../';
+window.NAV_ACTIVE = 'ia/structure.html';
+window.NAV_ACTIVE_LABEL = '3.0 Sources / ingestion';
+</script>
+<script src="../_nav.js"></script>
 </body>
 </html>

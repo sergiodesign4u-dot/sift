@@ -8,12 +8,27 @@
 <link rel="stylesheet" href="_wf.css">
 </head>
 <!--
-  Wireframe 6.5 Briefs: empty. State of node 6.0. One explanation and a Build first brief CTA.
-  No dead end: the CTA routes to the build flow. Text from ia/docs/pages/briefs.md.
+  Wireframe 6.5 Briefs: empty. State of node 6.0.
+
+  Composition from ia/docs/blocks.md, Type 3, States: "3.4 and 6.5 become the same screen with
+  an empty first group, not separate designs. Their copy still names the one action, and that
+  copy is the whole point of the state."
+
+  So this is 6.0 with its groups empty: the same head, the same scope line in its zero form,
+  the same group heading, and the explanation in the flow of the list rather than taking the
+  whole canvas.
+
+  The head action is the one thing that does move. On 3.4 the available-sources group below
+  carries the action, so the head can stay empty; here there is no second group, so the single
+  action sits in the empty block and the head does not repeat it. Two "Build brief" buttons on
+  one screen would be two primary actions in the same second (design principle 4).
+
+  The scope line does the work the old version could not: it names WHY there is nothing here
+  and what it would be built from, which is the difference between "you have not done this
+  yet" and "there is nothing to do this with".
 -->
 <body>
 
-<div id="wf-topbar" data-node="6.0" data-state="empty"></div>
 
 <div class="wf-shell">
   <div id="wf-rail" data-node="6.0" data-state="empty"></div>
@@ -24,11 +39,25 @@
 
         <div data-wf="header" data-active="briefs"></div>
 
-        <main class="wf-main">
-          <div class="wf-state">
+        <header class="wf-screenhead">
+          <div class="wf-screenhead-row">
+            <div class="wf-head-text">
+              <h1 class="wf-h1">Briefs</h1>
+              <p class="wf-sub">A brief packages themes, their evidence, and your recommended order into a link a stakeholder can read and challenge without a Sift seat.</p>
+            </div>
+          </div>
+          <p class="wf-scope">
+            <b>0</b> briefs. There are <b>12</b> themes on Synthesis to build one from, and the
+            top three carry 89 feedback items between them.
+          </p>
+        </header>
+
+        <main class="wf-main wf-main--flush">
+          <div class="wf-evi-group">Your briefs &middot; 0</div>
+          <div class="wf-state wf-state--inline">
             <div class="wf-state-ic"></div>
-            <h1 class="wf-state-t">No briefs yet</h1>
-            <p class="wf-state-d">A brief packages your top themes, their evidence, and a recommended priority into a link a stakeholder can read and challenge without a Sift seat. Build one before your next roadmap session.</p>
+            <h2 class="wf-state-t">No briefs yet</h2>
+            <div class="wf-state-d">Pick the themes that should drive the next roadmap conversation, put them in the order you would defend, and say why. Sift keeps every quote attached, so the people reading it can check the claim instead of taking your word for it.</div>
             <div class="wf-state-actions">
               <a class="wf-btn" href="build-brief.html">Build your first brief</a>
             </div>

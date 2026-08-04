@@ -8,13 +8,21 @@
 <link rel="stylesheet" href="_wf.css">
 </head>
 <!--
-  Wireframe 4.0 Theme detail - error (could not load the theme). State of node 4.0.
-  Two visible exits: retry (to the loading state) or back to Synthesis. Never a dead end.
+  Wireframe 4.0 Theme detail - error (the evidence did not come back). State of node 4.0.
+
+  Composition from ia/docs/blocks.md, Type 5, States: name the failure, always offer the way
+  back to 2.0. As on 4.0 loading, what the ranked list already knows is drawn as itself, so
+  the reader is not left wondering which theme failed: the name, the count, and the rank are
+  facts that did not depend on the request that failed.
+
+  The head action is absent here, unlike on the loading state: adding a theme to a brief while
+  its evidence is unreadable would put a claim in a shared document that nobody can open.
+  Exactly one primary action, Try again.
+
   A single unresolvable evidence item is handled by 5.1, not here (ia/docs/pages/theme.md).
 -->
 <body>
 
-<div id="wf-topbar" data-node="4.0" data-state="error"></div>
 
 <div class="wf-shell">
   <div id="wf-rail" data-node="4.0" data-state="error"></div>
@@ -25,15 +33,32 @@
 
         <div data-wf="header" data-active="synthesis"></div>
 
-        <nav class="wf-breadcrumb" aria-label="Breadcrumb"><a href="synthesis.html">Synthesis</a> &rsaquo; <span>Theme</span></nav>
+        <nav class="wf-breadcrumb" aria-label="Breadcrumb"><a href="synthesis.html">Synthesis</a> &rsaquo; <span>Onboarding is confusing</span></nav>
 
-        <main class="wf-main">
+        <header class="wf-screenhead">
+          <div class="wf-screenhead-row">
+            <div class="wf-head-text">
+              <h1 class="wf-h1">Onboarding is confusing</h1>
+              <div class="wf-theme-headmeta">
+                <span class="wf-conf"><span class="wf-conf-n">n=42</span></span>
+                <span>latest feedback 2 days ago</span>
+                <span>rank 1 of 12 by signal</span>
+              </div>
+            </div>
+          </div>
+          <p class="wf-scope">
+            <b>42</b> items from 2 sources: <b>Intercom 30</b>, <b>CSV 12</b>. The count comes from
+            the ranked list and still holds. What did not load is the items behind it.
+          </p>
+        </header>
+
+        <main class="wf-main wf-main--flush">
           <div class="wf-state">
             <div class="wf-state-ic"></div>
-            <h1 class="wf-state-t">Could not load this theme</h1>
-            <div class="wf-state-d">The evidence for this theme did not come back this time. Nothing is lost. Try again, or go back to the ranked themes.</div>
+            <h2 class="wf-state-t">Could not load this theme</h2>
+            <div class="wf-state-d">The evidence for this theme did not come back this time. Nothing is lost and no item was removed. Until it opens, treat the count above as unverified: the point of this screen is that you can check it.</div>
             <div class="wf-state-actions">
-              <a class="wf-btn--ghost" href="synthesis.html">Back to Synthesis</a>
+              <a class="wf-btn wf-btn--ghost" href="synthesis.html">Back to Synthesis</a>
               <a class="wf-btn" href="theme-loading.html">Try again</a>
             </div>
           </div>

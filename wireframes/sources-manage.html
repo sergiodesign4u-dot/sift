@@ -15,10 +15,19 @@
 </head>
 <!-- 3.6 Source: manage (disconnect / re-import). Source detail for the Intercom connection,
      a Re-import action, and a Disconnect confirm (a real button). Back to sources.html.
-     Source ia/docs/pages/sources.md. Grey, responsive. -->
+     Source ia/docs/pages/sources.md. Grey, responsive.
+
+  Composition from ia/docs/blocks.md, Type 4 (import and connect wizard):
+    12 manage and disconnect WITH THE CONSEQUENCE STATED. Disconnecting has to say what happens
+      to the items already ingested, otherwise the user is guessing about their own data (GDPR,
+      and the same stance as scrub-by-default)
+    the per-source detail repeats the stat line from 3.0 rather than inventing a second
+      vocabulary for the same facts
+  ABSENT deliberately: two icons on the source row (Type 3 row 8). One Manage entry leads here,
+  because the consequences need a screen with room to state them.
+-->
 <body>
 
-<div id="wf-topbar" data-node="3.0" data-state="manage"></div>
 
 <div class="wf-shell">
   <div id="wf-rail" data-node="3.0" data-state="manage"></div>
@@ -49,14 +58,14 @@
           <h2 class="wf-evi-title">Re-import</h2>
           <p class="src-note">Pull the history from Intercom again. Existing items are de-duplicated and PII is scrubbed on the way in.</p>
           <div class="src-actions">
-            <button class="wf-btn--ghost" type="button">Re-import from Intercom</button>
+            <button class="wf-btn wf-btn--ghost" type="button">Re-import from Intercom</button>
           </div>
 
           <h2 class="wf-evi-title">Disconnect</h2>
           <div class="src-confirm">
             <p class="src-note">Disconnecting stops the live sync and removes the connection. Imported feedback and existing citations stay, but no new feedback comes in.</p>
             <div class="src-actions">
-              <a class="wf-btn--ghost" href="sources.html">Cancel</a>
+              <a class="wf-btn wf-btn--ghost" href="sources.html">Cancel</a>
               <button class="wf-btn" type="button">Disconnect Intercom</button>
             </div>
           </div>

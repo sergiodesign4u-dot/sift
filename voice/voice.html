@@ -128,31 +128,11 @@
     .vp-lines { grid-template-columns: 1fr; }
     h1 { font-size: 28px; }
   }
-
-  /* SIDEBAR - mobile first */
-  .sidebar { display: none; }
   @media (min-width: 1100px) {
-    .sidebar {
-      display: flex; flex-direction: column; gap: 2px;
-      position: fixed; top: 52px; left: 0; width: 220px; height: calc(100vh - 52px);
-      overflow-y: auto; padding: 24px 12px 32px;
-      border-right: 1px solid var(--border-light); background: var(--bg); z-index: 90;
-    }
     .page { margin: 0; margin-left: 220px; max-width: 1040px; padding: 100px 40px 120px; }
   }
-  .sidebar-phase-label { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-3); padding: 5px 8px; border-radius: 5px; display: block; cursor: default; }
-  .sidebar-phase.active .sidebar-phase-label { color: var(--accent); background: var(--accent-glow); }
-  a.sidebar-phase-label { cursor: pointer; }
-  a.sidebar-phase-label:hover { color: var(--text); background: var(--bg-3); }
-  .sidebar-section-links { list-style: none; margin: 4px 0 8px 0; padding: 0; }
-  .sidebar-section-links a { display: block; font-size: 12px; color: var(--text-3); text-decoration: none; padding: 4px 8px 4px 16px; border-radius: 4px; border-left: 2px solid transparent; transition: color 0.15s, border-color 0.15s, background 0.15s; line-height: 1.5; }
-  .sidebar-section-links a:hover { color: var(--text); background: var(--bg-3); }
-  .sidebar-section-links a.active { color: var(--text); border-left-color: var(--accent); background: var(--bg-3); }
-  .sidebar-divider { border: none; border-top: 1px solid var(--border-light); margin: 8px 0; }
-  .sidebar-coming-soon { display: flex; align-items: center; justify-content: space-between; padding: 5px 8px; border-radius: 5px; cursor: default; opacity: 0.5; }
-  .sidebar-cs-label { font-size: 12px; font-weight: 500; color: var(--text-3); letter-spacing: 0.02em; }
-  .sidebar-cs-badge { font-size: 9px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-3); background: var(--bg-3); border: 1px solid var(--border-light); padding: 2px 5px; border-radius: 3px; }
 </style>
+<link rel="stylesheet" href="../_nav.css">
 </head>
 <body>
 
@@ -166,30 +146,7 @@
   </ul>
 </nav>
 
-<!-- SIDEBAR NAV: 12-stage roadmap, flat. Four done as collapsed links, Voice active, rest Soon. -->
-<aside class="sidebar">
-  <div class="sidebar-phase"><a class="sidebar-phase-label" href="../research/research.html">Foundation Research</a></div>
-  <div class="sidebar-phase"><a class="sidebar-phase-label" href="../user-research/personas.html">User Research</a></div>
-  <hr class="sidebar-divider">
-  <div class="sidebar-phase"><a class="sidebar-phase-label" href="../ia/flows.html">Information Architecture</a></div>
-  <div class="sidebar-phase"><a class="sidebar-phase-label" href="../wireframes/index.html">Wireframes</a></div>
-  <div class="sidebar-phase active">
-    <span class="sidebar-phase-label">Voice</span>
-    <ul class="sidebar-section-links">
-      <li><a href="#principles">Principles</a></li>
-      <li><a href="#dictionary">Dictionary</a></li>
-      <li><a href="#forbidden">Forbidden</a></li>
-      <li><a href="#microcopy">Microcopy</a></li>
-    </ul>
-  </div>
-  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Concept</span><span class="sidebar-cs-badge">Next</span></div>
-  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">UI + Visual</span><span class="sidebar-cs-badge">Soon</span></div>
-  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Tokens + Components</span><span class="sidebar-cs-badge">Soon</span></div>
-  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Design System</span><span class="sidebar-cs-badge">Soon</span></div>
-  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Responsive</span><span class="sidebar-cs-badge">Soon</span></div>
-  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Animation</span><span class="sidebar-cs-badge">Soon</span></div>
-  <div class="sidebar-coming-soon"><span class="sidebar-cs-label">Handoff</span><span class="sidebar-cs-badge">Soon</span></div>
-</aside>
+<aside id="sidebar"></aside>
 
 <div class="page">
 
@@ -268,8 +225,8 @@
       <div class="vp-block vp-good">
         <span class="vp-block-label">Written to the rule</span>
         <ul>
-          <li>"Share link ready."</li>
-          <li>"Synthesis failed. Your sources are still connected, so nothing is lost."</li>
+          <li>"The link is live."</li>
+          <li>"Synthesis failed. Your sources are still connected and no feedback was lost."</li>
         </ul>
       </div>
       <div class="vp-block vp-bad">
@@ -291,7 +248,7 @@
       <div class="vp-block vp-good">
         <span class="vp-block-label">Written to the rule</span>
         <ul>
-          <li>"No sources connected yet. Connect a source to see your first synthesis." with a "Connect a source" action.</li>
+          <li>"Nothing to synthesize yet. Connect a source to see your first synthesis." with a "Connect a source" action.</li>
           <li>"Synthesis failed ... Try again, or check your sources."</li>
         </ul>
       </div>
@@ -410,27 +367,27 @@
     <div class="mc-item">
       <div class="mc-el">Confidence and honesty note</div>
       <div class="mc-rule">State the strength as a number, and when it is thin, say so plainly right next to it. Principle 1 as microcopy, mandatory under D2.</div>
-      <div class="mc-ex"><span class="g">Written to the rule:</span> "n=6  low signal" plus "Thin evidence. Six mentions is a weak signal, not a confirmed pattern. Treat it as a lead to watch, not a decision."</div>
+      <div class="mc-ex"><span class="g">Written to the rule:</span> "n=6  low signal" plus "Thin evidence. Six mentions is a weak signal, not a confirmed pattern, so treat this as a lead to watch rather than a decision ... What would change it is more of the same over time, and the count above is the thing to watch."</div>
     </div>
     <div class="mc-item">
       <div class="mc-el">Empty state</div>
-      <div class="mc-rule">Say why it is empty and give the one action that fills it. An empty is a starting line, not a wall.</div>
-      <div class="mc-ex"><span class="g">Written to the rule:</span> "No sources connected" plus "Connect a source to bring your feedback in ..." and a "Connect a source" action. <span class="b">Not:</span> "No data."</div>
+      <div class="mc-rule">Say why it is empty and give the one action that fills it. An empty is a starting line, not a wall. The one action does not have to be a button in the block: where the empty state is a group inside a populated screen, the copy points at the action already on the screen instead of repeating it.</div>
+      <div class="mc-ex"><span class="g">Written to the rule:</span> "No sources connected" plus "Bring your feedback in and Sift normalizes it, scrubs personal details by default ... Pick a source below." and the source cards on the same screen. <span class="b">Not:</span> "No data."</div>
     </div>
     <div class="mc-item">
       <div class="mc-el">Error state</div>
       <div class="mc-rule">Say what happened and what to do next. Reassure with a fact (nothing is lost), never a joke or an apology. One recovery action, plus a way back.</div>
-      <div class="mc-ex"><span class="g">Written to the rule:</span> "Synthesis failed. Your sources are still connected, so nothing is lost. Try again, or check your sources." <span class="b">Not:</span> "Something went wrong", "Oops".</div>
+      <div class="mc-ex"><span class="g">Written to the rule:</span> "Synthesis failed. Your sources are still connected and no feedback was lost, so a new run starts from the same 3,750 items." <span class="b">Not:</span> "Something went wrong", "Oops". The reassuring fact is a fact: "nothing is lost" asks to be believed, the number can be checked.</div>
     </div>
     <div class="mc-item">
       <div class="mc-el">Loading state</div>
-      <div class="mc-rule">A wait stays silent (a skeleton) or says exactly what is running. It never fills the silence with chatter.</div>
-      <div class="mc-ex"><span class="g">Written to the rule:</span> "Synthesizing your feedback. Ingesting, scrubbing PII, and clustering into themes." <span class="b">Not:</span> "Hang tight!", "Working some magic".</div>
+      <div class="mc-rule">A wait stays silent (a skeleton) or says exactly what is running, plus what is already known and what is not yet. It never fills the silence with chatter.</div>
+      <div class="mc-ex"><span class="g">Written to the rule:</span> "Reading 3,750 feedback items from 2 sources. Themes and their counts appear when clustering finishes." plus a phase strip, "Ingested, 3,750 items / Scrubbing and clustering / Ranking by signal". <span class="b">Not:</span> "Hang tight!", "Working some magic".</div>
     </div>
     <div class="mc-item">
       <div class="mc-el">Success and confirmation</div>
       <div class="mc-rule">Name the fact and the next step. Do not celebrate, and do not say "successfully".</div>
-      <div class="mc-ex"><span class="g">Written to the rule:</span> "Share link ready." plus "Copy" and "Preview brief". <span class="b">Not:</span> "Success!", "Your brief is live".</div>
+      <div class="mc-ex"><span class="g">Written to the rule:</span> "The link is live." plus "Copy" and "See what they see". <span class="b">Not:</span> "Success!", "Your brief is live".</div>
     </div>
     <div class="mc-item">
       <div class="mc-el">Dangerous or irreversible action</div>
@@ -449,9 +406,9 @@
     <table>
       <thead><tr><th>State</th><th>Tone rule</th><th>One line</th></tr></thead>
       <tbody>
-        <tr><td>Success (base)</td><td>State the fact, point at the next step. No celebration.</td><td>"Share link ready."</td></tr>
-        <tr><td>Empty</td><td>Say why, give the one action.</td><td>"No sources connected" plus "Connect a source".</td></tr>
-        <tr><td>Loading</td><td>Silent skeleton, or name what runs. No chatter.</td><td>"Synthesizing your feedback ..."</td></tr>
+        <tr><td>Success (base)</td><td>State the fact, point at the next step. No celebration.</td><td>"The link is live."</td></tr>
+        <tr><td>Empty</td><td>Say why, give the one action; the action may be the thing itself on the screen.</td><td>"No sources connected" plus the source cards below it.</td></tr>
+        <tr><td>Loading</td><td>Skeleton plus what is known and what is not. No chatter.</td><td>"Reading 3,750 feedback items from 2 sources ..."</td></tr>
         <tr><td>Error</td><td>What happened, what to do, one reassuring fact. No joke, no apology.</td><td>"Synthesis failed ... Try again".</td></tr>
         <tr><td>Low signal / thin</td><td>Admit the weakness plainly, keep it open.</td><td>"Thin evidence ... a lead to watch, not a decision."</td></tr>
         <tr><td>Redacted / withheld</td><td>Name the reason and what still holds.</td><td>"scrubbed beyond display ... the theme still stands".</td></tr>
@@ -497,7 +454,6 @@
 <script>
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-links a');
-  const sidebarLinks = document.querySelectorAll('.sidebar-section-links a');
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -509,12 +465,6 @@
             link.style.color = 'var(--text)';
           }
         });
-        sidebarLinks.forEach(link => {
-          link.classList.remove('active');
-          if (link.getAttribute('href') === '#' + id) {
-            link.classList.add('active');
-          }
-        });
       }
     });
   }, { threshold: 0, rootMargin: '-15% 0px -75% 0px' });
@@ -522,5 +472,10 @@
   sections.forEach(s => observer.observe(s));
 </script>
 
+<script>
+window.NAV_BASE = '../';
+window.NAV_SECTIONS = [{"id": "principles", "label": "Principles"}, {"id": "dictionary", "label": "Dictionary"}, {"id": "forbidden", "label": "Forbidden"}, {"id": "microcopy", "label": "Microcopy"}];
+</script>
+<script src="../_nav.js"></script>
 </body>
 </html>

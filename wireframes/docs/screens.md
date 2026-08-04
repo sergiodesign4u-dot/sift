@@ -1,17 +1,17 @@
 # Wireframes - Screen x State Matrix - Sift
 
-*Stage 04 order sheet for the wireframe stage. Rows are screens, columns are states. A checkmark means the state is real for that screen (it exists as a node in ia/docs/sitemap.md or in the States section of the node spec). A blank hyphen means the scenario does not produce that state, so we do not draw it. Nothing here is invented: every screen, job, flow position, and state is inherited from ia/docs/sitemap.md, ia/docs/flows.md, ia/docs/pages/*.md, and user-research/docs/jtbd.md. A missing block is an IA fix, not a wireframe addition.*
+*Stage 04 order sheet for the wireframe stage. Rows are screens, columns are states. A checkmark means the state is real for that screen (it exists as a node in ia/docs/sitemap.md or in the States section of the node spec). A blank hyphen means the scenario does not produce that state, so we do not draw it. Nothing here is invented: every screen, job, flow position, and state is inherited from ia/docs/sitemap.md, ia/docs/flows.md, ia/docs/pages/*.md, and research/docs/jtbd.md. A missing block is an IA fix, not a wireframe addition.*
 
 *No em dash. Internal doc language is English; the HTML wireframes carry product copy (English) pulled verbatim from the A to E blocks of each IA node.*
 
 ## Locked choices (etalon + first flow)
 
-- **ETALON: 2.0 Synthesis view** (`synthesis.html`). The workhorse with maximum reuse. It owns three canonical components (confidence indicator, theme card, filter / sort control) that render on 4.0, 4.1, 6.1, and 6.4, and it establishes the app shell (logged-in header, minimal footer, state bar) and the four-state floor pattern that every app screen inherits. Chosen for reuse, not for being first in the flow.
+- **ETALON: 2.0 Synthesis view** (`synthesis.html`). The workhorse with maximum reuse. It owns three canonical components (confidence indicator, theme card, filter / sort control) that render on 4.0, 4.1, 6.1, and 6.4, and it establishes the app shell (logged-in header, minimal footer, bottom tabs) and the state pattern every app screen inherits: a state keeps the blocks of its screen and fills them with what it can honestly say. Chosen for reuse, not for being first in the flow.
 - **FIRST FLOW: Flow 0, the main job spine** (2.0 -> 4.0 -> 5.0 -> 6.1 -> 6.3 -> 6.4). The flow that reuses the etalon the most (theme card, confidence indicator, and evidence snippet run end to end) and the primary persona's (Alex) path to the main job. Assembled first, end to end.
 
 ## Scope of this matrix
 
-Flow 0 (main job) screens only. The other flows (Flow 1 Sources / ingestion, Flow 2 trust drill, Flow 3 defend live, Flow 4 share) and the platform clusters (Auth, Account, System, Legal, Home) are rolled out in Step 8 by subagent fanout, and tracked in index.html coverage. Screens adjacent to Flow 0 but owned by another cluster are listed under "Adjacent, deferred" below.
+Flow 0 (main job) screens only. The other flows (Flow 1 Sources / ingestion, Flow 2 trust drill, Flow 3 defend live, Flow 4 share) and the platform clusters (Auth, Account, System, Legal, Home) are rolled out in Step 8 by subagent fanout, and tracked in overview.html coverage. Screens adjacent to Flow 0 but owned by another cluster are listed under "Adjacent, deferred" below.
 
 ## Screens (main flow)
 
@@ -38,7 +38,7 @@ Floor states are empty / error / loading / success (success is the base page). D
 | 6.4 Shared brief (public) | ✓ | - | - | - | none in IA (standalone public view, reached by token only) |
 
 Notes:
-- 2.0 is the only screen carrying the full four-state floor; its empty is the first-run activation fork (2.1 -> 3.1 Connect a source).
+- 2.0 is the only screen carrying the full four-state floor; its empty is the first-run activation fork (2.1 -> 3.0 Sources, which carries the available sources as its own group).
 - 4.0 has no empty: a theme always has at least one evidence item by definition. Its loading and error inherit the generic app patterns (theme.md). A single unresolvable item is 5.1, not a 4.0 state.
 - 5.0 gives only 5.0 and 5.1 in IA. The "unavailable / cannot resolve" case is folded into 5.1 (the traceability guard, Flow 2), so there is no separate error node, and no loading node is specified; we do not invent one.
 - 6.1 link-generation loading lives in the 6.3 dialog, not on 6.1.
@@ -46,7 +46,7 @@ Notes:
 
 ## Pages to create (files, first flow)
 
-Base file = success state; one file per real state. Latin names from ia/docs/sitemap.md. Globals (header, footer, state bar) come from _nav.js, not duplicated.
+Base file = success state; one file per real state. Latin names from ia/docs/sitemap.md. In-frame globals (app header, app footer, bottom tabs) come from _nav.js, not duplicated. The prototype chrome is one panel, also from _nav.js; there is no state bar.
 
 - 2.0: `synthesis.html` (base) · `synthesis-empty.html` · `synthesis-loading.html` · `synthesis-error.html`
 - 4.0: `theme.html` (base) · `theme-low-signal.html` · `theme-loading.html` · `theme-error.html`
@@ -61,7 +61,7 @@ Total for the first flow: 15 pages across 6 screens.
 
 These touch Flow 0 but belong to a different cluster; they are built in Step 6 / Step 8 with their own cluster, not here.
 
-- 3.1 Connect / import source (chooser): the first-run fork target from 2.0-empty (2.1 -> 3.1). Sources cluster, Flow 1.
+- 3.0 Sources: the first-run fork target from 2.0-empty. It carries the connected sources and the ones still available on one screen, which is why 3.1, the separate chooser, was folded into it in August 2026. Sources cluster, Flow 1.
 - 6.0 Briefs list · 6.5 Briefs empty: the briefs-list entry to 6.1. Briefs cluster; built with the briefs pages.
 
 ## Canonical components (owners, inherited from IA, never re-specified in a wireframe)
@@ -70,4 +70,12 @@ These touch Flow 0 but belong to a different cluster; they are built in Step 6 /
 - Theme card (label, volume n=X, recency, confidence indicator). Owner 2.0. Rendered on 6.1 selection, 6.4.
 - Filter / sort control (source, recency, confidence; sort by rank / volume / recency). Owner 2.0. Reused lightly on 3.0.
 - Evidence snippet (verbatim excerpt, channel, date, inline citation). Owner 4.0. Rendered on 5.0 (expanded) and 6.4 (public quote).
-- Source-type enum (CSV, Intercom). Owner 3.1. (Flow 1, later.)
+- Source-type enum (CSV, Intercom). Owner 3.0. (Flow 1.)
+
+## Close-out, round 2 (August 2026)
+
+38 pages, all built, all walkable, every state carrying a visible exit. Rebuilt on the block bank:
+every screen file names its page type, the bank rows it takes, and what it deliberately leaves out.
+Verified in a browser at 1440 and 360 (no overflow, one h1 per page, every navigation carrying
+aria-current), and audited on a second instrument read-only over the source. 11 findings, all fixed;
+see `critique.md`. Stage 04 closed.
