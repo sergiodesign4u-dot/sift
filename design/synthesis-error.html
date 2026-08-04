@@ -14,6 +14,11 @@
 <!--
   design 2.3 Synthesis error. COLOR COPY of wireframes/synthesis-error.html.
   Visual layer only. Structure and text from wireframes/. Not-yet-colored links point to ../wireframes/.
+  Recoloured August 2026 with the etalon: the state keeps the blocks of its screen and fills
+  them with what it can honestly say, including zero. The screen head stays so the reader sees
+  WHICH screen is in this state, and the scope line stays so the denominator is stated even
+  when it is nothing. The filter toolbar is absent on purpose: its facets carry counts, and a
+  control that cannot state its counts is a control that lies.
 -->
 <body>
 
@@ -63,10 +68,22 @@
     </header>
 
     <main class="appmain">
+
+      <header class="screenhead">
+        <div class="screenhead-row">
+          <div class="head-text">
+            <h1 class="h1">Synthesis</h1>
+            <p class="sub">Your feedback, clustered into ranked themes. Open one to trace the evidence behind it.</p>
+          </div>
+        </div>
+        <p class="scope">The last complete synthesis is from <b>2 hours ago</b>, over 12 themes and 3,750
+          feedback items. It is still readable: <a href="synthesis.html">open the version from 2 hours ago</a>.</p>
+      </header>
+
       <div class="state">
         <div class="state-ic"><svg class="ic"><use href="#i-alert"/></svg></div>
-        <h1 class="state-t">Synthesis failed</h1>
-        <div class="state-d">We could not build the picture this time. Your sources are still connected, so nothing is lost. Try again, or check your sources.</div>
+        <h2 class="state-t">Synthesis failed</h2>
+        <div class="state-d">We could not build the picture this time. Your sources are still connected and no feedback was lost, so a new run starts from the same 3,750 items.</div>
         <div class="state-actions">
           <a class="btn--ghost" href="../wireframes/sources.html">Go to Sources</a>
           <a class="btn" href="synthesis-loading.html">Try again</a>

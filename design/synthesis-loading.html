@@ -14,6 +14,11 @@
 <!--
   design 2.2 Synthesis loading. COLOR COPY of wireframes/synthesis-loading.html.
   Visual layer only. Structure and text from wireframes/. Not-yet-colored links point to ../wireframes/.
+  Recoloured August 2026 with the etalon: the state keeps the blocks of its screen and fills
+  them with what it can honestly say, including zero. The screen head stays so the reader sees
+  WHICH screen is in this state, and the scope line stays so the denominator is stated even
+  when it is nothing. The filter toolbar is absent on purpose: its facets carry counts, and a
+  control that cannot state its counts is a control that lies.
 -->
 <body>
 
@@ -62,16 +67,51 @@
     </header>
 
     <main class="appmain">
-      <div class="main-head">
-        <h1 class="h1">Synthesis</h1>
-        <p class="sub">Synthesizing your feedback. Ingesting, scrubbing PII, and clustering into themes.</p>
-      </div>
+
+      <header class="screenhead">
+        <div class="screenhead-row">
+          <div class="head-text">
+            <h1 class="h1">Synthesis</h1>
+            <p class="sub">Your feedback, clustered into ranked themes. Open one to trace the evidence behind it.</p>
+          </div>
+        </div>
+        <p class="scope">Reading <b>3,750</b> feedback items from 2 sources. Themes and their counts appear
+          when clustering finishes. You can leave this screen, the work carries on.</p>
+      </header>
+
+      <nav class="steps" aria-label="Synthesis progress">
+        <span class="step is-done"><span class="step-n">&#10003;</span> Ingested, 3,750 items</span>
+        <span class="step-sep" aria-hidden="true">&rsaquo;</span>
+        <span class="step is-current"><span class="step-n">2</span> Scrubbing and clustering</span>
+        <span class="step-sep" aria-hidden="true">&rsaquo;</span>
+        <span class="step"><span class="step-n">3</span> Ranking by signal</span>
+      </nav>
+
       <ul class="list" aria-busy="true">
-        <li class="skelcard"><div class="skel a"></div><div class="skel b"></div></li>
-        <li class="skelcard"><div class="skel c"></div><div class="skel b"></div></li>
-        <li class="skelcard"><div class="skel a"></div><div class="skel b"></div></li>
-        <li class="skelcard"><div class="skel c"></div><div class="skel b"></div></li>
-        <li class="skelcard"><div class="skel a"></div><div class="skel b"></div></li>
+        <li class="skelrow">
+          <span class="skel-box" aria-hidden="true"></span>
+          <span class="skel-body"><span class="skel a"></span><span class="skel c"></span><span class="skel b"></span></span>
+        </li>
+        <li class="skelrow">
+          <span class="skel-box" aria-hidden="true"></span>
+          <span class="skel-body"><span class="skel c"></span><span class="skel c"></span><span class="skel b"></span></span>
+        </li>
+        <li class="skelrow">
+          <span class="skel-box" aria-hidden="true"></span>
+          <span class="skel-body"><span class="skel a"></span><span class="skel c"></span><span class="skel b"></span></span>
+        </li>
+        <li class="skelrow">
+          <span class="skel-box" aria-hidden="true"></span>
+          <span class="skel-body"><span class="skel c"></span><span class="skel c"></span><span class="skel b"></span></span>
+        </li>
+        <li class="skelrow">
+          <span class="skel-box" aria-hidden="true"></span>
+          <span class="skel-body"><span class="skel a"></span><span class="skel c"></span><span class="skel b"></span></span>
+        </li>
+        <li class="skelrow">
+          <span class="skel-box" aria-hidden="true"></span>
+          <span class="skel-body"><span class="skel c"></span><span class="skel c"></span><span class="skel b"></span></span>
+        </li>
       </ul>
     </main>
 

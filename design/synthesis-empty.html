@@ -14,6 +14,11 @@
 <!--
   design 2.1 Synthesis first-run empty. COLOR COPY of wireframes/synthesis-empty.html.
   Visual layer only. Structure and text from wireframes/. Not-yet-colored links point to ../wireframes/.
+  Recoloured August 2026 with the etalon: the state keeps the blocks of its screen and fills
+  them with what it can honestly say, including zero. The screen head stays so the reader sees
+  WHICH screen is in this state, and the scope line stays so the denominator is stated even
+  when it is nothing. The filter toolbar is absent on purpose: its facets carry counts, and a
+  control that cannot state its counts is a control that lies.
 -->
 <body>
 
@@ -62,10 +67,30 @@
     </header>
 
     <main class="appmain">
+
+      <header class="screenhead">
+        <div class="screenhead-row">
+          <div class="head-text">
+            <h1 class="h1">Synthesis</h1>
+            <p class="sub">Your feedback, clustered into ranked themes. Open one to trace the evidence behind it.</p>
+          </div>
+        </div>
+        <p class="scope"><b>0</b> themes from <b>0</b> feedback items, across 0 sources. Nothing has come in
+          yet, so there is nothing to count.</p>
+      </header>
+
+      <nav class="steps" aria-label="Getting to your first synthesis">
+        <span class="step is-current"><span class="step-n">1</span> Connect a source</span>
+        <span class="step-sep" aria-hidden="true">&rsaquo;</span>
+        <span class="step"><span class="step-n">2</span> Scrub and cluster</span>
+        <span class="step-sep" aria-hidden="true">&rsaquo;</span>
+        <span class="step"><span class="step-n">3</span> Ranked themes with evidence</span>
+      </nav>
+
       <div class="state">
         <div class="state-ic"><svg class="ic"><use href="#i-source"/></svg></div>
-        <h1 class="state-t">Nothing to synthesize yet</h1>
-        <div class="state-d">Connect a source to see your first synthesis. Sift clusters your feedback into ranked themes, each with the evidence behind it. Your data is PII scrubbed by default.</div>
+        <h2 class="state-t">Nothing to synthesize yet</h2>
+        <div class="state-d">Connect a source to see your first synthesis. Sift reads your feedback, removes personal details, then clusters what is left into ranked themes. Every theme keeps the items behind it, so you can open any conclusion and read the words it came from.</div>
         <div class="state-actions">
           <a class="btn" href="../wireframes/sources-empty.html"><svg class="ic" width="15" height="15"><use href="#i-source"/></svg> Connect a source</a>
         </div>
