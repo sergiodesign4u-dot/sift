@@ -22,6 +22,7 @@
 * { box-sizing:border-box; margin:0; padding:0; }
 html { scroll-behavior:smooth; }
 body { font-family:var(--font-ui); background:var(--canvas); color:var(--porcelain); line-height:1.5; font-size:14px; letter-spacing:-0.011em; -webkit-font-smoothing:antialiased; padding-top:52px; }
+.sprite { position:absolute; width:0; height:0; }
 .ic { display:inline-block; vertical-align:middle; stroke:currentColor; fill:none; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; }
 
 /* ---- Portfolio top nav ---- */
