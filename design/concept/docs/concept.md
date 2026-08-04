@@ -89,6 +89,29 @@ Internal document, English. No em dash anywhere in this file.
 - **Why:** it makes Sift's differentiator spatial, the evidence stays visible while you read the ranked themes, so the drill happens without leaving the view (A2, the hardest attribute to honor). The etalon 2.0 Synthesis is the right home for it, and compositionally it is almost a superset: the left pane is Direction 1 (the ranked ledger), the right pane is Direction 2 (the evidence reading). Answers A2 first, carries A4 and A1 in the left pane.
 - **IA implication (carried to Step 7):** Direction 3 pulls Theme-detail (4.0) evidence into the Synthesis view (right pane). So the second, contrast screen should be a genuinely different density, the public Shared brief (6.4) or the Evidence source (5.0), not Theme detail.
 
+**Revised August 2026, after the wireframe rebuild: the split pane is deferred, and A2 is answered
+in one column.** The premise of the choice changed under it. Direction 3 was chosen when the theme
+card carried no quote, and what it was buying was evidence before the click. The block bank then
+gave the etalon exactly that inside one column: a representative verbatim on every card
+(`ia/docs/blocks.md`, Type 2, row 10) plus the scope line stating the denominator. So the attribute
+the direction existed to serve is now served without the structural change.
+
+What is kept from Direction 3, and what is not:
+- **Kept:** the left pane, which is the ranked ledger, and it is what the etalon is. The
+  evidence-quote treatment from Direction 2 (numbered citation plus scrubbed source) is kept too,
+  on 4.0 and on the contrast screen.
+- **Deferred, LATER:** the standing right-hand evidence pane. It is a real deepening of the drill,
+  not a wrong idea, but it is a structural change to node 2.0, and structure belongs to IA and to
+  the wireframes, never to a colour copy. It would also have to fold back into one column at 360,
+  which is where the etalon does most of its arguing.
+- **The rule that decided it:** a colour copy owns the visual layer only. Implementing the split
+  here would have made `design/` and `wireframes/` disagree about what screen 2.0 is, and the grey
+  contract is the thing that keeps the colour layer reversible.
+
+**Contrast screen for Step 7: 6.4 Shared brief.** The record above rules out 4.0, and 6.4 is the
+harder test anyway: no app chrome, no action for the accent to sit on, and a reader who did not ask
+for the document and will leave if it looks like an advert.
+
 **Not chosen, kept on record:**
 - **Direction 1, "Dense ledger"**: the pure dense-list alternative, whole month at a glance, drill to a separate theme page. Its ledger row is reused as the left pane.
 - **Direction 2, "Focus column"**: the editorial single-column reading rhythm. Its evidence-quote treatment (numbered citation plus scrubbed source) is reused in the right pane.

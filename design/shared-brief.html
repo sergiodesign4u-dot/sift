@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift - 6.4 Shared brief (in color)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="_theme.css">
+<link rel="stylesheet" href="../_nav.css">
+</head>
+<!--
+  design 6.4 Shared brief (public, read-only). COLOR COPY of wireframes/shared-brief.html.
+  Only the visual layer is owned here. Structure, text, and the set of states stay the property
+  of wireframes/shared-brief.html (grey). Brand from DESIGN-artifacts.md.
+
+  THE CONTRAST SCREEN (Concept, Step 7). The etalon is a dense ranked instrument read by its
+  owner at a desk; this is a single column of reading matter, opened cold from a link by a
+  sceptic with no Sift account and no idea what the product is. Same language, opposite
+  density. That is the test: if the card, the count and the citation still read as the same
+  product here, it is a language rather than one lucky screen.
+
+  Chosen over 4.0 Theme detail on the record in design/concept/docs/concept.md, which rules
+  4.0 out: the chosen layout direction pulls theme evidence into 2.0, so 4.0 would not be a
+  genuinely different density.
+
+  What the language has to survive here:
+    no action at all, so the accent has nothing to sit on except the citation markers
+    no app chrome, so hierarchy has to come from type and rule alone
+    a reader who did not ask for this and will leave if it looks like an advert (Type 7 row 1)
+-->
+<body>
+
+<svg class="sprite" aria-hidden="true"><defs>
+  <symbol id="i-signal" viewBox="0 0 24 24"><path d="M6 18v-3.5M12 18v-8M18 18v-12.5"/></symbol>
+</defs></svg>
+
+<nav class="top">
+  <a class="nav-brand" href="../index.html"><span>S</span>ift</a>
+  <ul class="nav-links">
+    <li><a href="../design/concept/concept.html">Concept stand</a></li>
+    <li><a href="synthesis.html">Etalon in color</a></li>
+    <li><a href="../wireframes/shared-brief.html">Grey wireframe</a></li>
+  </ul>
+</nav>
+
+<aside id="sidebar"></aside>
+
+<div class="page">
+
+  <div class="proofbar">
+    <a class="back" href="../design/concept/concept.html">&larr; Concept stand</a>
+    <span class="label">Contrast screen 6.4 Shared brief, in color</span>
+    <span class="states">
+      <a href="shared-brief.html" class="cur">read-only</a>
+    </span>
+    <span class="note">the same language at the opposite density</span>
+  </div>
+
+  <div class="appframe">
+
+    <div class="public-bar">
+      <span class="brand"><svg class="ic mark" width="15" height="15"><use href="#i-signal"/></svg> Sift</span>
+      <span class="public-tag">Shared evidence brief &middot; read-only</span>
+    </div>
+
+    <main class="public-main">
+      <header>
+        <div class="public-eyebrow">Evidence brief &middot; no login required</div>
+        <h1 class="pub-h1">Q3 roadmap: what customers need most</h1>
+        <p class="pub-lede">Three themes carry 89 of the 3,750 feedback items in this workspace. Onboarding leads by a wide margin: 42 items across both sources, and it is the only theme that blocks new accounts before they reach any other problem.</p>
+
+        <div class="pub-meta">
+          <span>Prepared by <b>Alex Rivera</b>, Product</span>
+          <span>Published <b>4 August 2026</b></span>
+          <span>Covers <b>all feedback to 4 August 2026</b></span>
+          <span>Sources <b>CSV, Intercom</b></span>
+          <span>Reading time <b>3 min</b></span>
+        </div>
+      </header>
+
+      <div class="pub-key">
+        <h2>Recommended priority</h2>
+        <ol>
+          <li><span class="rank">1</span> Onboarding is confusing <span class="conf"><span class="conf-n">n=42</span></span></li>
+          <li><span class="rank">2</span> Slow export on large accounts <span class="conf"><span class="conf-n">n=28</span></span></li>
+          <li><span class="rank">3</span> Confusing billing and invoices <span class="conf"><span class="conf-n">n=19</span></span></li>
+        </ol>
+      </div>
+
+      <p class="pub-rationale">
+        <b>Why this order, from Alex:</b> onboarding blocks activation for every new account, so it
+        leads. Export and billing are high volume but affect users who are already working, so they
+        follow.
+      </p>
+
+      <h2 class="pub-h2">Themes and evidence</h2>
+
+      <section class="pub-theme">
+        <h3>1 &middot; Onboarding is confusing <span class="conf"><span class="conf-n">n=42</span></span></h3>
+        <p>New users cannot tell what to do first <span class="cite">1</span>. The blank first-run screen is the most cited single point of friction, and several accounts abandoned setup entirely <span class="cite">2</span>.</p>
+        <blockquote class="pub-quote">"I signed up and just stared at an empty dashboard. No idea what to do first."</blockquote>
+        <blockquote class="pub-quote">"My team gave up during setup because the first-run screen was blank with no guidance."</blockquote>
+      </section>
+
+      <section class="pub-theme">
+        <h3>2 &middot; Slow export on large accounts <span class="conf"><span class="conf-n">n=28</span></span></h3>
+        <p>Exports time out or lag for accounts with large datasets, blocking reporting workflows <span class="cite">3</span>. The complaint scales with workspace size <span class="cite">4</span>.</p>
+        <blockquote class="pub-quote">"Exporting our account data takes minutes and sometimes just fails."</blockquote>
+        <blockquote class="pub-quote">"The bigger our workspace gets, the slower export becomes."</blockquote>
+      </section>
+
+      <section class="pub-theme">
+        <h3>3 &middot; Confusing billing and invoices <span class="conf"><span class="conf-n">n=19</span></span></h3>
+        <p>Invoices are hard to read and the plan limits are unclear, which drives billing tickets <span class="cite">5</span>.</p>
+        <blockquote class="pub-quote">"I could not tell what I was being charged for on the invoice."</blockquote>
+        <blockquote class="pub-quote">"The plan limits are not clear until you hit them."</blockquote>
+      </section>
+
+      <h2 class="pub-h2">Citations</h2>
+      <ol class="pub-cites">
+        <li><span class="cite">1</span> <span>"I signed up and just stared at an empty dashboard. No idea what to do first, or where my data was supposed to come from." Intercom, 2 days ago, customer, mid-market.</span></li>
+        <li><span class="cite">2</span> <span>"My team gave up during setup because the first-run screen was blank with no guidance." Intercom, 9 days ago, customer, enterprise.</span></li>
+        <li><span class="cite">3</span> <span>"Exporting our account data takes minutes and sometimes just fails." Intercom, 5 days ago, customer, mid-market.</span></li>
+        <li><span class="cite">4</span> <span>"The bigger our workspace gets, the slower export becomes." Intercom, 8 days ago, customer, enterprise.</span></li>
+        <li><span class="cite">5</span> <span>"I could not tell what I was being charged for on the invoice." CSV import, 3 days ago, support ticket.</span></li>
+      </ol>
+
+      <h2 class="pub-h2">Sources</h2>
+      <ul class="pub-sources">
+        <li><span>Intercom conversations</span> <b>2,910</b></li>
+        <li><span>CSV import, support tickets and survey responses</span> <b>840</b></li>
+        <li><span>Total in the workspace</span> <b>3,750</b></li>
+      </ul>
+
+      <p class="pub-method">
+        How this was made: the 3,750 items above were clustered into themes, personal details were
+        scrubbed before anything was read, and any theme with thin evidence is labelled rather than
+        dropped. Nothing in this brief was written by hand except the paragraph marked as Alex's.
+      </p>
+    </main>
+
+    <footer class="pubfoot">Shared with Sift &middot; sift.app &middot; read-only, no login required &middot; PII scrubbed</footer>
+
+  </div>
+
+</div>
+
+<script>
+window.NAV_BASE = '../';
+window.NAV_ACTIVE = 'design/concept/concept.html';
+window.NAV_ACTIVE_LABEL = '6.4 Shared brief (color)';
+</script>
+<script src="../_nav.js"></script>
+</body>
+</html>

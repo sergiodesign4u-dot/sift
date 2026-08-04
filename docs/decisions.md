@@ -215,3 +215,27 @@ the source-type enum, 2.1 routes to 3.0 instead, the breadcrumbs on 3.2 and 3.3 
 crumb, and "Back to chooser" becomes "Back to sources". The node count goes from 39 to 38.
 Rejected: keeping it as the enum's home. An enum needs an owner, not a screen; the owner moved and the
 screen did not need to survive for it.
+
+**Layout Direction 3 keeps its ledger and defers its split pane (August 2026).**
+Concept Step 5 chose Direction 3, "Split evidence": a ranked ledger on the left and a standing
+evidence pane on the right, so the drill happens without leaving the view. The choice was made when
+the theme card carried no quote, and the split was how A2, evidence on the surface, was going to be
+honoured. The block bank then delivered A2 inside one column: a representative verbatim on every
+card plus the scope line stating the denominator. The premise moved, so the decision was re-read
+rather than executed on autopilot.
+The ledger is kept and is what the etalon is. The right-hand pane is deferred to LATER, for two
+reasons that are not about taste: it is a structural change to node 2.0, and structure belongs to
+IA and the wireframes rather than to a colour copy, which owns the visual layer only; and it has to
+fold back into one column at 360, which is where the etalon does most of its arguing.
+Rejected: building the split in the colour copy anyway, which would have made `design/` and
+`wireframes/` disagree about what screen 2.0 is and cost the grey contract its reversibility.
+
+**The shared brief counts against the corpus, not against a 30-day window (August 2026).**
+Fixing the earlier 3,750-against-2,904 contradiction on 6.4 by moving the lede to 2,904 made the
+lede disagree with the sources block on the same page. The right denominator is the corpus: the
+theme counts are corpus-wide (4.0 says theme 1 was first seen 5 weeks ago, outside any 30-day
+window), so the brief now says 89 of 3,750 and its metadata names what it actually covers.
+Left open and written where it was found: 2.0 says its themes are counted "from 2,904 of 3,750
+items in the last 30 days" while 4.0 counts a theme over the whole corpus. Whether the date filter
+narrows the ranking or only the list is an IA question, and it is recorded on the screen rather
+than settled by a colour copy.

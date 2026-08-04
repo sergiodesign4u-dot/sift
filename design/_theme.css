@@ -180,6 +180,59 @@ nav.top { position:fixed; top:0; left:0; right:0; z-index:100; height:52px; disp
 
 .appfoot { padding:14px 22px; border-top:1px solid var(--line); background:var(--surface); font-family:var(--font-mono); font-size:11px; color:var(--ash); }
 
+/* ---- 6.4 Shared brief: the public read-only document (contrast screen, Step 7) ----
+   The same language at a completely different density: no app chrome, no actions, one column
+   of reading. Cyan appears here on the citation markers and nowhere else. The palette table in
+   DESIGN-artifacts.md signs Cyan for A2 as the evidence marker, and on a document with no
+   action to spend it on, the citation IS the trust surface. */
+.public-bar { display:flex; align-items:center; gap:12px; height:52px; padding:0 22px; border-bottom:1px solid var(--line); background:var(--surface); }
+.public-bar .brand { color:var(--porcelain); }
+.public-tag { font-family:var(--font-mono); font-size:11px; color:var(--ash); }
+.public-main { max-width:720px; margin:0 auto; padding:34px 24px 44px; }
+.public-eyebrow { font-family:var(--font-mono); font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ash); }
+.pub-h1 { font-size:29px; font-weight:590; letter-spacing:-0.022em; line-height:1.2; margin:10px 0 12px; }
+.pub-lede { font-size:15.5px; line-height:1.65; color:var(--ash); }
+.pub-meta { display:flex; flex-wrap:wrap; gap:6px 22px; margin-top:20px; padding:14px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); font-size:12px; color:var(--ash); }
+.pub-meta b { color:var(--porcelain); font-weight:500; }
+
+/* Key takeaways, for the reader who will not scroll (A4: the order IS the recommendation) */
+.pub-key { margin:26px 0 0; padding:18px 20px; background:var(--surface); border:1px solid var(--line); border-radius:var(--r); }
+.pub-key h2 { font-size:11px; font-weight:600; letter-spacing:0.07em; text-transform:uppercase; color:var(--ash); margin-bottom:12px; }
+.pub-key ol { list-style:none; display:grid; gap:10px; }
+.pub-key li { display:flex; align-items:baseline; gap:12px; font-size:15px; color:var(--porcelain); }
+.pub-key .rank { text-align:left; min-width:14px; padding-top:0; }
+.pub-key .conf { margin-left:auto; }
+
+/* The author's judgement, attributed and visibly separate from the evidence (A5) */
+.pub-rationale { margin:22px 0 0; padding-left:14px; border-left:2px solid var(--line); font-size:14px; line-height:1.7; color:var(--ash); }
+.pub-rationale b { color:var(--porcelain); font-weight:500; }
+
+.pub-h2 { font-size:11px; font-weight:600; letter-spacing:0.07em; text-transform:uppercase; color:var(--ash); margin:34px 0 14px; padding-top:18px; border-top:1px solid var(--line); }
+.pub-theme { margin-bottom:26px; }
+.pub-theme h3 { display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; font-size:17px; font-weight:590; letter-spacing:-0.015em; color:var(--porcelain); margin-bottom:9px; }
+.pub-theme h3 .conf { margin-left:auto; }
+.pub-theme p { font-size:14.5px; line-height:1.75; color:var(--ash); }
+
+/* The customer's words, set as reading matter rather than as a card (A5) */
+.pub-quote { margin:12px 0 0 0; padding-left:15px; border-left:1px solid var(--line); font-size:14px; line-height:1.7; color:var(--porcelain); }
+
+/* The citation marker: the one place the accent lands on this page (A2) */
+.cite { display:inline-flex; align-items:center; justify-content:center; min-width:17px; height:17px; padding:0 4px; border-radius:var(--r-sm); font-family:var(--font-mono); font-size:10.5px; color:var(--cyan); background:rgba(51,196,204,0.10); border:1px solid rgba(51,196,204,0.30); vertical-align:1px; }
+.pub-cites { list-style:none; display:grid; gap:11px; }
+.pub-cites li { display:flex; gap:11px; font-size:13px; line-height:1.65; color:var(--ash); }
+.pub-cites .cite { flex:none; margin-top:2px; }
+
+/* Coverage, not a bibliography: what the brief could and could not have seen (A2) */
+.pub-sources { list-style:none; display:grid; gap:0; }
+.pub-sources li { display:flex; align-items:baseline; gap:14px; padding:10px 0; border-bottom:1px solid var(--line); font-size:13.5px; color:var(--ash); }
+.pub-sources li:last-child { border-bottom:0; color:var(--porcelain); }
+.pub-sources b { margin-left:auto; font-family:var(--font-mono); font-weight:500; color:var(--porcelain); }
+
+/* One honest line on how it was made (A3) */
+.pub-method { margin-top:26px; padding-top:18px; border-top:1px solid var(--line); font-size:12.5px; line-height:1.7; color:var(--ash); }
+
+.pubfoot { padding:16px 24px; border-top:1px solid var(--line); background:var(--surface); font-family:var(--font-mono); font-size:11px; color:var(--ash); text-align:center; }
+
 /* bottom tabs (mobile) */
 .bottomtabs { display:none; }
 .btab { display:flex; flex-direction:column; align-items:center; gap:3px; text-decoration:none; color:var(--ash); font-size:10px; flex:1; padding:8px 0; }
@@ -197,6 +250,9 @@ nav.top { position:fixed; top:0; left:0; right:0; z-index:100; height:52px; disp
   .bottomtabs { display:flex; position:sticky; bottom:0; border-top:1px solid var(--line); background:var(--surface); }
   /* At 360 the confidence pill would squeeze the theme label to three lines, so it takes its
      own row under the body, exactly as the grey contract does. */
+  .public-main { padding:22px 16px 34px; }
+  .pub-h1 { font-size:24px; }
+  .pub-theme h3 .conf, .pub-key .conf { margin-left:0; }
   .theme { grid-template-columns:20px 18px minmax(0,1fr) 18px; grid-template-areas:"check rank main drill" ". . conf conf"; gap:8px 10px; }
   .theme .check { grid-area:check; }
   .theme .rank { grid-area:rank; }
