@@ -16,6 +16,12 @@
   Only the visual layer is owned here. Structure, text, and the set of states stay the property
   of wireframes/synthesis.html (grey). Links to not-yet-colored screens point back to ../wireframes/.
   Brand from DESIGN-artifacts.md. Canonical data matches wireframes/synthesis.html.
+
+  Recoloured August 2026 after the grey etalon was rebuilt on the block bank. The previous copy
+  predated the rebuild and could not show two of its own five attributes: A2 (evidence on the
+  surface) had no representative quote and no denominator, and A4 (ranked clarity) had no rank
+  number and no remainder on the load control. Every block added here carries its attribute in
+  design/_theme.css beside the rule.
 -->
 <body>
 
@@ -67,65 +73,109 @@
     </header>
 
     <main class="appmain">
+
+      <header class="screenhead">
+        <div class="screenhead-row">
+          <div class="head-text">
+            <h1 class="h1">Synthesis</h1>
+            <p class="sub">Your feedback, clustered into ranked themes. Open one to trace the evidence behind it.</p>
+          </div>
+          <a class="btn head-action" href="../wireframes/build-brief.html"><svg class="ic" width="15" height="15"><use href="#i-evidence"/></svg> Build brief</a>
+        </div>
+        <p class="scope">
+          <b>12</b> themes from <b>2,904</b> of 3,750 feedback items in the last 30 days,
+          across 2 sources. Synthesized 2 hours ago.
+        </p>
+      </header>
+
       <div class="toolbar">
         <div class="toolbar-full">
-          <button class="chip"><svg class="ic"><use href="#i-source"/></svg> Source: all</button>
-          <button class="chip">Last 30 days</button>
-          <button class="chip"><svg class="ic"><use href="#i-signal"/></svg> Confidence: all</button>
+          <button class="chip"><svg class="ic"><use href="#i-source"/></svg> Source: all <span class="chip-count">2</span></button>
+          <button class="chip is-on">Last 30 days <span class="chip-count">2,904</span></button>
+          <button class="chip"><svg class="ic"><use href="#i-signal"/></svg> Confidence: all <span class="chip-count">12</span></button>
+          <button class="clear">Clear filters</button>
           <span class="sortnote">Sort: <b>signal rank</b></span>
         </div>
         <div class="toolbar-compact">
-          <button class="chip"><svg class="ic"><use href="#i-filter"/></svg> Filter</button>
-          <span class="sortnote" style="margin-left:auto"><b>signal rank</b></span>
+          <button class="chip is-on"><svg class="ic"><use href="#i-filter"/></svg> Filter <span class="chip-count">1</span></button>
+          <button class="clear">Clear</button>
+          <span class="sortnote"><b>signal rank</b></span>
         </div>
-      </div>
-
-      <div class="main-head">
-        <h1 class="h1">Synthesis</h1>
-        <p class="sub">Your feedback, clustered into ranked themes. Open one to trace the evidence behind it.</p>
       </div>
 
       <ul class="list">
         <li class="theme">
-          <input type="checkbox" class="check" aria-label="Select theme: Onboarding is confusing" checked>
-          <a class="theme-main" href="../wireframes/theme.html"><span class="theme-label">Onboarding is confusing</span><span class="theme-meta">CSV, Intercom · latest feedback 2 days ago</span></a>
+          <input type="checkbox" class="check" aria-label="Select theme: Onboarding is confusing">
+          <span class="rank" aria-hidden="true">1</span>
+          <a class="theme-main" href="../wireframes/theme.html">
+            <span class="theme-label">Onboarding is confusing</span>
+            <span class="theme-quote">"I signed up and just stared at an empty dashboard. No idea what to do first."</span>
+            <span class="theme-prov">CSV, Intercom &middot; latest feedback 2 days ago</span>
+          </a>
           <span class="conf"><span class="conf-n">n=42</span></span>
           <a class="theme-drill" href="../wireframes/theme.html" aria-label="Open theme: Onboarding is confusing">&rsaquo;</a>
         </li>
         <li class="theme">
           <input type="checkbox" class="check" aria-label="Select theme: Slow export on large accounts">
-          <a class="theme-main" href="../wireframes/theme.html"><span class="theme-label">Slow export on large accounts</span><span class="theme-meta">Intercom · latest feedback 5 days ago</span></a>
+          <span class="rank" aria-hidden="true">2</span>
+          <a class="theme-main" href="../wireframes/theme.html">
+            <span class="theme-label">Slow export on large accounts</span>
+            <span class="theme-quote">"Exporting our account data takes minutes and sometimes just fails."</span>
+            <span class="theme-prov">Intercom &middot; latest feedback 5 days ago</span>
+          </a>
           <span class="conf"><span class="conf-n">n=28</span></span>
           <a class="theme-drill" href="../wireframes/theme.html" aria-label="Open theme: Slow export on large accounts">&rsaquo;</a>
         </li>
         <li class="theme">
           <input type="checkbox" class="check" aria-label="Select theme: Confusing billing and invoices">
-          <a class="theme-main" href="../wireframes/theme.html"><span class="theme-label">Confusing billing and invoices</span><span class="theme-meta">CSV · latest feedback 3 days ago</span></a>
+          <span class="rank" aria-hidden="true">3</span>
+          <a class="theme-main" href="../wireframes/theme.html">
+            <span class="theme-label">Confusing billing and invoices</span>
+            <span class="theme-quote">"I could not tell what I was being charged for on the invoice."</span>
+            <span class="theme-prov">CSV &middot; latest feedback 3 days ago</span>
+          </a>
           <span class="conf"><span class="conf-n">n=19</span></span>
           <a class="theme-drill" href="../wireframes/theme.html" aria-label="Open theme: Confusing billing and invoices">&rsaquo;</a>
         </li>
         <li class="theme">
           <input type="checkbox" class="check" aria-label="Select theme: Mobile app crashes on upload">
-          <a class="theme-main" href="../wireframes/theme.html"><span class="theme-label">Mobile app crashes on upload</span><span class="theme-meta">Intercom · latest feedback 1 week ago</span></a>
+          <span class="rank" aria-hidden="true">4</span>
+          <a class="theme-main" href="../wireframes/theme.html">
+            <span class="theme-label">Mobile app crashes on upload</span>
+            <span class="theme-quote">"The app closes itself every time I attach a file over a few megabytes."</span>
+            <span class="theme-prov">Intercom &middot; latest feedback 1 week ago</span>
+          </a>
           <span class="conf"><span class="conf-n">n=14</span></span>
           <a class="theme-drill" href="../wireframes/theme.html" aria-label="Open theme: Mobile app crashes on upload">&rsaquo;</a>
         </li>
         <li class="theme">
           <input type="checkbox" class="check" aria-label="Select theme: Wants Salesforce integration">
-          <a class="theme-main" href="../wireframes/theme.html"><span class="theme-label">Wants Salesforce integration</span><span class="theme-meta">Intercom · latest feedback 9 days ago</span></a>
+          <span class="rank" aria-hidden="true">5</span>
+          <a class="theme-main" href="../wireframes/theme.html">
+            <span class="theme-label">Wants Salesforce integration</span>
+            <span class="theme-quote">"We keep our accounts in Salesforce, so right now I copy things across by hand."</span>
+            <span class="theme-prov">Intercom only &middot; latest feedback 9 days ago</span>
+          </a>
           <span class="conf"><span class="conf-n">n=6</span> <span class="badge-low">low signal</span></span>
           <a class="theme-drill" href="../wireframes/theme.html" aria-label="Open theme: Wants Salesforce integration">&rsaquo;</a>
         </li>
         <li class="theme">
           <input type="checkbox" class="check" aria-label="Select theme: Dark mode requested">
-          <a class="theme-main" href="../wireframes/theme.html"><span class="theme-label">Dark mode requested</span><span class="theme-meta">CSV · latest feedback 12 days ago</span></a>
+          <span class="rank" aria-hidden="true">6</span>
+          <a class="theme-main" href="../wireframes/theme.html">
+            <span class="theme-label">Dark mode requested</span>
+            <span class="theme-quote">"Reading this at night is rough. A dark theme would help."</span>
+            <span class="theme-prov">CSV only &middot; latest feedback 12 days ago</span>
+          </a>
           <span class="conf"><span class="conf-n">n=4</span> <span class="badge-low">low signal</span></span>
           <a class="theme-drill" href="../wireframes/theme.html" aria-label="Open theme: Dark mode requested">&rsaquo;</a>
         </li>
       </ul>
 
-      <div class="actionbar">
-        <span class="actionbar-note">1 theme selected</span>
+      <button class="loadmore">Load 6 more themes</button>
+
+      <div class="selbar">
+        <span class="selbar-note">1 theme selected</span>
         <button class="btn--ghost"><svg class="ic" width="15" height="15"><use href="#i-flag"/></svg> Set priority</button>
         <a class="btn" href="../wireframes/build-brief.html"><svg class="ic" width="15" height="15"><use href="#i-evidence"/></svg> Build brief</a>
       </div>
