@@ -182,7 +182,10 @@ nav.top { position:fixed; top:0; left:0; right:0; z-index:100; height:52px; disp
 /* Load more carries the remainder, so the denominator stays true as the list grows (A4).
    Cross-check 1: it is the bare button and nothing else. The rule under it belongs to the
    LIST, so the list carries it and the control declares no border of its own. */
-.list-foot { border-bottom:1px solid var(--line); }
+/* display:flex, and not a plain block: the bare button is an inline-flex box, so in a block
+   parent it would sit on a line box and the line box's descender space would add a pixel under
+   the list that nobody asked for. The pixel comparison at Step 5 found exactly that. */
+.list-foot { display:flex; border-bottom:1px solid var(--line); }
 
 /* Selection bar: present only while something is selected, and while it is up the head action
    is gone. One primary action on the screen at any moment. */
@@ -352,9 +355,14 @@ select.input { appearance:none; -webkit-appearance:none; cursor:pointer; }
 .input--title { min-width:180px; background:none; border:0; border-bottom:1px dashed var(--line-2); border-radius:0; padding:2px 0 6px; font-size:22px; font-weight:590; letter-spacing:-0.02em; }
 .input--title:focus-visible { outline-offset:4px; }
 
-/* Field label, and its two content forms: label alone, and label with a trailing link. */
-.label { display:block; font-size:12px; color:var(--ash); margin-bottom:6px; }
-.label-row { display:flex; justify-content:space-between; align-items:baseline; gap:12px; }
+/* Field label, and its two content forms: label alone, and label with a trailing link.
+   Named .field-label and not .label, which is what it was called first: the pixel comparison
+   of the seed screens at Step 5 caught the plain name colliding with the .label of the
+   colour-proof bar, adding 6px to every one of the five screens. A flat kit shares one
+   stylesheet with the chrome around it, so a component name has to be specific enough to
+   survive that, and the name that pairs with .field and .field-err is the right one anyway. */
+.field-label { display:block; font-size:12px; color:var(--ash); margin-bottom:6px; }
+.field-label-row { display:flex; justify-content:space-between; align-items:baseline; gap:12px; }
 .vh { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
 
 /* Status tag. One anatomy carrying one word of state, merged from the three classes the grey

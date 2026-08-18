@@ -292,3 +292,15 @@ as a container query, copying the grey contract. Nothing in the colour layer dec
 `container-type`, so the rule would never have fired and four screens would have shipped as a
 column at every width. The whole colour layer states its widths as media queries, and this one
 now does too.
+
+**Two kit defects the pixel comparison caught on the seed screens (Step 5, first move).** Both
+were invisible in the file and obvious the moment the same screen was measured twice.
+
+- **The Field label atom was called `.label` and collided with the colour-proof bar's own
+  `.label`,** adding 6px to every one of the five seed screens. A flat kit shares one stylesheet
+  with the chrome around it, so an atom name has to be specific enough to survive that. Renamed
+  to `.field-label` and `.field-label-row`, which is the name that pairs with `.field` and
+  `.field-err` anyway.
+- **`.list-foot` was a block, and the bare button inside it is an inline-flex box,** so it sat on
+  a line box whose descender space added a pixel under the list. `.list-foot` is now a flex
+  container.

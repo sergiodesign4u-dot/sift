@@ -362,3 +362,64 @@ first written as a container query, copying the grey contract, where the canvas 
 `container-type`. Nothing in the colour layer declares a container, so the rule would never have
 fired and four account screens would have shipped as a single column at every width. The colour
 layer states its widths as media queries throughout, and this one now does too.
+
+## This product carries no photography, and the set is empty on purpose (August 2026)
+
+Stage 07 Step 4. The composition of the image set is read from the Photo column of
+`design/kit/inventory.md`, and that column says No on all fifty rows. Behind it is a mechanical
+read: the entire grey product, 38 files, holds not one `img`, `figure`, `picture` or background
+image. `concept.md:150` already stated the rule and its reason, and the reason is specific to
+what Sift is: no avatars of invented people, because feedback authors are PII-scrubbed, so a
+face would be a lie. A product whose promise is that every claim traces to a real customer
+cannot decorate itself with fake ones.
+
+Photography was allowed in exactly one place, the marketing hero on 0.0 (`concept.md:151`), and
+the wireframe of 0.0 has no image block. Adding one in a colour copy is a structural change, and
+structure belongs to the frozen `wireframes/`.
+
+Two options were put up and the second was taken: (a) go upstream, add a hero image block to IA
+node 0.0 and to `wireframes/index.html`, then generate a frame; (b) record that this product
+carries no photography, and hold the prompt ready. **(b), because it is the reversible one:** it
+costs one markdown file to undo, while (a) costs an edit to a frozen folder and a block that no
+job, barrier or SEO requirement has asked for. `design/visuals/README.md` holds the decision and
+the one prompt, pinned to the palette of `DESIGN.md` (blacks at `--canvas` so a frame sits down
+into the interface, one cyan highlight under two percent of the frame), so that if 0.0 ever
+gains the block the image arrives in the right colorimetry instead of being improvised.
+
+Magnific was checked and is available (Premium+, credits in the account), and it was not run,
+because there is nothing to fill. The one stock Unsplash link on the concept stand stays where
+it is: it sits on a stand that is arguing about imagery, not inside the product.
+
+Rejected: generating a hero anyway, on the theory that a marketing page needs a picture. An
+asset with nowhere to go is a file that will be dropped into the first slot somebody invents for
+it, which is how a rule about imagery quietly becomes a habit of decorating.
+
+## The kit was proved on the seed screens before anything new was built (August 2026)
+
+Stage 07 Step 5, first move. The two Stage 06 screens and their states were re-pointed from
+`_theme.css` to `kit/kit.css` and their folded classes replaced (`clear` to `link--action`,
+`loadmore` to a bare button inside `list-foot`). The values are the same bytes, so the only
+possible source of a visual difference is the class replacement, which is exactly what the
+comparison is for.
+
+**Result: four of the five screens are pixel identical, zero differences, at 360 and at 1440,
+measured on the product frame with motion frozen.** The etalon differs by exactly one pixel of
+total height, at the load-more row and nowhere else: everything below it realigns with zero
+differences at 1440 and 73 antialiasing pixels at 360, where the label now centres in a 45px box
+instead of a 44px one. The pixel is real and it is the intended consequence of the fold: the
+control is 44px, which is the target floor, and the divider now belongs to the list rather than
+being drawn inside the button. Named rather than absorbed.
+
+The comparison paid for itself twice, and both defects were invisible in the file:
+
+- **The Field label atom, named `.label`, collided with the colour-proof bar's `.label`** and
+  added 6px to all five screens. Renamed `.field-label`. The general lesson is recorded in the
+  kit: a flat kit shares one stylesheet with the chrome around it, so an atom name has to be
+  specific enough to survive that, and Stage 08 would have inherited the collision.
+- **`.list-foot` was a block holding an inline-flex button,** so the line box added a pixel under
+  the list. It is a flex container now.
+
+Rejected: comparing the full page rather than the product frame. The page carries the roadmap
+sidebar, which legitimately changed when the kit stand was registered, and the fixed portfolio
+bar, whose backdrop blur repaints differently at a one pixel scroll offset. Both would have
+shown up as "the kit changed the screen" when neither is the kit.

@@ -222,7 +222,7 @@
           <tr><td>Textarea</td><td class="cls">textarea.input</td><td>6.1, 6.2</td><td>rest, focus</td></tr>
           <tr><td>Select</td><td class="cls">select.input</td><td>3.2</td><td>rest, focus</td></tr>
           <tr><td>Checkbox</td><td class="cls">.check</td><td>2.0, 7.2</td><td>unchecked, checked</td></tr>
-          <tr><td>Field label</td><td class="cls">.label .label-row .vh</td><td>6</td><td>rest</td></tr>
+          <tr><td>Field label</td><td class="cls">.field-label .field-label-row .vh</td><td>6</td><td>rest</td></tr>
           <tr><td>Filter chip</td><td class="cls">.chip .chip-count</td><td>5</td><td>off, on</td></tr>
           <tr><td>Confidence indicator</td><td class="cls">.conf .conf-n</td><td>9</td><td>strong, low signal</td></tr>
           <tr><td>Low-signal badge</td><td class="cls">.badge-low</td><td>3</td><td>present, absent</td></tr>
@@ -289,6 +289,36 @@
         </tbody>
       </table>
     </div>
+
+    <h3 class="kit-lvl" id="visuals-block">Visuals</h3>
+    <p class="kit-lvl-d">The contact sheet of the image set, so that "is it all one colorimetry"
+      can be checked side by side rather than screen by screen. It is empty, and that is the
+      finding rather than a gap.</p>
+    <div class="spec">
+      <div class="spec-head"><span class="spec-name">The set is empty</span><span class="spec-cls">design/visuals/README.md</span><span class="spec-where">Photo column: No on all 50 rows</span></div>
+      <div class="spec-body">
+        <p style="font-size:13.5px;color:var(--ash);line-height:1.75;max-width:80ch">The whole grey
+          product, 38 files, contains not one <code style="font-family:var(--font-mono);font-size:12.5px;color:var(--porcelain)">img</code>,
+          <code style="font-family:var(--font-mono);font-size:12.5px;color:var(--porcelain)">figure</code>,
+          <code style="font-family:var(--font-mono);font-size:12.5px;color:var(--porcelain)">picture</code>
+          or background image. There is nothing in this product for a photograph to sit in, and
+          that is a decision the concept states with its reason: the evidence here is text, and
+          <b style="color:var(--porcelain);font-weight:500">a face would be a lie, because feedback
+          authors are PII-scrubbed</b>. A product whose promise is that every claim traces back to
+          a real customer cannot decorate itself with invented ones.</p>
+        <p style="font-size:13.5px;color:var(--ash);line-height:1.75;max-width:80ch;margin-top:12px">
+          Photography was allowed in exactly one place, the marketing hero on 0.0, and the
+          wireframe of 0.0 has no image block. Adding one in a colour copy would be a structural
+          change, which the contract forbids. So the set stays empty and the prompt is held ready
+          in <code style="font-family:var(--font-mono);font-size:12.5px;color:var(--porcelain)">design/visuals/README.md</code>,
+          pinned to the palette on this page: blacks at <code style="font-family:var(--font-mono);font-size:12.5px;color:var(--porcelain)">--canvas</code>
+          so the frame sits down into the interface, and exactly one cyan highlight under two
+          percent of the frame.</p>
+        <div class="notice" style="margin-top:18px">The avatar is the related, smaller case. It is
+          a monochrome disc and it stays one, for the same reason. Where a source needs an
+          identity it is a channel token, which the icon slot atom already carries.</div>
+      </div>
+    </div>
   </section>
 
   <!-- ============================ COMPONENTS ============================ -->
@@ -350,11 +380,11 @@
       <div class="spec-head"><span class="spec-name">Text input, textarea, select</span><span class="spec-cls">.input &middot; .input--title</span><span class="spec-where">8 screens</span></div>
       <div class="spec-body">
         <div class="stack" style="max-width:420px">
-          <label class="field"><span class="label">Work email</span><input class="input" type="email" value="pm@northwind.io"></label>
-          <label class="field"><span class="label">Password</span><input class="input" type="password" value="............"></label>
-          <label class="field"><span class="label">Rationale</span><textarea class="input" rows="3">The three themes above account for most of the volume this month.</textarea></label>
-          <label class="field"><span class="label">Map to</span><select class="input"><option>Feedback text</option><option>Source</option><option>Date</option></select></label>
-          <label class="field"><span class="label">Feedback file</span><input class="input" value="feedback-q3.csv" aria-invalid="true"><span class="field-err">This column has no values in the first 100 rows. Map it or leave it out.</span></label>
+          <label class="field"><span class="field-label">Work email</span><input class="input" type="email" value="pm@northwind.io"></label>
+          <label class="field"><span class="field-label">Password</span><input class="input" type="password" value="............"></label>
+          <label class="field"><span class="field-label">Rationale</span><textarea class="input" rows="3">The three themes above account for most of the volume this month.</textarea></label>
+          <label class="field"><span class="field-label">Map to</span><select class="input"><option>Feedback text</option><option>Source</option><option>Date</option></select></label>
+          <label class="field"><span class="field-label">Feedback file</span><input class="input" value="feedback-q3.csv" aria-invalid="true"><span class="field-err">This column has no values in the first 100 rows. Map it or leave it out.</span></label>
         </div>
         <div class="lbl" style="margin-top:22px">Title inline: the brief is named where it will be read</div>
         <input class="input input--title" value="Q3 onboarding themes">
@@ -602,8 +632,8 @@
             <span class="auth-step">Step 1 of 2</span>
             <h2 class="auth-h2">Log in</h2>
             <form class="form" onsubmit="return false">
-              <label class="field"><span class="label">Work email</span><input class="input" type="email" placeholder="you@company.com"></label>
-              <label class="field"><span class="label label-row">Password <a class="link--muted" href="#">Forgot?</a></span><input class="input" type="password"></label>
+              <label class="field"><span class="field-label">Work email</span><input class="input" type="email" placeholder="you@company.com"></label>
+              <label class="field"><span class="field-label field-label-row">Password <a class="link--muted" href="#">Forgot?</a></span><input class="input" type="password"></label>
               <button class="btn u-full">Log in</button>
               <div class="auth-or">or</div>
               <button class="btn--ghost u-full">Continue with SSO</button>
