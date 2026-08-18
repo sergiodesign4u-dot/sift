@@ -1,0 +1,12 @@
+/* design/system/components/rank.css - level 1, atom.
+   Reads: --text-secondary, --font-mono
+   Page:  design/kit/rank.html
+   Stands on: 2.0, 6.1, 6.2, 6.4. 16 occurrences.
+
+   A ranking claim is only quotable if the position is written down, which is attribute A4 in one
+   line. Mono, so the numbers line up down a column, and quiet: rank is structure and not an
+   action, so it never takes the accent. Not interactive.
+   No em dash anywhere in this file.
+*/
+
+.rank { font-family: var(--font-mono); font-size: var(--type-xs); color: var(--text-secondary); text-align: right; padding-top: 2px; }

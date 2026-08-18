@@ -1,0 +1,27 @@
+/* design/system/components/link.css - level 1, atom.
+   Reads: --text-primary, --text-secondary
+   Page:  design/kit/link.html
+   Stands on: 18 screens, 88 occurrences: the largest single group of controls in the product.
+
+   THE FAMILY THE PRODUCT DID NOT HAVE. The Stage 07 census counted 88 unclassed anchors across 18
+   screens, in prose, footers, tables of contents and breadcrumbs, and not one of them had a
+   declaration anywhere, which is why the colour layer had no rule for any of them either.
+
+   Underlined on hover only: in a dense list a permanent underline on every link is noise, and A1
+   says weight comes from hierarchy. The --action form gives a TEXT action a control's target
+   without making it a button, which is what "Clear filters" needed.
+   No em dash anywhere in this file.
+*/
+
+.link { color: var(--text-primary); text-decoration: none; }
+.link:hover { text-decoration: underline; }
+.link--muted { color: var(--text-secondary); }
+.link--muted:hover { color: var(--text-primary); }
+.link--action {
+  display: inline-flex; align-items: center; min-height: var(--size-target);
+  padding: 0 var(--space-1);
+  font-size: var(--type-xs); color: var(--text-secondary);
+  background: none; border: 0; cursor: pointer;
+  text-decoration: underline;
+}
+.link--action:hover { color: var(--text-primary); }

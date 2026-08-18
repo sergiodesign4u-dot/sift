@@ -1,0 +1,33 @@
+/* design/system/components/checkbox.css - level 1, atom.
+   Reads: --bg-raised, --line-control, --line-hover, --bg-action, --text-on-action
+   Page:  design/kit/checkbox.html
+   Stands on: 2.0 Synthesis and 7.2 Data and privacy. 11 occurrences.
+
+   24px, not 44, and it is one of the three named exceptions in wireframes/docs/conventions.md: a
+   44px checkbox would double the height of every row in a ranked list. The AA floor for a control
+   of this kind is 24 and that is what it takes.
+
+   The checked state is the one place besides the primary action where the accent becomes a fill,
+   and the mark inside it reads --text-on-action, the role that exists precisely so a theme cannot
+   lighten the page and the mark together.
+   No em dash anywhere in this file.
+*/
+
+.check {
+  appearance: none; -webkit-appearance: none;
+  width: var(--size-check); height: var(--size-check);
+  border: 1px solid var(--line-control);
+  border-radius: var(--radius-sm);
+  background: var(--bg-raised);
+  cursor: pointer; position: relative; flex: none;
+  transition: background-color .15s var(--ease), border-color .15s var(--ease);
+}
+.check:hover { border-color: var(--line-hover); }
+.check:checked { background: var(--bg-action); border-color: var(--bg-action); }
+.check:checked::after {
+  content: ""; position: absolute; left: 5px; top: 2px;
+  width: 4px; height: 8px;
+  border: solid var(--text-on-action); border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.check[disabled] { opacity: var(--opacity-disabled); cursor: not-allowed; }

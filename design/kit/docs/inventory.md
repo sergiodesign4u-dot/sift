@@ -544,4 +544,20 @@ group of its own level.*
 
 | Level | Component | CSS | Page | States | Screens |
 |:--:|---|---|---|---|---|
-| 1 | **Button** | `components/button.css` | `kit/button.html` | hover, active, focus-visible, disabled, all four in both themes | every screen. 67 filled, 33 outlined, 4 bare, 13 icon-only, 11 large |
+| 1 | **Button** | `components/button.css` | `kit/button.html` | hover, active, focus-visible, disabled | every screen. 67 filled, 33 outlined, 4 bare, 13 icon-only, 11 large |
+| 1 | **Input** | `components/input.css` | `kit/input.html` | hover, focus-visible, error, disabled. No active: a field has no pressed state | 8 screens, 18 fields |
+| 1 | **Checkbox** | `components/checkbox.css` | `kit/checkbox.html` | hover, checked, focus-visible, disabled | 2.0, 7.2. 11 |
+| 1 | **Field label** | `components/field-label.css` | `kit/field-label.html` | none, not interactive | 6 screens. 14 |
+| 1 | **Filter chip** | `components/chip.css` | `kit/chip.html` | hover, on, focus-visible, disabled | 5 screens. 12 |
+| 1 | **Confidence indicator** | `components/confidence.css` | `kit/confidence.html` | none, not interactive | 9 screens. 24 |
+| 1 | **Citation marker** | `components/citation.css` | `kit/citation.html` | hover and focus on the linked form; the static index has none | 5 screens. 25 static, 6 linked |
+| 1 | **Status tag** | `components/tag.css` | `kit/tag.html` | none, not interactive | 7 screens. 8 |
+| 1 | **Rank number** | `components/rank.css` | `kit/rank.html` | none, not interactive | 4 screens. 16 |
+| 1 | **Avatar** | `components/avatar.css` | `kit/avatar.html` | focus-visible. Hover deliberately empty | 28 screens |
+| 1 | **Icon slot** | `components/iconslot.css` | `kit/iconslot.html` | none, not interactive | 34 screens |
+| 1 | **Scope line** | `components/scope.css` | `kit/scope.html` | none. Four CONTENT states, written in words | 13 screens |
+| 1 | **Skeleton bar** | `components/skeleton.css` | `kit/skeleton.html` | the shimmer, and it stops under prefers-reduced-motion | 2.2, 4.2 |
+| 1 | **Inline text link** | `components/link.css` | `kit/link.html` | hover, focus-visible. Visited and disabled named as absent, with reasons | 18 screens. 88 |
+| 1 | **Drag handle** | `components/drag.css` | `kit/drag.html` | the cursor only. Keyboard reordering named as a real gap | 6.1, 6.2. 7 |
+| 1 | **List row link** | `components/cardrow.css` | `kit/cardrow.html` | hover, focus-visible | 7.0. 3 |
+| 1 | **Group heading** | `components/group-heading.css` | `kit/group-heading.html` | none, not interactive | 12 screens. 29 |

@@ -30,6 +30,22 @@ window.KIT_NAV = [
   ]},
   { id: 'atoms', label: 'Atoms', pages: [
     { file: 'button.html', label: 'Button', blurb: 'Three emphases by two sizes. Six declared forms, and that is the whole set' },
+    { file: 'input.html', label: 'Input', blurb: 'One component, three elements: text, textarea and select share one zone set' },
+    { file: 'checkbox.html', label: 'Checkbox', blurb: '24px by a named exception, because a 44px box would double every ranked row' },
+    { file: 'field-label.html', label: 'Field label', blurb: 'Three content forms, one of which stands exactly once in the product' },
+    { file: 'chip.html', label: 'Filter chip', blurb: 'The facet that carries its own count, and does not take the accent' },
+    { file: 'confidence.html', label: 'Confidence indicator', blurb: 'Mandatory in MVP. Never colour alone: the count and the word carry it' },
+    { file: 'citation.html', label: 'Citation marker', blurb: 'Where the accent goes on a document. A2, the evidence marker' },
+    { file: 'tag.html', label: 'Status tag', blurb: 'One anatomy, one word of state. Merged from three classes at Stage 07' },
+    { file: 'rank.html', label: 'Rank number', blurb: 'A ranking claim is quotable only if the position is written down' },
+    { file: 'avatar.html', label: 'Avatar', blurb: 'A monochrome disc, and it stays one. Reads at 28, hit at 44' },
+    { file: 'iconslot.html', label: 'Icon slot', blurb: 'One shape at several sizes, and every size sizes its own glyph' },
+    { file: 'scope.html', label: 'Scope line', blurb: 'The denominator. A ranking with no denominator cannot be checked' },
+    { file: 'skeleton.html', label: 'Skeleton bar', blurb: 'Shaped like what arrives, so the wait promises the right thing' },
+    { file: 'link.html', label: 'Inline text link', blurb: 'The family the product did not have: 88 anchors with no declaration' },
+    { file: 'drag.html', label: 'Drag handle', blurb: 'The grip of the composer, where the order is the output' },
+    { file: 'cardrow.html', label: 'List row link', blurb: 'A row that IS the link. The whole strip is the target' },
+    { file: 'group-heading.html', label: 'Group heading', blurb: 'Three forms, and the axis is the neighbour rather than the look' },
   ]},
 ];
 

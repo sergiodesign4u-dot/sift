@@ -1,0 +1,18 @@
+/* design/system/components/cardrow.css - level 1, atom.
+   Reads: --line-hairline, --bg-hover, --ease
+   Page:  design/kit/cardrow.html
+   Stands on: 7.0 Account. 3 occurrences, and the rollout needs it.
+
+   A row that IS the link: the whole strip is the target, not a word inside it. It is kept apart
+   from the six other row-shaped components in this product because its zone set is different, and
+   a zone that is gone means a different component rather than a variant.
+   No em dash anywhere in this file.
+*/
+
+.cardrow {
+  display: block; padding: 15px var(--space-3);
+  border-bottom: 1px solid var(--line-hairline);
+  text-decoration: none; color: inherit;
+  transition: background-color .12s var(--ease);
+}
+.cardrow:hover { background: var(--bg-hover); }

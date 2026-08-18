@@ -1,0 +1,24 @@
+/* design/system/components/skeleton.css - level 1, atom.
+   Reads: --bg-surface, --bg-raised, --ease
+   Page:  design/kit/skeleton.html
+   Stands on: 2.2 and 4.2.
+
+   THE SKELETON IS SHAPED LIKE WHAT ARRIVES, so the wait promises the right thing: three lines per
+   item, grouped by source, under a head that is already real. What is known before the wait (the
+   count, the recency, the rank) is shown as itself and never as a grey bar.
+
+   The shimmer stops entirely under prefers-reduced-motion, which base.css handles for the whole
+   product in one rule. Not interactive.
+   No em dash anywhere in this file.
+*/
+
+.skel {
+  height: 10px; border-radius: var(--radius-sm);
+  background: linear-gradient(90deg, var(--bg-surface) 0%, var(--bg-raised) 50%, var(--bg-surface) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s var(--ease) infinite;
+}
+.skel.a { width: 52%; }
+.skel.b { width: 30%; height: 7px; }
+.skel.c { width: 64%; }
+@keyframes shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }

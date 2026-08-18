@@ -1,0 +1,30 @@
+/* design/system/components/iconslot.css - level 1, atom.
+   Reads: --bg-surface, --line-hairline, --text-secondary
+   Page:  design/kit/iconslot.html
+   Stands on: 34 screens. 44px state block, 34px source row, 28px source card, plus the numbered circles.
+
+   One shape at several sizes, and EVERY SIZE SIZES ITS OWN GLYPH. That rule is not tidiness: an
+   svg with no width is 300x150 by specification, and the one slot in this system that forgot it
+   took 300px of a 316px row and pushed a whole screen off a 360 viewport. Found in a browser at
+   Stage 07, invisible in the file.
+
+   The glyph takes its ink from currentColor, so an icon is never a colour decision of its own.
+   That is why there is no --icon-* role anywhere in this system. Not interactive.
+   No em dash anywhere in this file.
+*/
+
+.iconslot {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--bg-surface); border: 1px solid var(--line-hairline);
+  color: var(--text-secondary); flex: none;
+}
+.iconslot--row { width: 34px; height: 34px; border-radius: var(--radius-md); }
+.iconslot--row .ic { width: 17px; height: 17px; }
+.iconslot--card { width: 28px; height: 28px; border-radius: var(--radius-sm); }
+.iconslot--card .ic { width: 15px; height: 15px; }
+.state-ic {
+  width: 44px; height: 44px; border-radius: var(--radius-pill);
+  border: 1px solid var(--line-hairline); background: var(--bg-surface);
+  display: flex; align-items: center; justify-content: center; color: var(--text-secondary);
+}
+.state-ic .ic { width: 22px; height: 22px; }

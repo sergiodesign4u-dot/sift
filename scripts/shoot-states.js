@@ -28,7 +28,10 @@ const name = process.argv[2] || 'button';
     await p.waitForTimeout(250);
 
     const scene = p.locator('#live');
-    const first = scene.locator('button').first();
+    /* the first real control in the scene, whatever kind it is: this script serves a button
+       page, an input page and a link page, and hard-coding 'button' made it silently skip two. */
+    const SEL = 'button:not([disabled]), input:not([disabled]), select, textarea, a[href]';
+    const first = scene.locator(SEL).first();
 
     // hover: a real pointer on a real control
     await first.hover();
@@ -45,9 +48,9 @@ const name = process.argv[2] || 'button';
 
     // focus-visible: reached by the keyboard, which is the only way it draws
     await p.mouse.move(0, 0);
-    await p.evaluate(() => document.querySelector('#live button').blur());
+    await p.evaluate(s => { const e = document.querySelector('#live ' + s); if (e) e.blur(); }, SEL);
     await p.keyboard.press('Tab');
-    await p.evaluate(() => document.querySelector('#live button').focus());
+    await p.evaluate(s => { const e = document.querySelector('#live ' + s); if (e) e.focus(); }, SEL);
     await p.keyboard.press('Tab');
     await p.keyboard.down('Shift'); await p.keyboard.press('Tab'); await p.keyboard.up('Shift');
     await p.waitForTimeout(160);

@@ -1,0 +1,62 @@
+/* design/system/components/input.css - level 1, atom.
+   Reads: --bg-surface, --text-primary, --text-secondary, --line-control, --line-hover
+   Page:  design/kit/input.html
+   Stands on: 8 screens. 18 fields across the product: text 8, email 4, password 4, textarea 6, select 1, title-inline 2.
+
+   ONE component, three elements. input, textarea and select share one zone set, a field, so they
+   are one component and not three: the select adds a chevron, which is an affordance and not a
+   zone. Both --mono and --dense were promoted from contextual overrides at the Stage 07 critique.
+
+   The field sits on the SURFACE rather than on the page, so an empty field is visible before it
+   is focused. Its border is --line-control and not the hairline, because at 1.19:1 off the page
+   the border is the only thing that says this is a field.
+   No em dash anywhere in this file.
+*/
+
+.input {
+  width: 100%;
+  min-height: var(--size-target);
+  padding: 11px var(--space-5);
+  background: var(--bg-surface);
+  border: 1px solid var(--line-control);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: var(--type-sm);
+  transition: border-color .15s var(--ease);
+}
+.input:hover { border-color: var(--line-hover); }
+.input::placeholder { color: var(--text-secondary); }
+.input[disabled] { opacity: var(--opacity-disabled); cursor: not-allowed; }
+
+textarea.input { resize: vertical; line-height: var(--leading-snug); min-height: 88px; }
+
+/* select: its native chrome is removed, so the affordance has to be put back. The chevron is
+   drawn from the placeholder's own ink on a WRAPPER, because a select cannot carry a
+   pseudo-element, and it costs neither a colour literal nor a request. */
+select.input { appearance: none; -webkit-appearance: none; cursor: pointer; padding-right: 32px; }
+.select { position: relative; display: block; }
+.select::after {
+  content: ""; position: absolute; right: 13px; top: 50%;
+  width: 6px; height: 6px; margin-top: -5px;
+  border-right: 1.5px solid var(--text-secondary);
+  border-bottom: 1.5px solid var(--text-secondary);
+  transform: rotate(45deg); pointer-events: none;
+}
+
+/* content: a value read character by character takes the mono face, which is the face this
+   product already gives every value. */
+.input--mono { font-family: var(--font-mono); font-size: var(--type-xs); }
+
+/* density: a mapping grid puts five of these in a column, so the type and the padding come down.
+   The 44px floor does NOT come down with them. */
+.input--dense { font-size: var(--type-xs); padding: 9px var(--space-4); }
+
+/* the title of an artifact, typed where it will be read. The dashed rule is the only thing
+   saying the heading can be edited. */
+.input--title {
+  min-width: 180px; background: none; border: 0;
+  border-bottom: 1px dashed var(--line-control); border-radius: 0;
+  padding: 2px 0 var(--space-2);
+  font-size: var(--type-xl); font-weight: var(--weight-strong); letter-spacing: var(--tracking-head);
+}
+.input--title:focus-visible { outline-offset: 4px; }

@@ -1,0 +1,20 @@
+/* design/system/components/drag.css - level 1, atom.
+   Reads: --text-secondary
+   Page:  design/kit/drag.html
+   Stands on: 6.1 and 6.2. 7 occurrences.
+
+   The grip of the composer, and it comes FIRST in the row because the order of those rows is the
+   product's output: the sequence a PM defends in the room is the artifact itself.
+
+   A grip, not a decision, so it stays secondary ink. Its glyph is sized here, which is the rule
+   the drag handle itself broke once.
+   No em dash anywhere in this file.
+*/
+
+.drag {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: var(--size-check); min-height: var(--size-target);
+  color: var(--text-secondary); cursor: grab; flex: none; line-height: 1;
+}
+.drag:active { cursor: grabbing; }
+.drag .ic { width: 15px; height: 15px; }

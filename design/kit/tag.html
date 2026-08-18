@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift design system - Status tag</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../system/index.css">
+<link rel="stylesheet" href="_page.css">
+</head>
+<!--
+  design/kit/tag.html - Stage 08 Step 5, level 1.
+
+  Links ../system/index.css, the same entry point a product screen links, so the page cannot
+  drift from the product: it does not show a copy of the component, it shows the component.
+
+  Five blocks: anatomy, variants, when to use it, rule and anti-rule, states.
+  No em dash anywhere.
+-->
+<body>
+<div class="kit-shell">
+  <div id="kit-panel"></div>
+  <main class="kit-main">
+
+    <div class="kit-eyebrow">Level 1 &middot; Atom</div>
+    <h1 class="kit-h1">Status tag</h1>
+    <p class="kit-lead">One anatomy carrying one word of state, merged at Stage 07 from three classes that already had it: the source status, the brief status and the draft marker. Three names for one shape is what a census exists to find.</p>
+    <p class="kit-lead"><code class="kit-mono">design/system/components/tag.css</code> &middot; 3.0, 3.4, 3.5, 3.6, 6.0, 6.1, 6.2. 8 occurrences.</p>
+
+    <section class="kit-sec" id="anatomy">
+      <h2 class="kit-h2">Anatomy</h2>
+      <div class="scene">
+        <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+          <span class="tag">connected</span><span class="tag">syncing</span><span class="tag">draft</span><span class="tag">shared</span><span class="tag tag--alert">sync failed</span>
+        </div>
+      </div>
+      <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
+        <tr><td>the tag</td><td><code>.tag</code></td><td>Micro, uppercase, mono, outlined. It is a label on an object, so it never fills</td></tr>
+        <tr><td>the word</td><td>the text node</td><td>ONE word, or two at most. A tag that needs a sentence is a notice band</td></tr>
+        <tr><td>the alert form</td><td><code>.tag--alert</code></td><td>Amber AND dashed. Shape carries it as well as hue</td></tr>
+      </tbody></table></div>
+    </section>
+
+    <section class="kit-sec" id="variants">
+      <h2 class="kit-h2">Variants</h2>
+      <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
+        <tr><td>emphasis</td><td>normal 7 &middot; alert 1</td><td><b>Alert is for a state that needs a person, not for a state that is merely different.</b> "Syncing" is normal; "sync failed" is not</td></tr>
+        <tr><td>value</td><td>source status 4 &middot; brief status 3 &middot; draft 2</td><td>Not an axis of appearance: the word changes, the component does not. This row is here because it was three components before the census</td></tr>
+      </tbody></table></div>
+
+    </section>
+
+    <section class="kit-sec" id="when">
+      <h2 class="kit-h2">When to use it</h2>
+      <p class="kit-lead">On a managed object whose state the person did not choose and cannot press: a connected source, a shared brief, a draft. It answers "what is this thing doing" in one word, at the smallest size in the system.</p>
+      <p class="kit-lead">It never carries the next move. On 3.5 the failed source has a tag, an alert line in words under its name, and its own retry button, and the tag is only the first of the three. A tag alone reports that something is wrong and nothing about what to do next, which the voice rules forbid.</p>
+    </section>
+
+    <section class="kit-sec" id="rules">
+      <h2 class="kit-h2">Rule and anti-rule</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-top:18px">
+        <div class="scene"><div class="scene-label" style="color:var(--text-evidence)">rule</div><div style="display:flex;gap:12px;align-items:center"><span style="font-size:14px;font-weight:500">Intercom</span><span class="tag tag--alert">sync failed</span></div>
+          <p class="kit-note">One word, and the row carries the explanation and the retry beside it.</p></div>
+        <div class="scene"><div class="scene-label" style="color:var(--text-danger)">anti-rule</div><div style="display:flex;gap:12px;align-items:center"><span style="font-size:14px;font-weight:500">Intercom</span><span class="tag tag--alert" style="cursor:pointer">retry sync</span></div>
+          <p class="kit-note">A tag pretending to be a button. It has no target, no focus ring and no pressed state, and a person who taps it gets nothing.</p></div>
+      </div>
+      <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>If you are about to</th><th>Take instead</th><th>Why</th></tr></thead><tbody>
+        <tr><td>let the person change the state</td><td><code>.chip</code> or a button</td><td>A tag reports. A chip filters. A button acts</td></tr>
+        <tr><td>explain what happened and what to do</td><td><code>.notice</code></td><td>A tag is one word</td></tr>
+        <tr><td>show how strong a theme is</td><td><code>.conf</code></td><td>Confidence is a count, not a status</td></tr>
+      </tbody></table></div>
+    </section>
+
+    <section class="kit-sec" id="states">
+      <h2 class="kit-h2">States</h2>
+      <p class="kit-lead"><b>No states, and that is a decision rather than an omission.</b> A status tag is a label on an object. It cannot be hovered into a different state, focused or pressed, and a hover on it would promise an interaction that does not exist.</p>
+      <p class="kit-note">Four states are given to a component because it is interactive, not because a template has four cells. Faking one with a class the product does not carry (<code class="kit-mono">.is-hover</code>) would be the same defect as an invented role.</p>
+    </section>
+
+    <section class="kit-sec" id="tech">
+      <h2 class="kit-h2">The file and the tokens</h2>
+      <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Reads</th><th>Grows from</th><th>For</th></tr></thead><tbody>
+        <tr><td><code>--text-secondary</code>, <code>--line-hairline</code></td><td><code>--grey-400</code>, <code>--grey-800</code></td><td>the normal form: a label, not an alarm</td></tr>
+        <tr><td><code>--text-warning</code>, <code>--line-warning</code>, <code>--bg-warning</code></td><td><code>--amber-400</code> and its washes</td><td>the alert form</td></tr>
+      </tbody></table></div>
+      <div class="scene">
+        <div class="scene-label">copy this</div>
+        <pre style="font-family:var(--font-mono);font-size:12px;color:var(--text-secondary);line-height:1.8;overflow-x:auto">&lt;span class="tag"&gt;connected&lt;/span&gt;
+&lt;span class="tag tag--alert"&gt;sync failed&lt;/span&gt;</pre>
+      </div>
+      <p class="kit-note">Stands on: <a href="../sources.html">3.0 Sources</a>, <a href="../sources-sync-error.html">3.5 Sync error</a>, <a href="../briefs.html">6.0 Briefs</a></p>
+    </section>
+
+    <footer class="kit-foot">
+      <span>Level 1 &middot; Atom &middot; tag.css</span>
+      <a href="overview.html">The whole system</a>
+      <a href="architecture.html">Architecture</a>
+      <a href="../overview.html">The product</a>
+    </footer>
+  </main>
+</div>
+<svg class="sprite" aria-hidden="true"><defs>
+  <symbol id="i-signal" viewBox="0 0 24 24"><path d="M6 18v-3.5M12 18v-8M18 18v-12.5"/></symbol>
+  <symbol id="i-source" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.66 3.13 3 7 3s7-1.34 7-3V6"/><path d="M5 12v6c0 1.66 3.13 3 7 3s7-1.34 7-3v-6"/></symbol>
+  <symbol id="i-brief" viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h7"/></symbol>
+  <symbol id="i-filter" viewBox="0 0 24 24"><path d="M3 5.5h18l-7 8v5l-4 2v-7z"/></symbol>
+  <symbol id="i-evidence" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-4 4v-4H4z"/><path d="M8.5 10.5h7M8.5 13h4"/></symbol>
+  <symbol id="i-drag" viewBox="0 0 24 24"><path d="M9 7h.1M15 7h.1M9 12h.1M15 12h.1M9 17h.1M15 17h.1"/></symbol>
+  <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V5"/><path d="m7.5 9.5 4.5-4.5 4.5 4.5"/><path d="M4.5 15v3.5a1.5 1.5 0 0 0 1.5 1.5h12a1.5 1.5 0 0 0 1.5-1.5V15"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+</defs></svg>
+<script src="_nav.js"></script>
+</body>
+</html>

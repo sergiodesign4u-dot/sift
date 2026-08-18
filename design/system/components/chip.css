@@ -1,0 +1,34 @@
+/* design/system/components/chip.css - level 1, atom.
+   Reads: --bg-surface, --bg-raised, --text-secondary, --text-primary, --line-control, --line-hover, --font-mono
+   Page:  design/kit/chip.html
+   Stands on: 2.0, 3.0, 4.0, 5.0, 6.0. 12 occurrences.
+
+   The filter facet, and the one control in this product that carries its own count. The count is
+   in the mono face because it is a value, and a value that shifts width between chips cannot be
+   compared along a row.
+
+   THE ON STATE DOES NOT TAKE THE ACCENT, and that is a decision rather than an omission. Cyan
+   could be read as allowed here, since an active filter is an active state, but spending it on a
+   filter would put the one accent in two places at once and dilute the primary action. A1 says
+   weight comes from hierarchy, so the on-chip steps up a surface and its ink goes to primary.
+   No em dash anywhere in this file.
+*/
+
+.chip {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  min-height: var(--size-target);
+  padding: 0 var(--space-5);
+  font-size: var(--type-xs);
+  color: var(--text-secondary);
+  background: var(--bg-surface);
+  border: 1px solid var(--line-control);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: color .15s var(--ease), border-color .15s var(--ease), background-color .15s var(--ease);
+}
+.chip:hover { color: var(--text-primary); border-color: var(--line-hover); }
+.chip .ic { width: 14px; height: 14px; }
+.chip-count { font-family: var(--font-mono); font-size: var(--type-2xs); color: var(--text-secondary); }
+.chip.is-on { color: var(--text-primary); background: var(--bg-raised); border-color: var(--line-hover); }
+.chip.is-on .chip-count { color: var(--text-primary); }
+.chip[disabled] { opacity: var(--opacity-disabled); cursor: not-allowed; }

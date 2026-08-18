@@ -20,6 +20,22 @@
 
 /* ---------- level 1: atoms. Contain nothing else from the system. ---------- */
 @import url("components/button.css");
+@import url("components/input.css");
+@import url("components/checkbox.css");
+@import url("components/field-label.css");
+@import url("components/chip.css");
+@import url("components/confidence.css");
+@import url("components/citation.css");
+@import url("components/tag.css");
+@import url("components/rank.css");
+@import url("components/avatar.css");
+@import url("components/iconslot.css");
+@import url("components/scope.css");
+@import url("components/skeleton.css");
+@import url("components/link.css");
+@import url("components/drag.css");
+@import url("components/cardrow.css");
+@import url("components/group-heading.css");
 
 /* ---------- level 2: molecules. Contain atoms. ---------- */
 

@@ -1,0 +1,23 @@
+/* design/system/components/tag.css - level 1, atom.
+   Reads: --text-secondary, --line-hairline, --text-warning, --bg-warning, --line-warning, --font-mono
+   Page:  design/kit/tag.html
+   Stands on: 3.0, 3.4, 3.5, 3.6, 6.0, 6.1, 6.2. 8 occurrences.
+
+   ONE anatomy carrying one word of state, merged at Stage 07 from three classes that already had
+   it: the source status, the brief status and the draft marker. Three names for one shape is what
+   a census exists to find.
+
+   The alert form is amber AND dashed. Shape carries it as well as hue, so a failed source cannot
+   read as a healthy one for a reader who cannot separate the two colours. Not interactive.
+   No em dash anywhere in this file.
+*/
+
+.tag {
+  display: inline-flex; align-items: center;
+  font-family: var(--font-mono); font-size: var(--type-3xs);
+  letter-spacing: 0.04em; text-transform: uppercase;
+  color: var(--text-secondary);
+  border: 1px solid var(--line-hairline); border-radius: var(--radius-sm);
+  padding: 2px var(--space-2); white-space: nowrap; flex: none;
+}
+.tag--alert { color: var(--text-warning); border-color: var(--line-warning); border-style: dashed; background: var(--bg-warning); }

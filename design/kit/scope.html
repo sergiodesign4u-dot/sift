@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift design system - Scope line</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../system/index.css">
+<link rel="stylesheet" href="_page.css">
+</head>
+<!--
+  design/kit/scope.html - Stage 08 Step 5, level 1.
+
+  Links ../system/index.css, the same entry point a product screen links, so the page cannot
+  drift from the product: it does not show a copy of the component, it shows the component.
+
+  Five blocks: anatomy, variants, when to use it, rule and anti-rule, states.
+  No em dash anywhere.
+-->
+<body>
+<div class="kit-shell">
+  <div id="kit-panel"></div>
+  <main class="kit-main">
+
+    <div class="kit-eyebrow">Level 1 &middot; Atom</div>
+    <h1 class="kit-h1">Scope line</h1>
+    <p class="kit-lead">The denominator of the ranking, and it exists because of one sentence: a ranking with no denominator cannot be checked. Attributes A2 and A4 both land here, and 2.0 owns it.</p>
+    <p class="kit-lead"><code class="kit-mono">design/system/components/scope.css</code> &middot; 13 screens. Owned by 2.0, referenced by 3.0 and 6.1.</p>
+
+    <section class="kit-sec" id="anatomy">
+      <h2 class="kit-h2">Anatomy</h2>
+      <div class="scene">
+        <p class="scope"><b>12</b> themes from <b>2,904</b> of 3,750 feedback items in the last 30 days, across 2 sources. Synthesized 2 hours ago.</p>
+      </div>
+      <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
+        <tr><td>the line</td><td><code>.scope</code></td><td>Secondary ink, capped at the product measure. It is prose, not a stat strip</td></tr>
+        <tr><td>the numbers</td><td><code>.scope b</code></td><td>Mono and primary ink. The number is what carries the weight, so it is the only thing that steps forward</td></tr>
+        <tr><td>the link</td><td><code>.scope a</code></td><td>Where a number is worth opening. Rare</td></tr>
+      </tbody></table></div>
+    </section>
+
+    <section class="kit-sec" id="variants">
+      <h2 class="kit-h2">Variants</h2>
+      <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
+        <tr><td>state</td><td>populated 9 &middot; zero 2 &middot; filtered 1 &middot; stale 1</td><td><b>The line restates itself rather than going stale.</b> Under a filter it says the filtered denominator; on an empty screen it says what there is to build from; on 3.5 it says the corpus is the same as two days ago and why</td></tr>
+        <tr><td>emphasis</td><td><b>not an axis</b></td><td>A denominator does not get louder. If it needed emphasis to be believed, the number would be the problem</td></tr>
+      </tbody></table></div>
+      <div class="scene">
+        <div class="scene-label">the four states, in words</div>
+        <p class="scope"><b>2</b> sources connected, <b>3,750</b> items in. This is the corpus every theme on Synthesis is counted from.</p>
+        <p class="scope" style="margin-top:12px"><b>0</b> briefs. There are <b>12</b> themes on Synthesis to build one from, and the top three carry 89 feedback items between them.</p>
+        <p class="scope" style="margin-top:12px"><b>2</b> sources connected, <b>3,750</b> items in. Intercom was last reached <b>2 days ago</b>, so nothing new has been added since then and today's ranking is counted from the same corpus as two days ago.</p>
+      </div>
+    </section>
+
+    <section class="kit-sec" id="when">
+      <h2 class="kit-h2">When to use it</h2>
+      <p class="kit-lead">Under the head of every screen that ranks, counts or filters anything. It is the sentence that turns a list into a claim somebody can check, and in this product that is the difference between a synthesis and a summary.</p>
+      <p class="kit-lead">Its hardest job is the stale case. On 3.5 a source has failed, and the honest line is not "something went wrong": it is that the ranking is counted from the same corpus as two days ago, which tells the person exactly how much to trust what they are looking at.</p>
+    </section>
+
+    <section class="kit-sec" id="rules">
+      <h2 class="kit-h2">Rule and anti-rule</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-top:18px">
+        <div class="scene"><div class="scene-label" style="color:var(--text-evidence)">rule</div><p class="scope"><b>42</b> items from 2 sources: <b>Intercom 30</b>, <b>CSV 12</b>. First seen 5 weeks ago, latest 2 days ago.</p>
+          <p class="kit-note">The size, the split by source, and the age. Three facts that let a person judge the claim without opening anything.</p></div>
+        <div class="scene"><div class="scene-label" style="color:var(--text-danger)">anti-rule</div><p class="scope">Showing the most relevant themes from your feedback.</p>
+          <p class="kit-note">A sentence with no number in it. It says the ranking exists and nothing about what it is counted from, which is the one thing the line is for.</p></div>
+      </div>
+      <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>If you are about to</th><th>Take instead</th><th>Why</th></tr></thead><tbody>
+        <tr><td>count one theme</td><td><code>.conf</code></td><td>Confidence is per theme. Scope is per screen</td></tr>
+        <tr><td>explain a failure</td><td><code>.notice</code></td><td>Scope states the corpus. A notice states the event</td></tr>
+        <tr><td>label a group inside a list</td><td><code>.group-t</code></td><td>The group heading counts a group. The scope line counts the screen</td></tr>
+      </tbody></table></div>
+    </section>
+
+    <section class="kit-sec" id="states">
+      <h2 class="kit-h2">States</h2>
+      <p class="kit-lead"><b>No states, and that is a decision rather than an omission.</b> The scope line is a sentence. Its four states are content states, written in words by whoever owns the screen, not interaction states.</p>
+      <p class="kit-note">Four states are given to a component because it is interactive, not because a template has four cells. Faking one with a class the product does not carry (<code class="kit-mono">.is-hover</code>) would be the same defect as an invented role.</p>
+    </section>
+
+    <section class="kit-sec" id="tech">
+      <h2 class="kit-h2">The file and the tokens</h2>
+      <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Reads</th><th>Grows from</th><th>For</th></tr></thead><tbody>
+        <tr><td><code>--text-secondary</code></td><td><code>--grey-400</code></td><td>the prose</td></tr>
+        <tr><td><code>--text-primary</code> plus <code>--font-mono</code></td><td><code>--grey-050</code></td><td>every number in it</td></tr>
+      </tbody></table></div>
+      <div class="scene">
+        <div class="scene-label">copy this</div>
+        <pre style="font-family:var(--font-mono);font-size:12px;color:var(--text-secondary);line-height:1.8;overflow-x:auto">&lt;p class="scope"&gt;&lt;b&gt;12&lt;/b&gt; themes from &lt;b&gt;2,904&lt;/b&gt; of 3,750 feedback items ...&lt;/p&gt;</pre>
+      </div>
+      <p class="kit-note">Stands on: <a href="../synthesis.html">2.0 Synthesis</a>, <a href="../sources.html">3.0 Sources</a>, <a href="../theme.html">4.0 Theme detail</a></p>
+    </section>
+
+    <footer class="kit-foot">
+      <span>Level 1 &middot; Atom &middot; scope.css</span>
+      <a href="overview.html">The whole system</a>
+      <a href="architecture.html">Architecture</a>
+      <a href="../overview.html">The product</a>
+    </footer>
+  </main>
+</div>
+<svg class="sprite" aria-hidden="true"><defs>
+  <symbol id="i-signal" viewBox="0 0 24 24"><path d="M6 18v-3.5M12 18v-8M18 18v-12.5"/></symbol>
+  <symbol id="i-source" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.66 3.13 3 7 3s7-1.34 7-3V6"/><path d="M5 12v6c0 1.66 3.13 3 7 3s7-1.34 7-3v-6"/></symbol>
+  <symbol id="i-brief" viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h7"/></symbol>
+  <symbol id="i-filter" viewBox="0 0 24 24"><path d="M3 5.5h18l-7 8v5l-4 2v-7z"/></symbol>
+  <symbol id="i-evidence" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-4 4v-4H4z"/><path d="M8.5 10.5h7M8.5 13h4"/></symbol>
+  <symbol id="i-drag" viewBox="0 0 24 24"><path d="M9 7h.1M15 7h.1M9 12h.1M15 12h.1M9 17h.1M15 17h.1"/></symbol>
+  <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V5"/><path d="m7.5 9.5 4.5-4.5 4.5 4.5"/><path d="M4.5 15v3.5a1.5 1.5 0 0 0 1.5 1.5h12a1.5 1.5 0 0 0 1.5-1.5V15"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+</defs></svg>
+<script src="_nav.js"></script>
+</body>
+</html>

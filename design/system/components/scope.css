@@ -1,0 +1,16 @@
+/* design/system/components/scope.css - level 1, atom.
+   Reads: --text-secondary, --text-primary, --font-mono
+   Page:  design/kit/scope.html
+   Stands on: 13 screens. Owned by 2.0, referenced by 3.0 and 6.1.
+
+   The denominator of the ranking, and the reason it exists is one sentence: A RANKING WITH NO
+   DENOMINATOR CANNOT BE CHECKED. Attributes A2 and A4 both land here.
+
+   Its numbers are set in the mono face because the number is what carries the weight, and it
+   restates itself under a filter rather than going stale. Not interactive.
+   No em dash anywhere in this file.
+*/
+
+.scope { font-size: var(--type-xs); color: var(--text-secondary); line-height: var(--leading-body); margin-top: var(--space-4); max-width: var(--measure-prose); }
+.scope b { font-family: var(--font-mono); font-weight: var(--weight-medium); color: var(--text-primary); }
+.scope a { color: var(--text-primary); }

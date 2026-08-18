@@ -1,0 +1,22 @@
+/* design/system/components/group-heading.css - level 1, atom.
+   Reads: --text-secondary, --font-mono
+   Page:  design/kit/group-heading.html
+   Stands on: 3.0, 3.2, 3.4, 3.5, 4.0. 29 occurrences across 12 screens.
+
+   THREE DECLARED FORMS, and the axis is the NEIGHBOUR rather than the look: over a list, over a
+   block, inside a toolbar. It is the only three-form atom in the system and the axis is named,
+   which is the difference between a variant and drift.
+
+   It was missing from the Stage 07 census: the class census counted it inside its screens and
+   never gave it a row of its own, and the first screen of Step 5 needed it. Not interactive.
+   No em dash anywhere in this file.
+*/
+
+.group-t {
+  font-family: var(--font-mono); font-size: var(--type-3xs);
+  font-weight: var(--weight-medium); letter-spacing: var(--tracking-caps);
+  text-transform: uppercase; color: var(--text-secondary);
+  padding: var(--space-7) var(--space-3) var(--space-2);
+}
+.group-t--section { padding: 0; margin: var(--space-10) 0 var(--space-4); }
+.group-t--inline { padding: 0; margin: 0; }

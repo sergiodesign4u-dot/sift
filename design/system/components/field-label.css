@@ -1,0 +1,16 @@
+/* design/system/components/field-label.css - level 1, atom.
+   Reads: --text-secondary
+   Page:  design/kit/field-label.html
+   Stands on: 6 screens. 14 labels: plain 12, with a trailing link 1, visually hidden 4.
+
+   Three content forms and no other axis. The trailing-link form stands EXACTLY ONCE in the whole
+   product, on the login screen ("Forgot?"), and it is kept as a variant rather than moved to
+   one-off: it is a form of the label, and a one-off would put the same anatomy in two places.
+
+   The visually hidden form is not decoration either. A field whose meaning is carried by its
+   surroundings still owes a screen reader its name. Not interactive.
+   No em dash anywhere in this file.
+*/
+
+.field-label { display: block; font-size: var(--type-xs); color: var(--text-secondary); margin-bottom: var(--space-2); }
+.field-label-row { display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-5); }

@@ -1,0 +1,23 @@
+/* design/system/components/avatar.css - level 1, atom.
+   Reads: --bg-raised, --line-hairline
+   Page:  design/kit/avatar.html
+   Stands on: 28 screens: the app bar on 27, plus the identity block on 7.0.
+
+   IT READS AT 28px AND IS HIT AT 44, through a transparent overlay. The visual and the target may
+   differ, and where they do the component says so rather than leaving a 28px target.
+
+   A monochrome disc by decision, and it stays one: this product scrubs PII by default, so a face
+   here would be the same lie as a face on a piece of evidence. Where a SOURCE needs an identity
+   it is a channel token, which is the icon slot.
+   No em dash anywhere in this file.
+*/
+
+.avatar {
+  position: relative; display: block;
+  width: 28px; height: 28px;
+  border-radius: var(--radius-pill);
+  background: var(--bg-raised);
+  border: 1px solid var(--line-hairline);
+}
+.avatar::after { content: ""; position: absolute; inset: -8px; border-radius: var(--radius-pill); }
+.acct-id-avatar { width: 40px; height: 40px; border-radius: var(--radius-pill); background: var(--bg-raised); border: 1px solid var(--line-hairline); flex: none; }
