@@ -24,7 +24,11 @@
   not a product style: the frame around a component is not part of the product language, and
   mixing it into kit.css would put portfolio furniture into the file Stage 08 audits.
 
-  Everything INSIDE a spec box is product, and carries no style of its own.
+  Everything INSIDE a spec box is product and carries no product style of its own. A handful of
+  inline styles do sit on demo wrappers here (a max-width on a form so it does not run the width
+  of the page, a min-height on an empty main). Those size the EXHIBIT, not the component, and
+  they are the reason this file is the one place in design/ where the "no inline style" rule is
+  relaxed. Every product screen in design/ has zero, and that is checked in the browser.
   No em dash anywhere.
 -->
 <style>

@@ -329,3 +329,13 @@ the select, the checkbox, the phase strip, the notice and the action bar stand t
 
 **Saturation watch.** Screen one added two components, screen two added one variant, one
 affordance and three declared one-offs. Still adding, so the sample is not saturated yet.
+
+**What screen three, 4.0 Theme detail with three states, added to the kit.** The screen the
+product exists for: a claim, and under it every item the claim was made from.
+
+| Added | What and why |
+|---|---|
+| `.head-meta` | The meta row of a detail head: confidence, recency, rank. Everything the ranked row already said, restated where the decision is actually made |
+| `.summary` | The synthesis itself, at reading size in primary ink, because this paragraph IS the product's claim. The only accent in it sits on the citation chips, which is the one thing a sceptical reader clicks (A2) |
+| `.group-t--inline` | The third and last declared form of the group heading: list, block, toolbar. Inside a toolbar the toolbar owns the rhythm and the heading adds none |
+| `.reason`, `.listnote` | Two more one-off blocks, declared and classified. The first explains why the items are one theme and names what was left out, which is the half that makes it checkable; the second closes a list that has no "load more" |

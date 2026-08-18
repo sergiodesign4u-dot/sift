@@ -53,7 +53,7 @@ window.DESIGN_NAV = [
       { key: 'base', label: 'detail and disconnect', file: 'sources-manage.html' } ] },
   ]},
   { id: '4', title: 'Theme detail', screens: [
-    { key: '4.0', label: 'Theme detail', file: 'theme.html', state: 'grey', states: [
+    { key: '4.0', label: 'Theme detail', file: 'theme.html', state: 'colour', states: [
       { key: 'base', label: 'strong', file: 'theme.html' },
       { key: 'low-signal', label: 'low signal (4.1)', file: 'theme-low-signal.html' },
       { key: 'loading', label: 'loading', file: 'theme-loading.html' },

@@ -139,6 +139,15 @@ nav.top { position:fixed; top:0; left:0; right:0; z-index:100; height:52px; disp
 .head-text { flex:1; min-width:0; }
 .head-action { flex:none; }
 
+/* The meta row of a detail head: confidence, recency, rank. Everything the ranked row already
+   said, restated where the decision is actually made, so the claim travels with the screen. */
+.head-meta { display:flex; align-items:center; gap:14px; flex-wrap:wrap; font-size:12.5px; color:var(--ash); margin-top:9px; }
+
+/* The synthesis itself. Set at reading size in primary ink, because this paragraph IS the
+   product's claim, and every clause of it carries a citation that resolves in the list below
+   (A2). Measure is capped so the eye can return to the left edge without hunting. */
+.summary { font-size:14.5px; line-height:1.8; color:var(--porcelain); margin-top:16px; max-width:88ch; }
+
 /* Scope line. A2 (evidence on the surface) and A4 (ranked clarity): a ranking with no
    denominator cannot be checked, so the denominator is on the screen and its numbers are set
    in the mono face, because the number is what carries the weight (Voice, Principle 1). */
@@ -407,6 +416,9 @@ select.input { appearance:none; -webkit-appearance:none; cursor:pointer; padding
    than with the rows. Two forms of one atom, not two atoms: identical anatomy, different
    neighbour. It is what the grey layer called .wf-evi-title, on 3.2 and 4.0. */
 .group-t--section { padding:0; margin:24px 0 10px; }
+/* The same heading inside a toolbar, where the toolbar owns the rhythm and the heading must
+   add none of its own. Third declared form of one atom, and the last: list, block, toolbar. */
+.group-t--inline { padding:0; margin:0; }
 
 /* Drag handle, and the row-level remove. Both are grips, not decisions, so both stay ash. */
 .drag { display:inline-flex; align-items:center; justify-content:center; min-width:24px; min-height:44px; color:var(--ash); font-size:13px; cursor:grab; flex:none; line-height:1; }
@@ -624,6 +636,16 @@ label.acct-row { cursor:pointer; }
    occurrence turns any of them into a component, and that is a decision made out loud.
    ===================================================================== */
 
+/* 4.0 Theme detail: why these items are one theme. One screen, and it exists because
+   clustering that is asserted rather than explained is exactly what the product promises not to
+   do. It also names what was LEFT OUT, which is the half that makes the explanation checkable. */
+.reason { font-size:13px; line-height:1.7; color:var(--ash); border-left:2px solid var(--line-2); padding-left:14px; margin-top:18px; max-width:88ch; }
+.reason b { color:var(--porcelain); font-weight:500; }
+
+/* 4.1: the line that closes a list with no "load more". An unterminated list reads as
+   truncated, and on a thin theme "all of it is here" is the whole point. */
+.listnote { font-size:12.5px; color:var(--ash); line-height:1.6; padding:13px 8px; border-bottom:1px solid var(--line); }
+
 /* 3.2 CSV upload: the drop zone. Dashed, because dashed is what the whole product uses for
    "nothing here yet, and something goes here". */
 .src-drop { border:1px dashed var(--line-2); border-radius:var(--r); background:var(--surface); padding:26px 20px; text-align:center; margin:6px 0 12px; }
@@ -695,7 +717,9 @@ label.acct-row { cursor:pointer; }
   .actionbar { flex-wrap:wrap; }
   .actionbar-note { width:100%; margin-right:0; margin-bottom:2px; }
   .actionbar > a, .actionbar > button { flex:1; }
-  .group-t--section { padding:0; }
+  .group-t--section, .group-t--inline { padding:0; }
+  .listnote { padding:13px 16px; }
+  .head-meta { gap:10px; }
   /* At 360 four columns would cut every value in half, so the row becomes two: the column and
      its field on one line, the customer's own sample on its own. Reading order is unchanged. */
   .src-map-head { display:none; }

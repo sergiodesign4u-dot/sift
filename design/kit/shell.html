@@ -9,6 +9,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="kit.css">
+<style>/* stand only: two frames on one page need a gap between them, and the product never has two */
+.appframe--next { margin-top: 24px; }</style>
 </head>
 <!--
   design/kit/shell.html - THE SHELL AS MARKUP, not as CSS.
@@ -87,7 +89,7 @@
 <!-- ==== THE PUBLIC SHELL. 6.4 Shared brief, and the same bar carries 0.0 and 9.x. ====
      No tabs and no account: the reader of a shared brief has no session and nothing to
      navigate to. The read-only tag is the first thing the bar says. -->
-<div class="appframe" style="margin-top:24px">
+<div class="appframe appframe--next">
   <header class="public-bar">
     <span class="brand"><svg class="ic mark" width="15" height="15"><use href="#i-signal"></use></svg> Sift</span>
     <span class="spacer"></span>
