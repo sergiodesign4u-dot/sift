@@ -339,3 +339,22 @@ product exists for: a claim, and under it every item the claim was made from.
 | `.summary` | The synthesis itself, at reading size in primary ink, because this paragraph IS the product's claim. The only accent in it sits on the citation chips, which is the one thing a sceptical reader clicks (A2) |
 | `.group-t--inline` | The third and last declared form of the group heading: list, block, toolbar. Inside a toolbar the toolbar owns the rhythm and the heading adds none |
 | `.reason`, `.listnote` | Two more one-off blocks, declared and classified. The first explains why the items are one theme and names what was left out, which is the half that makes it checkable; the second closes a list that has no "load more" |
+
+**What screens four to seven added.** 6.1 Build brief with its thin-theme state, 6.0 Briefs with
+its empty state, 6.3 Share-link with its generating state, 7.0 Account with 7.2 Data and privacy,
+and 0.0 Home.
+
+| Added | What and why |
+|---|---|
+| `.titlerow` | The name of an artifact typed where it will be read, with the marker beside it saying it has not been shared |
+| `.block` | A block inside a main that otherwise holds rows: a rule above it rather than a card around it, because a card would claim it is a different kind of thing |
+| `.selbar--static` | The declared trigger variant of the selection bar. On the composer it is always present: nothing is being selected, the artifact IS the selection |
+| `.acct-card-t`, `.acct-card-d`, `.acct-seclink` | The account hub's row-link contents and the one line pointing out of the settings into the document that explains them |
+| `.public-main--wide` | The public document at marketing measure. A shared brief is prose at 720px; a landing page carries rows of cards |
+| `.linkrow`, `.mk-trust*`, `.mk-footer*` | Three more one-off blocks, declared and classified |
+| `.drag .ic` | **A defect, found in the browser and not in the file.** An `svg` with no width is 300x150 by specification, so the drag handle took 300px of a 316px row and pushed the whole composer off a 360 screen. Every other icon slot in the kit sized its own `.ic`; this one was the gap. Afterwards every icon in the product was measured: none renders over 40px |
+
+**Saturation.** Screen four added three, screens five to seven added one each plus one-offs, and
+screen seven (Home) added one measure. The curve is flattening but it never reached zero, which
+is what the rule asks to watch: the sample is done because it has covered the inventory, not
+because the kit stopped growing.

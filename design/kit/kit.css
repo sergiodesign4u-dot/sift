@@ -199,6 +199,9 @@ nav.top { position:fixed; top:0; left:0; right:0; z-index:100; height:52px; disp
 /* Selection bar: present only while something is selected, and while it is up the head action
    is gone. One primary action on the screen at any moment. */
 .selbar { display:none; align-items:center; gap:10px; flex-wrap:wrap; padding:12px 8px 0; }
+/* On the composer the bar is always there: nothing is being selected, the artifact IS the
+   selection. Same component, one declared trigger variant, not a second bar. */
+.selbar--static { display:flex; padding:14px 22px; border-top:1px solid var(--line); background:var(--surface); }
 .selbar-note { font-size:12.5px; color:var(--ash); margin-right:auto; }
 .appframe:has(.check:checked) .selbar { display:flex; }
 .appframe:has(.check:checked) .head-action { display:none; }
@@ -422,6 +425,10 @@ select.input { appearance:none; -webkit-appearance:none; cursor:pointer; padding
 
 /* Drag handle, and the row-level remove. Both are grips, not decisions, so both stay ash. */
 .drag { display:inline-flex; align-items:center; justify-content:center; min-width:24px; min-height:44px; color:var(--ash); font-size:13px; cursor:grab; flex:none; line-height:1; }
+/* Every icon slot in this file sizes its own .ic, and this one was the gap: an svg with no
+   width is 300x150 by specification, so the handle took 300px of a 316px row and pushed the
+   whole composer off a 360 screen. Found in the browser at 360, not in the file. */
+.drag .ic { width:15px; height:15px; }
 .drag:active { cursor:grabbing; }
 
 /* List row link: the whole row is the link. Used on 7.0 today, and the rollout needs it. */
@@ -429,6 +436,14 @@ select.input { appearance:none; -webkit-appearance:none; cursor:pointer; padding
 .cardrow:hover { background:var(--surface); }
 
 /* ---------- LEVEL 2, MOLECULES ---------- */
+
+/* The title row of an artifact: the name is typed where it will be read, and the marker beside
+   it says the artifact has not been shared yet. */
+.titlerow { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+
+/* A block inside a main that otherwise holds rows: it gets a rule above it rather than a card
+   around it, because a card would claim it is a different kind of thing, and it is not. */
+.block { padding-top:20px; margin-top:20px; border-top:1px solid var(--line); }
 
 /* Form field: label, control, and an optional error line under it. */
 .field { display:block; margin-bottom:14px; }
@@ -610,6 +625,11 @@ label.acct-row { cursor:pointer; }
 .acct-id-meta { font-size:12.5px; color:var(--ash); margin-top:3px; }
 .acct-section-t { font-family:var(--font-mono); font-size:10px; font-weight:500; letter-spacing:0.07em; text-transform:uppercase; color:var(--ash); margin:22px 0 6px; }
 .acct-section-t:first-child { margin-top:0; }
+/* the card title and its one line, inside a whole-row link on the account hub */
+.acct-card-t { display:block; font-size:13.5px; font-weight:500; color:var(--porcelain); }
+.acct-card-d { display:block; font-size:12.5px; color:var(--ash); margin-top:4px; line-height:1.55; }
+/* one closing line pointing out of the settings and into the document that explains them */
+.acct-seclink { font-size:12.5px; color:var(--ash); margin-top:18px; }
 
 /* Marketing page shell (0.0). The only place in the product that is read by somebody who has
    not signed in, so it is the one screen with a wider measure and a larger first line. */
@@ -622,6 +642,9 @@ label.acct-row { cursor:pointer; }
 .mk-h2 { font-size:22px; font-weight:590; letter-spacing:-0.02em; color:var(--porcelain); }
 .mk-section-sub { font-size:13.5px; color:var(--ash); margin-top:7px; max-width:60ch; line-height:1.6; }
 .mk-grid { list-style:none; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; margin-top:20px; }
+/* The public document at marketing measure. The reading column of a shared brief is 720px
+   because it is prose; a landing page carries rows of cards and needs more room. */
+.public-main--wide { max-width:1040px; }
 
 /* An empty group inside a screen that is otherwise populated: it sits in the flow of the
    list, left aligned, because the next action is further down the screen and not in here. */
@@ -635,6 +658,33 @@ label.acct-row { cursor:pointer; }
    components. One occurrence, no form-control exception, no canonical status. A second
    occurrence turns any of them into a component, and that is a decision made out loud.
    ===================================================================== */
+
+/* 0.0 Home: the trust list. One screen, and it is a list of claims rather than a grid of
+   cards, because each item is a sentence the visitor either believes or does not. A rule above
+   each one instead of a box around it: the claim is the object, not the container. */
+.mk-trust { list-style:none; display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px 24px; margin-top:20px; }
+.mk-trust-item { padding-top:14px; border-top:2px solid var(--line-2); }
+.mk-trust-t { font-size:14px; font-weight:590; letter-spacing:-0.01em; color:var(--porcelain); margin-bottom:7px; }
+.mk-trust-t a { color:var(--porcelain); text-decoration:none; }
+.mk-trust-t a:hover { text-decoration:underline; }
+.mk-trust-d { font-size:13px; color:var(--ash); line-height:1.65; }
+
+/* 0.0 Home: the marketing footer. The app footer is the component; this is the one screen that
+   needs a link block under it, and it composes with .appfoot rather than replacing it. */
+.mk-footer { display:flex; flex-wrap:wrap; gap:24px 48px; align-items:flex-start; padding:28px 22px 32px; font-family:var(--font-ui); font-size:13px; }
+.mk-foot-brand { display:flex; flex-direction:column; gap:10px; min-width:200px; flex:1; }
+.mk-foot-tag { font-size:12.5px; color:var(--ash); max-width:30ch; line-height:1.55; }
+.mk-foot-cols { display:flex; gap:48px; flex-wrap:wrap; }
+.mk-foot-col { display:flex; flex-direction:column; }
+.mk-foot-h { font-family:var(--font-mono); font-size:10px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:var(--ash); }
+.mk-foot-col a { display:flex; align-items:center; min-height:44px; font-size:12.5px; color:var(--ash); text-decoration:none; }
+.mk-foot-col a:hover { color:var(--porcelain); }
+.mk-foot-legal { flex-basis:100%; font-family:var(--font-mono); font-size:11px; color:var(--ash); border-top:1px solid var(--line); padding-top:18px; }
+
+/* 6.3 Share-link: the row that holds the value and the one control that copies it. One screen,
+   and the only place in the product where a value is copied rather than read. */
+.linkrow { display:flex; gap:8px; margin-bottom:14px; }
+.linkrow .input { font-family:var(--font-mono); font-size:12.5px; }
 
 /* 4.0 Theme detail: why these items are one theme. One screen, and it exists because
    clustering that is asserted rather than explained is exactly what the product promises not to
@@ -707,6 +757,8 @@ label.acct-row { cursor:pointer; }
   .brief-actions { width:100%; }
   .brief-actions .btn--ghost, .brief-actions .btn { flex:1; }
   .mk-h1 { font-size:27px; }
+  .mk-footer { padding:24px 16px 28px; gap:20px 24px; }
+  .mk-foot-cols { gap:28px; }
   .mk-lead { font-size:14.5px; }
   .appframe > .notice, .app > .notice { margin:14px 16px; }
   .group-t { padding:14px 16px 6px; }
@@ -714,6 +766,8 @@ label.acct-row { cursor:pointer; }
      every one of them wraps. The note takes its own line and the buttons share the next.
      This is LAYOUT on the bar's own children, not an undeclared variant of the button: no
      size, colour or weight is touched, and .u-full stays the utility for a single button. */
+  .selbar--static { padding:14px 16px; }
+  .selbar--static > a { flex:1; }
   .actionbar { flex-wrap:wrap; }
   .actionbar-note { width:100%; margin-right:0; margin-bottom:2px; }
   .actionbar > a, .actionbar > button { flex:1; }

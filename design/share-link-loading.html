@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>Sift - 4.0 Theme detail, error (in colour)</title>
+<title>Sift - 6.3 Share link, generating (in colour)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -12,20 +12,11 @@
 <link rel="stylesheet" href="_panel.css">
 </head>
 <!--
-  4.0 Theme detail when the evidence does not open. COLOUR COPY of wireframes/theme-error.html.
+  6.3 while the link is being generated. COLOUR COPY of wireframes/share-link-loading.html.
 
-  Neutral, not red. Nothing is lost and no item was removed; what failed is a read. The screen
-  keeps the count it already had and says out loud that the count is now unverified, which is
-  the honest version of a number whose evidence you cannot open.
-
-  The screen the whole product exists for: a claim, and under it every item the claim was made
-  from. Structure and text belong to the grey original; this copy owns the visual layer only and
-  takes every class from design/kit/kit.css.
-
-  Where the accent lands here is the argument of the screen. The summary is in primary ink at
-  reading size because it IS the claim, and the only cyan in the paragraph is on the citation
-  chips, which are the one thing a sceptical reader clicks. Attribute A2: the citation is the
-  trust surface, so it gets the accent and the prose does not.
+  Two skeleton lines where the link row will be, so the wait promises the shape that arrives.
+  The dialog keeps its title and its explanation as real text: what is known already is never
+  shown as a grey bar.
 -->
 <body>
 
@@ -48,7 +39,7 @@
 </defs></svg>
 
 <div class="ds-shell">
-  <aside id="ds-panel" data-node="4.0" data-state="error"></aside>
+  <aside id="ds-panel" data-node="6.3" data-state="loading"></aside>
 
   <div class="ds-stage">
     <div class="ds-canvas">
@@ -57,41 +48,32 @@
         <header class="appbar">
           <span class="brand"><svg class="ic mark" width="15" height="15"><use href="#i-signal"></use></svg> Sift</span>
           <nav class="navtabs" aria-label="Sections">
-            <a href="synthesis.html" class="active" aria-current="page">Synthesis</a>
+            <a href="synthesis.html">Synthesis</a>
             <a href="sources.html">Sources</a>
-            <a href="briefs.html">Briefs</a>
+            <a href="briefs.html" class="active" aria-current="page">Briefs</a>
           </nav>
           <span class="spacer"></span>
           <a class="avatar" href="account.html" aria-label="Account"></a>
         </header>
 
-        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="synthesis.html">Synthesis</a> &rsaquo; <span>Onboarding is confusing</span></nav>
+        <nav class="steps" aria-label="Brief steps">
+          <span class="step"><span class="step-n">1</span> Build</span>
+          <span class="step-sep" aria-hidden="true">&rsaquo;</span>
+          <span class="step is-current"><span class="step-n">2</span> Share</span>
+          <span class="step-sep" aria-hidden="true">&rsaquo;</span>
+          <span class="step"><span class="step-n">3</span> What they see</span>
+        </nav>
 
         <main class="appmain">
-          <header class="screenhead">
-            <div class="screenhead-row">
-              <div class="head-text">
-                <h1 class="h1">Onboarding is confusing</h1>
-                <div class="head-meta">
-                  <span class="conf"><span class="conf-n">n=42</span></span>
-                  <span>latest feedback 2 days ago</span>
-                  <span>rank 1 of 12 by signal</span>
-                </div>
-              </div>
+          <div class="dialog" aria-busy="true">
+            <h1>Generating share link</h1>
+            <p>Publishing the brief and creating a public link. This takes a moment.</p>
+            <div class="skelcard">
+              <div class="skel c"></div>
+              <div class="skel a"></div>
             </div>
-            <p class="scope">
-              <b>42</b> items from 2 sources: <b>Intercom 30</b>, <b>CSV 12</b>. The count comes from
-              the ranked list and still holds. What did not load is the items behind it.
-            </p>
-          </header>
-
-          <div class="state">
-            <span class="state-ic"><svg class="ic"><use href="#i-evidence"></use></svg></span>
-            <h2 class="state-t">Could not load this theme</h2>
-            <div class="state-d">The evidence for this theme did not come back this time. Nothing is lost and no item was removed. Until it opens, treat the count above as unverified: the point of this screen is that you can check it.</div>
-            <div class="state-actions">
-              <a class="btn--ghost" href="synthesis.html">Back to Synthesis</a>
-              <a class="btn" href="theme-loading.html">Try again</a>
+            <div class="dialog-actions">
+              <a class="btn" href="share-link.html">Continue</a>
             </div>
           </div>
         </main>
@@ -99,9 +81,9 @@
         <footer class="appfoot">Sift workspace &middot; feedback from CSV and Intercom, PII scrubbed by default</footer>
 
         <nav class="bottomtabs" aria-label="Sections">
-          <a href="synthesis.html" class="btab active" aria-current="page"><span class="ico"><svg viewBox="0 0 24 24" class="ic"><use href="#i-signal"></use></svg></span>Synthesis</a>
+          <a href="synthesis.html" class="btab"><span class="ico"><svg viewBox="0 0 24 24" class="ic"><use href="#i-signal"></use></svg></span>Synthesis</a>
           <a href="sources.html" class="btab"><span class="ico"><svg viewBox="0 0 24 24" class="ic"><use href="#i-source"></use></svg></span>Sources</a>
-          <a href="briefs.html" class="btab"><span class="ico"><svg viewBox="0 0 24 24" class="ic"><use href="#i-brief"></use></svg></span>Briefs</a>
+          <a href="briefs.html" class="btab active" aria-current="page"><span class="ico"><svg viewBox="0 0 24 24" class="ic"><use href="#i-brief"></use></svg></span>Briefs</a>
           <a href="account.html" class="btab"><span class="ico"><svg viewBox="0 0 24 24" class="ic"><use href="#i-user"></use></svg></span>Account</a>
         </nav>
 

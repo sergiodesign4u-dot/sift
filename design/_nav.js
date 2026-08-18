@@ -24,7 +24,7 @@
 
 window.DESIGN_NAV = [
   { id: '0', title: 'Home + shell', screens: [
-    { key: '0.0', label: 'Home (marketing)', file: 'index.html', state: 'grey', states: [
+    { key: '0.0', label: 'Home (marketing)', file: 'index.html', state: 'colour', states: [
       { key: 'base', label: 'landing', file: 'index.html' } ] },
   ]},
   { id: '1', title: 'Auth', screens: [
@@ -65,24 +65,22 @@ window.DESIGN_NAV = [
       { key: 'redacted', label: 'redacted (5.1)', file: 'evidence-redacted.html' } ] },
   ]},
   { id: '6', title: 'Decide and defend / Briefs', screens: [
-    { key: '6.0', label: 'Briefs list', file: 'briefs.html', state: 'grey', states: [
+    { key: '6.0', label: 'Briefs list', file: 'briefs.html', state: 'colour', states: [
       { key: 'base', label: 'list', file: 'briefs.html' },
       { key: 'empty', label: 'empty (6.5)', file: 'briefs-empty.html' } ] },
-    { key: '6.1', label: 'Build brief', file: 'build-brief.html', state: 'grey', states: [
+    { key: '6.1', label: 'Build brief', file: 'build-brief.html', state: 'colour', states: [
       { key: 'base', label: 'building', file: 'build-brief.html' },
       { key: 'thin-warning', label: 'thin-theme warning (6.2)', file: 'build-brief-thin-warning.html' } ] },
-    { key: '6.3', label: 'Share-link', file: 'share-link.html', state: 'grey', states: [
+    { key: '6.3', label: 'Share-link', file: 'share-link.html', state: 'colour', states: [
       { key: 'base', label: 'generated', file: 'share-link.html' },
       { key: 'loading', label: 'generating', file: 'share-link-loading.html' } ] },
     { key: '6.4', label: 'Shared brief (public)', file: 'shared-brief.html', state: 'colour', seed: true, states: [
       { key: 'base', label: 'read only', file: 'shared-brief.html' } ] },
   ]},
   { id: '7', title: 'Account / settings', screens: [
-    { key: '7.0', label: 'Account', file: 'account.html', state: 'grey', states: [
+    { key: '7.0', label: 'Account', file: 'account.html', state: 'colour', states: [
       { key: 'base', label: 'shell', file: 'account.html' },
-      { key: 'plan', label: 'plan and limits (7.1)', file: 'account-plan.html' },
-      { key: 'data', label: 'data and privacy (7.2)', file: 'account-data.html' },
-      { key: 'profile', label: 'profile (7.3)', file: 'account-profile.html' } ] },
+      { key: 'data', label: 'data and privacy (7.2)', file: 'account-data.html' } ] },
   ]},
   { id: '8', title: 'System', screens: [
     { key: '8.0', label: '404 not found', file: '404.html', state: 'grey', states: [ { key: 'base', label: '404', file: '404.html' } ] },

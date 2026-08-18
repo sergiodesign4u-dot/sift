@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>Sift - 4.0 Theme detail, error (in colour)</title>
+<title>Sift - 7.0 Account (in colour)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -12,20 +12,14 @@
 <link rel="stylesheet" href="_panel.css">
 </head>
 <!--
-  4.0 Theme detail when the evidence does not open. COLOUR COPY of wireframes/theme-error.html.
+  7.0 Account. COLOUR COPY of wireframes/account.html.
 
-  Neutral, not red. Nothing is lost and no item was removed; what failed is a read. The screen
-  keeps the count it already had and says out loud that the count is now unverified, which is
-  the honest version of a number whose evidence you cannot open.
+  The screen that carries the shell four screens share: a side nav that becomes a stack above
+  the panel below 900px, and a panel of whole-row links. It is in the sample for exactly that
+  reason, plus the row link, which nothing else in the sample uses.
 
-  The screen the whole product exists for: a claim, and under it every item the claim was made
-  from. Structure and text belong to the grey original; this copy owns the visual layer only and
-  takes every class from design/kit/kit.css.
-
-  Where the accent lands here is the argument of the screen. The summary is in primary ink at
-  reading size because it IS the claim, and the only cyan in the paragraph is on the citation
-  chips, which are the one thing a sceptical reader clicks. Attribute A2: the citation is the
-  trust surface, so it gets the accent and the prose does not.
+  The account sits in a corner menu and not in the main navigation, because the navigation is
+  three entries by decision and account work is not the job this product is for.
 -->
 <body>
 
@@ -48,7 +42,7 @@
 </defs></svg>
 
 <div class="ds-shell">
-  <aside id="ds-panel" data-node="4.0" data-state="error"></aside>
+  <aside id="ds-panel" data-node="7.0" data-state="base"></aside>
 
   <div class="ds-stage">
     <div class="ds-canvas">
@@ -57,7 +51,7 @@
         <header class="appbar">
           <span class="brand"><svg class="ic mark" width="15" height="15"><use href="#i-signal"></use></svg> Sift</span>
           <nav class="navtabs" aria-label="Sections">
-            <a href="synthesis.html" class="active" aria-current="page">Synthesis</a>
+            <a href="synthesis.html">Synthesis</a>
             <a href="sources.html">Sources</a>
             <a href="briefs.html">Briefs</a>
           </nav>
@@ -65,33 +59,43 @@
           <a class="avatar" href="account.html" aria-label="Account"></a>
         </header>
 
-        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="synthesis.html">Synthesis</a> &rsaquo; <span>Onboarding is confusing</span></nav>
-
         <main class="appmain">
-          <header class="screenhead">
-            <div class="screenhead-row">
-              <div class="head-text">
-                <h1 class="h1">Onboarding is confusing</h1>
-                <div class="head-meta">
-                  <span class="conf"><span class="conf-n">n=42</span></span>
-                  <span>latest feedback 2 days ago</span>
-                  <span>rank 1 of 12 by signal</span>
-                </div>
-              </div>
-            </div>
-            <p class="scope">
-              <b>42</b> items from 2 sources: <b>Intercom 30</b>, <b>CSV 12</b>. The count comes from
-              the ranked list and still holds. What did not load is the items behind it.
-            </p>
-          </header>
+          <div class="main-head">
+            <h1 class="h1">Account</h1>
+            <p class="sub">Your plan, your data controls, and your profile for the Northwind workspace.</p>
+          </div>
 
-          <div class="state">
-            <span class="state-ic"><svg class="ic"><use href="#i-evidence"></use></svg></span>
-            <h2 class="state-t">Could not load this theme</h2>
-            <div class="state-d">The evidence for this theme did not come back this time. Nothing is lost and no item was removed. Until it opens, treat the count above as unverified: the point of this screen is that you can check it.</div>
-            <div class="state-actions">
-              <a class="btn--ghost" href="synthesis.html">Back to Synthesis</a>
-              <a class="btn" href="theme-loading.html">Try again</a>
+          <div class="acct-id">
+            <span class="acct-id-avatar" aria-hidden="true"></span>
+            <div>
+              <div class="acct-id-name">Alex Rivera</div>
+              <div class="acct-id-meta">alex@northwind.io &middot; Northwind workspace</div>
+            </div>
+          </div>
+
+          <div class="acct-layout">
+            <nav class="acct-nav" aria-label="Account sections">
+              <a class="acct-nav-home" href="account.html">Account</a>
+              <a class="acct-nav-link" href="../wireframes/account-plan.html">Plan and limits</a>
+              <a class="acct-nav-link" href="account-data.html">Data and privacy</a>
+              <a class="acct-nav-link" href="../wireframes/account-profile.html">Profile</a>
+            </nav>
+
+            <div class="acct-panel">
+              <ul class="list">
+                <li><a class="cardrow" href="../wireframes/account-plan.html">
+                  <strong class="acct-card-t">Plan and limits</strong>
+                  <span class="acct-card-d">Free plan. 3,750 of 5,000 items used this month. Review usage and upgrade.</span>
+                </a></li>
+                <li><a class="cardrow" href="account-data.html">
+                  <strong class="acct-card-t">Data and privacy</strong>
+                  <span class="acct-card-d">PII scrub on by default, EU data residency, export or delete your data.</span>
+                </a></li>
+                <li><a class="cardrow" href="../wireframes/account-profile.html">
+                  <strong class="acct-card-t">Profile</strong>
+                  <span class="acct-card-d">Your name, email, and password. Log out of this workspace.</span>
+                </a></li>
+              </ul>
             </div>
           </div>
         </main>
@@ -99,10 +103,10 @@
         <footer class="appfoot">Sift workspace &middot; feedback from CSV and Intercom, PII scrubbed by default</footer>
 
         <nav class="bottomtabs" aria-label="Sections">
-          <a href="synthesis.html" class="btab active" aria-current="page"><span class="ico"><svg viewBox="0 0 24 24" class="ic"><use href="#i-signal"></use></svg></span>Synthesis</a>
+          <a href="synthesis.html" class="btab"><span class="ico"><svg viewBox="0 0 24 24" class="ic"><use href="#i-signal"></use></svg></span>Synthesis</a>
           <a href="sources.html" class="btab"><span class="ico"><svg viewBox="0 0 24 24" class="ic"><use href="#i-source"></use></svg></span>Sources</a>
           <a href="briefs.html" class="btab"><span class="ico"><svg viewBox="0 0 24 24" class="ic"><use href="#i-brief"></use></svg></span>Briefs</a>
-          <a href="account.html" class="btab"><span class="ico"><svg viewBox="0 0 24 24" class="ic"><use href="#i-user"></use></svg></span>Account</a>
+          <a href="account.html" class="btab active" aria-current="page"><span class="ico"><svg viewBox="0 0 24 24" class="ic"><use href="#i-user"></use></svg></span>Account</a>
         </nav>
 
       </div>

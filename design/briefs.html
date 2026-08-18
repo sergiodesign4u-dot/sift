@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>Sift - 4.0 Theme detail, error (in colour)</title>
+<title>Sift - 6.0 Briefs (in colour)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -12,20 +12,14 @@
 <link rel="stylesheet" href="_panel.css">
 </head>
 <!--
-  4.0 Theme detail when the evidence does not open. COLOUR COPY of wireframes/theme-error.html.
+  6.0 Briefs list. COLOUR COPY of wireframes/briefs.html.
 
-  Neutral, not red. Nothing is lost and no item was removed; what failed is a read. The screen
-  keeps the count it already had and says out loud that the count is now unverified, which is
-  the honest version of a number whose evidence you cannot open.
+  A managed object list: every row has a status and exactly one way in. This is deliberately NOT
+  a variant of the composer row on 6.1, which has a handle and a remove and no status. Same
+  content, different anatomy, so a different component.
 
-  The screen the whole product exists for: a claim, and under it every item the claim was made
-  from. Structure and text belong to the grey original; this copy owns the visual layer only and
-  takes every class from design/kit/kit.css.
-
-  Where the accent lands here is the argument of the screen. The summary is in primary ink at
-  reading size because it IS the claim, and the only cyan in the paragraph is on the citation
-  chips, which are the one thing a sceptical reader clicks. Attribute A2: the citation is the
-  trust surface, so it gets the accent and the prose does not.
+  The scope line says the thing an archive has to say: a brief keeps the evidence it was built
+  from, so an old link stays readable after the themes move on.
 -->
 <body>
 
@@ -48,7 +42,7 @@
 </defs></svg>
 
 <div class="ds-shell">
-  <aside id="ds-panel" data-node="4.0" data-state="error"></aside>
+  <aside id="ds-panel" data-node="6.0" data-state="base"></aside>
 
   <div class="ds-stage">
     <div class="ds-canvas">
@@ -57,51 +51,60 @@
         <header class="appbar">
           <span class="brand"><svg class="ic mark" width="15" height="15"><use href="#i-signal"></use></svg> Sift</span>
           <nav class="navtabs" aria-label="Sections">
-            <a href="synthesis.html" class="active" aria-current="page">Synthesis</a>
+            <a href="synthesis.html">Synthesis</a>
             <a href="sources.html">Sources</a>
-            <a href="briefs.html">Briefs</a>
+            <a href="briefs.html" class="active" aria-current="page">Briefs</a>
           </nav>
           <span class="spacer"></span>
           <a class="avatar" href="account.html" aria-label="Account"></a>
         </header>
 
-        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="synthesis.html">Synthesis</a> &rsaquo; <span>Onboarding is confusing</span></nav>
-
         <main class="appmain">
           <header class="screenhead">
             <div class="screenhead-row">
               <div class="head-text">
-                <h1 class="h1">Onboarding is confusing</h1>
-                <div class="head-meta">
-                  <span class="conf"><span class="conf-n">n=42</span></span>
-                  <span>latest feedback 2 days ago</span>
-                  <span>rank 1 of 12 by signal</span>
-                </div>
+                <h1 class="h1">Briefs</h1>
+                <p class="sub">A brief packages themes, their evidence, and your recommended order into a link a stakeholder can read and challenge without a Sift seat.</p>
               </div>
+              <div class="head-action"><a class="btn" href="build-brief.html">Build brief</a></div>
             </div>
             <p class="scope">
-              <b>42</b> items from 2 sources: <b>Intercom 30</b>, <b>CSV 12</b>. The count comes from
-              the ranked list and still holds. What did not load is the items behind it.
+              <b>2</b> briefs, built from the 12 themes on Synthesis. A brief keeps the evidence it
+              was built from, so an old link stays readable even after the themes move on.
             </p>
           </header>
 
-          <div class="state">
-            <span class="state-ic"><svg class="ic"><use href="#i-evidence"></use></svg></span>
-            <h2 class="state-t">Could not load this theme</h2>
-            <div class="state-d">The evidence for this theme did not come back this time. Nothing is lost and no item was removed. Until it opens, treat the count above as unverified: the point of this screen is that you can check it.</div>
-            <div class="state-actions">
-              <a class="btn--ghost" href="synthesis.html">Back to Synthesis</a>
-              <a class="btn" href="theme-loading.html">Try again</a>
-            </div>
-          </div>
+          <div class="group-t">Shared &middot; 1</div>
+          <ul class="list">
+            <li class="brief-row">
+              <div class="brief-main">
+                <a class="brief-title" href="shared-brief.html">Q3 roadmap: what customers need most</a>
+                <div class="brief-meta">3 themes &middot; 89 feedback items behind them &middot; shared 2 days ago by Alex Rivera &middot; link is live</div>
+              </div>
+              <span class="tag">Shared</span>
+              <div class="brief-actions"><a class="btn--ghost" href="shared-brief.html">Open</a></div>
+            </li>
+          </ul>
+
+          <div class="group-t">Drafts &middot; 1</div>
+          <ul class="list">
+            <li class="brief-row">
+              <div class="brief-main">
+                <a class="brief-title" href="build-brief.html">Onboarding deep-dive</a>
+                <div class="brief-meta">1 theme &middot; 42 feedback items behind it &middot; started 1 week ago &middot; no link yet, so nobody outside can see it</div>
+              </div>
+              <span class="tag">Draft</span>
+              <div class="brief-actions"><a class="btn--ghost" href="build-brief.html">Continue</a></div>
+            </li>
+          </ul>
         </main>
 
         <footer class="appfoot">Sift workspace &middot; feedback from CSV and Intercom, PII scrubbed by default</footer>
 
         <nav class="bottomtabs" aria-label="Sections">
-          <a href="synthesis.html" class="btab active" aria-current="page"><span class="ico"><svg viewBox="0 0 24 24" class="ic"><use href="#i-signal"></use></svg></span>Synthesis</a>
+          <a href="synthesis.html" class="btab"><span class="ico"><svg viewBox="0 0 24 24" class="ic"><use href="#i-signal"></use></svg></span>Synthesis</a>
           <a href="sources.html" class="btab"><span class="ico"><svg viewBox="0 0 24 24" class="ic"><use href="#i-source"></use></svg></span>Sources</a>
-          <a href="briefs.html" class="btab"><span class="ico"><svg viewBox="0 0 24 24" class="ic"><use href="#i-brief"></use></svg></span>Briefs</a>
+          <a href="briefs.html" class="btab active" aria-current="page"><span class="ico"><svg viewBox="0 0 24 24" class="ic"><use href="#i-brief"></use></svg></span>Briefs</a>
           <a href="account.html" class="btab"><span class="ico"><svg viewBox="0 0 24 24" class="ic"><use href="#i-user"></use></svg></span>Account</a>
         </nav>
 

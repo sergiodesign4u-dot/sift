@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift - 6.2 Build brief, thin-theme warning (in colour)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="kit/kit.css">
+<link rel="stylesheet" href="_panel.css">
+</head>
+<!--
+  6.2 Build a brief with a thin theme ranked high. COLOUR COPY of
+  wireframes/build-brief-thin-warning.html.
+
+  The screen where the product refuses to overrule the person using it. A four-mention theme is
+  sitting at position 2 above themes with several times its evidence. Sift labels it, says what
+  the label means, and LEAVES IT WHERE THE AUTHOR PUT IT. Amber, not red: this is information
+  about the evidence, not an error, and the order is a judgement the author is allowed to make.
+
+  The label travels: the same "low signal" mark appears in the shared brief, so the people
+  reading it see exactly what the author saw.
+-->
+<body>
+
+<svg class="sprite" aria-hidden="true"><defs>
+  <symbol id="i-signal" viewBox="0 0 24 24"><path d="M6 18v-3.5M12 18v-8M18 18v-12.5"/></symbol>
+  <symbol id="i-source" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.66 3.13 3 7 3s7-1.34 7-3V6"/><path d="M5 12v6c0 1.66 3.13 3 7 3s7-1.34 7-3v-6"/></symbol>
+  <symbol id="i-brief" viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h7"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 19c0-3.6 2.9-5.5 6.5-5.5s6.5 1.9 6.5 5.5"/></symbol>
+  <symbol id="i-filter" viewBox="0 0 24 24"><path d="M3 5.5h18l-7 8v5l-4 2v-7z"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M6 3v18"/><path d="M6 4h12l-2.5 4L18 12H6"/></symbol>
+  <symbol id="i-evidence" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-4 4v-4H4z"/><path d="M8.5 10.5h7M8.5 13h4"/></symbol>
+  <!-- added at Step 3 for the components that had never been in colour -->
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 4.5 21 19.5H3z"/><path d="M12 10v4.2M12 17.1v.1"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M15 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h3"/></symbol>
+  <symbol id="i-drag" viewBox="0 0 24 24"><path d="M9 7h.1M15 7h.1M9 12h.1M15 12h.1M9 17h.1M15 17h.1"/></symbol>
+  <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V5"/><path d="m7.5 9.5 4.5-4.5 4.5 4.5"/><path d="M4.5 15v3.5a1.5 1.5 0 0 0 1.5 1.5h12a1.5 1.5 0 0 0 1.5-1.5V15"/></symbol>
+</defs></svg>
+
+<div class="ds-shell">
+  <aside id="ds-panel" data-node="6.1" data-state="thin-warning"></aside>
+
+  <div class="ds-stage">
+    <div class="ds-canvas">
+      <div class="app">
+
+        <header class="appbar">
+          <span class="brand"><svg class="ic mark" width="15" height="15"><use href="#i-signal"></use></svg> Sift</span>
+          <nav class="navtabs" aria-label="Sections">
+            <a href="synthesis.html">Synthesis</a>
+            <a href="sources.html">Sources</a>
+            <a href="briefs.html" class="active" aria-current="page">Briefs</a>
+          </nav>
+          <span class="spacer"></span>
+          <a class="avatar" href="account.html" aria-label="Account"></a>
+        </header>
+
+        <nav class="steps" aria-label="Brief steps">
+          <span class="step is-current"><span class="step-n">1</span> Build</span>
+          <span class="step-sep" aria-hidden="true">&rsaquo;</span>
+          <span class="step"><span class="step-n">2</span> Share</span>
+          <span class="step-sep" aria-hidden="true">&rsaquo;</span>
+          <span class="step"><span class="step-n">3</span> What they see</span>
+        </nav>
+
+        <main class="appmain">
+          <header class="screenhead">
+            <h1 class="vh">Build a brief</h1>
+            <div class="titlerow">
+              <label class="field-label vh" for="brief-title">Brief title</label>
+              <input class="input input--title" id="brief-title" value="Q3 roadmap: what customers need most">
+              <span class="tag">Draft</span>
+            </div>
+            <p class="sub">Order the themes, say why, then generate a link your stakeholders can read without a login.</p>
+          </header>
+
+          <p class="notice notice--warn">"Dark mode requested" is at position 2, above two themes with several times its evidence. Four mentions is a weak signal, not a confirmed pattern. Sift labels it and leaves it where you put it: the order is your call. In the shared brief it carries the same "low signal" label it has here, so the people reading it see what you saw.</p>
+
+          <div class="toolbar">
+            <h2 class="group-t group-t--inline">In this brief &middot; 4 themes</h2>
+            <div class="toolbar-full"><button class="chip">Add themes</button></div>
+            <span class="sortnote">Order = <b>recommended priority</b></span>
+          </div>
+
+          <ol class="list">
+            <li class="briefrow">
+              <span class="drag" aria-hidden="true"><svg class="ic"><use href="#i-drag"></use></svg></span>
+              <span class="rank">1</span>
+              <span class="briefrow-main">
+                <span class="briefrow-label">Onboarding is confusing</span>
+                <span class="briefrow-meta">CSV, Intercom &middot; latest feedback 2 days ago</span>
+              </span>
+              <span class="conf"><span class="conf-n">n=42</span></span>
+              <button class="btn--icon" aria-label="Remove Onboarding is confusing from this brief"><svg class="ic"><use href="#i-close"></use></svg></button>
+            </li>
+            <li class="briefrow">
+              <span class="drag" aria-hidden="true"><svg class="ic"><use href="#i-drag"></use></svg></span>
+              <span class="rank">2</span>
+              <span class="briefrow-main">
+                <span class="briefrow-label">Dark mode requested</span>
+                <span class="briefrow-meta">CSV only &middot; latest feedback 12 days ago</span>
+              </span>
+              <span class="conf"><span class="conf-n">n=4</span> <span class="badge-low">low signal</span></span>
+              <button class="btn--icon" aria-label="Remove Dark mode requested from this brief"><svg class="ic"><use href="#i-close"></use></svg></button>
+            </li>
+            <li class="briefrow">
+              <span class="drag" aria-hidden="true"><svg class="ic"><use href="#i-drag"></use></svg></span>
+              <span class="rank">3</span>
+              <span class="briefrow-main">
+                <span class="briefrow-label">Slow export on large accounts</span>
+                <span class="briefrow-meta">Intercom &middot; latest feedback 5 days ago</span>
+              </span>
+              <span class="conf"><span class="conf-n">n=28</span></span>
+              <button class="btn--icon" aria-label="Remove Slow export on large accounts from this brief"><svg class="ic"><use href="#i-close"></use></svg></button>
+            </li>
+            <li class="briefrow">
+              <span class="drag" aria-hidden="true"><svg class="ic"><use href="#i-drag"></use></svg></span>
+              <span class="rank">4</span>
+              <span class="briefrow-main">
+                <span class="briefrow-label">Confusing billing and invoices</span>
+                <span class="briefrow-meta">CSV &middot; latest feedback 3 days ago</span>
+              </span>
+              <span class="conf"><span class="conf-n">n=19</span></span>
+              <button class="btn--icon" aria-label="Remove Confusing billing and invoices from this brief"><svg class="ic"><use href="#i-close"></use></svg></button>
+            </li>
+          </ol>
+
+          <div class="block">
+            <label class="field-label" for="rationale">Why this order (your words, kept separate from the evidence)</label>
+            <textarea class="input" id="rationale" rows="3">Onboarding blocks activation for every new account, so it leads. Dark mode has four mentions and I am ranking it second anyway, because it is the cheapest thing on this list to ship. Treat that one as a judgement call, not a finding.</textarea>
+          </div>
+        </main>
+
+        <div class="selbar selbar--static">
+          <span class="selbar-note">4 themes, 93 feedback items behind them &middot; 1 low signal</span>
+          <a class="btn--ghost" href="briefs.html">Save draft</a>
+          <a class="btn--ghost" href="shared-brief.html">Preview</a>
+          <a class="btn" href="share-link-loading.html">Generate share link</a>
+        </div>
+
+        <footer class="appfoot">Sift workspace &middot; feedback from CSV and Intercom, PII scrubbed by default</footer>
+
+        <nav class="bottomtabs" aria-label="Sections">
+          <a href="synthesis.html" class="btab"><span class="ico"><svg viewBox="0 0 24 24" class="ic"><use href="#i-signal"></use></svg></span>Synthesis</a>
+          <a href="sources.html" class="btab"><span class="ico"><svg viewBox="0 0 24 24" class="ic"><use href="#i-source"></use></svg></span>Sources</a>
+          <a href="briefs.html" class="btab active" aria-current="page"><span class="ico"><svg viewBox="0 0 24 24" class="ic"><use href="#i-brief"></use></svg></span>Briefs</a>
+          <a href="account.html" class="btab"><span class="ico"><svg viewBox="0 0 24 24" class="ic"><use href="#i-user"></use></svg></span>Account</a>
+        </nav>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="_nav.js"></script>
+</body>
+</html>

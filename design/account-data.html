@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift - 7.2 Data and privacy (in colour)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="kit/kit.css">
+<link rel="stylesheet" href="_panel.css">
+</head>
+<!--
+  7.2 Data and privacy. COLOUR COPY of wireframes/account-data.html.
+
+  The screen where a compliance promise becomes a visible default. PII scrubbing is on, it says
+  so with a checked box rather than in a paragraph, and the row underneath says where the data
+  physically lives. Compliance is day one in this product, not a later page, and this is where
+  it is legible.
+
+  The two destructive-adjacent actions (export, delete) are outlined, never filled: the filled
+  button is the next move, and neither of these is one.
+-->
+<body>
+
+<svg class="sprite" aria-hidden="true"><defs>
+  <symbol id="i-signal" viewBox="0 0 24 24"><path d="M6 18v-3.5M12 18v-8M18 18v-12.5"/></symbol>
+  <symbol id="i-source" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.66 3.13 3 7 3s7-1.34 7-3V6"/><path d="M5 12v6c0 1.66 3.13 3 7 3s7-1.34 7-3v-6"/></symbol>
+  <symbol id="i-brief" viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h7"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 19c0-3.6 2.9-5.5 6.5-5.5s6.5 1.9 6.5 5.5"/></symbol>
+  <symbol id="i-filter" viewBox="0 0 24 24"><path d="M3 5.5h18l-7 8v5l-4 2v-7z"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M6 3v18"/><path d="M6 4h12l-2.5 4L18 12H6"/></symbol>
+  <symbol id="i-evidence" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-4 4v-4H4z"/><path d="M8.5 10.5h7M8.5 13h4"/></symbol>
+  <!-- added at Step 3 for the components that had never been in colour -->
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 4.5 21 19.5H3z"/><path d="M12 10v4.2M12 17.1v.1"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M15 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h3"/></symbol>
+  <symbol id="i-drag" viewBox="0 0 24 24"><path d="M9 7h.1M15 7h.1M9 12h.1M15 12h.1M9 17h.1M15 17h.1"/></symbol>
+  <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V5"/><path d="m7.5 9.5 4.5-4.5 4.5 4.5"/><path d="M4.5 15v3.5a1.5 1.5 0 0 0 1.5 1.5h12a1.5 1.5 0 0 0 1.5-1.5V15"/></symbol>
+</defs></svg>
+
+<div class="ds-shell">
+  <aside id="ds-panel" data-node="7.0" data-state="data"></aside>
+
+  <div class="ds-stage">
+    <div class="ds-canvas">
+      <div class="app">
+
+        <header class="appbar">
+          <span class="brand"><svg class="ic mark" width="15" height="15"><use href="#i-signal"></use></svg> Sift</span>
+          <nav class="navtabs" aria-label="Sections">
+            <a href="synthesis.html">Synthesis</a>
+            <a href="sources.html">Sources</a>
+            <a href="briefs.html">Briefs</a>
+          </nav>
+          <span class="spacer"></span>
+          <a class="avatar" href="account.html" aria-label="Account"></a>
+        </header>
+
+        <main class="appmain">
+          <div class="main-head">
+            <h1 class="h1">Account</h1>
+            <p class="sub">Your plan, your data controls, and your profile for the Northwind workspace.</p>
+          </div>
+
+          <div class="acct-id">
+            <span class="acct-id-avatar" aria-hidden="true"></span>
+            <div>
+              <div class="acct-id-name">Alex Rivera</div>
+              <div class="acct-id-meta">alex@northwind.io &middot; Northwind workspace</div>
+            </div>
+          </div>
+
+          <div class="acct-layout">
+            <nav class="acct-nav" aria-label="Account sections">
+              <a class="acct-nav-home" href="account.html">Account</a>
+              <a class="acct-nav-link" href="../wireframes/account-plan.html">Plan and limits</a>
+              <a class="acct-nav-link is-current" href="account-data.html">Data and privacy</a>
+              <a class="acct-nav-link" href="../wireframes/account-profile.html">Profile</a>
+            </nav>
+
+            <div class="acct-panel">
+              <div class="acct-section-t">Privacy</div>
+              <label class="acct-row">
+                <input type="checkbox" class="check" checked>
+                <span class="acct-row-main">
+                  <span class="acct-row-t">Scrub PII by default</span>
+                  <span class="acct-row-d">Names and email addresses in imported feedback are scrubbed on ingest. On by default for every source.</span>
+                </span>
+              </label>
+
+              <div class="acct-row">
+                <span class="acct-row-main">
+                  <span class="acct-row-t">Data residency</span>
+                  <span class="acct-row-d">Your workspace data is stored in the United States. EU data residency is available for European teams.</span>
+                </span>
+              </div>
+
+              <div class="acct-section-t">Your data</div>
+              <div class="acct-row">
+                <span class="acct-row-main">
+                  <span class="acct-row-t">Export data</span>
+                  <span class="acct-row-d">Download your feedback, themes, and briefs. Meets GDPR and CCPA access requests.</span>
+                </span>
+                <button class="btn--ghost" type="button">Export data</button>
+              </div>
+              <div class="acct-row">
+                <span class="acct-row-main">
+                  <span class="acct-row-t">Delete account</span>
+                  <span class="acct-row-d">Permanently remove this workspace and all its data. You will be asked to confirm.</span>
+                </span>
+                <button class="btn--ghost" type="button">Delete account</button>
+              </div>
+
+              <p class="acct-seclink">Read how Sift stores and protects your data on the <a class="link" href="../wireframes/security.html">Security and GDPR</a> page.</p>
+
+              <div class="actionbar">
+                <button class="btn" type="button">Save data settings</button>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <footer class="appfoot">Sift workspace &middot; feedback from CSV and Intercom, PII scrubbed by default</footer>
+
+        <nav class="bottomtabs" aria-label="Sections">
+          <a href="synthesis.html" class="btab"><span class="ico"><svg viewBox="0 0 24 24" class="ic"><use href="#i-signal"></use></svg></span>Synthesis</a>
+          <a href="sources.html" class="btab"><span class="ico"><svg viewBox="0 0 24 24" class="ic"><use href="#i-source"></use></svg></span>Sources</a>
+          <a href="briefs.html" class="btab"><span class="ico"><svg viewBox="0 0 24 24" class="ic"><use href="#i-brief"></use></svg></span>Briefs</a>
+          <a href="account.html" class="btab active" aria-current="page"><span class="ico"><svg viewBox="0 0 24 24" class="ic"><use href="#i-user"></use></svg></span>Account</a>
+        </nav>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="_nav.js"></script>
+</body>
+</html>

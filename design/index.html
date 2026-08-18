@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<title>Sift - Turn customer feedback into decisions you can defend</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="kit/kit.css">
+<link rel="stylesheet" href="_panel.css">
+</head>
+<!--
+  0.0 Home, the product's marketing landing page. COLOUR COPY of wireframes/index.html.
+
+  index.html is the HOME PAGE of the product in every folder of this project, and overview.html
+  is the hub. This file is the colour edition of the home page, so it keeps the name.
+
+  The only screen a stranger meets, and the only one in the whole product that is indexed. It
+  is also the one place the product hands over its actual artifact instead of describing it:
+  "Open an example brief" goes to the real public document, which needs no login. No competitor
+  read in the research could do that, because their public artifact is a board of raw posts.
+
+  Structure and text belong to the grey original. The visual layer here does one thing the app
+  screens do not: the first line runs at 36px, because this is the one screen whose job is to
+  be read by somebody who has not decided to read it yet.
+-->
+<body>
+
+<svg class="sprite" aria-hidden="true"><defs>
+  <symbol id="i-signal" viewBox="0 0 24 24"><path d="M6 18v-3.5M12 18v-8M18 18v-12.5"/></symbol>
+  <symbol id="i-source" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.66 3.13 3 7 3s7-1.34 7-3V6"/><path d="M5 12v6c0 1.66 3.13 3 7 3s7-1.34 7-3v-6"/></symbol>
+  <symbol id="i-brief" viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h7"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 19c0-3.6 2.9-5.5 6.5-5.5s6.5 1.9 6.5 5.5"/></symbol>
+  <symbol id="i-filter" viewBox="0 0 24 24"><path d="M3 5.5h18l-7 8v5l-4 2v-7z"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M6 3v18"/><path d="M6 4h12l-2.5 4L18 12H6"/></symbol>
+  <symbol id="i-evidence" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-4 4v-4H4z"/><path d="M8.5 10.5h7M8.5 13h4"/></symbol>
+  <!-- added at Step 3 for the components that had never been in colour -->
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 4.5 21 19.5H3z"/><path d="M12 10v4.2M12 17.1v.1"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M15 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h3"/></symbol>
+  <symbol id="i-drag" viewBox="0 0 24 24"><path d="M9 7h.1M15 7h.1M9 12h.1M15 12h.1M9 17h.1M15 17h.1"/></symbol>
+  <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V5"/><path d="m7.5 9.5 4.5-4.5 4.5 4.5"/><path d="M4.5 15v3.5a1.5 1.5 0 0 0 1.5 1.5h12a1.5 1.5 0 0 0 1.5-1.5V15"/></symbol>
+</defs></svg>
+
+<div class="ds-shell">
+  <aside id="ds-panel" data-node="0.0" data-state="base"></aside>
+
+  <div class="ds-stage">
+    <div class="ds-canvas">
+      <div class="app">
+
+        <header class="public-bar">
+          <span class="brand"><svg class="ic mark" width="15" height="15"><use href="#i-signal"></use></svg> Sift</span>
+          <span class="spacer"></span>
+          <span class="public-tag">Turn customer feedback into decisions you can defend</span>
+        </header>
+
+        <main class="public-main public-main--wide">
+
+          <section class="mk-hero">
+            <div class="public-eyebrow">For product teams drowning in scattered signal</div>
+            <h1 class="mk-h1">Turn scattered customer feedback into decisions you can defend.</h1>
+            <p class="mk-lead">Sift reads your support tickets, sales calls, reviews, and interviews, and gives you a ranked, evidence-backed picture of what customers need most, with every claim traceable to the quote behind it.</p>
+            <div class="mk-cta">
+              <a class="btn btn--lg" href="../wireframes/auth-signup.html">Start free</a>
+              <a class="btn--ghost btn--lg" href="../wireframes/auth.html">Log in</a>
+            </div>
+            <p class="mk-note">Free plan, no card required. Start with a CSV export or connect Intercom.</p>
+          </section>
+
+          <section class="mk-section">
+            <h2 class="mk-h2">The evidence is there. It just never makes it into the room.</h2>
+            <p class="mk-section-sub">Feedback sits in four tools. You read for two days, build the deck, and someone says "but my biggest account told me the opposite" and the room turns. You know they are one account. You cannot show it in the next ten seconds.</p>
+            <ul class="mk-trust">
+              <li class="mk-trust-item"><h3 class="mk-trust-t">Scattered</h3><p class="mk-trust-d">Tickets, calls, reviews and interviews live in separate tools, and none of them counts the same thing twice.</p></li>
+              <li class="mk-trust-item"><h3 class="mk-trust-t">Unciteable</h3><p class="mk-trust-d">A summary you cannot trace is a summary you cannot defend. So it loses to a story somebody remembers.</p></li>
+              <li class="mk-trust-item"><h3 class="mk-trust-t">Undated</h3><p class="mk-trust-d">Nobody can tell whether a theme is a pattern this quarter or three loud tickets from last year.</p></li>
+            </ul>
+          </section>
+
+          <section class="mk-section">
+            <h2 class="mk-h2">How Sift works</h2>
+            <p class="mk-section-sub">Three steps from scattered signal to a call you can stand behind. It mirrors the path you take inside the app.</p>
+            <ol class="mk-grid">
+              <li class="mk-step">
+                <span class="mk-step-n">1</span>
+                <h3 class="mk-step-t">Connect a source</h3>
+                <p class="mk-step-d">Import a CSV export or connect Intercom. Feedback is normalized on the way in, and PII is scrubbed by default.</p>
+              </li>
+              <li class="mk-step">
+                <span class="mk-step-n">2</span>
+                <h3 class="mk-step-t">See ranked themes with confidence</h3>
+                <p class="mk-step-d">Sift clusters the feedback into themes and shows how strong each one is, so you can tell a real pattern from a thin one.</p>
+                <span class="conf"><span class="conf-n">n=42</span></span>
+              </li>
+              <li class="mk-step">
+                <span class="mk-step-n">3</span>
+                <h3 class="mk-step-t">Trace every claim to evidence</h3>
+                <p class="mk-step-d">Open any theme to read the exact customer quotes behind it. If a claim cannot be traced, it is marked, not dressed up.</p>
+              </li>
+            </ol>
+          </section>
+
+          <section class="mk-section">
+            <h2 class="mk-h2">Read a real one before you sign up</h2>
+            <p class="mk-section-sub">This is an evidence brief exactly as a stakeholder receives it: recommended priority, the count behind each theme, the customer quotes, and the citations. No login, nothing hidden, including the themes we marked as thin.</p>
+            <div class="mk-cta">
+              <a class="btn btn--lg" href="shared-brief.html">Open an example brief</a>
+              <a class="btn--ghost btn--lg" href="synthesis.html">See the app</a>
+            </div>
+            <p class="mk-note">The example uses anonymised feedback. Personal details are scrubbed here the same way they are scrubbed in the product.</p>
+          </section>
+
+          <section class="mk-section">
+            <h2 class="mk-h2">Built to be trusted, not taken on faith</h2>
+            <p class="mk-section-sub">Sift handles sensitive feedback, so the same commitments appear here and in the footer.</p>
+            <ul class="mk-trust">
+              <li class="mk-trust-item"><h3 class="mk-trust-t">Transparency</h3><p class="mk-trust-d">No black box. Every synthesis conclusion links to the evidence behind it, and confidence is shown honestly. Thin evidence is never dressed up as strong signal.</p></li>
+              <li class="mk-trust-item"><h3 class="mk-trust-t">Traceability</h3><p class="mk-trust-d">Theme, to evidence items (n=X), to the verbatim quote. Every priority traces to the real user voice behind it, so you can defend the call under challenge.</p></li>
+              <li class="mk-trust-item"><h3 class="mk-trust-t">PII scrubbed by default</h3><p class="mk-trust-d">Names and email addresses are scrubbed from feedback on import. GDPR-ready with EU data residency, so sensitive customer data stays safe.</p></li>
+            </ul>
+          </section>
+
+          <section class="mk-section">
+            <h2 class="mk-h2">Pricing</h2>
+            <p class="mk-section-sub">Start free with a monthly feedback limit. Upgrade when you need full coverage and traceability. Plan names, limits, and prices are early hypotheses, not final.</p>
+            <ul class="mk-grid">
+              <li class="tier">
+                <h3 class="tier-name">Free</h3>
+                <p class="tier-price">$0</p>
+                
+                <ul class="tier-feat"><li>Up to 250 feedback items per month</li><li>Theme clusters, basic synthesis</li><li>1 source</li></ul>
+              </li>
+              <li class="tier">
+                <h3 class="tier-name">Starter</h3>
+                <p class="tier-price">$30 to $60</p>
+                <span class="tier-unit">per seat / month</span>
+                <ul class="tier-feat"><li>Unlimited feedback volume</li><li>Full synthesis with traceability</li><li>3 sources, 1 to 3 seats</li></ul>
+              </li>
+              <li class="tier">
+                <h3 class="tier-name">Growth</h3>
+                <p class="tier-price">Custom</p>
+                <span class="tier-unit">per seat, scales down</span>
+                <ul class="tier-feat"><li>All sources, 5 to 15 seats</li><li>Team collaboration</li><li>Roadmap sync and usage analytics</li></ul>
+              </li>
+              <li class="tier">
+                <h3 class="tier-name">Enterprise</h3>
+                <p class="tier-price">Custom</p>
+                
+                <ul class="tier-feat"><li>Unlimited seats</li><li>SSO and audit log</li><li>Dedicated support and SLA</li></ul>
+              </li>
+            </ul>
+            <div class="mk-cta">
+              <a class="btn btn--lg" href="../wireframes/auth-signup.html">Start free</a>
+              <a class="btn--ghost btn--lg" href="../wireframes/account-plan.html">See plans and limits</a>
+            </div>
+          </section>
+
+          <section class="mk-section">
+            <h2 class="mk-h2">Questions people ask before they trust this</h2>
+            <ul class="mk-trust">
+              <li class="mk-trust-item"><h3 class="mk-trust-t">How do you decide a theme is strong?</h3><p class="mk-trust-d">By counting. Each theme shows how many feedback items sit behind it and which sources they came from. When the count is low the theme is labelled low signal, and you can still open every item.</p></li>
+              <li class="mk-trust-item"><h3 class="mk-trust-t">What happens to personal details?</h3><p class="mk-trust-d">Names, addresses and contact fields are scrubbed before anything is stored, on every source, by default. On a CSV you also choose which columns are read at all.</p></li>
+              <li class="mk-trust-item"><h3 class="mk-trust-t">What if the AI gets a theme wrong?</h3><p class="mk-trust-d">Every claim carries the citations it was built from, so you can check it in seconds rather than take it on trust. A claim that cannot be traced is removed, not smoothed over.</p></li>
+              <li class="mk-trust-item"><h3 class="mk-trust-t">Who can see a brief I share?</h3><p class="mk-trust-d">Anyone with the link, without logging in. The dialog says so before you copy it, and you can disable the link at any time, which stops it working for everyone.</p></li>
+            </ul>
+          </section>
+
+          <section class="mk-section">
+            <h2 class="mk-h2">More about how Sift handles your data</h2>
+            <ul class="mk-trust">
+              <li class="mk-trust-item"><h3 class="mk-trust-t"><a href="../wireframes/privacy.html">Privacy policy</a></h3><p class="mk-trust-d">What is collected, what is scrubbed, and the rights you can exercise.</p></li>
+              <li class="mk-trust-item"><h3 class="mk-trust-t"><a href="../wireframes/security.html">Security and GDPR</a></h3><p class="mk-trust-d">Security posture, data residency, and how to request a DPA.</p></li>
+              <li class="mk-trust-item"><h3 class="mk-trust-t"><a href="../wireframes/terms.html">Terms of service</a></h3><p class="mk-trust-d">The agreement, acceptable use, and liability.</p></li>
+              <li class="mk-trust-item"><h3 class="mk-trust-t"><a href="shared-brief.html">Example evidence brief</a></h3><p class="mk-trust-d">The public artifact, exactly as a stakeholder receives it.</p></li>
+            </ul>
+          </section>
+
+        </main>
+
+        <footer class="appfoot mk-footer">
+          <div class="mk-foot-brand">
+            <span class="brand"><svg class="ic mark" width="15" height="15"><use href="#i-signal"></use></svg> Sift</span>
+            <span class="mk-foot-tag">Turn scattered customer feedback into decisions you can defend.</span>
+          </div>
+          <nav class="mk-foot-cols" aria-label="Footer">
+            <div class="mk-foot-col">
+              <span class="mk-foot-h">Product</span>
+              <a href="../wireframes/auth-signup.html">Start free</a>
+              <a href="../wireframes/auth.html">Log in</a>
+            </div>
+            <div class="mk-foot-col">
+              <span class="mk-foot-h">Legal</span>
+              <a href="../wireframes/privacy.html">Privacy policy</a>
+              <a href="../wireframes/terms.html">Terms of service</a>
+              <a href="../wireframes/security.html">Security and GDPR</a>
+            </div>
+          </nav>
+          <div class="mk-foot-legal">Sift &middot; feedback from CSV and Intercom, PII scrubbed by default &middot; GDPR-ready, EU data residency</div>
+        </footer>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="_nav.js"></script>
+</body>
+</html>
