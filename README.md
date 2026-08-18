@@ -19,7 +19,7 @@ This table and the `done` flags in `/_nav.js` are the only two places status is 
 | Wireframes | **Done, rebuilt on the block bank** (17 screens, 38 pages). Composition traces to `ia/docs/blocks.md`; states keep their screen's blocks; one stage panel replaced the top bar plus rail; critique run on two instruments (Claude in a browser, Codex read-only), 11 findings, all fixed |
 | Voice | Done (4 principles, dictionary, forbidden list, microcopy rules; every screen rewritten; voice.html deployed). Re-runs over whatever blocks the wireframe rebuild adds |
 | Concept | **Done.** Brand plate B chosen and entered into `DESIGN-artifacts.md`; five attributes, each signed to a data line; the etalon and its three states plus the public brief in color in `design/`; the split-evidence direction re-read against the rebuild and deferred with the reason; audited (targets, focus, contrast, overflow) and the before / after on `concept.html` |
-| UI + Visual | **In progress.** Steps 1 to 4 done; Step 5 running. `DESIGN.md` from the code; the inventory; the kit (`kit.css` by `git mv`, plus `shell.html` and the stand `kit.html`); `visuals/README.md` with an empty set by decision; the stage own two-part navigation (`design/_nav.js` panel, `design/overview.html` hub with the honest coverage map). Seeds re-pointed and pixel proved. Sample: **2 of 7 screens** assembled from the kit, 3.0 Sources with two states and 3.2 Import a CSV |
+| UI + Visual | **Done.** `DESIGN.md` read out of the code; the inventory of the whole product (50 components, 3 levels, 13 one-offs); the kit `design/kit/kit.css` (arrived by `git mv`, `:root` byte for byte) with `shell.html` and the stand `kit.html`; no photography, by a stated decision, with the one prompt held ready; the sample of 7 screens plus the 2 seeds, 23 pages in colour, each assembled from the kit and carrying no style of its own; two-part navigation (`design/_nav.js` panel, `design/overview.html` hub with the honest coverage map); critique on three instruments, 9 findings fixed and 1 withdrawn on verification |
 | Tokens + Components | Not started |
 | Design System | Not started |
 | Responsive | Not started |
@@ -74,6 +74,7 @@ design/              The roof of the whole visual half. Product screens sit flat
   overview.html      The hub: screens by flow, the coverage map, and the way into the kit
   _nav.js            DESIGN_NAV, the colour-stage registry; renders the panel and the hub lists
   _panel.css         The chrome of the colour stage: the screen panel and the hub. Never product
+  index.html         0.0 Home, the product home page in colour. The one indexed screen
   <screen>.html      Colour copies, same file names as wireframes/. Assembled from the kit
   screens/           Before and after pairs, two viewports, captured with Playwright
   visuals/           The image set and its prompt. Empty by decision: this product carries no photography

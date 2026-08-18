@@ -49,10 +49,9 @@ window.NAV = [
     { label: 'Directions', page: 'design/concept/directions.html', done: true },
     { label: 'Concept',    page: 'design/concept/concept.html',    done: true } ] },
 
-  /* wip: the stage has deployed pages and is not finished. Without it the roadmap would call
-     UI + Visual done the moment its last page existed, two steps before the stage closes, and
-     the "Next" badge would jump ahead of the work. Cleared when the stage closes. */
-  { id: 'ui-visual', label: 'UI + Visual', wip: true, pages: [
+  /* wip marks a stage that has deployed pages and is not finished; without it the roadmap calls
+     a stage done the moment its last page exists. Cleared here: Step 7 closed UI + Visual. */
+  { id: 'ui-visual', label: 'UI + Visual', pages: [
     { label: 'Component kit',  page: 'design/kit/kit.html',  done: true },
     { label: 'Sample screens', page: 'design/overview.html', done: true } ] },
 

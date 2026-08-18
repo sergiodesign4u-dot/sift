@@ -34,7 +34,7 @@
 
 <aside id="sidebar"></aside>
 
-<div class="page ov-page">
+<div class="ov-page">
 
   <div class="ov-intro">
     <div class="ov-eyebrow">Stage 07 &middot; UI + Visual</div>
@@ -50,6 +50,64 @@
   </div>
 
   <div id="ds-index"></div>
+
+
+  <section class="ov-sec" id="critique">
+    <h2 class="ov-h2">Critique, and what it changed</h2>
+    <p class="ov-lead">Three instruments, run independently and deduped afterwards: a browser
+      walking every screen at a measured 360 and at 1440, a scripted audit of contrast and target
+      size over all 23 pages, and Codex reading the source read-only. The browser and the script
+      own what only renders; Codex owns what only reading catches. Every finding was re-checked
+      against the file before it was fixed, and one was withdrawn on verification.</p>
+
+    <div class="tbl-wrap">
+      <table class="inv">
+        <thead><tr><th>Found by</th><th>Finding</th><th>Verdict</th></tr></thead>
+        <tbody>
+          <tr><td>Browser, 360</td><td><b>The drag handle was 300px wide.</b> An <code>svg</code> with no width is 300x150 by specification, and every icon slot in the kit sized its own icon except this one, so the composer ran off a 360 screen</td><td>Fixed in the kit. Then every icon in the product was measured: none renders over 40px</td></tr>
+          <tr><td>Browser, pixel diff</td><td><b>The Field label atom was named <code>.label</code></b> and collided with the colour-proof bar's own <code>.label</code>, adding 6px to all five seed screens</td><td>Renamed <code>.field-label</code>. A flat kit shares one stylesheet with the chrome around it, so an atom name has to survive that</td></tr>
+          <tr><td>Browser, pixel diff</td><td><b><code>.list-foot</code> was a block holding an inline-flex button</b>, so the line box added a pixel under the list</td><td>Fixed: it is a flex container</td></tr>
+          <tr><td>Script, targets</td><td><b>Three controls under the 44px floor:</b> the breadcrumb link at 15px, the mapping-grid select at 40px, and the heading link in the trust list at 17px</td><td>All three fixed in the kit. The bar is now exactly as tall as the thing you aim at</td></tr>
+          <tr><td>Script, contrast</td><td>Every piece of text on every screen measured against its composited background</td><td>No finding: nothing falls below AA</td></tr>
+          <tr><td>Codex</td><td><b>P1. The four seed screens used a class <code>.lbl</code> that the kit never declared.</b> Its only declaration was inside the stand's own style block, which is exactly the "assembled past the kit" defect</td><td>Removed from the markup. The other twelve screens never had it</td></tr>
+          <tr><td>Codex</td><td><b>P2. Two contextual overrides of the input</b>, <code>.linkrow .input</code> and <code>.src-map .input</code>: an undeclared variant each</td><td>Both promoted to declared variants, <code>.input--mono</code> and <code>.input--dense</code>, and named in the inventory</td></tr>
+          <tr><td>Codex</td><td><b>P2. The portfolio bar and the Stage 06 proof bar were declared inside the product kit</b>, and after the screens moved onto the stage panel no page rendered either</td><td>Removed from <code>kit.css</code> with the 52px reservation that went with them. Chrome that frames an exhibit now belongs to the exhibit</td></tr>
+          <tr><td>Codex</td><td>P3. <code>.link--action</code> declared twice, and <code>.theme-meta</code> left over from the etalon that preceded the wireframe rebuild</td><td>One declaration each; the leftover removed</td></tr>
+          <tr><td>Codex</td><td>P3. Six product classes declared and used by no screen: <code>.auth-value</code>, <code>.legal-crumb</code>, <code>.legal-meta</code>, <code>.legal-prose</code>, <code>.legal-related</code>, <code>.legal-toc</code></td><td><b>Withdrawn on verification.</b> They are the auth and legal screens, which are in the inventory and not in the sample. The kit is built for the whole product by the rule of this stage; a kit that only covers the painted screens is the thing the inventory exists to prevent</td></tr>
+          <tr><td>Codex</td><td>P3, informational. 745 geometry declarations carry literal numbers</td><td>Stated decision, not a defect. Naming them is the primitive and semantic token split, which is Stage 08</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="ov-sec" id="before-after">
+    <h2 class="ov-h2">Before and after</h2>
+    <p class="ov-lead">The two screens seeded at Stage 06 were re-pointed from the hand-written
+      colour layer onto the kit. The values are the same bytes, moved by <code>git mv</code>, so
+      the only possible source of a difference was the class replacement, and that is exactly what
+      the comparison was built to catch. Measured on the product frame with motion frozen, at 360
+      and at 1440. The four images below are the product frame itself, with the prototype chrome
+      excluded, because the chrome legitimately changed in the same step and would have shown up
+      as "the kit changed the screen" when it was nothing of the kind:</p>
+    <div class="ov-kit">
+      <a class="ov-kit-card" href="screens/synthesis-1440-frame-before.png">
+        <span class="ov-kit-t">2.0 Synthesis, before</span>
+        <span class="ov-kit-d">Hand-written colour layer, Stage 06. Identical to the kit build down to the load-more row; below it everything realigns with zero differences at 1440.</span>
+      </a>
+      <a class="ov-kit-card" href="screens/synthesis-1440-frame-after.png">
+        <span class="ov-kit-t">2.0 Synthesis, after</span>
+        <span class="ov-kit-d">Assembled from the kit. One pixel taller in total, at the load-more row and nowhere else: the control is still 44px and the divider now belongs to the list.</span>
+      </a>
+      <a class="ov-kit-card" href="screens/shared-brief-1440-frame-before.png">
+        <span class="ov-kit-t">6.4 Shared brief, before</span>
+        <span class="ov-kit-d">The contrast screen: the same language at document density.</span>
+      </a>
+      <a class="ov-kit-card" href="screens/shared-brief-1440-frame-after.png">
+        <span class="ov-kit-t">6.4 Shared brief, after</span>
+        <span class="ov-kit-d">Zero differing pixels. Four of the five seeded pages came through the migration identical.</span>
+      </a>
+    </div>
+  </section>
 
   <section class="ov-sec" id="kit">
     <h2 class="ov-h2">Kit and tokens</h2>
@@ -86,7 +144,9 @@
   window.NAV_SECTIONS = [
     { id: 'flows',    label: 'Screens by flow' },
     { id: 'coverage', label: 'Coverage map' },
-    { id: 'kit',      label: 'Kit and tokens' }
+    { id: 'critique',     label: 'Critique' },
+    { id: 'before-after', label: 'Before and after' },
+    { id: 'kit',          label: 'Kit and tokens' }
   ];
 </script>
 <script src="../_nav.js"></script>

@@ -33,10 +33,13 @@
 -->
 <style>
   /* ---- stand chrome only. Not product language, not part of the kit. ---- */
-  /* kit.css reserves 52px at the top of the body for the fixed portfolio bar that the product
-     screens carry. This stand navigates from the roadmap sidebar and has no such bar, so the
-     reservation is given back here rather than removed from the kit, where it is correct. */
-  body { padding-top: 0; }
+  /* The stand's own page frame. It used to come from a .page rule inside kit.css, which was
+     part of the portfolio chrome the Step 6 critique took out of the product kit. Chrome that
+     frames an exhibit belongs to the exhibit. */
+  body { padding-left: 220px; }
+  .page { max-width: 1080px; padding: 24px 32px 80px; }
+  @media (max-width: 1099px) { body { padding-left: 0; } }
+  @media (max-width: 820px) { .page { padding: 20px 16px 60px; } }
   .kit-head { max-width: 78ch; margin-bottom: 30px; }
   .kit-eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pf-accent); }
   .kit-head h1 { font-size: 29px; font-weight: 590; letter-spacing: -0.022em; margin: 10px 0 10px; }

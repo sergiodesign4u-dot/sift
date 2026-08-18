@@ -139,7 +139,16 @@ page, a named section registered in that page's `NAV_SECTIONS`, or a satellite p
   product's; calm, not loud; every state names the next move. Forbidden: "Something went wrong",
   "successfully", exclamation marks and emoji, greetings and celebration, hype adjectives, "just" and
   "simply", blaming the reader, filler "please".
-- **Values migrate, they are never re-derived.** The CSS value line runs `design/_theme.css` to
-  `design/kit/kit.css` to `design/system/tokens.css` with the `:root` block moved byte for byte and the
-  origin comment kept beside each variable. A value changes only by a decision stated out loud as
-  "variable, value, why", never as a side effect of a refactor.
+- **Values migrate, they are never re-derived.** The CSS value line ran `design/_theme.css` to
+  `design/kit/kit.css` by `git mv` and runs on to `design/system/tokens.css`, with the `:root` block
+  moved byte for byte and the origin comment kept beside each variable. A value changes only by a
+  decision stated out loud as "variable, value, why", never as a side effect of a refactor.
+- **A screen is assembled from the kit, and a fix lands in the kit.** From stage 07 the one
+  stylesheet a product screen may use is `design/kit/kit.css`: no `style=` attribute, no `<style>`
+  block, no appearance written on a page. Missing a component or a variant means adding it to
+  `kit.css`, to the stand `design/kit/kit.html` and to `design/kit/inventory.md` FIRST, then using
+  it. A value fix goes to a `:root` variable and reaches every screen; a markup fix goes to the
+  stand and is copied from there. A fix on one screen is a desync, and a difference written as a
+  contextual override (`.foo .btn { font-size: X }`) is an undeclared variant, not a patch.
+  Prototype chrome around the screen (`design/_panel.css`, the stands' own frames) is a separate
+  layer on the `--pf-*` values and never enters the kit.

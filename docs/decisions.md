@@ -467,3 +467,39 @@ missing goes in first and is used second, or the screen quietly becomes the sour
 does not switch to an alert mark. The row already says it three times, in the dashed amber tag,
 in the alert line under the name and in the warning band above the list; a fourth signal would
 cost the reader the one thing the slot is for, which is knowing at a glance which source this is.
+
+## The critique ran on three instruments, and the two that measure found what reading cannot (August 2026)
+
+Stage 07 Step 6. A browser walking every screen at a measured 360 and at 1440, a scripted audit
+of contrast and target size over all 23 pages, and Codex reading the source read-only. Nine
+findings fixed, one withdrawn on verification.
+
+The split of labour turned out to be exact, and it is the argument for keeping both instruments:
+**every defect the browser found was invisible in the file, and every defect Codex found was
+invisible on the screen.** An `svg` with no width is 300x150 by specification, and the drag handle
+that took 300px of a 316px row looks like a perfectly ordinary line of markup. A class named
+`.lbl` that the kit never declared renders exactly like the text around it. Neither instrument
+would have found the other's list.
+
+Fixed from the browser and the script: the 300px icon; the `.label` collision that added 6px to
+five screens; the line box under `.list-foot`; three controls under the 44px floor (a breadcrumb
+link at 15px, a mapping select at 40px, a heading link at 17px). Contrast came back clean once
+the audit composited alpha properly, which is worth stating because the first pass reported five
+false failures by treating a 10 percent wash as an opaque fill.
+
+Fixed from Codex: `.lbl`, used by four seed screens and declared nowhere in the kit, which is the
+"assembled past the kit" class exactly; two contextual overrides of the input, promoted to the
+declared variants `.input--mono` and `.input--dense`; the portfolio bar and the Stage 06 proof
+bar, which were chrome declared inside the product kit and which no page rendered any more once
+the screens moved onto the stage panel; one duplicated selector and one leftover class from the
+etalon that preceded the wireframe rebuild.
+
+**Withdrawn on verification:** six product classes reported as unused, `auth-value` and the five
+`legal-*`. They are the auth and the legal screens, which are in the inventory and not in the
+sample. The kit is built for the whole product by this stage's own rule, so a class that is
+ahead of its screen is the intended state. Recorded in `design/kit/inventory.md` with the reason,
+so the finding does not come back next time somebody greps for dead CSS.
+
+Rejected: fixing the contextual overrides by leaving them and adding a comment. A comment does
+not stop the next one, and six overrides one pixel apart is how a kit ends up with two buttons
+and six sizes. Promoting them to variants puts them in the inventory, where Stage 08 counts them.

@@ -63,7 +63,7 @@
 
 * { box-sizing:border-box; margin:0; padding:0; }
 html { scroll-behavior:smooth; }
-body { font-family:var(--font-ui); background:var(--canvas); color:var(--porcelain); line-height:1.5; font-size:14px; letter-spacing:-0.011em; -webkit-font-smoothing:antialiased; padding-top:52px; }
+body { font-family:var(--font-ui); background:var(--canvas); color:var(--porcelain); line-height:1.5; font-size:14px; letter-spacing:-0.011em; -webkit-font-smoothing:antialiased; }
 /* Focus. The colour layer had no designed focus state, only the user agent ring, which on a
    dark instrument is barely a ring at all. Cyan is signed for the active state (A1), and focus
    is the keyboard's version of active. :focus-visible, so a mouse click does not draw it. */
@@ -72,28 +72,12 @@ body { font-family:var(--font-ui); background:var(--canvas); color:var(--porcela
 .sprite { position:absolute; width:0; height:0; }
 .ic { display:inline-block; vertical-align:middle; stroke:currentColor; fill:none; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; }
 
-/* ---- Portfolio top nav ---- */
-nav.top { position:fixed; top:0; left:0; right:0; z-index:100; height:52px; display:flex; align-items:center; justify-content:space-between; padding:0 24px; background:rgba(12,12,14,0.92); backdrop-filter:blur(12px); border-bottom:1px solid var(--pf-border-light); }
-.nav-brand { font-size:14px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; color:var(--pf-text); text-decoration:none; }
-.nav-brand span { color:var(--pf-accent); }
-.nav-links { display:flex; gap:6px; list-style:none; }
-.nav-links a { color:var(--pf-text-3); text-decoration:none; font-size:12px; font-weight:500; padding:5px 10px; border-radius:5px; transition:color .15s,background .15s; }
-.nav-links a:hover { color:var(--pf-text); background:var(--pf-bg-3); }
-@media (min-width:1100px) {
-  body { padding-left:220px; }
-}
-
-/* ---- page + color-proof local chrome ---- */
-.page { max-width:1080px; padding:24px 32px 80px; }
-.proofbar { display:flex; align-items:center; gap:14px; flex-wrap:wrap; padding:10px 14px; margin-bottom:20px; background:var(--pf-bg); border:1px solid var(--pf-border-light); border-radius:var(--r); }
-.proofbar .back { font-size:12.5px; color:var(--pf-accent); text-decoration:none; }
-.proofbar .back:hover { text-decoration:underline; }
-.proofbar .label { font-family:var(--font-mono); font-size:11px; color:var(--pf-text-3); text-transform:uppercase; letter-spacing:0.05em; }
-.proofbar .states { display:flex; gap:4px; margin-left:auto; flex-wrap:wrap; }
-.proofbar .states a { font-family:var(--font-mono); font-size:11px; color:var(--pf-text-3); text-decoration:none; padding:3px 8px; border-radius:4px; border:1px solid var(--pf-border-light); }
-.proofbar .states a:hover { color:var(--pf-text); }
-.proofbar .states a.cur { color:var(--porcelain); border-color:var(--cyan); background:rgba(51,196,204,0.08); }
-.proofbar .note { font-size:11.5px; color:var(--pf-text-3); }
+/* The portfolio top bar and the Stage 06 proof bar used to live here. Both were chrome, both
+   were declared in the product kit, and after the screens moved onto the stage panel neither
+   was rendered by a single page. Removed at the Step 6 critique rather than carried into the
+   Stage 08 token audit as product rules that are not product and are not used.
+   The --pf-* values stay in :root: design/_panel.css and the two stands draw on them, and the
+   block already says out loud that it is not product language. ---- */
 
 /* ---- the app frame ---- */
 .appframe { border:1px solid var(--line); border-radius:var(--r-lg); overflow:hidden; box-shadow:var(--shadow); background:var(--canvas); display:flex; flex-direction:column; min-height:560px; }
@@ -122,9 +106,6 @@ nav.top { position:fixed; top:0; left:0; right:0; z-index:100; height:52px; disp
 .chip-count { font-family:var(--font-mono); font-size:11.5px; color:var(--ash); }
 .chip.is-on { color:var(--porcelain); background:var(--elevated); border-color:var(--line-2); }
 .chip.is-on .chip-count { color:var(--porcelain); }
-/* "Clear filters" is a text action, so it is the Inline text link atom with a control's
-   target, not a fourth button emphasis. Cross-check 1 of the inventory folds it here. */
-.link--action { padding:0 4px; }
 
 .sortnote { font-size:12.5px; color:var(--ash); margin-left:auto; }
 .sortnote b { color:var(--porcelain); font-weight:500; }
@@ -181,7 +162,6 @@ nav.top { position:fixed; top:0; left:0; right:0; z-index:100; height:52px; disp
 .check:checked::after { content:""; position:absolute; left:5px; top:2px; width:4px; height:8px; border:solid var(--canvas); border-width:0 2px 2px 0; transform:rotate(45deg); }
 .theme-main { text-decoration:none; color:inherit; min-width:0; }
 .theme-label { display:block; font-size:14px; font-weight:500; color:var(--porcelain); }
-.theme-meta { display:block; font-family:var(--font-mono); font-size:11px; color:var(--ash); margin-top:3px; }
 .conf { display:inline-flex; align-items:center; gap:8px; justify-content:flex-end; }
 .conf-n { font-family:var(--font-mono); font-size:12.5px; color:var(--porcelain); }
 .badge-low { font-family:var(--font-mono); font-size:11px; color:var(--amber); background:var(--amber-wash); border:1px solid var(--amber-edge); border-radius:var(--r-sm); padding:1px 6px; white-space:nowrap; }
@@ -365,6 +345,13 @@ nav.top { position:fixed; top:0; left:0; right:0; z-index:100; height:52px; disp
 .input:hover { border-color:var(--line-2); }
 textarea.input { resize:vertical; line-height:1.55; min-height:88px; }
 select.input { appearance:none; -webkit-appearance:none; cursor:pointer; padding-right:32px; }
+/* Two declared variants, both found by the Step 6 critique as contextual overrides and turned
+   into variants here. --mono is a CONTENT decision: a URL is a value to be read character by
+   character, and the mono face is the one the product already uses for every value. --dense is
+   a SIZE, and it keeps the 44px floor: only the type and the padding come down, because a
+   mapping grid puts five of these in a column and the row rhythm has to survive it. */
+.input--mono { font-family:var(--font-mono); font-size:12.5px; }
+.input--dense { font-size:12.5px; padding:9px 10px; }
 /* A select with its native chrome removed and nothing put back is a text field that happens to
    open a menu, and nobody can tell which one it is. The chevron is drawn from the same ink as
    the placeholder rather than shipped as an image, so it costs no colour literal and no
@@ -460,8 +447,11 @@ select.input { appearance:none; -webkit-appearance:none; cursor:pointer; padding
 .appframe > .notice { margin:14px 22px; }
 
 /* Breadcrumb: the way back, one line, never the way forward. */
-.breadcrumb { font-size:12px; color:var(--ash); padding:11px 22px; border-bottom:1px solid var(--line); }
-.breadcrumb a { color:var(--ash); text-decoration:none; }
+/* The bar carries no vertical padding of its own: the link inside it is the target and it is
+   44px, so the bar is exactly as tall as the thing you aim at. Found by measuring, where the
+   link read 15px against a floor of 44. */
+.breadcrumb { display:flex; align-items:center; gap:6px; font-size:12px; color:var(--ash); padding:0 22px; border-bottom:1px solid var(--line); }
+.breadcrumb a { display:inline-flex; align-items:center; min-height:44px; color:var(--ash); text-decoration:none; }
 .breadcrumb a:hover { color:var(--porcelain); }
 .breadcrumb span { color:var(--ash); opacity:0.7; }
 
@@ -665,7 +655,7 @@ label.acct-row { cursor:pointer; }
 .mk-trust { list-style:none; display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px 24px; margin-top:20px; }
 .mk-trust-item { padding-top:14px; border-top:2px solid var(--line-2); }
 .mk-trust-t { font-size:14px; font-weight:590; letter-spacing:-0.01em; color:var(--porcelain); margin-bottom:7px; }
-.mk-trust-t a { color:var(--porcelain); text-decoration:none; }
+.mk-trust-t a { display:inline-flex; align-items:center; min-height:44px; color:var(--porcelain); text-decoration:none; }
 .mk-trust-t a:hover { text-decoration:underline; }
 .mk-trust-d { font-size:13px; color:var(--ash); line-height:1.65; }
 
@@ -684,7 +674,7 @@ label.acct-row { cursor:pointer; }
 /* 6.3 Share-link: the row that holds the value and the one control that copies it. One screen,
    and the only place in the product where a value is copied rather than read. */
 .linkrow { display:flex; gap:8px; margin-bottom:14px; }
-.linkrow .input { font-family:var(--font-mono); font-size:12.5px; }
+
 
 /* 4.0 Theme detail: why these items are one theme. One screen, and it exists because
    clustering that is asserted rather than explained is exactly what the product promises not to
@@ -713,7 +703,7 @@ label.acct-row { cursor:pointer; }
 .src-map-col { font-family:var(--font-mono); font-size:12.5px; color:var(--porcelain); }
 .src-sample { font-family:var(--font-mono); font-size:11.5px; color:var(--ash); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 .src-inc { display:flex; justify-content:center; }
-.src-map .input { font-size:12.5px; min-height:40px; padding:8px 10px; }
+
 
 /* 3.2 CSV review summary. The count, and the two facts about privacy that the default makes
    true, said before the import rather than in a settings screen afterwards. */
@@ -780,7 +770,7 @@ label.acct-row { cursor:pointer; }
   .src-map-row { grid-template-columns:1fr auto; gap:8px 12px; padding:13px 0; }
   .src-sample { grid-column:1 / -1; white-space:normal; }
   .src-map-row .input { grid-column:1; }
-  .breadcrumb { padding:11px 16px; }
+  .breadcrumb { padding:0 16px; }
   .legal-prose { font-size:14px; }
 }
 

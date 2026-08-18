@@ -358,3 +358,43 @@ and 0.0 Home.
 screen seven (Home) added one measure. The curve is flattening but it never reached zero, which
 is what the rule asks to watch: the sample is done because it has covered the inventory, not
 because the kit stopped growing.
+
+---
+
+## Step 6 close-out: the critique, and the totals
+
+Three instruments, independent, deduped afterwards. The browser and the scripted audit own what
+only renders; Codex (read-only) owns what only reading catches. The full log with a "found by"
+column is on `design/overview.html`.
+
+**Nine findings fixed, one withdrawn on verification.** The withdrawn one: Codex reported six
+product classes declared and used by no screen (`auth-value`, the five `legal-*`). They are the
+auth and legal screens, which are in this inventory and not in the sample. The kit is built for
+the WHOLE product by the rule of this stage, so a class ahead of its screen is the intended
+state, and a kit that only covered the painted screens is exactly what this inventory exists to
+prevent. Kept, with the reason recorded here so the finding does not come back.
+
+**The three defects worth remembering, because none was visible in the file:**
+
+1. An `svg` with no width is 300x150 by specification. The drag handle took 300px of a 316px row
+   and pushed the composer off a 360 screen. Every other icon slot in the kit sized its own icon.
+2. A flat kit shares one stylesheet with the chrome around it, so `.label` as an atom name
+   collided with the proof bar's `.label` and added 6px to five screens.
+3. An inline-flex button in a block parent sits on a line box, and the line box's descender space
+   added a pixel under the list.
+
+## Final totals
+
+- **50 components** entered the kit from the census, and **13 more classes** were added while the
+  sample was assembled: 6 components and variants (`group-t` with three forms, `app`, `head-meta`,
+  `summary`, `titlerow`, `block`, `selbar--static`, `select`, `input--mono`, `input--dense`,
+  `field-label`, `acct-card-*`, `public-main--wide`), and **7 declared one-off blocks**.
+- **23 pages in colour** across 10 nodes: the 2 seeded at Stage 06 and the 7 screens of the sample
+  with their states. **Every one carries zero inline styles and zero style blocks**, measured in
+  the browser.
+- **Contrast:** no text on any screen falls below AA, measured against its composited background.
+- **Targets:** no control under the 44px floor outside the three named exceptions (the 24px
+  checkbox, an inline link in running text, the citation chip).
+- **Coverage:** all three levels, both heaviest layouts, a form, a list, a document, an empty
+  state, an error state and a loading state. The rest of the product stays grey and the map on
+  `design/overview.html` says so.
