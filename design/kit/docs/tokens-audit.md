@@ -152,7 +152,17 @@ is fixed in `tokens.css` or in the component file, never on a screen.*
 
 ### Consolidated drift (Step 3)
 
-*(empty until Step 3)*
+*Decided at Step 2, executed at Step 3. Three lines, and every one of them was found by an
+instrument rather than by reading.*
+
+| Variable or class | Was | Becomes | Why |
+|---|---|---|---|
+| `.btn--ghost`, `.chip`, `.check` | no `font-family` declared, so a `<button>` fell back to Arial while the same class on an `<a>` rendered in Inter | `font-family: inherit` on the shared control base | One component may not have two typefaces decided by its tag. 8 ghost buttons and 9 chips on 7 screens rendered in the wrong face, and the stylesheet showed nothing. Measured, not read |
+| `.check`, `.skelrow .skel-box`, `.skel` | `border-radius: 4px` | `border-radius: var(--radius-sm)` | The value is identical, so nothing moves visually. It is the last place in the file where a radius was written past its variable, and Step 8 audits exactly this |
+| `--red-edge` | declared, used by no product rule | used by `.notice--error`, which today draws its edge from `--red` at full strength | The failure pair gets its second half, and the error band stops being the one notice whose edge is a different construction from the warning band's. Alternative considered and rejected: dropping the variable, which would leave the two bands built differently for no reason |
+
+**Nothing else changes value.** The three lines above are the entire licence this stage has to
+alter a pixel, and the comparison at Step 8 will hold every difference against them.
 
 ### Foundations review (Step 4)
 

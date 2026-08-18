@@ -398,3 +398,138 @@ prevent. Kept, with the reason recorded here so the finding does not come back.
 - **Coverage:** all three levels, both heaviest layouts, a form, a list, a document, an empty
   state, an error state and a loading state. The rest of the product stays grey and the map on
   `design/overview.html` says so.
+
+---
+
+# Stage 08 Step 2: consolidation
+
+*No code was written in this step. It decides what EXISTS as a unit of the system, so that the
+split into files at Step 5 carries the system and not the drift. Counts are taken from
+`wireframes/*.html`, which is the only place the whole product lives: `design/` holds a sample.*
+
+## The one rule of division
+
+**Anatomy, meaning the set of ZONES and their order.** Not "it looks different", which is the
+definition of a variant. Two buttons in an action row instead of one is a variant; a zone that is
+gone is a different component.
+
+## Level 1, atoms: families and axes
+
+| Family | Forms measured | Decision | Axes, with counts across the whole product |
+|---|---|---|---|
+| **Button** | fill 67, outline 33, bare 4, icon-only 13, large 11 | **One component.** Same zones (optional icon, label, optional trailing glyph) in every form | **emphasis:** fill 67 / outline 33 / bare 4. **content:** label only 55 / icon plus label 12 / icon only 13. **size:** medium 116 / large 11 (marketing rows only). Width is not an axis |
+| **Input** | text 8, email 4, password 4, title-inline 2, textarea 6, select 1 | **One component, three elements.** `input`, `textarea` and `select` share one zone set: a field. The select adds a chevron, which is an affordance and not a zone | **element:** text / textarea / select. **density:** base 16 / dense 5 (mapping grid). **content:** default / mono (a value read character by character) / title-inline (the field IS the heading) |
+| **Checkbox** | 11 | **One component, no variants.** 24px by the named exception | **state only:** unchecked / checked |
+| **Field label** | label only 12, label plus trailing link 1, visually hidden 4 | **One component** | **content:** plain 12 / with a trailing link 1 / visually hidden 4. The trailing-link form stands exactly once in the product: kept, because it is the "Forgot?" of the login screen and removing it moves a decision into a different component |
+| **Filter chip** | off 8, on 4 | **One component** | **state:** off / on. **content:** with count 9 / label only 3 |
+| **Confidence indicator** | 24 | **One component**, canonical | **content:** count only / count plus low-signal badge |
+| **Status tag** | source 4, brief 2, draft 2 | **One component**, merged at Stage 07 from three classes with identical anatomy | **emphasis:** normal 8 / alert 1 |
+| **Citation marker** | static 25, linked 6 | **One component** | **behaviour:** static index (inside a document) / linked chip (resolves into a list) |
+| **Rank, avatar, drag handle, icon slot, skeleton bar, inline link, list row link, group heading** | | **One component each** | Group heading carries three declared forms by NEIGHBOUR, not by look: list 15 / block 14 / toolbar. That is the only three-form atom and the axis is named |
+
+**One axis value stands exactly once in the whole product** and is called out as the rule asks:
+the field label with a trailing link (login, "Forgot?"). Kept as a variant rather than moved to
+one-off, because it is a form of the label and a one-off would put the same anatomy in two places.
+
+## Level 2, molecules
+
+| Family | Forms | Decision |
+|---|---|---|
+| **Theme card / evidence snippet / source row / saved brief row / composer brief row / account row / list row link** | seven row-shaped things | **Seven components, not one with variants.** The zone sets differ and the order differs: the theme card is checkbox, rank, label, quote, provenance, confidence, drill; the snippet is quote then meta; the source row is icon, name, stats, status, action; the saved brief row is title, meta, status, action; the composer row is handle, rank, label, meta, confidence, remove. A zone that is gone is a different component, and here whole zones are gone |
+| **Form field** | 5 | One component: label, control, optional error |
+| **Notice band** | 7 | One component. **emphasis:** information 5 / warning 1 / error 1 |
+| **Screen head** | 15 | One component. **content:** with the one action 5 / without 10; with the scope line 13 |
+| **Toolbar** | 6 | One component. **viewport:** full row above 820 / compact below |
+| **Selection bar** | 3 | One component. **trigger:** on selection 2 / always present 1 |
+| **Action bar, phase strip, breadcrumb, skeleton card, legal TOC, auth card, tier card, step card** | | One component each |
+
+## Level 3, organisms
+
+Unchanged from the Stage 07 inventory: eleven, each one form, plus the screen shell which Stage
+07 Step 5 added in two forms (`.app` for a screen, `.appframe` for a stand). **That pair is an
+axis, not two components:** same zones, different neighbour.
+
+## The one-off list, re-counted across the whole product
+
+*The rule of the stage: what was single at Stage 07 may have repeated in the assembled product.*
+
+| Block | Occurrences | Screens | Decision |
+|---|--:|--:|---|
+| Provenance list (`wf-prov-list`) | 3 | **3** | **Promoted to a component.** Stage 07 recorded it as "two screens, but the same screen in two states, so one place". The re-count shows it also stands on 3.6 Source manage, which is a different screen in a different cluster. Two distinct screens is the threshold |
+| Reason line (`wf-reason`) | 2 | 2 | Stays one-off: 4.0 and 4.1 are one screen in two states |
+| List-closing note (`wf-listnote`) | 2 | 1 | Stays one-off |
+| Marketing trust list (`mk-trust`) | 4 | 1 | Stays one-off: four instances of one block on one screen |
+| Usage meter, CSV mapping, drop zone, review summary, OAuth scopes, disconnect confirm, link row, raw quote, marketing footer | 1 each | 1 each | Stay one-off |
+
+**Result: 12 one-off blocks, down from 13, and one new component.**
+
+## The three drift rows, closed
+
+| Row from the census | Closed as |
+|---|---|
+| `.btn--ghost` and `.chip` rendering in Arial on a `<button>` | **(b) drift.** Consolidated: the control base inherits the face. Recorded in `tokens-audit.md` under "Consolidated drift" |
+| Every other multi-value property measured (chip on / off, check checked, nav link current, ghost medium / large, three input densities) | **(a) variant**, and the axis that produces each is named in the tables above |
+| Three `border-radius: 4px` literals | **(b) drift**, in the weaker sense: the value is right and the route to it is not. Consolidated to `var(--radius-sm)` |
+
+## Control without a form: every row closed
+
+| Row | Decision |
+|---|---|
+| Button, disabled | **Form accepted now.** Already declared (`[disabled]`, opacity). Step 5 shows it as a snapshot |
+| Input, focus | **Accepted.** The one cyan ring, shown as a snapshot at Step 5 in both themes |
+| Evidence snippet, redacted | **Accepted.** `.redacted` exists; appearance taken from its nearest relative, the mono meta line of the same snippet |
+| Auth card, three forms | **Accepted.** All three declared; the component page shows them. The screen 1.x is painted at Stage 12 |
+| Legal document | **Accepted.** Declared; the component page shows the prose scale, the TOC and the related block |
+| Theme card, hover | **Accepted.** Snapshot at Step 5 |
+| Source row, syncing | **Accepted**, and it is the same anatomy as failed with a different tag word |
+| Icon slot, the 26px marketing circle | **Accepted**, drawn on 0.0 |
+| Nothing is deferred to backlog | The list closes empty, which is the point: an open row means Step 5 invents the form, then Stage 12 invents it differently |
+
+## What gets deleted
+
+| Item | Evidence | Decision |
+|---|---|---|
+| `--pf-bg`, `--pf-bg-3`, `--pf-border-light`, `--pf-text`, `--pf-text-3`, `--pf-accent`, `--pf-accent-glow` | Seven chrome values in the product token file, read only by `design/_panel.css` and the two stands | **Moved, not deleted.** They go to `_panel.css`, which is the file that uses them |
+| `.src-map` | Used in the markup of 3.2 with no declaration of its own anywhere | **Declared**, not removed: it is the grid container and its children already have rules. A modifier used with no base is the defect, and the fix is the base |
+| `.page`, `.nav-links` | Left over from the portfolio chrome removed at the Stage 07 critique | **Deleted** from the product layer at Step 3 |
+| `.link--muted`, `.u-full`, `.notice--error`, `.redacted`, `.field-err`, `.form`, `.field`, `.field-label-row`, `.auth-*`, `.legal-*` | Declared and used by no painted screen | **Kept, all of them.** They are the screens outside the sample, and the kit is built from the inventory of the whole product by the rule of this pipeline. Step 6 checks them again against `wireframes/`, which is where those screens exist |
+
+## The rename map
+
+*Decided here, executed at Step 6. Without it, four steps later nobody can reconstruct what
+`.src-manage` was folded into.*
+
+| Old class or selector | New class plus variant | Where in `design/` | Where in `wireframes/` (Stage 12) |
+|---|---|---|---|
+| `.wf-btn` | `.btn` | all | 31 screens |
+| `.wf-btn--ghost`, `.src-manage` | `.btn--ghost` | all | 23 + 2 screens |
+| `.wf-auth-btn` | `.btn` plus the layout utility `.u-full` | not painted | 1.0, 1.1, 1.2 |
+| `.mk-cta .wf-btn`, `.mk-pricing-cta .wf-btn` | `.btn--lg` | index.html | 0.0 |
+| `.wf-loadmore` | `.btn--bare` inside `.list-foot` | synthesis, theme | 2.0, 4.0 |
+| `.wf-clear` | `.link--action` | synthesis, theme | 2.0 |
+| `.wf-remove` | `.btn--icon` | build-brief | 6.1, 6.2 |
+| `.wf-evi-group` | `.group-t` | sources, theme, briefs | 8 screens |
+| `.wf-evi-title` | `.group-t--section` or `.group-t--inline` by neighbour | theme, connect-csv | 10 screens |
+| `.src-status`, `.brief-status`, `.wf-draft` | `.tag`, and `.tag--alert` for the failed source | sources, briefs, build-brief | 7 screens |
+| `.src-ic`, `.src-card-ic` | `.iconslot--row`, `.iconslot--card` | sources | 3.0, 3.4, 3.5 |
+| `.wf-rowalert` | `.rowalert` | sources-sync-error | 3.5 |
+| `.wf-theme-headmeta` | `.head-meta` | theme | 4 screens |
+| `.wf-summary` | `.summary` | theme | 4.0, 4.1 |
+| `.wf-titleinput` | `.input .input--title` | build-brief | 6.1, 6.2 |
+| `.wf-label` | `.field-label` | connect-csv, build-brief | 6 screens |
+| `.wf-label-row` | `.field-label-row` | not painted | 1.0 |
+| `.acct-check` | `.check` | account-data | 7.2 |
+| `.wf-card` | `.cardrow` | account | 7.0 |
+| `.wf-prov-list` | `.provlist` (new component) | not painted | 5.0, 5.1, 3.6 |
+| `.wf-main--flush` | dropped: the colour layer uses one padded `.appmain` | n/a | n/a |
+
+## Rows after consolidation
+
+| | Stage 07 | Stage 08 Step 2 |
+|---|--:|--:|
+| Components | 50 | **51** (the provenance list promoted) |
+| One-off blocks | 13 | **12** |
+| Rows counted per occurrence | 248 classes | **51 component rows plus 12 one-offs** |
+
+The number that matters is the last one: the same product is now described by 63 rows instead of
+248, and every row carries its axes rather than its occurrences.
