@@ -1,0 +1,226 @@
+/* design/system/tokens.css - the two levels of the Sift design system.
+
+   PRIMITIVE  raw values, no roles. Every value that was in design/kit/kit.css is here, and
+              nothing else. The origin comment that travelled with each value from the approved
+              brand plate at Stage 06 travels one more step, to here. This is the last link of
+              the chain plate pixel -> DESIGN-artifacts.md -> kit.css -> tokens.css, and it does
+              not survive being dropped: nothing downstream can reconstruct it.
+
+   SEMANTIC   roles. Each one points at a primitive through var() and says, in its comment, how
+              many places the role was read from and two or three of them by name. The number is
+              not decoration: it is what makes the rule "one single use is not yet a role"
+              checkable at a glance instead of by walking tokens-audit.md again.
+
+   THE DEFAULT BLOCK IS THE DARK ONE, and that is a deliberate departure from the pipeline's
+   letter. This product is a dark instrument by decision (Stage 06, attribute A1), so :root
+   carries the theme the product actually ships and the pair is [data-theme="light"]. Writing
+   :root as light would put a theme nobody uses in the position of the default and make every
+   component's base declaration a lie about the product. The mechanism is identical either way:
+   only SEMANTIC roles are redefined, never primitives.
+
+   THE PAIR IS NOT A MIRROR. Contrast is measured against the opposite ground, so the light
+   theme takes a different step of the ramp rather than the same primitive. Every role carries
+   its measured ratio for BOTH themes and the threshold it is measured against.
+
+   THREE SURFACES, and a role paints exactly one of them:
+     INK   text and icon glyphs        4.5:1  (3:1 from 24px, or 19px bold)
+     FILL  page, card, band, badge     3:1    (WCAG 1.4.11, non-text)
+     LINE  border, divider, focus ring 3:1
+   A role on two surfaces is forbidden even when the value is the same, because the thresholds
+   differ. The PREFIX carries the surface: --text-* is ink, --bg-* is fill, --line-* is line.
+   That is why the type scale is --type-* and not --text-*: one prefix, one meaning, greppable.
+
+   Geometry gets no semantic level: a component reads a radius, a space or a size straight from
+   primitive. There is nothing for a theme to override in a radius.
+
+   State tokens (--bg-hover, --color-focus, --opacity-disabled) are NOT here. They arrive at
+   Step 5 with the first component that actually carries them, and they arrive in both themes.
+
+   No em dash anywhere in this file.
+*/
+
+:root {
+
+  /* ============================ PRIMITIVE ============================ */
+
+  /* --- the neutral ramp of the dark instrument. Every one of these is a pixel read off the
+         approved brand plate B at Stage 06; the ramp names them by lightness so that a role can
+         choose a step instead of a meaning. --- */
+  --grey-950: #0B0E11;   /* plate B pixel. Was --canvas */
+  --grey-900: #151A1F;   /* plate B pixel. Was --surface */
+  --grey-850: #1E252B;   /* plate B pixel. Was --elevated */
+  --grey-800: #262D34;   /* plate B pixel. Was --line */
+  --grey-700: #3A444C;   /* plate B pixel, recovered from four in-class literals at Stage 07. Was --line-2 */
+  --grey-400: #868F99;   /* plate B pixel. Was --ash */
+  --grey-050: #EAEEF2;   /* plate B pixel. Was --porcelain */
+
+  /* --- the light ramp. NEW primitives, and the only new values in this file besides the
+         consolidated drift: a theme pair cannot be built out of the dark ramp, because a role
+         is measured against the opposite ground. No semantic meaning is stored here. --- */
+  --grey-000: #FFFFFF;   /* light pair of --grey-950 */
+  --grey-025: #F6F8FA;   /* light pair of --grey-900 */
+  --grey-075: #EDF1F5;   /* light pair of --grey-850 */
+  --grey-150: #DFE4EA;   /* light pair of --grey-800 */
+  --grey-350: #8A96A3;   /* light pair of --grey-700 */
+  --grey-550: #5A646E;   /* light pair of --grey-400 */
+
+  /* --- the three hues. One accent and two signals, and the product spends them exactly as the
+         attributes signed them. --- */
+  --cyan-400:  #33C4CC;  /* plate B pixel. The one accent. Was --cyan */
+  --cyan-700:  #0B6B70;  /* light pair: the same accent at a step that holds on white */
+  --amber-400: #D9A441;  /* attribute A3. Low signal and warning. Was --amber */
+  --amber-700: #8A5A00;  /* light pair */
+  --red-400:   #E5484D;  /* attribute A3. Blocking failure. Was --red */
+  --red-700:   #C0272D;  /* light pair */
+
+  /* --- the alpha primitives: a hue used as a surface or an edge rather than as a fill. Each
+         was a literal inside a class until Stage 07 Step 3 named it. --- */
+  --cyan-a10:  rgba(51,196,204,0.10);
+  --cyan-a30:  rgba(51,196,204,0.30);
+  --amber-a10: rgba(217,164,65,0.10);
+  --amber-a32: rgba(217,164,65,0.32);
+  --red-a10:   rgba(229,72,77,0.10);
+  --red-a32:   rgba(229,72,77,0.32);
+  --black-a40: rgba(0,0,0,0.40);
+  /* light pairs: the same wash has to be darker to register on a white ground */
+  --cyan-a12:  rgba(11,107,112,0.12);
+  --cyan-a35:  rgba(11,107,112,0.35);
+  --amber-a12: rgba(138,90,0,0.12);
+  --amber-a35: rgba(138,90,0,0.35);
+  --red-a12:   rgba(192,39,45,0.12);
+  --red-a35:   rgba(192,39,45,0.35);
+  --black-a12: rgba(16,20,24,0.12);
+
+  /* --- type. Two faces, and the scale the product actually renders, measured on the screens
+         rather than invented as a ratio.
+         The scale is --type-*, not --text-*, and the rename happened while this file was being
+         written: --text- has to mean INK and nothing else, or the surface rule stops being
+         greppable and --text-sm sits in the same namespace as --text-secondary while meaning
+         something entirely different. --- */
+  --font-ui:   "Inter",-apple-system,BlinkMacSystemFont,system-ui,sans-serif;  /* taste. Vercel / Geist, Linear; A5 */
+  --font-mono: "IBM Plex Mono",ui-monospace,Menlo,monospace;                   /* attribute A2. The count is the trust surface; A4 */
+
+  --type-3xl: 36px;    /* the marketing first line, 0.0 only */
+  --type-2xl: 29px;    /* display: the public document H1 */
+  --type-xl:  22px;    /* headline: a screen H1 */
+  --type-lg:  17px;    /* title: a dialog, a section of a document */
+  --type-md:  15px;    /* reading size on a document */
+  --type-base:14px;    /* body */
+  --type-sm:  13.5px;  /* every control label */
+  --type-xs:  12.5px;  /* secondary line, metadata */
+  --type-2xs: 11px;    /* mono provenance, the badge */
+  --type-3xs: 10px;    /* the micro uppercase label */
+
+  --weight-regular: 400;
+  --weight-medium:  500;
+  --weight-strong:  590;   /* the one strong weight. 600 was folded into it at Stage 07 */
+
+  --leading-tight: 1.2;
+  --leading-snug:  1.45;
+  --leading-body:  1.6;
+  --leading-loose: 1.75;   /* document prose only */
+
+  --tracking-display: -0.022em;
+  --tracking-head:    -0.02em;
+  --tracking-title:   -0.015em;
+  --tracking-body:    -0.011em;
+  --tracking-caps:    0.07em;   /* the micro uppercase label */
+
+  /* --- geometry. No semantic level, by rule: there is nothing for a theme to override. --- */
+  --radius-sm: 4px;    /* matched to character. A mark or a control that sits inside text */
+  --radius-md: 6px;    /* matched to character. Anything a hand acts on */
+  --radius-lg: 12px;   /* matched to character. A sheet: the frame, the dialog, the auth card */
+  --radius-pill: 50%;  /* the avatar and the numbered circle */
+
+  --space-1: 4px;
+  --space-2: 6px;
+  --space-3: 8px;
+  --space-4: 10px;
+  --space-5: 12px;
+  --space-6: 14px;
+  --space-7: 16px;
+  --space-8: 18px;
+  --space-9: 22px;
+  --space-10: 26px;
+  --space-12: 32px;
+
+  --size-target: 44px;   /* the target floor. Three named exceptions, all in conventions.md */
+  --size-check:  24px;   /* the checkbox, at the AA floor by a named exception */
+  --size-bar:    52px;   /* the app bar and the public bar */
+  --measure-prose: 92ch; /* the longest line the product allows anywhere */
+
+  --ease: cubic-bezier(0.22,1,0.36,1);   /* technical decision. Ease out, restrained */
+  --shadow-dark:  0 2px 4px var(--black-a40);   /* the one depth, on a dark ground */
+  --shadow-light: 0 2px 4px var(--black-a12);   /* its light pair: on white a shadow is a hint, not a hole */
+
+  /* ============================ SEMANTIC ============================ */
+  /* Roles. Value through var(), surface declared by the name, ratio measured for both themes. */
+
+  /* --- FILL --- */
+  --bg-page:    var(--grey-950);  /* the ground of every screen: all 23 pages. Origin: plate B pixel */
+  --bg-surface: var(--grey-900);  /* card, panel, bar, and the hover ground of a row: 31 rules, 20 screens (theme card hover, source card, app bar) */
+  --bg-raised:  var(--grey-850);  /* a surface above another surface: 10 rules (active tab, dialog, checkbox field, avatar) */
+  --bg-action:  var(--cyan-400);  /* the one filled action: 36 controls across 12 screens (Build brief, Try again, Import 840 items). fill 3:1, measured 9.13 on page dark / 6.27 light */
+  --bg-evidence: var(--cyan-a10); /* the accent as a surface, under a citation: 2 rules (cite, citechip on 4.0 and 6.4) */
+  --bg-warning: var(--amber-a10); /* low signal and a recoverable failure: 3 rules (low-signal badge, warning band, alert tag) */
+  --bg-danger:  var(--red-a10);   /* a failure that blocks or destroys: 1 rule (the error band). One use today, and it is a role rather than a one-off because its pair --text-danger has three */
+
+  /* --- INK. Threshold 4.5:1, or 3:1 from 24px and from 19px bold. --- */
+  --text-primary:   var(--grey-050);  /* every heading, label and name: 78 rules, all 23 pages. 16.60 dark on page / 18.50 light. Origin: plate B pixel, A5 */
+  --text-secondary: var(--grey-400);  /* metadata, quote, placeholder, every recessed label: 104 rules, all 23 pages. 5.90 dark / 6.03 light */
+  --text-on-action: var(--grey-950);  /* the ink that sits ON the accent: the label of a filled button, the checkmark inside a checked box. 9.13 dark / 6.27 light against --bg-action. SPLIT FROM --bg-page at Stage 08: they carried one value and are opposite roles, and a theme that lightens the page must never lighten the label of a button */
+  --text-evidence:  var(--cyan-400);  /* the citation marker, and nothing else: 2 rules on 4.0 and 6.4. Same value as --bg-action, different role: A2 signed the citation separately from the action, and they can part */
+  --text-warning:   var(--amber-400); /* the low-signal word and the alert tag: 4 rules on 2.0, 3.5, 4.1, 6.2. 8.60 dark / 5.93 light */
+  --text-danger:    var(--red-400);   /* the field error and the error band's own emphasis: 2 rules. MEASURED 4.94 on page but 4.47 on --bg-surface and 3.96 on --bg-raised, so it FAILS AA on two of the three grounds it can land on. Carried here at its current value on purpose: the fix is a decision, and it is proposed at the Step 4 review */
+
+  /* --- LINE. Threshold 3:1 where the line identifies a control or a state; a decorative
+         divider is exempt, and the comment says which of the two each role is. --- */
+  --line-hairline: var(--grey-800);  /* DECORATIVE. Every divider and card edge: 64 rules, all 23 pages. 1.39 dark on page / 1.28 light, and exempt: it separates, it does not identify */
+  --line-control:  var(--grey-700);  /* IDENTIFYING. The boundary of an input, a chip, an outlined button: 14 rules on 9 screens. MEASURED 1.95 dark on page, 1.76 on surface, and 1.66 light: it FAILS the 3:1 of WCAG 1.4.11. Carried at its current value and proposed for the Step 4 review, where the decision belongs */
+  --line-focus:    var(--cyan-400);  /* IDENTIFYING. The keyboard ring, every focusable control on all 23 pages. 9.13 dark / 6.27 light */
+  --line-evidence: var(--cyan-a30);  /* the edge of a citation chip: 3 rules */
+  --line-warning:  var(--amber-a32); /* the dashed edge of an alert tag and the left rule of a warning band: 2 rules */
+  --line-danger:   var(--red-a32);   /* the left rule of an error band: 1 rule. Given its second half at Stage 08 by the consolidation decision, so that the two bands are built the same way */
+
+  /* --- DEPTH. Not one of the three surfaces, and it gets a role anyway for the reason the
+         three exist: a theme has to be able to change it. A shadow was a primitive here until
+         the light pair tried to override it, which is precisely the check that says it is a
+         role. Two rules use it: the frame and the dialog. --- */
+  --shadow-sheet: var(--shadow-dark);
+}
+
+/* ============================ THE LIGHT PAIR ============================
+   Only SEMANTIC roles are redefined. Not one primitive is touched, which is the whole proof
+   that the two levels are really two levels: a theme is a different set of choices from the
+   same ramp, not a different ramp.
+   ======================================================================== */
+
+[data-theme="light"] {
+  /* FILL */
+  --bg-page:     var(--grey-000);
+  --bg-surface:  var(--grey-025);
+  --bg-raised:   var(--grey-075);
+  --bg-action:   var(--cyan-700);   /* a step DOWN the ramp, not the same primitive: the accent has to hold against white, where --cyan-400 reads 1.84 */
+  --bg-evidence: var(--cyan-a12);
+  --bg-warning:  var(--amber-a12);
+  --bg-danger:   var(--red-a12);
+
+  /* INK */
+  --text-primary:   var(--grey-950);  /* the dark ramp's deepest step, now carrying ink: 18.50 on --bg-page */
+  --text-secondary: var(--grey-550);  /* 6.03 on --bg-page, 5.66 on --bg-surface */
+  --text-on-action: var(--grey-000);  /* white ON the accent: 6.27. The dark theme puts the page colour here and the light theme puts white, which is exactly why this is its own role */
+  --text-evidence:  var(--cyan-700);  /* 4.97 on --bg-page */
+  --text-warning:   var(--amber-700); /* 5.93 on --bg-page */
+  --text-danger:    var(--red-700);   /* 5.88 on --bg-page, 5.53 on --bg-surface. The light pair passes AA where the dark one does not, which is what a pair is for: it shows the failure is in the value and not in the role */
+
+  /* LINE */
+  --line-hairline: var(--grey-150);   /* decorative, 1.28 */
+  --line-control:  var(--grey-350);   /* identifying, 3.01 on --bg-page and 2.83 on --bg-surface: passes on one ground and just misses on the other. Same decision as the dark side, at the Step 4 review */
+  --line-focus:    var(--cyan-700);
+  --line-evidence: var(--cyan-a35);
+  --line-warning:  var(--amber-a35);
+  --line-danger:   var(--red-a35);
+
+  /* DEPTH */
+  --shadow-sheet: var(--shadow-light);
+}

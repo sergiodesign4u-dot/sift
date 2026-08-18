@@ -1,0 +1,66 @@
+/* design/system/base.css - what belongs to no component.
+
+   The reset, the typographic ground, the one focus ring, the motion switch, and the two layout
+   utilities. Everything here is either a rule on a bare element or a utility that exists so that
+   a width or an alignment never has to be written as a contextual override of a component.
+
+   It reads tokens and declares none: every value below is a var(). That is checkable by grep and
+   Step 9 checks it.
+
+   No em dash anywhere in this file.
+*/
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-ui);
+  font-size: var(--type-base);
+  line-height: var(--leading-body);
+  letter-spacing: var(--tracking-body);
+  color: var(--text-primary);
+  background: var(--bg-page);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* A control does not inherit its font. That one line of specification is what gave this product
+   two typefaces for one component until Stage 08 measured it: a .btn--ghost written as a
+   <button> fell back to the user agent's Arial while the same class on an <a> rendered in Inter.
+   Consolidated drift, recorded in design/kit/docs/tokens-audit.md. */
+button, input, select, textarea { font: inherit; letter-spacing: inherit; color: inherit; }
+
+a { color: inherit; }
+
+::placeholder { color: var(--text-secondary); opacity: 1; }
+
+/* The keyboard's version of active, and only the keyboard's: :focus-visible, so a mouse click
+   never draws it. The ring is the accent, because focus IS the active state, and it is measured
+   against the 3:1 non-text threshold in both themes beside --line-focus in tokens.css. */
+:focus-visible {
+  outline: 2px solid var(--line-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Two layout utilities, and there are only two. They exist so that a full-width button stays the
+   same button: width is a layout decision and never an axis of a component. */
+.u-full { width: 100%; }
+.u-apart { margin-right: auto; }
+
+/* Visually hidden: the name a screen reader needs where the interface shows a glyph. */
+.vh {
+  position: absolute; width: 1px; height: 1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+/* The icon sprite carrier. It has no size and no ink of its own: it is a definitions block. */
+.sprite { position: absolute; width: 0; height: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition: none !important;
+    animation: none !important;
+    scroll-behavior: auto;
+  }
+}

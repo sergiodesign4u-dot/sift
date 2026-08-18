@@ -166,7 +166,27 @@ alter a pixel, and the comparison at Step 8 will hold every difference against t
 
 ### Foundations review (Step 4)
 
-*(empty until Step 4)*
+*Two measurements taken while `tokens.css` was being written. Both are inherited from Stage 06,
+both are recorded here as PROPOSALS with the numbers, and neither is applied until the review at
+Step 4: this stage's licence to move a pixel is narrow on purpose.*
+
+| Role | Measured | Threshold | Proposal |
+|---|---|---|---|
+| `--text-danger` (dark) | 4.94 on `--bg-page`, **4.47** on `--bg-surface`, **3.96** on `--bg-raised` | 4.5:1, ink | Split the primitive: `--red-400` stays the FILL and the LINE, and a new `--red-300 #EB6266` carries the INK. Measured 5.96 / 5.40 / 4.78, so it clears on all three grounds. The fill keeps its exact value, so the error band does not move; only the two lines of small red text change. **This is what the surface axis is for:** the ink role exists, so the fix is one word in one declaration instead of a repaint |
+| `--line-control` (both themes) | **1.95 / 1.76** dark, **3.01 / 2.83** light | 3:1, WCAG 1.4.11 non-text | Raise to `#647280` in the dark theme (3.93 on page, 3.55 on surface, 3.14 on raised) and `#78838F` in the light one. This one IS visible: every input, chip and outlined button gets a brighter boundary. The alternative is to declare the boundary decorative, which it is not: an input on this product has a fill 1.19:1 from the page, so the border is the only thing that identifies it as a field |
+
+**Neither is applied in `tokens.css` as written.** The roles carry their current values and their
+failing numbers, so the file states the problem rather than hiding it, and the decision is taken
+where the foundations are reviewed as a whole.
+
+### A deviation from the pipeline's letter, stated rather than smuggled
+
+The pack asks for `:root` plus `[data-theme="dark"]`. This product is a dark instrument by
+decision (Stage 06, attribute A1), so `:root` carries **dark** and the pair is
+`[data-theme="light"]`. Writing `:root` as light would put a theme nobody ships in the position
+of the default and make every component's base declaration a description of a theme rather than
+of the product. The mechanism is unchanged and so is the proof it exists for: only semantic roles
+are redefined, no primitive is touched, and Step 7 stress-tests the pair exactly as written.
 
 ### Moved onto system classes (Step 6)
 
