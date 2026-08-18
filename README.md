@@ -19,7 +19,7 @@ This table and the `done` flags in `/_nav.js` are the only two places status is 
 | Wireframes | **Done, rebuilt on the block bank** (17 screens, 38 pages). Composition traces to `ia/docs/blocks.md`; states keep their screen's blocks; one stage panel replaced the top bar plus rail; critique run on two instruments (Claude in a browser, Codex read-only), 11 findings, all fixed |
 | Voice | Done (4 principles, dictionary, forbidden list, microcopy rules; every screen rewritten; voice.html deployed). Re-runs over whatever blocks the wireframe rebuild adds |
 | Concept | **Done.** Brand plate B chosen and entered into `DESIGN-artifacts.md`; five attributes, each signed to a data line; the etalon and its three states plus the public brief in color in `design/`; the split-evidence direction re-read against the rebuild and deferred with the reason; audited (targets, focus, contrast, overflow) and the before / after on `concept.html` |
-| UI + Visual | **In progress.** Steps 1 to 4 done and Step 5 opened. `DESIGN.md` from the code; `design/kit/inventory.md`; the kit itself (`kit.css` by `git mv`, `:root` byte for byte, plus `shell.html` and the stand `kit.html`); `design/visuals/README.md`, where the image set is empty by decision and the one prompt is held ready. The two seed screens are re-pointed onto the kit and pixel proved: four of five identical, the etalon one pixel taller at the load-more row and nowhere else. Waiting on the composition of the 5 to 7 screen sample |
+| UI + Visual | **In progress.** Steps 1 to 4 done; Step 5 running. `DESIGN.md` from the code; the inventory; the kit (`kit.css` by `git mv`, plus `shell.html` and the stand `kit.html`); `visuals/README.md` with an empty set by decision. The colour stage now has its own two-part navigation (`design/_nav.js` panel, `design/overview.html` hub with the honest coverage map). Seeds re-pointed and pixel proved, and the first sample screen, **3.0 Sources with its two states**, is assembled from the kit. Six screens of the sample to go |
 | Tokens + Components | Not started |
 | Design System | Not started |
 | Responsive | Not started |
@@ -71,6 +71,10 @@ design/              The roof of the whole visual half. Product screens sit flat
     shell.html       The shell as markup: sprite, app header, bottom tabs, footer, public bar
     kit.html         The stand: tokens, inventory, components, shell
     inventory.md     The component inventory of the whole product, with the level column
+  overview.html      The hub: screens by flow, the coverage map, and the way into the kit
+  _nav.js            DESIGN_NAV, the colour-stage registry; renders the panel and the hub lists
+  _panel.css         The chrome of the colour stage: the screen panel and the hub. Never product
+  <screen>.html      Colour copies, same file names as wireframes/. Assembled from the kit
   screens/           Before and after pairs, two viewports, captured with Playwright
   visuals/           The image set and its prompt. Empty by decision: this product carries no photography
   concept/           How the language was found

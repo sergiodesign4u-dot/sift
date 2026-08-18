@@ -236,6 +236,7 @@
           <tr><td>Inline text link</td><td class="cls">.link .link--muted .link--action</td><td>18</td><td>rest, hover</td></tr>
           <tr><td>Drag handle</td><td class="cls">.drag</td><td>6.1, 6.2</td><td>rest, grab</td></tr>
           <tr><td>List row link</td><td class="cls">.cardrow</td><td>7.0</td><td>rest, hover</td></tr>
+          <tr><td>List group heading</td><td class="cls">.group-t</td><td>3.0, 3.4, 3.5, 4.0</td><td>rest</td></tr>
 
           <tr class="inv-group"><td colspan="4">Level 2 &middot; molecules &middot; contains atoms, contains no molecule</td></tr>
           <tr><td>Theme card</td><td class="cls">.theme .theme-main .theme-quote .theme-drill</td><td>2.0</td><td>rest, hover, selected, low signal, clamped</td></tr>
@@ -260,6 +261,7 @@
           <tr><td>Marketing step card</td><td class="cls">.mk-step</td><td>0.0</td><td>rest</td></tr>
 
           <tr class="inv-group"><td colspan="4">Level 3 &middot; organisms &middot; contains molecules, or is a screen shell</td></tr>
+          <tr><td>Screen shell</td><td class="cls">.app &middot; .appframe (stand)</td><td>27</td><td>rest</td></tr>
           <tr><td>App header</td><td class="cls">.appbar .navtabs .brand</td><td>27</td><td>rest, hover, active</td></tr>
           <tr><td>Bottom tabs</td><td class="cls">.bottomtabs .btab</td><td>27</td><td>rest, active</td></tr>
           <tr><td>App footer</td><td class="cls">.appfoot</td><td>27</td><td>rest</td></tr>
@@ -674,6 +676,27 @@
       </div>
       <div class="spec-note">The marketing step card carries a real confidence indicator as its
         proof: the product's own component is the evidence for the claim the page is making.</div>
+    </div>
+
+    <div class="spec">
+      <div class="spec-head"><span class="spec-name">Added at Step 5, by the first screen that needed them</span><span class="spec-cls">.group-t &middot; .app</span><span class="spec-where">3.0 Sources</span></div>
+      <div class="spec-body">
+        <div class="lbl">List group heading</div>
+        <div style="background:var(--canvas);border:1px solid var(--line);border-radius:var(--r);padding:0 14px 10px">
+          <div class="group-t">Connected &middot; 2</div>
+          <div style="font-size:13px;color:var(--ash)">the rows of the group go here</div>
+          <div class="group-t">Available to connect</div>
+          <div style="font-size:13px;color:var(--ash)">and the next group here</div>
+        </div>
+      </div>
+      <div class="spec-note">The rule of this stage in one line: a screen that needs something the
+        kit does not have gets it added to the kit first and used second. Both of these were
+        found that way. <b>.group-t</b> names a group inside a list and stands on four screens;
+        the Step 2 census counted it inside its screens and never gave it a row of its own.
+        <b>.app</b> is the screen shell: <code>.appframe</code> is the same organism with a
+        border, a radius and a shadow, and that one is for a STAND, where a screen is an exhibit.
+        A screen that IS the page uses <code>.app</code> and fills the canvas, which is what
+        every page in <code>design/</code> outside this stand now does.</div>
     </div>
   </section>
 

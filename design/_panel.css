@@ -1,0 +1,153 @@
+/* design/_panel.css - the chrome of the colour stage: the screen panel and the hub. NOT product.
+
+   Two layers on a design screen, exactly as in the wireframe stage and for the same reason:
+
+     1. Prototype chrome. This file. The panel that carries the way back to the hub, the whole
+        screen tree, the states of the screen you are standing on, and the links out of the
+        artifact. It is drawn on the --pf-* portfolio variables, which kit.css declares and
+        marks as "not product language". Nothing in here may ever be read as part of the
+        product's visual system.
+     2. The product screen. design/kit/kit.css. Every class on the screen itself.
+
+   The wireframe stage keeps the same split in wireframes/_wf.css, sections 1 and 2. It is kept
+   here rather than folded into kit.css so that Stage 08, which audits kit.css line by line,
+   never has to decide whether a panel rule is a product token in disguise.
+
+   The panel is FOUR BLOCKS top to bottom (CLAUDE.md): header with a button to the hub plus a
+   stage badge and one subtitle line; a tree of cluster to screen to states; an accordion where
+   only the current node is open; and cross-links out of the artifact at the bottom. There is no
+   thin state strip above the screen, because a strip carrying the same states as the tree is
+   two editions of one control.
+
+   Rendered from design/_nav.js. A page never writes a ds-* or ov-* class itself.
+   No em dash anywhere in this file. */
+
+.ds-shell { display: flex; align-items: flex-start; min-height: 100vh; }
+
+.ds-panel {
+  width: 252px; flex: none; align-self: stretch;
+  border-right: 1px solid var(--pf-border-light); background: var(--pf-bg);
+  position: sticky; top: 0; height: 100vh; overflow: hidden;
+  display: flex; flex-direction: column;
+}
+
+/* 1. header */
+.ds-panel-head { flex: none; padding: 14px 12px 12px; border-bottom: 1px solid var(--pf-border-light); }
+.ds-panel-hub { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; color: var(--pf-text-3); text-decoration: none; padding: 6px 11px; border: 1px solid var(--pf-border-light); border-radius: 6px; }
+.ds-panel-hub:hover { color: var(--pf-text); background: var(--pf-bg-3); }
+.ds-panel-badge { display: block; margin-top: 12px; font-family: var(--font-mono); font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--pf-accent); }
+.ds-panel-sub { margin-top: 5px; font-size: 12.5px; color: var(--pf-text); font-weight: 500; line-height: 1.45; }
+.ds-panel-node { font-family: var(--font-mono); font-size: 10px; color: var(--pf-text-3); margin-right: 4px; }
+.ds-panel-state { display: block; font-size: 11px; color: var(--pf-text-3); margin-top: 2px; }
+
+/* 2 + 3. the tree, with only the current node opened onto its states.
+   The tree is the only part that scrolls, so the cross-links stay reachable at the bottom of
+   the panel instead of being pushed off the screen by a long tree. */
+.ds-panel-tree { flex: 1; min-height: 0; overflow-y: auto; }
+.ds-panel-toggle { display: none; }
+.ds-tree { padding: 10px 8px 20px; }
+.ds-group { margin-bottom: 8px; }
+.ds-group-t { font-family: var(--font-mono); font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--pf-text-3); padding: 8px 8px 4px; }
+.ds-link { display: flex; align-items: baseline; gap: 8px; font-size: 12.5px; color: var(--pf-text-3); text-decoration: none; padding: 5px 8px; border-radius: 5px; border-left: 2px solid transparent; }
+a.ds-link:hover { color: var(--pf-text); background: var(--pf-bg-3); }
+.ds-link.is-current { color: var(--pf-text); background: var(--pf-bg-3); border-left-color: var(--pf-accent); font-weight: 500; }
+/* A screen still in grey is reachable, and it says so. It is not disabled: the grey original
+   is a real page and the point of the coverage map is that the product is not all colour yet. */
+.ds-link.is-grey { color: var(--pf-text-3); opacity: 0.55; }
+.ds-node { font-family: var(--font-mono); font-size: 10px; color: var(--pf-text-3); min-width: 26px; flex: none; }
+.ds-states { list-style: none; margin: 1px 0 6px; padding: 0; }
+.ds-state { display: block; font-size: 11.5px; color: var(--pf-text-3); text-decoration: none; padding: 4px 8px 4px 36px; border-radius: 4px; border-left: 2px solid transparent; }
+.ds-state:hover { color: var(--pf-text); background: var(--pf-bg-3); }
+.ds-state.is-current { color: var(--pf-text); border-left-color: var(--pf-accent); background: var(--pf-accent-glow); }
+
+/* 4. cross-links out of the artifact */
+.ds-panel-links { flex: none; border-top: 1px solid var(--pf-border-light); padding: 12px; display: flex; flex-direction: column; gap: 2px; }
+.ds-panel-links-t { font-family: var(--font-mono); font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--pf-text-3); margin-bottom: 4px; }
+.ds-panel-links a { font-size: 11.5px; color: var(--pf-text-3); text-decoration: none; padding: 4px 0; }
+.ds-panel-links a:hover { color: var(--pf-text); }
+
+/* Stage: the screen gets everything the panel does not */
+.ds-stage { flex: 1; min-width: 0; display: flex; }
+.ds-canvas { flex: 1; min-width: 0; background: var(--canvas); }
+
+/* The panel reserves 252px, and kit.css reserves 52px at the top of the body for the fixed
+   portfolio bar that stands carry. A screen has neither: it is the page. Both reservations are
+   given back here, on the shell, so kit.css keeps saying what is true for a stand. */
+.ds-shell ~ nav.top, body:has(.ds-shell) nav.top { display: none; }
+body:has(.ds-shell) { padding-top: 0; padding-left: 0; }
+
+/* Below 900px there is no room for a column, so the panel becomes its own header above the
+   screen and the tree folds behind a disclosure. It is still the one navigation, in a second
+   layout; it never becomes a strip that duplicates what the tree already says. */
+@media (max-width: 900px) {
+  .ds-shell { flex-direction: column; align-items: stretch; }
+  .ds-panel { width: 100%; height: auto; overflow: visible; position: static; border-right: none; border-bottom: 1px solid var(--pf-border-light); }
+  .ds-panel-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 10px 12px; border-bottom: none; }
+  .ds-panel-badge { margin-top: 0; }
+  .ds-panel-sub { margin-top: 0; width: 100%; }
+  .ds-panel-state { display: inline; margin-left: 6px; }
+  .ds-panel-toggle { display: block; cursor: pointer; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--pf-text-3); padding: 8px 12px; border-top: 1px solid var(--pf-border-light); }
+  .ds-panel-toggle:hover { color: var(--pf-text); }
+  .ds-panel-tree { flex: none; overflow: visible; }
+  .ds-tree { max-height: 60vh; overflow-y: auto; }
+  .ds-panel-links { flex-direction: row; flex-wrap: wrap; gap: 12px; }
+  .ds-panel-links-t { width: 100%; margin-bottom: 0; }
+  /* the way out travels with the tree here: closed, the chrome is a header and the screen
+     starts immediately; open, everything the panel offers is in one place. */
+  .ds-panel-tree:not([open]) ~ .ds-panel-links { display: none; }
+  .app { min-height: 0; }
+}
+
+/* =====================================================================
+   THE HUB, design/overview.html. Same layer, same variables: this is the
+   furniture around the product, never the product. The hub carries the
+   ROADMAP sidebar from the root /_nav.js, so it is the bridge back into
+   the project; the screens carry the panel above and no roadmap at all.
+   ===================================================================== */
+
+.ov-h2 { font-size: 19px; font-weight: 590; letter-spacing: -0.02em; color: var(--pf-text); margin-bottom: 10px; }
+.ov-lead { font-size: 13.5px; color: var(--pf-text-3); line-height: 1.7; max-width: 82ch; margin-bottom: 20px; }
+.ov-sec { margin-top: 56px; scroll-margin-top: 70px; }
+
+.ov-flow { border: 1px solid var(--pf-border-light); border-radius: 10px; padding: 14px 16px; margin-bottom: 12px; background: var(--pf-bg-3); }
+.ov-flow-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
+.ov-flow-id { font-family: var(--font-mono); font-size: 11px; color: var(--pf-accent); white-space: nowrap; }
+.ov-flow-label { font-size: 13px; color: var(--pf-text-3); }
+.ov-flow-screens { list-style: none; display: flex; flex-direction: column; gap: 6px; margin: 0; padding: 0; }
+.ov-fscreen { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 7px 0; border-top: 1px solid var(--pf-border-light); }
+.ov-fscreen:first-child { border-top: none; }
+.ov-fs-node { font-family: var(--font-mono); font-size: 10px; color: var(--pf-text-3); min-width: 30px; }
+.ov-fs-label { font-size: 13px; color: var(--pf-text); text-decoration: none; font-weight: 500; min-width: 150px; }
+.ov-fs-label:hover { color: var(--pf-accent); }
+.ov-fscreen.is-grey .ov-fs-label { color: var(--pf-text-3); }
+.ov-fs-states { display: flex; gap: 5px; flex-wrap: wrap; margin-left: auto; }
+.ov-chip { font-size: 10px; color: var(--pf-text-3); border: 1px solid var(--pf-border-light); border-radius: 20px; padding: 3px 9px; text-decoration: none; }
+.ov-chip:hover { color: var(--pf-text); background: var(--pf-bg-3); }
+
+.ov-cov-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.ov-counter { font-family: var(--font-mono); font-size: 12px; color: var(--pf-text-3); }
+.ov-counter b { color: var(--pf-text); font-weight: 500; }
+.ov-legend { display: flex; gap: 16px; margin: 4px 0 18px; font-size: 11.5px; color: var(--pf-text-3); flex-wrap: wrap; }
+.ov-lg { display: inline-flex; align-items: center; gap: 7px; }
+.ov-lg::before { content: ""; width: 16px; height: 12px; border-radius: 3px; }
+.ov-lg--colour::before { border: 1.5px solid var(--cyan); background: var(--cyan-wash); }
+.ov-lg--grey::before { border: 1.5px dashed var(--pf-border-light); }
+
+.ov-cluster { margin-bottom: 18px; }
+.ov-cluster-t { font-family: var(--font-mono); font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--pf-text-3); margin: 0 0 8px; }
+.ov-tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 8px; }
+.ov-tile { display: flex; flex-direction: column; gap: 3px; padding: 11px 13px; border-radius: 8px; text-decoration: none; }
+.ov-tile.is-colour { border: 1px solid var(--pf-border-light); background: var(--pf-bg-3); }
+.ov-tile.is-colour:hover { border-color: var(--cyan); }
+.ov-tile.is-grey { border: 1px dashed var(--pf-border-light); background: transparent; }
+.ov-tile.is-grey:hover { border-color: var(--pf-text-3); }
+.ov-tile-node { font-family: var(--font-mono); font-size: 10px; color: var(--pf-text-3); }
+.ov-tile-label { font-size: 13px; color: var(--pf-text); font-weight: 500; }
+.ov-tile.is-grey .ov-tile-label { color: var(--pf-text-3); }
+.ov-tile-meta { font-family: var(--font-mono); font-size: 10px; color: var(--pf-text-3); }
+
+.ov-kit { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+.ov-kit-card { border: 1px solid var(--pf-border-light); border-radius: 10px; padding: 16px; background: var(--pf-bg-3); text-decoration: none; display: block; }
+.ov-kit-card:hover { border-color: var(--pf-accent); }
+.ov-kit-t { font-size: 13.5px; font-weight: 590; color: var(--pf-text); }
+.ov-kit-d { font-size: 12.5px; color: var(--pf-text-3); line-height: 1.6; margin-top: 6px; }

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift - 3.0 Sources (in colour)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="kit/kit.css">
+<link rel="stylesheet" href="_panel.css">
+</head>
+<!--
+  3.0 Sources, list state. COLOUR COPY of wireframes/sources.html.
+
+  This copy owns the visual layer and nothing else. Structure, text and the set of states stay
+  the property of the grey original, which is frozen. Every class below comes from
+  design/kit/kit.css; there is no style on this page.
+
+  What the kit had to gain before this screen could be assembled, both added to kit.css,
+  kit.html and inventory.md first and used second:
+    .group-t   the heading that names a group inside a list (Connected, Available to connect).
+               The Step 2 census counted it inside its screens and never gave it a row.
+    .app       the screen shell. .appframe is the same organism with a border and a shadow, and
+               that is for a STAND, where a screen is an exhibit. This screen IS the page.
+
+  Class translation from the grey layer, all of it already declared in the kit:
+    src-status -> tag / tag--alert    src-manage -> btn--ghost     wf-btn -> btn
+    src-ic     -> iconslot--row       src-card-ic -> iconslot--card
+    wf-evi-group -> group-t           wf-rowalert -> rowalert      wf-notice -> notice
+
+  Links to screens that are still grey point back at wireframes/. That is the coverage map
+  telling the truth from inside the product, not a broken link.
+-->
+<body>
+
+<svg class="sprite" aria-hidden="true"><defs>
+  <symbol id="i-signal" viewBox="0 0 24 24"><path d="M6 18v-3.5M12 18v-8M18 18v-12.5"/></symbol>
+  <symbol id="i-source" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.66 3.13 3 7 3s7-1.34 7-3V6"/><path d="M5 12v6c0 1.66 3.13 3 7 3s7-1.34 7-3v-6"/></symbol>
+  <symbol id="i-brief" viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h7"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 19c0-3.6 2.9-5.5 6.5-5.5s6.5 1.9 6.5 5.5"/></symbol>
+  <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V5"/><path d="m7.5 9.5 4.5-4.5 4.5 4.5"/><path d="M4.5 15v3.5a1.5 1.5 0 0 0 1.5 1.5h12a1.5 1.5 0 0 0 1.5-1.5V15"/></symbol>
+</defs></svg>
+
+<div class="ds-shell">
+  <aside id="ds-panel" data-node="3.0" data-state="base"></aside>
+
+  <div class="ds-stage">
+    <div class="ds-canvas">
+      <div class="app">
+
+        <header class="appbar">
+          <span class="brand"><svg class="ic mark" width="15" height="15"><use href="#i-signal"></use></svg> Sift</span>
+          <nav class="navtabs" aria-label="Sections">
+            <a href="synthesis.html">Synthesis</a>
+            <a href="sources.html" class="active" aria-current="page">Sources</a>
+            <a href="../wireframes/briefs.html">Briefs</a>
+          </nav>
+          <span class="spacer"></span>
+          <a class="avatar" href="../wireframes/account.html" aria-label="Account"></a>
+        </header>
+
+        <main class="appmain">
+          <header class="screenhead">
+          <div class="screenhead-row">
+            <div class="head-text">
+              <h1 class="h1">Sources</h1>
+              <p class="sub">Where your feedback comes from. Every source is scrubbed of personal details on the way in.</p>
+            </div>
+          </div>
+          <p class="scope">
+            <b>2</b> sources connected, <b>3,750</b> items in. This is the corpus every theme on
+            Synthesis is counted from.
+          </p>
+          </header>
+
+          <div class="group-t">Connected &middot; 2</div>
+          <ul class="list">
+            <li class="src-row">
+              <span class="iconslot iconslot--row" aria-hidden="true"><svg class="ic"><use href="#i-upload"></use></svg></span>
+              <div class="src-main">
+                <span class="src-name">CSV import <span class="tag">Imported</span></span>
+                <span class="src-sub">Batch import</span>
+              </div>
+              <div class="src-stats">
+                <div class="src-stat"><span class="src-stat-l">Items</span><span class="src-stat-v">840</span></div>
+                <div class="src-stat"><span class="src-stat-l">Imported</span><span class="src-stat-v">2 days ago</span></div>
+                <div class="src-stat"><span class="src-stat-l">PII scrub</span><span class="src-stat-v">On</span></div>
+              </div>
+              <div class="src-rowactions"><a class="btn--ghost" href="../wireframes/sources-manage.html">Manage</a></div>
+            </li>
+            <li class="src-row">
+              <span class="iconslot iconslot--row" aria-hidden="true"><svg class="ic"><use href="#i-source"></use></svg></span>
+              <div class="src-main">
+                <span class="src-name">Intercom <span class="tag">Syncing</span></span>
+                <span class="src-sub">Live connection</span>
+              </div>
+              <div class="src-stats">
+                <div class="src-stat"><span class="src-stat-l">Items</span><span class="src-stat-v">2,910</span></div>
+                <div class="src-stat"><span class="src-stat-l">Last sync</span><span class="src-stat-v">2 days ago</span></div>
+                <div class="src-stat"><span class="src-stat-l">PII scrub</span><span class="src-stat-v">On</span></div>
+              </div>
+              <div class="src-rowactions"><a class="btn--ghost" href="../wireframes/sources-manage.html">Manage</a></div>
+            </li>
+          </ul>
+
+          <div class="group-t">Available to connect</div>
+          <div class="src-avail">
+            <div class="src-card">
+              <span class="iconslot iconslot--card" aria-hidden="true"><svg class="ic"><use href="#i-upload"></use></svg></span>
+              <span class="src-card-name">CSV or spreadsheet</span>
+              <span class="src-card-d">Sift reads the feedback text, its date and its channel. You choose which columns are read, and you can leave contact columns out entirely.</span>
+              <a class="btn--ghost" href="../wireframes/connect-csv.html">Import a file</a>
+            </div>
+            <div class="src-card">
+              <span class="iconslot iconslot--card" aria-hidden="true"><svg class="ic"><use href="#i-source"></use></svg></span>
+              <span class="src-card-name">Intercom</span>
+              <span class="src-card-d">Sift reads conversations, not contacts. New conversations arrive on their own once connected.</span>
+              <a class="btn--ghost" href="../wireframes/connect-intercom.html">Connect</a>
+            </div>
+            <div class="src-card">
+              <span class="iconslot iconslot--card" aria-hidden="true"><svg class="ic"><use href="#i-source"></use></svg></span>
+              <span class="src-card-name">Zendesk</span>
+              <span class="src-card-d">Sift will read tickets and their replies, the same way it reads Intercom conversations.</span>
+              <span class="src-card-note">Not connectable yet. Import your tickets as a CSV in the meantime.</span>
+            </div>
+          </div>
+        </main>
+
+        <footer class="appfoot">Sift workspace &middot; feedback from CSV and Intercom, PII scrubbed by default</footer>
+
+        <nav class="bottomtabs" aria-label="Sections">
+          <a href="synthesis.html" class="btab"><span class="ico"><svg viewBox="0 0 24 24" class="ic"><use href="#i-signal"></use></svg></span>Synthesis</a>
+          <a href="sources.html" class="btab active" aria-current="page"><span class="ico"><svg viewBox="0 0 24 24" class="ic"><use href="#i-source"></use></svg></span>Sources</a>
+          <a href="../wireframes/briefs.html" class="btab"><span class="ico"><svg viewBox="0 0 24 24" class="ic"><use href="#i-brief"></use></svg></span>Briefs</a>
+          <a href="../wireframes/account.html" class="btab"><span class="ico"><svg viewBox="0 0 24 24" class="ic"><use href="#i-user"></use></svg></span>Account</a>
+        </nav>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="_nav.js"></script>
+</body>
+</html>

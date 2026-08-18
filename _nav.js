@@ -49,9 +49,12 @@ window.NAV = [
     { label: 'Directions', page: 'design/concept/directions.html', done: true },
     { label: 'Concept',    page: 'design/concept/concept.html',    done: true } ] },
 
-  { id: 'ui-visual', label: 'UI + Visual', pages: [
+  /* wip: the stage has deployed pages and is not finished. Without it the roadmap would call
+     UI + Visual done the moment its last page existed, two steps before the stage closes, and
+     the "Next" badge would jump ahead of the work. Cleared when the stage closes. */
+  { id: 'ui-visual', label: 'UI + Visual', wip: true, pages: [
     { label: 'Component kit',  page: 'design/kit/kit.html',  done: true },
-    { label: 'Sample screens', page: 'design/overview.html', done: false } ] },
+    { label: 'Sample screens', page: 'design/overview.html', done: true } ] },
 
   { id: 'tokens',        label: 'Tokens + Components', pages: [ { label: 'Tokens + Components', page: null, done: false } ] },
   { id: 'design-system', label: 'Design System',       pages: [ { label: 'Design System',       page: null, done: false } ] },
@@ -82,7 +85,9 @@ window.NAV = [
     if (!real.length) return 'soon';
     var done = real.filter(function (p) { return p.done; }).length;
     if (done === 0) return 'soon';
-    if (done === real.length) return 'done';
+    /* wip wins over a full count: pages can all exist while the stage still has steps to run,
+       and the roadmap must not announce a stage finished before its own close-out. */
+    if (done === real.length) return stage.wip ? 'partial' : 'done';
     return 'partial';
   }
 
@@ -116,7 +121,7 @@ window.NAV = [
   function nextStage() {
     for (var i = 0; i < NAV.length; i++) {
       var real = realPages(NAV[i]);
-      if (!real.length) return i;
+      if (!real.length || NAV[i].wip) return i;
       for (var j = 0; j < real.length; j++) if (!real[j].done) return i;
     }
     return -1;

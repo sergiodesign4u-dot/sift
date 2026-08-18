@@ -304,3 +304,13 @@ were invisible in the file and obvious the moment the same screen was measured t
 - **`.list-foot` was a block, and the bare button inside it is an inline-flex box,** so it sat on
   a line box whose descender space added a pixel under the list. `.list-foot` is now a flex
   container.
+
+**Two components entered the kit at Step 5, each because a screen needed it and neither
+invented ahead of time.** Both were added to `kit.css`, to the stand and to this table before
+they were used on a screen, which is the rule that keeps the kit ahead of the screens rather
+than behind them.
+
+| Component | Level | Class | Screens | Why it was missing |
+|---|:--:|---|---|---|
+| **List group heading** | 1 | `.group-t` | 3.0, 3.4, 3.5, 4.0 | The Step 2 class census counted it inside its screens and never gave it a row. It names a group inside a flush list, and it stands on four |
+| **Screen shell** | 3 | `.app`, and `.appframe` for a stand | 27 | Stage 06 built its two screens as framed exhibits on a stand, so the only shell in the colour layer had a border, a radius and a shadow. A screen that IS the page needs the same organism without them |

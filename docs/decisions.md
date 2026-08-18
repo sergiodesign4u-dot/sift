@@ -423,3 +423,47 @@ Rejected: comparing the full page rather than the product frame. The page carrie
 sidebar, which legitimately changed when the kit stand was registered, and the fixed portfolio
 bar, whose backdrop blur repaints differently at a one pixel scroll offset. Both would have
 shown up as "the kit changed the screen" when neither is the kit.
+
+## The colour stage got its own two-part navigation, and its screens stopped being exhibits (August 2026)
+
+Stage 07 Step 5. The same shape the wireframe stage has, for the same reason, and in its own
+namespace: `design/_nav.js` declares `window.DESIGN_NAV` and renders a design-only panel into
+each screen, `design/overview.html` is the hub and is the one page of the stage that carries the
+roadmap sidebar from the root `/_nav.js`. The namespaces have to be separate because the hub
+loads both registries at once, and a second `window.NAV` would silently overwrite the roadmap.
+The panel's chrome lives in `design/_panel.css` rather than in `kit.css`, so that Stage 08, which
+audits `kit.css` line by line, never has to decide whether a panel rule is a product token in
+disguise.
+
+**The two seed screens stopped being framed exhibits.** They arrived from Stage 06 inside a
+`.page` with a `.appframe`, a portfolio top bar, the roadmap sidebar and a proof bar of state
+links, which is what a screen looks like when it is standing on a stand. A Stage 07 screen is a
+copy of a wireframe, and a wireframe is a real screen that fills its canvas. So `.app` entered
+the kit as the screen shell, `.appframe` was kept and labelled as the stand edition of the same
+organism, and the four blocks of chrome around the seeds were replaced by the one panel. The
+proof bar went with them: it carried the same states as the panel's tree, and two editions of one
+navigation is the defect the wireframe stage already fixed once.
+
+Rejected: keeping the frame on the seeds and dropping it on new screens. Two kinds of screen in
+one folder is how a reviewer learns to distrust the folder.
+
+**The registry gained a `wip` flag.** With the hub registered, both of the stage's pages exist and
+the roadmap would have called UI + Visual done, two steps before the stage closes, moving the
+"Next" badge onto Tokens. `wip: true` holds the stage at partial while its pages are real and
+clickable. Status still lives in exactly two places, the README table and the `done` flags; this
+is the flag that lets the second one tell the truth mid-stage.
+
+**Screens still in grey are in the panel and on the map, and they link to their grey originals.**
+Hiding them would make a map of what is finished, which is not a map. The coverage map counts
+both halves out loud, and the panel dims a grey entry rather than disabling it.
+
+**The first sample screen, 3.0 Sources with its two states, needed two components the inventory
+did not have, and both went into the kit before they went onto the screen.** `.group-t`, the
+heading that names a group inside a list, which the Step 2 census had counted inside its screens
+without giving it a row, and `.app` above. That order is the whole point of the kit: something
+missing goes in first and is used second, or the screen quietly becomes the source of truth.
+
+**One judgement call on the failed source row.** The icon slot keeps the channel's own icon and
+does not switch to an alert mark. The row already says it three times, in the dashed amber tag,
+in the alert line under the name and in the warning band above the list; a fourth signal would
+cost the reader the one thing the slot is for, which is knowing at a glance which source this is.

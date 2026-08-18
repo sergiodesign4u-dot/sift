@@ -389,6 +389,12 @@ select.input { appearance:none; -webkit-appearance:none; cursor:pointer; }
 .iconslot--card { width:28px; height:28px; border-radius:var(--r-sm); }
 .iconslot--card .ic { width:15px; height:15px; }
 
+/* List group heading. Names a group inside a flush list (Connected, Available to connect,
+   by source on the evidence list). Added at Step 5 when the first sample screen needed it:
+   the Step 2 census counted it inside its screens and never gave it a row of its own, and it
+   stands on 3.0, 3.4, 3.5 and 4.0. Mono and quiet: it labels, it does not announce. */
+.group-t { font-family:var(--font-mono); font-size:10px; font-weight:500; letter-spacing:0.07em; text-transform:uppercase; color:var(--ash); padding:16px 8px 6px; }
+
 /* Drag handle, and the row-level remove. Both are grips, not decisions, so both stay ash. */
 .drag { display:inline-flex; align-items:center; justify-content:center; min-width:24px; min-height:44px; color:var(--ash); font-size:13px; cursor:grab; flex:none; line-height:1; }
 .drag:active { cursor:grabbing; }
@@ -520,6 +526,20 @@ label.acct-row { cursor:pointer; }
 
 /* ---------- LEVEL 3, ORGANISMS ---------- */
 
+/* The screen shell. A product screen fills its canvas: header, main, footer, bottom tabs,
+   nothing around it. .appframe above is the same organism with a border, a radius and a
+   shadow, and it is for a STAND (the kit, the concept) where a screen is an exhibit. A screen
+   that is the page uses .app, so it is a screen and not a picture of one. */
+.app { display:flex; flex-direction:column; min-height:100vh; background:var(--canvas); color:var(--porcelain); }
+.app > .appmain { flex:1; }
+.app > .notice { margin:14px 22px; }
+.app:has(.check:checked) .selbar { display:flex; }
+.app:has(.check:checked) .head-action { display:none; }
+/* A state block that IS the screen is centred in the canvas. :only-child is load-bearing:
+   an empty state that became a group inside a populated screen would otherwise lay the whole
+   main out as a flex row. Same clause the grey contract carries, for the same reason. */
+.appmain:has(> .state:only-child) { display:flex; align-items:center; justify-content:center; }
+
 /* Form. Four purposes (auth, connect, settings, composer), one appearance. It declares
    nothing but rhythm: the fields, the labels and the buttons are already components. */
 .form { display:block; }
@@ -618,7 +638,8 @@ label.acct-row { cursor:pointer; }
   .brief-actions .btn--ghost, .brief-actions .btn { flex:1; }
   .mk-h1 { font-size:27px; }
   .mk-lead { font-size:14.5px; }
-  .appframe > .notice { margin:14px 16px; }
+  .appframe > .notice, .app > .notice { margin:14px 16px; }
+  .group-t { padding:14px 16px 6px; }
   .breadcrumb { padding:11px 16px; }
   .legal-prose { font-size:14px; }
 }

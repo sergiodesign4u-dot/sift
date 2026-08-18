@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="kit/kit.css">
-<link rel="stylesheet" href="../_nav.css">
+<link rel="stylesheet" href="_panel.css">
 </head>
 <!--
   design 2.2 Synthesis loading. COLOR COPY of wireframes/synthesis-loading.html.
@@ -29,37 +29,17 @@
   <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 19c0-3.6 2.9-5.5 6.5-5.5s6.5 1.9 6.5 5.5"/></symbol>
 </defs></svg>
 
-<nav class="top">
-  <a class="nav-brand" href="../index.html"><span>S</span>ift</a>
-  <ul class="nav-links">
-    <li><a href="../design/concept/concept.html">Concept stand</a></li>
-    <li><a href="../design/concept/directions.html">Directions</a></li>
-    <li><a href="../wireframes/synthesis-loading.html">Grey wireframe</a></li>
-  </ul>
-</nav>
+<div class="ds-shell">
+  <aside id="ds-panel" data-node="2.0" data-state="loading"></aside>
 
-<aside id="sidebar"></aside>
-
-<div class="page">
-
-  <div class="proofbar">
-    <a class="back" href="../design/concept/concept.html">&larr; Concept stand</a>
-    <span class="label">Etalon 2.0 Synthesis, in color</span>
-    <span class="states">
-      <a href="synthesis.html">populated</a>
-      <a href="synthesis-empty.html">empty</a>
-      <a href="synthesis-loading.html" class="cur">loading</a>
-      <a href="synthesis-error.html">error</a>
-    </span>
-    <span class="note">wireframe stays grey</span>
-  </div>
-
-  <div class="appframe">
+  <div class="ds-stage">
+    <div class="ds-canvas">
+      <div class="app">
     <header class="appbar">
       <span class="brand"><svg class="ic mark" width="15" height="15"><use href="#i-signal"/></svg> Sift</span>
       <nav class="navtabs" aria-label="Primary">
         <a class="active" href="synthesis.html" aria-current="page">Synthesis</a>
-        <a href="../wireframes/sources.html">Sources</a>
+        <a href="sources.html">Sources</a>
         <a href="../wireframes/briefs.html">Briefs</a>
       </nav>
       <span class="spacer"></span>
@@ -119,19 +99,15 @@
 
     <nav class="bottomtabs" aria-label="Primary">
       <a class="btab active" href="synthesis.html"><span class="ico"><svg class="ic"><use href="#i-signal"/></svg></span><span class="lbl">Synthesis</span></a>
-      <a class="btab" href="../wireframes/sources.html"><span class="ico"><svg class="ic"><use href="#i-source"/></svg></span><span class="lbl">Sources</span></a>
+      <a class="btab" href="sources.html"><span class="ico"><svg class="ic"><use href="#i-source"/></svg></span><span class="lbl">Sources</span></a>
       <a class="btab" href="../wireframes/briefs.html"><span class="ico"><svg class="ic"><use href="#i-brief"/></svg></span><span class="lbl">Briefs</span></a>
       <a class="btab" href="../wireframes/account.html"><span class="ico"><svg class="ic"><use href="#i-user"/></svg></span><span class="lbl">Account</span></a>
     </nav>
+      </div>
+    </div>
   </div>
-
 </div>
 
-<script>
-window.NAV_BASE = '../';
-window.NAV_ACTIVE = 'design/concept/concept.html';
-window.NAV_ACTIVE_LABEL = '2.2 Synthesis loading (color)';
-</script>
-<script src="../_nav.js"></script>
+<script src="_nav.js"></script>
 </body>
 </html>
