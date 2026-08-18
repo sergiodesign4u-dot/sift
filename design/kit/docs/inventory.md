@@ -533,3 +533,15 @@ axis, not two components:** same zones, different neighbour.
 
 The number that matters is the last one: the same product is now described by 63 rows instead of
 248, and every row carries its axes rather than its occurrences.
+
+---
+
+# Stage 08 Step 5: the component register
+
+*One row per component, filled as each one is closed. A component exists in this system when it
+has all five: its css, its page, its entry in the kit registry, this row, and its `@import` in the
+group of its own level.*
+
+| Level | Component | CSS | Page | States | Screens |
+|:--:|---|---|---|---|---|
+| 1 | **Button** | `components/button.css` | `kit/button.html` | hover, active, focus-visible, disabled, all four in both themes | every screen. 67 filled, 33 outlined, 4 bare, 13 icon-only, 11 large |

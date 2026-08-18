@@ -68,8 +68,10 @@
 
   /* --- the three hues. One accent and two signals, and the product spends them exactly as the
          attributes signed them. --- */
+  --cyan-300:  #5BD3DA;  /* Step 5. One step up the accent, for the hover of the action in the dark theme */
   --cyan-400:  #33C4CC;  /* plate B pixel. The one accent. Was --cyan */
   --cyan-700:  #0B6B70;  /* light pair: the same accent at a step that holds on white */
+  --cyan-800:  #08585C;  /* Step 5. One step DOWN, for the hover of the action in the light theme: a pair is not a mirror */
   --amber-400: #D9A441;  /* attribute A3. Low signal and warning. Was --amber */
   --amber-700: #8A5A00;  /* light pair */
   --red-400:   #E5484D;  /* attribute A3. Blocking failure. Was --red. FILL and LINE only */
@@ -185,6 +187,17 @@
   --line-warning:  var(--amber-a32); /* the dashed edge of an alert tag and the left rule of a warning band: 2 rules */
   --line-danger:   var(--red-a32);   /* the left rule of an error band: 1 rule. Given its second half at Stage 08 by the consolidation decision, so that the two bands are built the same way */
 
+  /* --- STATE. A state is a token and never a style, so that a theme is three lines rather than
+         forty edits, twenty components cannot invent twenty hovers, and Stage 11 starts by
+         animating states instead of by collecting them. Born here, at Step 5, on the etalon,
+         and each one born in BOTH themes at once: a token with a value in one theme only makes
+         the focus ring vanish in the other, and the only way to see that is to switch, which is
+         to say never. --- */
+  --bg-hover:        var(--grey-900);  /* FILL. A row, a bare button or a card lifting under the pointer. 1.11 off the page: a hover is a whisper, not a state change, and it is never the only signal */
+  --bg-action-hover: var(--cyan-300);  /* FILL. The filled action only. It replaces a filter: brightness(1.08), which was the one state in this product written as a style rather than a token. --text-on-action reads 10.85 against it */
+  --line-hover:      var(--grey-400);  /* LINE. The border of an outlined control under the pointer: 5.34 on a card, well past the 3:1 a line owes */
+  --opacity-disabled: 0.45;            /* Not a colour: a control that cannot act is dimmed, never repainted by hand, so it keeps its own identity while losing its weight */
+
   /* --- DEPTH. Not one of the three surfaces, and it gets a role anyway for the reason the
          three exist: a theme has to be able to change it. A shadow was a primitive here until
          the light pair tried to override it, which is precisely the check that says it is a
@@ -215,6 +228,13 @@
   --text-evidence:  var(--cyan-700);  /* 4.97 on --bg-page */
   --text-warning:   var(--amber-700); /* 5.93 on --bg-page */
   --text-danger:    var(--red-700);   /* 5.88 / 5.53 / 5.18. The light side already passed before the review, which is what showed the dark failure was in the value and not in the role */
+
+  /* STATE. The pair is NOT a mirror: the action darkens on hover here and lightens there,
+     because a hover has to move AWAY from the ground it sits on. */
+  --bg-hover:        var(--grey-025);
+  --bg-action-hover: var(--cyan-800);  /* --text-on-action, which is white here, reads 8.20 against it */
+  --line-hover:      var(--grey-550);  /* 5.66 on a card */
+  --opacity-disabled: 0.50;            /* a touch stronger than the dark theme's 0.45: 45 percent on white reads as almost gone, and disabled means "not now", not "not here" */
 
   /* LINE */
   --line-hairline: var(--grey-150);   /* decorative, 1.28 */

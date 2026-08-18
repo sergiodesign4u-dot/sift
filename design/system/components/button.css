@@ -1,0 +1,112 @@
+/* design/system/components/button.css - level 1, atom.
+
+   Reads: --bg-action, --bg-action-hover, --text-on-action, --text-primary, --text-secondary,
+          --line-control, --line-hover, --bg-hover, --opacity-disabled, --line-hairline
+   Page:  design/kit/button.html
+   Stands on: every screen of the product. 67 filled, 33 outlined, 4 bare, 13 icon-only, 11 large,
+          counted across all 38 wireframes.
+
+   THE CLOSED SET: three emphases by two sizes, plus one content variant. Six declared forms,
+   against two declarations and four contextual overrides before the Stage 07 census. Width is
+   NOT on the size axis: a full-width button is the same button in a one-column container, and it
+   takes the layout utility .u-full from base.css.
+
+   Every state is a token override and not a style. The filled hover used to be
+   filter: brightness(1.08), which was the one state in this product written as a style; it is
+   --bg-action-hover now, and the theme pair came with it.
+
+   No em dash anywhere in this file.
+*/
+
+/* ---- the shared control base. Three emphases share their box and part on ink and ground. ---- */
+.btn,
+.btn--ghost,
+.btn--bare {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: var(--size-target);
+  padding: 0 var(--space-7);
+  border-radius: var(--radius-md);
+  font-size: var(--type-sm);
+  font-weight: var(--weight-medium);
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  background: transparent;
+  transition: background-color .15s var(--ease), border-color .15s var(--ease), color .15s var(--ease);
+}
+
+/* ---- emphasis: fill. One per zone, and it is the next move. ---- */
+.btn {
+  background: var(--bg-action);
+  color: var(--text-on-action);
+  border-color: var(--bg-action);
+}
+.btn:hover { background: var(--bg-action-hover); border-color: var(--bg-action-hover); }
+
+/* ---- emphasis: outline. Everything that is a real action and not THE action. ---- */
+.btn--ghost {
+  color: var(--text-primary);
+  border-color: var(--line-control);
+}
+.btn--ghost:hover { border-color: var(--line-hover); background: var(--bg-hover); }
+
+/* ---- emphasis: bare. A control with no box of its own, inside a list or a bar that already
+       has one. ---- */
+.btn--bare {
+  width: 100%;
+  padding: var(--space-5) var(--space-3);
+  font-size: var(--type-xs);
+  color: var(--text-secondary);
+  border-radius: 0;
+}
+.btn--bare:hover { color: var(--text-primary); background: var(--bg-hover); }
+
+/* ---- size: large. The marketing rows on 0.0 and nowhere else. Size is given by the density of
+       the place, not by the importance of the action. ---- */
+.btn--lg { min-height: 50px; padding: 0 var(--space-9); font-size: var(--type-md); }
+
+/* ---- content: icon only. The label goes to .vh, so the control keeps its name for a screen
+       reader and its target for a thumb. ---- */
+.btn--icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--size-target);
+  min-height: var(--size-target);
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  line-height: 1;
+  transition: color .15s var(--ease);
+}
+.btn--icon:hover { color: var(--text-primary); }
+.btn--icon .ic { width: 16px; height: 16px; }
+
+/* ---- the icon inside a labelled button ---- */
+.btn .ic { width: 15px; height: 15px; }
+
+/* ---- active: the press. It moves the ground, never the geometry: a state that shifts an
+       element by a pixel moves its neighbours too, and that is the jump. ---- */
+.btn:active { background: var(--bg-action); }
+.btn--ghost:active, .btn--bare:active { background: var(--bg-hover); }
+
+/* ---- disabled: dimmed, never repainted. A control that cannot act keeps its identity and
+       loses its weight. ---- */
+.btn[disabled], .btn--ghost[disabled], .btn--bare[disabled], .btn--icon[disabled] {
+  opacity: var(--opacity-disabled);
+  cursor: not-allowed;
+}
+
+/* focus-visible is not declared here on purpose: base.css draws the one ring the whole product
+   uses, from --line-focus, and a component that redraws it is a second focus style. */
+
+/* ---- the list foot: where a bare button carries the remainder of a list. The rule belongs to
+       the LIST and not to the control, which is why it is a flex container: an inline-flex
+       button in a block parent sits on a line box, and the line box adds a pixel under the
+       list. Measured at Stage 07 Step 5. ---- */
+.list-foot { display: flex; border-bottom: 1px solid var(--line-hairline); }

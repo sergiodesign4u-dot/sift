@@ -1,0 +1,27 @@
+/* design/system/index.css - the ONE entry point of the Sift design system.
+
+   A screen links this file and nothing else. The whole system hangs on this one link, which is
+   why the chain is checked in a browser the moment it is written rather than assumed.
+
+   THE ORDER IS THE LADDER, not the alphabet, and it is load-bearing. Alphabetically dialog.css
+   comes before field.css and form.css before input.css, which puts the composed thing ABOVE its
+   own parts in the cascade; the first contextual fix then reaches for !important and the system
+   carries it for years. Imported by level, the cascade agrees with the anatomy by construction.
+
+   A NEW COMPONENT GOES IN THE GROUP OF ITS OWN LEVEL, never at the end of this file. Appended at
+   the end it looks harmless, and that is exactly how the ladder collapses.
+
+   No em dash anywhere in this file.
+*/
+
+/* ---------- the ground ---------- */
+@import url("tokens.css");
+@import url("base.css");
+
+/* ---------- level 1: atoms. Contain nothing else from the system. ---------- */
+@import url("components/button.css");
+
+/* ---------- level 2: molecules. Contain atoms. ---------- */
+
+/* ---------- level 3: organisms. Contain molecules, or are a shell.
+              Inside this group: the ones containing no other organism come first. ---------- */

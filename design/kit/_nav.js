@@ -28,6 +28,9 @@ window.KIT_NAV = [
     { file: 'geometry.html',     label: 'Geometry',     blurb: 'Space, radius and target, shown as space, radius and target' },
     { file: 'icons.html',        label: 'Icons',        blurb: 'The whole set, one sheet, at the sizes the product uses' },
   ]},
+  { id: 'atoms', label: 'Atoms', pages: [
+    { file: 'button.html', label: 'Button', blurb: 'Three emphases by two sizes. Six declared forms, and that is the whole set' },
+  ]},
 ];
 
 (function () {
