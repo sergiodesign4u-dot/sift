@@ -314,3 +314,18 @@ than behind them.
 |---|:--:|---|---|---|
 | **List group heading** | 1 | `.group-t` | 3.0, 3.4, 3.5, 4.0 | The Step 2 class census counted it inside its screens and never gave it a row. It names a group inside a flush list, and it stands on four |
 | **Screen shell** | 3 | `.app`, and `.appframe` for a stand | 27 | Stage 06 built its two screens as framed exhibits on a stand, so the only shell in the colour layer had a border, a radius and a shadow. A screen that IS the page needs the same organism without them |
+
+**What screen two of the sample, 3.2 Import a CSV, added to the kit.** The form screen, and the
+only place in the product where a person types, chooses and confirms, so it is where the input,
+the select, the checkbox, the phase strip, the notice and the action bar stand together at once.
+
+| Added | What and why |
+|---|---|
+| `.group-t--section` | The same heading over a block rather than over a list, so it aligns with the block and not with the rows. Two forms of one atom, not two atoms. It is what the grey layer called `wf-evi-title`, on 3.2 and 4.0 |
+| `.select` | A wrapper carrying the chevron. A select with its native chrome removed and nothing put back is a text field that happens to open a menu, and nobody can tell which one it is. Drawn from the placeholder's ink, so it costs no colour literal and no request, and it is on a wrapper because a select cannot carry a pseudo-element |
+| `.step-n .ic` | A finished phase carries a mark instead of its number. The number is a position in a sequence, and once the step is behind you the position stops being the useful fact |
+| `.src-drop`, `.src-map*`, `.src-review` | The three One-off blocks of 3.2, declared in `kit.css` because the kit is the only stylesheet a screen may use, and classified as one-off here so Stage 08 does not promote them. Classification and storage are different questions |
+| 360 rules for both of the above | The mapping grid becomes two lines per row (column and field on one, the customer's own sample on its own) and the action bar puts its note on its own line with the two buttons sharing the next. Both are layout on a container's own children, not undeclared variants: no size, colour or weight is touched |
+
+**Saturation watch.** Screen one added two components, screen two added one variant, one
+affordance and three declared one-offs. Still adding, so the sample is not saturated yet.

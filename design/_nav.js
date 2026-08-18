@@ -45,7 +45,7 @@ window.DESIGN_NAV = [
       { key: 'base', label: 'list', file: 'sources.html' },
       { key: 'empty', label: 'none connected (3.4)', file: 'sources-empty.html' },
       { key: 'sync-error', label: 'sync error (3.5)', file: 'sources-sync-error.html' } ] },
-    { key: '3.2', label: 'Connect CSV', file: 'connect-csv.html', state: 'grey', states: [
+    { key: '3.2', label: 'Connect CSV', file: 'connect-csv.html', state: 'colour', states: [
       { key: 'base', label: 'upload and mapping', file: 'connect-csv.html' } ] },
     { key: '3.3', label: 'Connect Intercom', file: 'connect-intercom.html', state: 'grey', states: [
       { key: 'base', label: 'authorize', file: 'connect-intercom.html' } ] },

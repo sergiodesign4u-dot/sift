@@ -220,7 +220,7 @@
           <tr><td>Button</td><td class="cls">.btn .btn--ghost .btn--bare .btn--lg .btn--icon</td><td>30</td><td>rest, hover, focus, disabled</td></tr>
           <tr><td>Text input</td><td class="cls">.input .input--title</td><td>8</td><td>rest, focus, error</td></tr>
           <tr><td>Textarea</td><td class="cls">textarea.input</td><td>6.1, 6.2</td><td>rest, focus</td></tr>
-          <tr><td>Select</td><td class="cls">select.input</td><td>3.2</td><td>rest, focus</td></tr>
+          <tr><td>Select</td><td class="cls">.select &gt; select.input</td><td>3.2</td><td>rest, focus</td></tr>
           <tr><td>Checkbox</td><td class="cls">.check</td><td>2.0, 7.2</td><td>unchecked, checked</td></tr>
           <tr><td>Field label</td><td class="cls">.field-label .field-label-row .vh</td><td>6</td><td>rest</td></tr>
           <tr><td>Filter chip</td><td class="cls">.chip .chip-count</td><td>5</td><td>off, on</td></tr>
@@ -236,7 +236,7 @@
           <tr><td>Inline text link</td><td class="cls">.link .link--muted .link--action</td><td>18</td><td>rest, hover</td></tr>
           <tr><td>Drag handle</td><td class="cls">.drag</td><td>6.1, 6.2</td><td>rest, grab</td></tr>
           <tr><td>List row link</td><td class="cls">.cardrow</td><td>7.0</td><td>rest, hover</td></tr>
-          <tr><td>List group heading</td><td class="cls">.group-t</td><td>3.0, 3.4, 3.5, 4.0</td><td>rest</td></tr>
+          <tr><td>List group heading</td><td class="cls">.group-t .group-t--section</td><td>3.0, 3.2, 3.4, 3.5, 4.0</td><td>rest</td></tr>
 
           <tr class="inv-group"><td colspan="4">Level 2 &middot; molecules &middot; contains atoms, contains no molecule</td></tr>
           <tr><td>Theme card</td><td class="cls">.theme .theme-main .theme-quote .theme-drill</td><td>2.0</td><td>rest, hover, selected, low signal, clamped</td></tr>
@@ -274,11 +274,11 @@
           <tr><td>Public document</td><td class="cls">.public-main .pub-key .pub-theme .pub-cites</td><td>6.4</td><td>rest</td></tr>
           <tr><td>Marketing page shell</td><td class="cls">.mk-hero .mk-section .mk-grid</td><td>0.0</td><td>rest</td></tr>
 
-          <tr class="inv-group"><td colspan="4">One-off &middot; not taken into the kit &middot; one occurrence, no exception, declared on its own screen at rollout</td></tr>
+          <tr class="inv-group"><td colspan="4">One-off &middot; declared in kit.css because the kit is the only stylesheet a screen may use, and classified here so Stage 08 does not promote them into components</td></tr>
           <tr><td>Usage meter</td><td class="cls">acct-meter</td><td>7.3</td><td>the screen argues a fraction beats a bar</td></tr>
-          <tr><td>CSV column mapping</td><td class="cls">src-map</td><td>3.2</td><td>its reflow is specific to mapping</td></tr>
-          <tr><td>File drop zone</td><td class="cls">src-drop</td><td>3.2</td><td>one screen</td></tr>
-          <tr><td>CSV review summary</td><td class="cls">src-review</td><td>3.2</td><td>one screen</td></tr>
+          <tr><td>CSV column mapping</td><td class="cls">.src-map</td><td>3.2</td><td>declared, its reflow is specific to mapping</td></tr>
+          <tr><td>File drop zone</td><td class="cls">.src-drop</td><td>3.2</td><td>declared, one screen</td></tr>
+          <tr><td>CSV review summary</td><td class="cls">.src-review</td><td>3.2</td><td>declared, one screen</td></tr>
           <tr><td>OAuth scope list</td><td class="cls">src-scopes</td><td>3.3</td><td>one screen</td></tr>
           <tr><td>Disconnect confirm body</td><td class="cls">src-confirm</td><td>3.6</td><td>the dialog is the component, this is its content</td></tr>
           <tr><td>Link row</td><td class="cls">wf-linkrow</td><td>6.3</td><td>the only place a value is copied</td></tr>
@@ -385,7 +385,7 @@
           <label class="field"><span class="field-label">Work email</span><input class="input" type="email" value="pm@northwind.io"></label>
           <label class="field"><span class="field-label">Password</span><input class="input" type="password" value="............"></label>
           <label class="field"><span class="field-label">Rationale</span><textarea class="input" rows="3">The three themes above account for most of the volume this month.</textarea></label>
-          <label class="field"><span class="field-label">Map to</span><select class="input"><option>Feedback text</option><option>Source</option><option>Date</option></select></label>
+          <label class="field"><span class="field-label">Map to</span><span class="select"><select class="input"><option>Feedback text</option><option>Source</option><option>Date</option></select></span></label>
           <label class="field"><span class="field-label">Feedback file</span><input class="input" value="feedback-q3.csv" aria-invalid="true"><span class="field-err">This column has no values in the first 100 rows. Map it or leave it out.</span></label>
         </div>
         <div class="lbl" style="margin-top:22px">Title inline: the brief is named where it will be read</div>
