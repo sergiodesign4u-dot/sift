@@ -55,7 +55,7 @@ window.NAV = [
     { label: 'Component kit',  page: 'design/kit/kit.html',  done: true },
     { label: 'Sample screens', page: 'design/overview.html', done: true } ] },
 
-  { id: 'tokens',        label: 'Tokens + Components', pages: [ { label: 'Tokens + Components', page: null, done: false } ] },
+  { id: 'tokens', label: 'Tokens + Components', wip: true, pages: [ { label: 'Tokens + Components', page: null, done: false } ] },
   { id: 'design-system', label: 'Design System',       pages: [ { label: 'Design System',       page: null, done: false } ] },
   { id: 'responsive',    label: 'Responsive',          pages: [ { label: 'Responsive',          page: null, done: false } ] },
   { id: 'animation',     label: 'Animation',           pages: [ { label: 'Animation',           page: null, done: false } ] },
@@ -81,7 +81,8 @@ window.NAV = [
 
   function stageState(stage) {
     var real = realPages(stage);
-    if (!real.length) return 'soon';
+    /* wip with no page yet: the stage is running and has nothing deployed. It is not 'soon'. */
+    if (!real.length) return stage.wip ? 'partial' : 'soon';
     var done = real.filter(function (p) { return p.done; }).length;
     if (done === 0) return 'soon';
     /* wip wins over a full count: pages can all exist while the stage still has steps to run,

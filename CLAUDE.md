@@ -146,7 +146,7 @@ page, a named section registered in that page's `NAV_SECTIONS`, or a satellite p
 - **A screen is assembled from the kit, and a fix lands in the kit.** From stage 07 the one
   stylesheet a product screen may use is `design/kit/kit.css`: no `style=` attribute, no `<style>`
   block, no appearance written on a page. Missing a component or a variant means adding it to
-  `kit.css`, to the stand `design/kit/kit.html` and to `design/kit/inventory.md` FIRST, then using
+  `kit.css`, to the stand `design/kit/kit.html` and to `design/kit/docs/inventory.md` FIRST, then using
   it. A value fix goes to a `:root` variable and reaches every screen; a markup fix goes to the
   stand and is copied from there. A fix on one screen is a desync, and a difference written as a
   contextual override (`.foo .btn { font-size: X }`) is an undeclared variant, not a patch.

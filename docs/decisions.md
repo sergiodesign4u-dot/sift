@@ -366,7 +366,7 @@ layer states its widths as media queries throughout, and this one now does too.
 ## This product carries no photography, and the set is empty on purpose (August 2026)
 
 Stage 07 Step 4. The composition of the image set is read from the Photo column of
-`design/kit/inventory.md`, and that column says No on all fifty rows. Behind it is a mechanical
+`design/kit/docs/inventory.md`, and that column says No on all fifty rows. Behind it is a mechanical
 read: the entire grey product, 38 files, holds not one `img`, `figure`, `picture` or background
 image. `concept.md:150` already stated the rule and its reason, and the reason is specific to
 what Sift is: no avatars of invented people, because feedback authors are PII-scrubbed, so a
@@ -497,7 +497,7 @@ etalon that preceded the wireframe rebuild.
 **Withdrawn on verification:** six product classes reported as unused, `auth-value` and the five
 `legal-*`. They are the auth and the legal screens, which are in the inventory and not in the
 sample. The kit is built for the whole product by this stage's own rule, so a class that is
-ahead of its screen is the intended state. Recorded in `design/kit/inventory.md` with the reason,
+ahead of its screen is the intended state. Recorded in `design/kit/docs/inventory.md` with the reason,
 so the finding does not come back next time somebody greps for dead CSS.
 
 Rejected: fixing the contextual overrides by leaving them and adding a comment. A comment does

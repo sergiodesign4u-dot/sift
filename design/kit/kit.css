@@ -644,7 +644,7 @@ label.acct-row { cursor:pointer; }
 
 /* =====================================================================
    ONE-OFF BLOCKS. Declared here because the kit is the only stylesheet a screen may use, and
-   classified as one-off in design/kit/inventory.md so that Stage 08 does not promote them into
+   classified as one-off in design/kit/docs/inventory.md so that Stage 08 does not promote them into
    components. One occurrence, no form-control exception, no canonical status. A second
    occurrence turns any of them into a component, and that is a decision made out loud.
    ===================================================================== */
