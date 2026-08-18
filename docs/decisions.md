@@ -308,3 +308,57 @@ to protect. Origin comments were moved beside each variable in `_theme.css` befo
 which is what the course actually requires and what Stage 06 had left in prose instead.
 Rejected: renaming at the migration to match the course letter, at the cost of the course's own
 stronger rule.
+
+## The kit grew out of the colour layer, it was not written from the language again (August 2026)
+
+Stage 07 Step 3. `design/_theme.css` became `design/kit/kit.css` by `git mv`, with the `:root`
+block moved byte for byte, no variable renamed and every origin comment left beside its value.
+The file no longer exists on disk under its old name, which is the check that the move was a
+move: a copy would have left two sources for the same values, and the second one would have
+started drifting the first time somebody edited "the theme".
+
+Rejected: deriving the kit's values from the two painted screens, which is what a component
+extractor does by default. The values were already written down explicitly at Stage 06 from the
+approved brand plate, and re-reading them off rendered pixels risks a drift on every pass while
+buying nothing. It would also cut the line `plate B pixel` to `DESIGN-artifacts.md` to
+`kit.css` to `tokens.css`, and that line is what separates a system derived from data about
+people from a tidy stylesheet.
+
+**The extract ran only after the source was checked, and the source was clean.** All 38 grey
+screens: zero `INLINE:` markers left over from the Stage 04 consolidation, zero `style="..."`
+attributes anywhere, zero colour literals inside the four screen-local `<style>` blocks (all
+colour goes through `--w-*`), and zero selectors declared in two files at once. Had any of that
+been open, the extract would have built the kit out of the drift and the damage would have
+surfaced two stages later as a token audit full of near-duplicates.
+
+**Nine values entered `:root` and every one of them is marked PENDING rather than merged.** Six
+already existed in the file as literals written inside a class at Stage 06: one hairline was
+`#333c44` in one rule and `#3a444c` in four others, `--gunmetal` was referenced by the checkbox
+and never declared anywhere, and the cyan and amber wash and edge pairs sat inline on the
+citation and the low-signal badge. Two are new, `--red-wash` and `--red-edge`, built exactly
+like the amber pair: `--red` was declared at Stage 06 and used by no rule at all, while the
+product has failures that block and destroy and they need a surface. One, `--r-lg`, is the frame
+radius, so a dialog can be the same material as the frame it floats over.
+
+Rejected: adding them quietly because each is defensible on its own. The rule that a new value
+is named out loud is the only thing standing between a kit and a palette of forty greys, and
+"it was already in the file as a literal" is a reason to declare it, not a reason to skip the
+declaration.
+
+**Geometry stays as literals inside classes, and that is a decision.** Font sizes, paddings and
+the type scale are not tokenized here. Naming them is the primitive and semantic token split,
+which is Stage 08, and roles named before the components have stood on real screens are half
+wrong. Recorded rather than left implicit.
+
+**The Button family closed from four undeclared overrides to six declared forms.** Three
+emphases by two sizes, plus an icon-only content variant. Width left the size axis entirely and
+became the layout utility `.u-full`, because `100%` against `auto` is a layout decision and not
+a property of the control. "Clear filters" folded into the Inline text link rather than becoming
+a fourth button emphasis: it is a text action with a control's target, and the inline link is
+the atom the product's 88 unclassed links needed anyway.
+
+**One defect was caught in the browser and not in the file.** The account shell's row layout was
+first written as a container query, copying the grey contract, where the canvas declares
+`container-type`. Nothing in the colour layer declares a container, so the rule would never have
+fired and four account screens would have shipped as a single column at every width. The colour
+layer states its widths as media queries throughout, and this one now does too.

@@ -19,7 +19,7 @@ This table and the `done` flags in `/_nav.js` are the only two places status is 
 | Wireframes | **Done, rebuilt on the block bank** (17 screens, 38 pages). Composition traces to `ia/docs/blocks.md`; states keep their screen's blocks; one stage panel replaced the top bar plus rail; critique run on two instruments (Claude in a browser, Codex read-only), 11 findings, all fixed |
 | Voice | Done (4 principles, dictionary, forbidden list, microcopy rules; every screen rewritten; voice.html deployed). Re-runs over whatever blocks the wireframe rebuild adds |
 | Concept | **Done.** Brand plate B chosen and entered into `DESIGN-artifacts.md`; five attributes, each signed to a data line; the etalon and its three states plus the public brief in color in `design/`; the split-evidence direction re-read against the rebuild and deferred with the reason; audited (targets, focus, contrast, overflow) and the before / after on `concept.html` |
-| UI + Visual | **In progress.** Step 1 done: product `DESIGN.md` read out of the code, every value carrying its origin. Step 2 done: `design/kit/inventory.md`, the component inventory of the whole product (37 screens, 248 classes, 50 components in three levels, 13 one-offs). Step 3 (kit + stand) next |
+| UI + Visual | **In progress.** Steps 1 to 3 done: product `DESIGN.md` read out of the code; `design/kit/inventory.md`, the component inventory of the whole product (37 screens, 248 classes, 50 components in three levels, 13 one-offs); and the kit itself, `design/kit/kit.css` (arrived from `_theme.css` by `git mv`, `:root` byte for byte) plus `shell.html` and the stand `kit.html`. Nine values wait on a decision in a PENDING block. Step 4 (visuals) is blocked on the photography question in the inventory |
 | Tokens + Components | Not started |
 | Design System | Not started |
 | Responsive | Not started |
@@ -64,13 +64,20 @@ voice/
   voice.html         Voice: principles, dictionary, forbidden list, microcopy
   docs/              voice.md, microcopy.md
 design/              The roof of the whole visual half. Product screens sit flat here, material in subfolders
-  _theme.css         The shared color layer; inline styles on the pages are not allowed
   synthesis*.html    First color copies of the wireframe screens, seeded by stage 06
+  shared-brief.html  The contrast screen: the public read-only document
+  kit/               The component kit. A screen is assembled from it, never drawn
+    kit.css          THE stylesheet: :root plus every component class. Came from _theme.css by git mv
+    shell.html       The shell as markup: sprite, app header, bottom tabs, footer, public bar
+    kit.html         The stand: tokens, inventory, components, shell
+    inventory.md     The component inventory of the whole product, with the level column
+  screens/           Before and after pairs, two viewports, captured with Playwright
   concept/           How the language was found
     directions.html  Three layout directions of one brand
     concept.html     The stand of the chosen language
     docs/            concept.md, references.md
     assets/          Brand plates
+DESIGN.md            The product design language, read out of the code. Every value carries its origin
 DESIGN-artifacts.md  Draft design language from the chosen brand plate; every value carries its origin
 ```
 

@@ -239,3 +239,56 @@ rows for being in two levels at once.
   product and are not invented.
 - **Four contextual overrides of the button** were found and folded, leaving six declared forms.
 - **88 unclassed links** were given a family that the product never had.
+
+---
+
+## Step 3 close-out: what the kit did with this table
+
+*Added when `kit.css` was built, so the table and the file cannot drift apart. The stand that
+makes both visible is `design/kit/kit.html`.*
+
+**The values moved, they were not re-derived.** `design/_theme.css` became `design/kit/kit.css`
+by `git mv`, `:root` byte for byte, every origin comment in place. `_theme.css` no longer exists
+on disk, which is the check that the move was a move and not a copy: two files would have meant
+two sources of the same values.
+
+**Class names lost the `wf-` prefix and kept everything else.** The colour layer had already
+made that choice at Stage 06 (`.btn`, `.chip`, `.theme`), so the 35 screens that arrived here
+joined the API that was already running rather than starting a second one.
+
+**Cross-check 1 is closed, all four rows.**
+
+| Job | Verdict at Step 2 | What the kit did |
+|---|---|---|
+| Secondary action, outlined | fold `src-manage` into the ghost button | `src-manage` is gone. The source row uses `.btn--ghost` |
+| Primary action, full width | fold `wf-auth-btn` into the medium button | Width left the size axis and became the layout utility `.u-full` |
+| Marketing primary and secondary | declare one large size | `.btn--lg`, and both marketing rows point at it |
+| Load more | fold into the bare button | `.btn--bare`. The rule under it moved to the list, as `.list-foot` |
+| (not in the table) "Clear filters" | was a fourth control shape | Folded into the Inline text link as `.link--action`: it is a text action, not a button |
+
+**The Button family is now six declared forms and nothing else:** fill, outline and bare, each at
+medium and at large, plus the icon-only content variant. No contextual override of a button
+exists anywhere in `kit.css`.
+
+**Nine values entered `:root` in a block marked PENDING, and none of them silently.** Six were
+already in the file as literals written inside a class at Stage 06: one hairline appeared as
+`#333c44` in one rule and `#3a444c` in four others, and `--gunmetal` was referenced by the
+checkbox without ever having been declared. Two are new (`--red-wash`, `--red-edge`), built the
+same way as the amber pair, because `--red` was declared at Stage 06 and used by no rule at all
+while the product has failures that block. One is `--r-lg`, the frame radius, so the dialog is
+the same material as the frame. The list is on the stand for the decision; nothing here changed
+an existing value.
+
+**Geometry is still written inside classes** (font sizes, paddings, the type scale). That is how
+the file arrived and it is not fixed here: naming those values is the primitive and semantic
+split, which is Stage 08. Said out loud so it reads as a decision and not an oversight.
+
+**Finding 3 does not travel into the kit.** The mobile bottom tab measures 54px in the kit
+against 29px in the grey layer, because the colour tab holds a real `svg` with `display: block`.
+Verified in the browser at 360px rather than assumed.
+
+**One defect found while building, and fixed.** The account shell's row layout was first written
+as a container query, copying the grey contract. Nothing in the colour layer declares
+`container-type`, so the rule would never have fired and four screens would have shipped as a
+column at every width. The whole colour layer states its widths as media queries, and this one
+now does too.

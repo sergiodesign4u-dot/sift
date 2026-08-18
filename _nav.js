@@ -49,7 +49,10 @@ window.NAV = [
     { label: 'Directions', page: 'design/concept/directions.html', done: true },
     { label: 'Concept',    page: 'design/concept/concept.html',    done: true } ] },
 
-  { id: 'ui-visual',     label: 'UI + Visual',         pages: [ { label: 'UI + Visual',         page: null, done: false } ] },
+  { id: 'ui-visual', label: 'UI + Visual', pages: [
+    { label: 'Component kit',  page: 'design/kit/kit.html',  done: true },
+    { label: 'Sample screens', page: 'design/overview.html', done: false } ] },
+
   { id: 'tokens',        label: 'Tokens + Components', pages: [ { label: 'Tokens + Components', page: null, done: false } ] },
   { id: 'design-system', label: 'Design System',       pages: [ { label: 'Design System',       page: null, done: false } ] },
   { id: 'responsive',    label: 'Responsive',          pages: [ { label: 'Responsive',          page: null, done: false } ] },

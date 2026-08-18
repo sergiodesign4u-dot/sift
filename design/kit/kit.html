@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift - Component kit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="../../_nav.css">
+</head>
+<!--
+  design/kit/kit.html - the stand of the component kit (Stage 07, Step 3).
+
+  Four sections, and two of them exist so that a markdown file is visible to somebody who is
+  not reading the repository: TOKENS shows the whole :root block alive with the origin of each
+  value, INVENTORY shows the table of design/kit/inventory.md, COMPONENTS shows every class in
+  kit.css with its states, and SHELL shows the skeleton a colour copy takes from shell.html.
+
+  The stand's own chrome (section headings, the spec boxes around each component) is written
+  in the <style> block below on the --pf-* portfolio variables. That is deliberate and it is
+  not a product style: the frame around a component is not part of the product language, and
+  mixing it into kit.css would put portfolio furniture into the file Stage 08 audits.
+
+  Everything INSIDE a spec box is product, and carries no style of its own.
+  No em dash anywhere.
+-->
+<style>
+  /* ---- stand chrome only. Not product language, not part of the kit. ---- */
+  /* kit.css reserves 52px at the top of the body for the fixed portfolio bar that the product
+     screens carry. This stand navigates from the roadmap sidebar and has no such bar, so the
+     reservation is given back here rather than removed from the kit, where it is correct. */
+  body { padding-top: 0; }
+  .kit-head { max-width: 78ch; margin-bottom: 30px; }
+  .kit-eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pf-accent); }
+  .kit-head h1 { font-size: 29px; font-weight: 590; letter-spacing: -0.022em; margin: 10px 0 10px; }
+  .kit-head p { color: var(--pf-text-3); font-size: 14px; line-height: 1.7; }
+  .kit-head p + p { margin-top: 10px; }
+  .kit-sec { margin-top: 56px; scroll-margin-top: 70px; }
+  .kit-sec > h2 { font-size: 12px; font-family: var(--font-mono); font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--pf-accent); padding-bottom: 10px; border-bottom: 1px solid var(--pf-border-light); }
+  .kit-sec > h2 + p { color: var(--pf-text-3); font-size: 13.5px; line-height: 1.7; max-width: 82ch; margin-top: 14px; }
+  .kit-lvl { font-size: 19px; font-weight: 590; letter-spacing: -0.02em; margin: 40px 0 4px; }
+  .kit-lvl-d { color: var(--pf-text-3); font-size: 13px; margin-bottom: 18px; }
+  .spec { border: 1px solid var(--pf-border-light); border-radius: 10px; margin-bottom: 14px; overflow: hidden; }
+  .spec-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; padding: 11px 16px; background: var(--pf-bg-3); border-bottom: 1px solid var(--pf-border-light); }
+  .spec-name { font-size: 13.5px; font-weight: 590; color: var(--pf-text); }
+  .spec-cls { font-family: var(--font-mono); font-size: 11.5px; color: var(--pf-accent); }
+  .spec-where { font-size: 11.5px; color: var(--pf-text-3); margin-left: auto; }
+  .spec-body { padding: 20px 16px; background: var(--canvas); }
+  .spec-note { padding: 10px 16px 14px; font-size: 12px; color: var(--pf-text-3); line-height: 1.65; background: var(--canvas); }
+  .row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .row + .row { margin-top: 14px; }
+  .stack { display: grid; gap: 14px; }
+  .lbl { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--pf-text-3); margin-bottom: 8px; }
+  /* tokens */
+  .tok-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+  .tok { border: 1px solid var(--pf-border-light); border-radius: 8px; overflow: hidden; }
+  .tok-swatch { height: 62px; border-bottom: 1px solid var(--pf-border-light); }
+  .tok-meta { padding: 10px 12px; }
+  .tok-name { font-family: var(--font-mono); font-size: 12px; color: var(--pf-text); }
+  .tok-val { font-family: var(--font-mono); font-size: 11px; color: var(--pf-text-3); margin-top: 3px; }
+  .tok-origin { font-size: 11px; color: var(--pf-text-3); margin-top: 7px; line-height: 1.5; }
+  .tok-origin b { color: var(--pf-text); font-weight: 500; }
+  .shapes { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 18px; }
+  .shape { text-align: center; }
+  .shape-box { width: 84px; height: 58px; background: var(--surface); border: 1px solid var(--line); }
+  .type-row { display: flex; align-items: baseline; gap: 20px; flex-wrap: wrap; padding: 14px 0; border-bottom: 1px solid var(--pf-border-light); }
+  .type-meta { font-family: var(--font-mono); font-size: 11px; color: var(--pf-text-3); min-width: 210px; }
+  /* decision callout */
+  .decide { border: 1px solid var(--amber-edge); background: var(--amber-wash); border-radius: 10px; padding: 18px 20px; margin-bottom: 34px; }
+  .decide h2 { font-size: 14px; font-weight: 590; color: var(--amber); margin-bottom: 8px; }
+  .decide p { font-size: 13px; color: var(--pf-text-3); line-height: 1.7; max-width: 88ch; }
+  .decide ol { margin: 12px 0 0 18px; font-size: 13px; color: var(--pf-text-3); line-height: 1.7; }
+  .decide code { font-family: var(--font-mono); font-size: 12px; color: var(--porcelain); }
+  /* inventory table */
+  .tbl-wrap { overflow-x: auto; border: 1px solid var(--pf-border-light); border-radius: 10px; margin-top: 20px; }
+  table.inv { width: 100%; border-collapse: collapse; font-size: 12.5px; min-width: 700px; }
+  table.inv th, table.inv td { text-align: left; vertical-align: top; padding: 9px 14px; border-bottom: 1px solid var(--pf-border-light); }
+  table.inv thead th { font-family: var(--font-mono); font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--pf-text-3); background: var(--pf-bg-3); position: sticky; top: 0; }
+  table.inv td { color: var(--pf-text-3); line-height: 1.55; }
+  table.inv td:first-child { color: var(--pf-text); font-weight: 500; white-space: nowrap; }
+  table.inv td.cls { font-family: var(--font-mono); font-size: 11.5px; color: var(--pf-accent); }
+  table.inv tbody tr:last-child td { border-bottom: none; }
+  .inv-group td { background: var(--pf-bg-3); font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--pf-text-3) !important; }
+  .kit-foot { border-top: 1px solid var(--pf-border-light); margin-top: 60px; padding-top: 26px; font-size: 12.5px; color: var(--pf-text-3); display: flex; gap: 22px; flex-wrap: wrap; }
+  .kit-foot a { color: var(--pf-text-2, #a0a0b0); }
+  @media (max-width: 820px) { .spec-where { margin-left: 0; width: 100%; } }
+</style>
+<body>
+
+<svg class="sprite" aria-hidden="true"><defs>
+  <symbol id="i-signal" viewBox="0 0 24 24"><path d="M6 18v-3.5M12 18v-8M18 18v-12.5"/></symbol>
+  <symbol id="i-source" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.66 3.13 3 7 3s7-1.34 7-3V6"/><path d="M5 12v6c0 1.66 3.13 3 7 3s7-1.34 7-3v-6"/></symbol>
+  <symbol id="i-brief" viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h7"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 19c0-3.6 2.9-5.5 6.5-5.5s6.5 1.9 6.5 5.5"/></symbol>
+  <symbol id="i-filter" viewBox="0 0 24 24"><path d="M3 5.5h18l-7 8v5l-4 2v-7z"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M6 3v18"/><path d="M6 4h12l-2.5 4L18 12H6"/></symbol>
+  <symbol id="i-evidence" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-4 4v-4H4z"/><path d="M8.5 10.5h7M8.5 13h4"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 4.5 21 19.5H3z"/><path d="M12 10v4.2M12 17.1v.1"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M15 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h3"/></symbol>
+  <symbol id="i-drag" viewBox="0 0 24 24"><path d="M9 7h.1M15 7h.1M9 12h.1M15 12h.1M9 17h.1M15 17h.1"/></symbol>
+  <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V5"/><path d="m7.5 9.5 4.5-4.5 4.5 4.5"/><path d="M4.5 15v3.5a1.5 1.5 0 0 0 1.5 1.5h12a1.5 1.5 0 0 0 1.5-1.5V15"/></symbol>
+</defs></svg>
+
+<aside id="sidebar"></aside>
+
+<div class="page">
+
+  <div class="kit-head">
+    <div class="kit-eyebrow">Stage 07 &middot; UI + Visual &middot; Step 3</div>
+    <h1>Component kit</h1>
+    <p>Fifty components, three levels, one flat stylesheet. A screen is not drawn here, it is
+      assembled: every product screen from Step 5 on takes its classes from <code>kit.css</code>
+      and carries no style of its own. Something missing goes into the kit first and onto the
+      screen second.</p>
+    <p>The values did not start in this folder. Stage 06 wrote them by hand from the approved
+      brand plate into <code>design/_theme.css</code>, and this step moved that file here with
+      <code>git mv</code>, the <code>:root</code> block byte for byte, so the line from a pixel
+      on the plate to a token in the design system is never broken by a re-derivation. The
+      thirty-five screens that had never been in colour brought their structure from their own
+      wireframe and their appearance from the language, and nothing else.</p>
+  </div>
+
+  <div class="decide">
+    <h2>Open for your decision, before this kit is used to build anything</h2>
+    <p>Nine values entered <code>:root</code> in a block marked PENDING. Six of them were
+      already in the file, written as literals inside a class at Stage 06, which is the exact
+      drift a kit exists to close: one hairline appeared as <code>#333c44</code> in one rule and
+      <code>#3a444c</code> in four others, and <code>--gunmetal</code> was referenced by the
+      checkbox without ever being declared. Two are new (<code>--red-wash</code>,
+      <code>--red-edge</code>), built the same way as the amber pair, because <code>--red</code>
+      was declared at Stage 06 and not used by a single rule, and a blocking failure needs a
+      surface. One (<code>--r-lg</code>) is the frame radius, so a dialog can be the same
+      material as the frame.</p>
+    <ol>
+      <li><code>--line-2: #3a444c</code>, the second hairline. The two hover tones folded to one.</li>
+      <li><code>--cyan-wash</code> and <code>--cyan-edge</code>, the accent as a surface and an edge.</li>
+      <li><code>--amber-wash</code> and <code>--amber-edge</code>, low signal and warning.</li>
+      <li><code>--red-wash</code> and <code>--red-edge</code>, blocking failure only. New.</li>
+      <li><code>--shadow</code>, the one depth in the product, and <code>--r-lg: 12px</code>, the frame radius.</li>
+    </ol>
+    <p style="margin-top:12px">Geometry is still written as literals inside classes (font sizes,
+      paddings, the type scale). That is how the file arrived and it is not fixed here on
+      purpose: naming those is the primitive and semantic token split, which is Stage 08. Said
+      out loud so it is a decision and not an oversight.</p>
+  </div>
+
+  <!-- ============================ TOKENS ============================ -->
+  <section class="kit-sec" id="tokens">
+    <h2>Tokens</h2>
+    <p>The whole <code>:root</code> block, alive. Beside each value is its origin, taken from the
+      comment that travels with the variable in <code>kit.css</code>: <b>plate B pixel</b> means
+      it was read off the approved brand plate at Stage 06, <b>attribute</b> means it was derived
+      from one of the five signed attributes, <b>taste</b> and <b>technical decision</b> mean what
+      they say. Stage 08 turns these comments into semantic role names. Nothing here may change
+      as a side effect of a refactor: a value changes only by a decision stated as variable,
+      value, why.</p>
+
+    <div class="tok-grid">
+      <div class="tok"><div class="tok-swatch" style="background:var(--canvas)"></div><div class="tok-meta"><div class="tok-name">--canvas</div><div class="tok-val">#0B0E11</div><div class="tok-origin"><b>plate B pixel.</b> Page background, deepest surface. A1 quiet</div></div></div>
+      <div class="tok"><div class="tok-swatch" style="background:var(--surface)"></div><div class="tok-meta"><div class="tok-name">--surface</div><div class="tok-val">#151A1F</div><div class="tok-origin"><b>plate B pixel.</b> Card, panel, bar; hover of a ranked row</div></div></div>
+      <div class="tok"><div class="tok-swatch" style="background:var(--elevated)"></div><div class="tok-meta"><div class="tok-name">--elevated</div><div class="tok-val">#1E252B</div><div class="tok-origin"><b>plate B pixel.</b> Raised panel, active tab, checkbox field</div></div></div>
+      <div class="tok"><div class="tok-swatch" style="background:var(--line)"></div><div class="tok-meta"><div class="tok-name">--line</div><div class="tok-val">#262D34</div><div class="tok-origin"><b>plate B pixel.</b> Every hairline border. Depth without shadow</div></div></div>
+      <div class="tok"><div class="tok-swatch" style="background:var(--line-2)"></div><div class="tok-meta"><div class="tok-name">--line-2</div><div class="tok-val">#3A444C</div><div class="tok-origin"><b>pending.</b> Control outline and hover border. Was a literal in four classes</div></div></div>
+      <div class="tok"><div class="tok-swatch" style="background:var(--porcelain)"></div><div class="tok-meta"><div class="tok-name">--porcelain</div><div class="tok-val">#EAEEF2</div><div class="tok-origin"><b>plate B pixel.</b> Primary text and the mark. A5</div></div></div>
+      <div class="tok"><div class="tok-swatch" style="background:var(--ash)"></div><div class="tok-meta"><div class="tok-name">--ash</div><div class="tok-val">#868F99</div><div class="tok-origin"><b>plate B pixel.</b> Secondary text, metadata, quote</div></div></div>
+      <div class="tok"><div class="tok-swatch" style="background:var(--cyan)"></div><div class="tok-meta"><div class="tok-name">--cyan</div><div class="tok-val">#33C4CC</div><div class="tok-origin"><b>plate B pixel.</b> The one accent. A1, A2 evidence marker, A4</div></div></div>
+      <div class="tok"><div class="tok-swatch" style="background:var(--amber)"></div><div class="tok-meta"><div class="tok-name">--amber</div><div class="tok-val">#D9A441</div><div class="tok-origin"><b>attribute A3.</b> Low signal only, as information and never as an alarm</div></div></div>
+      <div class="tok"><div class="tok-swatch" style="background:var(--red)"></div><div class="tok-meta"><div class="tok-name">--red</div><div class="tok-val">#E5484D</div><div class="tok-origin"><b>attribute A3.</b> Blocking failure only, paired with the next move</div></div></div>
+      <div class="tok"><div class="tok-swatch" style="background:var(--cyan-wash);border-bottom-color:var(--cyan-edge)"></div><div class="tok-meta"><div class="tok-name">--cyan-wash / --cyan-edge</div><div class="tok-val">rgba(51,196,204, .10 / .30)</div><div class="tok-origin"><b>pending.</b> The accent as a surface. Citation chip, selected row</div></div></div>
+      <div class="tok"><div class="tok-swatch" style="background:var(--amber-wash);border-bottom-color:var(--amber-edge)"></div><div class="tok-meta"><div class="tok-name">--amber-wash / --amber-edge</div><div class="tok-val">rgba(217,164,65, .10 / .32)</div><div class="tok-origin"><b>pending.</b> Low signal badge, warning notice, alert tag</div></div></div>
+      <div class="tok"><div class="tok-swatch" style="background:var(--red-wash);border-bottom-color:var(--red-edge)"></div><div class="tok-meta"><div class="tok-name">--red-wash / --red-edge</div><div class="tok-val">rgba(229,72,77, .10 / .32)</div><div class="tok-origin"><b>pending, new.</b> Blocking failure only. The first use --red has ever had</div></div></div>
+    </div>
+
+    <h3 class="kit-lvl">Type</h3>
+    <p class="kit-lvl-d">Two faces. Inter carries everything a person reads, IBM Plex Mono carries
+      every number and every piece of provenance, because the count is the trust surface (A2) and
+      a number that shifts width between rows cannot be compared down a column.</p>
+    <div class="type-row"><span class="type-meta">display &middot; 29 / 590 / -0.022em</span><span style="font-size:29px;font-weight:590;letter-spacing:-0.022em">Onboarding is confusing</span></div>
+    <div class="type-row"><span class="type-meta">headline &middot; 22 / 590 / -0.02em</span><span style="font-size:22px;font-weight:590;letter-spacing:-0.02em">Onboarding is confusing</span></div>
+    <div class="type-row"><span class="type-meta">title &middot; 17 / 590 / -0.015em</span><span style="font-size:17px;font-weight:590;letter-spacing:-0.015em">Onboarding is confusing</span></div>
+    <div class="type-row"><span class="type-meta">body &middot; 14 / 400 / -0.011em</span><span style="font-size:14px">Your feedback, clustered into ranked themes. Open one to trace the evidence behind it.</span></div>
+    <div class="type-row"><span class="type-meta">secondary &middot; 12.5 / 400 / ash</span><span style="font-size:12.5px;color:var(--ash)">CSV, Intercom &middot; latest feedback 2 days ago</span></div>
+    <div class="type-row"><span class="type-meta">mono &middot; IBM Plex Mono 500</span><span style="font-family:var(--font-mono);font-size:12.5px">n=42 &middot; 2,904 of 3,750 items</span></div>
+
+    <h3 class="kit-lvl">Form and motion</h3>
+    <p class="kit-lvl-d">Three radii and one easing. A radius is chosen by what the hand does with
+      the thing: 4px for a mark that sits inside text, 6px for anything a hand acts on, 12px for
+      a sheet that floats above the screen.</p>
+    <div class="shapes">
+      <div class="shape"><div class="shape-box" style="border-radius:var(--r-sm)"></div><div class="lbl" style="margin-top:8px">--r-sm 4px</div></div>
+      <div class="shape"><div class="shape-box" style="border-radius:var(--r)"></div><div class="lbl" style="margin-top:8px">--r 6px</div></div>
+      <div class="shape"><div class="shape-box" style="border-radius:var(--r-lg)"></div><div class="lbl" style="margin-top:8px">--r-lg 12px</div></div>
+      <div class="shape"><div class="shape-box" style="border-radius:var(--r-lg);box-shadow:var(--shadow)"></div><div class="lbl" style="margin-top:8px">--shadow</div></div>
+    </div>
+    <p class="kit-lvl-d" style="margin-top:18px"><code>--ease: cubic-bezier(0.22, 1, 0.36, 1)</code>,
+      ease out and restrained. Every transition in the kit runs on it, and every one of them is
+      switched off under <code>prefers-reduced-motion</code>.</p>
+  </section>
+
+  <!-- ============================ INVENTORY ============================ -->
+  <section class="kit-sec" id="inventory">
+    <h2>Inventory</h2>
+    <p>The fifty components of the whole product, read out of all 37 product screens plus the
+      three globals that live in no HTML file at all. Full table with variants, states and
+      occurrence counts in <code>design/kit/inventory.md</code>; this is the index of it. Level
+      is the load-bearing column: it is the order of this file, and Stage 08 reads it as the
+      order of the split and of the <code>@import</code> chain.</p>
+
+    <div class="tbl-wrap">
+      <table class="inv">
+        <thead><tr><th>Component</th><th>Class</th><th>Screens</th><th>States</th></tr></thead>
+        <tbody>
+          <tr class="inv-group"><td colspan="4">Level 1 &middot; atoms &middot; contains no other kit component</td></tr>
+          <tr><td>Button</td><td class="cls">.btn .btn--ghost .btn--bare .btn--lg .btn--icon</td><td>30</td><td>rest, hover, focus, disabled</td></tr>
+          <tr><td>Text input</td><td class="cls">.input .input--title</td><td>8</td><td>rest, focus, error</td></tr>
+          <tr><td>Textarea</td><td class="cls">textarea.input</td><td>6.1, 6.2</td><td>rest, focus</td></tr>
+          <tr><td>Select</td><td class="cls">select.input</td><td>3.2</td><td>rest, focus</td></tr>
+          <tr><td>Checkbox</td><td class="cls">.check</td><td>2.0, 7.2</td><td>unchecked, checked</td></tr>
+          <tr><td>Field label</td><td class="cls">.label .label-row .vh</td><td>6</td><td>rest</td></tr>
+          <tr><td>Filter chip</td><td class="cls">.chip .chip-count</td><td>5</td><td>off, on</td></tr>
+          <tr><td>Confidence indicator</td><td class="cls">.conf .conf-n</td><td>9</td><td>strong, low signal</td></tr>
+          <tr><td>Low-signal badge</td><td class="cls">.badge-low</td><td>3</td><td>present, absent</td></tr>
+          <tr><td>Citation marker</td><td class="cls">.cite .citechip .cited</td><td>5</td><td>static, linked, hover</td></tr>
+          <tr><td>Status tag</td><td class="cls">.tag .tag--alert</td><td>7</td><td>normal, alert</td></tr>
+          <tr><td>Rank number</td><td class="cls">.rank</td><td>4</td><td>rest</td></tr>
+          <tr><td>Avatar</td><td class="cls">.avatar .acct-id-avatar</td><td>28</td><td>rest</td></tr>
+          <tr><td>Icon slot</td><td class="cls">.iconslot--row .iconslot--card .state-ic .step-n</td><td>34</td><td>rest, current</td></tr>
+          <tr><td>Scope line</td><td class="cls">.scope</td><td>13</td><td>populated, zero, filtered, stale</td></tr>
+          <tr><td>Skeleton bar</td><td class="cls">.skel</td><td>2.2, 4.2</td><td>animating</td></tr>
+          <tr><td>Inline text link</td><td class="cls">.link .link--muted .link--action</td><td>18</td><td>rest, hover</td></tr>
+          <tr><td>Drag handle</td><td class="cls">.drag</td><td>6.1, 6.2</td><td>rest, grab</td></tr>
+          <tr><td>List row link</td><td class="cls">.cardrow</td><td>7.0</td><td>rest, hover</td></tr>
+
+          <tr class="inv-group"><td colspan="4">Level 2 &middot; molecules &middot; contains atoms, contains no molecule</td></tr>
+          <tr><td>Theme card</td><td class="cls">.theme .theme-main .theme-quote .theme-drill</td><td>2.0</td><td>rest, hover, selected, low signal, clamped</td></tr>
+          <tr><td>Evidence snippet</td><td class="cls">.snippet .snippet-quote .snippet-meta</td><td>4.0, 4.1</td><td>rest, hover, redacted</td></tr>
+          <tr><td>Source row</td><td class="cls">.src-row .src-stats .rowalert</td><td>3.0, 3.5, 3.6</td><td>connected, syncing, failed</td></tr>
+          <tr><td>Source card</td><td class="cls">.src-card .src-card-note</td><td>3.0, 3.4, 3.5</td><td>available, unavailable</td></tr>
+          <tr><td>Saved brief row</td><td class="cls">.brief-row .brief-title</td><td>6.0</td><td>shared, draft</td></tr>
+          <tr><td>Composer brief row</td><td class="cls">.briefrow .drag</td><td>6.1, 6.2</td><td>rest, hover</td></tr>
+          <tr><td>Account row</td><td class="cls">.acct-row</td><td>7.1, 7.2</td><td>rest, checked</td></tr>
+          <tr><td>Form field</td><td class="cls">.field .field-err</td><td>5</td><td>rest, focus, error</td></tr>
+          <tr><td>Notice band</td><td class="cls">.notice .notice--warn .notice--error</td><td>7</td><td>information, warning, error</td></tr>
+          <tr><td>Screen head</td><td class="cls">.screenhead .head-action .scope</td><td>15</td><td>rest, action hidden</td></tr>
+          <tr><td>Toolbar</td><td class="cls">.toolbar .toolbar-full .toolbar-compact</td><td>6</td><td>at rest, filtered</td></tr>
+          <tr><td>Selection bar</td><td class="cls">.selbar</td><td>2.0, 6.1, 6.2</td><td>hidden, present</td></tr>
+          <tr><td>Action bar</td><td class="cls">.actionbar .actionbar-note</td><td>4</td><td>rest</td></tr>
+          <tr><td>Phase strip</td><td class="cls">.steps .step .step-n</td><td>6</td><td>upcoming, current, done</td></tr>
+          <tr><td>Breadcrumb</td><td class="cls">.breadcrumb</td><td>9</td><td>rest</td></tr>
+          <tr><td>Skeleton card</td><td class="cls">.skelcard .skelrow</td><td>2.2, 4.2</td><td>animating</td></tr>
+          <tr><td>Legal TOC</td><td class="cls">.legal-toc</td><td>9.0, 9.1, 9.2</td><td>rest</td></tr>
+          <tr><td>Auth card</td><td class="cls">.auth-card .auth-value .auth-sent</td><td>1.0, 1.1, 1.2</td><td>rest, submitted</td></tr>
+          <tr><td>Marketing tier card</td><td class="cls">.tier</td><td>0.0</td><td>rest</td></tr>
+          <tr><td>Marketing step card</td><td class="cls">.mk-step</td><td>0.0</td><td>rest</td></tr>
+
+          <tr class="inv-group"><td colspan="4">Level 3 &middot; organisms &middot; contains molecules, or is a screen shell</td></tr>
+          <tr><td>App header</td><td class="cls">.appbar .navtabs .brand</td><td>27</td><td>rest, hover, active</td></tr>
+          <tr><td>Bottom tabs</td><td class="cls">.bottomtabs .btab</td><td>27</td><td>rest, active</td></tr>
+          <tr><td>App footer</td><td class="cls">.appfoot</td><td>27</td><td>rest</td></tr>
+          <tr><td>Public bar</td><td class="cls">.public-bar .public-tag</td><td>10</td><td>rest</td></tr>
+          <tr><td>Empty / error state</td><td class="cls">.state .state--inline</td><td>8</td><td>empty, error, first run</td></tr>
+          <tr><td>Form</td><td class="cls">.form</td><td>9</td><td>rest, error</td></tr>
+          <tr><td>Dialog</td><td class="cls">.dialog .dialog-actions .u-apart</td><td>6.3, 3.6</td><td>rest, generating</td></tr>
+          <tr><td>Legal document</td><td class="cls">.legal-prose .legal-crumb .legal-related</td><td>9.0, 9.1, 9.2</td><td>rest</td></tr>
+          <tr><td>Account shell</td><td class="cls">.acct-layout .acct-nav .acct-panel</td><td>7.0 to 7.3</td><td>rest, current</td></tr>
+          <tr><td>Public document</td><td class="cls">.public-main .pub-key .pub-theme .pub-cites</td><td>6.4</td><td>rest</td></tr>
+          <tr><td>Marketing page shell</td><td class="cls">.mk-hero .mk-section .mk-grid</td><td>0.0</td><td>rest</td></tr>
+
+          <tr class="inv-group"><td colspan="4">One-off &middot; not taken into the kit &middot; one occurrence, no exception, declared on its own screen at rollout</td></tr>
+          <tr><td>Usage meter</td><td class="cls">acct-meter</td><td>7.3</td><td>the screen argues a fraction beats a bar</td></tr>
+          <tr><td>CSV column mapping</td><td class="cls">src-map</td><td>3.2</td><td>its reflow is specific to mapping</td></tr>
+          <tr><td>File drop zone</td><td class="cls">src-drop</td><td>3.2</td><td>one screen</td></tr>
+          <tr><td>CSV review summary</td><td class="cls">src-review</td><td>3.2</td><td>one screen</td></tr>
+          <tr><td>OAuth scope list</td><td class="cls">src-scopes</td><td>3.3</td><td>one screen</td></tr>
+          <tr><td>Disconnect confirm body</td><td class="cls">src-confirm</td><td>3.6</td><td>the dialog is the component, this is its content</td></tr>
+          <tr><td>Link row</td><td class="cls">wf-linkrow</td><td>6.3</td><td>the only place a value is copied</td></tr>
+          <tr><td>Reason line</td><td class="cls">wf-reason</td><td>4.0</td><td>one screen</td></tr>
+          <tr><td>Raw quote</td><td class="cls">wf-raw-quote</td><td>5.0</td><td>the verbatim at document scale</td></tr>
+          <tr><td>Provenance list</td><td class="cls">wf-prov-list</td><td>5.0, 5.1</td><td>one screen in two states</td></tr>
+          <tr><td>Marketing trust list</td><td class="cls">mk-trust</td><td>0.0</td><td>one screen</td></tr>
+          <tr><td>Marketing footer block</td><td class="cls">mk-footer</td><td>0.0</td><td>the app footer is the component</td></tr>
+          <tr><td>List-closing note</td><td class="cls">wf-listnote</td><td>4.1</td><td>one screen</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============================ COMPONENTS ============================ -->
+  <section class="kit-sec" id="components">
+    <h2>Components</h2>
+    <p>Every class in <code>kit.css</code>, with its states, in the words the product actually
+      uses (<code>voice/docs/microcopy.md</code>). Ordered atoms, molecules, organisms, which is
+      the order of the file. Nothing inside a box below carries a style of its own.</p>
+
+    <h3 class="kit-lvl">Level 1 &middot; Atoms</h3>
+    <p class="kit-lvl-d">Nineteen. Six of them are here by the form-control exception rather than
+      by the two-occurrence threshold: a system without a text input is not a system.</p>
+
+    <div class="spec">
+      <div class="spec-head"><span class="spec-name">Button</span><span class="spec-cls">.btn &middot; .btn--ghost &middot; .btn--bare &middot; .btn--lg &middot; .btn--icon</span><span class="spec-where">30 screens</span></div>
+      <div class="spec-body">
+        <div class="lbl">Emphasis: fill, outline, bare. One filled button per zone, and it is the next move.</div>
+        <div class="row">
+          <button class="btn"><svg class="ic"><use href="#i-brief"></use></svg> Build brief</button>
+          <button class="btn--ghost">Save draft</button>
+          <button class="btn--bare" style="width:auto">Load 6 more themes</button>
+        </div>
+        <div class="lbl" style="margin-top:22px">Size: medium everywhere, large on the marketing page only</div>
+        <div class="row">
+          <button class="btn btn--lg">See the app</button>
+          <button class="btn--ghost btn--lg">Compare plans</button>
+        </div>
+        <div class="lbl" style="margin-top:22px">Content: icon only, with the label kept for a screen reader. Disabled.</div>
+        <div class="row">
+          <button class="btn--icon"><svg class="ic"><use href="#i-close"></use></svg><span class="vh">Remove from brief</span></button>
+          <button class="btn--icon"><svg class="ic"><use href="#i-copy"></use></svg><span class="vh">Copy quote</span></button>
+          <button class="btn" disabled>Import 840 items</button>
+        </div>
+      </div>
+      <div class="spec-note">Six declared forms, against two declarations plus four contextual
+        overrides before the census. Width is not on the size axis: full width is the layout
+        utility <code>.u-full</code>, so a button never has to be redeclared to fill a row.</div>
+    </div>
+
+    <div class="spec">
+      <div class="spec-head"><span class="spec-name">Inline text link</span><span class="spec-cls">.link &middot; .link--muted &middot; .link--action</span><span class="spec-where">18 screens, 88 occurrences</span></div>
+      <div class="spec-body">
+        <p style="font-size:14px;color:var(--ash);max-width:70ch">Every conclusion here traces to
+          the items behind it. Read how synthesis works in <a class="link" href="#">Security and GDPR</a>,
+          or go straight to <a class="link" href="#">Sources</a>.</p>
+        <div class="row" style="margin-top:14px">
+          <a class="link--muted" href="#">Privacy</a>
+          <a class="link--muted" href="#">Terms</a>
+          <button class="link--action">Clear filters</button>
+        </div>
+      </div>
+      <div class="spec-note">The largest group of controls in the product, and it had no
+        declaration anywhere, which is why the colour layer had no rule for a single one of
+        them. "Clear filters" is a text action, so it is this atom with a control's target, not
+        a fourth button emphasis.</div>
+    </div>
+
+    <div class="spec">
+      <div class="spec-head"><span class="spec-name">Text input, textarea, select</span><span class="spec-cls">.input &middot; .input--title</span><span class="spec-where">8 screens</span></div>
+      <div class="spec-body">
+        <div class="stack" style="max-width:420px">
+          <label class="field"><span class="label">Work email</span><input class="input" type="email" value="pm@northwind.io"></label>
+          <label class="field"><span class="label">Password</span><input class="input" type="password" value="............"></label>
+          <label class="field"><span class="label">Rationale</span><textarea class="input" rows="3">The three themes above account for most of the volume this month.</textarea></label>
+          <label class="field"><span class="label">Map to</span><select class="input"><option>Feedback text</option><option>Source</option><option>Date</option></select></label>
+          <label class="field"><span class="label">Feedback file</span><input class="input" value="feedback-q3.csv" aria-invalid="true"><span class="field-err">This column has no values in the first 100 rows. Map it or leave it out.</span></label>
+        </div>
+        <div class="lbl" style="margin-top:22px">Title inline: the brief is named where it will be read</div>
+        <input class="input input--title" value="Q3 onboarding themes">
+      </div>
+      <div class="spec-note">All at the 44px floor. The field sits on the raised surface, so an
+        empty field is visible before it is focused, and focus is the one cyan ring the whole
+        product uses.</div>
+    </div>
+
+    <div class="spec">
+      <div class="spec-head"><span class="spec-name">Confidence indicator, low-signal badge</span><span class="spec-cls">.conf &middot; .conf-n &middot; .badge-low</span><span class="spec-where">9 screens &middot; canonical, owner 2.0</span></div>
+      <div class="spec-body">
+        <div class="row">
+          <span class="conf"><span class="conf-n">n=42</span></span>
+          <span class="conf"><span class="conf-n">n=6</span> <span class="badge-low">low signal</span></span>
+        </div>
+      </div>
+      <div class="spec-note">Mandatory in MVP (D2), and never colour alone: the count and the
+        badge word carry the meaning, so the indicator survives a monochrome print and a reader
+        who cannot separate amber from ash.</div>
+    </div>
+
+    <div class="spec">
+      <div class="spec-head"><span class="spec-name">Filter chip, checkbox, rank, avatar</span><span class="spec-cls">.chip &middot; .check &middot; .rank &middot; .avatar</span><span class="spec-where">5, 2, 4, 28 screens</span></div>
+      <div class="spec-body">
+        <div class="row">
+          <button class="chip"><svg class="ic"><use href="#i-source"></use></svg> Source: all <span class="chip-count">2</span></button>
+          <button class="chip is-on">Last 30 days <span class="chip-count">2,904</span></button>
+          <input class="check" type="checkbox" aria-label="Select theme">
+          <input class="check" type="checkbox" checked aria-label="Select theme">
+          <span class="rank">4</span>
+          <span class="avatar"></span>
+        </div>
+      </div>
+      <div class="spec-note">The active chip steps up a surface instead of taking the accent.
+        Cyan is spent on the one next move, and a filter is not it. The checkbox sits at the 24px
+        AA floor by the named exception: at 44px it would double the height of every ranked row.</div>
+    </div>
+
+    <div class="spec">
+      <div class="spec-head"><span class="spec-name">Status tag, citation marker, icon slot, drag handle</span><span class="spec-cls">.tag &middot; .cite &middot; .citechip &middot; .iconslot &middot; .drag</span><span class="spec-where">7, 5, 34, 2 screens</span></div>
+      <div class="spec-body">
+        <div class="row">
+          <span class="tag">connected</span>
+          <span class="tag">draft</span>
+          <span class="tag tag--alert">sync failed</span>
+          <span class="cite">3</span>
+          <a class="citechip" href="#">Intercom <span>12</span></a>
+          <span class="iconslot iconslot--row"><svg class="ic"><use href="#i-source"></use></svg></span>
+          <span class="iconslot iconslot--card"><svg class="ic"><use href="#i-upload"></use></svg></span>
+          <span class="drag"><svg class="ic" style="width:15px;height:15px"><use href="#i-drag"></use></svg></span>
+        </div>
+      </div>
+      <div class="spec-note">Three classes with identical anatomy (source status, brief status,
+        draft marker) merged into one tag. The alert form is amber AND dashed, so a failed source
+        cannot read as a healthy one without relying on hue.</div>
+    </div>
+
+    <h3 class="kit-lvl">Level 2 &middot; Molecules</h3>
+    <p class="kit-lvl-d">Twenty. Each contains atoms and no other molecule.</p>
+
+    <div class="spec">
+      <div class="spec-head"><span class="spec-name">Theme card</span><span class="spec-cls">.theme</span><span class="spec-where">2.0 &middot; the signature row</span></div>
+      <div class="spec-body" style="padding:0 16px">
+        <ul class="list">
+          <li class="theme">
+            <input class="check" type="checkbox" aria-label="Select"><span class="rank">1</span>
+            <a class="theme-main" href="#"><span class="theme-label">Onboarding is confusing</span>
+              <span class="theme-quote">"I signed up and just stared at an empty dashboard. No idea what to do first."</span>
+              <span class="theme-prov">CSV, Intercom &middot; latest feedback 2 days ago</span></a>
+            <span class="conf"><span class="conf-n">n=42</span></span>
+            <a class="theme-drill" href="#" aria-label="Open theme">&rsaquo;</a>
+          </li>
+          <li class="theme">
+            <input class="check" type="checkbox" checked aria-label="Select"><span class="rank">5</span>
+            <a class="theme-main" href="#"><span class="theme-label">Wants Salesforce integration</span>
+              <span class="theme-quote">"We keep our accounts in Salesforce, so right now I copy things across by hand."</span>
+              <span class="theme-prov">Intercom only &middot; latest feedback 9 days ago</span></a>
+            <span class="conf"><span class="conf-n">n=6</span> <span class="badge-low">low signal</span></span>
+            <a class="theme-drill" href="#" aria-label="Open theme">&rsaquo;</a>
+          </li>
+        </ul>
+      </div>
+      <div class="spec-note">Selected is the cyan rule on the left edge, the one place the accent
+        marks a state. The representative quote puts evidence in front of the eye before the
+        click (A2), and the rank is written down so the ranking claim is quotable (A4).</div>
+    </div>
+
+    <div class="spec">
+      <div class="spec-head"><span class="spec-name">Evidence snippet</span><span class="spec-cls">.snippet</span><span class="spec-where">4.0, 4.1 &middot; canonical, owner 4.0</span></div>
+      <div class="spec-body" style="padding:0 16px">
+        <a class="snippet" href="#">
+          <div class="snippet-quote">"I signed up and just stared at an empty dashboard. No idea what to do first."</div>
+          <div class="snippet-meta"><span class="cite">1</span> Intercom &middot; 2 days ago &middot; <span class="redacted">name removed</span></div>
+        </a>
+        <a class="snippet" href="#">
+          <div class="snippet-quote">"The first run took me twenty minutes and I still was not sure it worked."</div>
+          <div class="snippet-meta"><span class="cite">2</span> CSV import &middot; 5 days ago</div>
+        </a>
+      </div>
+      <div class="spec-note">The customer's words are in primary ink at reading size; everything
+        the product knows about them is mono and recedes. PII is scrubbed by default and the
+        snippet says where, rather than leaving a silent gap.</div>
+    </div>
+
+    <div class="spec">
+      <div class="spec-head"><span class="spec-name">Source row, source card</span><span class="spec-cls">.src-row &middot; .src-card &middot; .rowalert</span><span class="spec-where">3.0, 3.4, 3.5, 3.6</span></div>
+      <div class="spec-body" style="padding:0 16px">
+        <div class="src-row">
+          <span class="iconslot iconslot--row"><svg class="ic"><use href="#i-source"></use></svg></span>
+          <div class="src-main"><span class="src-name">Intercom</span><span class="src-sub">conversations &middot; syncs every hour</span></div>
+          <div class="src-stats"><div class="src-stat"><span class="src-stat-l">items</span><span class="src-stat-v">2,431</span></div><div class="src-stat"><span class="src-stat-l">last sync</span><span class="src-stat-v">14 min ago</span></div></div>
+          <span class="tag">connected</span>
+          <div class="src-rowactions"><a class="btn--ghost" href="#">Manage</a></div>
+        </div>
+        <div class="src-row">
+          <span class="iconslot iconslot--row"><svg class="ic"><use href="#i-alert"></use></svg></span>
+          <div class="src-main"><span class="src-name">Zendesk</span><span class="src-sub">tickets</span>
+            <span class="rowalert">The last sync did not finish. The 1,204 items already imported are still here and still in the synthesis.</span></div>
+          <span class="tag tag--alert">sync failed</span>
+          <div class="src-rowactions"><button class="btn--ghost">Retry sync</button></div>
+        </div>
+        <div class="src-avail">
+          <div class="src-card">
+            <span class="iconslot iconslot--card"><svg class="ic"><use href="#i-upload"></use></svg></span>
+            <span class="src-card-name">CSV file</span>
+            <span class="src-card-d">Upload an export from any tool. Map the columns once and re-import on the same mapping.</span>
+            <button class="btn--ghost">Connect</button>
+          </div>
+          <div class="src-card">
+            <span class="iconslot iconslot--card"><svg class="ic"><use href="#i-source"></use></svg></span>
+            <span class="src-card-name">Salesforce</span>
+            <span class="src-card-d">Pull feedback attached to accounts and opportunities.</span>
+            <span class="src-card-note">Not available yet</span>
+          </div>
+        </div>
+      </div>
+      <div class="spec-note">A failed source keeps its own retry beside it, and the alert line
+        says what survived. A tag alone reports that something is wrong and nothing about what to
+        do next.</div>
+    </div>
+
+    <div class="spec">
+      <div class="spec-head"><span class="spec-name">Notice band</span><span class="spec-cls">.notice &middot; .notice--warn &middot; .notice--error</span><span class="spec-where">7 screens</span></div>
+      <div class="spec-body">
+        <div class="notice">Synthesis last ran <b>2 hours ago</b>. New items are included at the next run.</div>
+        <div class="notice notice--warn">One source did not finish its last sync, so this view is missing <b>Zendesk</b>. Everything else is current.</div>
+        <div class="notice notice--error">This brief could not be generated. Nothing was saved. <a class="link" href="#">Try again</a></div>
+      </div>
+      <div class="spec-note">Red means a failure that blocks or destroys, and nothing else. A run
+        that failed while the previous result survives is amber, because calling it an error
+        overstates it, and overstating is the same defect as understating.</div>
+    </div>
+
+    <div class="spec">
+      <div class="spec-head"><span class="spec-name">Brief rows, account row, phase strip, breadcrumb</span><span class="spec-cls">.brief-row &middot; .briefrow &middot; .acct-row &middot; .steps &middot; .breadcrumb</span><span class="spec-where">6.0, 6.1, 7.x, 9 screens</span></div>
+      <div class="spec-body" style="padding:0">
+        <nav class="breadcrumb"><a href="#">Synthesis</a> &rsaquo; <span>Onboarding is confusing</span></nav>
+        <div class="steps"><span class="step"><span class="step-n">1</span> Sources</span><span class="step-sep">&rsaquo;</span><span class="step is-current"><span class="step-n">2</span> Select themes</span><span class="step-sep">&rsaquo;</span><span class="step"><span class="step-n">3</span> Share</span></div>
+        <div style="padding:0 16px">
+          <div class="brief-row">
+            <div class="brief-main"><a class="brief-title" href="#">Q3 onboarding themes</a><div class="brief-meta">6 themes &middot; shared 4 days ago &middot; 18 views</div></div>
+            <span class="tag">shared</span>
+            <div class="brief-actions"><a class="btn--ghost" href="#">Open</a></div>
+          </div>
+          <div class="briefrow">
+            <span class="drag"><svg class="ic" style="width:15px;height:15px"><use href="#i-drag"></use></svg></span>
+            <div class="briefrow-main"><span class="briefrow-label">Onboarding is confusing</span><span class="briefrow-meta">n=42 &middot; CSV, Intercom</span></div>
+            <button class="btn--icon"><svg class="ic"><use href="#i-close"></use></svg><span class="vh">Remove from brief</span></button>
+          </div>
+          <label class="acct-row">
+            <input class="check" type="checkbox" checked>
+            <div class="acct-row-main"><span class="acct-row-t">Scrub personal data on import</span><span class="acct-row-d">Names, emails and phone numbers are removed before anything is synthesized. On by default.</span></div>
+          </label>
+        </div>
+      </div>
+      <div class="spec-note">The saved brief row and the composer row look alike and are two
+        components: one has a status and one way in, the other has a handle and a remove. Same
+        content, different anatomy, so not a variant.</div>
+    </div>
+
+    <div class="spec">
+      <div class="spec-head"><span class="spec-name">Toolbar, screen head, selection bar, action bar</span><span class="spec-cls">.screenhead &middot; .toolbar &middot; .selbar &middot; .actionbar</span><span class="spec-where">15, 6, 3, 4 screens</span></div>
+      <div class="spec-body" style="padding:0 16px">
+        <div class="screenhead"><div class="screenhead-row"><div class="head-text"><h1 class="h1">Synthesis</h1><p class="sub">Your feedback, clustered into ranked themes. Open one to trace the evidence behind it.</p>
+          <p class="scope"><b>12</b> themes from <b>2,904</b> of 3,750 feedback items in the last 30 days, across 2 sources.</p></div>
+          <div class="head-action"><button class="btn"><svg class="ic"><use href="#i-brief"></use></svg> Build brief</button></div></div></div>
+        <div class="toolbar"><div class="toolbar-full">
+          <button class="chip"><svg class="ic"><use href="#i-filter"></use></svg> Confidence: all <span class="chip-count">12</span></button>
+          <button class="chip is-on">Last 30 days <span class="chip-count">2,904</span></button>
+          <button class="link--action">Clear filters</button>
+          <span class="sortnote">Sort: <b>signal rank</b></span></div></div>
+        <div class="selbar" style="display:flex"><span class="selbar-note">2 themes selected</span><button class="btn">Add to brief</button><button class="btn--ghost">Cancel</button></div>
+        <div class="actionbar"><span class="actionbar-note">Nothing is shared until you generate a link.</span><button class="btn--ghost">Save draft</button><button class="btn">Generate share link</button></div>
+      </div>
+      <div class="spec-note">The head action and the selection bar are mutually exclusive in CSS,
+        so a screen never carries two primary actions. One decision at a time, demonstrated
+        rather than promised.</div>
+    </div>
+
+    <h3 class="kit-lvl">Level 3 &middot; Organisms</h3>
+    <p class="kit-lvl-d">Eleven. Each contains molecules, or is a screen shell, which is the
+      ceiling: the deepest nesting in the product is a dialog holding a form.</p>
+
+    <div class="spec">
+      <div class="spec-head"><span class="spec-name">Empty and error state</span><span class="spec-cls">.state &middot; .state--inline</span><span class="spec-where">8 screens</span></div>
+      <div class="spec-body">
+        <div class="state">
+          <span class="state-ic"><svg class="ic"><use href="#i-signal"></use></svg></span>
+          <div class="state-t">Nothing to synthesize yet</div>
+          <div class="state-d">Connect a source and Sift starts clustering as soon as the first items land.</div>
+          <div class="state-actions"><a class="btn" href="#">Connect a source</a><a class="btn--ghost" href="#">Open an example brief</a></div>
+        </div>
+        <div class="state state--inline">
+          <span class="state-ic"><svg class="ic"><use href="#i-source"></use></svg></span>
+          <div class="state-t">No sources connected</div>
+          <div class="state-d">The sources you connect appear here. The ones you can connect are below.</div>
+          <div class="state-actions"><a class="btn--ghost" href="#">Import a file</a></div>
+        </div>
+      </div>
+      <div class="spec-note">Always an icon, a title, one explanation and at least one exit. There
+        are no dead ends in this product, and the inline form exists because an empty group
+        inside a populated screen must sit in the flow of the list, not take the canvas.</div>
+    </div>
+
+    <div class="spec">
+      <div class="spec-head"><span class="spec-name">Dialog</span><span class="spec-cls">.dialog &middot; .dialog-actions &middot; .u-apart</span><span class="spec-where">6.3, 3.6</span></div>
+      <div class="spec-body">
+        <div class="dialog">
+          <h1>Disconnect Intercom?</h1>
+          <p>The 2,431 items already imported stay in your synthesis. Nothing new will be pulled from Intercom.</p>
+          <div class="dialog-actions"><button class="btn--ghost u-apart">Disconnect Intercom</button><button class="btn--ghost">Cancel</button><button class="btn">Keep connected</button></div>
+        </div>
+      </div>
+      <div class="spec-note">The destructive action is held apart by a utility, never placed
+        beside the primary one. The dialog is the only surface besides the frame that carries the
+        shadow, and it takes the frame radius so the two read as the same material.</div>
+    </div>
+
+    <div class="spec">
+      <div class="spec-head"><span class="spec-name">Auth card, form, legal TOC</span><span class="spec-cls">.auth-card &middot; .form &middot; .legal-toc</span><span class="spec-where">1.0 to 1.2, 9 screens</span></div>
+      <div class="spec-body">
+        <div class="auth-wrap" style="margin-top:0">
+          <div class="auth-card">
+            <span class="auth-step">Step 1 of 2</span>
+            <h2 class="auth-h2">Log in</h2>
+            <form class="form" onsubmit="return false">
+              <label class="field"><span class="label">Work email</span><input class="input" type="email" placeholder="you@company.com"></label>
+              <label class="field"><span class="label label-row">Password <a class="link--muted" href="#">Forgot?</a></span><input class="input" type="password"></label>
+              <button class="btn u-full">Log in</button>
+              <div class="auth-or">or</div>
+              <button class="btn--ghost u-full">Continue with SSO</button>
+            </form>
+            <p class="auth-switch">No account yet? <a class="link" href="#">Create workspace</a></p>
+          </div>
+          <div class="auth-card"><div class="auth-sent">If that address has an account, a reset link is on its way. The link works once and expires in an hour.</div></div>
+        </div>
+        <nav class="legal-toc" style="max-width:520px">
+          <div class="legal-toc-t">On this page</div>
+          <ul><li><a href="#">What we collect</a></li><li><a href="#">Where data lives</a></li><li><a href="#">Your rights</a></li><li><a href="#">Sub-processors</a></li></ul>
+        </nav>
+      </div>
+      <div class="spec-note">Full width here is the layout utility <code>.u-full</code> on an
+        ordinary button, which is the whole point of taking width off the size axis.</div>
+    </div>
+
+    <div class="spec">
+      <div class="spec-head"><span class="spec-name">Account shell, marketing cards</span><span class="spec-cls">.acct-layout &middot; .mk-step &middot; .tier</span><span class="spec-where">7.0 to 7.3, 0.0</span></div>
+      <div class="spec-body">
+        <div class="acct-layout">
+          <nav class="acct-nav">
+            <a class="acct-nav-home" href="#">Account</a>
+            <a class="acct-nav-link is-current" href="#">Profile</a>
+            <a class="acct-nav-link" href="#">Data and privacy</a>
+            <a class="acct-nav-link" href="#">Plan and limits</a>
+          </nav>
+          <div class="acct-panel">
+            <div class="acct-id"><span class="acct-id-avatar"></span><div><div class="acct-id-name">Dana Ruiz</div><div class="acct-id-meta">Product manager &middot; Northwind</div></div></div>
+            <div class="acct-section-t">Workspace</div>
+            <div class="acct-row"><div class="acct-row-main"><span class="acct-row-t">Northwind</span><span class="acct-row-d">4 seats used of 5.</span></div><a class="btn--ghost" href="#">Add seats</a></div>
+          </div>
+        </div>
+        <ul class="mk-grid" style="margin-top:26px">
+          <li class="mk-step"><span class="mk-step-n">1</span><div class="mk-step-t">Bring your feedback in</div><p class="mk-step-d">CSV or Intercom on day one. Map the columns once.</p><span class="conf" style="margin-top:12px"><span class="conf-n">n=2,904</span></span></li>
+          <li class="tier"><span class="tier-name">Team</span><div class="tier-price">$49</div><span class="tier-unit">per editor / month</span><ul class="tier-feat"><li>Unlimited feedback items</li><li>CSV and Intercom sources</li><li>Shareable evidence briefs</li></ul></li>
+        </ul>
+      </div>
+      <div class="spec-note">The marketing step card carries a real confidence indicator as its
+        proof: the product's own component is the evidence for the claim the page is making.</div>
+    </div>
+  </section>
+
+  <!-- ============================ SHELL ============================ -->
+  <section class="kit-sec" id="shell">
+    <h2>Shell</h2>
+    <p>The three organisms that are never typed into a product page. In the grey prototype they
+      are injected by <code>wireframes/_nav.js</code>, so they exist in no HTML file anywhere and
+      a kit that was only a stylesheet could not dress them. The markup is in
+      <code>design/kit/shell.html</code>, and a colour copy takes it from there.</p>
+
+    <div class="spec" style="margin-top:20px">
+      <div class="spec-head"><span class="spec-name">App shell</span><span class="spec-cls">.appframe &middot; .appbar &middot; .navtabs &middot; .appfoot &middot; .bottomtabs</span><span class="spec-where">27 screens</span></div>
+      <div class="spec-body" style="padding:16px">
+        <div class="appframe" style="min-height:0">
+          <header class="appbar">
+            <span class="brand"><svg class="ic mark" width="15" height="15"><use href="#i-signal"></use></svg> Sift</span>
+            <nav class="navtabs"><a href="#" class="active">Synthesis</a><a href="#">Sources</a><a href="#">Briefs</a></nav>
+            <span class="spacer"></span>
+            <span class="avatar"></span>
+          </header>
+          <main class="appmain" style="min-height:80px;display:flex;align-items:center;justify-content:center;color:var(--ash);font-size:12.5px">the screen goes here</main>
+          <footer class="appfoot">Sift workspace &middot; feedback from CSV and Intercom, PII scrubbed by default</footer>
+          <nav class="bottomtabs">
+            <a href="#" class="btab active"><span class="ico"><svg viewBox="0 0 24 24" class="ic"><use href="#i-signal"></use></svg></span>Synthesis</a>
+            <a href="#" class="btab"><span class="ico"><svg viewBox="0 0 24 24" class="ic"><use href="#i-source"></use></svg></span>Sources</a>
+            <a href="#" class="btab"><span class="ico"><svg viewBox="0 0 24 24" class="ic"><use href="#i-brief"></use></svg></span>Briefs</a>
+            <a href="#" class="btab"><span class="ico"><svg viewBox="0 0 24 24" class="ic"><use href="#i-user"></use></svg></span>Account</a>
+          </nav>
+        </div>
+      </div>
+      <div class="spec-note">Narrow this page below 820px and the header tabs give way to the
+        bottom tabs. It is one navigation in two layouts, never two navigations. The bottom tab
+        icon is a real <code>svg</code> with <code>display: block</code>, which is how the kit
+        avoids inheriting the 29px tab the grey layer has carried since it was built.</div>
+    </div>
+
+    <div class="spec">
+      <div class="spec-head"><span class="spec-name">Public shell</span><span class="spec-cls">.public-bar &middot; .public-main &middot; .pubfoot</span><span class="spec-where">10 screens</span></div>
+      <div class="spec-body" style="padding:16px">
+        <div class="appframe" style="min-height:0">
+          <header class="public-bar"><span class="brand"><svg class="ic mark" width="15" height="15"><use href="#i-signal"></use></svg> Sift</span><span class="spacer"></span><span class="public-tag">read only</span></header>
+          <main class="public-main" style="padding:22px 24px"><div class="public-eyebrow">Evidence brief</div><h1 class="pub-h1">Q3 onboarding themes</h1><p class="pub-lede">Six themes from 2,904 feedback items, each traceable to the customers behind it.</p></main>
+          <footer class="pubfoot">Shared with Sift &middot; read-only, no login required &middot; PII scrubbed</footer>
+        </div>
+      </div>
+      <div class="spec-note">No tabs and no account: the reader of a shared brief has no session
+        and nothing to navigate to. The read-only tag is the first thing the bar says.</div>
+    </div>
+  </section>
+
+  <footer class="kit-foot">
+    <span>Stage 07 &middot; UI + Visual &middot; Step 3</span>
+    <a href="../concept/concept.html">Concept stand</a>
+    <a href="../synthesis.html">2.0 Synthesis in colour</a>
+    <a href="../../wireframes/overview.html">Grey prototype</a>
+    <a href="../../index.html">Project home</a>
+  </footer>
+
+</div>
+
+<script>
+  window.NAV_BASE = '../../';
+  window.NAV_SECTIONS = [
+    { id: 'tokens',     label: 'Tokens' },
+    { id: 'inventory',  label: 'Inventory' },
+    { id: 'components', label: 'Components' },
+    { id: 'shell',      label: 'Shell' }
+  ];
+</script>
+<script src="../../_nav.js"></script>
+</body>
+</html>
