@@ -55,7 +55,8 @@ window.NAV = [
     { label: 'Component kit',  page: 'design/kit/kit.html',  done: true },
     { label: 'Sample screens', page: 'design/overview.html', done: true } ] },
 
-  { id: 'tokens', label: 'Tokens + Components', wip: true, pages: [ { label: 'Tokens + Components', page: null, done: false } ] },
+  { id: 'tokens', label: 'Tokens + Components', wip: true, pages: [
+    { label: 'Design system', page: 'design/kit/overview.html', done: true } ] },
   { id: 'design-system', label: 'Design System',       pages: [ { label: 'Design System',       page: null, done: false } ] },
   { id: 'responsive',    label: 'Responsive',          pages: [ { label: 'Responsive',          page: null, done: false } ] },
   { id: 'animation',     label: 'Animation',           pages: [ { label: 'Animation',           page: null, done: false } ] },

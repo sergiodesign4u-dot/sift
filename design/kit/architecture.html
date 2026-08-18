@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift design system - Architecture</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../system/tokens.css">
+<link rel="stylesheet" href="../system/base.css">
+<link rel="stylesheet" href="_page.css">
+</head>
+<!--
+  design/kit/architecture.html - the rules, Stage 08 Step 4.
+
+  The visible edition of design/kit/docs/architecture.md. It stands FIRST in the Foundations
+  group by decision, not by accident: rules before evidence.
+-->
+<body>
+<div class="kit-shell">
+  <div id="kit-panel"></div>
+  <main class="kit-main">
+    <div class="kit-eyebrow">Stage 08 &middot; Foundations</div>
+    <h1 class="kit-h1">Architecture</h1>
+    <p class="kit-lead">The rules of the system. This page comes first in the foundations because a system is read from its rules: the audit, the census and the coverage are evidence ABOUT the system, and they belong to the last group. Mixed into one group at the bottom, the rules hide behind the reporting.</p>
+    <section class="kit-sec" id="ladders"><h2 class="kit-h2">Two ladders, and they are not the same ladder</h2>
+    <p class="kit-lead">Both use the word "level", which is exactly why they get separated here. One says where a VALUE comes from. The other says what CONTAINS what.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-top:18px">
+      <div class="scene">
+        <div class="scene-label">the ladder of tokens</div>
+        <div style="font-family:var(--font-mono);font-size:12.5px;line-height:2;color:var(--text-secondary)">
+          <div><b style="color:var(--text-primary)">PRIMITIVE</b> &nbsp;a raw value, no role</div>
+          <div style="padding-left:14px">--grey-900: #151A1F</div>
+          <div style="padding-left:14px;color:var(--text-evidence)">82 of them</div>
+          <div style="margin-top:8px">&darr;</div>
+          <div><b style="color:var(--text-primary)">SEMANTIC</b> &nbsp;a role, through var()</div>
+          <div style="padding-left:14px">--bg-surface: var(--grey-900)</div>
+          <div style="padding-left:14px;color:var(--text-evidence)">20 of them</div>
+        </div>
+        <p class="kit-note">Two levels, not three. A component token is a third layer of renaming that buys no flexibility, so it appears only where a state lands on no role at all. Nothing here has needed one yet.</p>
+      </div>
+      <div class="scene">
+        <div class="scene-label">the ladder of components</div>
+        <div style="font-family:var(--font-mono);font-size:12.5px;line-height:2;color:var(--text-secondary)">
+          <div><b style="color:var(--text-primary)">atoms</b> &nbsp;contain nothing from the kit</div>
+          <div style="margin-top:4px">&darr;</div>
+          <div><b style="color:var(--text-primary)">molecules</b> &nbsp;contain atoms</div>
+          <div style="margin-top:4px">&darr;</div>
+          <div><b style="color:var(--text-primary)">organisms</b> &nbsp;contain molecules, or are a shell</div>
+          <div style="margin-top:4px">&darr;</div>
+          <div style="opacity:.55">patterns &nbsp;Stage 09, not before</div>
+        </div>
+        <p class="kit-note"><b>Three is the ceiling.</b> The deepest nesting here is a dialog holding a form, and a form is already an organism, so both stay at level three. Nesting decides the ORDER inside a level, not a fourth number.</p>
+      </div>
+    </div>
+    <p class="kit-note"><b>Grouping by purpose is forbidden.</b> By purpose a button and a login dialog are both "forms" and land side by side, though one lives inside the other. The cost is not aesthetic: an <code class="kit-mono">@import</code> sorted alphabetically puts <code class="kit-mono">dialog.css</code> before <code class="kit-mono">field.css</code>, so the composed thing sits above its own parts in the cascade, and the first contextual fix reaches for <code class="kit-mono">!important</code>.</p>
+    </section>
+    <section class="kit-sec" id="surfaces"><h2 class="kit-h2">Three surfaces, and a role paints exactly one</h2>
+    <p class="kit-lead">The prefix carries the surface. A role may not paint two of them even at the same value, because the thresholds differ, and that is not pedantry: a fill role placed on a 12px bold caption passes as a surface at 3:1 and fails as text at 4.5:1, and a table of text and background pairs never catches it, because nobody declared it text.</p>
+    <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Prefix</th><th>Surface</th><th>Floor</th><th>Example</th></tr></thead><tbody>
+      <tr><td>--text-*</td><td>ink: text, icon glyph</td><td>4.5:1, or 3:1 from 24px or 19px bold</td><td><code>--text-secondary</code></td></tr>
+      <tr><td>--bg-*</td><td>fill: page, card, band, badge</td><td>3:1, WCAG 1.4.11</td><td><code>--bg-action</code></td></tr>
+      <tr><td>--line-*</td><td>line: border, divider, focus ring</td><td>3:1 where the line identifies a control</td><td><code>--line-control</code></td></tr>
+    </tbody></table></div>
+    <p class="kit-note">This is why the type scale is <code class="kit-mono">--type-*</code> and not <code class="kit-mono">--text-*</code>: one prefix, one meaning, checkable by grep. <b>Two roles get two tokens even when the value is identical today</b>, and the test is not the colour but the question "can these two places ever part": <code class="kit-mono">--bg-action</code> and <code class="kit-mono">--text-evidence</code> are both the one cyan, and attribute A2 signed the citation separately from the action.</p>
+    </section>
+    <section class="kit-sec" id="folders"><h2 class="kit-h2">Two folders, and what may cross</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-top:18px">
+      <div class="scene"><div class="scene-label">design/system/ &middot; the code the product imports</div>
+        <div style="font-family:var(--font-mono);font-size:12px;line-height:1.9;color:var(--text-secondary)">
+          tokens.css<br>base.css<br>index.css<br>components/&lt;name&gt;.css
+        </div>
+        <p class="kit-note">A package that could be lifted whole into another repository and still work.</p>
+      </div>
+      <div class="scene"><div class="scene-label">design/kit/ &middot; what shows the system to a person</div>
+        <div style="font-family:var(--font-mono);font-size:12px;line-height:1.9;color:var(--text-secondary)">
+          _nav.js  _page.css<br>overview.html<br>&lt;foundation&gt;.html<br>&lt;component&gt;.html<br>docs/*.md
+        </div>
+        <p class="kit-note">A product class in the stand, or a stand style inside design/system/, is a defect.</p>
+      </div>
+    </div>
+    </section>
+    <section class="kit-sec" id="adding"><h2 class="kit-h2">Adding a component: five things</h2>
+    <p class="kit-lead">The last two are the ones that get forgotten, and they matter most for a component added AFTER the build: at the reconciliation of Step 6, on a new screen at Stage 09, during the rollout at Stage 12.</p>
+    <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>#</th><th>What</th><th>Why it is on the list</th></tr></thead><tbody>
+      <tr><td>1</td><td><code>design/system/components/&lt;name&gt;.css</code></td><td>colour through semantic, geometry through primitive</td></tr>
+      <tr><td>2</td><td><code>design/kit/&lt;name&gt;.html</code></td><td>five blocks: what it is, anatomy, variants, states, rules</td></tr>
+      <tr><td>3</td><td>an entry in <code>_nav.js</code>, in the group of its OWN level</td><td>the panel and the hub read the ladder from here</td></tr>
+      <tr><td>4</td><td>a row in <code>docs/inventory.md</code>, with its level</td><td>four later steps count the order from that column</td></tr>
+      <tr><td>5</td><td>an <code>@import</code> in <code>index.css</code>, in the group of its level, <b>not at the end of the file</b></td><td>appended at the end it looks harmless, and that is exactly how the ladder collapses</td></tr>
+    </tbody></table></div>
+    </section>
+    <section class="kit-sec" id="fixes"><h2 class="kit-h2">Where a fix goes</h2>
+    <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>What is wrong</th><th>Where the fix goes</th><th>What it reaches</th></tr></thead><tbody>
+      <tr><td>a value</td><td><code>tokens.css</code>, one line</td><td>every screen, through var()</td></tr>
+      <tr><td>a role</td><td><code>tokens.css</code>, the semantic block</td><td>every component reading that role</td></tr>
+      <tr><td>one component</td><td><code>components/&lt;name&gt;.css</code></td><td>every place it stands</td></tr>
+      <tr><td>markup</td><td><code>design/kit/&lt;name&gt;.html</code>, then copied out</td><td>the screens that carry it</td></tr>
+      <tr><td>the look on ONE screen</td><td><b>nowhere.</b> That is the desync this stage exists to prevent</td><td></td></tr>
+    </tbody></table></div>
+    <p class="kit-note">A difference written as a contextual override is not a patch, it is an undeclared variant. Either it is a variant, and it gets a modifier and a row in the inventory, or it is drift, and it folds into the nearest declared form. Two of them were caught that way at the Stage 07 critique and promoted to <code class="kit-mono">.input--mono</code> and <code class="kit-mono">.input--dense</code>.</p>
+    </section>
+    <section class="kit-sec" id="states"><h2 class="kit-h2">The state rules, in one place</h2>
+    <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Rule</th><th>Why</th></tr></thead><tbody>
+      <tr><td>A state is a TOKEN, never a style</td><td>hover reads a role, focus reads a role, disabled reads an opacity. The price of breaking it is paid three times: the theme, the consistency of twenty components with twenty hovers, and Stage 11, which would start by collecting states instead of animating them</td></tr>
+      <tr><td>focus-visible, never focus</td><td>the ring is for the person on the keyboard and in the way of the person who clicked</td></tr>
+      <tr><td>A state does not move the layout</td><td>a border on hover moves the neighbours by a pixel, and that is the jump</td></tr>
+      <tr><td>Only an interactive component gets states</td><td>a badge, a heading and a divider do not, and their pages say so in those words. A hover on a badge is an invented role</td></tr>
+    </tbody></table></div>
+    </section>
+    <footer class="kit-foot">
+      <span>Design system &middot; foundations</span>
+      <a href="overview.html">The whole system</a>
+      <a href="../overview.html">The product</a>
+      <a href="../../index.html">Project roadmap</a>
+    </footer>
+  </main>
+</div>
+<script src="_nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift design system</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../system/tokens.css">
+<link rel="stylesheet" href="../system/base.css">
+<link rel="stylesheet" href="_page.css">
+<link rel="stylesheet" href="../../_nav.css">
+</head>
+<!--
+  design/kit/overview.html - the hub of the design system.
+
+  The one page of this stage that carries the ROADMAP sidebar from the root /_nav.js, which makes
+  it the bridge back into the project. Two registries run here at once, the roadmap and
+  design/kit/_nav.js, exactly as ia/structure.html does: the kit registry lives in its own
+  namespace (window.KIT_NAV) so a second window.NAV can never overwrite the roadmap.
+
+  Cards for the foundations today. The component groups arrive at Step 5, in the order of the
+  ladder, and the Verification group at Step 9.
+
+  No em dash anywhere.
+-->
+<style>
+  /* hub frame only. The kit furniture is in _page.css. */
+  .hub-page { max-width: 1120px; padding: 40px 32px 90px; }
+  @media (min-width: 1100px) { .hub-page { margin-left: 220px; } }
+  @media (max-width: 820px) { .hub-page { padding: 26px 16px 60px; } }
+  .hub-head { max-width: 80ch; }
+  .hub-switch { margin-top: 20px; }
+</style>
+<body>
+
+<aside id="sidebar"></aside>
+
+<div class="hub-page">
+
+  <div class="hub-head">
+    <div class="kit-eyebrow">Stage 08 &middot; Tokens + Components</div>
+    <h1 class="kit-h1">The Sift design system</h1>
+    <p class="kit-lead">Two levels of tokens and a file per component, split out of the flat kit
+      that Stage 07 built. The values did not change when they moved: every one of them arrived
+      from the approved brand plate at Stage 06 and carries its origin comment to this day, which
+      is the whole chain from a pixel somebody chose to a token a component reads.</p>
+    <p class="kit-lead">The foundations come first and they come before the components, because
+      this is the cheapest place in the stage to change anything. A change to the type scale or a
+      radius here costs one file and reaches every screen through <code class="kit-mono">var()</code>;
+      the same change after the components exist costs thirty files plus thirty pages that already
+      show the old value.</p>
+    <div class="hub-switch"><button class="kit-theme" type="button">Dark</button></div>
+  </div>
+
+  <div id="kit-cards"></div>
+
+  <section class="kit-sec" id="state">
+    <h2 class="kit-h2">Where the stage is</h2>
+    <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Step</th><th>What it produced</th><th>State</th></tr></thead><tbody>
+      <tr><td>1</td><td>The token audit and the control census, in two instruments</td><td>done</td></tr>
+      <tr><td>2</td><td>Consolidation and the rename map: 248 class rows became 63 rows that carry axes</td><td>done</td></tr>
+      <tr><td>3</td><td><code>tokens.css</code>, 82 primitives and 20 roles, every role with a theme pair; <code>base.css</code></td><td>done</td></tr>
+      <tr><td>4</td><td>These foundation pages, and the review that fixed two contrast failures</td><td>done</td></tr>
+      <tr><td>5</td><td>Components, in rounds from atoms upward, each one closed in a single pass</td><td>next</td></tr>
+      <tr><td>6</td><td>Reconciling the system with the product, in three lists</td><td></td></tr>
+      <tr><td>7</td><td>The theme pair, stress-tested on the assembled showcase</td><td></td></tr>
+      <tr><td>8</td><td>The sample moved onto <code>index.css</code>, with the pixel proof</td><td></td></tr>
+      <tr><td>9</td><td>Verification, the dry run over the still-grey screens, close-out</td><td></td></tr>
+    </tbody></table></div>
+  </section>
+
+  <footer class="kit-foot">
+    <span>Stage 08 &middot; Tokens + Components</span>
+    <a href="../overview.html">The product, all screens</a>
+    <a href="../concept/concept.html">Concept stand</a>
+    <a href="../../wireframes/overview.html">Grey prototype</a>
+    <a href="../../index.html">Project roadmap</a>
+  </footer>
+
+</div>
+
+<script>
+  window.NAV_BASE = '../../';
+  window.NAV_SECTIONS = [
+    { id: 'foundations', label: 'Foundations' },
+    { id: 'state',       label: 'Where the stage is' }
+  ];
+</script>
+<script src="../../_nav.js"></script>
+<script src="_nav.js"></script>
+</body>
+</html>

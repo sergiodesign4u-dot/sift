@@ -175,9 +175,18 @@ Step 4: this stage's licence to move a pixel is narrow on purpose.*
 | `--text-danger` (dark) | 4.94 on `--bg-page`, **4.47** on `--bg-surface`, **3.96** on `--bg-raised` | 4.5:1, ink | Split the primitive: `--red-400` stays the FILL and the LINE, and a new `--red-300 #EB6266` carries the INK. Measured 5.96 / 5.40 / 4.78, so it clears on all three grounds. The fill keeps its exact value, so the error band does not move; only the two lines of small red text change. **This is what the surface axis is for:** the ink role exists, so the fix is one word in one declaration instead of a repaint |
 | `--line-control` (both themes) | **1.95 / 1.76** dark, **3.01 / 2.83** light | 3:1, WCAG 1.4.11 non-text | Raise to `#647280` in the dark theme (3.93 on page, 3.55 on surface, 3.14 on raised) and `#78838F` in the light one. This one IS visible: every input, chip and outlined button gets a brighter boundary. The alternative is to declare the boundary decorative, which it is not: an input on this product has a fill 1.19:1 from the page, so the border is the only thing that identifies it as a field |
 
-**Neither is applied in `tokens.css` as written.** The roles carry their current values and their
-failing numbers, so the file states the problem rather than hiding it, and the decision is taken
-where the foundations are reviewed as a whole.
+**Both accepted at the review and applied.** The named change, in the format the pixel
+comparison at Step 8 reads:
+
+| Variable | Was | Became | Why |
+|---|---|---|---|
+| `--text-danger` (dark) | `var(--red-400)` #E5484D, 4.47 on a card and 3.96 on a raised surface | `var(--red-300)` #EB6266, 5.96 / 5.40 / 4.78 | The ink threshold is 4.5 and it failed on two of the three grounds it can land on. **The fill did not move:** `--bg-danger` and `--line-danger` still read `--red-400`, so the error band is the same band and only two lines of small red text changed |
+| `--line-control` (dark) | `var(--grey-700)` #3A444C, 1.76 on a card | `var(--grey-600)` #647280, 3.93 / 3.55 / 3.14 | WCAG 1.4.11 asks 3:1 of anything that identifies a control. An input on this product sits 1.19:1 off the page, so its border is the only thing saying it is a field. This one is visible on every input, chip and outlined button, and that is the point |
+| `--line-control` (light) | `var(--grey-350)` #8A96A3, 3.01 / 2.83 | `var(--grey-450)` #7E8A97, 3.52 / 3.30 / 3.10 | Passed on one ground and missed on the other. Same decision, same reason |
+
+Two new primitives came in with them, `--grey-600` and `--red-300`, plus the light pair
+`--grey-450`. They are steps the plate ramp did not have, and they exist because a threshold
+asked for them rather than because a taste did.
 
 ### A deviation from the pipeline's letter, stated rather than smuggled
 

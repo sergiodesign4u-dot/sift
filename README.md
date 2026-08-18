@@ -20,7 +20,7 @@ This table and the `done` flags in `/_nav.js` are the only two places status is 
 | Voice | Done (4 principles, dictionary, forbidden list, microcopy rules; every screen rewritten; voice.html deployed). Re-runs over whatever blocks the wireframe rebuild adds |
 | Concept | **Done.** Brand plate B chosen and entered into `DESIGN-artifacts.md`; five attributes, each signed to a data line; the etalon and its three states plus the public brief in color in `design/`; the split-evidence direction re-read against the rebuild and deferred with the reason; audited (targets, focus, contrast, overflow) and the before / after on `concept.html` |
 | UI + Visual | **Done.** `DESIGN.md` read out of the code; the inventory of the whole product (50 components, 3 levels, 13 one-offs); the kit `design/kit/kit.css` (arrived by `git mv`, `:root` byte for byte) with `shell.html` and the stand `kit.html`; no photography, by a stated decision, with the one prompt held ready; the sample of 7 screens plus the 2 seeds, 23 pages in colour, each assembled from the kit and carrying no style of its own; two-part navigation (`design/_nav.js` panel, `design/overview.html` hub with the honest coverage map); critique on three instruments, 9 findings fixed and 1 withdrawn on verification |
-| Tokens + Components | Not started |
+| Tokens + Components | **In progress.** Steps 1 to 4 done. Two tables of facts read and measured in two instruments; consolidation turned 248 class rows into 63 that carry axes, with a rename map for Stage 12; `design/system/tokens.css` in two levels, 82 primitives and 20 roles, every role with a light pair and every ratio measured; `base.css`; and the foundation pages on `design/kit/overview.html`, where the review fixed two contrast failures. Step 5 (components) next |
 | Design System | Not started |
 | Responsive | Not started |
 | Animation | Not started |
@@ -66,7 +66,14 @@ voice/
 design/              The roof of the whole visual half. Product screens sit flat here, material in subfolders
   synthesis*.html    First color copies of the wireframe screens, seeded by stage 06
   shared-brief.html  The contrast screen: the public read-only document
-  kit/               The component kit. A screen is assembled from it, never drawn
+  system/            THE CODE of the design system. A package that could be lifted out whole
+    tokens.css       primitive + semantic + the light pair. Colour through roles, geometry direct
+    base.css         reset, type ground, the one focus ring, two layout utilities
+  kit/               THE SHOWCASE of the system, and the Stage 07 component kit it grew out of
+    overview.html    The hub: foundations, and the state of the stage
+    architecture.html color.html typography.html geometry.html icons.html   the foundations
+    _nav.js _page.css  the registry of pages and the stand's own chrome, with the theme switch
+    docs/            tokens-audit.md, census.md, architecture.md, inventory.md
     kit.css          THE stylesheet: :root plus every component class. Came from _theme.css by git mv
     shell.html       The shell as markup: sprite, app header, bottom tabs, footer, public bar
     kit.html         The stand: tokens, inventory, components, shell

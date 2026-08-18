@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift design system - Typography</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../system/tokens.css">
+<link rel="stylesheet" href="../system/base.css">
+<link rel="stylesheet" href="_page.css">
+</head>
+<!--
+  design/kit/typography.html - the type ground, Stage 08 Step 4.
+
+  Every specimen is real product text taken from voice/docs/microcopy.md. A scale shown on lorem
+  ipsum hides the one thing the page exists to reveal: what a real line looks like at that size.
+-->
+<body>
+<div class="kit-shell">
+  <div id="kit-panel"></div>
+  <main class="kit-main">
+    <div class="kit-eyebrow">Stage 08 &middot; Foundations</div>
+    <h1 class="kit-h1">Typography</h1>
+    <p class="kit-lead">Two faces, ten steps, three weights, and every specimen is a real line from the product rather than filler. What the scale looks like on a sentence somebody actually has to read is the only thing worth checking here.</p>
+    <section class="kit-sec" id="faces"><h2 class="kit-h2">Two faces</h2>
+    <p class="kit-lead">Inter carries everything a person reads. IBM Plex Mono carries every number and every piece of provenance, because the count is the trust surface of this product (attribute A2) and a number that changes width between rows cannot be compared down a column.</p>
+    <div class="scene"><div style="font-family:var(--font-ui);font-size:22px;font-weight:590;letter-spacing:-0.02em">Inter &middot; Onboarding is confusing</div>
+      <div style="font-family:var(--font-mono);font-size:22px;margin-top:12px">IBM Plex Mono &middot; n=42 &middot; 2,904 of 3,750</div>
+      <p class="kit-note" style="margin-top:14px"><code class="kit-mono">--font-ui</code> taste, from Vercel Geist and Linear (A5). <code class="kit-mono">--font-mono</code> attribute A2.</p></div></section>
+    <section class="kit-sec" id="scale"><h2 class="kit-h2">The scale</h2>
+    <p class="kit-lead">Ten steps, and each one is here because the product renders it, not because a ratio produced it. Every specimen is real product text from <code class="kit-mono">voice/docs/microcopy.md</code>: a scale shown on lorem ipsum hides exactly the problem it should reveal, which is what a real line looks like at that size.</p>
+    <p class="kit-lead">The scale is <code class="kit-mono">--type-*</code> and not <code class="kit-mono">--text-*</code>. That rename happened while the token file was being written: <code class="kit-mono">--text-</code> has to mean ink and nothing else, or the surface rule stops being greppable.</p>
+    <div class="spec-row"><div class="spec-meta"><b style="color:var(--text-primary)">--type-3xl</b><br>36px<br>The marketing first line<br>weight strong</div>
+      <div style="font-size:var(--type-3xl);font-weight:var(--weight-strong);letter-spacing:var(--tracking-display);line-height:var(--leading-tight);color:var(--text-primary)">Turn scattered customer feedback into decisions you can defend.</div></div>
+    <div class="spec-row"><div class="spec-meta"><b style="color:var(--text-primary)">--type-2xl</b><br>29px<br>Display: the public document H1<br>weight strong</div>
+      <div style="font-size:var(--type-2xl);font-weight:var(--weight-strong);letter-spacing:var(--tracking-display);line-height:var(--leading-tight);color:var(--text-primary)">Q3 roadmap: what customers need most</div></div>
+    <div class="spec-row"><div class="spec-meta"><b style="color:var(--text-primary)">--type-xl</b><br>22px<br>Headline: a screen H1<br>weight strong</div>
+      <div style="font-size:var(--type-xl);font-weight:var(--weight-strong);letter-spacing:var(--tracking-head);line-height:var(--leading-tight);color:var(--text-primary)">Synthesis</div></div>
+    <div class="spec-row"><div class="spec-meta"><b style="color:var(--text-primary)">--type-lg</b><br>17px<br>Title: a dialog, a document section<br>weight strong</div>
+      <div style="font-size:var(--type-lg);font-weight:var(--weight-strong);letter-spacing:var(--tracking-title);line-height:var(--leading-snug);color:var(--text-primary)">The link is live</div></div>
+    <div class="spec-row"><div class="spec-meta"><b style="color:var(--text-primary)">--type-md</b><br>15px<br>Reading size on a document<br>weight regular</div>
+      <div style="font-size:var(--type-md);font-weight:var(--weight-regular);letter-spacing:var(--tracking-body);line-height:var(--leading-loose);color:var(--text-primary)">New users cannot tell what to do first, and the empty first-run screen is the most cited single point of friction.</div></div>
+    <div class="spec-row"><div class="spec-meta"><b style="color:var(--text-primary)">--type-base</b><br>14px<br>Body<br>weight regular</div>
+      <div style="font-size:var(--type-base);font-weight:var(--weight-regular);letter-spacing:var(--tracking-body);line-height:var(--leading-body);color:var(--text-primary)">Your feedback, clustered into ranked themes. Open one to trace the evidence behind it.</div></div>
+    <div class="spec-row"><div class="spec-meta"><b style="color:var(--text-primary)">--type-sm</b><br>13.5px<br>Every control label<br>weight medium</div>
+      <div style="font-size:var(--type-sm);font-weight:var(--weight-medium);letter-spacing:var(--tracking-body);line-height:var(--leading-snug);color:var(--text-primary)">Build brief</div></div>
+    <div class="spec-row"><div class="spec-meta"><b style="color:var(--text-primary)">--type-xs</b><br>12.5px<br>Secondary line, metadata<br>weight regular</div>
+      <div style="font-size:var(--type-xs);font-weight:var(--weight-regular);letter-spacing:var(--tracking-body);line-height:var(--leading-body);color:var(--text-primary)">Where your feedback comes from. Every source is scrubbed of personal details on the way in.</div></div>
+    <div class="spec-row"><div class="spec-meta"><b style="color:var(--text-primary)">--type-2xs</b><br>11px<br>Mono provenance, the badge<br>weight regular</div>
+      <div style="font-size:var(--type-2xs);font-weight:var(--weight-regular);letter-spacing:var(--tracking-body);line-height:var(--leading-body);color:var(--text-primary)">CSV, Intercom &middot; latest feedback 2 days ago</div></div>
+    <div class="spec-row"><div class="spec-meta"><b style="color:var(--text-primary)">--type-3xs</b><br>10px<br>The micro uppercase label<br>weight medium</div>
+      <div style="font-size:var(--type-3xs);font-weight:var(--weight-medium);letter-spacing:var(--tracking-caps);line-height:var(--leading-body);color:var(--text-primary)">CONNECTED &middot; 2</div></div>
+    </section>
+    <section class="kit-sec" id="weights"><h2 class="kit-h2">Weights, leading, measure</h2>
+    <p class="kit-lead">Three weights and no more. 600 was folded into 590 at Stage 07: at 11px the two are indistinguishable, so 600 bought nothing but a fourth weight, and 590 is a number somebody chose while 600 is the number a reflex reaches for.</p>
+    <div class="scene">
+      <div style="font-size:17px;font-weight:var(--weight-regular)">400 regular &middot; body, quotes, prose</div>
+      <div style="font-size:17px;font-weight:var(--weight-medium);margin-top:8px">500 medium &middot; a label, a name, a number that matters</div>
+      <div style="font-size:17px;font-weight:var(--weight-strong);margin-top:8px">590 strong &middot; every heading in the product</div>
+    </div>
+    <div class="scene">
+      <div class="scene-label">leading, on the same 15px paragraph</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px">
+        <div><div class="geo-cap">--leading-snug 1.45</div><p style="font-size:15px;line-height:var(--leading-snug);color:var(--text-secondary)">A brief packages themes, their evidence, and your recommended order into a link a stakeholder can read.</p></div>
+        <div><div class="geo-cap">--leading-body 1.6</div><p style="font-size:15px;line-height:var(--leading-body);color:var(--text-secondary)">A brief packages themes, their evidence, and your recommended order into a link a stakeholder can read.</p></div>
+        <div><div class="geo-cap">--leading-loose 1.75, document prose only</div><p style="font-size:15px;line-height:var(--leading-loose);color:var(--text-secondary)">A brief packages themes, their evidence, and your recommended order into a link a stakeholder can read.</p></div>
+      </div>
+    </div>
+    <div class="scene">
+      <div class="scene-label">--measure-prose 92ch, the longest line the product allows anywhere</div>
+      <p style="max-width:var(--measure-prose);font-size:15px;line-height:var(--leading-loose);color:var(--text-secondary)">New users cannot tell what to do first, and the empty first-run screen is the most cited single point of friction. A second group describes the same problem from the import side: setup does not make it clear that feedback has to be brought in before anything appears.</p>
+    </div>
+    </section>
+    <footer class="kit-foot">
+      <span>Design system &middot; foundations</span>
+      <a href="overview.html">The whole system</a>
+      <a href="../overview.html">The product</a>
+      <a href="../../index.html">Project roadmap</a>
+    </footer>
+  </main>
+</div>
+<script src="_nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift design system - Geometry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../system/tokens.css">
+<link rel="stylesheet" href="../system/base.css">
+<link rel="stylesheet" href="_page.css">
+</head>
+<!--
+  design/kit/geometry.html - space, radius, target and frame, Stage 08 Step 4.
+
+  Shown as blocks rather than as a list of numbers: a spacing scale printed as text is a table
+  nobody can check, and the only useful question about a radius is what it looks like.
+-->
+<body>
+<div class="kit-shell">
+  <div id="kit-panel"></div>
+  <main class="kit-main">
+    <div class="kit-eyebrow">Stage 08 &middot; Foundations</div>
+    <h1 class="kit-h1">Geometry</h1>
+    <p class="kit-lead">Space shown as space, radius shown as a corner, a target shown at its own size. Geometry gets no semantic level by rule: a component reads it straight from primitive, because a theme has nothing to override in a corner.</p>
+    <section class="kit-sec" id="space"><h2 class="kit-h2">Space</h2>
+    <p class="kit-lead">Shown as space rather than as a list of numbers. Eleven steps, and they are the ones the product measured out on real screens: a scale invented as a ratio would have produced steps nothing uses and left out the ones everything does.</p>
+    <div class="sp-row"><span class="geo-cap" style="min-width:120px;margin:0">--space-1</span><span class="sp-bar" style="width:var(--space-1)"></span><span class="geo-cap" style="margin:0">4px</span></div>
+    <div class="sp-row"><span class="geo-cap" style="min-width:120px;margin:0">--space-2</span><span class="sp-bar" style="width:var(--space-2)"></span><span class="geo-cap" style="margin:0">6px</span></div>
+    <div class="sp-row"><span class="geo-cap" style="min-width:120px;margin:0">--space-3</span><span class="sp-bar" style="width:var(--space-3)"></span><span class="geo-cap" style="margin:0">8px</span></div>
+    <div class="sp-row"><span class="geo-cap" style="min-width:120px;margin:0">--space-4</span><span class="sp-bar" style="width:var(--space-4)"></span><span class="geo-cap" style="margin:0">10px</span></div>
+    <div class="sp-row"><span class="geo-cap" style="min-width:120px;margin:0">--space-5</span><span class="sp-bar" style="width:var(--space-5)"></span><span class="geo-cap" style="margin:0">12px</span></div>
+    <div class="sp-row"><span class="geo-cap" style="min-width:120px;margin:0">--space-6</span><span class="sp-bar" style="width:var(--space-6)"></span><span class="geo-cap" style="margin:0">14px</span></div>
+    <div class="sp-row"><span class="geo-cap" style="min-width:120px;margin:0">--space-7</span><span class="sp-bar" style="width:var(--space-7)"></span><span class="geo-cap" style="margin:0">16px</span></div>
+    <div class="sp-row"><span class="geo-cap" style="min-width:120px;margin:0">--space-8</span><span class="sp-bar" style="width:var(--space-8)"></span><span class="geo-cap" style="margin:0">18px</span></div>
+    <div class="sp-row"><span class="geo-cap" style="min-width:120px;margin:0">--space-9</span><span class="sp-bar" style="width:var(--space-9)"></span><span class="geo-cap" style="margin:0">22px</span></div>
+    <div class="sp-row"><span class="geo-cap" style="min-width:120px;margin:0">--space-10</span><span class="sp-bar" style="width:var(--space-10)"></span><span class="geo-cap" style="margin:0">26px</span></div>
+    <div class="sp-row"><span class="geo-cap" style="min-width:120px;margin:0">--space-12</span><span class="sp-bar" style="width:var(--space-12)"></span><span class="geo-cap" style="margin:0">32px</span></div>
+    </section>
+    <section class="kit-sec" id="radius"><h2 class="kit-h2">Radius</h2>
+    <p class="kit-lead">Four, and each one is chosen by what a hand does with the thing rather than by a scale: a mark inside text, something a hand acts on, a sheet that floats, a circle.</p>
+    <div class="geo-row">
+      <div class="geo"><div class="geo-box" style="width:96px;height:66px;border-radius:var(--radius-sm)"></div><div class="geo-cap">--radius-sm<br>4px<br>a mark inside text</div></div>
+      <div class="geo"><div class="geo-box" style="width:96px;height:66px;border-radius:var(--radius-md)"></div><div class="geo-cap">--radius-md<br>6px<br>anything a hand acts on</div></div>
+      <div class="geo"><div class="geo-box" style="width:96px;height:66px;border-radius:var(--radius-lg)"></div><div class="geo-cap">--radius-lg<br>12px<br>a sheet: frame, dialog, auth card</div></div>
+      <div class="geo"><div class="geo-box" style="width:96px;height:66px;border-radius:var(--radius-pill)"></div><div class="geo-cap">--radius-pill<br>50%<br>avatar, numbered circle</div></div>
+    </div></section>
+    <section class="kit-sec" id="size"><h2 class="kit-h2">Targets</h2>
+    <p class="kit-lead">44px is the floor for anything a thumb aims at, and it has exactly three named exceptions, all of them in <code class="kit-mono">wireframes/docs/conventions.md</code>: the checkbox at the 24px AA floor, because a 44px checkbox would double the height of every ranked row; an inline link inside running text, exempt for the reason WCAG exempts it; and the citation chip, which is the same case.</p>
+    <div class="geo-row">
+      <div class="geo"><div class="geo-box" style="width:var(--size-target);height:var(--size-target);border-radius:var(--radius-md)"></div><div class="geo-cap">--size-target<br>44px</div></div>
+      <div class="geo"><div class="geo-box" style="width:var(--size-check);height:var(--size-check);border-radius:var(--radius-sm)"></div><div class="geo-cap">--size-check<br>24px, named exception</div></div>
+      <div class="geo"><div class="geo-box" style="width:180px;height:var(--size-bar);border-radius:var(--radius-md)"></div><div class="geo-cap">--size-bar<br>52px, the app bar</div></div>
+    </div>
+    <p class="kit-note">The avatar is the case worth remembering: it READS at 28px and is HIT at 44 through a transparent overlay. The visual and the target may differ, and where they do the component page says so.</p>
+    </section>
+    <section class="kit-sec" id="frame"><h2 class="kit-h2">The page frame</h2>
+    <p class="kit-lead">The product is mobile-first and reasoned from the desktop: one live screen that narrows, never a desktop mock beside a mobile mock. Every block has to survive 360px, and that is a hard gate this project has checked at every stage.</p>
+    <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Width</th><th>What changes</th><th>Why there</th></tr></thead><tbody>
+      <tr><td>360</td><td>Header tabs give way to the bottom tabs; the filter row folds into one compact button; the mapping grid becomes two lines per row; the action bar stacks</td><td>The measured floor of the project. Not 375 or 390, because a class of defect that reproduces at 360 does not reproduce there</td></tr>
+      <tr><td>820</td><td>The swap point of every rule above</td><td>Inherited from the grey contract, where the canvas carried a container query at 600. The colour layer states its widths as media queries, and Stage 10 replaces both with one system</td></tr>
+      <tr><td>900</td><td>The prototype panel becomes a header above the screen</td><td>Chrome, not product. The screen never sees it</td></tr>
+    </tbody></table></div>
+    <p class="kit-note"><b>This table is a description, not a decision.</b> Breakpoints are Stage 10, and it owns the whole question of one layout that breathes instead of three versions. What is here is what the product currently does, so that the next stage starts from a measurement.</p>
+    </section>
+    <footer class="kit-foot">
+      <span>Design system &middot; foundations</span>
+      <a href="overview.html">The whole system</a>
+      <a href="../overview.html">The product</a>
+      <a href="../../index.html">Project roadmap</a>
+    </footer>
+  </main>
+</div>
+<script src="_nav.js"></script>
+</body>
+</html>
