@@ -19,7 +19,7 @@ This table and the `done` flags in `/_nav.js` are the only two places status is 
 | Wireframes | **Done, rebuilt on the block bank** (17 screens, 38 pages). Composition traces to `ia/docs/blocks.md`; states keep their screen's blocks; one stage panel replaced the top bar plus rail; critique run on two instruments (Claude in a browser, Codex read-only), 11 findings, all fixed |
 | Voice | Done (4 principles, dictionary, forbidden list, microcopy rules; every screen rewritten; voice.html deployed). Re-runs over whatever blocks the wireframe rebuild adds |
 | Concept | **Done.** Brand plate B chosen and entered into `DESIGN-artifacts.md`; five attributes, each signed to a data line; the etalon and its three states plus the public brief in color in `design/`; the split-evidence direction re-read against the rebuild and deferred with the reason; audited (targets, focus, contrast, overflow) and the before / after on `concept.html` |
-| UI + Visual | Not started |
+| UI + Visual | **In progress.** Step 1 done: product `DESIGN.md` read out of the code, every value carrying its origin. Step 2 done: `design/kit/inventory.md`, the component inventory of the whole product (37 screens, 248 classes, 50 components in three levels, 13 one-offs). Step 3 (kit + stand) next |
 | Tokens + Components | Not started |
 | Design System | Not started |
 | Responsive | Not started |

@@ -6,15 +6,30 @@
 */
 
 :root {
-  /* ---- Product brand B ---- */
-  --canvas:#0B0E11; --surface:#151A1F; --elevated:#1E252B; --line:#262D34;
-  --porcelain:#EAEEF2; --ash:#868F99; --cyan:#33C4CC; --amber:#D9A441; --red:#E5484D;
-  --bar-track:#20272E; --bar-fill:rgba(51,196,204,0.32);
-  --font-ui:"Inter",-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
-  --font-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
-  --r:6px; --r-sm:4px; --ease:cubic-bezier(0.22,1,0.36,1);
+  /* ---- Product brand B "Command center". One value per line, origin beside it.
+     Origin vocabulary: `plate B pixel` (read off the approved brand plate at Stage 06),
+     `attribute AN` (derived from an attribute in design/concept/docs/concept.md),
+     `taste` (the Designer's named taste), `technical decision`.
+     The origin travels with the value: it moves into kit.css byte for byte at Stage 07
+     Step 3, and into the semantic role comment at Stage 08. ---- */
+  --canvas:#0B0E11;      /* plate B pixel. Page background, deepest surface. A1 quiet */
+  --surface:#151A1F;     /* plate B pixel. Card, panel, bar; hover of a ranked row. A1, A4 */
+  --elevated:#1E252B;    /* plate B pixel. Raised panel, active tab, checkbox field. A1 */
+  --line:#262D34;        /* plate B pixel. Every hairline border. A1, depth without shadow */
+  --porcelain:#EAEEF2;   /* plate B pixel. Primary text and the mark. A5, type does the work */
+  --ash:#868F99;         /* plate B pixel. Secondary text, metadata, quote. A1, secondary recedes */
+  --cyan:#33C4CC;        /* plate B pixel. The one accent. A1 one accent, A2 evidence marker, A4 */
+  --amber:#D9A441;       /* attribute A3. Low signal only, as information and never as an alarm */
+  --red:#E5484D;         /* attribute A3. Blocking failure only, paired with the next move */
+  --font-ui:"Inter",-apple-system,BlinkMacSystemFont,system-ui,sans-serif;   /* taste. Vercel / Geist, Linear; A5 */
+  --font-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;                  /* attribute A2. The count is the trust surface; A4 */
+  --r:6px;               /* matched to character. Anything a hand acts on */
+  --r-sm:4px;            /* matched to character. Marks and controls that sit inside text */
+  --ease:cubic-bezier(0.22,1,0.36,1); /* technical decision. Ease out, restrained (UI tone, motion) */
 
-  /* ---- Portfolio roadmap rail (purple, shared with research.html) ---- */
+  /* ---- Portfolio roadmap rail (purple, shared with research.html).
+     NOT product language: prototype chrome for the portfolio around the product.
+     Does not enter the component kit and is excluded from DESIGN.md on purpose. ---- */
   --pf-bg:#0c0c0e; --pf-bg-3:#17171c; --pf-border-light:#1e1e28;
   --pf-text:#e8e8ec; --pf-text-3:#66667a; --pf-accent:#7c6af7; --pf-accent-glow:rgba(124,106,247,0.12);
 }
@@ -56,7 +71,7 @@ nav.top { position:fixed; top:0; left:0; right:0; z-index:100; height:52px; disp
 /* ---- the app frame ---- */
 .appframe { border:1px solid var(--line); border-radius:12px; overflow:hidden; box-shadow:0 2px 4px rgba(0,0,0,0.4); background:var(--canvas); display:flex; flex-direction:column; min-height:560px; }
 .appbar { display:flex; align-items:center; gap:14px; height:52px; padding:0 18px; border-bottom:1px solid var(--line); background:var(--surface); }
-.brand { display:flex; align-items:center; gap:8px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; font-size:13px; color:var(--porcelain); }
+.brand { display:flex; align-items:center; gap:8px; font-weight:590; letter-spacing:0.06em; text-transform:uppercase; font-size:13px; color:var(--porcelain); }
 .brand .mark { color:var(--cyan); }
 .navtabs { display:flex; gap:2px; }
 .navtabs a { display:inline-flex; align-items:center; min-height:44px; font-size:13.5px; color:var(--ash); text-decoration:none; padding:0 12px; border-radius:var(--r); transition:color .15s,background .15s; }
@@ -206,7 +221,7 @@ nav.top { position:fixed; top:0; left:0; right:0; z-index:100; height:52px; disp
 
 /* Key takeaways, for the reader who will not scroll (A4: the order IS the recommendation) */
 .pub-key { margin:26px 0 0; padding:18px 20px; background:var(--surface); border:1px solid var(--line); border-radius:var(--r); }
-.pub-key h2 { font-size:11px; font-weight:600; letter-spacing:0.07em; text-transform:uppercase; color:var(--ash); margin-bottom:12px; }
+.pub-key h2 { font-size:11px; font-weight:590; letter-spacing:0.07em; text-transform:uppercase; color:var(--ash); margin-bottom:12px; }
 .pub-key ol { list-style:none; display:grid; gap:10px; }
 .pub-key li { display:flex; align-items:baseline; gap:12px; font-size:15px; color:var(--porcelain); }
 .pub-key .rank { text-align:left; min-width:14px; padding-top:0; }
@@ -216,7 +231,7 @@ nav.top { position:fixed; top:0; left:0; right:0; z-index:100; height:52px; disp
 .pub-rationale { margin:22px 0 0; padding-left:14px; border-left:2px solid var(--line); font-size:14px; line-height:1.7; color:var(--ash); }
 .pub-rationale b { color:var(--porcelain); font-weight:500; }
 
-.pub-h2 { font-size:11px; font-weight:600; letter-spacing:0.07em; text-transform:uppercase; color:var(--ash); margin:34px 0 14px; padding-top:18px; border-top:1px solid var(--line); }
+.pub-h2 { font-size:11px; font-weight:590; letter-spacing:0.07em; text-transform:uppercase; color:var(--ash); margin:34px 0 14px; padding-top:18px; border-top:1px solid var(--line); }
 .pub-theme { margin-bottom:26px; }
 .pub-theme h3 { display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; font-size:17px; font-weight:590; letter-spacing:-0.015em; color:var(--porcelain); margin-bottom:9px; }
 .pub-theme h3 .conf { margin-left:auto; }

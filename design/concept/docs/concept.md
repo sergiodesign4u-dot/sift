@@ -43,8 +43,21 @@ Internal document, English. No em dash anywhere in this file.
 ### 2. Evidence on the surface, not hidden
 
 - **From:** "the presence of the citation, not the reading of it, is the trust signal" (benchmark.md, Mechanism 1; personas.md O10); Alex needs "the ability to drill down to the raw source" and stops trusting "confident presentation with no visible reasoning" (personas.md, Persona A); "n=42 shown next to the theme" (voice.md, Principle 1).
-- **Visual translation:** every theme statement carries a visible inline evidence count (n=X) in the claim itself; a citation affordance is always present, opening a side panel to the source. Nothing is asserted without its count on the surface.
-- **Technique (reference):** inline citation badge plus side citation panel (Parallel / Perplexity, `references.md`, technique 1). Kin to the Perplexity taste.
+- **Visual translation:** every theme statement carries a visible inline evidence count (n=X) in the
+  claim itself, and a representative verbatim quote on the row so evidence reaches the eye before
+  the click; a citation affordance is always present and drills to the source. Nothing is asserted
+  without its count on the surface.
+- **Technique (reference):** inline citation badge plus a citation index on the public document
+  (Parallel / Perplexity, `references.md`, technique 1). Kin to the Perplexity taste.
+- **Revised August 2026, under the mockups (Stage 07 Step 1).** This line used to promise a side
+  panel opening onto the source. The panel is deferred and recorded as such in the Layout section
+  below; the attribute line had not caught up. Nothing is lost by the correction, because the panel
+  was never what the data asked for: the source lines say "the presence of the drill-down is the
+  trust signal, not the act of drilling down" (`personas.md:103`) and "even if Alex does not click
+  through on every theme, knowing they can is what creates permission to act" (`personas.md:257`).
+  Both ask for a visible, always-present path to the source, and the mockup has one. The quote on
+  the row is the addition that made the panel unnecessary: it delivers evidence before the click in
+  one column.
 
 ### 3. Honest about thin, not uniformly confident
 
@@ -55,8 +68,20 @@ Internal document, English. No em dash anywhere in this file.
 ### 4. Ranked clarity, not a raw dump
 
 - **From:** "the synthesis is the value, the drill-down is the trust mechanism," synthesis first and detail on demand (personas.md O5; ux-patterns.md B1, marked most critical); Alex's trust trigger 3, "Visible sample size and evidence count per theme"; "One decision at a time ... a clear what should I do next" (CLAUDE.md, Design Principle 4).
-- **Visual translation:** the Synthesis view resolves density into a ranked list; each row is a theme plus a volume bar plus n=X; the raw material is reached by drilling, not dumped on the first screen.
-- **Technique (reference):** ranked rows with a volume bar and click-to-drill (Mercury / Amplitude, `references.md`, technique 2). Kin to the calm-dense Linear and Stripe taste.
+- **Visual translation:** the Synthesis view resolves density into a ranked list; each row is a
+  theme plus an explicit rank number plus n=X plus its provenance; the raw material is reached by
+  drilling, not dumped on the first screen.
+- **Technique (reference):** ranked rows with click-to-drill (Mercury / Amplitude, `references.md`,
+  technique 2). Kin to the calm-dense Linear and Stripe taste.
+- **Revised August 2026, under the mockups (Stage 07 Step 1).** This line used to promise a volume
+  bar on every row, and the mockups have none. The bar was an invention of the visual-translation
+  step, not a requirement of the data: the source line asks for "visible sample size and evidence
+  count per theme", and its own example is textual, "Based on 47 feedback items from Intercom and
+  Zendesk over the last 30 days" (`personas.md:256`). The row answers it in text, with `n=42` in
+  mono plus the sources and recency. The bar is dropped rather than built, because rank and count
+  already encode volume twice and a third encoding of the same quantity is decoration, which A1
+  forbids. Consequence in code: `--bar-track` and `--bar-fill` are removed from `design/_theme.css`
+  before it moves to the kit, so no dead token travels into the system.
 
 ### 5. The customer's plain words, not product marketing
 

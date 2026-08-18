@@ -257,3 +257,54 @@ live and where the trust surface actually is. Recorded as a challenge answered, 
 waved away, and it is revisited when fonts become tokens at Stage 07.
 Rejected: swapping the face to score better against a detector. A face chosen to avoid a warning is
 as unowned as a face chosen by reflex.
+
+**Stage 07 Step 1: the product DESIGN.md is formed from code, and four divergences are settled
+out loud (August 2026).**
+`/impeccable document` read `design/_theme.css`, the four colour pages of the etalon and the
+contrast screen, plus the Stage 06 draft `DESIGN-artifacts.md`, and produced the root `DESIGN.md`
+with a sidecar at `.impeccable/design.json`. Brand decisions were expanded with code values, never
+rewritten. The North Star was joined from two commitments that already existed rather than invented:
+the plate name "Command center" plus the product's own claim from `CLAUDE.md`, giving "The Command
+Center That Shows Its Work". The impeccable reference asks the user for metaphor, colour character
+and elevation philosophy at this point; those questions were not asked, because every answer was
+already written in `concept.md` and `DESIGN-artifacts.md`, and the stage forbids rewriting brand.
+
+Four divergences between the mockups and the documents were shown as a table before anything was
+edited, because once `concept.md` is aligned to the mockup nobody can see the disagreement again.
+All four resolved in favour of the code, and in every case the source line turned out to support the
+code rather than the document:
+
+- **A4 promised a volume bar on every ranked row; the mockups have none.** The source line asks for
+  "visible sample size and evidence count per theme" and its own example is textual
+  (`personas.md:256`). The bar was an invention of the Stage 06 visual-translation step. Dropped
+  rather than built: rank and `n=X` already encode volume twice, and a third encoding of one
+  quantity is decoration, which A1 forbids. `--bar-track` and `--bar-fill` removed from
+  `_theme.css` before the migration, so no dead token travels into the kit.
+- **A2 promised a side panel opening onto the source.** The Layout section had already recorded the
+  deferral in August; the attribute line had not caught up. The data asks for the presence of a
+  drill, not a panel (`personas.md:103`, `:257`), and the representative quote on the row now
+  delivers evidence before the click in one column.
+- **The brand said "error is Red"; the error screen is drawn entirely in neutrals.** The draft rule
+  is narrowed rather than the screen repainted: Red means a failure that blocks or destroys, not a
+  recoverable run failure where the previous result survives. The screen's own copy says the sources
+  are still connected and nothing was lost, so red would overstate the failure, and overstating is
+  the same defect as understating. `DESIGN-artifacts.md` is left untouched as the first source.
+- **Font weight 600 was in use at three product sites against a brand declaring 400 / 500 / 590.**
+  Folded to 590. Invisible at 11px, so 600 bought nothing but a fourth weight, and 590 is a number
+  somebody chose while 600 is the number a reflex reaches for.
+
+Rejected: aligning `concept.md` to the mockups silently, which is what makes this class of drift
+permanent. Rejected: keeping the two bar tokens through the byte-for-byte migration and cleaning
+them up later, which would have put dead values in front of the Stage 08 token audit.
+
+**Our variable names deviate from the course convention, deliberately (August 2026).**
+The course base names the Stage 06 convention as `--color-*` / `--radius-*` / `--space-*` /
+`--font-*` / `--size-*`. Ours are `--canvas`, `--surface`, `--cyan`, `--r`, `--font-ui`. Kept.
+They name the role rather than the value, every one of them is signed in the palette table of
+`DESIGN-artifacts.md`, and the same course text forbids renaming what migrates, because Stage 08
+audits these exact names and a rename breaks the origin comment that justifies the role. Renaming
+would cut the line `plate B pixel` to `DESIGN-artifacts.md` to `kit.css` that the whole stage exists
+to protect. Origin comments were moved beside each variable in `_theme.css` before the migration,
+which is what the course actually requires and what Stage 06 had left in prose instead.
+Rejected: renaming at the migration to match the course letter, at the cost of the course's own
+stronger rule.
