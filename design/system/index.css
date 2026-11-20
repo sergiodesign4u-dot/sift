@@ -38,6 +38,26 @@
 @import url("components/group-heading.css");
 
 /* ---------- level 2: molecules. Contain atoms. ---------- */
+@import url("components/theme-card.css");
+@import url("components/snippet.css");
+@import url("components/source-row.css");
+@import url("components/source-card.css");
+@import url("components/brief-row.css");
+@import url("components/composer-row.css");
+@import url("components/account-row.css");
+@import url("components/field.css");
+@import url("components/notice.css");
+@import url("components/screen-head.css");
+@import url("components/toolbar.css");
+@import url("components/selbar.css");
+@import url("components/actionbar.css");
+@import url("components/phase-strip.css");
+@import url("components/breadcrumb.css");
+@import url("components/skeleton-card.css");
+@import url("components/legal-toc.css");
+@import url("components/auth-card.css");
+@import url("components/tier-card.css");
+@import url("components/step-card.css");
 
 /* ---------- level 3: organisms. Contain molecules, or are a shell.
               Inside this group: the ones containing no other organism come first. ---------- */

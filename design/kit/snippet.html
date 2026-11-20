@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift design system - Evidence snippet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../system/index.css">
+<link rel="stylesheet" href="_page.css">
+</head>
+<!--
+  design/kit/snippet.html - a component page in the card format of 2026-11-20, laid after button.html.
+
+  OVERVIEW, for the person placing the component: a live specimen, the content by state matrix,
+  properties, when and when not, do and do not, where it stands.
+  TECHNICAL, for the person changing it: anatomy, the axes with their counts, the tokens it
+  reads, the markup to copy.
+  HISTORY: every change, each with the record it came from.
+
+  The page links ../system/index.css, the SAME entry point a product screen links: it is not a
+  copy of the component, it is the component. The matrix is drawn by _states.js from the
+  product's own :hover and :focus-visible rules; nothing in it is painted by hand. The quotes and
+  meta lines are copied from design/theme.html; the redacted specimen is copied from the Stage 07
+  stand design/kit/kit.html, because no screen draws one yet.
+
+  No em dash anywhere.
+-->
+<body>
+<div class="kit-shell">
+  <div id="kit-panel"></div>
+  <main class="kit-main">
+
+    <div id="kit-crumbs"></div>
+    <div id="kit-head"></div>
+
+    <div class="kit-tabs" role="tablist" aria-label="Evidence snippet page">
+      <button class="kit-tab" role="tab" id="tab-overview" aria-controls="overview" aria-selected="true">Overview</button>
+      <button class="kit-tab" role="tab" id="tab-tech" aria-controls="tech" aria-selected="false" tabindex="-1">Technical</button>
+      <button class="kit-tab" role="tab" id="tab-history" aria-controls="history" aria-selected="false" tabindex="-1">History</button>
+    </div>
+
+    <!-- ================================================================ OVERVIEW -->
+    <div class="kit-tabpanel" role="tabpanel" id="overview" aria-labelledby="tab-overview">
+
+      <div class="kit-hero">
+        <ul class="u-full">
+          <li>
+            <a class="snippet" href="#">
+              <div class="snippet-quote">"I signed up and just stared at an empty dashboard. No idea what to do first, or where my data was supposed to come from."</div>
+              <div class="snippet-meta"><span class="cite">1</span> Intercom &middot; 2 days ago &middot; Customer, mid-market</div>
+            </a>
+          </li>
+          <li>
+            <a class="snippet" href="#">
+              <div class="snippet-quote">"The setup skipped right past connecting a source, so I landed on a blank screen with nothing to look at."</div>
+              <div class="snippet-meta"><span class="cite">2</span> CSV import &middot; 4 days ago &middot; Support ticket</div>
+            </a>
+          </li>
+        </ul>
+        <p class="kit-hero-note">Live. Hover it, tab to it: this is the product's own CSS entry point</p>
+      </div>
+      <p class="kit-note">The customer's words at reading size and in primary ink; everything about the words is secondary and set in mono. Canonical, owned by 4.0.</p>
+
+      <section class="kit-sec" id="variants">
+        <h2 class="kit-h2">Variants and states</h2>
+        <p class="kit-note">The whole snippet is one link, so its states are the link's: hover lifts the ground, focus is the ring from base.css around the whole strip. There is no pressed snippet and no disabled snippet, because snippet.css paints neither. Redacted is not a state of the link but a mark inside the meta line. The citation index keeps its own page: <a href="citation.html">Citation marker</a>.</p>
+        <div class="kit-matrix-wrap">
+          <table class="kit-matrix" inert>
+            <thead><tr><th>Content</th><th>State</th><th>Snippet</th></tr></thead>
+            <tbody>
+              <tr><th rowspan="3">Quote, meta and citation index<code>.snippet .cite</code></th><td class="kit-st">Rest</td>
+                <td><a class="snippet" href="#"><div class="snippet-quote">"Took me three tries to understand I had to import feedback before anything would show up."</div><div class="snippet-meta"><span class="cite">3</span> Intercom &middot; 5 days ago &middot; Customer, SMB</div></a></td></tr>
+              <tr><td class="kit-st">Hover</td>
+                <td><a class="snippet" href="#" data-kit-st="hover"><div class="snippet-quote">"Took me three tries to understand I had to import feedback before anything would show up."</div><div class="snippet-meta"><span class="cite">3</span> Intercom &middot; 5 days ago &middot; Customer, SMB</div></a></td></tr>
+              <tr class="kit-group-end"><td class="kit-st">Focus</td>
+                <td><a class="snippet" href="#" data-kit-st="focus"><div class="snippet-quote">"Took me three tries to understand I had to import feedback before anything would show up."</div><div class="snippet-meta"><span class="cite">3</span> Intercom &middot; 5 days ago &middot; Customer, SMB</div></a></td></tr>
+
+              <tr class="kit-group-end"><th>Redacted<code>.redacted</code></th><td class="kit-st">Rest</td>
+                <td><a class="snippet" href="#"><div class="snippet-quote">"I signed up and just stared at an empty dashboard. No idea what to do first."</div><div class="snippet-meta"><span class="cite">1</span> Intercom &middot; 2 days ago &middot; <span class="redacted">name removed</span></div></a></td></tr>
+
+              <tr><th>Quote and meta<code>.snippet</code></th><td class="kit-st">Rest</td>
+                <td class="kit-cell-none">Named by the inventory, but none of the 12 snippets on 4.0 and 4.1 lacks the citation index: every one carries it. No screen draws this form, so it is not drawn here [?].</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="kit-note">The words in the redacted mark, "name removed", come from the Stage 07 stand <code class="kit-mono">design/kit/kit.html</code>. <code class="kit-mono">voice/docs/microcopy.md</code> has no line for a redaction inside a snippet, and the voice glossary prefers "scrubbed" over "redact" [?].</p>
+      </section>
+
+      <section class="kit-sec" id="props">
+        <h2 class="kit-h2">Properties</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Property</th><th>Type</th><th>Values</th><th>Default</th></tr></thead><tbody>
+          <tr><td>Snippet</td><td>own class</td><td><code>a.snippet</code>, linking to the item in context, 5.0</td><td>none: the class is required</td></tr>
+          <tr><td>Quote</td><td>zone</td><td><code>.snippet-quote</code>, the verbatim in quotation marks</td><td>required</td></tr>
+          <tr><td>Meta</td><td>zone</td><td><code>.snippet-meta</code>: channel &middot; date &middot; who, in mono</td><td>required</td></tr>
+          <tr><td>Citation index</td><td>atom, content</td><td><code>.cite</code> first in the meta line</td><td>present on every snippet in the product</td></tr>
+          <tr><td>Redacted</td><td>zone, content</td><td><code>.redacted</code> inside the meta line, where PII was scrubbed</td><td>absent</td></tr>
+          <tr><td>State</td><td>variant</td><td>rest &middot; hover &middot; focus-visible</td><td>rest</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="when">
+        <h2 class="kit-h2">How to use it</h2>
+        <div class="kit-when">
+          <div>
+            <h3>When</h3>
+            <p>One feedback item under a theme, on 4.0 and 4.1, one per item, grouped by source. The snippet links to 5.0, the full item in context.</p>
+            <p><b>The citation number is a two-way tie.</b> The same number is what the summary chip points at, so a reader can go claim to item and item back to claim.</p>
+            <p>Author references are scrubbed by default, and the snippet shows the scrubbed form.</p>
+          </div>
+          <div>
+            <h3>When not</h3>
+            <ul>
+              <li>For the theme itself, ranked: take <a href="theme-card.html">the theme card</a>. A zone set that differs is a different component.</li>
+              <li>For the claim that the items support: that is the summary paragraph of 4.0, with linked citation chips.</li>
+              <li>For an item that cannot be shown at all: that is 5.1, a page that says what was withheld and why, not a snippet with an empty quote.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="kit-dodont">
+          <div class="kit-dd kit-dd--do">
+            <div class="kit-dd-c" inert>
+              <a class="snippet u-full" href="#"><div class="snippet-quote">"My team gave up during setup because the first-run screen was blank with no guidance."</div><div class="snippet-meta"><span class="cite">5</span> Intercom &middot; 9 days ago &middot; Customer, enterprise</div></a>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do</div><div class="kit-dd-t">The number that ties it to the claim</div>
+              <div class="kit-dd-d">Index 5 is the chip "Intercom +4" in the summary on 4.0. Item and claim point at each other.</div></div>
+          </div>
+          <div class="kit-dd kit-dd--dont">
+            <div class="kit-dd-c" inert>
+              <a class="snippet u-full" href="#"><div class="snippet-quote">"My team gave up during setup because the first-run screen was blank with no guidance."</div><div class="snippet-meta">Intercom &middot; 9 days ago &middot; Customer, enterprise</div></a>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do not</div><div class="kit-dd-t">An item with no number</div>
+              <div class="kit-dd-d">A snippet whose number appears in no claim is an orphan: the summary and the evidence have drifted apart.</div></div>
+          </div>
+        </div>
+        <p class="kit-note">Sources: <code class="kit-mono">ia/docs/pages/theme.md</code>, "Evidence snippet (feedback item card)"; the comments above <code class="kit-mono">.snippet</code> and <code class="kit-mono">.redacted</code> in <code class="kit-mono">design/kit/kit.css</code>; <code class="kit-mono">ia/docs/pages/evidence.md</code> for 5.1.</p>
+      </section>
+
+      <section class="kit-sec" id="where">
+        <h2 class="kit-h2">Where it stands</h2>
+        <p class="kit-note">4.0 and 4.1, 12 snippets. In grey: 4.0, 4.1; 5.1 is the redacted state of the item, and draws no snippet. In colour:</p>
+        <div class="kit-where">
+          <a href="../theme.html">4.0 Theme detail</a>
+          <a href="../theme-low-signal.html">4.1 Theme detail, low signal</a>
+          <a href="../../wireframes/overview.html">the rest, in grey</a>
+        </div>
+      </section>
+    </div>
+
+    <!-- ================================================================ TECHNICAL -->
+    <div class="kit-tabpanel" role="tabpanel" id="tech" aria-labelledby="tab-tech">
+
+      <section class="kit-sec" id="anatomy">
+        <h2 class="kit-h2">Anatomy</h2>
+        <p class="kit-note">Quote then meta, in that order. The words come first because they are the evidence; everything the product knows about them comes after and recedes.</p>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
+          <tr><td>the snippet</td><td><code>a.snippet</code></td><td>The anchor itself. The whole strip is the target, with a rule underneath that belongs to the snippet</td></tr>
+          <tr><td>the quote</td><td><code>.snippet-quote</code></td><td>Reading size, primary ink, 1.65 line height, the prose measure at most</td></tr>
+          <tr><td>the meta line</td><td><code>.snippet-meta</code></td><td>Mono, secondary ink, a wrapping flex row: index, channel, date, who</td></tr>
+          <tr><td>the index</td><td><code>.cite</code></td><td>The citation atom, first in the meta line</td></tr>
+          <tr><td>the redaction</td><td><code>.redacted</code></td><td>The meta line's face, size and ink, on a raised surface. Its appearance was taken from that nearest relative</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="axes">
+        <h2 class="kit-h2">Axes, with the rule that chooses</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
+          <tr><td>content</td><td>quote plus meta 12 &middot; quote plus meta plus citation index</td><td>The inventory's split. Measured: all 12 on 4.0 and 4.1 carry the index</td></tr>
+          <tr><td>redacted</td><td>present &middot; absent</td><td><b>PII is scrubbed by default and the product says so where it happened</b>, rather than silently showing a gap</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="tokens">
+        <h2 class="kit-h2">Tokens it reads</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Reads</th><th>Which grows from</th><th>For</th></tr></thead><tbody>
+          <tr><td><code>--line-hairline</code></td><td><code>--grey-800</code> dark, <code>--grey-150</code> light</td><td>the rule under the snippet</td></tr>
+          <tr><td><code>--bg-hover</code></td><td><code>--grey-900</code> dark, <code>--grey-025</code> light</td><td>the lift under the pointer</td></tr>
+          <tr><td><code>--text-primary</code></td><td><code>--grey-050</code> dark, <code>--grey-950</code> light</td><td>the quote</td></tr>
+          <tr><td><code>--text-secondary</code></td><td><code>--grey-400</code> dark, <code>--grey-550</code> light</td><td>the meta line and the redaction</td></tr>
+          <tr><td><code>--bg-raised</code></td><td><code>--grey-850</code> dark, <code>--grey-075</code> light</td><td>the ground of the redaction mark</td></tr>
+          <tr><td><code>--font-mono</code>, <code>--type-sm</code>, <code>--type-2xs</code>, <code>--measure-prose</code></td><td>tokens.css</td><td>the meta face, the quote and meta sizes, the 92ch measure</td></tr>
+          <tr><td><code>--space-3</code>, <code>--space-4</code>, <code>--radius-sm</code>, <code>--ease</code></td><td>tokens.css</td><td>side padding and the meta margin, the meta gap, the mark's corner, the transition</td></tr>
+        </tbody></table></div>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>State</th><th>Token</th><th>What moves</th></tr></thead><tbody>
+          <tr><td>hover</td><td><code>--bg-hover</code></td><td>The ground lifts one step across the whole strip</td></tr>
+          <tr><td>focus-visible</td><td><code>--line-focus</code></td><td>The ring from base.css wraps the whole snippet, which is correct: the snippet is the control</td></tr>
+          <tr><td>active, disabled</td><td><b>absent</b></td><td>snippet.css paints neither</td></tr>
+        </tbody></table></div>
+        <p class="kit-note">Kept off the scale, byte for byte, because no primitive equals them: the 15px vertical padding, the quote's 1.65 line height and the mark's 5px side padding.</p>
+      </section>
+
+      <section class="kit-sec" id="shots">
+        <h2 class="kit-h2">Snapshots</h2>
+        <p class="kit-note">Molecules get no new snapshots this round: the states are shown live in the matrix on Overview. The hover reads <code class="kit-mono">--bg-hover</code>, the same token as <a href="cardrow.html">the list row link</a>.</p>
+      </section>
+
+      <section class="kit-sec" id="markup">
+        <h2 class="kit-h2">Copy this</h2>
+        <div class="scene">
+          <pre class="kit-pre">&lt;a class="snippet" href="evidence.html"&gt;
+  &lt;div class="snippet-quote"&gt;"Took me three tries to understand I had to import feedback before anything would show up."&lt;/div&gt;
+  &lt;div class="snippet-meta"&gt;&lt;span class="cite"&gt;3&lt;/span&gt; Intercom &amp;middot; 5 days ago &amp;middot; Customer, SMB&lt;/div&gt;
+&lt;/a&gt;</pre>
+        </div>
+        <p class="kit-note">File: <code class="kit-mono">design/system/components/snippet.css</code>, imported in the molecules group of <code class="kit-mono">design/system/index.css</code>. On 4.0 each snippet sits in an <code class="kit-mono">li</code> of <code class="kit-mono">ul.list</code>, and the <code class="kit-mono">li</code> carries the id the citation chip points at.</p>
+      </section>
+    </div>
+
+    <!-- ================================================================ HISTORY -->
+    <div class="kit-tabpanel" role="tabpanel" id="history" aria-labelledby="tab-history">
+      <section class="kit-sec">
+        <h2 class="kit-h2">Changes, newest first</h2>
+        <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-21</td><td>Entered the system: <code>components/snippet.css</code>, on semantic roles, and this page in the card format</td><td><code>docs/decisions.md</code>, "The molecules entered the system"</td></tr>
+          <tr><td>2026-08-18</td><td>Declared in the flat kit <code>design/kit/kit.css</code> at Stage 07 Step 3, with <code>.redacted</code>. The redacted form was accepted with its appearance taken from the mono meta line of the same snippet</td><td>commit <code>d461e12</code>; <code>design/kit/docs/inventory.md</code>, "Control without a form: every row closed"</td></tr>
+        </tbody></table></div>
+      </section>
+    </div>
+
+    <div id="kit-pager"></div>
+
+  </main>
+</div>
+
+<script src="_nav.js"></script>
+<script src="_states.js"></script>
+</body>
+</html>

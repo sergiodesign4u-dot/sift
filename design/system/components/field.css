@@ -1,0 +1,19 @@
+/* design/system/components/field.css - level 2, molecule.
+   Reads: --text-danger, --space-2, --space-6
+   Page:  design/kit/field.html
+   Stands on: 1.0, 1.1, 1.2, 3.2, 6.1. 5 fields in the inventory count.
+
+   A form field: the label (atom field-label), the control (atom input), an optional trailing
+   link in the label row, and an optional error line under the control. The wrapper owns only the
+   space under the field; everything inside it is an atom that keeps its own states, focus and
+   hover included.
+
+   The error is a LINE UNDER THE FIELD and not a red border: input.css paints no error state, so
+   .field-err is the whole of how a field shows an error, and the message has to say what to do,
+   which a colour alone cannot. 12px is kept as a literal: it has no exact step on the --type-*
+   scale (12.5 is xs, 11 is 2xs), and values migrate, they are never rounded.
+   No em dash anywhere in this file.
+*/
+
+.field { display: block; margin-bottom: var(--space-6); }
+.field-err { display: block; font-size: 12px; color: var(--text-danger); margin-top: var(--space-2); }

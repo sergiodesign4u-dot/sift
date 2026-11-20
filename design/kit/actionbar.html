@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift design system - Action bar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../system/index.css">
+<link rel="stylesheet" href="_page.css">
+</head>
+<!--
+  design/kit/actionbar.html - a component page in the card format of 2026-11-20, laid out on the template button.html.
+
+  OVERVIEW: a live specimen, the variant by state matrix, properties, when and when not, do and do not, where it stands.
+  TECHNICAL: anatomy, the axes, the tokens it reads, the markup to copy.
+  HISTORY: every change, each with the record it came from.
+
+  The page links ../system/index.css, the SAME entry point a product screen links. The matrix is
+  drawn by _states.js from the product's own rules where the component has states; nothing in it is painted by hand.
+
+  No em dash anywhere.
+-->
+<body>
+<div class="kit-shell">
+  <div id="kit-panel"></div>
+  <main class="kit-main">
+
+    <div id="kit-crumbs"></div>
+    <div id="kit-head"></div>
+
+    <div class="kit-tabs" role="tablist" aria-label="Action bar page">
+      <button class="kit-tab" role="tab" id="tab-overview" aria-controls="overview" aria-selected="true">Overview</button>
+      <button class="kit-tab" role="tab" id="tab-tech" aria-controls="tech" aria-selected="false" tabindex="-1">Technical</button>
+      <button class="kit-tab" role="tab" id="tab-history" aria-controls="history" aria-selected="false" tabindex="-1">History</button>
+    </div>
+
+    <!-- ================================================================ OVERVIEW -->
+    <div class="kit-tabpanel" role="tabpanel" id="overview" aria-labelledby="tab-overview">
+
+      <div class="kit-hero">
+        <div class="actionbar"><span class="actionbar-note">1 column still needs a field</span><a class="btn--ghost" href="#">Back to sources</a><a class="btn" href="#">Import 840 items</a></div>
+        <p class="kit-hero-note">Live. The note takes the left, the actions follow</p>
+      </div>
+      <p class="kit-note">Text from 3.2 Import a CSV, the one screen in colour that carries the note.</p>
+
+      <section class="kit-sec" id="variants">
+        <h2 class="kit-h2">Variants and states</h2>
+        <p class="kit-note">Not interactive itself: the bar is a row, and the buttons in it are the atom <a class="link" href="button.html">button</a>, which keeps its own states. Rows are the two content forms. Alignment: the inventory calls the forms right-aligned, but <code class="kit-mono">.actionbar</code> in the flat kit has no <code>justify-content</code>, so a lone button sits at the left edge, as the matrix shows [?]. The grey <code class="kit-mono">wf-actionbar</code> does right-align.</p>
+        <div class="kit-matrix-wrap">
+          <table class="kit-matrix" inert>
+            <thead><tr><th>Content form</th><th>Bar</th></tr></thead>
+            <tbody>
+              <tr><th>Actions only<code>.actionbar</code></th><td><div class="actionbar"><button class="btn" type="button">Save data settings</button></div></td></tr>
+              <tr><th>With a note<code>.actionbar-note</code></th><td><div class="actionbar"><span class="actionbar-note">1 column still needs a field</span><a class="btn--ghost" href="#">Back to sources</a><a class="btn" href="#">Import 840 items</a></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="props">
+        <h2 class="kit-h2">Properties</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Property</th><th>Type</th><th>Values</th><th>Default</th></tr></thead><tbody>
+          <tr><td>Bar</td><td>own class</td><td><code>.actionbar</code> on a <code>div</code>: a row, 10px between its children, 18px above</td><td>none: the class is required</td></tr>
+          <tr><td>Actions</td><td>zone</td><td>atom <code>.btn</code> or <code>.btn--ghost</code>, as <code>a</code> or <code>button</code>, in reading order</td><td>required</td></tr>
+          <tr><td>Note</td><td>zone</td><td><code>.actionbar-note</code>, a <code>span</code> first in the row, secondary ink, pushed to the left edge</td><td>absent</td></tr>
+          <tr><td>360</td><td>layout</td><td>the note takes its own line and the actions share the next</td><td>n/a</td></tr>
+          <tr><td>State</td><td>none</td><td>the bar has none; the buttons keep theirs</td><td>n/a</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="when">
+        <h2 class="kit-h2">How to use it</h2>
+        <div class="kit-when">
+          <div>
+            <h3>When</h3>
+            <p>At the end of a form or a step, where the screen asks for its one decision. On 3.2 the note says what is still missing, so the person reads the reason beside the button that is not ready, rather than finding it above.</p>
+          </div>
+          <div>
+            <h3>When not</h3>
+            <ul>
+              <li>To hold two filled buttons: a screen has one primary action, and the footer does not compete with it.</li>
+              <li>To hold a selection: the selection bar is a different molecule.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="kit-dodont">
+          <div class="kit-dd kit-dd--do">
+            <div class="kit-dd-c" inert>
+              <div class="actionbar"><span class="actionbar-note">1 column still needs a field</span><a class="btn--ghost" href="#">Back to sources</a><a class="btn" href="#">Import 840 items</a></div>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do</div><div class="kit-dd-t">One filled action, the rest ghost</div>
+              <div class="kit-dd-d">The next move is the one filled button, and the note says why it may wait.</div></div>
+          </div>
+          <div class="kit-dd kit-dd--dont">
+            <div class="kit-dd-c" inert>
+              <div class="actionbar"><a class="btn" href="#">Back to sources</a><a class="btn" href="#">Import 840 items</a></div>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do not</div><div class="kit-dd-t">Two filled buttons</div>
+              <div class="kit-dd-d">Now the bar asks for two decisions at once. One decision at a time is the principle.</div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="where">
+        <h2 class="kit-h2">Where it stands</h2>
+        <p class="kit-note">The inventory lists 3.2, 3.3, 3.6 and 6.1: right-aligned 3, with a note pushed left 1. In colour the bar stands on 3.2, with the note, and on 7.2, with one button. 3.3, 3.6 and 6.1 are in grey.</p>
+        <div class="kit-where">
+          <a href="../connect-csv.html">3.2 Import a CSV</a>
+          <a href="../account-data.html">7.2 Data and privacy</a>
+          <a href="../../wireframes/overview.html">the rest, in grey</a>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ================================================================ TECHNICAL -->
+    <div class="kit-tabpanel" role="tabpanel" id="tech" aria-labelledby="tab-tech">
+
+      <section class="kit-sec" id="anatomy">
+        <h2 class="kit-h2">Anatomy</h2>
+        <p class="kit-note">The row where a screen's closing actions sit. Two content forms, and the note is what distinguishes them.</p>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
+          <tr><td>the bar</td><td><code>.actionbar</code></td><td>A flex row, centred on the cross axis, 18px above it</td></tr>
+          <tr><td>the note</td><td><code>.actionbar-note</code></td><td>Optional. First in the row, secondary ink. Its auto right margin pushes the actions to the right edge</td></tr>
+          <tr><td>the actions</td><td>atom <code>.btn</code>, <code>.btn--ghost</code></td><td>Keep their own states. At 360 they share a line equally</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="axes">
+        <h2 class="kit-h2">Axes, with the rule that chooses</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
+          <tr><td>content</td><td><b>actions only</b> / with a note</td><td><b>Add the note when the person needs the reason beside the button.</b> Inventory: right-aligned 3, with a note pushed left 1</td></tr>
+          <tr><td>alignment</td><td>left / right</td><td>[?] Inventory says right-aligned, <code>.actionbar</code> does not align right. See the note under the matrix</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="tokens">
+        <h2 class="kit-h2">Tokens it reads</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Reads</th><th>Which grows from</th><th>For</th></tr></thead><tbody>
+          <tr><td><code>--text-secondary</code></td><td><code>--grey-400</code></td><td>the note</td></tr>
+          <tr><td><code>--type-xs</code></td><td>tokens.css</td><td>the note, 12.5px</td></tr>
+          <tr><td><code>--space-4</code></td><td>tokens.css</td><td>the 10px between the children</td></tr>
+          <tr><td><code>--space-8</code></td><td>tokens.css</td><td>the 18px above the bar</td></tr>
+          <tr><td><code>2px</code></td><td>literal</td><td>the margin under the note at 360. It has no step on the space scale</td></tr>
+        </tbody></table></div>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>State</th><th>Token</th><th>What moves</th></tr></thead><tbody>
+          <tr><td>hover, focus, active, disabled</td><td><b>absent</b></td><td>The bar is not interactive. The buttons carry their own</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="snapshots">
+        <h2 class="kit-h2">Snapshots</h2>
+        <p class="kit-note">Molecules get no new snapshots this round. The bar has no state of its own, so there is nothing to compare; the buttons' hover is on the button page.</p>
+      </section>
+
+      <section class="kit-sec" id="markup">
+        <h2 class="kit-h2">Copy this</h2>
+        <div class="scene">
+          <pre class="kit-pre">&lt;div class="actionbar"&gt;
+  &lt;span class="actionbar-note"&gt;1 column still needs a field&lt;/span&gt;
+  &lt;a class="btn--ghost" href="sources.html"&gt;Back to sources&lt;/a&gt;
+  &lt;a class="btn" href="synthesis-loading.html"&gt;Import 840 items&lt;/a&gt;
+&lt;/div&gt;</pre>
+        </div>
+        <p class="kit-note">File: <code class="kit-mono">design/system/components/actionbar.css</code>, with the 360 rule inside it.</p>
+      </section>
+
+    </div>
+
+    <!-- ================================================================ HISTORY -->
+    <div class="kit-tabpanel" role="tabpanel" id="history" aria-labelledby="tab-history">
+      <section class="kit-sec">
+        <h2 class="kit-h2">Changes, newest first</h2>
+        <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-21</td><td>Entered the system: <code>components/actionbar.css</code>, on semantic roles, and this page in the card format</td><td><code>docs/decisions.md</code>, "The molecules entered the system"</td></tr>
+          <tr><td>2026-08-18</td><td>At 360 the note takes its own line and the buttons share the next. Layout on the bar's own children, not an undeclared variant</td><td>commit <code>2ee2c3b</code>, <code>design/kit/docs/inventory.md</code>, "Step 3 close-out: what the kit did with this table"</td></tr>
+          <tr><td>2026-08-18</td><td>Declared in the flat kit with <code>.actionbar-note</code></td><td>commit <code>d461e12</code></td></tr>
+          <tr><td>2026-08-05</td><td>First drawn as <code>wf-actionbar</code> in the grey wireframes</td><td>commit <code>b8ee56b</code></td></tr>
+        </tbody></table></div>
+      </section>
+    </div>
+
+    <div id="kit-pager"></div>
+
+  </main>
+</div>
+
+<script src="_nav.js"></script>
+<script src="_states.js"></script>
+</body>
+</html>

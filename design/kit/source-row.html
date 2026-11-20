@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift design system - Source row</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../system/index.css">
+<link rel="stylesheet" href="_page.css">
+</head>
+<!--
+  design/kit/source-row.html - a component page in the card format of 2026-11-20, laid out on the template button.html.
+
+  OVERVIEW: a live specimen, the variant by state matrix, properties, when and when not, do and do not, where it stands.
+  TECHNICAL: anatomy, the axes, the tokens it reads, the markup to copy.
+  HISTORY: every change, each with the record it came from.
+
+  The page links ../system/index.css, the SAME entry point a product screen links. The matrix is
+  drawn by _states.js from the product's own rules where the component has states; nothing in it is painted by hand.
+
+  No em dash anywhere.
+-->
+<body>
+<div class="kit-shell">
+  <div id="kit-panel"></div>
+  <main class="kit-main">
+
+    <div id="kit-crumbs"></div>
+    <div id="kit-head"></div>
+
+    <div class="kit-tabs" role="tablist" aria-label="Source row page">
+      <button class="kit-tab" role="tab" id="tab-overview" aria-controls="overview" aria-selected="true">Overview</button>
+      <button class="kit-tab" role="tab" id="tab-tech" aria-controls="tech" aria-selected="false" tabindex="-1">Technical</button>
+      <button class="kit-tab" role="tab" id="tab-history" aria-controls="history" aria-selected="false" tabindex="-1">History</button>
+    </div>
+
+    <!-- ================================================================ OVERVIEW -->
+    <div class="kit-tabpanel" role="tabpanel" id="overview" aria-labelledby="tab-overview">
+
+      <div class="kit-hero">
+        <div class="u-full">
+<div class="src-row">
+  <span class="iconslot iconslot--row" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-upload"></use></svg></span>
+  <div class="src-main">
+    <span class="src-name">CSV import <span class="tag">Imported</span></span>
+    <span class="src-sub">Batch import</span>
+  </div>
+  <div class="src-stats">
+    <div class="src-stat"><span class="src-stat-l">Items</span><span class="src-stat-v">840</span></div>
+    <div class="src-stat"><span class="src-stat-l">Imported</span><span class="src-stat-v">2 days ago</span></div>
+    <div class="src-stat"><span class="src-stat-l">PII scrub</span><span class="src-stat-v">On</span></div>
+  </div>
+  <div class="src-rowactions"><a class="btn--ghost" href="#">Manage</a></div>
+</div>
+<div class="src-row">
+  <span class="iconslot iconslot--row" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-source"></use></svg></span>
+  <div class="src-main">
+    <span class="src-name">Intercom <span class="tag">Syncing</span></span>
+    <span class="src-sub">Live connection</span>
+  </div>
+  <div class="src-stats">
+    <div class="src-stat"><span class="src-stat-l">Items</span><span class="src-stat-v">2,910</span></div>
+    <div class="src-stat"><span class="src-stat-l">Last sync</span><span class="src-stat-v">2 days ago</span></div>
+    <div class="src-stat"><span class="src-stat-l">PII scrub</span><span class="src-stat-v">On</span></div>
+  </div>
+  <div class="src-rowactions"><a class="btn--ghost" href="#">Manage</a></div>
+</div>
+        </div>
+        <p class="kit-hero-note">Live. Hover a row, tab to its buttons</p>
+      </div>
+      <p class="kit-note">The second row is the syncing edition: the same anatomy as a healthy one with a different tag word. It is accepted as a healthy row, not a third value.</p>
+
+      <section class="kit-sec" id="variants">
+        <h2 class="kit-h2">Variants and states</h2>
+        <p class="kit-note">One axis: emphasis, healthy or failed. A failed row carries the alert tag (dashed, so it cannot read as a healthy one), a row-level alert line that says in words what happened, and its own retry. Hover is the row's own rule, <code>--bg-hover</code>. Focus is shown on the button inside, because the row itself is not focusable. There is no pressed row: <code>source-row.css</code> paints none. The tag, the icon slot and the buttons keep their own states on their own pages: <a class="link" href="tag.html">Status tag</a>, <a class="link" href="iconslot.html">Icon slot</a>, <a class="link" href="button.html">Button</a>.</p>
+        <div class="kit-matrix-wrap">
+          <table class="kit-matrix" inert>
+            <thead><tr><th>Emphasis</th><th>State</th><th>Row</th></tr></thead>
+            <tbody>
+              <tr><th rowspan="3">Healthy<code>.src-row</code></th><td class="kit-st">Rest</td><td><div class="src-row"> <span class="iconslot iconslot--row" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-upload"></use></svg></span> <div class="src-main"> <span class="src-name">CSV import <span class="tag">Imported</span></span> <span class="src-sub">Batch import</span> </div> <div class="src-stats"> <div class="src-stat"><span class="src-stat-l">Items</span><span class="src-stat-v">840</span></div> <div class="src-stat"><span class="src-stat-l">Imported</span><span class="src-stat-v">2 days ago</span></div> <div class="src-stat"><span class="src-stat-l">PII scrub</span><span class="src-stat-v">On</span></div> </div> <div class="src-rowactions"><a class="btn--ghost" href="#">Manage</a></div> </div></td></tr>
+              <tr><td class="kit-st">Hover</td><td><div class="src-row" data-kit-st="hover"> <span class="iconslot iconslot--row" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-upload"></use></svg></span> <div class="src-main"> <span class="src-name">CSV import <span class="tag">Imported</span></span> <span class="src-sub">Batch import</span> </div> <div class="src-stats"> <div class="src-stat"><span class="src-stat-l">Items</span><span class="src-stat-v">840</span></div> <div class="src-stat"><span class="src-stat-l">Imported</span><span class="src-stat-v">2 days ago</span></div> <div class="src-stat"><span class="src-stat-l">PII scrub</span><span class="src-stat-v">On</span></div> </div> <div class="src-rowactions"><a class="btn--ghost" href="#">Manage</a></div> </div></td></tr>
+              <tr class="kit-group-end"><td class="kit-st">Focus</td><td><div class="src-row"> <span class="iconslot iconslot--row" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-upload"></use></svg></span> <div class="src-main"> <span class="src-name">CSV import <span class="tag">Imported</span></span> <span class="src-sub">Batch import</span> </div> <div class="src-stats"> <div class="src-stat"><span class="src-stat-l">Items</span><span class="src-stat-v">840</span></div> <div class="src-stat"><span class="src-stat-l">Imported</span><span class="src-stat-v">2 days ago</span></div> <div class="src-stat"><span class="src-stat-l">PII scrub</span><span class="src-stat-v">On</span></div> </div> <div class="src-rowactions"><a class="btn--ghost" data-kit-st="focus" href="#">Manage</a></div> </div></td></tr>
+              <tr><th rowspan="3">Failed<code>.src-row + .tag--alert + .rowalert</code></th><td class="kit-st">Rest</td><td><div class="src-row"> <span class="iconslot iconslot--row" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-source"></use></svg></span> <div class="src-main"> <span class="src-name">Intercom <span class="tag tag--alert">Sync failed</span></span> <span class="src-sub">Live connection</span> <span class="rowalert">Sift could not reach Intercom on the last sync. The source may be unavailable, or the connection may need reauthorizing.</span> </div> <div class="src-stats"> <div class="src-stat"><span class="src-stat-l">Items</span><span class="src-stat-v">2,910</span></div> <div class="src-stat"><span class="src-stat-l">Last sync</span><span class="src-stat-v">2 days ago</span></div> <div class="src-stat"><span class="src-stat-l">PII scrub</span><span class="src-stat-v">On</span></div> </div> <div class="src-rowactions"> <a class="btn--ghost" href="#">Manage</a> <a class="btn" href="#">Try again</a> </div> </div></td></tr>
+              <tr><td class="kit-st">Hover</td><td><div class="src-row" data-kit-st="hover"> <span class="iconslot iconslot--row" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-source"></use></svg></span> <div class="src-main"> <span class="src-name">Intercom <span class="tag tag--alert">Sync failed</span></span> <span class="src-sub">Live connection</span> <span class="rowalert">Sift could not reach Intercom on the last sync. The source may be unavailable, or the connection may need reauthorizing.</span> </div> <div class="src-stats"> <div class="src-stat"><span class="src-stat-l">Items</span><span class="src-stat-v">2,910</span></div> <div class="src-stat"><span class="src-stat-l">Last sync</span><span class="src-stat-v">2 days ago</span></div> <div class="src-stat"><span class="src-stat-l">PII scrub</span><span class="src-stat-v">On</span></div> </div> <div class="src-rowactions"> <a class="btn--ghost" href="#">Manage</a> <a class="btn" href="#">Try again</a> </div> </div></td></tr>
+              <tr><td class="kit-st">Focus</td><td><div class="src-row"> <span class="iconslot iconslot--row" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-source"></use></svg></span> <div class="src-main"> <span class="src-name">Intercom <span class="tag tag--alert">Sync failed</span></span> <span class="src-sub">Live connection</span> <span class="rowalert">Sift could not reach Intercom on the last sync. The source may be unavailable, or the connection may need reauthorizing.</span> </div> <div class="src-stats"> <div class="src-stat"><span class="src-stat-l">Items</span><span class="src-stat-v">2,910</span></div> <div class="src-stat"><span class="src-stat-l">Last sync</span><span class="src-stat-v">2 days ago</span></div> <div class="src-stat"><span class="src-stat-l">PII scrub</span><span class="src-stat-v">On</span></div> </div> <div class="src-rowactions"> <a class="btn--ghost" href="#">Manage</a> <a class="btn" data-kit-st="focus" href="#">Try again</a> </div> </div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="props">
+        <h2 class="kit-h2">Properties</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Property</th><th>Type</th><th>Values</th><th>Default</th></tr></thead><tbody>
+          <tr><td>Row</td><td>own class</td><td><code>.src-row</code>, a flex row that wraps</td><td>none: the class is required</td></tr>
+          <tr><td>Emphasis</td><td>variant</td><td>healthy: nothing added &middot; failed: <code>.tag--alert</code> in the name, plus <code>.rowalert</code> under the name</td><td>healthy</td></tr>
+          <tr><td>Icon</td><td>slot</td><td><code>.iconslot--row</code>, 34px</td><td>required</td></tr>
+          <tr><td>Name and line</td><td>slot</td><td><code>.src-main</code> holding <code>.src-name</code> (the tag sits inside it), <code>.src-sub</code> in mono, and on a failed row <code>.rowalert</code></td><td>required</td></tr>
+          <tr><td>Stats</td><td>slot</td><td><code>.src-stats</code> of <code>.src-stat</code>, each a <code>.src-stat-l</code> label over a <code>.src-stat-v</code> value</td><td>3 stats: Items, the date, PII scrub</td></tr>
+          <tr><td>Actions</td><td>slot</td><td><code>.src-rowactions</code>: <code>.btn--ghost</code> Manage; on a failed row <code>.btn</code> Try again beside it</td><td>one outlined action</td></tr>
+          <tr><td>State</td><td>variant</td><td>rest &middot; hover &middot; focus-visible (on the buttons). Connected, syncing and failed are content, not CSS states</td><td>rest</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="when">
+        <h2 class="kit-h2">How to use it</h2>
+        <div class="kit-when">
+          <div>
+            <h3>When</h3>
+            <p>A connected source on 3.0, 3.5 and 3.6: what it is, how much it holds, when it last arrived, whether PII is scrubbed, and the one way to manage it.</p>
+            <p>The alert line under a failed row explains the state in words and offers the retry, because a tag alone says something is wrong and nothing about what to do. The voice rule is that every state names the next move.</p>
+          </div>
+          <div>
+            <h3>When not</h3>
+            <ul>
+              <li>For a source that is not connected yet: take <a class="link" href="source-card.html">the source card</a>.</li>
+              <li>For a saved brief or a composer row: take <a class="link" href="brief-row.html">the saved brief row</a> or <a class="link" href="composer-row.html">the composer row</a>. The inventory keeps seven row-shaped components apart because their zones differ.</li>
+              <li>For a destination in a hub: take <a class="link" href="cardrow.html">the list row link</a>.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="kit-dodont">
+          <div class="kit-dd kit-dd--do">
+            <div class="kit-dd-c" inert>
+<div class="u-full"><div class="src-row">
+  <span class="iconslot iconslot--row" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-source"></use></svg></span>
+  <div class="src-main">
+    <span class="src-name">Intercom <span class="tag tag--alert">Sync failed</span></span>
+    <span class="src-sub">Live connection</span>
+    <span class="rowalert">Sift could not reach Intercom on the last sync. The source may be unavailable, or the connection may need reauthorizing.</span>
+  </div>
+  <div class="src-stats">
+    <div class="src-stat"><span class="src-stat-l">Items</span><span class="src-stat-v">2,910</span></div>
+    <div class="src-stat"><span class="src-stat-l">Last sync</span><span class="src-stat-v">2 days ago</span></div>
+    <div class="src-stat"><span class="src-stat-l">PII scrub</span><span class="src-stat-v">On</span></div>
+  </div>
+  <div class="src-rowactions">
+    <a class="btn--ghost" href="#">Manage</a>
+    <a class="btn" href="#">Try again</a>
+  </div>
+</div></div>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do</div><div class="kit-dd-t">A failed row says what and offers the retry</div>
+              <div class="kit-dd-d">The tag marks it, the alert line explains it, and the retry sits in the row. The person does not have to leave the list to know the next move.</div></div>
+          </div>
+          <div class="kit-dd kit-dd--dont">
+            <div class="kit-dd-c" inert>
+<div class="u-full"><div class="src-row">
+  <span class="iconslot iconslot--row" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-source"></use></svg></span>
+  <div class="src-main">
+    <span class="src-name">Intercom <span class="tag tag--alert">Sync failed</span></span>
+    <span class="src-sub">Live connection</span>
+    
+  </div>
+  <div class="src-stats">
+    <div class="src-stat"><span class="src-stat-l">Items</span><span class="src-stat-v">2,910</span></div>
+    <div class="src-stat"><span class="src-stat-l">Last sync</span><span class="src-stat-v">2 days ago</span></div>
+    <div class="src-stat"><span class="src-stat-l">PII scrub</span><span class="src-stat-v">On</span></div>
+  </div>
+  <div class="src-rowactions">
+    <a class="btn--ghost" href="#">Manage</a>
+  </div>
+</div></div>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do not</div><div class="kit-dd-t">A failed tag with no line and no retry</div>
+              <div class="kit-dd-d">A tag alone says something is wrong and nothing about what to do. This is the case the alert line exists for.</div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="where">
+        <h2 class="kit-h2">Where it stands</h2>
+        <p class="kit-note">3.0 Sources, 3.5 Source: sync error and 3.6 Source: manage, per the inventory. The two already in colour:</p>
+        <div class="kit-where">
+          <a href="../sources.html">3.0 Sources</a>
+          <a href="../sources-sync-error.html">3.5 Source: sync error</a>
+          <a href="../../wireframes/overview.html">the rest, in grey</a>
+        </div>
+      </section>
+    </div>
+
+    <!-- ================================================================ TECHNICAL -->
+    <div class="kit-tabpanel" role="tabpanel" id="tech" aria-labelledby="tab-tech">
+
+      <section class="kit-sec" id="anatomy">
+        <h2 class="kit-h2">Anatomy</h2>
+        <p class="kit-note">Icon, name, stats, status, action, in reading order. Kept apart from the saved brief row and the composer row: the inventory calls them three components and not variants, because whole zones are gone between them (<code>design/kit/docs/inventory.md</code>, "Level 2, molecules").</p>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
+          <tr><td>icon</td><td><code>.iconslot--row</code></td><td>34px rounded square from the icon slot atom</td></tr>
+          <tr><td>name</td><td><code>.src-name</code> with a <code>.tag</code> inside</td><td>14px, medium weight, primary ink. The status word is the tag atom</td></tr>
+          <tr><td>line</td><td><code>.src-sub</code></td><td>Mono, secondary ink: what kind of source it is</td></tr>
+          <tr><td>alert line, failed only</td><td><code>.rowalert</code></td><td>Explains the failure in words. Left rule in <code>--line-warning</code> [PENDING owner]</td></tr>
+          <tr><td>stats</td><td><code>.src-stats</code> &gt; <code>.src-stat</code></td><td>A mono uppercase label over a mono value. Wraps</td></tr>
+          <tr><td>actions</td><td><code>.src-rowactions</code></td><td>The outlined button, and the filled retry on a failed row</td></tr>
+          <tr><td>the rule</td><td><code>border-bottom</code></td><td>Belongs to the row, so a row can stand alone</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="axes">
+        <h2 class="kit-h2">Axes, with the rule that chooses</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
+          <tr><td>emphasis</td><td>healthy 5 &middot; failed 1</td><td><b>A failure is shown by the alert tag, the alert line and its own retry together.</b> The tag is dashed so a failed source cannot read as a healthy one</td></tr>
+          <tr><td>content</td><td>with stats 6 &middot; with row actions 1</td><td>Counts from the inventory (Level 2 table)</td></tr>
+          <tr><td>state</td><td>connected, syncing, failed</td><td>Syncing is accepted as the same anatomy as failed with a different tag word (inventory, findings table)</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="tokens">
+        <h2 class="kit-h2">Tokens it reads</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Reads</th><th>Which grows from</th><th>For</th></tr></thead><tbody>
+          <tr><td><code>--bg-hover</code></td><td><code>--grey-900</code> dark, <code>--grey-025</code> light</td><td>the lift of the row under the pointer</td></tr>
+          <tr><td><code>--line-hairline</code></td><td><code>--grey-800</code></td><td>the rule under the row</td></tr>
+          <tr><td><code>--line-warning</code></td><td>the 32 percent amber edge</td><td>the left rule of the alert line. kit.css drew solid amber: PENDING owner</td></tr>
+          <tr><td><code>--text-primary</code>, <code>--text-secondary</code></td><td>tokens.css</td><td>the name and values, then the line, labels and alert text</td></tr>
+          <tr><td><code>--font-mono</code></td><td>tokens.css</td><td>the line, the stat labels and values</td></tr>
+          <tr><td><code>--type-base</code>, <code>--type-xs</code>, <code>--type-2xs</code>, <code>--type-3xs</code>, <code>--weight-medium</code></td><td>tokens.css</td><td>name, stat value, line, stat label</td></tr>
+          <tr><td><code>--space-1</code>, <code>-3</code>, <code>-4</code>, <code>-5</code>, <code>-6</code>, <code>-7</code>, <code>-9</code></td><td>tokens.css</td><td>gaps and padding. Off-scale literals kept: 3px stat gap, 0.05em tracking, 12px alert type, 150px basis</td></tr>
+          <tr><td><code>--ease</code></td><td>tokens.css</td><td>the .12s background transition</td></tr>
+        </tbody></table></div>
+        <p class="kit-note">The hover is <code>--bg-hover</code>, the same token as the list row link (<a class="link" href="cardrow.html">cardrow.html</a>).</p>
+      </section>
+
+      <section class="kit-sec" id="shots">
+        <h2 class="kit-h2">Snapshots</h2>
+        <p class="kit-note">None taken for this molecule. Its states are shown live in the matrix on Overview, drawn from the product's own rules. The hover is <code>--bg-hover</code>, the same token as the list row link.</p>
+      </section>
+
+      <section class="kit-sec" id="markup">
+        <h2 class="kit-h2">Copy this</h2>
+        <div class="scene">
+          <pre class="kit-pre">&lt;li class="src-row"&gt;
+  &lt;span class="iconslot iconslot--row" aria-hidden="true"&gt;&lt;svg class="ic"&gt;&lt;use href="#i-source"&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;
+  &lt;div class="src-main"&gt;
+    &lt;span class="src-name"&gt;Intercom &lt;span class="tag tag--alert"&gt;Sync failed&lt;/span&gt;&lt;/span&gt;
+    &lt;span class="src-sub"&gt;Live connection&lt;/span&gt;
+    &lt;span class="rowalert"&gt;Sift could not reach Intercom on the last sync. ...&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="src-stats"&gt;
+    &lt;div class="src-stat"&gt;&lt;span class="src-stat-l"&gt;Items&lt;/span&gt;&lt;span class="src-stat-v"&gt;2,910&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="src-rowactions"&gt;
+    &lt;a class="btn--ghost" href="sources-manage.html"&gt;Manage&lt;/a&gt;
+    &lt;a class="btn" href="sources.html"&gt;Try again&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/li&gt;</pre>
+        </div>
+        <p class="kit-note">File: <code class="kit-mono">design/system/components/source-row.css</code>, in the molecules group of <code class="kit-mono">design/system/index.css</code>. On the screens the row is an <code class="kit-mono">li</code> of <code class="kit-mono">ul.list</code>; <code class="kit-mono">.list</code> is declared in kit.css and is not in the system yet [?]. At 360 the stats and the actions each take their own full row (the second <code class="kit-mono">@media (max-width: 820px)</code> block of kit.css, moved with the component).</p>
+      </section>
+    </div>
+
+    <!-- ================================================================ HISTORY -->
+    <div class="kit-tabpanel" role="tabpanel" id="history" aria-labelledby="tab-history">
+      <section class="kit-sec">
+        <h2 class="kit-h2">Changes, newest first</h2>
+        <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-21</td><td>Entered the system: <code>components/source-row.css</code>, on semantic roles, and this page in the card format</td><td><code>docs/decisions.md</code>, "The molecules entered the system"</td></tr>
+          <tr><td>2026-08-18</td><td>Declared in kit.css from the colour layer, with the failed edition and the row-level alert line. <code>.src-manage</code> was folded into <code>.btn--ghost</code> and <code>.wf-rowalert</code> became <code>.rowalert</code></td><td>commit <code>d461e12</code>; <code>design/kit/docs/inventory.md</code>, the fold tables</td></tr>
+          <tr><td>2026-08-18</td><td>The syncing row was accepted as the same anatomy as failed with a different tag word</td><td><code>design/kit/docs/inventory.md</code>, findings table</td></tr>
+        </tbody></table></div>
+      </section>
+    </div>
+
+    <div id="kit-pager"></div>
+
+  </main>
+</div>
+
+<svg class="sprite" aria-hidden="true"><defs>
+  <symbol id="i-source" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.66 3.13 3 7 3s7-1.34 7-3V6"/><path d="M5 12v6c0 1.66 3.13 3 7 3s7-1.34 7-3v-6"/></symbol>
+  <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V5"/><path d="m7.5 9.5 4.5-4.5 4.5 4.5"/><path d="M4.5 15v3.5a1.5 1.5 0 0 0 1.5 1.5h12a1.5 1.5 0 0 0 1.5-1.5V15"/></symbol>
+  <symbol id="i-drag" viewBox="0 0 24 24"><path d="M9 7h.1M15 7h.1M9 12h.1M15 12h.1M9 17h.1M15 17h.1"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+</defs></svg>
+
+<script src="_nav.js"></script>
+<script src="_states.js"></script>
+</body>
+</html>

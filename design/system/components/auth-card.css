@@ -1,0 +1,24 @@
+/* design/system/components/auth-card.css - level 2, molecule.
+   Reads: --bg-surface, --bg-page, --line-hairline, --text-primary, --text-secondary, --radius-lg, --radius-md, --font-mono, --space-*, --type-*, --weight-*, --tracking-title, --leading-body
+   Page:  design/kit/auth-card.html
+   Stands on: 1.0, 1.1, 1.2 (all three still in grey, none painted in colour yet). Form card 3, value card 3, sent confirmation 1.
+
+   The sheet of the logged-out screens, and its two other content forms: the value line beside the
+   form, and the confirmation after a reset was sent. One molecule with three contents and no other
+   axis. The radius is --radius-lg because the auth card reads as a sheet (the dialog and the frame
+   share it); the sent confirmation is a quiet inset, so it takes --radius-md and the page ground.
+   The fields, the buttons and the "or" divider's neighbours are atoms (.field-label, .input, .btn)
+   and are not declared here.
+   No em dash anywhere in this file.
+*/
+
+.auth-wrap { max-width: 400px; margin: 34px auto; }
+.auth-card { background: var(--bg-surface); border: 1px solid var(--line-hairline); border-radius: var(--radius-lg); padding: var(--space-10); }
+.auth-card + .auth-card { margin-top: var(--space-7); }
+.auth-h2 { font-size: var(--type-lg); font-weight: var(--weight-strong); letter-spacing: var(--tracking-title); color: var(--text-primary); margin-bottom: 5px; }
+.auth-step { display: block; font-family: var(--font-mono); font-size: var(--type-3xs); font-weight: var(--weight-medium); letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: var(--space-3); }
+.auth-value { font-size: var(--type-xs); color: var(--text-secondary); line-height: var(--leading-body); margin: var(--space-1) 0 var(--space-8); }
+.auth-or { display: flex; align-items: center; gap: var(--space-4); font-size: 11.5px; color: var(--text-secondary); margin: var(--space-7) 0; }
+.auth-or::before, .auth-or::after { content: ""; flex: 1; height: 1px; background: var(--line-hairline); }
+.auth-switch { font-size: var(--type-xs); color: var(--text-secondary); text-align: center; margin-top: 20px; }
+.auth-sent { font-size: var(--type-xs); color: var(--text-secondary); line-height: var(--leading-body); background: var(--bg-page); border: 1px solid var(--line-hairline); border-radius: var(--radius-md); padding: var(--space-6); }

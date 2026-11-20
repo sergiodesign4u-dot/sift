@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift design system - Source card</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../system/index.css">
+<link rel="stylesheet" href="_page.css">
+</head>
+<!--
+  design/kit/source-card.html - a component page in the card format of 2026-11-20, laid out on the template button.html.
+
+  OVERVIEW: a live specimen, the variant by state matrix, properties, when and when not, do and do not, where it stands.
+  TECHNICAL: anatomy, the axes, the tokens it reads, the markup to copy.
+  HISTORY: every change, each with the record it came from.
+
+  The page links ../system/index.css, the SAME entry point a product screen links. The matrix is
+  drawn by _states.js from the product's own rules where the component has states; nothing in it is painted by hand.
+
+  No em dash anywhere.
+-->
+<body>
+<div class="kit-shell">
+  <div id="kit-panel"></div>
+  <main class="kit-main">
+
+    <div id="kit-crumbs"></div>
+    <div id="kit-head"></div>
+
+    <div class="kit-tabs" role="tablist" aria-label="Source card page">
+      <button class="kit-tab" role="tab" id="tab-overview" aria-controls="overview" aria-selected="true">Overview</button>
+      <button class="kit-tab" role="tab" id="tab-tech" aria-controls="tech" aria-selected="false" tabindex="-1">Technical</button>
+      <button class="kit-tab" role="tab" id="tab-history" aria-controls="history" aria-selected="false" tabindex="-1">History</button>
+    </div>
+
+    <!-- ================================================================ OVERVIEW -->
+    <div class="kit-tabpanel" role="tabpanel" id="overview" aria-labelledby="tab-overview">
+
+      <div class="kit-hero">
+        <div class="src-avail u-full">
+<div class="src-card">
+  <span class="iconslot iconslot--card" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-upload"></use></svg></span>
+  <span class="src-card-name">CSV or spreadsheet</span>
+  <span class="src-card-d">Sift reads the feedback text, its date and its channel. You choose which columns are read, and you can leave contact columns out entirely.</span>
+  <a class="btn--ghost" href="#">Import a file</a>
+</div>
+<div class="src-card">
+  <span class="iconslot iconslot--card" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-source"></use></svg></span>
+  <span class="src-card-name">Intercom</span>
+  <span class="src-card-d">Sift reads conversations, not contacts. New conversations arrive on their own once connected.</span>
+  <a class="btn--ghost" href="#">Connect</a>
+</div>
+<div class="src-card">
+  <span class="iconslot iconslot--card" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-source"></use></svg></span>
+  <span class="src-card-name">Zendesk</span>
+  <span class="src-card-d">Sift will read tickets and their replies, the same way it reads Intercom conversations.</span>
+  <span class="src-card-note">Not connectable yet. Import your tickets as a CSV in the meantime.</span>
+</div>
+        </div>
+        <p class="kit-hero-note">Live. The cards are static, the buttons are not</p>
+      </div>
+      <p class="kit-note">What is available but not connected yet. The card is not interactive itself: its button is the atom, and a card with no button says why in <code>.src-card-note</code>.</p>
+
+      <section class="kit-sec" id="variants">
+        <h2 class="kit-h2">Variants and states</h2>
+        <p class="kit-note">One axis, state of the integration, and two content forms. <b>The card is not interactive</b>, so the rows are content forms and no hover, pressed or focus is painted by <code>source-card.css</code>. The button inside keeps its own states on its own page: <a class="link" href="button.html">Button</a>. The icon slot is on <a class="link" href="iconslot.html">Icon slot</a>.</p>
+        <div class="kit-matrix-wrap">
+          <table class="kit-matrix" inert>
+            <thead><tr><th>State</th><th>Card</th></tr></thead>
+            <tbody>
+              <tr><th>Connectable<code>.src-card</code> + button</th><td><div class="kit-cell-fixed"><div class="src-card"> <span class="iconslot iconslot--card" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-source"></use></svg></span> <span class="src-card-name">Intercom</span> <span class="src-card-d">Sift reads conversations, not contacts. New conversations arrive on their own once connected.</span> <a class="btn--ghost" href="#">Connect</a> </div></div></td></tr>
+              <tr><th>Not yet available<code>.src-card-note</code></th><td><div class="kit-cell-fixed"><div class="src-card"> <span class="iconslot iconslot--card" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-source"></use></svg></span> <span class="src-card-name">Zendesk</span> <span class="src-card-d">Sift will read tickets and their replies, the same way it reads Intercom conversations.</span> <span class="src-card-note">Not connectable yet. Import your tickets as a CSV in the meantime.</span> </div></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="props">
+        <h2 class="kit-h2">Properties</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Property</th><th>Type</th><th>Values</th><th>Default</th></tr></thead><tbody>
+          <tr><td>Card</td><td>own class</td><td><code>.src-card</code>, a column</td><td>none: the class is required</td></tr>
+          <tr><td>Grid</td><td>own class</td><td><code>.src-avail</code> holds the cards: auto-fill columns of at least 240px</td><td>none: cards sit in this grid</td></tr>
+          <tr><td>State</td><td>variant</td><td>connectable: a button as the last zone &middot; not yet available: <code>.src-card-note</code> as the last zone, no button</td><td>connectable</td></tr>
+          <tr><td>Icon</td><td>slot</td><td><code>.iconslot--card</code>, 28px</td><td>required</td></tr>
+          <tr><td>Name and description</td><td>slot</td><td><code>.src-card-name</code>, <code>.src-card-d</code> (grows to fill the card)</td><td>required</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="when">
+        <h2 class="kit-h2">How to use it</h2>
+        <div class="kit-when">
+          <div>
+            <h3>When</h3>
+            <p>Under "Available to connect" on 3.0, 3.4 and 3.5. An unavailable integration says so on its face rather than being hidden, because a missing integration the PM cannot see is a question to support.</p>
+          </div>
+          <div>
+            <h3>When not</h3>
+            <ul>
+              <li>For a source that is already connected: take <a class="link" href="source-row.html">the source row</a>.</li>
+              <li>For a hub destination: take <a class="link" href="cardrow.html">the list row link</a>.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="kit-dodont">
+          <div class="kit-dd kit-dd--do">
+            <div class="kit-dd-c" inert>
+<div class="kit-cell-fixed"><div class="src-card">
+  <span class="iconslot iconslot--card" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-source"></use></svg></span>
+  <span class="src-card-name">Zendesk</span>
+  <span class="src-card-d">Sift will read tickets and their replies, the same way it reads Intercom conversations.</span>
+  <span class="src-card-note">Not connectable yet. Import your tickets as a CSV in the meantime.</span>
+</div></div>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do</div><div class="kit-dd-t">Say it on the card</div>
+              <div class="kit-dd-d">Zendesk is not connectable yet, the note says so and names the way round: import the tickets as a CSV.</div></div>
+          </div>
+          <div class="kit-dd kit-dd--dont">
+            <div class="kit-dd-c" inert>
+<div class="kit-cell-fixed"><div class="src-card">
+  <span class="iconslot iconslot--card" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-source"></use></svg></span>
+  <span class="src-card-name">Zendesk</span>
+  <span class="src-card-d">Sift will read tickets and their replies, the same way it reads Intercom conversations.</span>
+</div></div>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do not</div><div class="kit-dd-t">Hide it, or leave it without a word</div>
+              <div class="kit-dd-d">A card with no button and no note reads as broken, and a hidden one becomes a question to support.</div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="where">
+        <h2 class="kit-h2">Where it stands</h2>
+        <p class="kit-note">3.0, 3.4 and 3.5, connectable 6 occurrences and not yet available 3. All three are already in colour:</p>
+        <div class="kit-where">
+          <a href="../sources.html">3.0 Sources</a>
+          <a href="../sources-empty.html">3.4 Sources: none connected</a>
+          <a href="../sources-sync-error.html">3.5 Source: sync error</a>
+          <a href="../../wireframes/overview.html">the rest, in grey</a>
+        </div>
+      </section>
+    </div>
+
+    <!-- ================================================================ TECHNICAL -->
+    <div class="kit-tabpanel" role="tabpanel" id="tech" aria-labelledby="tab-tech">
+
+      <section class="kit-sec" id="anatomy">
+        <h2 class="kit-h2">Anatomy</h2>
+        <p class="kit-note">Kept apart from the other row-shaped components: the inventory calls them seven components and not one with variants, because the zone sets differ and whole zones are gone (<code>design/kit/docs/inventory.md</code>, "Level 2, molecules").</p>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
+          <tr><td>the card</td><td><code>.src-card</code></td><td>A bordered column on the surface ground, 6px radius</td></tr>
+          <tr><td>icon</td><td><code>.iconslot--card</code></td><td>28px, from the icon slot atom</td></tr>
+          <tr><td>name</td><td><code>.src-card-name</code></td><td>13.5px, medium weight, primary ink</td></tr>
+          <tr><td>description</td><td><code>.src-card-d</code></td><td>Secondary ink, takes the free height so the last zone lines up across cards</td></tr>
+          <tr><td>last zone</td><td><code>.btn--ghost</code> or <code>.src-card-note</code></td><td>The action when connectable; the reason in mono when not</td></tr>
+          <tr><td>the grid</td><td><code>.src-avail</code></td><td>Auto-fill, 240px minimum, 10px gap</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="axes">
+        <h2 class="kit-h2">Axes, with the rule that chooses</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
+          <tr><td>state</td><td>connectable 6 &middot; not yet available 3</td><td><b>An unavailable integration says so rather than being hidden.</b> <code>.src-card-note</code> carries the sentence</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="tokens">
+        <h2 class="kit-h2">Tokens it reads</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Reads</th><th>Which grows from</th><th>For</th></tr></thead><tbody>
+          <tr><td><code>--bg-surface</code></td><td>tokens.css</td><td>the ground of the card</td></tr>
+          <tr><td><code>--line-hairline</code></td><td><code>--grey-800</code></td><td>the card edge</td></tr>
+          <tr><td><code>--radius-md</code></td><td>tokens.css, 6px</td><td>the card corner</td></tr>
+          <tr><td><code>--text-primary</code>, <code>--text-secondary</code></td><td>tokens.css</td><td>name, then description and note</td></tr>
+          <tr><td><code>--font-mono</code>, <code>--type-sm</code>, <code>--type-xs</code>, <code>--type-2xs</code>, <code>--weight-medium</code></td><td>tokens.css</td><td>type</td></tr>
+          <tr><td><code>--space-2</code>, <code>-3</code>, <code>-4</code>, <code>-7</code></td><td>tokens.css</td><td>the grid gap and padding. Off-scale literals kept: 9px gap, 15px padding, 1.55 line height, 240px minimum</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="shots">
+        <h2 class="kit-h2">Snapshots</h2>
+        <p class="kit-note">None taken for this molecule. Its states are shown live in the matrix on Overview, drawn from the product's own rules. Nothing in the card is interactive, so there is no hover token to name.</p>
+      </section>
+
+      <section class="kit-sec" id="markup">
+        <h2 class="kit-h2">Copy this</h2>
+        <div class="scene">
+          <pre class="kit-pre">&lt;div class="src-avail"&gt;
+  &lt;div class="src-card"&gt;
+    &lt;span class="iconslot iconslot--card" aria-hidden="true"&gt;&lt;svg class="ic"&gt;&lt;use href="#i-source"&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;
+    &lt;span class="src-card-name"&gt;Zendesk&lt;/span&gt;
+    &lt;span class="src-card-d"&gt;Sift will read tickets and their replies, ...&lt;/span&gt;
+    &lt;span class="src-card-note"&gt;Not connectable yet. Import your tickets as a CSV in the meantime.&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+        </div>
+        <p class="kit-note">File: <code class="kit-mono">design/system/components/source-card.css</code>, in the molecules group of <code class="kit-mono">design/system/index.css</code>. There is no 360 rule: the grid is <code class="kit-mono">auto-fill</code> and collapses to one column on its own.</p>
+      </section>
+    </div>
+
+    <!-- ================================================================ HISTORY -->
+    <div class="kit-tabpanel" role="tabpanel" id="history" aria-labelledby="tab-history">
+      <section class="kit-sec">
+        <h2 class="kit-h2">Changes, newest first</h2>
+        <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-21</td><td>Entered the system: <code>components/source-card.css</code>, on semantic roles, and this page in the card format</td><td><code>docs/decisions.md</code>, "The molecules entered the system"</td></tr>
+          <tr><td>2026-08-18</td><td>Declared in kit.css with the available-source card. The icon became <code>.iconslot--card</code> (was <code>.src-card-ic</code>)</td><td>commit <code>d461e12</code>; <code>design/kit/docs/inventory.md</code>, the fold tables</td></tr>
+        </tbody></table></div>
+      </section>
+    </div>
+
+    <div id="kit-pager"></div>
+
+  </main>
+</div>
+
+<svg class="sprite" aria-hidden="true"><defs>
+  <symbol id="i-source" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.66 3.13 3 7 3s7-1.34 7-3V6"/><path d="M5 12v6c0 1.66 3.13 3 7 3s7-1.34 7-3v-6"/></symbol>
+  <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V5"/><path d="m7.5 9.5 4.5-4.5 4.5 4.5"/><path d="M4.5 15v3.5a1.5 1.5 0 0 0 1.5 1.5h12a1.5 1.5 0 0 0 1.5-1.5V15"/></symbol>
+  <symbol id="i-drag" viewBox="0 0 24 24"><path d="M9 7h.1M15 7h.1M9 12h.1M15 12h.1M9 17h.1M15 17h.1"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+</defs></svg>
+
+<script src="_nav.js"></script>
+<script src="_states.js"></script>
+</body>
+</html>

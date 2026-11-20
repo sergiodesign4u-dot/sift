@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift design system - Phase strip</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../system/index.css">
+<link rel="stylesheet" href="_page.css">
+</head>
+<!--
+  design/kit/phase-strip.html - a component page in the card format of 2026-11-20, laid out on the template button.html.
+
+  OVERVIEW: a live specimen, the content or viewport forms, properties, when and when not, do and do not, where it stands.
+  TECHNICAL: anatomy, the axes, the tokens it reads, the markup to copy.
+  HISTORY: every change, each with the record it came from.
+
+  The page links ../system/index.css, the SAME entry point a product screen links. The matrix is
+  drawn by _states.js from the product's own rules where the component has states; nothing in it is painted by hand.
+
+  No em dash anywhere.
+-->
+<body>
+<div class="kit-shell">
+  <div id="kit-panel"></div>
+  <main class="kit-main">
+
+    <div id="kit-crumbs"></div>
+    <div id="kit-head"></div>
+
+    <div class="kit-tabs" role="tablist" aria-label="Phase strip page">
+      <button class="kit-tab" role="tab" id="tab-overview" aria-controls="overview" aria-selected="true">Overview</button>
+      <button class="kit-tab" role="tab" id="tab-tech" aria-controls="tech" aria-selected="false" tabindex="-1">Technical</button>
+      <button class="kit-tab" role="tab" id="tab-history" aria-controls="history" aria-selected="false" tabindex="-1">History</button>
+    </div>
+
+    <!-- ================================================================ OVERVIEW -->
+    <div class="kit-tabpanel" role="tabpanel" id="overview" aria-labelledby="tab-overview">
+
+      <div class="kit-hero">
+        <nav class="steps" aria-label="Import steps">
+          <span class="step is-done"><span class="step-n"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-check"></use></svg></span> Upload</span>
+          <span class="step-sep" aria-hidden="true">&rsaquo;</span>
+          <span class="step is-current"><span class="step-n">2</span> Map columns</span>
+          <span class="step-sep" aria-hidden="true">&rsaquo;</span>
+          <span class="step"><span class="step-n">3</span> Review and import</span>
+        </nav>
+        <p class="kit-hero-note">Live. Not interactive: a phase is information, not an action</p>
+      </div>
+
+      <section class="kit-sec" id="variants">
+        <h2 class="kit-h2">Variants and states</h2>
+        <p class="kit-note">Not interactive: the rows are the states of one step, not hover or focus. A strip is information about a process, not a control, so the css paints no hover, pressed or focus and the stand shows none. Each row is one step in its own strip; the live strip above shows all three together, and the three sit side by side in the screens.</p>
+        <div class="kit-matrix-wrap">
+          <table class="kit-matrix" inert>
+            <thead><tr><th>Form</th><th>Step state</th><th>Step</th></tr></thead>
+            <tbody>
+              <tr><th rowspan="3">Phase strip<code>.steps</code></th><td class="kit-st">Upcoming</td><td><nav class="steps" aria-label="Import steps">
+  <span class="step"><span class="step-n">3</span> Review and import</span>
+</nav></td></tr>
+              <tr><td class="kit-st">Current</td><td><nav class="steps" aria-label="Import steps">
+  <span class="step is-current"><span class="step-n">2</span> Map columns</span>
+</nav></td></tr>
+              <tr><td class="kit-st">Done</td><td><nav class="steps" aria-label="Import steps">
+  <span class="step is-done"><span class="step-n"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-check"></use></svg></span> Upload</span>
+</nav></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="kit-note"><b>Two ways to mark a done step.</b> The strip on 3.2 draws the check as an icon inside the numbered circle; 2.2 writes a check character in the circle. Both exist in the colour screens today [?].</p>
+      </section>
+
+      <section class="kit-sec" id="forms">
+        <h2 class="kit-h2">Other forms</h2>
+        <div class="kit-forms">
+          <div><div class="kit-form-c"><nav class="steps" aria-label="Getting to your first synthesis">
+  <span class="step is-current"><span class="step-n">1</span> Connect a source</span>
+  <span class="step-sep" aria-hidden="true">&rsaquo;</span>
+  <span class="step"><span class="step-n">2</span> Scrub and cluster</span>
+  <span class="step-sep" aria-hidden="true">&rsaquo;</span>
+  <span class="step"><span class="step-n">3</span> Ranked themes with evidence</span>
+</nav></div>
+            <div class="kit-form-t">Current first</div>
+            <div class="kit-form-d">2.1 Synthesis, first run. Nothing is done yet; the first phase is the one the person is on.</div></div>
+          <div><div class="kit-form-c"><nav class="steps" aria-label="Synthesis progress">
+  <span class="step is-done"><span class="step-n"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-check"></use></svg></span> Ingested, 3,750 items</span>
+  <span class="step-sep" aria-hidden="true">&rsaquo;</span>
+  <span class="step is-current"><span class="step-n">2</span> Scrubbing and clustering</span>
+  <span class="step-sep" aria-hidden="true">&rsaquo;</span>
+  <span class="step"><span class="step-n">3</span> Ranking by signal</span>
+</nav></div>
+            <div class="kit-form-t">A done phase carries its fact</div>
+            <div class="kit-form-d">2.2 Synthesis loading. The finished phase names what was done, "Ingested, 3,750 items".</div></div>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="props">
+        <h2 class="kit-h2">Properties</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Property</th><th>Type</th><th>Values</th><th>Default</th></tr></thead><tbody>
+          <tr><td>Strip</td><td>own class</td><td><code>.steps</code> on a <code>nav</code> with an <code>aria-label</code></td><td>none: the class is required</td></tr>
+          <tr><td>Step</td><td>element</td><td><code>.step</code> holding <code>.step-n</code> and the phase name</td><td>required, three in the product</td></tr>
+          <tr><td>Marker</td><td>zone</td><td><code>.step-n</code>, a circle. The number, or a mark when the step is done</td><td>required</td></tr>
+          <tr><td>Separator</td><td>element</td><td><code>.step-sep</code>, a right angle quote, <code>aria-hidden</code></td><td>required between steps</td></tr>
+          <tr><td>Step state</td><td>variant</td><td>upcoming (the bare <code>.step</code>) &middot; current (<code>.is-current</code>) &middot; done (<code>.is-done</code>)</td><td>upcoming</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="when">
+        <h2 class="kit-h2">How to use it</h2>
+        <div class="kit-when">
+          <div>
+            <h3>When</h3>
+            <p>Where a process has phases the person should see before committing. Ingestion was a black box in the As-Is journey, and this strip is the answer in visual form: the phases are named before the person commits, so the wait has a shape.</p>
+          </div>
+          <div>
+            <h3>When not</h3>
+            <ul>
+              <li>To make a phase pressable: it is information, not an action. The one action of a screen is a button.</li>
+              <li>To show the way back: that is the <a href="breadcrumb.html">breadcrumb</a>.</li>
+              <li>To mark the current phase with the accent: cyan is already spent on the one next move. The current phase steps up a surface and its text goes to primary ink.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="kit-dodont">
+          <div class="kit-dd kit-dd--do">
+            <div class="kit-dd-c" inert>
+              <nav class="steps" aria-label="Getting to your first synthesis">
+  <span class="step is-current"><span class="step-n">1</span> Connect a source</span>
+  <span class="step-sep" aria-hidden="true">&rsaquo;</span>
+  <span class="step"><span class="step-n">2</span> Scrub and cluster</span>
+  <span class="step-sep" aria-hidden="true">&rsaquo;</span>
+  <span class="step"><span class="step-n">3</span> Ranked themes with evidence</span>
+</nav>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do</div><div class="kit-dd-t">Name each phase</div>
+              <div class="kit-dd-d">Three phases, each a name, so the person sees the shape of the process before it starts.</div></div>
+          </div>
+          <div class="kit-dd kit-dd--dont">
+            <div class="kit-dd-c" inert>
+              <nav class="steps" aria-label="Import steps"><span class="step is-current"><span class="step-n">2</span> Map columns</span></nav>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do not</div><div class="kit-dd-t">A strip with one phase</div>
+              <div class="kit-dd-d">One phase tells the person nothing about the process. The strip exists to show all of it.</div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="where">
+        <h2 class="kit-h2">Where it stands</h2>
+        <p class="kit-note">Inventory lists 2.1, 2.2, 3.2, 3.3, 6.1, 6.2 [?]. The colour files that hold a strip are:</p>
+        <div class="kit-where">
+          <a href="../synthesis-empty.html">2.1 Synthesis, first run</a>
+          <a href="../synthesis-loading.html">2.2 Synthesis loading</a>
+          <a href="../connect-csv.html">3.2 CSV upload</a>
+          <a href="../build-brief.html">6.1 Build brief</a>
+          <a href="../build-brief-thin-warning.html">6.2 Build brief, thin-theme warning</a>
+          <a href="../share-link.html">6.3 Share link</a>
+          <a href="../share-link-loading.html">6.3 Share link, generating</a>
+          <a href="../../wireframes/overview.html">the rest, in grey</a>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ================================================================ TECHNICAL -->
+    <div class="kit-tabpanel" role="tabpanel" id="tech" aria-labelledby="tab-tech">
+
+      <section class="kit-sec" id="anatomy">
+        <h2 class="kit-h2">Anatomy</h2>
+        <p class="kit-note">The phases of a process, named before the user commits. It never takes the accent: a phase is information about process, not an action.</p>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
+<tr><td>the strip</td><td><code>.steps</code></td><td>A wrapping flex row with a rule under it</td></tr>
+<tr><td>the step</td><td><code>.step</code></td><td>Marker and name, 7px apart</td></tr>
+<tr><td>the marker</td><td><code>.step-n</code></td><td>A 19px circle. The number is in the mono face</td></tr>
+<tr><td>the done mark</td><td><code>.step-n .ic</code></td><td>A finished phase carries a mark rather than its number: once the step is behind you the position stops being the useful fact</td></tr>
+<tr><td>the separator</td><td><code>.step-sep</code></td><td>Secondary ink at 70 percent</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="axes">
+        <h2 class="kit-h2">Axes, with the rule that chooses</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
+<tr><td>step state</td><td>upcoming &middot; current &middot; done</td><td><b>The current phase steps up a surface.</b> Same rule as the active filter chip: its text goes to primary ink, its marker gets a ring and a raised ground</td></tr>
+        </tbody></table></div>
+        <p class="kit-note">Three phases, per step: upcoming, current, done. Not interactive.</p>
+      </section>
+
+      <section class="kit-sec" id="tokens">
+        <h2 class="kit-h2">Tokens it reads</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Reads</th><th>Which grows from</th><th>For</th></tr></thead><tbody>
+<tr><td><code>--step-current-line</code></td><td><code>--grey-050</code> dark, <code>--grey-950</code> light</td><td>the ring of the current phase (component token: no line role carries that step)</td></tr>
+<tr><td><code>--bg-raised</code></td><td>tokens.css</td><td>the ground of the current marker</td></tr>
+<tr><td><code>--text-primary</code>, <code>--text-secondary</code></td><td>tokens.css</td><td>the current and done ink, and the upcoming ink</td></tr>
+<tr><td><code>--line-hairline</code>, <code>--line-control</code></td><td>tokens.css</td><td>the rule under the strip and the upcoming ring; the done ring</td></tr>
+<tr><td><code>--font-mono</code>, <code>--type-3xs</code>, <code>--radius-pill</code>, <code>--space-3</code></td><td>tokens.css</td><td>the number, its size, the circle and the side padding</td></tr>
+        </tbody></table></div>
+        <p class="kit-note">Kept as literals because no exact step exists: 9px, 11px and 7px spacing, 12px type, the 19px circle and the 10px icon.</p>
+      </section>
+
+      <section class="kit-sec" id="snapshots">
+        <h2 class="kit-h2">Snapshots</h2>
+        <p class="kit-note">No new snapshots this round. The states are shown live in the matrix and the strip has no pointer or keyboard state to photograph.</p>
+      </section>
+
+      <section class="kit-sec" id="markup">
+        <h2 class="kit-h2">Copy this</h2>
+        <div class="scene">
+          <pre class="kit-pre">&lt;nav class="steps" aria-label="Import steps"&gt;
+  &lt;span class="step is-done"&gt;&lt;span class="step-n"&gt;&lt;svg class="ic"&gt;&lt;use href="#i-check"&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt; Upload&lt;/span&gt;
+  &lt;span class="step-sep" aria-hidden="true"&gt;&amp;rsaquo;&lt;/span&gt;
+  &lt;span class="step is-current"&gt;&lt;span class="step-n"&gt;2&lt;/span&gt; Map columns&lt;/span&gt;
+  &lt;span class="step-sep" aria-hidden="true"&gt;&amp;rsaquo;&lt;/span&gt;
+  &lt;span class="step"&gt;&lt;span class="step-n"&gt;3&lt;/span&gt; Review and import&lt;/span&gt;
+&lt;/nav&gt;</pre>
+        </div>
+        <p class="kit-note">File: <code class="kit-mono">design/system/components/phase-strip.css</code>.</p>
+      </section>
+
+    </div>
+
+    <!-- ================================================================ HISTORY -->
+    <div class="kit-tabpanel" role="tabpanel" id="history" aria-labelledby="tab-history">
+      <section class="kit-sec">
+        <h2 class="kit-h2">Changes, newest first</h2>
+        <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-21</td><td>Entered the system: <code>components/phase-strip.css</code>, on semantic roles. The ring of the current phase reads the component token <code>--step-current-line</code>. This page in the card format</td><td><code>docs/decisions.md</code>, "The molecules entered the system"</td></tr>
+          <tr><td>2026-08-18</td><td><code>.step-n .ic</code> was added: a finished phase carries a mark instead of its number, with the CSV import screen</td><td>commit <code>2ee2c3b</code>, <code>design/kit/docs/inventory.md</code></td></tr>
+          <tr><td>2026-08-18</td><td>The kit was grown out of the colour layer: the strip, its steps and its separator were declared in <code>kit.css</code></td><td>commit <code>d461e12</code></td></tr>
+          <tr><td>2026-08-05</td><td>The first colour copy of the strip, on the recoloured etalon</td><td>commit <code>d0b0e31</code></td></tr>
+        </tbody></table></div>
+      </section>
+    </div>
+
+    <div id="kit-pager"></div>
+
+  </main>
+</div>
+
+<svg class="sprite" aria-hidden="true"><defs>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+</defs></svg>
+
+<script src="_nav.js"></script>
+<script src="_states.js"></script>
+</body>
+</html>

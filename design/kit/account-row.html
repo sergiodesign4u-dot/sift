@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift design system - Account row</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../system/index.css">
+<link rel="stylesheet" href="_page.css">
+</head>
+<!--
+  design/kit/account-row.html - a component page in the card format of 2026-11-20, laid out on the template button.html.
+
+  OVERVIEW: a live specimen, the variant by state matrix, properties, when and when not, do and do not, where it stands.
+  TECHNICAL: anatomy, the axes, the tokens it reads, the markup to copy.
+  HISTORY: every change, each with the record it came from.
+
+  The page links ../system/index.css, the SAME entry point a product screen links. The matrix is
+  drawn by _states.js from the product's own rules where the component has states; nothing in it is painted by hand.
+
+  No em dash anywhere.
+-->
+<body>
+<div class="kit-shell">
+  <div id="kit-panel"></div>
+  <main class="kit-main">
+
+    <div id="kit-crumbs"></div>
+    <div id="kit-head"></div>
+
+    <div class="kit-tabs" role="tablist" aria-label="Account row page">
+      <button class="kit-tab" role="tab" id="tab-overview" aria-controls="overview" aria-selected="true">Overview</button>
+      <button class="kit-tab" role="tab" id="tab-tech" aria-controls="tech" aria-selected="false" tabindex="-1">Technical</button>
+      <button class="kit-tab" role="tab" id="tab-history" aria-controls="history" aria-selected="false" tabindex="-1">History</button>
+    </div>
+
+    <!-- ================================================================ OVERVIEW -->
+    <div class="kit-tabpanel" role="tabpanel" id="overview" aria-labelledby="tab-overview">
+
+      <div class="kit-hero">
+        <div><label class="acct-row"><input type="checkbox" class="check" checked><span class="acct-row-main"><span class="acct-row-t">Scrub PII by default</span><span class="acct-row-d">Names and email addresses in imported feedback are scrubbed on ingest. On by default for every source.</span></span></label><div class="acct-row"><span class="acct-row-main"><span class="acct-row-t">Data residency</span><span class="acct-row-d">Your workspace data is stored in the United States. EU data residency is available for European teams.</span></span></div></div>
+        <p class="kit-hero-note">Live. Click the checkbox row: the whole row is the label</p>
+      </div>
+      <p class="kit-note">Text from 7.2 Data and privacy.</p>
+
+      <section class="kit-sec" id="variants">
+        <h2 class="kit-h2">Variants and states</h2>
+        <p class="kit-note">The row has no state of its own. Its second form carries a checkbox and the row is the label, so the one state is the checkbox's own, checked or not, drawn by the atom. Hover and focus on the checkbox are on <a class="link" href="checkbox.html">checkbox.html</a> and are not repeated. The label form has a pointer cursor and no hover ground, because the css paints none.</p>
+        <div class="kit-matrix-wrap">
+          <table class="kit-matrix" inert>
+            <thead><tr><th>Content</th><th>State</th><th>Row</th></tr></thead>
+            <tbody>
+              <tr><th>Text only<code>.acct-row</code></th><td class="kit-st">Rest</td><td><div class="acct-row"><span class="acct-row-main"><span class="acct-row-t">Data residency</span><span class="acct-row-d">Your workspace data is stored in the United States. EU data residency is available for European teams.</span></span></div></td></tr>
+              <tr><th rowspan="2">With a checkbox<code>label.acct-row</code></th><td class="kit-st">Unchecked</td><td><label class="acct-row"><input type="checkbox" class="check"><span class="acct-row-main"><span class="acct-row-t">Scrub PII by default</span><span class="acct-row-d">Names and email addresses in imported feedback are scrubbed on ingest. On by default for every source.</span></span></label></td></tr>
+              <tr><td class="kit-st">Checked</td><td><label class="acct-row"><input type="checkbox" class="check" checked><span class="acct-row-main"><span class="acct-row-t">Scrub PII by default</span><span class="acct-row-d">Names and email addresses in imported feedback are scrubbed on ingest. On by default for every source.</span></span></label></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="props">
+        <h2 class="kit-h2">Properties</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Property</th><th>Type</th><th>Values</th><th>Default</th></tr></thead><tbody>
+          <tr><td>Row</td><td>own class</td><td><code>.acct-row</code> on a <code>div</code>, or on a <code>label</code> for the checkbox form</td><td>none: the class is required</td></tr>
+          <tr><td>Checkbox</td><td>zone</td><td>atom <code>.check</code> first in the row, in a <code>label.acct-row</code>. See <a class="link" href="checkbox.html">checkbox.html</a></td><td>absent</td></tr>
+          <tr><td>Body</td><td>zone</td><td><code>.acct-row-main</code>, takes the rest of the width, and may shrink</td><td>required</td></tr>
+          <tr><td>Title</td><td>zone</td><td><code>.acct-row-t</code>, primary ink, medium weight</td><td>required</td></tr>
+          <tr><td>Line</td><td>zone</td><td><code>.acct-row-d</code>, secondary ink: what the setting does</td><td>required</td></tr>
+          <tr><td>State</td><td>variant</td><td>rest &middot; checked (the checkbox's)</td><td>rest</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="when">
+        <h2 class="kit-h2">How to use it</h2>
+        <div class="kit-when">
+          <div>
+            <h3>When</h3>
+            <p>A setting of the account, one per row, with the sentence that says what it does. When the setting is an on and off choice, the row takes the checkbox and becomes the label, so the person has the whole strip to aim at and not a 24px box.</p>
+          </div>
+          <div>
+            <h3>When not</h3>
+            <ul>
+              <li>To link to a section of the account: take the list row link. This row holds a setting, not a destination.</li>
+              <li>To list data the person acts on: take a source row or a brief row.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="kit-dodont">
+          <div class="kit-dd kit-dd--do">
+            <div class="kit-dd-c" inert>
+              <label class="acct-row"><input type="checkbox" class="check" checked><span class="acct-row-main"><span class="acct-row-t">Scrub PII by default</span><span class="acct-row-d">Names and email addresses in imported feedback are scrubbed on ingest. On by default for every source.</span></span></label>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do</div><div class="kit-dd-t">The whole row is the label</div>
+              <div class="kit-dd-d">A click anywhere on the strip toggles the setting. The sentence is part of the control.</div></div>
+          </div>
+          <div class="kit-dd kit-dd--dont">
+            <div class="kit-dd-c" inert>
+              <div class="acct-row"><input type="checkbox" class="check" checked><span class="acct-row-main"><span class="acct-row-t">Scrub PII by default</span><span class="acct-row-d">Names and email addresses in imported feedback are scrubbed on ingest. On by default for every source.</span></span></div>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do not</div><div class="kit-dd-t">A checkbox in a row that is not a label</div>
+              <div class="kit-dd-d">Now the 24px box is the only target, and the sentence next to it does nothing when it is clicked.</div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="where">
+        <h2 class="kit-h2">Where it stands</h2>
+        <p class="kit-note">Text only 1, with a checkbox 1, in the inventory: 7.1 and 7.2. The colour screen is <code class="kit-mono">account-data.html</code>, where three rows are text only and one is the checkbox form. The inventory count (1 and 1) differs from the screen (3 and 1) [?].</p>
+        <div class="kit-where">
+          <a href="../account-data.html">7.2 Data and privacy</a>
+          <a href="../../wireframes/overview.html">the rest, in grey</a>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ================================================================ TECHNICAL -->
+    <div class="kit-tabpanel" role="tabpanel" id="tech" aria-labelledby="tab-tech">
+
+      <section class="kit-sec" id="anatomy">
+        <h2 class="kit-h2">Anatomy</h2>
+        <p class="kit-note">A row of the account panel: a title and the sentence that says what it does. The checkbox form makes the whole row the label.</p>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
+          <tr><td>the row</td><td><code>.acct-row</code></td><td>A flex row with a hairline under it, 12px between its children, aligned to the top</td></tr>
+          <tr><td>the checkbox</td><td>atom <code>.check</code></td><td>Optional. First in the row. The row is then a <code>label</code></td></tr>
+          <tr><td>the body</td><td><code>.acct-row-main</code></td><td>Takes the rest of the width and can shrink below its content</td></tr>
+          <tr><td>the title</td><td><code>.acct-row-t</code></td><td>Primary ink, medium weight, 13.5px</td></tr>
+          <tr><td>the line</td><td><code>.acct-row-d</code></td><td>Secondary ink, 12.5px, 4px under the title</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="axes">
+        <h2 class="kit-h2">Axes, with the rule that chooses</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
+          <tr><td>content</td><td><b>text only</b> / with a checkbox</td><td><b>Add the checkbox when the setting is on or off.</b> Inventory: text only 1, with a checkbox 1</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="tokens">
+        <h2 class="kit-h2">Tokens it reads</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Reads</th><th>Which grows from</th><th>For</th></tr></thead><tbody>
+          <tr><td><code>--line-hairline</code></td><td><code>--grey-800</code></td><td>the rule under the row</td></tr>
+          <tr><td><code>--text-primary</code>, <code>--text-secondary</code></td><td>tokens.css</td><td>the title, and the line under it</td></tr>
+          <tr><td><code>--type-sm</code>, <code>--type-xs</code>, <code>--weight-medium</code></td><td>tokens.css</td><td>the title and the line</td></tr>
+          <tr><td><code>--space-1</code>, <code>--space-5</code>, <code>--space-6</code></td><td>tokens.css</td><td>the 4px, 12px and 14px of the row</td></tr>
+          <tr><td><code>1.55</code></td><td>literal</td><td>the line height of the line. It has no step on the leading scale, which is 1.2, 1.45, 1.6, 1.75</td></tr>
+        </tbody></table></div>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>State</th><th>Token</th><th>What moves</th></tr></thead><tbody>
+          <tr><td>checked</td><td>the checkbox's <code>--bg-action</code></td><td>Drawn by the atom. The row paints nothing for it</td></tr>
+          <tr><td>hover, focus, active, disabled</td><td><b>absent</b> on the row</td><td>The label form has a pointer cursor. The checkbox keeps its own states</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="snapshots">
+        <h2 class="kit-h2">Snapshots</h2>
+        <p class="kit-note">Molecules get no new snapshots this round. The states are shown live in the matrix above. The row has no hover ground, so it does not share <code class="kit-mono">--bg-hover</code> with the list row link.</p>
+      </section>
+
+      <section class="kit-sec" id="markup">
+        <h2 class="kit-h2">Copy this</h2>
+        <div class="scene">
+          <pre class="kit-pre">&lt;label class="acct-row"&gt;
+  &lt;input type="checkbox" class="check" checked&gt;
+  &lt;span class="acct-row-main"&gt;
+    &lt;span class="acct-row-t"&gt;Scrub PII by default&lt;/span&gt;
+    &lt;span class="acct-row-d"&gt;Names and email addresses in imported feedback are scrubbed on ingest. On by default for every source.&lt;/span&gt;
+  &lt;/span&gt;
+&lt;/label&gt;</pre>
+        </div>
+        <p class="kit-note">File: <code class="kit-mono">design/system/components/account-row.css</code>. <code class="kit-mono">.acct-card-t</code>, <code class="kit-mono">.acct-card-d</code> and <code class="kit-mono">.acct-seclink</code> are not part of it.</p>
+      </section>
+
+    </div>
+
+    <!-- ================================================================ HISTORY -->
+    <div class="kit-tabpanel" role="tabpanel" id="history" aria-labelledby="tab-history">
+      <section class="kit-sec">
+        <h2 class="kit-h2">Changes, newest first</h2>
+        <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-21</td><td>Entered the system: <code>components/account-row.css</code>, on semantic roles, and this page in the card format</td><td><code>docs/decisions.md</code>, "The molecules entered the system"</td></tr>
+          <tr><td>2026-08-18</td><td>Declared in the flat kit, with the checkbox form where the whole row is the label, which is correct and worth keeping</td><td>commit <code>d461e12</code>, <code>design/kit/docs/inventory.md</code>, "Cross-check 2: control without a family"</td></tr>
+        </tbody></table></div>
+      </section>
+    </div>
+
+    <div id="kit-pager"></div>
+
+  </main>
+</div>
+
+<script src="_nav.js"></script>
+<script src="_states.js"></script>
+</body>
+</html>

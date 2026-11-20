@@ -1,0 +1,26 @@
+/* design/system/components/toolbar.css - level 2, molecule.
+   Reads: --line-hairline, --text-primary, --text-secondary, --type-xs, --weight-medium,
+          --space-2, --space-3, --space-6
+   Page:  design/kit/toolbar.html
+   Stands on: 2.0, 3.0, 4.0, 5.0, 6.0, 6.1 (inventory); in colour 2.0, 4.0, 4.1, 6.1, 6.2. 6 colour files.
+   Canonical, owner 2.0. Lighter variant on 3.0. Atoms inside it keep their own files: .chip and
+   .chip-count (chip.css), .link--action (link.css), .group-t--inline (group-heading.css).
+
+   The filter and sort row. Two forms by VIEWPORT: the full row (chips, clear, sort note) above
+   820, and below it one compact Filter button that carries the active count. The facet chip is
+   the atom chip, and its active state is marked by tone, not by hue; that decision lives in
+   chip.css and is not repeated here.
+   No em dash anywhere in this file.
+*/
+
+.toolbar { display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; padding-bottom: var(--space-6); margin-bottom: var(--space-2); border-bottom: 1px solid var(--line-hairline); }
+
+.sortnote { font-size: var(--type-xs); color: var(--text-secondary); margin-left: auto; }
+.sortnote b { color: var(--text-primary); font-weight: var(--weight-medium); }
+.toolbar-full { display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; flex: 1; }
+.toolbar-compact { display: none; }
+
+@media (max-width: 820px) {
+  .toolbar-full { display: none; }
+  .toolbar-compact { display: flex; align-items: center; gap: var(--space-3); margin-left: 0; }
+}

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift design system - Selection bar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../system/index.css">
+<link rel="stylesheet" href="_page.css">
+</head>
+<!--
+  design/kit/selbar.html - a component page in the card format of 2026-11-20, laid after button.html.
+
+  OVERVIEW, for the person placing the component: a live specimen, the trigger by content
+  matrix, properties, when and when not, do and do not, where it stands.
+  TECHNICAL, for the person changing it: anatomy, the axes with their counts, the tokens it
+  reads, the markup to copy.
+  HISTORY: every change, each with the record it came from.
+
+  The page links ../system/index.css, the SAME entry point a product screen links: it is not a
+  copy of the component, it is the component. The bar itself is not interactive; its buttons
+  are the button atom and keep their states on button.html. The on-selection form is
+  display:none until the screen shell shows it, so this page shows the static form live and
+  links to the screen that holds the other one, rather than faking the shell. The text is
+  copied from design/synthesis.html, design/build-brief.html and design/build-brief-thin-warning.html.
+
+  No em dash anywhere.
+-->
+<body>
+<div class="kit-shell">
+  <div id="kit-panel"></div>
+  <main class="kit-main">
+
+    <div id="kit-crumbs"></div>
+    <div id="kit-head"></div>
+
+    <div class="kit-tabs" role="tablist" aria-label="Selection bar page">
+      <button class="kit-tab" role="tab" id="tab-overview" aria-controls="overview" aria-selected="true">Overview</button>
+      <button class="kit-tab" role="tab" id="tab-tech" aria-controls="tech" aria-selected="false" tabindex="-1">Technical</button>
+      <button class="kit-tab" role="tab" id="tab-history" aria-controls="history" aria-selected="false" tabindex="-1">History</button>
+    </div>
+
+    <!-- ================================================================ OVERVIEW -->
+    <div class="kit-tabpanel" role="tabpanel" id="overview" aria-labelledby="tab-overview">
+
+      <div class="kit-hero">
+        <div class="u-full">
+          <div class="selbar selbar--static">
+            <span class="selbar-note">3 themes, 89 feedback items behind them</span>
+            <a class="btn--ghost" href="#">Save draft</a>
+            <a class="btn--ghost" href="#">Preview</a>
+            <a class="btn" href="#">Generate share link</a>
+          </div>
+        </div>
+        <p class="kit-hero-note">Live. The static form, as it stands on 6.1 Build brief</p>
+      </div>
+      <p class="kit-note">The other form appears only when a theme is ticked, and what shows it is a rule on the screen shell. Open <a href="../synthesis.html">2.0 Synthesis</a> and tick a theme to see it rise, and the head action go. The static form stands in place on <a href="../build-brief.html">6.1 Build brief</a>.</p>
+
+      <section class="kit-sec" id="variants">
+        <h2 class="kit-h2">Variants and states</h2>
+        <p class="kit-note">Not interactive itself: the bar has no hover, focus or pressed state. Its buttons are the button atom and keep their states on <a href="button.html">Button</a>. One axis, the trigger. Hidden and present are not states of the bar: they are the shell's trigger, which shows the on-selection form and hides the head action.</p>
+        <div class="kit-matrix-wrap">
+          <table class="kit-matrix" inert>
+            <thead><tr><th>Trigger</th><th>Content</th><th>Bar</th></tr></thead>
+            <tbody>
+              <tr class="kit-group-end"><th>On selection<code>.selbar</code></th><td class="kit-st">2.0, 1 theme</td>
+                <td class="kit-cell-none">display:none until the screen shell shows it on a ticked checkbox. It cannot stand alone without faking the shell: see it on <a href="../synthesis.html">2.0 Synthesis</a>, where the note reads "1 theme selected" beside Set priority and Build brief.</td></tr>
+              <tr><th rowspan="2">Always present<code>.selbar--static</code></th><td class="kit-st">6.1 Build brief</td>
+                <td><div class="selbar selbar--static"><span class="selbar-note">3 themes, 89 feedback items behind them</span><a class="btn--ghost" href="#">Save draft</a><a class="btn--ghost" href="#">Preview</a><a class="btn" href="#">Generate share link</a></div></td></tr>
+              <tr><td class="kit-st">6.2 thin warning</td>
+                <td><div class="selbar selbar--static"><span class="selbar-note">4 themes, 93 feedback items behind them &middot; 1 low signal</span><a class="btn--ghost" href="#">Save draft</a><a class="btn--ghost" href="#">Preview</a><a class="btn" href="#">Generate share link</a></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="props">
+        <h2 class="kit-h2">Properties</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Property</th><th>Type</th><th>Values</th><th>Default</th></tr></thead><tbody>
+          <tr><td>Bar</td><td>own class</td><td><code>.selbar</code></td><td>hidden: display:none</td></tr>
+          <tr><td>Trigger</td><td>variant</td><td>on selection, no class, shown by the shell &middot; always present <code>.selbar--static</code></td><td>on selection</td></tr>
+          <tr><td>Note</td><td>zone</td><td><code>.selbar-note</code>, first: the count, pushed left by <code>margin-right: auto</code></td><td>required</td></tr>
+          <tr><td>Actions</td><td>atoms</td><td><code>.btn--ghost</code> then one <code>.btn</code>, last. On the static form they are anchors, and at 360 each anchor grows to share the line</td><td>one filled action</td></tr>
+          <tr><td>State</td><td>none</td><td>not interactive; hidden or present belongs to the shell's trigger</td><td>none</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="when">
+        <h2 class="kit-h2">How to use it</h2>
+        <div class="kit-when">
+          <div>
+            <h3>When</h3>
+            <p><b>On a list where the person selects:</b> the bar appears only when at least one item is selected, carries the count, and holds the next move. While it is up the head action is hidden, so the screen never shows two primary actions.</p>
+            <p><b>On the composer:</b> the bar is always there. Nothing is being selected, the artifact IS the selection. Same component, one declared trigger variant, not a second bar.</p>
+          </div>
+          <div>
+            <h3>When not</h3>
+            <ul>
+              <li>For the closing actions of a form or a flow with nothing selected: take the action bar.</li>
+              <li>For the one action of a screen at rest: that is the head action in the screen head, which this bar replaces while it is up.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="kit-dodont">
+          <div class="kit-dd kit-dd--do">
+            <div class="kit-dd-c" inert>
+              <div class="selbar selbar--static u-full"><span class="selbar-note">4 themes, 93 feedback items behind them &middot; 1 low signal</span><a class="btn--ghost" href="#">Save draft</a><a class="btn--ghost" href="#">Preview</a><a class="btn" href="#">Generate share link</a></div>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do</div><div class="kit-dd-t">The same bar as 6.1, with the warning in the note</div>
+              <div class="kit-dd-d">6.2 is 6.1 plus a notice, so it carries 6.1's bar. The thin theme is counted in the note.</div></div>
+          </div>
+          <div class="kit-dd kit-dd--dont">
+            <div class="kit-dd-c" inert>
+              <div class="selbar selbar--static u-full"><span class="selbar-note">3 themes selected &middot; 1 low signal</span><a class="btn--ghost" href="#">Review selection</a><a class="btn" href="#">Label and generate link</a></div>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do not</div><div class="kit-dd-t">A second bar for the warning state</div>
+              <div class="kit-dd-d">This was the 6.2 action line before the rewrite. "Label and generate link" promised a labelling step that does not exist.</div></div>
+          </div>
+        </div>
+        <p class="kit-note">Sources: the comments above <code class="kit-mono">.selbar</code> in <code class="kit-mono">design/kit/kit.css</code>; <code class="kit-mono">ia/docs/pages/synthesis.md</code>, block 7; <code class="kit-mono">voice/docs/microcopy.md</code>, "Lines that changed meaning", the 6.2 row; the fourth design principle in <code class="kit-mono">CLAUDE.md</code>.</p>
+      </section>
+
+      <section class="kit-sec" id="where">
+        <h2 class="kit-h2">Where it stands</h2>
+        <p class="kit-note">2.0 on selection; 6.1 and 6.2 always present. In grey: 2.0, 6.1, 6.2. In colour:</p>
+        <div class="kit-where">
+          <a href="../synthesis.html">2.0 Synthesis</a>
+          <a href="../build-brief.html">6.1 Build brief</a>
+          <a href="../build-brief-thin-warning.html">6.2 Build brief, thin-theme warning</a>
+          <a href="../../wireframes/overview.html">the rest, in grey</a>
+        </div>
+      </section>
+    </div>
+
+    <!-- ================================================================ TECHNICAL -->
+    <div class="kit-tabpanel" role="tabpanel" id="tech" aria-labelledby="tab-tech">
+
+      <section class="kit-sec" id="anatomy">
+        <h2 class="kit-h2">Anatomy</h2>
+        <p class="kit-note">A note, then the actions, with the one filled action last.</p>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
+          <tr><td>the bar</td><td><code>.selbar</code></td><td>A wrapping flex row. Hidden by default; the shell shows it</td></tr>
+          <tr><td>the static form</td><td><code>.selbar--static</code></td><td>Always shown, on a surface, with a hairline on top: it closes the composer</td></tr>
+          <tr><td>the note</td><td><code>.selbar-note</code></td><td>Secondary ink. What is selected and what stands behind it, in numbers</td></tr>
+          <tr><td>the actions</td><td><code>.btn--ghost</code>, <code>.btn</code></td><td>The button atom. One filled action, and it is the next move</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="axes">
+        <h2 class="kit-h2">Axes, with the rule that chooses</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
+          <tr><td>trigger</td><td>on selection 2 &middot; always present 1</td><td><b>Where the person selects, the bar follows the selection; where the artifact is the selection, it is always there</b></td></tr>
+        </tbody></table></div>
+        <p class="kit-note">The counts are the inventory's. Measured in <code class="kit-mono">design/</code> and <code class="kit-mono">wireframes/</code>: 1 on selection (2.0), 2 always present (6.1, 6.2). The two disagree [?].</p>
+      </section>
+
+      <section class="kit-sec" id="tokens">
+        <h2 class="kit-h2">Tokens it reads</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Reads</th><th>Which grows from</th><th>For</th></tr></thead><tbody>
+          <tr><td><code>--line-hairline</code></td><td><code>--grey-800</code> dark, <code>--grey-150</code> light</td><td>the rule on top of the static form</td></tr>
+          <tr><td><code>--bg-surface</code></td><td><code>--grey-900</code> dark, <code>--grey-025</code> light</td><td>the ground of the static form</td></tr>
+          <tr><td><code>--text-secondary</code></td><td><code>--grey-400</code> dark, <code>--grey-550</code> light</td><td>the note</td></tr>
+          <tr><td><code>--type-xs</code></td><td>tokens.css</td><td>the note</td></tr>
+          <tr><td><code>--space-3</code>, <code>--space-4</code>, <code>--space-5</code>, <code>--space-6</code>, <code>--space-7</code>, <code>--space-9</code></td><td>tokens.css</td><td>the gap and the padding of both forms, and the narrower padding at 360</td></tr>
+        </tbody></table></div>
+        <p class="kit-note">Every value in selbar.css lands on a primitive; nothing is kept off the scale.</p>
+      </section>
+
+      <section class="kit-sec" id="shots">
+        <h2 class="kit-h2">Snapshots</h2>
+        <p class="kit-note">Molecules get no new snapshots this round. The bar has no states of its own; its buttons are shot on <a href="button.html">Button</a>.</p>
+      </section>
+
+      <section class="kit-sec" id="markup">
+        <h2 class="kit-h2">Copy this</h2>
+        <div class="scene">
+          <pre class="kit-pre">&lt;!-- on a list: shown by the shell while a .check is checked --&gt;
+&lt;div class="selbar"&gt;
+  &lt;span class="selbar-note"&gt;1 theme selected&lt;/span&gt;
+  &lt;button class="btn--ghost"&gt;Set priority&lt;/button&gt;
+  &lt;a class="btn" href="build-brief.html"&gt;Build brief&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;!-- on the composer: always present --&gt;
+&lt;div class="selbar selbar--static"&gt;
+  &lt;span class="selbar-note"&gt;3 themes, 89 feedback items behind them&lt;/span&gt;
+  &lt;a class="btn--ghost" href="briefs.html"&gt;Save draft&lt;/a&gt;
+  &lt;a class="btn--ghost" href="shared-brief.html"&gt;Preview&lt;/a&gt;
+  &lt;a class="btn" href="share-link-loading.html"&gt;Generate share link&lt;/a&gt;
+&lt;/div&gt;</pre>
+        </div>
+        <p class="kit-note">File: <code class="kit-mono">design/system/components/selbar.css</code>, imported in the molecules group of <code class="kit-mono">design/system/index.css</code>. The trigger, <code class="kit-mono">.app:has(.check:checked) .selbar { display: flex }</code> with its twin that hides <code class="kit-mono">.head-action</code>, is a rule of the screen shell and arrives with the shell organism, not in this file.</p>
+      </section>
+    </div>
+
+    <!-- ================================================================ HISTORY -->
+    <div class="kit-tabpanel" role="tabpanel" id="history" aria-labelledby="tab-history">
+      <section class="kit-sec">
+        <h2 class="kit-h2">Changes, newest first</h2>
+        <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-21</td><td>Entered the system: <code>components/selbar.css</code>, on semantic roles, and this page in the card format. The trigger rules stayed with the shell</td><td><code>docs/decisions.md</code>, "The molecules entered the system"</td></tr>
+          <tr><td>2026-08-18</td><td><code>.selbar--static</code> arrived for the composer, with its 360 rules: the artifact IS the selection</td><td>commit <code>41ae8c4</code></td></tr>
+          <tr><td>2026-08-18</td><td>The trigger was added on <code>.app</code>, the shell of a screen that is the page, beside the one on <code>.appframe</code></td><td>commit <code>f2b20b8</code></td></tr>
+          <tr><td>2026-08-18</td><td>Moved into the flat kit <code>design/kit/kit.css</code> at Stage 07 Step 3</td><td>commit <code>d461e12</code></td></tr>
+          <tr><td>2026-08-05</td><td>Born with the rebuilt etalon: the bar appears only on selection and the head action goes while it is up, so the screen can never show two primaries</td><td>commit <code>08a8b2f</code>; <code>docs/decisions.md</code>, "Etalon 2.0 rebuilt on the block bank"</td></tr>
+        </tbody></table></div>
+      </section>
+    </div>
+
+    <div id="kit-pager"></div>
+
+  </main>
+</div>
+
+<script src="_nav.js"></script>
+<script src="_states.js"></script>
+</body>
+</html>

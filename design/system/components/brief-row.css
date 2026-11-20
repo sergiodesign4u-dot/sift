@@ -1,0 +1,37 @@
+/* design/system/components/brief-row.css - level 2, molecule.
+   Reads: --line-hairline, --bg-hover, --text-primary, --text-secondary,
+          --weight-medium, --type-base, --space-*, --ease
+   Page:  design/kit/brief-row.html
+   Stands on: 6.0. Shared 2 occurrences, draft 1.
+   Contains: the status tag (.tag) and the outlined button (.btn--ghost).
+
+   Saved brief row (6.0). A managed object: it has a status and one way in. Deliberately not
+   a variant of the composer row, which has a handle and a remove and no status.
+
+   The title reads at its own size and is hit across the row's title zone. The overlay is
+   -12px and not the grey layer's -11px: at this type size -11 lands the target on 43px, one
+   pixel under the floor, which is exactly the kind of miss a kit exists to stop inheriting.
+
+   No em dash anywhere in this file.
+*/
+
+.brief-row {
+  display: flex; align-items: center; gap: var(--space-5);
+  padding: var(--space-6) var(--space-3);
+  border-bottom: 1px solid var(--line-hairline);
+  transition: background .12s var(--ease);
+}
+.brief-row:hover { background: var(--bg-hover); }
+.brief-main { position: relative; flex: 1; min-width: 0; }
+.brief-title { display: block; font-size: var(--type-base); font-weight: var(--weight-medium); color: var(--text-primary); text-decoration: none; }
+.brief-title:hover { text-decoration: underline; }
+.brief-title::after { content: ""; position: absolute; inset: -12px 0; }
+.brief-meta { font-size: 12px; color: var(--text-secondary); margin-top: var(--space-1); line-height: 1.5; }
+.brief-actions { display: flex; gap: var(--space-3); flex: none; }
+
+/* At 360 the actions take their own row and the buttons share it. */
+@media (max-width: 820px) {
+  .brief-row { flex-wrap: wrap; }
+  .brief-actions { width: 100%; }
+  .brief-actions .btn--ghost, .brief-actions .btn { flex: 1; }
+}

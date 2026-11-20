@@ -1,0 +1,24 @@
+/* design/system/components/composer-row.css - level 2, molecule.
+   Reads: --line-hairline, --text-primary, --text-secondary, --font-mono, --weight-medium,
+          --type-sm, --type-2xs, --space-*
+   Page:  design/kit/composer-row.html
+   Stands on: 6.1, 6.2.
+   Contains: the drag handle (.drag), the rank number (.rank), the confidence indicator (.conf)
+             and the icon button (.btn--icon).
+
+   Composer brief row (6.1). The ORDER of these rows is the recommendation, so the handle is
+   the point of the component and it comes first.
+
+   kit.css paints no hover on .briefrow, so none is added here.
+
+   No em dash anywhere in this file.
+*/
+
+.briefrow {
+  display: flex; align-items: center; gap: var(--space-5);
+  padding: var(--space-5) var(--space-3);
+  border-bottom: 1px solid var(--line-hairline);
+}
+.briefrow-main { flex: 1; min-width: 0; }
+.briefrow-label { display: block; font-size: var(--type-sm); font-weight: var(--weight-medium); color: var(--text-primary); }
+.briefrow-meta { display: block; font-family: var(--font-mono); font-size: var(--type-2xs); color: var(--text-secondary); margin-top: 3px; }

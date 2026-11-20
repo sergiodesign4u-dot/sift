@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift design system - Breadcrumb</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../system/index.css">
+<link rel="stylesheet" href="_page.css">
+</head>
+<!--
+  design/kit/breadcrumb.html - a component page in the card format of 2026-11-20, laid out on the template button.html.
+
+  OVERVIEW: a live specimen, the content or viewport forms, properties, when and when not, do and do not, where it stands.
+  TECHNICAL: anatomy, the axes, the tokens it reads, the markup to copy.
+  HISTORY: every change, each with the record it came from.
+
+  The page links ../system/index.css, the SAME entry point a product screen links. The matrix is
+  drawn by _states.js from the product's own rules where the component has states; nothing in it is painted by hand.
+
+  No em dash anywhere.
+-->
+<body>
+<div class="kit-shell">
+  <div id="kit-panel"></div>
+  <main class="kit-main">
+
+    <div id="kit-crumbs"></div>
+    <div id="kit-head"></div>
+
+    <div class="kit-tabs" role="tablist" aria-label="Breadcrumb page">
+      <button class="kit-tab" role="tab" id="tab-overview" aria-controls="overview" aria-selected="true">Overview</button>
+      <button class="kit-tab" role="tab" id="tab-tech" aria-controls="tech" aria-selected="false" tabindex="-1">Technical</button>
+      <button class="kit-tab" role="tab" id="tab-history" aria-controls="history" aria-selected="false" tabindex="-1">History</button>
+    </div>
+
+    <!-- ================================================================ OVERVIEW -->
+    <div class="kit-tabpanel" role="tabpanel" id="overview" aria-labelledby="tab-overview">
+
+      <div class="kit-hero">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="#">Synthesis</a> &rsaquo; <span>Onboarding is confusing</span></nav>
+        <p class="kit-hero-note">Live. Hover the link, tab to it</p>
+      </div>
+
+      <section class="kit-sec" id="variants">
+        <h2 class="kit-h2">Variants and states</h2>
+        <p class="kit-note">One form: no axes. What varies is the depth of the trail, which is content. The states are hover and focus-visible on the link, drawn from the product's own rules. There is no pressed row, because the css paints none, and the current page is plain text, not a link, so it has no states.</p>
+        <div class="kit-matrix-wrap">
+          <table class="kit-matrix" inert>
+            <thead><tr><th>Form</th><th>State</th><th>Trail</th></tr></thead>
+            <tbody>
+              <tr><th rowspan="3">Breadcrumb<code>.breadcrumb</code></th><td class="kit-st">Rest</td><td><nav class="breadcrumb" aria-label="Breadcrumb"><a href="#">Synthesis</a> &rsaquo; <span>Onboarding is confusing</span></nav></td></tr>
+              <tr><td class="kit-st">Hover</td><td><nav class="breadcrumb" aria-label="Breadcrumb"><a href="#" data-kit-st="hover">Synthesis</a> &rsaquo; <span>Onboarding is confusing</span></nav></td></tr>
+              <tr><td class="kit-st">Focus</td><td><nav class="breadcrumb" aria-label="Breadcrumb"><a href="#" data-kit-st="focus">Synthesis</a> &rsaquo; <span>Onboarding is confusing</span></nav></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="forms">
+        <h2 class="kit-h2">Other forms</h2>
+        <div class="kit-forms">
+          <div><div class="kit-form-c"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="#">Sources</a> &rsaquo; <span>CSV upload</span></nav></div>
+            <div class="kit-form-t">Two levels</div>
+            <div class="kit-form-d">3.2 CSV upload, and the four 4.0 states. The way back to the list, then the current page.</div></div>
+          <div><div class="kit-form-c"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="#">Synthesis</a> &rsaquo; <a href="#">Onboarding is confusing</a> &rsaquo; <span>Evidence</span></nav></div>
+            <div class="kit-form-t">Three levels</div>
+            <div class="kit-form-d">5.0 Evidence source and 5.1 Evidence redacted. Markup from the grey wireframes, which have no colour copy yet.</div></div>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="props">
+        <h2 class="kit-h2">Properties</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Property</th><th>Type</th><th>Values</th><th>Default</th></tr></thead><tbody>
+          <tr><td>Bar</td><td>own class</td><td><code>.breadcrumb</code> on a <code>nav</code> with <code>aria-label="Breadcrumb"</code></td><td>none: the class is required</td></tr>
+          <tr><td>Ancestor</td><td>element</td><td>an <code>a</code>, 44px tall, secondary ink, no underline</td><td>required, at least one</td></tr>
+          <tr><td>Separator</td><td>text</td><td>the character <code>&amp;rsaquo;</code> between items. It is a text node, not an element</td><td>required between items</td></tr>
+          <tr><td>Current page</td><td>element</td><td>a <code>span</code>, secondary ink at 70 percent opacity. Not a link</td><td>required, last</td></tr>
+          <tr><td>Axes</td><td>none</td><td>one form. The depth of the trail is content</td><td>n/a</td></tr>
+          <tr><td>State</td><td>variant</td><td>rest &middot; hover &middot; focus-visible</td><td>rest</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="when">
+        <h2 class="kit-h2">How to use it</h2>
+        <div class="kit-when">
+          <div>
+            <h3>When</h3>
+            <p>On a screen below another one: a theme under Synthesis, a CSV upload under Sources, evidence under a theme. It is the way back, one line, never the way forward. The first item always leads to the section the person came from.</p>
+          </div>
+          <div>
+            <h3>When not</h3>
+            <ul>
+              <li>On a top-level screen: Synthesis, Sources and Briefs are the three navigation entries and stand at the top.</li>
+              <li>To show a step in a process: that is the <a href="phase-strip.html">phase strip</a>.</li>
+              <li>On the legal screens: they carry <code>.legal-crumb</code>, a separate block.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="kit-dodont">
+          <div class="kit-dd kit-dd--do">
+            <div class="kit-dd-c" inert>
+              <nav class="breadcrumb" aria-label="Breadcrumb"><a href="#">Synthesis</a> &rsaquo; <span>Onboarding is confusing</span></nav>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do</div><div class="kit-dd-t">Name the way back</div>
+              <div class="kit-dd-d">The first item is the section the person came from, in the same words as the navigation.</div></div>
+          </div>
+          <div class="kit-dd kit-dd--dont">
+            <div class="kit-dd-c" inert>
+              <nav class="breadcrumb" aria-label="Breadcrumb"><span>Onboarding is confusing</span></nav>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do not</div><div class="kit-dd-t">A trail with nowhere to go</div>
+              <div class="kit-dd-d">With no ancestor link the bar is only a label. The way back is the point of it.</div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="where">
+        <h2 class="kit-h2">Where it stands</h2>
+        <p class="kit-note">9 screens (inventory). The ones already in colour:</p>
+        <div class="kit-where">
+          <a href="../connect-csv.html">3.2 CSV upload</a>
+          <a href="../theme.html">4.0 Theme detail</a>
+          <a href="../theme-loading.html">4.0 Theme detail, loading</a>
+          <a href="../theme-error.html">4.0 Theme detail, error</a>
+          <a href="../theme-low-signal.html">4.1 Theme detail, low signal</a>
+          <span>3.3 Intercom connect</span>
+          <span>3.6 Source: manage</span>
+          <span>5.0 Evidence source</span>
+          <span>5.1 Evidence redacted</span>
+          <a href="../../wireframes/overview.html">the rest, in grey</a>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ================================================================ TECHNICAL -->
+    <div class="kit-tabpanel" role="tabpanel" id="tech" aria-labelledby="tab-tech">
+
+      <section class="kit-sec" id="anatomy">
+        <h2 class="kit-h2">Anatomy</h2>
+        <p class="kit-note">The way back, one line, never the way forward.</p>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
+<tr><td>the bar</td><td><code>.breadcrumb</code></td><td>A flex row with a rule under it and no vertical padding of its own</td></tr>
+<tr><td>the ancestor</td><td><code>a</code></td><td>The link is the target and it is 44px, so the bar is exactly as tall as the thing you aim at</td></tr>
+<tr><td>the separator</td><td>the text node</td><td>A right angle quote between items</td></tr>
+<tr><td>the current page</td><td><code>span</code></td><td>Secondary ink at 70 percent opacity</td></tr>
+        </tbody></table></div>
+        <p class="kit-note">The bar carries no vertical padding of its own: the link inside it is the target and it is 44px. Found by measuring, where the link read 15px against a floor of 44 (kit.css comment).</p>
+      </section>
+
+      <section class="kit-sec" id="axes">
+        <h2 class="kit-h2">Axes, with the rule that chooses</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
+<tr><td></td><td><b>no axes</b></td><td>One form. The depth of the trail is content</td></tr>
+<tr><td>hover</td><td>the only state</td><td><b>The ink steps up to primary.</b> On a link with no underline, the hover is the signal that the text is pressable</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="tokens">
+        <h2 class="kit-h2">Tokens it reads</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Reads</th><th>Which grows from</th><th>For</th></tr></thead><tbody>
+<tr><td><code>--text-secondary</code></td><td><code>--grey-400</code> dark</td><td>the links and the current page</td></tr>
+<tr><td><code>--text-primary</code></td><td>tokens.css</td><td>the hover</td></tr>
+<tr><td><code>--line-hairline</code></td><td><code>--grey-800</code> dark</td><td>the rule under the bar</td></tr>
+<tr><td><code>--size-target</code></td><td>tokens.css</td><td>the 44px link</td></tr>
+<tr><td><code>--space-2</code>, <code>--space-7</code>, <code>--space-9</code></td><td>tokens.css</td><td>6px between items, 16px side padding at 820 and below, 22px above</td></tr>
+        </tbody></table></div>
+        <p class="kit-note">Kept as a literal because no exact step exists: <code class="kit-mono">12px</code> for the type size.</p>
+      </section>
+
+      <section class="kit-sec" id="snapshots">
+        <h2 class="kit-h2">Snapshots</h2>
+        <p class="kit-note">No new snapshots this round: the hover and focus states are shown live in the matrix. The hover moves the ink to <code class="kit-mono">--text-primary</code> and does not read <code class="kit-mono">--bg-hover</code>, so it is not the list row hover on <a href="cardrow.html">the list row page</a>.</p>
+      </section>
+
+      <section class="kit-sec" id="markup">
+        <h2 class="kit-h2">Copy this</h2>
+        <div class="scene">
+          <pre class="kit-pre">&lt;nav class="breadcrumb" aria-label="Breadcrumb"&gt;&lt;a href="synthesis.html"&gt;Synthesis&lt;/a&gt; &amp;rsaquo; &lt;span&gt;Onboarding is confusing&lt;/span&gt;&lt;/nav&gt;</pre>
+        </div>
+        <p class="kit-note">File: <code class="kit-mono">design/system/components/breadcrumb.css</code>.</p>
+      </section>
+
+    </div>
+
+    <!-- ================================================================ HISTORY -->
+    <div class="kit-tabpanel" role="tabpanel" id="history" aria-labelledby="tab-history">
+      <section class="kit-sec">
+        <h2 class="kit-h2">Changes, newest first</h2>
+        <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-21</td><td>Entered the system: <code>components/breadcrumb.css</code>, on semantic roles, and this page in the card format</td><td><code>docs/decisions.md</code>, "The molecules entered the system"</td></tr>
+          <tr><td>2026-08-19</td><td>The 44px link line was touched again in the critique round [?: the diff was not read for what changed]</td><td>commit <code>0980e88</code></td></tr>
+          <tr><td>2026-08-18</td><td>The kit was grown out of the colour layer: <code>.breadcrumb</code>, its link and its 360 padding were declared in <code>kit.css</code></td><td>commit <code>d461e12</code></td></tr>
+          <tr><td>2026-08-05</td><td>The 44px link in the colour layer, from the audit that measured it (kit.css comment: found by measuring)</td><td>commit <code>1a808be</code></td></tr>
+        </tbody></table></div>
+      </section>
+    </div>
+
+    <div id="kit-pager"></div>
+
+  </main>
+</div>
+
+
+<script src="_nav.js"></script>
+<script src="_states.js"></script>
+</body>
+</html>

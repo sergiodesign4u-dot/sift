@@ -561,3 +561,23 @@ group of its own level.*
 | 1 | **Drag handle** | `components/drag.css` | `kit/drag.html` | the cursor only. Keyboard reordering named as a real gap | 6.1, 6.2. 7 |
 | 1 | **List row link** | `components/cardrow.css` | `kit/cardrow.html` | hover, focus-visible | 7.0. 3 |
 | 1 | **Group heading** | `components/group-heading.css` | `kit/group-heading.html` | none, not interactive | 12 screens. 29 |
+| 2 | **Theme card (ranked row)** | `components/theme-card.css` | `kit/theme-card.html` | hover, selected (`.check:checked`), focus-visible on the links inside. Low signal is a content variant, the clamped quote is the 360 form | 2.0. 6 rows, declared exception |
+| 2 | **Evidence snippet** | `components/snippet.css` | `kit/snippet.html` | hover, focus-visible. Redacted is a `.redacted` mark in the meta line | 4.0, 4.1. 12 |
+| 2 | **Source row** | `components/source-row.css` | `kit/source-row.html` | hover on the row; focus-visible on its buttons. Failed carries `.rowalert` | 3.0, 3.5, 3.6. Healthy 5, failed 1 |
+| 2 | **Source card (available)** | `components/source-card.css` | `kit/source-card.html` | none, not interactive; its button keeps its own | 3.0, 3.4, 3.5. Connectable 6, not yet available 3 |
+| 2 | **Saved brief row** | `components/brief-row.css` | `kit/brief-row.html` | row hover, title hover, focus-visible on the title | 6.0. Shared 2, draft 1 |
+| 2 | **Composer brief row** | `components/composer-row.css` | `kit/composer-row.html` | none of its own; the remove button keeps its focus. Dragging `[?]` | 6.1, 6.2 |
+| 2 | **Account row** | `components/account-row.css` | `kit/account-row.html` | checked, which is the checkbox's own | 7.1, 7.2 |
+| 2 | **Form field** | `components/field.css` | `kit/field.html` | the error line. Hover and focus are the input's | 1.0, 1.1, 1.2, 3.2, 6.1 |
+| 2 | **Notice band** | `components/notice.css` | `kit/notice.html` | none, not interactive. Three tones | 7 screens. Information 5, warning 1, error 1 |
+| 2 | **Screen head** | `components/screen-head.css` | `kit/screen-head.html` | none. The action hides while the selection bar is up: a shell rule, round 3 | 15 screens |
+| 2 | **Toolbar (filter and sort)** | `components/toolbar.css` | `kit/toolbar.html` | none of its own, the chips keep theirs. Full above 820, compact below | 2.0, 3.0, 4.0, 5.0, 6.0, 6.1 |
+| 2 | **Selection bar** | `components/selbar.css` | `kit/selbar.html` | none of its own. Hidden or present is the shell's trigger, round 3 | 2.0, 6.1, 6.2 |
+| 2 | **Action bar** | `components/actionbar.css` | `kit/actionbar.html` | none, not interactive | 3.2, 3.3, 3.6, 6.1 |
+| 2 | **Phase strip** | `components/phase-strip.css` | `kit/phase-strip.html` | per step: upcoming, current, done. Not interactive | 2.1, 2.2, 3.2, 3.3, 6.1, 6.2 |
+| 2 | **Breadcrumb** | `components/breadcrumb.css` | `kit/breadcrumb.html` | hover, focus-visible | 9 screens |
+| 2 | **Skeleton card** | `components/skeleton-card.css` | `kit/skeleton-card.html` | none, not interactive. The shimmer is the bar atom's | 2.2, 4.2, and 6.3 measured |
+| 2 | **Legal TOC** | `components/legal-toc.css` | `kit/legal-toc.html` | hover, focus-visible | 9.0, 9.1, 9.2 (grey only) |
+| 2 | **Auth card** | `components/auth-card.css` | `kit/auth-card.html` | none, not interactive. Three content forms | 1.0, 1.1, 1.2 (grey only) |
+| 2 | **Marketing tier card** | `components/tier-card.css` | `kit/tier-card.html` | none, not interactive | 0.0. 4 tiers measured, the Level 2 table says three |
+| 2 | **Marketing step card** | `components/step-card.css` | `kit/step-card.html` | none, not interactive | 0.0. 3 measured |

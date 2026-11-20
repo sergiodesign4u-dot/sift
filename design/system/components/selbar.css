@@ -1,0 +1,32 @@
+/* design/system/components/selbar.css - level 2, molecule.
+   Reads: --line-hairline, --bg-surface, --text-secondary, --type-xs, --space-3, --space-4,
+          --space-5, --space-6, --space-7, --space-9
+   Page:  design/kit/selbar.html
+   Stands on: 2.0 on selection; 6.1 and 6.2 always present. Not interactive itself: its buttons
+   are the button atom and keep their own states.
+
+   Present only while something is selected, and while it is up the head action is gone. One
+   primary action on the screen at any moment: the fourth design principle, made structural in
+   CSS and without script.
+
+   On the composer the bar is always there: nothing is being selected, the artifact IS the
+   selection. Same component, one declared trigger variant, not a second bar.
+
+   THE TRIGGER IS NOT IN THIS FILE. .selbar is display:none here, and what shows it is a rule on
+   the screen shell, .app:has(.check:checked) .selbar, which also hides the head action. That rule
+   couples the bar to the shell organism and moves with the shell, not with the bar.
+
+   At 360 the static bar's note and its buttons would squeeze into narrow columns and every one of
+   them would wrap; the buttons share the line. This is LAYOUT on the bar's own children, not an
+   undeclared variant of the button: no size, colour or weight is touched.
+   No em dash anywhere in this file.
+*/
+
+.selbar { display: none; align-items: center; gap: var(--space-4); flex-wrap: wrap; padding: var(--space-5) var(--space-3) 0; }
+.selbar--static { display: flex; padding: var(--space-6) var(--space-9); border-top: 1px solid var(--line-hairline); background: var(--bg-surface); }
+.selbar-note { font-size: var(--type-xs); color: var(--text-secondary); margin-right: auto; }
+
+@media (max-width: 820px) {
+  .selbar--static { padding: var(--space-6) var(--space-7); }
+  .selbar--static > a { flex: 1; }
+}

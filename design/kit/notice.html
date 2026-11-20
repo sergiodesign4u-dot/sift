@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift design system - Notice band</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../system/index.css">
+<link rel="stylesheet" href="_page.css">
+</head>
+<!--
+  design/kit/notice.html - a component page in the card format of 2026-11-20, laid out on the template button.html.
+
+  OVERVIEW: a live specimen, the variant by state matrix, properties, when and when not, do and do not, where it stands.
+  TECHNICAL: anatomy, the axes, the tokens it reads, the markup to copy.
+  HISTORY: every change, each with the record it came from.
+
+  The page links ../system/index.css, the SAME entry point a product screen links. The matrix is
+  drawn by _states.js from the product's own rules where the component has states; nothing in it is painted by hand.
+
+  No em dash anywhere.
+-->
+<body>
+<div class="kit-shell">
+  <div id="kit-panel"></div>
+  <main class="kit-main">
+
+    <div id="kit-crumbs"></div>
+    <div id="kit-head"></div>
+
+    <div class="kit-tabs" role="tablist" aria-label="Notice band page">
+      <button class="kit-tab" role="tab" id="tab-overview" aria-controls="overview" aria-selected="true">Overview</button>
+      <button class="kit-tab" role="tab" id="tab-tech" aria-controls="tech" aria-selected="false" tabindex="-1">Technical</button>
+      <button class="kit-tab" role="tab" id="tab-history" aria-controls="history" aria-selected="false" tabindex="-1">History</button>
+    </div>
+
+    <!-- ================================================================ OVERVIEW -->
+    <div class="kit-tabpanel" role="tabpanel" id="overview" aria-labelledby="tab-overview">
+
+      <div class="kit-hero">
+        <div class="notice">This is planned downtime. Nothing to do on your end, check back shortly.</div>
+        <div class="notice notice--warn">"priority" is set to import but has no Sift field yet. Choose a field, or turn its Import off.</div>
+        <div class="notice notice--error">Authorization failed. Intercom did not confirm access, so nothing was connected. Check that you approved the request in the Intercom window, then try again.</div>
+        <p class="kit-hero-note">Live. Three tones, and the tone is the claim</p>
+      </div>
+      <p class="kit-note">Text from the grey screens 2.4 Maintenance and 3.1 Connect Intercom, and from 3.2 Import a CSV. No colour screen paints the information or the error tone yet [?]: the four colour screens that carry a notice all carry the warning. Which grey notice is the error is not marked in the wireframes [?]; the Intercom one is used because it blocks.</p>
+
+      <section class="kit-sec" id="variants">
+        <h2 class="kit-h2">Variants and states</h2>
+        <p class="kit-note">Not interactive: no hover, focus or pressed state. A notice is a statement about the screen, and a hover on it would promise an action it does not have. One axis, the tone, and it changes the left rule and the ground, not the shape. The inventory counts 5 information, 1 warning, 1 error across seven occurrences.</p>
+        <div class="kit-matrix-wrap">
+          <table class="kit-matrix" inert>
+            <thead><tr><th>Emphasis</th><th>Notice</th></tr></thead>
+            <tbody>
+              <tr><th>Information<code>.notice</code></th><td><div class="notice">This is planned downtime. Nothing to do on your end, check back shortly.</div></td></tr>
+              <tr><th>Warning<code>.notice--warn</code></th><td><div class="notice notice--warn">"priority" is set to import but has no Sift field yet. Choose a field, or turn its Import off.</div></td></tr>
+              <tr><th>Error<code>.notice--error</code></th><td><div class="notice notice--error">Authorization failed. Intercom did not confirm access, so nothing was connected. Check that you approved the request in the Intercom window, then try again.</div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="forms">
+        <h2 class="kit-h2">Other forms</h2>
+        <div class="kit-forms">
+          <div>
+            <div class="kit-form-c" inert>
+              <div class="notice notice--warn"><b>"priority"</b> is set to import but has no Sift field yet.</div>
+            </div>
+            <div class="kit-form-t">Emphasis inside</div>
+            <div class="kit-form-d"><code>.notice b</code> reads primary ink at medium weight. Declared in the kit and used by no screen [?]: the line above is the connect-csv text with its subject marked, to show the rule.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="props">
+        <h2 class="kit-h2">Properties</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Property</th><th>Type</th><th>Values</th><th>Default</th></tr></thead><tbody>
+          <tr><td>Band</td><td>own class</td><td><code>.notice</code> on a <code>div</code> or <code>p</code></td><td>none: the class is required</td></tr>
+          <tr><td>Tone</td><td>variant</td><td><code>.notice</code> information &middot; <code>.notice--warn</code> &middot; <code>.notice--error</code></td><td>information</td></tr>
+          <tr><td>Emphasis</td><td>element</td><td><code>b</code> inside: primary ink, medium weight</td><td>absent</td></tr>
+          <tr><td>Placement</td><td>not a property</td><td>in a padded main it carries its own 14px above and below. In the screen frame it needs the gutter, which belongs to the shell</td><td>inside a main</td></tr>
+          <tr><td>State</td><td>none</td><td>not interactive</td><td>n/a</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="when">
+        <h2 class="kit-h2">How to use it</h2>
+        <div class="kit-when">
+          <div>
+            <h3>When</h3>
+            <p>When the screen has one thing to tell the person that the rest of the screen does not. The tone is the claim: information is neutral, warning is amber, and error is red and reserved for a failure that blocks or destroys. A recoverable run failure is a warning, not an error, and that is why the sync error screen is amber.</p>
+          </div>
+          <div>
+            <h3>When not</h3>
+            <ul>
+              <li>To report a recoverable failure in red: that is the warning tone. Red is for a failure that blocks or destroys.</li>
+              <li>To label an object: take a status tag. A notice is a sentence, not a word.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="kit-dodont">
+          <div class="kit-dd kit-dd--do">
+            <div class="kit-dd-c" inert>
+              <div class="notice notice--warn">"priority" is set to import but has no Sift field yet. Choose a field, or turn its Import off.</div>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do</div><div class="kit-dd-t">Amber for a failure that can be recovered</div>
+              <div class="kit-dd-d">It says what is paused and what still works. The sync error screen is the example.</div></div>
+          </div>
+          <div class="kit-dd kit-dd--dont">
+            <div class="kit-dd-c" inert>
+              <div class="notice notice--error">Intercom sync failed. 3 themes cite Intercom evidence. Those citations still open.</div>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do not</div><div class="kit-dd-t">Red for a failure that blocks nothing</div>
+              <div class="kit-dd-d">The text says the citations still open, so the red claims a harm the sentence denies. [?] The text is shortened from the sync error screen to show the mismatch.</div></div>
+          </div>
+        </div>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>If you are about to</th><th>Take instead</th><th>Why</th></tr></thead><tbody>
+          <tr><td>show a recoverable failure in red</td><td><code>.notice--warn</code></td><td>Red is reserved for a failure that blocks or destroys</td></tr>
+          <tr><td>label an object with one word</td><td>status tag</td><td>A notice is a sentence</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="where">
+        <h2 class="kit-h2">Where it stands</h2>
+        <p class="kit-note">Seven occurrences across 3.5, 4.1, 6.2, 3.2, 7.3, 5.1 and 2.3 in the inventory. Four are in colour, and all four are the warning. The grey screens carry the rest: 3.1 Connect Intercom, 5.1 Evidence redacted and 2.4 Maintenance.</p>
+        <div class="kit-where">
+          <a href="../build-brief-thin-warning.html">6.2 thin warning</a>
+          <a href="../sources-sync-error.html">3.5 Sync error</a>
+          <a href="../theme-low-signal.html">4.1 Low signal</a>
+          <a href="../connect-csv.html">3.2 Import a CSV</a>
+          <a href="../../wireframes/overview.html">the rest, in grey</a>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ================================================================ TECHNICAL -->
+    <div class="kit-tabpanel" role="tabpanel" id="tech" aria-labelledby="tab-tech">
+
+      <section class="kit-sec" id="anatomy">
+        <h2 class="kit-h2">Anatomy</h2>
+        <p class="kit-note">Notice band. Three tones, and the tone is the claim. It is one component with one axis, the tone, and the shape does not change.</p>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
+          <tr><td>the band</td><td><code>.notice</code></td><td>Surface ground, hairline edge, a 2px rule on the left, 12.5px secondary ink</td></tr>
+          <tr><td>the rule</td><td><code>border-left</code></td><td>Control line for information, warning edge for warning, danger edge for error. The rule is what carries the tone at a glance</td></tr>
+          <tr><td>the ground</td><td><code>background</code></td><td>Surface for information, the warning wash, the danger wash</td></tr>
+          <tr><td>the emphasis</td><td><code>b</code> inside</td><td>Optional. Primary ink, medium weight</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="axes">
+        <h2 class="kit-h2">Axes, with the rule that chooses</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
+          <tr><td>emphasis</td><td><b>information</b> / warning / error</td><td><b>The tone is the claim.</b> Information is neutral, warning is amber, error is red and reserved for a failure that blocks or destroys</td></tr>
+          <tr><td>placement</td><td>not an axis</td><td>In the screen frame the notice brings the gutter with it. That rule couples it to the shell and is not in this file</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="tokens">
+        <h2 class="kit-h2">Tokens it reads</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Reads</th><th>Which grows from</th><th>For</th></tr></thead><tbody>
+          <tr><td><code>--bg-surface</code></td><td><code>--grey-900</code> dark</td><td>the information ground</td></tr>
+          <tr><td><code>--bg-warning</code>, <code>--bg-danger</code></td><td><code>--amber-a10</code>, <code>--red-a10</code></td><td>the two washes</td></tr>
+          <tr><td><code>--line-hairline</code></td><td><code>--grey-800</code></td><td>the edge of the band</td></tr>
+          <tr><td><code>--line-control</code></td><td><code>--grey-600</code></td><td>the left rule of the information tone. <code>--line-2</code> in the flat kit</td></tr>
+          <tr><td><code>--line-warning</code>, <code>--line-danger</code></td><td><code>--amber-a32</code>, <code>--red-a32</code></td><td>the left rule of the two other tones</td></tr>
+          <tr><td><code>--text-secondary</code>, <code>--text-primary</code></td><td>tokens.css</td><td>the sentence, and the emphasis in it</td></tr>
+          <tr><td><code>--radius-md</code>, <code>--space-5</code>, <code>--space-6</code>, <code>--type-xs</code>, <code>--leading-body</code>, <code>--weight-medium</code></td><td>tokens.css</td><td>the corner, the padding and margin, the size, the line height and the emphasis weight</td></tr>
+        </tbody></table></div>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>State</th><th>Token</th><th>What moves</th></tr></thead><tbody>
+          <tr><td>information</td><td><code>--line-control</code></td><td>The left rule. Nothing else</td></tr>
+          <tr><td>warning</td><td><code>--line-warning</code>, <code>--bg-warning</code></td><td>The left rule and the ground. [?] PENDING owner: the flat kit drew this rule in solid amber, and <code>--line-warning</code> is the 32 percent edge. The error rule was solid red and is now <code>--line-danger</code>, an approved change</td></tr>
+          <tr><td>hover, focus, active, disabled</td><td><b>absent</b></td><td>Not interactive</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="snapshots">
+        <h2 class="kit-h2">Snapshots</h2>
+        <p class="kit-note">Molecules get no new snapshots this round. The tones are shown live in the matrix above. There is no hover, so there is no hover token to compare.</p>
+      </section>
+
+      <section class="kit-sec" id="markup">
+        <h2 class="kit-h2">Copy this</h2>
+        <div class="scene">
+          <pre class="kit-pre">&lt;div class="notice notice--warn"&gt;"priority" is set to import but has no Sift field yet. Choose a field, or turn its Import off.&lt;/div&gt;</pre>
+        </div>
+        <p class="kit-note">File: <code class="kit-mono">design/system/components/notice.css</code>. Not in the file: <code class="kit-mono">.appframe &gt; .notice</code> and <code class="kit-mono">.app &gt; .notice</code> with their 360 margins. They bring the screen gutter and belong to the shell.</p>
+      </section>
+
+    </div>
+
+    <!-- ================================================================ HISTORY -->
+    <div class="kit-tabpanel" role="tabpanel" id="history" aria-labelledby="tab-history">
+      <section class="kit-sec">
+        <h2 class="kit-h2">Changes, newest first</h2>
+        <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-21</td><td>Entered the system: <code>components/notice.css</code>, on semantic roles, and this page in the card format</td><td><code>docs/decisions.md</code>, "The molecules entered the system"</td></tr>
+          <tr><td>2026-08-18</td><td>Declared in the flat kit with its three tones and the comment that the tone is the claim</td><td>commit <code>d461e12</code></td></tr>
+          <tr><td>2026-08-18</td><td><code>.notice--error</code> kept although no painted screen uses it</td><td><code>design/kit/docs/inventory.md</code>, "What gets deleted"</td></tr>
+        </tbody></table></div>
+      </section>
+    </div>
+
+    <div id="kit-pager"></div>
+
+  </main>
+</div>
+
+<script src="_nav.js"></script>
+<script src="_states.js"></script>
+</body>
+</html>

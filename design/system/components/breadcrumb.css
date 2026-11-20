@@ -1,0 +1,20 @@
+/* design/system/components/breadcrumb.css - level 2, molecule.
+   Reads: --line-hairline, --text-primary, --text-secondary, --size-target, --space-2, --space-7, --space-9
+   Page:  design/kit/breadcrumb.html
+   Stands on: 9 screens (inventory); in colour 3.2 and the four 4.0 states. The links inside are plain
+   anchors styled by this file, not the atom .link.
+
+   The way back, one line, never the way forward. The bar carries no vertical padding of its own:
+   the link inside it is the target and it is 44px, so the bar is exactly as tall as the thing you
+   aim at. Found by measuring, where the link read 15px against a floor of 44.
+   No em dash anywhere in this file.
+*/
+
+.breadcrumb { display: flex; align-items: center; gap: var(--space-2); font-size: 12px; color: var(--text-secondary); padding: 0 var(--space-9); border-bottom: 1px solid var(--line-hairline); }
+.breadcrumb a { display: inline-flex; align-items: center; min-height: var(--size-target); color: var(--text-secondary); text-decoration: none; }
+.breadcrumb a:hover { color: var(--text-primary); }
+.breadcrumb span { color: var(--text-secondary); opacity: 0.7; }
+
+@media (max-width: 820px) {
+  .breadcrumb { padding: 0 var(--space-7); }
+}

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift design system - Saved brief row</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../system/index.css">
+<link rel="stylesheet" href="_page.css">
+</head>
+<!--
+  design/kit/brief-row.html - a component page in the card format of 2026-11-20, laid out on the template button.html.
+
+  OVERVIEW: a live specimen, the variant by state matrix, properties, when and when not, do and do not, where it stands.
+  TECHNICAL: anatomy, the axes, the tokens it reads, the markup to copy.
+  HISTORY: every change, each with the record it came from.
+
+  The page links ../system/index.css, the SAME entry point a product screen links. The matrix is
+  drawn by _states.js from the product's own rules where the component has states; nothing in it is painted by hand.
+
+  No em dash anywhere.
+-->
+<body>
+<div class="kit-shell">
+  <div id="kit-panel"></div>
+  <main class="kit-main">
+
+    <div id="kit-crumbs"></div>
+    <div id="kit-head"></div>
+
+    <div class="kit-tabs" role="tablist" aria-label="Saved brief row page">
+      <button class="kit-tab" role="tab" id="tab-overview" aria-controls="overview" aria-selected="true">Overview</button>
+      <button class="kit-tab" role="tab" id="tab-tech" aria-controls="tech" aria-selected="false" tabindex="-1">Technical</button>
+      <button class="kit-tab" role="tab" id="tab-history" aria-controls="history" aria-selected="false" tabindex="-1">History</button>
+    </div>
+
+    <!-- ================================================================ OVERVIEW -->
+    <div class="kit-tabpanel" role="tabpanel" id="overview" aria-labelledby="tab-overview">
+
+      <div class="kit-hero">
+        <div class="u-full">
+<div class="brief-row">
+  <div class="brief-main">
+    <a class="brief-title" href="#">Q3 roadmap: what customers need most</a>
+    <div class="brief-meta">3 themes &middot; 89 feedback items behind them &middot; shared 2 days ago by Alex Rivera &middot; link is live</div>
+  </div>
+  <span class="tag">Shared</span>
+  <div class="brief-actions"><a class="btn--ghost" href="#">Open</a></div>
+</div>
+<div class="brief-row">
+  <div class="brief-main">
+    <a class="brief-title" href="#">Onboarding deep-dive</a>
+    <div class="brief-meta">1 theme &middot; 42 feedback items behind it &middot; started 1 week ago &middot; no link yet, so nobody outside can see it</div>
+  </div>
+  <span class="tag">Draft</span>
+  <div class="brief-actions"><a class="btn--ghost" href="#">Continue</a></div>
+</div>
+        </div>
+        <p class="kit-hero-note">Live. Hover the row, then the title; tab to it</p>
+      </div>
+      <p class="kit-note">A managed object: it has a status and one way in. Not a variant of the composer row, which has a handle and a remove and no status.</p>
+
+      <section class="kit-sec" id="variants">
+        <h2 class="kit-h2">Variants and states</h2>
+        <p class="kit-note">One axis: the value of the status, shared or draft. The status word is the tag atom and the way in is the outlined button; each keeps its own states on <a class="link" href="tag.html">Status tag</a> and <a class="link" href="button.html">Button</a>. This molecule paints two hovers of its own, the row ground (<code>--bg-hover</code>) and an underline on the title, and the title is the focusable element. No pressed state: <code>brief-row.css</code> paints none.</p>
+        <div class="kit-matrix-wrap">
+          <table class="kit-matrix" inert>
+            <thead><tr><th>Value</th><th>State</th><th>Row</th></tr></thead>
+            <tbody>
+              <tr><th rowspan="4">Shared<code>.brief-row + .tag</code></th><td class="kit-st">Rest</td><td><div class="brief-row"> <div class="brief-main"> <a class="brief-title" href="#">Q3 roadmap: what customers need most</a> <div class="brief-meta">3 themes &middot; 89 feedback items behind them &middot; shared 2 days ago by Alex Rivera &middot; link is live</div> </div> <span class="tag">Shared</span> <div class="brief-actions"><a class="btn--ghost" href="#">Open</a></div> </div></td></tr>
+              <tr><td class="kit-st">Row hover</td><td><div class="brief-row" data-kit-st="hover"> <div class="brief-main"> <a class="brief-title" href="#">Q3 roadmap: what customers need most</a> <div class="brief-meta">3 themes &middot; 89 feedback items behind them &middot; shared 2 days ago by Alex Rivera &middot; link is live</div> </div> <span class="tag">Shared</span> <div class="brief-actions"><a class="btn--ghost" href="#">Open</a></div> </div></td></tr>
+              <tr><td class="kit-st">Title hover</td><td><div class="brief-row"> <div class="brief-main"> <a class="brief-title" data-kit-st="hover" href="#">Q3 roadmap: what customers need most</a> <div class="brief-meta">3 themes &middot; 89 feedback items behind them &middot; shared 2 days ago by Alex Rivera &middot; link is live</div> </div> <span class="tag">Shared</span> <div class="brief-actions"><a class="btn--ghost" href="#">Open</a></div> </div></td></tr>
+              <tr class="kit-group-end"><td class="kit-st">Focus, title</td><td><div class="brief-row"> <div class="brief-main"> <a class="brief-title" data-kit-st="focus" href="#">Q3 roadmap: what customers need most</a> <div class="brief-meta">3 themes &middot; 89 feedback items behind them &middot; shared 2 days ago by Alex Rivera &middot; link is live</div> </div> <span class="tag">Shared</span> <div class="brief-actions"><a class="btn--ghost" href="#">Open</a></div> </div></td></tr>
+              <tr><th rowspan="4">Draft<code>.brief-row + .tag</code></th><td class="kit-st">Rest</td><td><div class="brief-row"> <div class="brief-main"> <a class="brief-title" href="#">Onboarding deep-dive</a> <div class="brief-meta">1 theme &middot; 42 feedback items behind it &middot; started 1 week ago &middot; no link yet, so nobody outside can see it</div> </div> <span class="tag">Draft</span> <div class="brief-actions"><a class="btn--ghost" href="#">Continue</a></div> </div></td></tr>
+              <tr><td class="kit-st">Row hover</td><td><div class="brief-row" data-kit-st="hover"> <div class="brief-main"> <a class="brief-title" href="#">Onboarding deep-dive</a> <div class="brief-meta">1 theme &middot; 42 feedback items behind it &middot; started 1 week ago &middot; no link yet, so nobody outside can see it</div> </div> <span class="tag">Draft</span> <div class="brief-actions"><a class="btn--ghost" href="#">Continue</a></div> </div></td></tr>
+              <tr><td class="kit-st">Title hover</td><td><div class="brief-row"> <div class="brief-main"> <a class="brief-title" data-kit-st="hover" href="#">Onboarding deep-dive</a> <div class="brief-meta">1 theme &middot; 42 feedback items behind it &middot; started 1 week ago &middot; no link yet, so nobody outside can see it</div> </div> <span class="tag">Draft</span> <div class="brief-actions"><a class="btn--ghost" href="#">Continue</a></div> </div></td></tr>
+              <tr><td class="kit-st">Focus, title</td><td><div class="brief-row"> <div class="brief-main"> <a class="brief-title" data-kit-st="focus" href="#">Onboarding deep-dive</a> <div class="brief-meta">1 theme &middot; 42 feedback items behind it &middot; started 1 week ago &middot; no link yet, so nobody outside can see it</div> </div> <span class="tag">Draft</span> <div class="brief-actions"><a class="btn--ghost" href="#">Continue</a></div> </div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="props">
+        <h2 class="kit-h2">Properties</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Property</th><th>Type</th><th>Values</th><th>Default</th></tr></thead><tbody>
+          <tr><td>Row</td><td>own class</td><td><code>.brief-row</code>, a flex row. Wraps at 360</td><td>none: the class is required</td></tr>
+          <tr><td>Value</td><td>variant</td><td>shared &middot; draft. Carried by the tag word and the meta line, not by a class</td><td>none: both are content</td></tr>
+          <tr><td>Title</td><td>slot</td><td><code>.brief-title</code> inside <code>.brief-main</code>: an anchor, medium weight, with a widened hit area</td><td>required</td></tr>
+          <tr><td>Meta</td><td>slot</td><td><code>.brief-meta</code>: themes, evidence behind them, when, and what the link state means</td><td>required</td></tr>
+          <tr><td>Status</td><td>slot</td><td><code>.tag</code>, between the main zone and the actions</td><td>required</td></tr>
+          <tr><td>Actions</td><td>slot</td><td><code>.brief-actions</code>: <code>.btn--ghost</code> Open or Continue</td><td>one outlined action</td></tr>
+          <tr><td>State</td><td>variant</td><td>rest &middot; row hover &middot; title hover &middot; focus-visible</td><td>rest</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="when">
+        <h2 class="kit-h2">How to use it</h2>
+        <div class="kit-when">
+          <div>
+            <h3>When</h3>
+            <p>On 6.0, to list the briefs a PM has saved: Shared ones and Drafts, each with the one way in. The meta line says what the person needs to know before opening: how many themes, how much evidence, and whether anybody outside can see it.</p>
+          </div>
+          <div>
+            <h3>When not</h3>
+            <ul>
+              <li>For the rows of the brief being composed: take <a class="link" href="composer-row.html">the composer row</a>. It has a handle and a remove and no status.</li>
+              <li>For a connected source: take <a class="link" href="source-row.html">the source row</a>.</li>
+              <li>For a hub destination: take <a class="link" href="cardrow.html">the list row link</a>.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="kit-dodont">
+          <div class="kit-dd kit-dd--do">
+            <div class="kit-dd-c" inert>
+<div class="u-full"><div class="brief-row">
+  <div class="brief-main">
+    <a class="brief-title" href="#">Onboarding deep-dive</a>
+    <div class="brief-meta">1 theme &middot; 42 feedback items behind it &middot; started 1 week ago &middot; no link yet, so nobody outside can see it</div>
+  </div>
+  <span class="tag">Draft</span>
+  <div class="brief-actions"><a class="btn--ghost" href="#">Continue</a></div>
+</div></div>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do</div><div class="kit-dd-t">Say what a draft is not yet</div>
+              <div class="kit-dd-d">The meta line of a draft says there is no link yet, so nobody outside can see it. The status is not left to the tag alone.</div></div>
+          </div>
+          <div class="kit-dd kit-dd--dont">
+            <div class="kit-dd-c" inert>
+<div class="u-full"><div class="brief-row">
+  <div class="brief-main">
+    <a class="brief-title" href="#">Onboarding deep-dive</a>
+    <div class="brief-meta">1 theme &middot; 42 feedback items behind it &middot; started 1 week ago</div>
+  </div>
+  <span class="tag">Draft</span>
+  <div class="brief-actions"><a class="btn--ghost" href="#">Continue</a></div>
+</div></div>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do not</div><div class="kit-dd-t">A status with nothing behind it</div>
+              <div class="kit-dd-d">The tag says Draft and the line stops at the date. The person cannot tell whether anyone can see it.</div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="where">
+        <h2 class="kit-h2">Where it stands</h2>
+        <p class="kit-note">6.0 Briefs list only, shared 2 occurrences and draft 1. The one screen already in colour:</p>
+        <div class="kit-where">
+          <a href="../briefs.html">6.0 Briefs list</a>
+          <a href="../../wireframes/overview.html">the rest, in grey</a>
+        </div>
+      </section>
+    </div>
+
+    <!-- ================================================================ TECHNICAL -->
+    <div class="kit-tabpanel" role="tabpanel" id="tech" aria-labelledby="tab-tech">
+
+      <section class="kit-sec" id="anatomy">
+        <h2 class="kit-h2">Anatomy</h2>
+        <p class="kit-note">Kept apart from the other row-shaped components: the inventory calls them seven components and not one with variants, because the zone sets differ and whole zones are gone (<code>design/kit/docs/inventory.md</code>, "Level 2, molecules"). Zones in reading order: title, meta, status, actions.</p>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
+          <tr><td>title</td><td><code>.brief-title</code></td><td>The anchor and the way in. 14px, medium weight, underlined on hover</td></tr>
+          <tr><td>hit area</td><td><code>.brief-title::after</code></td><td>A -12px overlay across the title zone. It is -12 and not the grey layer's -11: at this type size -11 lands the target on 43px, one pixel under the 44px floor</td></tr>
+          <tr><td>meta</td><td><code>.brief-meta</code></td><td>12px secondary ink, 1.5 line height</td></tr>
+          <tr><td>status</td><td><code>.tag</code></td><td>Shared or Draft, the tag atom</td></tr>
+          <tr><td>actions</td><td><code>.brief-actions</code></td><td>The outlined button, Open or Continue</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="axes">
+        <h2 class="kit-h2">Axes, with the rule that chooses</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
+          <tr><td>value</td><td>shared 2 &middot; draft 1</td><td><b>The status is a word in the tag and a fact in the meta line.</b> A draft's line says there is no link yet</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="tokens">
+        <h2 class="kit-h2">Tokens it reads</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Reads</th><th>Which grows from</th><th>For</th></tr></thead><tbody>
+          <tr><td><code>--bg-hover</code></td><td><code>--grey-900</code> dark, <code>--grey-025</code> light</td><td>the lift of the row under the pointer</td></tr>
+          <tr><td><code>--line-hairline</code></td><td><code>--grey-800</code></td><td>the rule under the row</td></tr>
+          <tr><td><code>--text-primary</code>, <code>--text-secondary</code></td><td>tokens.css</td><td>title, then meta</td></tr>
+          <tr><td><code>--type-base</code>, <code>--weight-medium</code></td><td>tokens.css</td><td>the title</td></tr>
+          <tr><td><code>--space-1</code>, <code>-3</code>, <code>-5</code>, <code>-6</code></td><td>tokens.css</td><td>gaps and padding. Off-scale literals kept: 12px meta size, 1.5 line height, the -12px overlay</td></tr>
+          <tr><td><code>--ease</code></td><td>tokens.css</td><td>the .12s background transition</td></tr>
+        </tbody></table></div>
+        <p class="kit-note">The row hover is <code>--bg-hover</code>, the same token as the list row link (<a class="link" href="cardrow.html">cardrow.html</a>).</p>
+      </section>
+
+      <section class="kit-sec" id="shots">
+        <h2 class="kit-h2">Snapshots</h2>
+        <p class="kit-note">None taken for this molecule. Its states are shown live in the matrix on Overview, drawn from the product's own rules. The row hover is <code>--bg-hover</code>, the same token as the list row link.</p>
+      </section>
+
+      <section class="kit-sec" id="markup">
+        <h2 class="kit-h2">Copy this</h2>
+        <div class="scene">
+          <pre class="kit-pre">&lt;li class="brief-row"&gt;
+  &lt;div class="brief-main"&gt;
+    &lt;a class="brief-title" href="build-brief.html"&gt;Onboarding deep-dive&lt;/a&gt;
+    &lt;div class="brief-meta"&gt;1 theme &amp;middot; 42 feedback items behind it &amp;middot; started 1 week ago &amp;middot; ...&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;span class="tag"&gt;Draft&lt;/span&gt;
+  &lt;div class="brief-actions"&gt;&lt;a class="btn--ghost" href="build-brief.html"&gt;Continue&lt;/a&gt;&lt;/div&gt;
+&lt;/li&gt;</pre>
+        </div>
+        <p class="kit-note">File: <code class="kit-mono">design/system/components/brief-row.css</code>, in the molecules group of <code class="kit-mono">design/system/index.css</code>. On the screen the row is an <code class="kit-mono">li</code> of <code class="kit-mono">ul.list</code>; <code class="kit-mono">.list</code> is declared in kit.css and is not in the system yet [?]. At 360 the row wraps and the actions take their own full row, the buttons sharing it.</p>
+      </section>
+    </div>
+
+    <!-- ================================================================ HISTORY -->
+    <div class="kit-tabpanel" role="tabpanel" id="history" aria-labelledby="tab-history">
+      <section class="kit-sec">
+        <h2 class="kit-h2">Changes, newest first</h2>
+        <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-21</td><td>Entered the system: <code>components/brief-row.css</code>, on semantic roles, and this page in the card format</td><td><code>docs/decisions.md</code>, "The molecules entered the system"</td></tr>
+          <tr><td>2026-08-18</td><td>Declared in kit.css from the colour layer. The title overlay was set to -12px so the target reaches the 44px floor. The status became <code>.tag</code> (was <code>.brief-status</code>)</td><td>commit <code>d461e12</code>; <code>design/kit/docs/inventory.md</code>, the fold tables</td></tr>
+        </tbody></table></div>
+      </section>
+    </div>
+
+    <div id="kit-pager"></div>
+
+  </main>
+</div>
+
+<svg class="sprite" aria-hidden="true"><defs>
+  <symbol id="i-source" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.66 3.13 3 7 3s7-1.34 7-3V6"/><path d="M5 12v6c0 1.66 3.13 3 7 3s7-1.34 7-3v-6"/></symbol>
+  <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V5"/><path d="m7.5 9.5 4.5-4.5 4.5 4.5"/><path d="M4.5 15v3.5a1.5 1.5 0 0 0 1.5 1.5h12a1.5 1.5 0 0 0 1.5-1.5V15"/></symbol>
+  <symbol id="i-drag" viewBox="0 0 24 24"><path d="M9 7h.1M15 7h.1M9 12h.1M15 12h.1M9 17h.1M15 17h.1"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+</defs></svg>
+
+<script src="_nav.js"></script>
+<script src="_states.js"></script>
+</body>
+</html>

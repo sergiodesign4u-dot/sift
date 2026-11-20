@@ -1,0 +1,19 @@
+/* design/system/components/tier-card.css - level 2, molecule.
+   Reads: --bg-surface, --line-hairline, --text-primary, --text-secondary, --tier-mark, --radius-md, --font-mono, --space-*, --type-*, --weight-*
+   Page:  design/kit/tier-card.html
+   Stands on: 0.0 Home (design/index.html). One per plan.
+
+   The marketing tier card. The price is the number, so it is set in mono. The feature bullet is a
+   FILL, not a line, so it reads --tier-mark (a component token) and never a line role: kit.css
+   drew it in --line-2, which became --line-control, and a fill may not borrow a line role.
+   Not interactive: the buttons and links around a tier are atoms.
+   No em dash anywhere in this file.
+*/
+
+.tier { display: flex; flex-direction: column; background: var(--bg-surface); border: 1px solid var(--line-hairline); border-radius: var(--radius-md); padding: var(--space-8); }
+.tier-name { font-size: var(--type-base); font-weight: var(--weight-strong); color: var(--text-primary); }
+.tier-price { font-family: var(--font-mono); font-size: var(--type-xl); font-weight: var(--weight-medium); color: var(--text-primary); margin: var(--space-4) 0 2px; }
+.tier-unit { font-family: var(--font-mono); font-size: var(--type-2xs); color: var(--text-secondary); }
+.tier-feat { list-style: none; display: grid; gap: var(--space-3); margin-top: var(--space-6); }
+.tier-feat li { position: relative; padding-left: 15px; font-size: var(--type-xs); color: var(--text-secondary); line-height: 1.5; }
+.tier-feat li::before { content: ""; position: absolute; left: 0; top: 7px; width: 5px; height: 5px; border-radius: 1px; background: var(--tier-mark); }

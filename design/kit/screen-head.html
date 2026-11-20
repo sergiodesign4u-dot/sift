@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift design system - Screen head</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../system/index.css">
+<link rel="stylesheet" href="_page.css">
+</head>
+<!--
+  design/kit/screen-head.html - a component page in the card format of 2026-11-20, laid out on the template button.html.
+
+  OVERVIEW: a live specimen, the content or viewport forms, properties, when and when not, do and do not, where it stands.
+  TECHNICAL: anatomy, the axes, the tokens it reads, the markup to copy.
+  HISTORY: every change, each with the record it came from.
+
+  The page links ../system/index.css, the SAME entry point a product screen links. The matrix is
+  drawn by _states.js from the product's own rules where the component has states; nothing in it is painted by hand.
+
+  No em dash anywhere.
+-->
+<body>
+<div class="kit-shell">
+  <div id="kit-panel"></div>
+  <main class="kit-main">
+
+    <div id="kit-crumbs"></div>
+    <div id="kit-head"></div>
+
+    <div class="kit-tabs" role="tablist" aria-label="Screen head page">
+      <button class="kit-tab" role="tab" id="tab-overview" aria-controls="overview" aria-selected="true">Overview</button>
+      <button class="kit-tab" role="tab" id="tab-tech" aria-controls="tech" aria-selected="false" tabindex="-1">Technical</button>
+      <button class="kit-tab" role="tab" id="tab-history" aria-controls="history" aria-selected="false" tabindex="-1">History</button>
+    </div>
+
+    <!-- ================================================================ OVERVIEW -->
+    <div class="kit-tabpanel" role="tabpanel" id="overview" aria-labelledby="tab-overview">
+
+      <div class="kit-hero">
+        <header class="screenhead">
+          <div class="screenhead-row">
+            <div class="head-text">
+              <h1 class="h1">Synthesis</h1>
+              <p class="sub">Your feedback, clustered into ranked themes. Open one to trace the evidence behind it.</p>
+            </div>
+            <a class="btn head-action" href="#"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-evidence"></use></svg> Build brief</a>
+          </div>
+          <p class="scope"><b>12</b> themes from <b>2,904</b> of 3,750 feedback items in the last 30 days, across 2 sources. Synthesized 2 hours ago.</p>
+        </header>
+        <p class="kit-hero-note">Live. The action hides while the selection bar is up, see 2.0</p>
+      </div>
+
+      <section class="kit-sec" id="variants">
+        <h2 class="kit-h2">Variants and states</h2>
+        <p class="kit-note">Not interactive: the rows are content forms, not states, and the head has no hover, pressed or focus of its own. What is clickable inside it is the button, which keeps its states on its own page (<a href="button.html">Button</a>). The scope line is the atom <a href="scope.html">Scope line</a>. The first row is the plain <code class="kit-mono">.main-head</code>, which has no border under it and no action; the other two are <code class="kit-mono">.screenhead</code>.</p>
+        <div class="kit-matrix-wrap">
+          <table class="kit-matrix" inert>
+            <thead><tr><th>Form</th><th>Content</th><th>Head</th></tr></thead>
+            <tbody>
+              <tr><th rowspan="3">Screen head<code>.screenhead</code></th><td class="kit-st">H1 plus sub</td><td><header class="main-head">
+  <h1 class="h1">Account</h1>
+  <p class="sub">Your plan, your data controls, and your profile for the Northwind workspace.</p>
+</header></td></tr>
+              <tr><td class="kit-st">plus the scope line</td><td><header class="screenhead">
+  <div class="screenhead-row">
+    <div class="head-text">
+      <h1 class="h1">Briefs</h1>
+      <p class="sub">A brief packages themes, their evidence, and your recommended order into a link a stakeholder can read and challenge without a Sift seat.</p>
+    </div>
+  </div>
+  <p class="scope"><b>0</b> briefs. There are <b>12</b> themes on Synthesis to build one from, and the top three carry 89 feedback items between them.</p>
+</header></td></tr>
+              <tr><td class="kit-st">plus the one primary action</td><td><header class="screenhead">
+  <div class="screenhead-row">
+    <div class="head-text">
+      <h1 class="h1">Briefs</h1>
+      <p class="sub">A brief packages themes, their evidence, and your recommended order into a link a stakeholder can read and challenge without a Sift seat.</p>
+    </div>
+    <div class="head-action"><a class="btn" href="#">Build brief</a></div>
+  </div>
+  <p class="scope"><b>2</b> briefs, built from the 12 themes on Synthesis. A brief keeps the evidence it was built from, so an old link stays readable even after the themes move on.</p>
+</header></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="kit-note"><b>The action hides while the selection bar is up.</b> The head action and the selection bar are mutually exclusive, so the screen never carries two primary actions. That rule couples the head to the screen shell, which is not part of this component, so it is not drawn here: open <a href="../synthesis.html">2.0 Synthesis</a>, tick a theme, and "Build brief" leaves the head [?] (the shell comes into the system in round 3).</p>
+      </section>
+
+      <section class="kit-sec" id="forms">
+        <h2 class="kit-h2">Other forms</h2>
+        <div class="kit-forms">
+          <div><div class="kit-form-c"><header class="screenhead">
+  <div class="screenhead-row">
+    <div class="head-text">
+      <h1 class="h1">Onboarding is confusing</h1>
+      <div class="head-meta">
+        <span class="conf"><span class="conf-n">n=42</span></span>
+        <span>latest feedback 2 days ago</span>
+        <span>rank 1 of 12 by signal</span>
+      </div>
+    </div>
+    <div class="head-action"><a class="btn" href="#">Add to brief</a></div>
+  </div>
+  <p class="scope"><b>42</b> items from 2 sources: <b>Intercom 30</b>, <b>CSV 12</b>. First seen 5 weeks ago, latest 2 days ago.</p>
+</header></div>
+            <div class="kit-form-t">The detail head</div>
+            <div class="kit-form-d">A <code>.head-meta</code> row under the H1: confidence, recency, rank. It restates what the ranked row already said, where the decision is made. 4.0 Theme detail. Inventory lists three content forms; this meta row is not among them [?].</div></div>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="props">
+        <h2 class="kit-h2">Properties</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Property</th><th>Type</th><th>Values</th><th>Default</th></tr></thead><tbody>
+          <tr><td>Head</td><td>own class</td><td><code>.screenhead</code> (bordered, with a row) or <code>.main-head</code> (plain)</td><td>none: the class is required</td></tr>
+          <tr><td>Row</td><td>zone</td><td><code>.screenhead-row</code>, a wrapping flex row holding the text and the action</td><td>required inside <code>.screenhead</code></td></tr>
+          <tr><td>Text</td><td>zone</td><td><code>.head-text</code>, takes the free width. Holds <code>.h1</code>, then <code>.sub</code> or <code>.head-meta</code></td><td>required</td></tr>
+          <tr><td>Action</td><td>zone</td><td><code>.head-action</code>, on the button itself or on a wrapper. One only, and it is the next move</td><td>absent</td></tr>
+          <tr><td>Meta</td><td>zone</td><td><code>.head-meta</code>, inside <code>.head-text</code> under the H1</td><td>absent</td></tr>
+          <tr><td>Scope line</td><td>atom</td><td><code>.scope</code> after the row, inside <code>.screenhead</code></td><td>absent</td></tr>
+          <tr><td>Content</td><td>axis</td><td>H1 plus sub 15 &middot; plus the one primary action 5 &middot; plus the scope line 13</td><td>H1 plus sub</td></tr>
+          <tr><td>State</td><td>variant</td><td>rest &middot; action hidden while the selection bar is up (the shell rule, see the note above)</td><td>rest</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="when">
+        <h2 class="kit-h2">How to use it</h2>
+        <div class="kit-when">
+          <div>
+            <h3>When</h3>
+            <p>At the top of every screen of the app. It names where the person is, says in one line what the screen is for, and carries the one action the screen offers at rest. A ranked screen also carries its denominator under it, because a ranking with no denominator cannot be checked.</p>
+          </div>
+          <div>
+            <h3>When not</h3>
+            <ul>
+              <li>To hold a second primary action: Design Principle 4 allows exactly one per screen. A second one belongs in the selection bar or the action bar.</li>
+              <li>To hold the synthesis paragraph: that is <code>.summary</code>, a different component.</li>
+              <li>To hold filters: they go in the <a href="toolbar.html">toolbar</a> under the head.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="kit-dodont">
+          <div class="kit-dd kit-dd--do">
+            <div class="kit-dd-c" inert>
+              <header class="screenhead">
+  <div class="screenhead-row">
+    <div class="head-text">
+      <h1 class="h1">Briefs</h1>
+      <p class="sub">A brief packages themes, their evidence, and your recommended order into a link a stakeholder can read and challenge without a Sift seat.</p>
+    </div>
+  </div>
+  <p class="scope"><b>0</b> briefs. There are <b>12</b> themes on Synthesis to build one from, and the top three carry 89 feedback items between them.</p>
+</header>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do</div><div class="kit-dd-t">The denominator under the head</div>
+              <div class="kit-dd-d">A ranking with no denominator cannot be checked, so the number stands on the screen, even when it is zero.</div></div>
+          </div>
+          <div class="kit-dd kit-dd--dont">
+            <div class="kit-dd-c" inert>
+              <header class="screenhead"><div class="screenhead-row"><div class="head-text"><h1 class="h1">Briefs</h1></div><div class="head-action"><a class="btn" href="#">Build brief</a></div><div class="head-action"><a class="btn--ghost" href="#">Add to brief</a></div></div></header>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do not</div><div class="kit-dd-t">Two actions in one head</div>
+              <div class="kit-dd-d">The screen would carry two primary asks at once. Pick the next move and leave the other for the page.</div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="where">
+        <h2 class="kit-h2">Where it stands</h2>
+        <p class="kit-note">15 screens (inventory). The ones already in colour:</p>
+        <div class="kit-where">
+          <a href="../synthesis.html">2.0 Synthesis</a>
+          <a href="../synthesis-error.html">2.3 Synthesis error</a>
+          <a href="../sources.html">3.0 Sources</a>
+          <a href="../sources-empty.html">3.4 Sources, none connected</a>
+          <a href="../sources-sync-error.html">3.5 Source, sync error</a>
+          <a href="../theme.html">4.0 Theme detail</a>
+          <a href="../theme-error.html">4.0 Theme detail, error</a>
+          <a href="../theme-loading.html">4.0 Theme detail, loading</a>
+          <a href="../theme-low-signal.html">4.1 Theme detail, low signal</a>
+          <a href="../briefs.html">6.0 Briefs</a>
+          <a href="../briefs-empty.html">6.5 Briefs, empty</a>
+          <a href="../build-brief.html">6.1 Build brief</a>
+          <a href="../build-brief-thin-warning.html">6.2 Build brief, thin-theme warning</a>
+          <a href="../synthesis-loading.html">2.2 Synthesis loading</a>
+          <a href="../synthesis-empty.html">2.1 Synthesis, first run</a>
+          <a href="../account.html">7.0 Account (plain head)</a>
+          <a href="../connect-csv.html">3.2 CSV upload (plain head)</a>
+          <a href="../../wireframes/overview.html">the rest, in grey</a>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ================================================================ TECHNICAL -->
+    <div class="kit-tabpanel" role="tabpanel" id="tech" aria-labelledby="tab-tech">
+
+      <section class="kit-sec" id="anatomy">
+        <h2 class="kit-h2">Anatomy</h2>
+        <p class="kit-note">Identity, the one action at rest, and the denominator, in reading order. The head action and the selection bar are mutually exclusive, so the screen never carries two primary actions (Design Principle 4).</p>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
+<tr><td>the head</td><td><code>.screenhead</code></td><td>A bordered block with 16px above and 14px below</td></tr>
+<tr><td>the row</td><td><code>.screenhead-row</code></td><td>Wrapping flex row, top-aligned, 14px gap</td></tr>
+<tr><td>the text</td><td><code>.head-text</code></td><td>Takes the free width and may shrink to nothing: <code>min-width:0</code></td></tr>
+<tr><td>the title</td><td><code>.h1</code></td><td>22px, the strong weight, the head tracking</td></tr>
+<tr><td>the line</td><td><code>.sub</code></td><td>Secondary ink, 13.5px, capped at 70ch</td></tr>
+<tr><td>the meta row</td><td><code>.head-meta</code></td><td>Detail heads only. Confidence, recency, rank</td></tr>
+<tr><td>the action</td><td><code>.head-action</code></td><td>Does not grow. At 820 and below it takes the full width and centres its label</td></tr>
+<tr><td>the denominator</td><td><code>.scope</code> (atom)</td><td>Under the row, inside the head</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="axes">
+        <h2 class="kit-h2">Axes, with the rule that chooses</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
+<tr><td>content</td><td>H1 plus sub 15 &middot; plus the one primary action 5 &middot; plus the scope line 13</td><td><b>The action is the next move, and there is one.</b> The scope line is there wherever a count stands behind the screen. The numbers overlap: in colour every head with an action also carries a scope line</td></tr>
+<tr><td>selection</td><td>the action hides while the selection bar is up</td><td>A rule of the screen shell, not of this file. Without it two primary actions would stand on 2.0 at once</td></tr>
+        </tbody></table></div>
+        <p class="kit-note">One component, not three: the zone set is the same and a zone that is absent is the variant. Inventory consolidation: "One component. content: with the one action 5 / without 10; with the scope line 13".</p>
+      </section>
+
+      <section class="kit-sec" id="tokens">
+        <h2 class="kit-h2">Tokens it reads</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Reads</th><th>Which grows from</th><th>For</th></tr></thead><tbody>
+<tr><td><code>--line-hairline</code></td><td><code>--grey-800</code> dark</td><td>the rule under the head</td></tr>
+<tr><td><code>--text-secondary</code></td><td>tokens.css</td><td>the sub and the meta row</td></tr>
+<tr><td><code>--type-xl</code>, <code>--weight-strong</code>, <code>--tracking-head</code></td><td>tokens.css</td><td>the H1: 22px</td></tr>
+<tr><td><code>--type-sm</code>, <code>--type-xs</code></td><td>tokens.css</td><td>the sub (13.5px) and the meta row (12.5px)</td></tr>
+<tr><td><code>--space-1</code>, <code>--space-4</code>, <code>--space-6</code>, <code>--space-7</code></td><td>tokens.css</td><td>4px above the sub, 10px meta gap at 820, 14px and 16px for the padding and the row gap</td></tr>
+        </tbody></table></div>
+        <p class="kit-note">Kept as literals because no exact step exists: <code class="kit-mono">9px</code> above the meta row, <code class="kit-mono">70ch</code> on the sub.</p>
+      </section>
+
+      <section class="kit-sec" id="snapshots">
+        <h2 class="kit-h2">Snapshots</h2>
+        <p class="kit-note">No new snapshots this round. The head has no states of its own, and the button inside it keeps its snapshots on <a href="button.html">the button page</a>.</p>
+      </section>
+
+      <section class="kit-sec" id="markup">
+        <h2 class="kit-h2">Copy this</h2>
+        <div class="scene">
+          <pre class="kit-pre">&lt;header class="screenhead"&gt;
+  &lt;div class="screenhead-row"&gt;
+    &lt;div class="head-text"&gt;
+      &lt;h1 class="h1"&gt;Synthesis&lt;/h1&gt;
+      &lt;p class="sub"&gt;Your feedback, clustered into ranked themes.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;a class="btn head-action" href="build-brief.html"&gt;Build brief&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;p class="scope"&gt;&lt;b&gt;12&lt;/b&gt; themes from &lt;b&gt;2,904&lt;/b&gt; of 3,750 feedback items.&lt;/p&gt;
+&lt;/header&gt;</pre>
+        </div>
+        <p class="kit-note">File: <code class="kit-mono">design/system/components/screen-head.css</code>. The rule that hides the action while the selection bar is up is not in it: it stays in <code class="kit-mono">design/kit/kit.css</code> until the shell enters the system.</p>
+      </section>
+
+    </div>
+
+    <!-- ================================================================ HISTORY -->
+    <div class="kit-tabpanel" role="tabpanel" id="history" aria-labelledby="tab-history">
+      <section class="kit-sec">
+        <h2 class="kit-h2">Changes, newest first</h2>
+        <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-21</td><td>Entered the system: <code>components/screen-head.css</code>, on semantic roles, and this page in the card format</td><td><code>docs/decisions.md</code>, "The molecules entered the system"</td></tr>
+          <tr><td>2026-08-18</td><td>The kit was grown out of the colour layer: the head, its row, its action and its meta row were declared in <code>kit.css</code>, with the 360 rules</td><td>commit <code>d461e12</code></td></tr>
+          <tr><td>2026-08-05</td><td>The wireframes were rebuilt on the block bank, which is where the head and its row first existed in grey</td><td>commit <code>b8ee56b</code></td></tr>
+        </tbody></table></div>
+      </section>
+    </div>
+
+    <div id="kit-pager"></div>
+
+  </main>
+</div>
+
+<svg class="sprite" aria-hidden="true"><defs>
+  <symbol id="i-evidence" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-4 4v-4H4z"/><path d="M8.5 10.5h7M8.5 13h4"/></symbol>
+</defs></svg>
+
+<script src="_nav.js"></script>
+<script src="_states.js"></script>
+</body>
+</html>

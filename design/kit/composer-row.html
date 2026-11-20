@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift design system - Composer brief row</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../system/index.css">
+<link rel="stylesheet" href="_page.css">
+</head>
+<!--
+  design/kit/composer-row.html - a component page in the card format of 2026-11-20, laid out on the template button.html.
+
+  OVERVIEW: a live specimen, the variant by state matrix, properties, when and when not, do and do not, where it stands.
+  TECHNICAL: anatomy, the axes, the tokens it reads, the markup to copy.
+  HISTORY: every change, each with the record it came from.
+
+  The page links ../system/index.css, the SAME entry point a product screen links. The matrix is
+  drawn by _states.js from the product's own rules where the component has states; nothing in it is painted by hand.
+
+  No em dash anywhere.
+-->
+<body>
+<div class="kit-shell">
+  <div id="kit-panel"></div>
+  <main class="kit-main">
+
+    <div id="kit-crumbs"></div>
+    <div id="kit-head"></div>
+
+    <div class="kit-tabs" role="tablist" aria-label="Composer brief row page">
+      <button class="kit-tab" role="tab" id="tab-overview" aria-controls="overview" aria-selected="true">Overview</button>
+      <button class="kit-tab" role="tab" id="tab-tech" aria-controls="tech" aria-selected="false" tabindex="-1">Technical</button>
+      <button class="kit-tab" role="tab" id="tab-history" aria-controls="history" aria-selected="false" tabindex="-1">History</button>
+    </div>
+
+    <!-- ================================================================ OVERVIEW -->
+    <div class="kit-tabpanel" role="tabpanel" id="overview" aria-labelledby="tab-overview">
+
+      <div class="kit-hero">
+        <div class="u-full">
+<div class="briefrow">
+  <span class="drag" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-drag"></use></svg></span>
+  <span class="rank">1</span>
+  <span class="briefrow-main">
+    <span class="briefrow-label">Onboarding is confusing</span>
+    <span class="briefrow-meta">CSV, Intercom &middot; latest feedback 2 days ago</span>
+  </span>
+  <span class="conf"><span class="conf-n">n=42</span></span>
+  <button class="btn--icon" aria-label="Remove Onboarding is confusing from this brief"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-close"></use></svg></button>
+</div>
+<div class="briefrow">
+  <span class="drag" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-drag"></use></svg></span>
+  <span class="rank">2</span>
+  <span class="briefrow-main">
+    <span class="briefrow-label">Slow export on large accounts</span>
+    <span class="briefrow-meta">Intercom &middot; latest feedback 5 days ago</span>
+  </span>
+  <span class="conf"><span class="conf-n">n=28</span></span>
+  <button class="btn--icon" aria-label="Remove Slow export on large accounts from this brief"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-close"></use></svg></button>
+</div>
+<div class="briefrow">
+  <span class="drag" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-drag"></use></svg></span>
+  <span class="rank">3</span>
+  <span class="briefrow-main">
+    <span class="briefrow-label">Confusing billing and invoices</span>
+    <span class="briefrow-meta">CSV &middot; latest feedback 3 days ago</span>
+  </span>
+  <span class="conf"><span class="conf-n">n=19</span></span>
+  <button class="btn--icon" aria-label="Remove Confusing billing and invoices from this brief"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-close"></use></svg></button>
+</div>
+        </div>
+        <p class="kit-hero-note">Live. Tab to the remove button</p>
+      </div>
+      <p class="kit-note">The order of these rows is the recommendation, so the handle is the point of the component and it comes first. Zones in the page as built on 6.1: handle, rank, label, meta, confidence, remove.</p>
+      <p class="kit-note"><b>The inventory disagrees with itself on the zones.</b> The consolidation table, "Level 2, molecules", lists drag handle, rank, label, meta, confidence, remove. The Level 2 table lists handle, label, meta, remove, with a state "dragging [?]". This page follows what <code>design/build-brief.html</code> holds, which is the six-zone list. There is no dragging rule in <code>composer-row.css</code>, so no dragging state is shown.</p>
+
+      <section class="kit-sec" id="variants">
+        <h2 class="kit-h2">Variants and states</h2>
+        <p class="kit-note">One form: no axes, and everything that varies is its content. <b>The row paints no hover and no pressed state</b>, and none is added: <code>composer-row.css</code> has no <code>:hover</code> rule, and no dragging rule either. The only state is the focus ring on the remove button, which is the atom's own. The handle, the rank and the confidence indicator keep their own pages: <a class="link" href="drag.html">Drag handle</a>, <a class="link" href="rank.html">Rank number</a>, <a class="link" href="confidence.html">Confidence indicator</a>, <a class="link" href="button.html">Button</a>.</p>
+        <div class="kit-matrix-wrap">
+          <table class="kit-matrix" inert>
+            <thead><tr><th>Form</th><th>State</th><th>Row</th></tr></thead>
+            <tbody>
+              <tr><th rowspan="2">Composer row<code>.briefrow</code></th><td class="kit-st">Rest</td><td><div class="briefrow"> <span class="drag" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-drag"></use></svg></span> <span class="rank">1</span> <span class="briefrow-main"> <span class="briefrow-label">Onboarding is confusing</span> <span class="briefrow-meta">CSV, Intercom &middot; latest feedback 2 days ago</span> </span> <span class="conf"><span class="conf-n">n=42</span></span> <button class="btn--icon" aria-label="Remove Onboarding is confusing from this brief"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-close"></use></svg></button> </div></td></tr>
+              <tr><td class="kit-st">Focus, remove</td><td><div class="briefrow"> <span class="drag" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-drag"></use></svg></span> <span class="rank">1</span> <span class="briefrow-main"> <span class="briefrow-label">Onboarding is confusing</span> <span class="briefrow-meta">CSV, Intercom &middot; latest feedback 2 days ago</span> </span> <span class="conf"><span class="conf-n">n=42</span></span> <button class="btn--icon" data-kit-st="focus" aria-label="Remove Onboarding is confusing from this brief"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-close"></use></svg></button> </div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="props">
+        <h2 class="kit-h2">Properties</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Property</th><th>Type</th><th>Values</th><th>Default</th></tr></thead><tbody>
+          <tr><td>Row</td><td>own class</td><td><code>.briefrow</code>, a flex row</td><td>none: the class is required</td></tr>
+          <tr><td>Handle</td><td>slot</td><td><code>.drag</code>, first</td><td>required</td></tr>
+          <tr><td>Rank</td><td>slot</td><td><code>.rank</code>: the position in the brief</td><td>required</td></tr>
+          <tr><td>Label and meta</td><td>slot</td><td><code>.briefrow-main</code> holding <code>.briefrow-label</code> and <code>.briefrow-meta</code> (mono: sources and latest feedback)</td><td>required</td></tr>
+          <tr><td>Confidence</td><td>slot</td><td><code>.conf</code> with <code>.conf-n</code>, <code>n=X</code></td><td>required</td></tr>
+          <tr><td>Remove</td><td>slot</td><td><code>.btn--icon</code> with an <code>aria-label</code> that names the theme</td><td>required</td></tr>
+          <tr><td>Axes</td><td>none</td><td>one form: everything that varies is its content</td><td>n/a</td></tr>
+          <tr><td>State</td><td>variant</td><td>rest &middot; focus-visible (on the remove button). Dragging <code>[?]</code>: not in the CSS</td><td>rest</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="when">
+        <h2 class="kit-h2">How to use it</h2>
+        <div class="kit-when">
+          <div>
+            <h3>When</h3>
+            <p>On 6.1 and 6.2, where a PM orders the themes of a brief. The order is the recommendation, which is why the handle comes first and the rank is shown beside it.</p>
+          </div>
+          <div>
+            <h3>When not</h3>
+            <ul>
+              <li>For a saved brief in a list: take <a class="link" href="brief-row.html">the saved brief row</a>. It has a status and one way in, and no handle.</li>
+              <li>For the ranked theme in the synthesis: that is the theme card, which has a checkbox and a quote.</li>
+              <li>The inventory keeps these as three components and not variants of one, because the zones differ.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="kit-dodont">
+          <div class="kit-dd kit-dd--do">
+            <div class="kit-dd-c" inert>
+<div class="u-full"><div class="briefrow">
+  <span class="drag" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-drag"></use></svg></span>
+  <span class="rank">1</span>
+  <span class="briefrow-main">
+    <span class="briefrow-label">Onboarding is confusing</span>
+    <span class="briefrow-meta">CSV, Intercom &middot; latest feedback 2 days ago</span>
+  </span>
+  <span class="conf"><span class="conf-n">n=42</span></span>
+  <button class="btn--icon" aria-label="Remove Onboarding is confusing from this brief"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-close"></use></svg></button>
+</div></div>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do</div><div class="kit-dd-t">Name the theme in the remove button</div>
+              <div class="kit-dd-d">The button is an icon, so its <code>aria-label</code> carries &quot;Remove Onboarding is confusing from this brief&quot;. The same rule as the icon-only button.</div></div>
+          </div>
+          <div class="kit-dd kit-dd--dont">
+            <div class="kit-dd-c" inert>
+<div class="u-full"><div class="briefrow">
+  <span class="rank">1</span>
+  <span class="briefrow-main">
+    <span class="briefrow-label">Onboarding is confusing</span>
+    <span class="briefrow-meta">CSV, Intercom &middot; latest feedback 2 days ago</span>
+  </span>
+  <span class="conf"><span class="conf-n">n=42</span></span>
+  <button class="btn--icon" aria-label="Remove Onboarding is confusing from this brief"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-close"></use></svg></button>
+</div></div>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do not</div><div class="kit-dd-t">Take the handle away</div>
+              <div class="kit-dd-d">The order of these rows is the output. A row with no handle hides the one thing the composer is for.</div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="where">
+        <h2 class="kit-h2">Where it stands</h2>
+        <p class="kit-note">6.1 Build brief and 6.2 Build brief (thin-theme warning). Both already in colour:</p>
+        <div class="kit-where">
+          <a href="../build-brief.html">6.1 Build brief</a>
+          <a href="../build-brief-thin-warning.html">6.2 Build brief, thin-theme warning</a>
+          <a href="../../wireframes/overview.html">the rest, in grey</a>
+        </div>
+      </section>
+    </div>
+
+    <!-- ================================================================ TECHNICAL -->
+    <div class="kit-tabpanel" role="tabpanel" id="tech" aria-labelledby="tab-tech">
+
+      <section class="kit-sec" id="anatomy">
+        <h2 class="kit-h2">Anatomy</h2>
+        <p class="kit-note">Kept apart from the other row-shaped components: the inventory calls them seven components and not one with variants, because the zone sets differ and whole zones are gone (<code>design/kit/docs/inventory.md</code>, "Level 2, molecules").</p>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
+          <tr><td>handle</td><td><code>.drag</code></td><td>First: the order is the output</td></tr>
+          <tr><td>rank</td><td><code>.rank</code></td><td>The position, a numbered circle</td></tr>
+          <tr><td>label</td><td><code>.briefrow-label</code></td><td>13.5px, medium weight, primary ink</td></tr>
+          <tr><td>meta</td><td><code>.briefrow-meta</code></td><td>Mono 11px, secondary ink: the sources and the latest feedback</td></tr>
+          <tr><td>confidence</td><td><code>.conf</code></td><td>The item count, <code>n=X</code></td></tr>
+          <tr><td>remove</td><td><code>.btn--icon</code></td><td>Icon-only, the label in <code>aria-label</code></td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="axes">
+        <h2 class="kit-h2">Axes, with the rule that chooses</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
+          <tr><td></td><td><b>no axes</b></td><td>One form. Inventory Level 2 table: zones handle, label, meta, remove and a dragging state <code>[?]</code>. Consolidation table: handle, rank, label, meta, confidence, remove. The page follows the markup of 6.1</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="tokens">
+        <h2 class="kit-h2">Tokens it reads</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Reads</th><th>Which grows from</th><th>For</th></tr></thead><tbody>
+          <tr><td><code>--line-hairline</code></td><td><code>--grey-800</code></td><td>the rule under the row</td></tr>
+          <tr><td><code>--text-primary</code>, <code>--text-secondary</code></td><td>tokens.css</td><td>label, then meta</td></tr>
+          <tr><td><code>--font-mono</code>, <code>--type-sm</code>, <code>--type-2xs</code>, <code>--weight-medium</code></td><td>tokens.css</td><td>type</td></tr>
+          <tr><td><code>--space-3</code>, <code>-5</code></td><td>tokens.css</td><td>gap and padding. Off-scale literal kept: 3px above the meta</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="shots">
+        <h2 class="kit-h2">Snapshots</h2>
+        <p class="kit-note">None taken for this molecule. Its states are shown live in the matrix on Overview, drawn from the product's own rules. The row paints no hover, so there is no hover token to name.</p>
+      </section>
+
+      <section class="kit-sec" id="markup">
+        <h2 class="kit-h2">Copy this</h2>
+        <div class="scene">
+          <pre class="kit-pre">&lt;li class="briefrow"&gt;
+  &lt;span class="drag" aria-hidden="true"&gt;&lt;svg class="ic"&gt;&lt;use href="#i-drag"&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;
+  &lt;span class="rank"&gt;1&lt;/span&gt;
+  &lt;span class="briefrow-main"&gt;
+    &lt;span class="briefrow-label"&gt;Onboarding is confusing&lt;/span&gt;
+    &lt;span class="briefrow-meta"&gt;CSV, Intercom &amp;middot; latest feedback 2 days ago&lt;/span&gt;
+  &lt;/span&gt;
+  &lt;span class="conf"&gt;&lt;span class="conf-n"&gt;n=42&lt;/span&gt;&lt;/span&gt;
+  &lt;button class="btn--icon" aria-label="Remove Onboarding is confusing from this brief"&gt;&lt;svg class="ic"&gt;&lt;use href="#i-close"&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/button&gt;
+&lt;/li&gt;</pre>
+        </div>
+        <p class="kit-note">File: <code class="kit-mono">design/system/components/composer-row.css</code>, in the molecules group of <code class="kit-mono">design/system/index.css</code>. On the screen the rows are <code class="kit-mono">li</code> of <code class="kit-mono">ol.list</code>; <code class="kit-mono">.list</code> is declared in kit.css and is not in the system yet [?]. There is no 360 rule for this row in kit.css.</p>
+      </section>
+    </div>
+
+    <!-- ================================================================ HISTORY -->
+    <div class="kit-tabpanel" role="tabpanel" id="history" aria-labelledby="tab-history">
+      <section class="kit-sec">
+        <h2 class="kit-h2">Changes, newest first</h2>
+        <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-21</td><td>Entered the system: <code>components/composer-row.css</code>, on semantic roles, and this page in the card format</td><td><code>docs/decisions.md</code>, "The molecules entered the system"</td></tr>
+          <tr><td>2026-08-18</td><td>Declared in kit.css from the colour layer, with the handle first because the order is the recommendation</td><td>commit <code>d461e12</code>; <code>design/kit/docs/inventory.md</code>, "Level 2, molecules"</td></tr>
+        </tbody></table></div>
+      </section>
+    </div>
+
+    <div id="kit-pager"></div>
+
+  </main>
+</div>
+
+<svg class="sprite" aria-hidden="true"><defs>
+  <symbol id="i-source" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.66 3.13 3 7 3s7-1.34 7-3V6"/><path d="M5 12v6c0 1.66 3.13 3 7 3s7-1.34 7-3v-6"/></symbol>
+  <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V5"/><path d="m7.5 9.5 4.5-4.5 4.5 4.5"/><path d="M4.5 15v3.5a1.5 1.5 0 0 0 1.5 1.5h12a1.5 1.5 0 0 0 1.5-1.5V15"/></symbol>
+  <symbol id="i-drag" viewBox="0 0 24 24"><path d="M9 7h.1M15 7h.1M9 12h.1M15 12h.1M9 17h.1M15 17h.1"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+</defs></svg>
+
+<script src="_nav.js"></script>
+<script src="_states.js"></script>
+</body>
+</html>

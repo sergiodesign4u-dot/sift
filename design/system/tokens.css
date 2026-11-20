@@ -203,6 +203,12 @@
          the light pair tried to override it, which is precisely the check that says it is a
          role. Two rules use it: the frame and the dialog. --- */
   --shadow-sheet: var(--shadow-dark);
+
+  /* --- COMPONENT. Born at Step 5, round 2 (molecules), and only where a colour did not land on
+         any semantic role. Each one keeps the exact kit.css value in the dark theme, so nothing
+         moves; each one is PENDING the owner's review at the molecule gate. --- */
+  --step-current-line: var(--grey-050);  /* LINE. The ring of the current phase in the phase strip: kit.css drew it in --porcelain, and no line role carries that step. 1 rule, 2.1 and 2.2 */
+  --tier-mark:         var(--grey-700);  /* FILL. The square bullet of a tier feature on 0.0: kit.css drew it in --line-2, which became --line-control, a line role. A fill may not borrow a line role. 1 rule, decorative */
 }
 
 /* ============================ THE LIGHT PAIR ============================
@@ -246,4 +252,8 @@
 
   /* DEPTH */
   --shadow-sheet: var(--shadow-light);
+
+  /* COMPONENT */
+  --step-current-line: var(--grey-950);  /* the same step as --text-primary here, as in the dark theme */
+  --tier-mark:         var(--grey-350);  /* the light pair --line-2 had before the Step 4 review moved --line-control */
 }

@@ -1,0 +1,44 @@
+/* design/system/components/screen-head.css - level 2, molecule.
+   Reads: --line-hairline, --text-primary, --text-secondary, --type-xl, --type-xs, --type-sm,
+          --weight-strong, --tracking-head, --space-1, --space-4, --space-6, --space-7
+   Page:  design/kit/screen-head.html
+   Stands on: 15 screens, 2.0 Synthesis, 3.0 Sources, 4.0 Theme detail, 6.0 Briefs, 6.1 Build brief
+   and the rest of the app. Atoms inside it keep their own files: .btn (button.css), .scope
+   (scope.css), .conf (confidence.css).
+
+   Identity, the ONE action at rest, and the denominator. The head action and the selection bar are
+   mutually exclusive, so the screen never carries two primary actions (Design Principle 4).
+   Pure CSS, so the proof is clickable.
+
+   NOT IN THIS FILE: the rule that hides the action while the selection bar is up. kit.css writes
+   it twice, as `.appframe:has(.check:checked) .head-action` and `.app:has(.check:checked)
+   .head-action`. Both couple the head to the screen shell, which is an organism and comes in
+   round 3. Until then the hiding stays in kit.css.
+
+   .head-meta is the meta row of a detail head: confidence, recency, rank. Everything the ranked
+   row already said, restated where the decision is actually made, so the claim travels with the
+   screen.
+
+   .main-head, .h1 and .sub are the plain head of a screen that has no border under it and no
+   action (3.2, 7.0). .summary stays in kit.css: it is the synthesis paragraph, a different
+   component, left for Step 6.
+   No em dash anywhere in this file.
+*/
+
+.screenhead { padding: var(--space-7) 0 var(--space-6); border-bottom: 1px solid var(--line-hairline); }
+.screenhead-row { display: flex; align-items: flex-start; gap: var(--space-6); flex-wrap: wrap; }
+.head-text { flex: 1; min-width: 0; }
+.head-action { flex: none; }
+
+.head-meta { display: flex; align-items: center; gap: var(--space-6); flex-wrap: wrap; font-size: var(--type-xs); color: var(--text-secondary); margin-top: 9px; }
+
+.main-head { padding: var(--space-7) 0 var(--space-6); }
+.h1 { font-size: var(--type-xl); font-weight: var(--weight-strong); letter-spacing: var(--tracking-head); }
+.sub { color: var(--text-secondary); font-size: var(--type-sm); margin-top: var(--space-1); max-width: 70ch; }
+
+/* At 360 the one action takes the full width, and the meta row tightens its gap. The same rule the
+   whole kit follows: a row becomes a stack only where it would otherwise cut a value in half. */
+@media (max-width: 820px) {
+  .head-action { width: 100%; justify-content: center; }
+  .head-meta { gap: var(--space-4); }
+}

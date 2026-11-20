@@ -1,0 +1,29 @@
+/* design/system/components/source-card.css - level 2, molecule.
+   Reads: --line-hairline, --bg-surface, --text-primary, --text-secondary, --radius-md,
+          --font-mono, --weight-medium, --type-sm, --type-xs, --type-2xs, --space-*
+   Page:  design/kit/source-card.html
+   Stands on: 3.0, 3.4, 3.5. Connectable 6 occurrences, not yet available 3.
+   Contains: the icon slot (.iconslot--card) and the outlined button (.btn--ghost).
+
+   Source card: what is available but not connected yet. An unavailable one says so on its
+   face rather than being hidden, because a missing integration the PM cannot see is a
+   question to support.
+
+   .src-avail is the grid that holds the cards. The card itself is not interactive: its button is
+   the atom, and it carries its own states.
+
+   No em dash anywhere in this file.
+*/
+
+.src-avail {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--space-4); padding: var(--space-2) var(--space-3) var(--space-7);
+}
+.src-card {
+  display: flex; flex-direction: column; gap: 9px;
+  border: 1px solid var(--line-hairline); border-radius: var(--radius-md);
+  background: var(--bg-surface); padding: 15px;
+}
+.src-card-name { font-size: var(--type-sm); font-weight: var(--weight-medium); color: var(--text-primary); }
+.src-card-d { flex: 1; font-size: var(--type-xs); color: var(--text-secondary); line-height: 1.55; }
+.src-card-note { font-family: var(--font-mono); font-size: var(--type-2xs); color: var(--text-secondary); }

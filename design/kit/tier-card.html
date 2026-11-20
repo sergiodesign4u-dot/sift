@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift design system - Marketing tier card</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../system/index.css">
+<link rel="stylesheet" href="_page.css">
+</head>
+<!--
+  design/kit/tier-card.html - a component page in the card format of 2026-11-20, laid after button.html.
+
+  OVERVIEW, for the person placing the component: a live specimen, the matrix, properties, when
+  and when not, where it stands.
+  TECHNICAL, for the person changing it: anatomy, the axes with their counts, the tokens it
+  reads, the snapshots note, the markup to copy.
+  HISTORY: every change, each with the record it came from.
+
+  The page links ../system/index.css, the SAME entry point a product screen links: it is not a
+  copy of the component, it is the component. This molecule is not interactive: the matrix has no forced states, and nothing in it is painted by hand.
+
+  No em dash anywhere.
+-->
+<body>
+<div class="kit-shell">
+  <div id="kit-panel"></div>
+  <main class="kit-main">
+
+    <div id="kit-crumbs"></div>
+    <div id="kit-head"></div>
+
+    <div class="kit-tabs" role="tablist" aria-label="Marketing tier card page">
+      <button class="kit-tab" role="tab" id="tab-overview" aria-controls="overview" aria-selected="true">Overview</button>
+      <button class="kit-tab" role="tab" id="tab-tech" aria-controls="tech" aria-selected="false" tabindex="-1">Technical</button>
+      <button class="kit-tab" role="tab" id="tab-history" aria-controls="history" aria-selected="false" tabindex="-1">History</button>
+    </div>
+
+    <!-- ================================================================ OVERVIEW -->
+    <div class="kit-tabpanel" role="tabpanel" id="overview" aria-labelledby="tab-overview">
+
+      <div class="kit-hero">
+        <div class="kit-forms u-full">
+          <div class="tier">
+            <h3 class="tier-name">Free</h3>
+            <p class="tier-price">$0</p>
+            <ul class="tier-feat"><li>Up to 250 feedback items per month</li><li>Theme clusters, basic synthesis</li><li>1 source</li></ul>
+          </div>
+          <div class="tier">
+            <h3 class="tier-name">Starter</h3>
+            <p class="tier-price">$30 to $60</p>
+            <span class="tier-unit">per seat / month</span>
+            <ul class="tier-feat"><li>Unlimited feedback volume</li><li>Full synthesis with traceability</li><li>3 sources, 1 to 3 seats</li></ul>
+          </div>
+          <div class="tier">
+            <h3 class="tier-name">Growth</h3>
+            <p class="tier-price">Custom</p>
+            <span class="tier-unit">per seat, scales down</span>
+            <ul class="tier-feat"><li>All sources, 5 to 15 seats</li><li>Team collaboration</li><li>Roadmap sync and usage analytics</li></ul>
+          </div>
+          <div class="tier">
+            <h3 class="tier-name">Enterprise</h3>
+            <p class="tier-price">Custom</p>
+            <ul class="tier-feat"><li>Unlimited seats</li><li>SSO and audit log</li><li>Dedicated support and SLA</li></ul>
+          </div>
+        </div>
+        <p class="kit-hero-note">Live. Copy from 0.0 Pricing, early hypotheses</p>
+      </div>
+      <p class="kit-note">0.0 Home carries the Pricing section in four tiers (Free, Starter, Growth, Enterprise), and the page above shows all four. The inventory says "three tiers, one per plan"; see the Technical tab. Plan names, limits and prices are early hypotheses, not final (<code class="kit-mono">design/index.html</code>).</p>
+
+      <section class="kit-sec" id="variants">
+        <h2 class="kit-h2">Variants and states</h2>
+        <p class="kit-note">Not interactive: no hover, focus or pressed state. A tier card is a block of information. Its buttons and links, "Start free" and "See plans and limits", sit below the grid and are atoms (<a href="button.html">Button</a>). The rows are the plans, the one axis the inventory names: value, one per plan.</p>
+        <div class="kit-matrix-wrap">
+          <table class="kit-matrix" inert>
+            <thead><tr><th>Plan</th><th>Specimen</th><th>Form</th></tr></thead>
+            <tbody>
+              <tr><th>Free<code>.tier</code></th><td class="kit-cell-fixed"><div class="tier">
+            <h3 class="tier-name">Free</h3>
+            <p class="tier-price">$0</p>
+            <ul class="tier-feat"><li>Up to 250 feedback items per month</li><li>Theme clusters, basic synthesis</li><li>1 source</li></ul>
+          </div></td><td class="kit-cell-none">No unit line: the price is $0.</td></tr>
+              <tr><th>Starter<code>.tier</code></th><td class="kit-cell-fixed"><div class="tier">
+            <h3 class="tier-name">Starter</h3>
+            <p class="tier-price">$30 to $60</p>
+            <span class="tier-unit">per seat / month</span>
+            <ul class="tier-feat"><li>Unlimited feedback volume</li><li>Full synthesis with traceability</li><li>3 sources, 1 to 3 seats</li></ul>
+          </div></td><td class="kit-cell-none">Price range with a unit line.</td></tr>
+              <tr><th>Growth<code>.tier</code></th><td class="kit-cell-fixed"><div class="tier">
+            <h3 class="tier-name">Growth</h3>
+            <p class="tier-price">Custom</p>
+            <span class="tier-unit">per seat, scales down</span>
+            <ul class="tier-feat"><li>All sources, 5 to 15 seats</li><li>Team collaboration</li><li>Roadmap sync and usage analytics</li></ul>
+          </div></td><td class="kit-cell-none">Custom price with a unit line.</td></tr>
+              <tr><th>Enterprise<code>.tier</code></th><td class="kit-cell-fixed"><div class="tier">
+            <h3 class="tier-name">Enterprise</h3>
+            <p class="tier-price">Custom</p>
+            <ul class="tier-feat"><li>Unlimited seats</li><li>SSO and audit log</li><li>Dedicated support and SLA</li></ul>
+          </div></td><td class="kit-cell-none">Custom price, no unit line.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="props">
+        <h2 class="kit-h2">Properties</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Property</th><th>Type</th><th>Values</th><th>Default</th></tr></thead><tbody>
+          <tr><td>Card</td><td>class</td><td><code>.tier</code>, a column on the surface</td><td>required</td></tr>
+          <tr><td>Name</td><td>zone</td><td><code>.tier-name</code></td><td>required</td></tr>
+          <tr><td>Price</td><td>zone</td><td><code>.tier-price</code>, set in mono because the price is the number</td><td>required</td></tr>
+          <tr><td>Unit line</td><td>zone</td><td><code>.tier-unit</code>, mono, secondary ink</td><td>optional: absent on Free and Enterprise on 0.0</td></tr>
+          <tr><td>Features</td><td>zone</td><td><code>.tier-feat</code>, a list; each <code>li</code> has a square bullet from <code>--tier-mark</code></td><td>required</td></tr>
+          <tr><td>Value</td><td>content</td><td>one per plan</td><td>none</td></tr>
+          <tr><td>State</td><td>none</td><td>not interactive</td><td>none</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="when">
+        <h2 class="kit-h2">How to use it</h2>
+        <div class="kit-when">
+          <div>
+            <h3>When</h3>
+            <p>On the marketing home, one card per plan, with the price as the largest thing in it. The price is a number, so it is set in mono.</p>
+          </div>
+          <div>
+            <h3>When not</h3>
+            <ul>
+              <li>To hold the action: the buttons sit below the grid on 0.0, not in the card.</li>
+              <li>To fix a price: the plan names, limits and prices are early hypotheses (<code>design/index.html</code>).</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="where">
+        <h2 class="kit-h2">Where it stands</h2>
+        <p class="kit-note">0.0 Home, the Pricing section. The one screen in colour:</p>
+        <div class="kit-where">
+          <a href="../index.html">0.0 Home</a>
+          <a href="../../wireframes/overview.html">the rest, in grey</a>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ================================================================ TECHNICAL -->
+    <div class="kit-tabpanel" role="tabpanel" id="tech" aria-labelledby="tab-tech">
+
+      <section class="kit-sec" id="anatomy">
+        <h2 class="kit-h2">Anatomy</h2>
+        <p class="kit-note">One card per plan, with the price set in mono. The bullet is a fill, so it reads a component token and not a line role.</p>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
+          <tr><td>the card</td><td><code>.tier</code></td><td>A column on the surface, hairline edge, medium radius</td></tr>
+          <tr><td>the name</td><td><code>.tier-name</code></td><td>Primary ink, strong weight</td></tr>
+          <tr><td>the price</td><td><code>.tier-price</code></td><td>Mono, the largest thing in the card</td></tr>
+          <tr><td>the unit</td><td><code>.tier-unit</code></td><td>Mono, secondary ink, optional</td></tr>
+          <tr><td>the features</td><td><code>.tier-feat</code></td><td>A grid list with a 5px square bullet before each item</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="axes">
+        <h2 class="kit-h2">Axes, with the rule that chooses</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
+          <tr><td>value</td><td>one per plan</td><td>The inventory says three tiers (Level 2 table); <code>design/index.html</code> carries four: Free, Starter, Growth, Enterprise. The count is [?] until the owner settles it</td></tr>
+        </tbody></table></div>
+        <p class="kit-note"><b>No states, and that is a decision rather than an omission.</b> The card is a block of information and has nothing to press.</p>
+      </section>
+
+      <section class="kit-sec" id="tokens">
+        <h2 class="kit-h2">Tokens it reads</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Reads</th><th>Grows from</th><th>For</th></tr></thead><tbody>
+          <tr><td><code>--bg-surface</code>, <code>--line-hairline</code></td><td><code>--grey-900</code>, <code>--grey-800</code></td><td>the card ground and edge</td></tr>
+          <tr><td><code>--text-primary</code>, <code>--text-secondary</code></td><td>tokens.css</td><td>the name and the price; the unit and the features</td></tr>
+          <tr><td><code>--tier-mark</code></td><td><code>--grey-700</code> dark, <code>--grey-350</code> light</td><td>the bullet, a FILL. kit.css drew it in <code>--line-2</code>, which became <code>--line-control</code>, a line role, and a fill may not borrow a line role</td></tr>
+          <tr><td><code>--radius-md</code></td><td>tokens.css</td><td>the corner</td></tr>
+          <tr><td><code>--font-mono</code>, <code>--type-base</code>, <code>--type-xl</code>, <code>--type-2xs</code>, <code>--type-xs</code>, <code>--weight-strong</code>, <code>--weight-medium</code></td><td>tokens.css</td><td>type for each zone</td></tr>
+          <tr><td><code>--space-3</code>, <code>--space-4</code>, <code>--space-6</code>, <code>--space-8</code></td><td>tokens.css</td><td>padding and rhythm</td></tr>
+        </tbody></table></div>
+        <p class="kit-note">Kept as literals because no primitive equals them: 2px under the price, 15px bullet indent, 1.5 line height on the features, and the 5px bullet with its 7px offset and 1px corner.</p>
+        <h3 class="kit-h3">Snapshots</h3>
+        <p class="kit-note">No new snapshots this round: the card has no interactive state, so there is nothing to take with a pointer.</p>
+      </section>
+
+      <section class="kit-sec" id="markup">
+        <h2 class="kit-h2">Copy this</h2>
+        <div class="scene">
+          <pre class="kit-pre">&lt;li class="tier"&gt;
+  &lt;h3 class="tier-name"&gt;Starter&lt;/h3&gt;
+  &lt;p class="tier-price"&gt;$30 to $60&lt;/p&gt;
+  &lt;span class="tier-unit"&gt;per seat / month&lt;/span&gt;
+  &lt;ul class="tier-feat"&gt;&lt;li&gt;Unlimited feedback volume&lt;/li&gt;&lt;li&gt;Full synthesis with traceability&lt;/li&gt;&lt;li&gt;3 sources, 1 to 3 seats&lt;/li&gt;&lt;/ul&gt;
+&lt;/li&gt;</pre>
+        </div>
+        <p class="kit-note">The grid that lays the cards out, <code class="kit-mono">.mk-grid</code>, is a layout of the page and is not part of this molecule.</p>
+        <p class="kit-note">File: <code class="kit-mono">design/system/components/tier-card.css</code>, imported in the molecules group of
+          <code class="kit-mono">design/system/index.css</code>. Stands on: <a href="../index.html">0.0 Home</a></p>
+      </section>
+
+    </div>
+
+    <!-- ================================================================ HISTORY -->
+    <div class="kit-tabpanel" role="tabpanel" id="history" aria-labelledby="tab-history">
+      <section class="kit-sec">
+        <h2 class="kit-h2">Changes, newest first</h2>
+        <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-21</td><td>Entered the system: <code>components/tier-card.css</code>, on semantic roles, and this page in the card format</td><td><code>docs/decisions.md</code>, "The molecules entered the system"</td></tr>
+          <tr><td>2026-08-18</td><td>Written into <code>kit.css</code> from the colour layer as the marketing tier card, one per plan</td><td>commit <code>d461e12</code>, "UI + Visual Step 3: the kit, grown out of the colour layer rather than written again"</td></tr>
+        </tbody></table></div>
+      </section>
+    </div>
+
+    <div id="kit-pager"></div>
+
+  </main>
+</div>
+
+<script src="_nav.js"></script>
+<script src="_states.js"></script>
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift design system - Marketing step card</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../system/index.css">
+<link rel="stylesheet" href="_page.css">
+</head>
+<!--
+  design/kit/step-card.html - a component page in the card format of 2026-11-20, laid after button.html.
+
+  OVERVIEW, for the person placing the component: a live specimen, the matrix, properties, when
+  and when not, where it stands.
+  TECHNICAL, for the person changing it: anatomy, the axes with their counts, the tokens it
+  reads, the snapshots note, the markup to copy.
+  HISTORY: every change, each with the record it came from.
+
+  The page links ../system/index.css, the SAME entry point a product screen links: it is not a
+  copy of the component, it is the component. This molecule is not interactive: the matrix has no forced states, and nothing in it is painted by hand.
+
+  No em dash anywhere.
+-->
+<body>
+<div class="kit-shell">
+  <div id="kit-panel"></div>
+  <main class="kit-main">
+
+    <div id="kit-crumbs"></div>
+    <div id="kit-head"></div>
+
+    <div class="kit-tabs" role="tablist" aria-label="Marketing step card page">
+      <button class="kit-tab" role="tab" id="tab-overview" aria-controls="overview" aria-selected="true">Overview</button>
+      <button class="kit-tab" role="tab" id="tab-tech" aria-controls="tech" aria-selected="false" tabindex="-1">Technical</button>
+      <button class="kit-tab" role="tab" id="tab-history" aria-controls="history" aria-selected="false" tabindex="-1">History</button>
+    </div>
+
+    <!-- ================================================================ OVERVIEW -->
+    <div class="kit-tabpanel" role="tabpanel" id="overview" aria-labelledby="tab-overview">
+
+      <div class="kit-hero">
+        <div class="kit-forms u-full">
+          <div class="mk-step">
+            <span class="mk-step-n">1</span>
+            <h3 class="mk-step-t">Connect a source</h3>
+            <p class="mk-step-d">Import a CSV export or connect Intercom. Feedback is normalized on the way in, and PII is scrubbed by default.</p>
+          </div>
+          <div class="mk-step">
+            <span class="mk-step-n">2</span>
+            <h3 class="mk-step-t">See ranked themes with confidence</h3>
+            <p class="mk-step-d">Sift clusters the feedback into themes and shows how strong each one is, so you can tell a real pattern from a thin one.</p>
+            <span class="conf"><span class="conf-n">n=42</span></span>
+          </div>
+          <div class="mk-step">
+            <span class="mk-step-n">3</span>
+            <h3 class="mk-step-t">Trace every claim to evidence</h3>
+            <p class="mk-step-d">Open any theme to read the exact customer quotes behind it. If a claim cannot be traced, it is marked, not dressed up.</p>
+          </div>
+        </div>
+        <p class="kit-hero-note">Live. Copy from 0.0, How Sift works</p>
+      </div>
+
+      <section class="kit-sec" id="variants">
+        <h2 class="kit-h2">Variants and states</h2>
+        <p class="kit-note">Not interactive: no hover, focus or pressed state. A step card makes a promise and shows nothing to press. The rows are the content forms on 0.0. The confidence indicator inside keeps its states on <a href="confidence.html">its own page</a>.</p>
+        <div class="kit-matrix-wrap">
+          <table class="kit-matrix" inert>
+            <thead><tr><th>Step</th><th>Specimen</th><th>Form</th></tr></thead>
+            <tbody>
+              <tr><th>Step 1<code>.mk-step</code></th><td class="kit-cell-fixed"><div class="mk-step">
+            <span class="mk-step-n">1</span>
+            <h3 class="mk-step-t">Connect a source</h3>
+            <p class="mk-step-d">Import a CSV export or connect Intercom. Feedback is normalized on the way in, and PII is scrubbed by default.</p>
+          </div></td><td class="kit-cell-none">No proof: the step is a promise about the import.</td></tr>
+              <tr><th>Step 2<code>.mk-step</code></th><td class="kit-cell-fixed"><div class="mk-step">
+            <span class="mk-step-n">2</span>
+            <h3 class="mk-step-t">See ranked themes with confidence</h3>
+            <p class="mk-step-d">Sift clusters the feedback into themes and shows how strong each one is, so you can tell a real pattern from a thin one.</p>
+            <span class="conf"><span class="conf-n">n=42</span></span>
+          </div></td><td class="kit-cell-none">The proof: a real confidence indicator, <code>n=42</code>.</td></tr>
+              <tr><th>Step 3<code>.mk-step</code></th><td class="kit-cell-fixed"><div class="mk-step">
+            <span class="mk-step-n">3</span>
+            <h3 class="mk-step-t">Trace every claim to evidence</h3>
+            <p class="mk-step-d">Open any theme to read the exact customer quotes behind it. If a claim cannot be traced, it is marked, not dressed up.</p>
+          </div></td><td class="kit-cell-none">No proof: the step is a promise about the drill-down.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="props">
+        <h2 class="kit-h2">Properties</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Property</th><th>Type</th><th>Values</th><th>Default</th></tr></thead><tbody>
+          <tr><td>Card</td><td>class</td><td><code>.mk-step</code></td><td>required</td></tr>
+          <tr><td>Number</td><td>zone</td><td><code>.mk-step-n</code>, a 26px circle with a visible edge, mono</td><td>required</td></tr>
+          <tr><td>Title</td><td>zone</td><td><code>.mk-step-t</code></td><td>required</td></tr>
+          <tr><td>Description</td><td>zone</td><td><code>.mk-step-d</code></td><td>required</td></tr>
+          <tr><td>Proof</td><td>slot</td><td>a <code>.conf</code> confidence indicator</td><td>optional: on step 2 only</td></tr>
+          <tr><td>State</td><td>none</td><td>not interactive</td><td>none</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="when">
+        <h2 class="kit-h2">How to use it</h2>
+        <div class="kit-when">
+          <div>
+            <h3>When</h3>
+            <p>On 0.0, to walk the path the person takes inside the app. Where a step makes a claim the product can prove, the proof is the product's own component, not a picture of it.</p>
+          </div>
+          <div>
+            <h3>When not</h3>
+            <ul>
+              <li>To show a plan: take the <a href="tier-card.html">tier card</a>.</li>
+              <li>To show the progress of a flow: that is the phase strip, not a marketing step.</li>
+              <li>To prove a claim with an invented figure: the number comes from the product (principle 5, traceable or it does not exist).</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="where">
+        <h2 class="kit-h2">Where it stands</h2>
+        <p class="kit-note">0.0 Home, the "How Sift works" section, three steps. The one screen in colour:</p>
+        <div class="kit-where">
+          <a href="../index.html">0.0 Home</a>
+          <a href="../../wireframes/overview.html">the rest, in grey</a>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ================================================================ TECHNICAL -->
+    <div class="kit-tabpanel" role="tabpanel" id="tech" aria-labelledby="tab-tech">
+
+      <section class="kit-sec" id="anatomy">
+        <h2 class="kit-h2">Anatomy</h2>
+        <p class="kit-note">The numbered circle, the promise, and a real confidence indicator as the proof. The product's own component is the evidence for the claim.</p>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
+          <tr><td>the card</td><td><code>.mk-step</code></td><td>Surface ground, hairline edge, medium radius</td></tr>
+          <tr><td>the number</td><td><code>.mk-step-n</code></td><td>A 26px circle (<code>--radius-pill</code>), edge in <code>--line-control</code>, mono</td></tr>
+          <tr><td>the title</td><td><code>.mk-step-t</code></td><td>Primary ink, strong weight</td></tr>
+          <tr><td>the description</td><td><code>.mk-step-d</code></td><td>Secondary ink</td></tr>
+          <tr><td>the proof</td><td><code>.conf</code></td><td>The <a href="confidence.html">confidence indicator</a> atom, declared once and not here</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="axes">
+        <h2 class="kit-h2">Axes, with the rule that chooses</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
+          <tr><td></td><td><b>no axes</b></td><td>One form. The proof is present on step 2 and absent on steps 1 and 3 of 0.0; the inventory counts 4 occurrences of the numbered circle on the home steps, against 3 steps in <code>design/index.html</code> [?]</td></tr>
+        </tbody></table></div>
+        <p class="kit-note"><b>No states, and that is a decision rather than an omission.</b> The card is not pressed.</p>
+      </section>
+
+      <section class="kit-sec" id="tokens">
+        <h2 class="kit-h2">Tokens it reads</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Reads</th><th>Grows from</th><th>For</th></tr></thead><tbody>
+          <tr><td><code>--bg-surface</code>, <code>--line-hairline</code></td><td><code>--grey-900</code>, <code>--grey-800</code></td><td>the card ground and edge</td></tr>
+          <tr><td><code>--line-control</code></td><td><code>--grey-600</code> dark, <code>--grey-450</code> light</td><td>the circle's edge. kit.css had <code>--line-2</code></td></tr>
+          <tr><td><code>--radius-pill</code>, <code>--radius-md</code></td><td>tokens.css</td><td>the circle (was <code>50%</code>); the card corner</td></tr>
+          <tr><td><code>--text-primary</code>, <code>--text-secondary</code></td><td>tokens.css</td><td>the title; the number and the description</td></tr>
+          <tr><td><code>--font-mono</code>, <code>--weight-strong</code>, <code>--tracking-title</code>, <code>--leading-body</code></td><td>tokens.css</td><td>the number's face, the title, the description</td></tr>
+          <tr><td><code>--space-2</code>, <code>--space-6</code>, <code>--space-8</code></td><td>tokens.css</td><td>padding and the title's margins</td></tr>
+        </tbody></table></div>
+        <p class="kit-note">Kept as literals because no primitive equals them: 26px circle, 12px number, 15px title, 13px description.</p>
+        <h3 class="kit-h3">Snapshots</h3>
+        <p class="kit-note">No new snapshots this round: the card has no interactive state, so there is nothing to take with a pointer.</p>
+      </section>
+
+      <section class="kit-sec" id="markup">
+        <h2 class="kit-h2">Copy this</h2>
+        <div class="scene">
+          <pre class="kit-pre">&lt;li class="mk-step"&gt;
+  &lt;span class="mk-step-n"&gt;2&lt;/span&gt;
+  &lt;h3 class="mk-step-t"&gt;See ranked themes with confidence&lt;/h3&gt;
+  &lt;p class="mk-step-d"&gt;Sift clusters the feedback into themes and shows how strong each one is, so you can tell a real pattern from a thin one.&lt;/p&gt;
+  &lt;span class="conf"&gt;&lt;span class="conf-n"&gt;n=42&lt;/span&gt;&lt;/span&gt;
+&lt;/li&gt;</pre>
+        </div>
+        <p class="kit-note">The grid that lays the cards out, <code class="kit-mono">.mk-grid</code>, is a layout of the page and is not part of this molecule.</p>
+        <p class="kit-note">File: <code class="kit-mono">design/system/components/step-card.css</code>, imported in the molecules group of
+          <code class="kit-mono">design/system/index.css</code>. Stands on: <a href="../index.html">0.0 Home</a></p>
+      </section>
+
+    </div>
+
+    <!-- ================================================================ HISTORY -->
+    <div class="kit-tabpanel" role="tabpanel" id="history" aria-labelledby="tab-history">
+      <section class="kit-sec">
+        <h2 class="kit-h2">Changes, newest first</h2>
+        <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-21</td><td>Entered the system: <code>components/step-card.css</code>, on semantic roles, and this page in the card format</td><td><code>docs/decisions.md</code>, "The molecules entered the system"</td></tr>
+          <tr><td>2026-08-18</td><td>Written into <code>kit.css</code> from the colour layer as the marketing step card: the numbered circle, the promise, and a real confidence indicator as the proof</td><td>commit <code>d461e12</code>, "UI + Visual Step 3: the kit, grown out of the colour layer rather than written again"</td></tr>
+        </tbody></table></div>
+      </section>
+    </div>
+
+    <div id="kit-pager"></div>
+
+  </main>
+</div>
+
+<script src="_nav.js"></script>
+<script src="_states.js"></script>
+</body>
+</html>

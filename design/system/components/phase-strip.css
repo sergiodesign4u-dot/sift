@@ -1,0 +1,27 @@
+/* design/system/components/phase-strip.css - level 2, molecule.
+   Reads: --line-hairline, --line-control, --step-current-line, --bg-raised, --text-primary,
+          --text-secondary, --font-mono, --type-3xs, --space-3, --radius-pill
+   Page:  design/kit/phase-strip.html
+   Stands on: 2.1, 2.2, 3.2, 3.3, 6.1, 6.2 (inventory). Not interactive.
+
+   The phases of a process, named before the user commits. The As-Is barrier is that ingestion is
+   a black box, and this is the answer in visual form. It never takes the accent: a phase is
+   information about process, not an action, and cyan is already spent on the one next move. Same
+   rule as the active filter chip: the current phase steps up a surface and its text goes to
+   primary ink.
+
+   The ring of the current phase is --step-current-line, a component token: kit.css drew it in
+   --porcelain and no line role carries that step.
+   No em dash anywhere in this file.
+*/
+
+.steps { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; padding: 11px var(--space-3); border-bottom: 1px solid var(--line-hairline); font-size: 12px; color: var(--text-secondary); }
+.step { display: inline-flex; align-items: center; gap: 7px; }
+.step-n { display: inline-flex; align-items: center; justify-content: center; width: 19px; height: 19px; border-radius: var(--radius-pill); border: 1px solid var(--line-hairline); font-family: var(--font-mono); font-size: var(--type-3xs); flex: none; }
+.step.is-done .step-n { color: var(--text-primary); border-color: var(--line-control); }
+/* a finished phase carries a mark rather than its number: the number is a position in a
+   sequence, and once the step is behind you the position stops being the useful fact */
+.step-n .ic { width: 10px; height: 10px; }
+.step.is-current { color: var(--text-primary); }
+.step.is-current .step-n { color: var(--text-primary); border-color: var(--step-current-line); background: var(--bg-raised); }
+.step-sep { color: var(--text-secondary); opacity: 0.7; }

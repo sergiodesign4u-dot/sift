@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift design system - Form field</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../system/index.css">
+<link rel="stylesheet" href="_page.css">
+</head>
+<!--
+  design/kit/field.html - a component page in the card format of 2026-11-20, laid out on the template button.html.
+
+  OVERVIEW: a live specimen, the variant by state matrix, properties, when and when not, do and do not, where it stands.
+  TECHNICAL: anatomy, the axes, the tokens it reads, the markup to copy.
+  HISTORY: every change, each with the record it came from.
+
+  The page links ../system/index.css, the SAME entry point a product screen links. The matrix is
+  drawn by _states.js from the product's own rules where the component has states; nothing in it is painted by hand.
+
+  No em dash anywhere.
+-->
+<body>
+<div class="kit-shell">
+  <div id="kit-panel"></div>
+  <main class="kit-main">
+
+    <div id="kit-crumbs"></div>
+    <div id="kit-head"></div>
+
+    <div class="kit-tabs" role="tablist" aria-label="Form field page">
+      <button class="kit-tab" role="tab" id="tab-overview" aria-controls="overview" aria-selected="true">Overview</button>
+      <button class="kit-tab" role="tab" id="tab-tech" aria-controls="tech" aria-selected="false" tabindex="-1">Technical</button>
+      <button class="kit-tab" role="tab" id="tab-history" aria-controls="history" aria-selected="false" tabindex="-1">History</button>
+    </div>
+
+    <!-- ================================================================ OVERVIEW -->
+    <div class="kit-tabpanel" role="tabpanel" id="overview" aria-labelledby="tab-overview">
+
+      <div class="kit-hero">
+        <div class="kit-cell-fixed"><div class="field"><label class="field-label" for="f1">Work email</label><input class="input" id="f1" type="email" placeholder="alex@northwind.io"></div></div>
+        <div class="kit-cell-fixed"><div class="field"><div class="field-label-row"><label class="field-label" for="f2">Password</label><a class="link" href="#">Forgot password</a></div><input class="input" id="f2" type="password" placeholder="Your password"></div></div>
+        <p class="kit-hero-note">Live. Label, control, trailing link, error</p>
+      </div>
+      <p class="kit-note">Text and the trailing link come from the log in card (1.0) in the grey wireframe. No colour screen carries this wrapper yet, so the specimen is the molecule on its own.</p>
+
+      <section class="kit-sec" id="variants">
+        <h2 class="kit-h2">Variants and states</h2>
+        <p class="kit-note">The wrapper has no state of its own. Hover and focus belong to the input atom and are drawn here from the product's own rules; they are shown on the input page too, at <a class="link" href="input.html">input.html</a>. The one state this molecule owns is the error, and it is a line under the control, not a change of the control: <code class="kit-mono">input.css</code> has no error rule [?], so the border stays as it is. No pressed row: a field is not pressed.</p>
+        <div class="kit-matrix-wrap">
+          <table class="kit-matrix" inert>
+            <thead><tr><th>Form</th><th>State</th><th>Field</th></tr></thead>
+            <tbody>
+              <tr><th rowspan="4">Plain<code>.field</code></th><td class="kit-st">Rest</td><td><div class="kit-cell-fixed"><div class="field"><label class="field-label" for="f3">Work email</label><input class="input" id="f3" type="email" placeholder="alex@northwind.io"></div></div></td></tr>
+              <tr><td class="kit-st">Hover</td><td><div class="kit-cell-fixed"><div class="field"><label class="field-label" for="f4">Work email</label><input class="input" id="f4" type="email" placeholder="alex@northwind.io" data-kit-st="hover"></div></div></td></tr>
+              <tr><td class="kit-st">Focus</td><td><div class="kit-cell-fixed"><div class="field"><label class="field-label" for="f5">Work email</label><input class="input" id="f5" type="email" placeholder="alex@northwind.io" data-kit-st="focus"></div></div></td></tr>
+              <tr><td class="kit-st">Error</td><td><div class="kit-cell-fixed"><div class="field"><label class="field-label" for="f6">Work email</label><input class="input" id="f6" type="email" placeholder="alex@northwind.io"><span class="field-err">[?] No screen paints an error line yet, so there is no copy to take</span></div></div></td></tr>
+              <tr><th>With trailing link<code>.field-label-row</code></th><td class="kit-st">Rest</td><td><div class="kit-cell-fixed"><div class="field"><div class="field-label-row"><label class="field-label" for="f7">Password</label><a class="link" href="#">Forgot password</a></div><input class="input" id="f7" type="password" placeholder="Your password"></div></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="props">
+        <h2 class="kit-h2">Properties</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Property</th><th>Type</th><th>Values</th><th>Default</th></tr></thead><tbody>
+          <tr><td>Wrapper</td><td>own class</td><td><code>.field</code>, one per control</td><td>none: the class is required</td></tr>
+          <tr><td>Label</td><td>zone</td><td>atom <code>.field-label</code>, above the control. See <a class="link" href="field-label.html">field-label.html</a></td><td>required: a field owes a screen reader its name</td></tr>
+          <tr><td>Trailing link</td><td>zone</td><td>the label and an <code>a</code> inside <code>.field-label-row</code>, which puts them at the two ends of one line</td><td>absent</td></tr>
+          <tr><td>Control</td><td>zone</td><td>atom <code>.input</code> (input, textarea, select). See <a class="link" href="input.html">input.html</a></td><td>required</td></tr>
+          <tr><td>Error</td><td>zone</td><td><code>.field-err</code>, after the control, danger ink, 12px</td><td>absent</td></tr>
+          <tr><td>State</td><td>variant</td><td>rest &middot; error. Hover and focus are the input's</td><td>rest</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="when">
+        <h2 class="kit-h2">How to use it</h2>
+        <div class="kit-when">
+          <div>
+            <h3>When</h3>
+            <p>Wherever a person types one value: log in, sign up, reset, the profile, the brief title. The wrapper is what keeps a label and its control one unit with one rhythm under it, so a form of several fields does not need a spacing rule on the form.</p>
+          </div>
+          <div>
+            <h3>When not</h3>
+            <ul>
+              <li>For a control that is a column of a grid, such as the mapping grid on 3.2: those are dense inputs with a name from <code>aria-label</code>, and a label above each would stack the grid.</li>
+              <li>To show an error as a red border: input.css paints none, and the line under the field is the declared form.</li>
+              <li>To put two controls in one field: one field is one value.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="kit-dodont">
+          <div class="kit-dd kit-dd--do">
+            <div class="kit-dd-c" inert>
+              <div class="kit-cell-fixed"><div class="field"><label class="field-label" for="f8">Work email</label><input class="input" id="f8" type="email" placeholder="alex@northwind.io"></div></div>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do</div><div class="kit-dd-t">A label above the control</div>
+              <div class="kit-dd-d">The name is on screen after the placeholder is gone, and it is read by a screen reader.</div></div>
+          </div>
+          <div class="kit-dd kit-dd--dont">
+            <div class="kit-dd-c" inert>
+              <div class="kit-cell-fixed"><div class="field"><input class="input" type="email" placeholder="Work email" aria-label="Work email"></div></div>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do not</div><div class="kit-dd-t">The placeholder as the only label</div>
+              <div class="kit-dd-d">It leaves when the person starts typing, and the field no longer says what it holds. The label atom exists for this.</div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="where">
+        <h2 class="kit-h2">Where it stands</h2>
+        <p class="kit-note">Five screens in the inventory: 1.0, 1.1, 1.2, 3.2 and 6.1. The two in colour, 3.2 and 6.1, carry the label and the control but not yet the <code class="kit-mono">.field</code> wrapper, so the wrapper itself stands in no colour screen [?]. The grey screens with the wrapper (as <code class="kit-mono">wf-field</code>): 1.0 Log in, 1.1 Sign up, 1.2 Reset, 7.1 Profile.</p>
+        <div class="kit-where">
+          <a href="../connect-csv.html">3.2 Import a CSV</a>
+          <a href="../build-brief.html">6.1 Build a brief</a>
+          <a href="../../wireframes/overview.html">the rest, in grey</a>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ================================================================ TECHNICAL -->
+    <div class="kit-tabpanel" role="tabpanel" id="tech" aria-labelledby="tab-tech">
+
+      <section class="kit-sec" id="anatomy">
+        <h2 class="kit-h2">Anatomy</h2>
+        <p class="kit-note">A form field: the label, the control, an optional trailing link and an optional error. The wrapper owns only the space under the field.</p>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
+          <tr><td>the wrapper</td><td><code>.field</code></td><td>Block, 14px under it. Owns nothing inside it</td></tr>
+          <tr><td>the label</td><td>atom <code>.field-label</code></td><td>Above the control, secondary ink. Name and states on its own page</td></tr>
+          <tr><td>the trailing link</td><td><code>.field-label-row</code> with an <code>a</code></td><td>Optional. Stands once in the product, on the log in screen</td></tr>
+          <tr><td>the control</td><td>atom <code>.input</code></td><td>Keeps its hover, focus and disabled. Name and states on its own page</td></tr>
+          <tr><td>the error</td><td><code>.field-err</code></td><td>Optional. A line under the control in danger ink: the message says what to do, which a colour alone cannot</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="axes">
+        <h2 class="kit-h2">Axes, with the rule that chooses</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
+          <tr><td></td><td><b>one form</b></td><td>Label, control, optional link, optional error. Inventory: Form field, 5 occurrences, one component</td></tr>
+          <tr><td>error</td><td>absent / present</td><td><b>A line, not a border.</b> The control is not repainted, so the field does not change except by the height of the line</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="tokens">
+        <h2 class="kit-h2">Tokens it reads</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Reads</th><th>Which grows from</th><th>For</th></tr></thead><tbody>
+          <tr><td><code>--text-danger</code></td><td><code>--red-300</code> dark, <code>--red-700</code> light</td><td>the error line</td></tr>
+          <tr><td><code>--space-6</code></td><td>tokens.css</td><td>the 14px under the wrapper</td></tr>
+          <tr><td><code>--space-2</code></td><td>tokens.css</td><td>the 6px between the control and its error</td></tr>
+          <tr><td><code>12px</code></td><td>literal</td><td>the size of the error line. It has no step on the type scale, which has 12.5 and 11</td></tr>
+        </tbody></table></div>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>State</th><th>Token</th><th>What moves</th></tr></thead><tbody>
+          <tr><td>error</td><td><code>--text-danger</code></td><td>The line appears under the control. Nothing else moves</td></tr>
+          <tr><td>hover, focus-visible, disabled</td><td><b>the input's</b></td><td>This molecule paints none of its own. See input.html</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="snapshots">
+        <h2 class="kit-h2">Snapshots</h2>
+        <p class="kit-note">Molecules get no new snapshots this round. The states are shown live in the matrix above, drawn from the product's own rules. Hover on the control is <code class="kit-mono">--line-hover</code>, the same token as on the input page.</p>
+      </section>
+
+      <section class="kit-sec" id="markup">
+        <h2 class="kit-h2">Copy this</h2>
+        <div class="scene">
+          <pre class="kit-pre">&lt;div class="field"&gt;
+  &lt;div class="field-label-row"&gt;
+    &lt;label class="field-label" for="login-password"&gt;Password&lt;/label&gt;
+    &lt;a class="link" href="auth-reset.html"&gt;Forgot password&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;input class="input" id="login-password" type="password" placeholder="Your password"&gt;
+  &lt;span class="field-err"&gt;...&lt;/span&gt;   &lt;!-- optional --&gt;
+&lt;/div&gt;</pre>
+        </div>
+        <p class="kit-note">File: <code class="kit-mono">design/system/components/field.css</code>. The trailing link is <code class="kit-mono">.link</code> here; on the grey login it is <code class="kit-mono">wf-auth-forgot</code> and no colour screen settles its class [?].</p>
+      </section>
+
+    </div>
+
+    <!-- ================================================================ HISTORY -->
+    <div class="kit-tabpanel" role="tabpanel" id="history" aria-labelledby="tab-history">
+      <section class="kit-sec">
+        <h2 class="kit-h2">Changes, newest first</h2>
+        <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-21</td><td>Entered the system: <code>components/field.css</code>, on semantic roles, and this page in the card format</td><td><code>docs/decisions.md</code>, "The molecules entered the system"</td></tr>
+          <tr><td>2026-08-18</td><td><code>.field</code> and <code>.field-err</code> were touched again while the kit was proved on the seed screens</td><td>commit <code>2461d5a</code></td></tr>
+          <tr><td>2026-08-18</td><td>Declared in the flat kit: the wrapper and its error line</td><td>commit <code>d461e12</code></td></tr>
+          <tr><td>2026-08-18</td><td>The label inside it was renamed to <code>.field-label</code> and <code>.field-label-row</code>, the names that pair with <code>.field</code> and <code>.field-err</code></td><td><code>design/kit/docs/inventory.md</code>, "Findings"</td></tr>
+        </tbody></table></div>
+      </section>
+    </div>
+
+    <div id="kit-pager"></div>
+
+  </main>
+</div>
+
+<script src="_nav.js"></script>
+<script src="_states.js"></script>
+</body>
+</html>

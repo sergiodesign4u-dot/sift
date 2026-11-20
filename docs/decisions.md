@@ -565,3 +565,47 @@ with its routes. Fifty-one components would make a hundred and fifty-three files
 component's worth of content; one page with three panels and an address that keeps the tab
 (`#tech`, `#history`) does the same work. Rejected: re-laying all seventeen atom pages in the same
 step as the template. The template is shown and accepted first, and only then copied sixteen times.
+
+## The molecules entered the system (2026-11-21)
+
+Stage 08 Step 5, round 2, after the owner accepted the atom level. Twenty molecules from the
+Level 2 table of `design/kit/docs/inventory.md`, each closed in one pass: `components/<name>.css`
+in the molecules group of `index.css`, its page in the card format, its catalog entry in
+`design/kit/_nav.js` and its row in the register. Five agents wrote the files in parallel from one
+brief with one colour mapping, so twenty files could not invent twenty readings of `--line-2`.
+
+**The rules came out of `kit.css`, not out of the language again.** Every literal with an exact
+primitive took it; every literal without one (12px, 15px, 1.55, 78ch) stayed byte for byte,
+because values migrate and are never rounded to the nearest step. Measured: the twenty files
+loaded over `kit.css` on all 22 colour screens at 1440 and 360 change no property of any molecule
+element, except the four listed below. Every forced cell of the molecule matrices (46 cells, 216
+element comparisons, both themes) matches a real pointer and a real Tab key.
+
+**Two component tokens, the first in the system, both PENDING the owner.** `--step-current-line`
+(the ring of the current phase, drawn in `--porcelain`, which no line role carries) and
+`--tier-mark` (the square bullet of a tier feature, drawn in `--line-2`, which became a line role a
+fill may not borrow). Both keep the exact dark value and get a light pair.
+
+**Four visible differences, each waiting for a decision:**
+- `.notice--warn` and `.rowalert` draw their left rule in solid `--amber`. The system has no role
+  for that: `--line-warning` is the 32 percent edge, and the Step 3 decision that gave the error
+  band `--red-edge` assumed the warning band already used the amber edge. It did not. Mapped to
+  `--line-warning` for now, marked PENDING in both files.
+- `.step.is-done .step-n` and `.mk-step-n` draw their circle in `--line-2`, mapped to
+  `--line-control`, which the Step 4 review moved from #3A444C to #647280. The circles brighten
+  with it.
+
+**Left out on purpose:** the rules that tie a molecule to the screen shell (`.app:has(.check:checked)
+.selbar`, `.app > .notice` and their `.appframe` twins) go with the shell in round 3. `.list`,
+`.summary`, `.titlerow` and `.block` belong to no molecule of the inventory, and `.provlist` has no
+colour form yet: all five go to Step 6, list 1.
+
+**Found while measuring, and older than this round:** the same comparison over the atoms shows
+differences the atom round of 2026-08-19 never named: `body` line-height 1.5 became 1.6 in
+`base.css`, the filled and bare buttons gained a 1px border, every button's gap went from 7px to
+6px, the bare button's weight went from 400 to 500 and its padding from 13px to 12px, and four
+type sizes moved to the nearest step (rank, field label and the action link 12 to 12.5, chip count
+11.5 to 11), the action link gained 4px of side padding, the section group heading's top margin
+went from 24px to 26px, and the group heading lost its 360 rule (`padding: 14px 16px 6px` in
+`kit.css`, absent from `group-heading.css`). Step 8 will fail on every one of them unless each is named or reverted. Recorded
+here, not fixed: it is a decision about accepted work.

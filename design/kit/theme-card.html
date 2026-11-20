@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift design system - Theme card</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../system/index.css">
+<link rel="stylesheet" href="_page.css">
+</head>
+<!--
+  design/kit/theme-card.html - a component page in the card format of 2026-11-20, laid after button.html.
+
+  OVERVIEW, for the person placing the component: a live specimen, the variant by state matrix,
+  the 360 form, properties, when and when not, do and do not, where it stands.
+  TECHNICAL, for the person changing it: anatomy, the axes with their counts, the tokens it
+  reads, the markup to copy.
+  HISTORY: every change, each with the record it came from.
+
+  The page links ../system/index.css, the SAME entry point a product screen links: it is not a
+  copy of the component, it is the component. The matrix is drawn by _states.js from the
+  product's own :hover and :focus-visible rules; nothing in it is painted by hand. Every line of
+  text in the specimens is copied from design/synthesis.html.
+
+  No em dash anywhere.
+-->
+<body>
+<div class="kit-shell">
+  <div id="kit-panel"></div>
+  <main class="kit-main">
+
+    <div id="kit-crumbs"></div>
+    <div id="kit-head"></div>
+
+    <div class="kit-tabs" role="tablist" aria-label="Theme card page">
+      <button class="kit-tab" role="tab" id="tab-overview" aria-controls="overview" aria-selected="true">Overview</button>
+      <button class="kit-tab" role="tab" id="tab-tech" aria-controls="tech" aria-selected="false" tabindex="-1">Technical</button>
+      <button class="kit-tab" role="tab" id="tab-history" aria-controls="history" aria-selected="false" tabindex="-1">History</button>
+    </div>
+
+    <!-- ================================================================ OVERVIEW -->
+    <div class="kit-tabpanel" role="tabpanel" id="overview" aria-labelledby="tab-overview">
+
+      <div class="kit-hero">
+        <ul class="u-full">
+          <li class="theme">
+            <input type="checkbox" class="check" aria-label="Select theme: Onboarding is confusing">
+            <span class="rank" aria-hidden="true">1</span>
+            <a class="theme-main" href="#">
+              <span class="theme-label">Onboarding is confusing</span>
+              <span class="theme-quote">"I signed up and just stared at an empty dashboard. No idea what to do first."</span>
+              <span class="theme-prov">CSV, Intercom &middot; latest feedback 2 days ago</span>
+            </a>
+            <span class="conf"><span class="conf-n">n=42</span></span>
+            <a class="theme-drill" href="#" aria-label="Open theme: Onboarding is confusing">&rsaquo;</a>
+          </li>
+          <li class="theme">
+            <input type="checkbox" class="check" aria-label="Select theme: Wants Salesforce integration">
+            <span class="rank" aria-hidden="true">5</span>
+            <a class="theme-main" href="#">
+              <span class="theme-label">Wants Salesforce integration</span>
+              <span class="theme-quote">"We keep our accounts in Salesforce, so right now I copy things across by hand."</span>
+              <span class="theme-prov">Intercom only &middot; latest feedback 9 days ago</span>
+            </a>
+            <span class="conf"><span class="conf-n">n=6</span> <span class="badge-low">low signal</span></span>
+            <a class="theme-drill" href="#" aria-label="Open theme: Wants Salesforce integration">&rsaquo;</a>
+          </li>
+        </ul>
+        <p class="kit-hero-note">Live. Hover a row, tick a box, narrow the window below 820px</p>
+      </div>
+      <p class="kit-note">The ranked row of 2.0 and the signature row of the product. It stands on one screen and is in the system anyway, as a declared exception: it owns the canonical confidence layout.</p>
+
+      <section class="kit-sec" id="variants">
+        <h2 class="kit-h2">Variants and states</h2>
+        <p class="kit-note">One form. The variant is the confidence the row carries: a strong theme shows its count, a low-signal theme shows its count and the badge. The states are the row's own: hover lifts the ground and nudges the drill, selected draws the accent strip, focus is the ring from base.css on the link inside. There is no pressed row and no disabled row, because theme-card.css paints neither. The checkbox, the rank and the confidence indicator keep their own states on their own pages: <a href="checkbox.html">Checkbox</a>, <a href="rank.html">Rank number</a>, <a href="confidence.html">Confidence indicator</a>.</p>
+        <div class="kit-matrix-wrap">
+          <table class="kit-matrix" inert>
+            <thead><tr><th>Confidence</th><th>State</th><th>Row</th></tr></thead>
+            <tbody>
+              <tr><th rowspan="4">Strong<code>.conf-n</code></th><td class="kit-st">Rest</td>
+                <td><ul><li class="theme"><input type="checkbox" class="check" aria-label="Select theme: Onboarding is confusing"><span class="rank" aria-hidden="true">1</span><a class="theme-main" href="#"><span class="theme-label">Onboarding is confusing</span><span class="theme-quote">"I signed up and just stared at an empty dashboard. No idea what to do first."</span><span class="theme-prov">CSV, Intercom &middot; latest feedback 2 days ago</span></a><span class="conf"><span class="conf-n">n=42</span></span><a class="theme-drill" href="#" aria-label="Open theme: Onboarding is confusing">&rsaquo;</a></li></ul></td></tr>
+              <tr><td class="kit-st">Hover</td>
+                <td><ul><li class="theme" data-kit-st="hover"><input type="checkbox" class="check" aria-label="Select theme: Onboarding is confusing"><span class="rank" aria-hidden="true">1</span><a class="theme-main" href="#"><span class="theme-label">Onboarding is confusing</span><span class="theme-quote">"I signed up and just stared at an empty dashboard. No idea what to do first."</span><span class="theme-prov">CSV, Intercom &middot; latest feedback 2 days ago</span></a><span class="conf"><span class="conf-n">n=42</span></span><a class="theme-drill" href="#" aria-label="Open theme: Onboarding is confusing">&rsaquo;</a></li></ul></td></tr>
+              <tr><td class="kit-st">Focus</td>
+                <td><ul><li class="theme"><input type="checkbox" class="check" aria-label="Select theme: Onboarding is confusing"><span class="rank" aria-hidden="true">1</span><a class="theme-main" href="#" data-kit-st="focus"><span class="theme-label">Onboarding is confusing</span><span class="theme-quote">"I signed up and just stared at an empty dashboard. No idea what to do first."</span><span class="theme-prov">CSV, Intercom &middot; latest feedback 2 days ago</span></a><span class="conf"><span class="conf-n">n=42</span></span><a class="theme-drill" href="#" aria-label="Open theme: Onboarding is confusing">&rsaquo;</a></li></ul></td></tr>
+              <tr class="kit-group-end"><td class="kit-st">Selected</td>
+                <td><ul><li class="theme"><input type="checkbox" class="check" checked aria-label="Select theme: Onboarding is confusing"><span class="rank" aria-hidden="true">1</span><a class="theme-main" href="#"><span class="theme-label">Onboarding is confusing</span><span class="theme-quote">"I signed up and just stared at an empty dashboard. No idea what to do first."</span><span class="theme-prov">CSV, Intercom &middot; latest feedback 2 days ago</span></a><span class="conf"><span class="conf-n">n=42</span></span><a class="theme-drill" href="#" aria-label="Open theme: Onboarding is confusing">&rsaquo;</a></li></ul></td></tr>
+
+              <tr><th rowspan="4">Low signal<code>.conf-n .badge-low</code></th><td class="kit-st">Rest</td>
+                <td><ul><li class="theme"><input type="checkbox" class="check" aria-label="Select theme: Wants Salesforce integration"><span class="rank" aria-hidden="true">5</span><a class="theme-main" href="#"><span class="theme-label">Wants Salesforce integration</span><span class="theme-quote">"We keep our accounts in Salesforce, so right now I copy things across by hand."</span><span class="theme-prov">Intercom only &middot; latest feedback 9 days ago</span></a><span class="conf"><span class="conf-n">n=6</span> <span class="badge-low">low signal</span></span><a class="theme-drill" href="#" aria-label="Open theme: Wants Salesforce integration">&rsaquo;</a></li></ul></td></tr>
+              <tr><td class="kit-st">Hover</td>
+                <td><ul><li class="theme" data-kit-st="hover"><input type="checkbox" class="check" aria-label="Select theme: Wants Salesforce integration"><span class="rank" aria-hidden="true">5</span><a class="theme-main" href="#"><span class="theme-label">Wants Salesforce integration</span><span class="theme-quote">"We keep our accounts in Salesforce, so right now I copy things across by hand."</span><span class="theme-prov">Intercom only &middot; latest feedback 9 days ago</span></a><span class="conf"><span class="conf-n">n=6</span> <span class="badge-low">low signal</span></span><a class="theme-drill" href="#" aria-label="Open theme: Wants Salesforce integration">&rsaquo;</a></li></ul></td></tr>
+              <tr><td class="kit-st">Focus</td>
+                <td><ul><li class="theme"><input type="checkbox" class="check" aria-label="Select theme: Wants Salesforce integration"><span class="rank" aria-hidden="true">5</span><a class="theme-main" href="#" data-kit-st="focus"><span class="theme-label">Wants Salesforce integration</span><span class="theme-quote">"We keep our accounts in Salesforce, so right now I copy things across by hand."</span><span class="theme-prov">Intercom only &middot; latest feedback 9 days ago</span></a><span class="conf"><span class="conf-n">n=6</span> <span class="badge-low">low signal</span></span><a class="theme-drill" href="#" aria-label="Open theme: Wants Salesforce integration">&rsaquo;</a></li></ul></td></tr>
+              <tr><td class="kit-st">Selected</td>
+                <td><ul><li class="theme"><input type="checkbox" class="check" checked aria-label="Select theme: Wants Salesforce integration"><span class="rank" aria-hidden="true">5</span><a class="theme-main" href="#"><span class="theme-label">Wants Salesforce integration</span><span class="theme-quote">"We keep our accounts in Salesforce, so right now I copy things across by hand."</span><span class="theme-prov">Intercom only &middot; latest feedback 9 days ago</span></a><span class="conf"><span class="conf-n">n=6</span> <span class="badge-low">low signal</span></span><a class="theme-drill" href="#" aria-label="Open theme: Wants Salesforce integration">&rsaquo;</a></li></ul></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="forms">
+        <h2 class="kit-h2">Other forms</h2>
+        <p class="kit-note"><b>The 360 form, clamped quote.</b> Below 820px the row becomes a grid with named areas: checkbox, rank, body and drill on the first line, the confidence indicator on its own line under the body, and the quote clamped to two lines. Reading order is unchanged. It is a media query, so it cannot be forced inside this page: narrow the window and the specimen at the top of the page rearranges itself, or open <a href="../synthesis.html">2.0 Synthesis</a> at 360.</p>
+      </section>
+
+      <section class="kit-sec" id="props">
+        <h2 class="kit-h2">Properties</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Property</th><th>Type</th><th>Values</th><th>Default</th></tr></thead><tbody>
+          <tr><td>Row</td><td>own class</td><td><code>.theme</code> on the <code>li</code></td><td>none: the class is required</td></tr>
+          <tr><td>Select</td><td>atom, zone</td><td><code>input.check</code>, with an <code>aria-label</code> naming the theme</td><td>unchecked</td></tr>
+          <tr><td>Rank</td><td>atom, zone</td><td><code>.rank</code>, <code>aria-hidden</code></td><td>required</td></tr>
+          <tr><td>Body</td><td>zone</td><td><code>a.theme-main</code> holding <code>.theme-label</code>, <code>.theme-quote</code>, <code>.theme-prov</code>; links to 4.0</td><td>all three required</td></tr>
+          <tr><td>Confidence</td><td>atom, variant</td><td><code>.conf</code> with <code>.conf-n</code> &middot; plus <code>.badge-low</code> for low signal</td><td>count only</td></tr>
+          <tr><td>Drill</td><td>zone</td><td><code>a.theme-drill</code>, 44px target, <code>aria-label</code> "Open theme: ..."</td><td>required</td></tr>
+          <tr><td>State</td><td>variant</td><td>rest &middot; hover &middot; focus-visible on a link inside &middot; selected, by <code>.check:checked</code></td><td>rest</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="when">
+        <h2 class="kit-h2">How to use it</h2>
+        <div class="kit-when">
+          <div>
+            <h3>When</h3>
+            <p>One theme in the ranked list of 2.0, in signal-rank order. The whole card links to 4.0 Theme detail; the select control adds the theme to a brief.</p>
+            <p><b>The trust chain starts before the click.</b> The quote stands for the cluster, which is what separates a list of labels from evidence at a glance.</p>
+            <p>The rank is written down so the ranking claim is quotable and re-checkable (A4).</p>
+          </div>
+          <div>
+            <h3>When not</h3>
+            <ul>
+              <li>For a theme inside the brief composer: take <a href="composer-row.html">the composer brief row</a>. Handle and remove instead of checkbox and drill; a zone that is gone is a different component.</li>
+              <li>For one feedback item under a theme: take <a href="snippet.html">the evidence snippet</a>.</li>
+              <li>For a destination with no data on it: take <a href="cardrow.html">the list row link</a>.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="kit-dodont">
+          <div class="kit-dd kit-dd--do">
+            <div class="kit-dd-c" inert>
+              <ul class="u-full"><li class="theme"><input type="checkbox" class="check" aria-label="Select theme: Wants Salesforce integration"><span class="rank" aria-hidden="true">5</span><a class="theme-main" href="#"><span class="theme-label">Wants Salesforce integration</span><span class="theme-quote">"We keep our accounts in Salesforce, so right now I copy things across by hand."</span><span class="theme-prov">Intercom only &middot; latest feedback 9 days ago</span></a><span class="conf"><span class="conf-n">n=6</span> <span class="badge-low">low signal</span></span><a class="theme-drill" href="#" aria-label="Open theme: Wants Salesforce integration">&rsaquo;</a></li></ul>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do</div><div class="kit-dd-t">Name the sources, even when there is one</div>
+              <div class="kit-dd-d">"Intercom only" says the theme is narrow. Thin-but-broad and loud-but-narrow must look different at a glance.</div></div>
+          </div>
+          <div class="kit-dd kit-dd--dont">
+            <div class="kit-dd-c" inert>
+              <ul class="u-full"><li class="theme"><input type="checkbox" class="check" aria-label="Select theme: Wants Salesforce integration"><span class="rank" aria-hidden="true">5</span><a class="theme-main" href="#"><span class="theme-label">Wants Salesforce integration</span><span class="theme-quote">"We keep our accounts in Salesforce, so right now I copy things across by hand."</span></a><span class="conf"><span class="conf-n">n=6</span> <span class="badge-low">low signal</span></span><a class="theme-drill" href="#" aria-label="Open theme: Wants Salesforce integration">&rsaquo;</a></li></ul>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do not</div><div class="kit-dd-t">Leave the provenance blank</div>
+              <div class="kit-dd-d">Provenance is which sources, not who. Without it a one-source theme reads like every other theme.</div></div>
+          </div>
+        </div>
+        <p class="kit-note">Sources: <code class="kit-mono">ia/docs/pages/synthesis.md</code>, "Theme card"; the comments above <code class="kit-mono">.theme</code> in <code class="kit-mono">design/kit/kit.css</code>; <code class="kit-mono">design/kit/docs/inventory.md</code>, "Level 2, molecules".</p>
+      </section>
+
+      <section class="kit-sec" id="where">
+        <h2 class="kit-h2">Where it stands</h2>
+        <p class="kit-note">2.0 Synthesis, 6 rows, and nowhere else: the declared exception. In grey: 2.0. The one screen already in colour:</p>
+        <div class="kit-where">
+          <a href="../synthesis.html">2.0 Synthesis</a>
+          <a href="../../wireframes/overview.html">the rest, in grey</a>
+        </div>
+      </section>
+    </div>
+
+    <!-- ================================================================ TECHNICAL -->
+    <div class="kit-tabpanel" role="tabpanel" id="tech" aria-labelledby="tab-tech">
+
+      <section class="kit-sec" id="anatomy">
+        <h2 class="kit-h2">Anatomy</h2>
+        <p class="kit-note">Seven zones in reading order. Three of them are atoms with their own pages; the other four belong to this row.</p>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
+          <tr><td>checkbox</td><td><code>input.check</code></td><td>The atom, 24px by a named exception: a 44px box would double the height of every ranked row</td></tr>
+          <tr><td>rank</td><td><code>.rank</code></td><td>The atom. Mono and quiet: rank is structure, not an action, so it never takes the accent</td></tr>
+          <tr><td>label</td><td><code>.theme-label</code> inside <code>a.theme-main</code></td><td>The theme in the customer's language, primary ink, medium weight</td></tr>
+          <tr><td>representative quote</td><td><code>.theme-quote</code></td><td>Recessed, behind a hairline rather than in a card. 78ch at most; two lines at 360</td></tr>
+          <tr><td>provenance</td><td><code>.theme-prov</code></td><td>Mono. Which sources fed it, plus the latest feedback date</td></tr>
+          <tr><td>confidence</td><td><code>.conf</code></td><td>The atom: <code>n=X</code>, plus the low-signal badge. Its own line at 360</td></tr>
+          <tr><td>drill</td><td><code>a.theme-drill</code></td><td>The 44px target, a glyph in secondary ink that steps to primary on the row's hover</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="axes">
+        <h2 class="kit-h2">Axes, with the rule that chooses</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
+          <tr><td>confidence</td><td>strong 4 &middot; low signal 2, on 2.0</td><td>Chosen by the data, not by the designer: the badge appears when the theme is thin. The threshold value is a v2 question and is <code>[?]</code> in IA</td></tr>
+          <tr><td>selected</td><td>a state, not an axis</td><td><b>The accent marks the selected row</b>, and only that row (A1)</td></tr>
+          <tr><td>viewport</td><td>row above 820px &middot; grid with the confidence on its own line below</td><td>A row becomes a stack only where the row would otherwise cut a value in half. At 360 the pill squeezed the label to three lines</td></tr>
+        </tbody></table></div>
+        <p class="kit-note">The counts are read from <code class="kit-mono">design/synthesis.html</code>: six rows, two of them with the badge. The inventory gives the component one form and five states and no occurrence count.</p>
+      </section>
+
+      <section class="kit-sec" id="tokens">
+        <h2 class="kit-h2">Tokens it reads</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Reads</th><th>Which grows from</th><th>For</th></tr></thead><tbody>
+          <tr><td><code>--line-hairline</code></td><td><code>--grey-800</code> dark, <code>--grey-150</code> light</td><td>the rule under the row and the hairline in front of the quote</td></tr>
+          <tr><td><code>--bg-hover</code></td><td><code>--grey-900</code> dark, <code>--grey-025</code> light</td><td>the row under the pointer</td></tr>
+          <tr><td><code>--bg-action</code></td><td><code>--cyan-400</code> dark, <code>--cyan-700</code> light</td><td>the 2px strip of the selected row. A strip is a fill by the surface rule, the same claim as the checked checkbox</td></tr>
+          <tr><td><code>--text-primary</code>, <code>--text-secondary</code></td><td><code>--grey-050</code> / <code>--grey-400</code> dark, <code>--grey-950</code> / <code>--grey-550</code> light</td><td>the label and the drill on hover; the quote, the provenance and the drill at rest</td></tr>
+          <tr><td><code>--font-mono</code>, <code>--type-base</code>, <code>--type-xs</code>, <code>--type-2xs</code>, <code>--weight-medium</code></td><td>tokens.css</td><td>the provenance face, and the sizes of label, quote and provenance</td></tr>
+          <tr><td><code>--space-2</code>, <code>--space-3</code>, <code>--space-4</code>, <code>--space-6</code>, <code>--size-target</code>, <code>--ease</code></td><td>tokens.css</td><td>the gaps and side padding, the drill target, the transitions</td></tr>
+        </tbody></table></div>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>State</th><th>Token</th><th>What moves</th></tr></thead><tbody>
+          <tr><td>hover</td><td><code>--bg-hover</code>, <code>--text-primary</code> on the drill</td><td>The ground lifts one step and the drill steps to primary ink and nudges 2px right with a transform. A transform does not reflow the neighbours</td></tr>
+          <tr><td>selected</td><td><code>--bg-action</code></td><td>An inset strip on the left edge, drawn by <code>box-shadow</code>, so no geometry moves</td></tr>
+          <tr><td>focus-visible</td><td><code>--line-focus</code></td><td>The ring from base.css, on whichever of the three focusable zones has focus</td></tr>
+          <tr><td>active, disabled</td><td><b>absent</b></td><td>theme-card.css paints neither</td></tr>
+        </tbody></table></div>
+        <p class="kit-note">Kept off the scale, byte for byte, because no primitive equals them: the grid tracks 22px, 20px, 18px, the 13px vertical padding, the quote's 7px top margin, 11px left padding, 1.55 line height and 78ch measure, the drill glyph at 18px, the 2px strip and the 2px nudge.</p>
+      </section>
+
+      <section class="kit-sec" id="shots">
+        <h2 class="kit-h2">Snapshots</h2>
+        <p class="kit-note">Molecules get no new snapshots this round: the states are shown live in the matrix on Overview. The hover reads <code class="kit-mono">--bg-hover</code>, the same token as <a href="cardrow.html">the list row link</a>.</p>
+      </section>
+
+      <section class="kit-sec" id="markup">
+        <h2 class="kit-h2">Copy this</h2>
+        <div class="scene">
+          <pre class="kit-pre">&lt;li class="theme"&gt;
+  &lt;input type="checkbox" class="check" aria-label="Select theme: Onboarding is confusing"&gt;
+  &lt;span class="rank" aria-hidden="true"&gt;1&lt;/span&gt;
+  &lt;a class="theme-main" href="theme.html"&gt;
+    &lt;span class="theme-label"&gt;Onboarding is confusing&lt;/span&gt;
+    &lt;span class="theme-quote"&gt;"I signed up and just stared at an empty dashboard. ..."&lt;/span&gt;
+    &lt;span class="theme-prov"&gt;CSV, Intercom &amp;middot; latest feedback 2 days ago&lt;/span&gt;
+  &lt;/a&gt;
+  &lt;span class="conf"&gt;&lt;span class="conf-n"&gt;n=42&lt;/span&gt;&lt;/span&gt;
+  &lt;a class="theme-drill" href="theme.html" aria-label="Open theme: Onboarding is confusing"&gt;&amp;rsaquo;&lt;/a&gt;
+&lt;/li&gt;</pre>
+        </div>
+        <p class="kit-note">File: <code class="kit-mono">design/system/components/theme-card.css</code>, imported in the molecules group of <code class="kit-mono">design/system/index.css</code>. On 2.0 the rows sit in <code class="kit-mono">ul.list</code>, which is not in design/system/ yet; this page uses a bare <code class="kit-mono">ul</code> [?].</p>
+      </section>
+    </div>
+
+    <!-- ================================================================ HISTORY -->
+    <div class="kit-tabpanel" role="tabpanel" id="history" aria-labelledby="tab-history">
+      <section class="kit-sec">
+        <h2 class="kit-h2">Changes, newest first</h2>
+        <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-21</td><td>Entered the system: <code>components/theme-card.css</code>, on semantic roles, and this page in the card format. The selected strip reads <code>--bg-action</code></td><td><code>docs/decisions.md</code>, "The molecules entered the system"</td></tr>
+          <tr><td>2026-08-18</td><td>Stage 07 Step 3: the colour layer moved into the flat kit <code>design/kit/kit.css</code>, and the theme card entered the kit as a declared exception, standing on one screen</td><td>commit <code>d461e12</code>; <code>design/kit/docs/inventory.md</code>, Findings 1</td></tr>
+          <tr><td>2026-08-05</td><td>The drill became a 44px target, in the audit that found no colour control met the floor</td><td>commit <code>1a808be</code></td></tr>
+          <tr><td>2026-08-05</td><td>Rebuilt on the block bank: the rank column, the representative quote and the provenance line arrived; the selected strip moved from <code>:first-child</code> to <code>:has(.check:checked)</code>; at 360 the confidence pill took its own grid row</td><td>commit <code>08a8b2f</code>; <code>docs/decisions.md</code>, "Etalon 2.0 rebuilt on the block bank"</td></tr>
+          <tr><td>2026-08-05</td><td>First colour row: four columns, a mono meta line, and the accent on the first row</td><td>commit <code>b8ee56b</code></td></tr>
+        </tbody></table></div>
+      </section>
+    </div>
+
+    <div id="kit-pager"></div>
+
+  </main>
+</div>
+
+<script src="_nav.js"></script>
+<script src="_states.js"></script>
+</body>
+</html>

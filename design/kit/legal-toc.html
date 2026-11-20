@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift design system - Legal table of contents</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../system/index.css">
+<link rel="stylesheet" href="_page.css">
+</head>
+<!--
+  design/kit/legal-toc.html - a component page in the card format of 2026-11-20, laid after button.html.
+
+  OVERVIEW, for the person placing the component: a live specimen, the matrix, properties, when
+  and when not, where it stands.
+  TECHNICAL, for the person changing it: anatomy, the axes with their counts, the tokens it
+  reads, the snapshots note, the markup to copy.
+  HISTORY: every change, each with the record it came from.
+
+  The page links ../system/index.css, the SAME entry point a product screen links: it is not a
+  copy of the component, it is the component. The links are interactive, and the matrix is drawn by _states.js from the product's own :hover and :focus-visible rules.
+
+  No em dash anywhere.
+-->
+<body>
+<div class="kit-shell">
+  <div id="kit-panel"></div>
+  <main class="kit-main">
+
+    <div id="kit-crumbs"></div>
+    <div id="kit-head"></div>
+
+    <div class="kit-tabs" role="tablist" aria-label="Legal table of contents page">
+      <button class="kit-tab" role="tab" id="tab-overview" aria-controls="overview" aria-selected="true">Overview</button>
+      <button class="kit-tab" role="tab" id="tab-tech" aria-controls="tech" aria-selected="false" tabindex="-1">Technical</button>
+      <button class="kit-tab" role="tab" id="tab-history" aria-controls="history" aria-selected="false" tabindex="-1">History</button>
+    </div>
+
+    <!-- ================================================================ OVERVIEW -->
+    <div class="kit-tabpanel" role="tabpanel" id="overview" aria-labelledby="tab-overview">
+
+      <div class="kit-hero">
+        <div class="u-full">
+          <nav class="legal-toc" aria-label="On this page">
+          <div class="legal-toc-t">On this page</div>
+          <ul>
+            <li><a href="#agreement">The agreement</a></li>
+            <li><a href="#use">Acceptable use</a></li>
+            <li><a href="#liability">Liability</a></li>
+            <li><a href="#changes">Changes</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+        </div>
+        <p class="kit-hero-note">Live. Hover a link, tab to it. Copy from the grey 9.1</p>
+      </div>
+      <p class="kit-note">No colour screen carries this molecule yet. The copy is from the grey screens in <code class="kit-mono">wireframes/</code>. In the page the box sits between the opening paragraph and the body, and its links jump to the headings below it (<code class="kit-mono">wireframes/terms.html</code>).</p>
+
+      <section class="kit-sec" id="variants">
+        <h2 class="kit-h2">Variants and states</h2>
+        <p class="kit-note">One form, so the rows are states. Rest is the link in secondary ink; hover steps it to primary; focus is the one ring from <code class="kit-mono">base.css</code>. No pressed state: the css does not paint one.</p>
+        <div class="kit-matrix-wrap">
+          <table class="kit-matrix" inert>
+            <thead><tr><th>Form</th><th>State</th><th>Specimen</th></tr></thead>
+            <tbody>
+              <tr><th rowspan="3">Link list<code>.legal-toc</code></th><td class="kit-st">Rest</td><td class="kit-cell-fixed"><nav class="legal-toc" aria-label="On this page">
+          <div class="legal-toc-t">On this page</div>
+          <ul>
+            <li><a href="#agreement">The agreement</a></li>
+            <li><a href="#use">Acceptable use</a></li>
+            <li><a href="#liability">Liability</a></li>
+            <li><a href="#changes">Changes</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav></td></tr>
+              <tr><td class="kit-st">Hover</td><td class="kit-cell-fixed"><nav class="legal-toc" aria-label="On this page">
+          <div class="legal-toc-t">On this page</div>
+          <ul>
+            <li><a href="#agreement" data-kit-st="hover">The agreement</a></li>
+            <li><a href="#use">Acceptable use</a></li>
+            <li><a href="#liability">Liability</a></li>
+            <li><a href="#changes">Changes</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav></td></tr>
+              <tr><td class="kit-st">Focus</td><td class="kit-cell-fixed"><nav class="legal-toc" aria-label="On this page">
+          <div class="legal-toc-t">On this page</div>
+          <ul>
+            <li><a href="#agreement" data-kit-st="focus">The agreement</a></li>
+            <li><a href="#use">Acceptable use</a></li>
+            <li><a href="#liability">Liability</a></li>
+            <li><a href="#changes">Changes</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="kit-note">In the Hover and Focus rows the first link is the one forced into the state.</p>
+      </section>
+
+      <section class="kit-sec" id="props">
+        <h2 class="kit-h2">Properties</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Property</th><th>Type</th><th>Values</th><th>Default</th></tr></thead><tbody>
+          <tr><td>Box</td><td>class</td><td><code>.legal-toc</code>, on a <code>nav</code> with <code>aria-label="On this page"</code></td><td>required</td></tr>
+          <tr><td>Title</td><td>zone</td><td><code>.legal-toc-t</code>, mono uppercase</td><td>required</td></tr>
+          <tr><td>List</td><td>zone</td><td>a <code>ul</code>, wrapping, 20px between columns</td><td>required</td></tr>
+          <tr><td>Link</td><td>zone</td><td>an <code>a</code> in each item, 44px target</td><td>required</td></tr>
+          <tr><td>Axes</td><td>none</td><td>one form</td><td>n/a</td></tr>
+          <tr><td>State</td><td>variant</td><td>rest &middot; hover &middot; focus-visible</td><td>rest</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="when">
+        <h2 class="kit-h2">How to use it</h2>
+        <div class="kit-when">
+          <div>
+            <h3>When</h3>
+            <p>At the head of a long document, so it is navigable without a rail. On 9.0, 9.1 and 9.2 it lists the sections of the policy and jumps to them.</p>
+          </div>
+          <div>
+            <h3>When not</h3>
+            <ul>
+              <li>For navigation between pages: take the product navigation.</li>
+              <li>For a link inside a sentence: take <code>.link</code>.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="where">
+        <h2 class="kit-h2">Where it stands</h2>
+        <p class="kit-note">9.0, 9.1, 9.2. No colour screen carries this molecule yet: none of <code class="kit-mono">design/*.html</code> holds it, and the grey screens are the only place it stands. The grey screens, by node:</p>
+        <div class="kit-where">
+          <span>9.0 Privacy policy (wireframes/privacy.html)</span>
+          <span>9.1 Terms of service (wireframes/terms.html)</span>
+          <span>9.2 Security and GDPR (wireframes/security.html)</span>
+          <a href="../../wireframes/overview.html">the rest, in grey</a>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ================================================================ TECHNICAL -->
+    <div class="kit-tabpanel" role="tabpanel" id="tech" aria-labelledby="tab-tech">
+
+      <section class="kit-sec" id="anatomy">
+        <h2 class="kit-h2">Anatomy</h2>
+        <p class="kit-note">A wrapping link list in a box, so a long document is navigable from its head without a rail.</p>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
+          <tr><td>the box</td><td><code>.legal-toc</code></td><td>Surface ground, hairline edge, medium radius</td></tr>
+          <tr><td>the title</td><td><code>.legal-toc-t</code></td><td>Mono, uppercase, secondary ink</td></tr>
+          <tr><td>the list</td><td><code>ul</code></td><td>Flex and wrapping, so it survives 360px by running to a second line</td></tr>
+          <tr><td>the link</td><td><code>a</code></td><td>Secondary ink, no underline, a 44px target</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="axes">
+        <h2 class="kit-h2">Axes, with the rule that chooses</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
+          <tr><td></td><td><b>no axes</b></td><td>One form: 9.0, 9.1 and 9.2. Everything that varies is its content</td></tr>
+          <tr><td>hover</td><td>the ink steps from secondary to primary</td><td>The links carry no underline and no ground, so the ink is the only signal</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="tokens">
+        <h2 class="kit-h2">Tokens it reads</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Reads</th><th>Grows from</th><th>For</th></tr></thead><tbody>
+          <tr><td><code>--bg-surface</code></td><td><code>--grey-900</code> dark, <code>--grey-025</code> light</td><td>the box</td></tr>
+          <tr><td><code>--line-hairline</code></td><td><code>--grey-800</code></td><td>the box edge</td></tr>
+          <tr><td><code>--text-secondary</code>, <code>--text-primary</code></td><td>tokens.css</td><td>the link at rest; the link on hover</td></tr>
+          <tr><td><code>--radius-md</code>, <code>--size-target</code></td><td>tokens.css</td><td>the corner; the 44px link target</td></tr>
+          <tr><td><code>--font-mono</code>, <code>--type-3xs</code>, <code>--type-xs</code>, <code>--weight-medium</code>, <code>--tracking-caps</code></td><td>tokens.css</td><td>the title and the links</td></tr>
+          <tr><td><code>--space-2</code>, <code>--space-4</code>, <code>--space-6</code>, <code>--space-7</code>, <code>--space-8</code></td><td>tokens.css</td><td>margin and padding of the box</td></tr>
+        </tbody></table></div>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>State</th><th>Token</th><th>What moves</th></tr></thead><tbody>
+          <tr><td>hover</td><td><code>--text-primary</code></td><td>The link ink steps up from secondary</td></tr>
+          <tr><td>focus-visible</td><td><code>--line-focus</code></td><td>The one ring from <code>base.css</code></td></tr>
+          <tr><td>active, disabled</td><td><b>absent</b></td><td>The css paints neither</td></tr>
+        </tbody></table></div>
+        <p class="kit-note">Kept as a literal because no primitive equals it: 20px between columns.</p>
+        <h3 class="kit-h3">Snapshots</h3>
+        <p class="kit-note">No new snapshots this round: the states are shown live in the matrix above. The hover here is a colour step to <code class="kit-mono">--text-primary</code>, not the <code class="kit-mono">--bg-hover</code> ground of the list row link (<a href="cardrow.html">cardrow.html</a>).</p>
+      </section>
+
+      <section class="kit-sec" id="markup">
+        <h2 class="kit-h2">Copy this</h2>
+        <div class="scene">
+          <pre class="kit-pre">&lt;nav class="legal-toc" aria-label="On this page"&gt;
+  &lt;div class="legal-toc-t"&gt;On this page&lt;/div&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href="#agreement"&gt;The agreement&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#use"&gt;Acceptable use&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#liability"&gt;Liability&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;</pre>
+        </div>
+        <p class="kit-note">File: <code class="kit-mono">design/system/components/legal-toc.css</code>, imported in the molecules group of
+          <code class="kit-mono">design/system/index.css</code>. Stands on: the grey 9.0, 9.1 and 9.2 only: <code class="kit-mono">wireframes/privacy.html</code>, <code class="kit-mono">terms.html</code>, <code class="kit-mono">security.html</code>.</p>
+      </section>
+
+    </div>
+
+    <!-- ================================================================ HISTORY -->
+    <div class="kit-tabpanel" role="tabpanel" id="history" aria-labelledby="tab-history">
+      <section class="kit-sec">
+        <h2 class="kit-h2">Changes, newest first</h2>
+        <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-21</td><td>Entered the system: <code>components/legal-toc.css</code>, on semantic roles, and this page in the card format</td><td><code>docs/decisions.md</code>, "The molecules entered the system"</td></tr>
+          <tr><td>2026-08-18</td><td>Written into <code>kit.css</code> from the colour layer as the legal table of contents, a wrapping link list in a box</td><td>commit <code>d461e12</code>, "UI + Visual Step 3: the kit, grown out of the colour layer rather than written again"</td></tr>
+        </tbody></table></div>
+      </section>
+    </div>
+
+    <div id="kit-pager"></div>
+
+  </main>
+</div>
+
+<script src="_nav.js"></script>
+<script src="_states.js"></script>
+</body>
+</html>

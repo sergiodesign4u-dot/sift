@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift design system - Skeleton card</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../system/index.css">
+<link rel="stylesheet" href="_page.css">
+</head>
+<!--
+  design/kit/skeleton-card.html - a component page in the card format of 2026-11-20, laid after button.html.
+
+  OVERVIEW, for the person placing the component: a live specimen, the shape matrix,
+  properties, when and when not, do and do not, where it stands.
+  TECHNICAL, for the person changing it: anatomy, the axes with their counts, the tokens it
+  reads, the markup to copy.
+  HISTORY: every change, each with the record it came from.
+
+  The page links ../system/index.css, the SAME entry point a product screen links: it is not a
+  copy of the component, it is the component. This component is not interactive: the matrix
+  has no forced states, and nothing in it is painted by hand. Every specimen copies the markup
+  of design/synthesis-loading.html, design/theme-loading.html or design/share-link-loading.html.
+
+  No em dash anywhere.
+-->
+<body>
+<div class="kit-shell">
+  <div id="kit-panel"></div>
+  <main class="kit-main">
+
+    <div id="kit-crumbs"></div>
+    <div id="kit-head"></div>
+
+    <div class="kit-tabs" role="tablist" aria-label="Skeleton card page">
+      <button class="kit-tab" role="tab" id="tab-overview" aria-controls="overview" aria-selected="true">Overview</button>
+      <button class="kit-tab" role="tab" id="tab-tech" aria-controls="tech" aria-selected="false" tabindex="-1">Technical</button>
+      <button class="kit-tab" role="tab" id="tab-history" aria-controls="history" aria-selected="false" tabindex="-1">History</button>
+    </div>
+
+    <!-- ================================================================ OVERVIEW -->
+    <div class="kit-tabpanel" role="tabpanel" id="overview" aria-labelledby="tab-overview">
+
+      <div class="kit-hero">
+        <ul class="u-full" aria-busy="true">
+          <li class="skelrow">
+            <span class="skel-box" aria-hidden="true"></span>
+            <span class="skel-body"><span class="skel a"></span><span class="skel c"></span><span class="skel b"></span></span>
+          </li>
+          <li class="skelrow">
+            <span class="skel-box" aria-hidden="true"></span>
+            <span class="skel-body"><span class="skel c"></span><span class="skel c"></span><span class="skel b"></span></span>
+          </li>
+        </ul>
+        <ul class="u-full" aria-busy="true">
+          <li class="skelcard"><div class="skel c"></div><div class="skel c"></div><div class="skel b"></div></li>
+          <li class="skelcard"><div class="skel c"></div><div class="skel a"></div><div class="skel b"></div></li>
+        </ul>
+        <p class="kit-hero-note">Live. Shaped like the theme card, then the generic card</p>
+      </div>
+      <p class="kit-note">The wait, laid out as what arrives. The shimmer belongs to the <a href="skeleton.html">skeleton bar</a> atom, and it stops under prefers-reduced-motion.</p>
+
+      <section class="kit-sec" id="variants">
+        <h2 class="kit-h2">Variants and states</h2>
+        <p class="kit-note">Not interactive: no hover, focus or pressed state. A skeleton is a promise about the shape of what is coming, and nothing in it can be acted on. Two shapes; the rows below are the content forms the colour screens carry. The bars inside keep their own page: <a href="skeleton.html">Skeleton bar</a>.</p>
+        <div class="kit-matrix-wrap">
+          <table class="kit-matrix" inert>
+            <thead><tr><th>Shape</th><th>Form</th><th>Specimen</th></tr></thead>
+            <tbody>
+              <tr class="kit-group-end"><th>Theme card<code>.skelrow</code></th><td class="kit-st">2.2 list row</td>
+                <td><ul><li class="skelrow"><span class="skel-box" aria-hidden="true"></span><span class="skel-body"><span class="skel a"></span><span class="skel c"></span><span class="skel b"></span></span></li></ul></td></tr>
+              <tr><th rowspan="3">Generic<code>.skelcard</code></th><td class="kit-st">4.2 evidence item</td>
+                <td><ul><li class="skelcard"><div class="skel c"></div><div class="skel c"></div><div class="skel b"></div></li></ul></td></tr>
+              <tr><td class="kit-st">4.2 summary, in the head</td>
+                <td><div class="skelcard" aria-busy="true"><div class="skel c"></div><div class="skel c"></div><div class="skel a"></div></div></td></tr>
+              <tr><td class="kit-st">6.3 link row, two lines</td>
+                <td><div class="skelcard"><div class="skel c"></div><div class="skel a"></div></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="props">
+        <h2 class="kit-h2">Properties</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Property</th><th>Type</th><th>Values</th><th>Default</th></tr></thead><tbody>
+          <tr><td>Shape</td><td>own class</td><td>theme card <code>.skelrow</code> &middot; generic <code>.skelcard</code></td><td>none: one class is required</td></tr>
+          <tr><td>Box</td><td>zone, <code>.skelrow</code> only</td><td><code>.skel-box</code>, <code>aria-hidden</code>: where the checkbox and the rank will stand</td><td>required</td></tr>
+          <tr><td>Body</td><td>zone, <code>.skelrow</code> only</td><td><code>.skel-body</code> holding three <code>.skel</code> bars: label, quote, provenance</td><td>required</td></tr>
+          <tr><td>Bars</td><td>atom, content</td><td><code>.skel</code> with <code>.a</code>, <code>.b</code> or <code>.c</code>; two or three per card</td><td>none: the count is the shape of what arrives</td></tr>
+          <tr><td>Busy</td><td>attribute</td><td><code>aria-busy="true"</code> on the list or the card it stands in</td><td>on the container</td></tr>
+          <tr><td>State</td><td>none</td><td>not interactive</td><td>none</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="when">
+        <h2 class="kit-h2">How to use it</h2>
+        <div class="kit-when">
+          <div>
+            <h3>When</h3>
+            <p>While content that has a known shape is on its way: the ranked themes on 2.2, the evidence items on 4.2, the link row on 6.3.</p>
+            <p><b>Shape it like what arrives</b>, so the wait promises the right thing. Where the theme card arrives, take <code>.skelrow</code>: the IA asks for skeleton rows shaped like the real theme card, label, quote, provenance.</p>
+          </div>
+          <div>
+            <h3>When not</h3>
+            <ul>
+              <li>For anything already known: the count, the recency, the rank, a title, an explanation. Show it as itself, never as a grey bar.</li>
+              <li>For the progress of a process with named phases: take the phase strip. On 2.2 it stands above the skeleton and says which phase is running.</li>            </ul>
+          </div>
+        </div>
+
+        <div class="kit-dodont">
+          <div class="kit-dd kit-dd--do">
+            <div class="kit-dd-c" inert>
+              <span class="conf"><span class="conf-n">n=42</span></span>
+              <div class="skelcard u-full"><div class="skel c"></div><div class="skel c"></div><div class="skel a"></div></div>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do</div><div class="kit-dd-t">The count is real, the summary is waiting</div>
+              <div class="kit-dd-d">4.2 keeps <code>n=42</code> in the head and draws bars only where the summary will be.</div></div>
+          </div>
+          <div class="kit-dd kit-dd--dont">
+            <div class="kit-dd-c" inert>
+              <div class="skelcard u-full"><div class="skel b"></div><div class="skel c"></div><div class="skel c"></div><div class="skel a"></div></div>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do not</div><div class="kit-dd-t">The count as a grey bar</div>
+              <div class="kit-dd-d">The product already knows it. Hiding a known number behind a bar makes the wait look emptier than it is.</div></div>
+          </div>
+          <div class="kit-dd kit-dd--do">
+            <div class="kit-dd-c" inert>
+              <ul class="u-full"><li class="skelrow"><span class="skel-box" aria-hidden="true"></span><span class="skel-body"><span class="skel a"></span><span class="skel c"></span><span class="skel b"></span></span></li></ul>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do</div><div class="kit-dd-t">Theme rows wait as theme rows</div>
+              <div class="kit-dd-d">A box where the checkbox and the rank arrive, then three bars for label, quote and provenance.</div></div>
+          </div>
+          <div class="kit-dd kit-dd--dont">
+            <div class="kit-dd-c" inert>
+              <ul class="u-full"><li class="skelcard"><div class="skel a"></div><div class="skel c"></div><div class="skel b"></div></li></ul>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do not</div><div class="kit-dd-t">A generic card where a theme card arrives</div>
+              <div class="kit-dd-d">The wait promises a different shape from the one that arrives. The grey 2.2 still draws this; the colour 2.2 does not.</div></div>
+          </div>
+        </div>
+        <p class="kit-note">Sources: the comments above <code class="kit-mono">.skelrow</code> in <code class="kit-mono">design/kit/kit.css</code>; the header comments of <code class="kit-mono">design/theme-loading.html</code> and <code class="kit-mono">design/share-link-loading.html</code>; <code class="kit-mono">ia/docs/pages/synthesis.md</code>, state 2.2.</p>
+      </section>
+
+      <section class="kit-sec" id="where">
+        <h2 class="kit-h2">Where it stands</h2>
+        <p class="kit-note">2.2 and 4.2 in the inventory, plus 6.3 Share link while it generates. In grey: 2.2, 4.2, 6.3. In colour:</p>
+        <div class="kit-where">
+          <a href="../synthesis-loading.html">2.2 Synthesis, loading</a>
+          <a href="../theme-loading.html">4.2 Theme detail, loading</a>
+          <a href="../share-link-loading.html">6.3 Share link, generating</a>
+          <a href="../../wireframes/overview.html">the rest, in grey</a>
+        </div>
+      </section>
+    </div>
+
+    <!-- ================================================================ TECHNICAL -->
+    <div class="kit-tabpanel" role="tabpanel" id="tech" aria-labelledby="tab-tech">
+
+      <section class="kit-sec" id="anatomy">
+        <h2 class="kit-h2">Anatomy</h2>
+        <p class="kit-note">Two shapes, each a container for the bar atom. The shape is the component; the bars are content.</p>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
+          <tr><td>the row</td><td><code>.skelrow</code></td><td>The theme card's grid: the same 22px and 20px tracks, the same gaps, the same 13px padding and the same rule underneath, so nothing shifts when the real row lands</td></tr>
+          <tr><td>the box</td><td><code>.skelrow .skel-box</code></td><td>Spans the checkbox and rank tracks. A flat surface, no shimmer</td></tr>
+          <tr><td>the body</td><td><code>.skelrow .skel-body</code></td><td>Three bars on a 9px gap: label, quote, provenance</td></tr>
+          <tr><td>the card</td><td><code>.skelcard</code></td><td>A stack of bars on an 8px gap under a hairline</td></tr>
+          <tr><td>the bars</td><td><code>.skel.a</code>, <code>.skel.b</code>, <code>.skel.c</code></td><td>The atom, with its shimmer and its three widths</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="axes">
+        <h2 class="kit-h2">Axes, with the rule that chooses</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
+          <tr><td>shape</td><td>generic rows 1 &middot; shaped like the theme card 1</td><td><b>Shaped like what arrives.</b> Where a theme card arrives, the row skeleton; where text of no fixed shape arrives, the generic card</td></tr>
+        </tbody></table></div>
+        <p class="kit-note">The counts are the inventory's, in screens. Measured in <code class="kit-mono">design/</code>: 6 theme-card rows on 2.2; 5 generic list cards and 1 head card on 4.2; 1 two-line card on 6.3, which the inventory does not list.</p>
+      </section>
+
+      <section class="kit-sec" id="tokens">
+        <h2 class="kit-h2">Tokens it reads</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Reads</th><th>Which grows from</th><th>For</th></tr></thead><tbody>
+          <tr><td><code>--line-hairline</code></td><td><code>--grey-800</code> dark, <code>--grey-150</code> light</td><td>the rule under each row and card</td></tr>
+          <tr><td><code>--bg-surface</code></td><td><code>--grey-900</code> dark, <code>--grey-025</code> light</td><td>the flat box of the row skeleton</td></tr>
+          <tr><td><code>--radius-sm</code></td><td>tokens.css, 4px</td><td>the corner of the box</td></tr>
+          <tr><td><code>--space-2</code>, <code>--space-3</code>, <code>--space-6</code></td><td>tokens.css</td><td>the gaps and the padding</td></tr>
+        </tbody></table></div>
+        <p class="kit-note">Kept off the scale, byte for byte, because no primitive equals them: the grid tracks 22px and 20px, the 13px vertical padding of the row, the 16px height of the box and the 9px gap of the body. The shimmer reads <code class="kit-mono">--bg-surface</code>, <code class="kit-mono">--bg-raised</code> and <code class="kit-mono">--ease</code> through the bar atom, not through this file.</p>
+      </section>
+
+      <section class="kit-sec" id="shots">
+        <h2 class="kit-h2">Snapshots</h2>
+        <p class="kit-note">Molecules get no new snapshots this round, and this one has no states to shoot: the forms are shown live in the matrix on Overview.</p>
+      </section>
+
+      <section class="kit-sec" id="markup">
+        <h2 class="kit-h2">Copy this</h2>
+        <div class="scene">
+          <pre class="kit-pre">&lt;ul class="list" aria-busy="true"&gt;
+  &lt;li class="skelrow"&gt;
+    &lt;span class="skel-box" aria-hidden="true"&gt;&lt;/span&gt;
+    &lt;span class="skel-body"&gt;&lt;span class="skel a"&gt;&lt;/span&gt;&lt;span class="skel c"&gt;&lt;/span&gt;&lt;span class="skel b"&gt;&lt;/span&gt;&lt;/span&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul class="list" aria-busy="true"&gt;
+  &lt;li class="skelcard"&gt;&lt;div class="skel c"&gt;&lt;/div&gt;&lt;div class="skel c"&gt;&lt;/div&gt;&lt;div class="skel b"&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;</pre>
+        </div>
+        <p class="kit-note">File: <code class="kit-mono">design/system/components/skeleton-card.css</code>, imported in the molecules group of <code class="kit-mono">design/system/index.css</code>. On the screens the rows sit in <code class="kit-mono">ul.list</code>, which is not in design/system/ yet; this page uses a bare <code class="kit-mono">ul</code> [?].</p>
+      </section>
+    </div>
+
+    <!-- ================================================================ HISTORY -->
+    <div class="kit-tabpanel" role="tabpanel" id="history" aria-labelledby="tab-history">
+      <section class="kit-sec">
+        <h2 class="kit-h2">Changes, newest first</h2>
+        <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-21</td><td>Entered the system: <code>components/skeleton-card.css</code>, on semantic roles, and this page in the card format. The box corner reads <code>--radius-sm</code> instead of a 4px literal</td><td><code>docs/decisions.md</code>, "The molecules entered the system"</td></tr>
+          <tr><td>2026-08-18</td><td>Stage 07 Step 3: both shapes moved into the flat kit <code>design/kit/kit.css</code>, recorded as one component with a shape axis</td><td>commit <code>d461e12</code>; <code>design/kit/docs/inventory.md</code>, row "Skeleton card"</td></tr>
+          <tr><td>2026-08-05</td><td><code>.skelrow</code> arrived: the theme-card skeleton for 2.2, when the three etalon states were recoloured</td><td>commit <code>d0b0e31</code></td></tr>
+          <tr><td>2026-08-05</td><td><code>.skelcard</code> first declared in the colour layer</td><td>commit <code>b8ee56b</code></td></tr>
+        </tbody></table></div>
+      </section>
+    </div>
+
+    <div id="kit-pager"></div>
+
+  </main>
+</div>
+
+<script src="_nav.js"></script>
+<script src="_states.js"></script>
+</body>
+</html>

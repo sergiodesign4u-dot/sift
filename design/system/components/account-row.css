@@ -1,0 +1,20 @@
+/* design/system/components/account-row.css - level 2, molecule.
+   Reads: --line-hairline, --text-primary, --text-secondary, --space-1, --space-5, --space-6,
+          --type-sm, --type-xs, --weight-medium
+   Page:  design/kit/account-row.html
+   Stands on: 7.1, 7.2. Text only 1, with a checkbox 1 (the inventory count).
+
+   A row of the account panel: a title and the sentence that says what it does. Its second form
+   carries a checkbox (atom .check), and there the whole row is the label, which is correct and
+   worth keeping: the target is the strip, not a 24px box.
+
+   NOT HERE: .acct-card-t, .acct-card-d and .acct-seclink belong to the list row link and the
+   account hub, not to this row.
+   No em dash anywhere in this file.
+*/
+
+.acct-row { display: flex; align-items: flex-start; gap: var(--space-5); padding: var(--space-6) 0; border-bottom: 1px solid var(--line-hairline); }
+.acct-row-main { flex: 1; min-width: 0; }
+.acct-row-t { display: block; font-size: var(--type-sm); font-weight: var(--weight-medium); color: var(--text-primary); }
+.acct-row-d { display: block; font-size: var(--type-xs); color: var(--text-secondary); margin-top: var(--space-1); line-height: 1.55; }
+label.acct-row { cursor: pointer; }

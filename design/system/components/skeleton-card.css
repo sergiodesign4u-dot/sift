@@ -1,0 +1,24 @@
+/* design/system/components/skeleton-card.css - level 2, molecule.
+   Reads: --line-hairline, --bg-surface, --radius-sm, --space-2, --space-3, --space-6
+   Page:  design/kit/skeleton-card.html
+   Stands on: 2.2 (shaped like the theme card), 4.2 and 6.3 (generic). Not interactive.
+   Contains: .skel and its widths .a .b .c, the skeleton bar atom in components/skeleton.css.
+
+   The wait, laid out as what arrives. Two shapes:
+   - .skelrow is the theme-card skeleton. It mirrors the real row, so the wait promises what
+     arrives (A4): a grey box where the checkbox and the rank will stand, then the label, the
+     quote and the provenance as three bars.
+   - .skelcard is the generic one: a stack of bars under a hairline, for an evidence item or a
+     link row whose shape is a few lines of text.
+
+   What is known before the wait (the count, the recency, the rank) is shown as itself and never
+   as a grey bar. The shimmer belongs to the bar atom, and it stops under prefers-reduced-motion
+   through base.css.
+   No em dash anywhere in this file.
+*/
+
+.skelrow { display: grid; grid-template-columns: 22px 20px 1fr; gap: var(--space-2) var(--space-6); padding: 13px var(--space-3); border-bottom: 1px solid var(--line-hairline); }
+.skelrow .skel-box { grid-column: 1 / 3; height: 16px; border-radius: var(--radius-sm); background: var(--bg-surface); }
+.skelrow .skel-body { display: grid; gap: 9px; }
+
+.skelcard { display: grid; gap: var(--space-3); padding: var(--space-6) var(--space-3); border-bottom: 1px solid var(--line-hairline); }

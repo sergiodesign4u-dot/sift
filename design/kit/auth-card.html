@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift design system - Auth card</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../system/index.css">
+<link rel="stylesheet" href="_page.css">
+</head>
+<!--
+  design/kit/auth-card.html - a component page in the card format of 2026-11-20, laid after button.html.
+
+  OVERVIEW, for the person placing the component: a live specimen, the matrix, properties, when
+  and when not, where it stands.
+  TECHNICAL, for the person changing it: anatomy, the axes with their counts, the tokens it
+  reads, the snapshots note, the markup to copy.
+  HISTORY: every change, each with the record it came from.
+
+  The page links ../system/index.css, the SAME entry point a product screen links: it is not a
+  copy of the component, it is the component. This molecule is not interactive: the matrix has no forced states, and nothing in it is painted by hand.
+
+  No em dash anywhere.
+-->
+<body>
+<div class="kit-shell">
+  <div id="kit-panel"></div>
+  <main class="kit-main">
+
+    <div id="kit-crumbs"></div>
+    <div id="kit-head"></div>
+
+    <div class="kit-tabs" role="tablist" aria-label="Auth card page">
+      <button class="kit-tab" role="tab" id="tab-overview" aria-controls="overview" aria-selected="true">Overview</button>
+      <button class="kit-tab" role="tab" id="tab-tech" aria-controls="tech" aria-selected="false" tabindex="-1">Technical</button>
+      <button class="kit-tab" role="tab" id="tab-history" aria-controls="history" aria-selected="false" tabindex="-1">History</button>
+    </div>
+
+    <!-- ================================================================ OVERVIEW -->
+    <div class="kit-tabpanel" role="tabpanel" id="overview" aria-labelledby="tab-overview">
+
+      <div class="kit-hero">
+        <div class="auth-wrap u-full">
+          <section class="auth-card">
+            <h2 class="auth-h2">Log in</h2>
+            <p class="auth-value">Turn scattered customer feedback into clear, prioritized decisions, with the evidence to defend every call.</p>
+            <label class="field-label" for="hero-email">Work email</label>
+            <input class="input" id="hero-email" type="email" placeholder="alex@northwind.io">
+            <button class="btn u-full" type="button">Log in</button>
+            <div class="auth-or">or</div>
+            <button class="btn--ghost u-full" type="button">Continue with SSO</button>
+            <p class="auth-switch">New to Sift? <a class="link" href="#">Sign up</a></p>
+          </section>
+        </div>
+        <p class="kit-hero-note">Live. The log in card, copy from the grey 1.0</p>
+      </div>
+      <p class="kit-note">No colour screen carries this molecule yet. The copy is from the grey screens in <code class="kit-mono">wireframes/</code>, and the screens are painted at Stage 12 (<code class="kit-mono">docs/decisions.md</code>, accepted: "Auth card, three forms"; <code class="kit-mono">design/kit/docs/inventory.md</code>). The grey fields and buttons are the system's atoms here: <a href="input.html">Input</a>, <a href="button.html">Button</a>, <a href="field-label.html">Field label</a>, <a href="link.html">Inline text link</a>. The field wrapper that spaces a label, a control and its error is not in the system yet, so the fields in this specimen stand without it.</p>
+
+      <section class="kit-sec" id="variants">
+        <h2 class="kit-h2">Variants and states</h2>
+        <p class="kit-note">Not interactive: the card has no hover, focus or pressed state of its own. The rows are content forms. The inputs, buttons and links inside keep their own states on their own pages. The inventory lists the states "rest, submitted": submitted is the sent confirmation below, a content form, and the css paints no separate submitted state.</p>
+        <div class="kit-matrix-wrap">
+          <table class="kit-matrix" inert>
+            <thead><tr><th>Content form</th><th>Specimen</th><th>Occurrences</th></tr></thead>
+            <tbody>
+              <tr><th>Form card<code>.auth-card</code></th>
+                <td class="kit-cell-fixed"><section class="auth-card">
+                  <h2 class="auth-h2">Reset password</h2>
+                  <p class="auth-value">Enter the email on your account and we will send a link to set a new password.</p>
+                  <span class="auth-step">Step 1 &middot; Request a reset</span>
+                  <label class="field-label" for="m-email">Work email</label>
+                  <input class="input" id="m-email" type="email" placeholder="alex@northwind.io">
+                  <button class="btn u-full" type="button">Send reset link</button>
+                </section></td>
+                <td class="kit-cell-none">3 occurrences: 1.0 log in, 1.1 sign up, 1.2 reset.</td></tr>
+              <tr><th>Value line<code>.auth-value</code></th>
+                <td class="kit-cell-fixed"><p class="auth-value">Sift turns support tickets, sales calls, reviews, and interviews into themes you can trace back to the customer voices behind them. See which problems have the most signal.</p></td>
+                <td class="kit-cell-none">3 occurrences (<code>wf-auth-value</code>): the sentence under the heading that says what the product does.</td></tr>
+              <tr><th>Sent confirmation<code>.auth-sent</code></th>
+                <td class="kit-cell-fixed"><section class="auth-card">
+                  <span class="auth-step">Step 2 &middot; Reset link sent</span>
+                  <h2 class="auth-h2">Check your inbox</h2>
+                  <p class="auth-sent">If an account exists for that email, we have sent a link to reset your password. Open it to continue. The link expires in 30 minutes.</p>
+                </section></td>
+                <td class="kit-cell-none">1 occurrence (<code>wf-auth-sent</code>): 1.2, after the request.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="props">
+        <h2 class="kit-h2">Properties</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Property</th><th>Type</th><th>Values</th><th>Default</th></tr></thead><tbody>
+          <tr><td>Sheet</td><td>class</td><td><code>.auth-card</code>, a sheet on the surface with the large radius</td><td>required</td></tr>
+          <tr><td>Stack</td><td>class</td><td><code>.auth-card + .auth-card</code> puts 16px between sheets on one screen (1.2 stacks three)</td><td>none</td></tr>
+          <tr><td>Column</td><td>class</td><td><code>.auth-wrap</code>, 400px wide and centered</td><td>optional</td></tr>
+          <tr><td>Heading</td><td>zone</td><td><code>.auth-h2</code></td><td>required</td></tr>
+          <tr><td>Step marker</td><td>zone</td><td><code>.auth-step</code>, mono uppercase, on the multi-step reset only</td><td>none</td></tr>
+          <tr><td>Value line</td><td>zone</td><td><code>.auth-value</code></td><td>none</td></tr>
+          <tr><td>Divider</td><td>zone</td><td><code>.auth-or</code>, a rule on each side of the word</td><td>none</td></tr>
+          <tr><td>Switch line</td><td>zone</td><td><code>.auth-switch</code>, centered, under the form</td><td>none</td></tr>
+          <tr><td>Confirmation</td><td>zone</td><td><code>.auth-sent</code>, an inset on the page ground</td><td>none</td></tr>
+          <tr><td>State</td><td>none</td><td>not interactive</td><td>none</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="when">
+        <h2 class="kit-h2">How to use it</h2>
+        <div class="kit-when">
+          <div>
+            <h3>When</h3>
+            <p>On the logged-out screens 1.0 to 1.2: log in, sign up, reset. The card is the sheet the form lives on, and it is also the sheet for the confirmation that follows a request.</p>
+            <p>Every state names the next move (<code>CLAUDE.md</code>, voice). The confirmation says what was sent and when the link expires, and the switch line gives the other way in.</p>
+          </div>
+          <div>
+            <h3>When not</h3>
+            <ul>
+              <li>Inside the application: the signed-in screens are not on a sheet.</li>
+              <li>For a failure that blocks work: take <code>.notice</code>. The confirmation inset is quiet and reports a request, not an error.</li>
+              <li>For a line inside a sentence: take <code>.link</code>.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="kit-dodont">
+          <div class="kit-dd kit-dd--do">
+            <div class="kit-dd-c" inert>
+              <p class="auth-sent">If an account exists for that email, we have sent a link to reset your password. Open it to continue. The link expires in 30 minutes.</p>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do</div><div class="kit-dd-t">Say what happened and what comes next</div>
+              <div class="kit-dd-d">The link, and when it stops working. The voice rules ask every state to name the next move.</div></div>
+          </div>
+          <div class="kit-dd kit-dd--dont">
+            <div class="kit-dd-c" inert>
+              <p class="auth-sent">Success! Your email was sent successfully.</p>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do not</div><div class="kit-dd-t">Celebrate and name nothing</div>
+              <div class="kit-dd-d">The voice rules forbid "successfully", exclamation marks and celebration, and the line says nothing about what to do next.</div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="where">
+        <h2 class="kit-h2">Where it stands</h2>
+        <p class="kit-note">1.0, 1.1, 1.2. No colour screen carries this molecule yet: none of <code class="kit-mono">design/*.html</code> holds it, and the grey screens are the only place it stands. The grey screens, by node:</p>
+        <div class="kit-where">
+          <span>1.0 Log in (wireframes/auth.html)</span>
+          <span>1.1 Sign up (wireframes/auth-signup.html)</span>
+          <span>1.2 Reset (wireframes/auth-reset.html)</span>
+          <a href="../../wireframes/overview.html">the rest, in grey</a>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ================================================================ TECHNICAL -->
+    <div class="kit-tabpanel" role="tabpanel" id="tech" aria-labelledby="tab-tech">
+
+      <section class="kit-sec" id="anatomy">
+        <h2 class="kit-h2">Anatomy</h2>
+        <p class="kit-note">The sheet of the logged-out screens, with the value line beside the form and the confirmation after a reset was sent. One molecule, three contents.</p>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
+          <tr><td>the sheet</td><td><code>.auth-card</code></td><td>Surface ground, hairline edge, large radius: it reads as a sheet, like the dialog and the frame</td></tr>
+          <tr><td>the step marker</td><td><code>.auth-step</code></td><td>Mono, uppercase, secondary ink. Only on the multi-step reset</td></tr>
+          <tr><td>the heading</td><td><code>.auth-h2</code></td><td>One line, primary ink</td></tr>
+          <tr><td>the value line</td><td><code>.auth-value</code></td><td>What the product does, secondary ink</td></tr>
+          <tr><td>the fields and buttons</td><td><code>.field-label</code>, <code>.input</code>, <code>.btn</code></td><td>Atoms, declared once and not here</td></tr>
+          <tr><td>the divider</td><td><code>.auth-or</code></td><td>A hairline on each side of the word, drawn with <code>::before</code> and <code>::after</code></td></tr>
+          <tr><td>the switch line</td><td><code>.auth-switch</code></td><td>Centered, the other way in</td></tr>
+          <tr><td>the confirmation</td><td><code>.auth-sent</code></td><td>An inset on the page ground inside the sheet</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="axes">
+        <h2 class="kit-h2">Axes, with the rule that chooses</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
+          <tr><td>content</td><td>form card 3 &middot; value card 3 &middot; sent confirmation 1</td><td>What the sheet holds. The form is the default; the value line stands under its heading; the confirmation replaces the form after a request</td></tr>
+          <tr><td>state</td><td>rest &middot; submitted</td><td>Submitted is a content form (the sent confirmation), not a painted state</td></tr>
+        </tbody></table></div>
+        <p class="kit-note"><b>Not interactive, and that is a decision rather than an omission.</b> The sheet cannot be hovered or pressed. Its controls are atoms and keep their own states.</p>
+      </section>
+
+      <section class="kit-sec" id="tokens">
+        <h2 class="kit-h2">Tokens it reads</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Reads</th><th>Grows from</th><th>For</th></tr></thead><tbody>
+          <tr><td><code>--bg-surface</code>, <code>--bg-page</code></td><td><code>--grey-900</code>, the page ground</td><td>the sheet; the confirmation inset</td></tr>
+          <tr><td><code>--line-hairline</code></td><td><code>--grey-800</code></td><td>the sheet edge, the divider rules, the inset edge</td></tr>
+          <tr><td><code>--text-primary</code>, <code>--text-secondary</code></td><td>tokens.css</td><td>the heading; every other line</td></tr>
+          <tr><td><code>--radius-lg</code>, <code>--radius-md</code></td><td>tokens.css</td><td>the sheet; the inset</td></tr>
+          <tr><td><code>--font-mono</code>, <code>--type-3xs</code>, <code>--type-xs</code>, <code>--type-lg</code>, <code>--weight-strong</code>, <code>--weight-medium</code>, <code>--tracking-title</code>, <code>--leading-body</code></td><td>tokens.css</td><td>type for each zone</td></tr>
+          <tr><td><code>--space-1</code>, <code>--space-3</code>, <code>--space-4</code>, <code>--space-6</code>, <code>--space-7</code>, <code>--space-8</code>, <code>--space-10</code></td><td>tokens.css</td><td>padding and rhythm inside the sheet</td></tr>
+        </tbody></table></div>
+        <p class="kit-note">Kept as literals because no primitive equals them: 400px column, 34px column margin, 5px under the heading, 0.06em tracking on the step marker, 11.5px on the divider, 20px above the switch line.</p>
+                <h3 class="kit-h3">Snapshots</h3>
+        <p class="kit-note">No new snapshots this round: the card has no interactive state, and the controls inside it are shown on their own pages.</p>
+      </section>
+
+      <section class="kit-sec" id="markup">
+        <h2 class="kit-h2">Copy this</h2>
+        <div class="scene">
+          <pre class="kit-pre">&lt;section class="auth-card"&gt;
+  &lt;h2 class="auth-h2"&gt;Log in&lt;/h2&gt;
+  &lt;p class="auth-value"&gt;Turn scattered customer feedback into clear, prioritized decisions, with the evidence to defend every call.&lt;/p&gt;
+  &lt;label class="field-label" for="email"&gt;Work email&lt;/label&gt;
+  &lt;input class="input" id="email" type="email"&gt;
+  &lt;button class="btn u-full" type="submit"&gt;Log in&lt;/button&gt;
+  &lt;div class="auth-or"&gt;or&lt;/div&gt;
+  &lt;button class="btn--ghost u-full" type="submit"&gt;Continue with SSO&lt;/button&gt;
+  &lt;p class="auth-switch"&gt;New to Sift? &lt;a class="link" href="auth-signup.html"&gt;Sign up&lt;/a&gt;&lt;/p&gt;
+&lt;/section&gt;</pre>
+        </div>
+        <p class="kit-note">File: <code class="kit-mono">design/system/components/auth-card.css</code>, imported in the molecules group of
+          <code class="kit-mono">design/system/index.css</code>. Stands on: the grey 1.0, 1.1 and 1.2 only: <code class="kit-mono">wireframes/auth.html</code>, <code class="kit-mono">auth-signup.html</code>, <code class="kit-mono">auth-reset.html</code>.</p>
+      </section>
+
+    </div>
+
+    <!-- ================================================================ HISTORY -->
+    <div class="kit-tabpanel" role="tabpanel" id="history" aria-labelledby="tab-history">
+      <section class="kit-sec">
+        <h2 class="kit-h2">Changes, newest first</h2>
+        <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-21</td><td>Entered the system: <code>components/auth-card.css</code>, on semantic roles, and this page in the card format</td><td><code>docs/decisions.md</code>, "The molecules entered the system"</td></tr>
+          <tr><td>2026-08</td><td>The three content forms were declared and accepted: form card, value card, sent confirmation. The screens 1.x are painted at Stage 12</td><td><code>design/kit/docs/inventory.md</code>, "Auth card, three forms"</td></tr>
+          <tr><td>2026-08-18</td><td>Written into <code>kit.css</code> from the colour layer, as the auth card, its step marker, value line, divider, switch line and confirmation</td><td>commit <code>d461e12</code>, "UI + Visual Step 3: the kit, grown out of the colour layer rather than written again"</td></tr>
+        </tbody></table></div>
+      </section>
+    </div>
+
+    <div id="kit-pager"></div>
+
+  </main>
+</div>
+
+<script src="_nav.js"></script>
+<script src="_states.js"></script>
+</body>
+</html>
