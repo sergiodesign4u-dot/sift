@@ -503,3 +503,52 @@ so the finding does not come back next time somebody greps for dead CSS.
 Rejected: fixing the contextual overrides by leaving them and adding a comment. A comment does
 not stop the next one, and six overrides one pixel apart is how a kit ends up with two buttons
 and six sizes. Promoting them to variants puts them in the inventory, where Stage 08 counts them.
+
+## The showcase is read by purpose, the code is loaded by level (November 2026)
+
+Stage 08 Step 5, between the atom round and the molecule round. The owner (2026-11-20): the AMA
+Energy lab and the Global Design System file are what a design system should look like on a
+project, adapt this one to that form and carry on.
+
+**What was taken from them, and what was not.** Taken: the structure. A stand with its own panel
+(the way out first, a title with a count, a filter), components grouped by CATEGORY rather than by
+level, an "All components" table, and a component page read as a card: crumbs, a head with chips
+(file, usage, status), three tabs. Overview is for the person placing the component (a live
+specimen, the variant by state matrix, other forms, properties, when and when not, do and do not,
+where it stands); Technical for the person changing it (anatomy, axes with counts, tokens,
+snapshots, markup); History for every change with the record it came from. Not taken: their look.
+The stand stays on Sift's own tokens, Inter and the dark ground; AMA's condensed red headings are
+AMA's brand, and a showcase of this system painted in another product's language would show the
+wrong system.
+
+**The level did not stop mattering, it moved.** `index.css` still imports atoms, then molecules,
+then organisms, and the rule against ordering the CODE by purpose stands for the reason it was
+written (`dialog.css` above `field.css` in the cascade). The stand groups by purpose because a
+person looking for "the thing that filters a list" does not know it is a molecule. The level is a
+chip on every page and a column in the table. `docs/architecture.md` was rewritten from "grouping
+by purpose is forbidden" to the two orders, and its page with it.
+
+**The state matrix is derived, not drawn.** `design/kit/_states.js` copies every `:hover`,
+`:active` and `:focus-visible` rule of `design/system/` onto an attribute that exists only inside
+an inert matrix (`.btn:hover` to `.btn[data-kit-st~="hover"]`): same declarations, same
+specificity. It is the Global Design System's `capture --matrix` and the AMA lab's
+`lab-states.tsx`, moved to a static page. The stage rule against faking a state with a class the
+product does not wear is about painting by hand; this paints nothing. Checked the day it was
+written: on the Button page the forced hover and focus of fill and outline matched a real pointer
+and a real Tab key in background, border, colour, outline and opacity, in both themes, with zero
+differences. The snapshots stay on the Technical tab as the measured counterpart.
+
+**One stand value changed:** `--kit-accent` in the light theme, `#7C6AF7` to `#6250E6`, because the
+first gave 3.99:1 on the light page under the small mono headings and crumbs it inks (5.51 now).
+Stand chrome only; no product token moved.
+
+**One gap found and left for Step 6:** the base rule of the icon glyph, `.ic` (stroke, fill, line
+caps), still lives only in `kit/kit.css`. The system has no file for it, so the stand pages draw
+their glyphs with an inline style exactly as the Stage 08 pages did before. It belongs to list 1
+of the reconciliation (product to system).
+
+Rejected: separate files per tab (`button-tech.html`, `button-history.html`), as the AMA lab does
+with its routes. Fifty-one components would make a hundred and fifty-three files for one
+component's worth of content; one page with three panels and an address that keeps the tab
+(`#tech`, `#history`) does the same work. Rejected: re-laying all seventeen atom pages in the same
+step as the template. The template is shown and accepted first, and only then copied sixteen times.

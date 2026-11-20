@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift design system - All components</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../system/index.css">
+<link rel="stylesheet" href="_page.css">
+</head>
+<!--
+  design/kit/components.html - every component of the system in one table, by purpose.
+
+  The table is drawn from the catalog in _nav.js, the same list the side panel and every
+  component head read, so a title, a level or a category cannot disagree between them. The level
+  is a column here: the showcase is read by purpose, the code is loaded by level
+  (docs/decisions.md, 2026-11-20).
+
+  No em dash anywhere.
+-->
+<body>
+<div class="kit-shell">
+  <div id="kit-panel"></div>
+  <main class="kit-main">
+    <div id="kit-crumbs"></div>
+    <div class="kit-eyebrow">Components</div>
+    <h1 class="kit-h1">All components</h1>
+    <p class="kit-purpose">A page per component: variants and states, properties, when to use it, where it stands.
+      The tokens and the change history sit on its tabs.</p>
+    <p class="kit-note">Grouped by what a component is for. The level column says what it contains, and that is
+      the order <code class="kit-mono">design/system/index.css</code> loads them in. 17 of the 51 components after the
+      Step 2 consolidation are built; molecules and organisms join the same categories as they are closed.</p>
+    <div id="kit-all"></div>
+    <div id="kit-pager"></div>
+  </main>
+</div>
+<script src="_nav.js"></script>
+</body>
+</html>

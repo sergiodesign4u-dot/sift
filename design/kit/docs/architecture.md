@@ -52,10 +52,17 @@ patterns     Stage 09, and not before
 form is already an organism, so both stay at level three. Nesting decides the ORDER inside the
 level, not a fourth number: inside organisms, the ones that contain no other organism come first.
 
-**Grouping by purpose is forbidden.** By purpose a button and a login dialog are both "forms" and
-end up side by side, though one lives inside the other. The cost is not aesthetic: an `@import`
-sorted alphabetically puts `dialog.css` before `field.css`, so the composed thing sits above its
-own parts in the cascade and the first contextual fix reaches for `!important`.
+**The code is ordered by level, never by purpose.** By purpose a button and a login dialog are both
+"forms" and end up side by side, though one lives inside the other. The cost is not aesthetic: an
+`@import` sorted alphabetically puts `dialog.css` before `field.css`, so the composed thing sits
+above its own parts in the cascade and the first contextual fix reaches for `!important`.
+
+**The showcase is read by purpose, and the level travels with it** (2026-11-20). A person looking
+for "the thing that filters a list" does not know it is a molecule, so the stand groups components
+by category (Actions, Forms, Filtering and navigation, Evidence, Feedback and state, Content and
+identity, Overlays, Shell) and shows the level as a chip on the page and a column on
+`components.html`. The two orders answer two questions and neither replaces the other: the
+category is for finding, the level is for loading.
 
 ---
 

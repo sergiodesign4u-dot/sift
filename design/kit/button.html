@@ -12,17 +12,21 @@
 <link rel="stylesheet" href="_page.css">
 </head>
 <!--
-  design/kit/button.html - the etalon page of Stage 08 Step 5, and the template every other
-  component page follows.
+  design/kit/button.html - THE TEMPLATE of a component page, in the card format of 2026-11-20.
 
-  It links ../system/index.css, which is the SAME entry point a product screen links. The page
-  cannot drift from the product, because it is not a copy of the component: it is the component.
+  Every other component page follows this one. The format comes from the AMA Energy lab and the
+  Global Design System file: crumbs, a head read from the catalog in _nav.js (category, level,
+  purpose, chips), and three tabs.
 
-  Five blocks in a fixed order: anatomy, variants and sizes, when to use it, rule and anti-rule,
-  states. The states block carries a LIVE rest instance and SNAPSHOTS of the other four, because
-  hover, active and focus-visible are mutually exclusive on one element and cannot stand in a row
-  alive. The snapshots are measurements, not illustrations: Step 9 checks them for byte drift and
-  the command that re-takes them is printed beside them.
+  OVERVIEW, for the person placing the component: a live specimen, the variant by state matrix,
+  other forms, properties, when and when not, do and do not, where it stands.
+  TECHNICAL, for the person changing it: anatomy, the axes with their counts, the tokens it
+  reads, the snapshots taken with a real pointer, the markup to copy.
+  HISTORY: every change, each with the record it came from.
+
+  The page links ../system/index.css, the SAME entry point a product screen links: it is not a
+  copy of the component, it is the component. The matrix is drawn by _states.js from the
+  product's own :hover, :active and :focus-visible rules; nothing in it is painted by hand.
 
   No em dash anywhere.
 -->
@@ -31,213 +35,301 @@
   <div id="kit-panel"></div>
   <main class="kit-main">
 
-    <div class="kit-eyebrow">Level 1 &middot; Atom</div>
-    <h1 class="kit-h1">Button</h1>
-    <p class="kit-lead">The control that does something. Three emphases by two sizes, plus one
-      content variant: six declared forms, and that is the whole set. Before the Stage 07 census
-      the product carried two declarations and four contextual overrides on top of them, each one
-      looking deliberate on its own screen and adding up to a family nobody had decided.</p>
-    <p class="kit-lead"><code class="kit-mono">design/system/components/button.css</code> &middot;
-      67 filled, 33 outlined, 4 bare, 13 icon-only and 11 large across all 38 screens of the
-      product.</p>
+    <div id="kit-crumbs"></div>
+    <div id="kit-head"></div>
 
-    <!-- ============ 1. ANATOMY ============ -->
-    <section class="kit-sec" id="anatomy">
-      <h2 class="kit-h2">Anatomy</h2>
-      <p class="kit-lead">Three zones, and two of them are optional. The label is not.</p>
-      <div class="scene">
-        <div style="display:flex;gap:26px;flex-wrap:wrap;align-items:center">
-          <button class="btn" style="font-size:15px;min-height:52px"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-brief"></use></svg> Build brief</button>
+    <div class="kit-tabs" role="tablist" aria-label="Button page">
+      <button class="kit-tab" role="tab" id="tab-overview" aria-controls="overview" aria-selected="true">Overview</button>
+      <button class="kit-tab" role="tab" id="tab-tech" aria-controls="tech" aria-selected="false" tabindex="-1">Technical</button>
+      <button class="kit-tab" role="tab" id="tab-history" aria-controls="history" aria-selected="false" tabindex="-1">History</button>
+    </div>
+
+    <!-- ================================================================ OVERVIEW -->
+    <div class="kit-tabpanel" role="tabpanel" id="overview" aria-labelledby="tab-overview">
+
+      <div class="kit-hero">
+        <button class="btn"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-brief"></use></svg> Build brief</button>
+        <button class="btn--ghost">Save draft</button>
+        <div class="kit-cell-fixed"><div class="list-foot"><button class="btn--bare">Load 6 more themes</button></div></div>
+        <button class="btn--icon"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-close"></use></svg><span class="vh">Remove from brief</span></button>
+        <button class="btn" disabled>Import 840 items</button>
+        <p class="kit-hero-note">Live. Hover, tab to it, hold it down: this is the product's own CSS entry point</p>
+      </div>
+
+      <section class="kit-sec" id="variants">
+        <h2 class="kit-h2">Variants and states</h2>
+        <p class="kit-note">Emphasis says how much this action weighs in its zone; size says how dense the place is; state says
+          what is happening to it now. Three emphases, two sizes, five states. Every cell is the product's own rule:
+          the states are drawn from the CSS, not painted.</p>
+        <div class="kit-matrix-wrap">
+          <table class="kit-matrix" inert>
+            <thead><tr><th>Emphasis</th><th>State</th><th>Medium</th><th>Large, 0.0 only</th></tr></thead>
+            <tbody>
+              <tr><th rowspan="5">Fill<code>.btn</code></th><td class="kit-st">Rest</td>
+                <td><button class="btn">Build brief</button></td><td><button class="btn btn--lg">Start free</button></td></tr>
+              <tr><td class="kit-st">Hover</td>
+                <td><button class="btn" data-kit-st="hover">Build brief</button></td><td><button class="btn btn--lg" data-kit-st="hover">Start free</button></td></tr>
+              <tr><td class="kit-st">Pressed</td>
+                <td><button class="btn" data-kit-st="active">Build brief</button></td><td><button class="btn btn--lg" data-kit-st="active">Start free</button></td></tr>
+              <tr><td class="kit-st">Focus</td>
+                <td><button class="btn" data-kit-st="focus">Build brief</button></td><td><button class="btn btn--lg" data-kit-st="focus">Start free</button></td></tr>
+              <tr class="kit-group-end"><td class="kit-st">Disabled</td>
+                <td><button class="btn" disabled>Build brief</button></td><td><button class="btn btn--lg" disabled>Start free</button></td></tr>
+
+              <tr><th rowspan="5">Outline<code>.btn--ghost</code></th><td class="kit-st">Rest</td>
+                <td><button class="btn--ghost">Save draft</button></td><td><button class="btn--ghost btn--lg">Compare plans</button></td></tr>
+              <tr><td class="kit-st">Hover</td>
+                <td><button class="btn--ghost" data-kit-st="hover">Save draft</button></td><td><button class="btn--ghost btn--lg" data-kit-st="hover">Compare plans</button></td></tr>
+              <tr><td class="kit-st">Pressed</td>
+                <td><button class="btn--ghost" data-kit-st="active">Save draft</button></td><td><button class="btn--ghost btn--lg" data-kit-st="active">Compare plans</button></td></tr>
+              <tr><td class="kit-st">Focus</td>
+                <td><button class="btn--ghost" data-kit-st="focus">Save draft</button></td><td><button class="btn--ghost btn--lg" data-kit-st="focus">Compare plans</button></td></tr>
+              <tr class="kit-group-end"><td class="kit-st">Disabled</td>
+                <td><button class="btn--ghost" disabled>Save draft</button></td><td><button class="btn--ghost btn--lg" disabled>Compare plans</button></td></tr>
+
+              <tr><th rowspan="5">Bare<code>.btn--bare</code></th><td class="kit-st">Rest</td>
+                <td><div class="kit-cell-fixed"><div class="list-foot"><button class="btn--bare">Load 6 more themes</button></div></div></td>
+                <td rowspan="5" class="kit-cell-none">No large form, and that is a rule: a bare control has no box, so a size step would be a font size floating in a list with nothing to anchor it.</td></tr>
+              <tr><td class="kit-st">Hover</td>
+                <td><div class="kit-cell-fixed"><div class="list-foot"><button class="btn--bare" data-kit-st="hover">Load 6 more themes</button></div></div></td></tr>
+              <tr><td class="kit-st">Pressed</td>
+                <td><div class="kit-cell-fixed"><div class="list-foot"><button class="btn--bare" data-kit-st="active">Load 6 more themes</button></div></div></td></tr>
+              <tr><td class="kit-st">Focus</td>
+                <td><div class="kit-cell-fixed"><div class="list-foot"><button class="btn--bare" data-kit-st="focus">Load 6 more themes</button></div></div></td></tr>
+              <tr><td class="kit-st">Disabled</td>
+                <td><div class="kit-cell-fixed"><div class="list-foot"><button class="btn--bare" disabled>Load 6 more themes</button></div></div></td></tr>
+            </tbody>
+          </table>
         </div>
-        <div class="tbl-wrap" style="margin-top:18px"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
+      </section>
+
+      <section class="kit-sec" id="forms">
+        <h2 class="kit-h2">Other forms</h2>
+        <div class="kit-forms">
+          <div>
+            <div class="kit-form-c" inert>
+              <button class="btn--icon"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-close"></use></svg><span class="vh">Remove from brief</span></button>
+              <button class="btn--icon" data-kit-st="hover"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-close"></use></svg><span class="vh">Remove from brief</span></button>
+              <button class="btn--icon" data-kit-st="focus"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-close"></use></svg><span class="vh">Remove from brief</span></button>
+            </div>
+            <div class="kit-form-t">Icon only: rest, hover, focus</div>
+            <div class="kit-form-d"><code>.btn--icon</code> with the label in <code>.vh</code>. For a control that repeats down a list. 13 in the product, medium only: the target is already the 44px floor.</div>
+          </div>
+          <div>
+            <div class="kit-form-c" inert>
+              <button class="btn"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-evidence"></use></svg> Add to brief</button>
+            </div>
+            <div class="kit-form-t">Icon and label</div>
+            <div class="kit-form-d"><code>svg.ic</code> before the label. A leading icon promises "acts here". 12 in the product.</div>
+          </div>
+          <div>
+            <div class="kit-form-c" inert>
+              <div class="kit-cell-fixed"><button class="btn u-full">Log in</button></div>
+            </div>
+            <div class="kit-form-t">Full width is layout</div>
+            <div class="kit-form-d">The same button in a one-column container, with <code>.u-full</code> from base.css. Not a variant.</div>
+          </div>
+          <div>
+            <div class="kit-form-c" inert>
+              <button class="btn--ghost u-apart">Disable link</button>
+              <button class="btn--ghost">Done</button>
+            </div>
+            <div class="kit-form-t">Held apart</div>
+            <div class="kit-form-d">A destructive action in a dialog takes <code>.u-apart</code> and the outline, never the place beside the confirm. 6.3 Share link.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="props">
+        <h2 class="kit-h2">Properties</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Property</th><th>Type</th><th>Values</th><th>Default</th></tr></thead><tbody>
+          <tr><td>Emphasis</td><td>variant</td><td>fill <code>.btn</code> &middot; outline <code>.btn--ghost</code> &middot; bare <code>.btn--bare</code></td><td>none: one class is required</td></tr>
+          <tr><td>Size</td><td>variant</td><td>medium, no class &middot; large <code>.btn--lg</code>, 0.0 only</td><td>medium</td></tr>
+          <tr><td>Leading icon</td><td>slot</td><td><code>svg.ic</code> before the label, 15px</td><td>empty</td></tr>
+          <tr><td>Icon only</td><td>own class</td><td><code>.btn--icon</code>, label in <code>.vh</code></td><td>no</td></tr>
+          <tr><td>Width</td><td>layout, not a property</td><td><code>.u-full</code> from base.css</td><td>auto</td></tr>
+          <tr><td>State</td><td>variant</td><td>rest &middot; hover &middot; pressed &middot; focus-visible &middot; disabled</td><td>rest</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="when">
+        <h2 class="kit-h2">How to use it</h2>
+        <div class="kit-when">
+          <div>
+            <h3>When</h3>
+            <p>Where the person acts. <b>One filled button per zone, and it is the next move</b>: the fourth design
+              principle, one decision at a time. Every other real action in the zone takes the outline.</p>
+            <p>The label is a verb and its object from <code>voice/docs/microcopy.md</code>: "Build brief", "Import 840
+              items". A count in a label tells the person what they are about to commit to.</p>
+          </div>
+          <div>
+            <h3>When not</h3>
+            <ul>
+              <li>To go somewhere: take <code>.link</code>. A button acts, a link travels.</li>
+              <li>For "Clear filters": take <code>.link--action</code>, a text action with a control's target.</li>
+              <li>To make it wide: take <code>.u-full</code>, never a new variant.</li>
+              <li>For a bare "OK", an exclamation mark or "just": the voice rules forbid all three.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="kit-dodont">
+          <div class="kit-dd kit-dd--do">
+            <div class="kit-dd-c" inert>
+              <span class="kit-dd-aside">2 themes selected</span>
+              <button class="btn--ghost">Set priority</button>
+              <button class="btn">Add to brief</button>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do</div><div class="kit-dd-t">One filled action in the zone</div>
+              <div class="kit-dd-d">The move the person came to make. Everything else that is a real action takes the outline.</div></div>
+          </div>
+          <div class="kit-dd kit-dd--dont">
+            <div class="kit-dd-c" inert>
+              <button class="btn">Add to brief</button>
+              <button class="btn">Set priority</button>
+              <button class="btn">Export</button>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do not</div><div class="kit-dd-t">Three filled buttons in one zone</div>
+              <div class="kit-dd-d">Not three important actions: a zone with no decision in it. The screen stops saying what to do next.</div></div>
+          </div>
+          <div class="kit-dd kit-dd--do">
+            <div class="kit-dd-c" inert>
+              <button class="btn--ghost u-apart">Disable link</button>
+              <button class="btn--ghost">Done</button>
+              <button class="btn">See what they see</button>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do</div><div class="kit-dd-t">Hold the destructive action apart</div>
+              <div class="kit-dd-d">The dialog on 6.3 keeps "Disable link" away from the confirm, where the hand is not already going.</div></div>
+          </div>
+          <div class="kit-dd kit-dd--dont">
+            <div class="kit-dd-c" inert>
+              <div class="kit-cell-fixed"><button class="btn--bare">Clear filters</button></div>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do not</div><div class="kit-dd-t">A bare button for a text action</div>
+              <div class="kit-dd-d">That fold happened at Stage 07: the old <code>.clear</code> was a fourth emphasis until the census counted it. It is <code>.link--action</code> now.</div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="where">
+        <h2 class="kit-h2">Where it stands</h2>
+        <p class="kit-note">Every screen of the product: 67 filled, 33 outlined, 4 bare, 13 icon-only, 11 large across the 38
+          wireframes. The ones already in colour:</p>
+        <div class="kit-where">
+          <a href="../index.html">0.0 Home</a>
+          <a href="../synthesis.html">2.0 Synthesis</a>
+          <a href="../sources.html">3.0 Sources</a>
+          <a href="../connect-csv.html">3.2 Import a CSV</a>
+          <a href="../theme.html">4.0 Theme detail</a>
+          <a href="../briefs.html">6.0 Briefs</a>
+          <a href="../build-brief.html">6.1 Build brief</a>
+          <a href="../share-link.html">6.3 Share link</a>
+          <a href="../account-data.html">7.2 Data and privacy</a>
+          <a href="../../wireframes/overview.html">the rest, in grey</a>
+        </div>
+      </section>
+    </div>
+
+    <!-- ================================================================ TECHNICAL -->
+    <div class="kit-tabpanel" role="tabpanel" id="tech" aria-labelledby="tab-tech">
+
+      <section class="kit-sec" id="anatomy">
+        <h2 class="kit-h2">Anatomy</h2>
+        <p class="kit-note">Three zones, and two of them are optional. The label is not.</p>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
           <tr><td>the box</td><td><code>.btn</code>, <code>.btn--ghost</code>, <code>.btn--bare</code></td><td>44px floor, 6px radius, the one easing. Shared by all three emphases; they part on ink and ground only</td></tr>
           <tr><td>icon, leading</td><td><code>svg.ic</code> inside the button</td><td>15px, and it means "acts here". A trailing glyph would mean "leads away from here", and this product does not use one on a button</td></tr>
           <tr><td>label</td><td>the text node</td><td>A verb and its object, from <code>voice/docs/microcopy.md</code>. Never a bare "OK"</td></tr>
           <tr><td>the hidden name</td><td><code>.vh</code> inside <code>.btn--icon</code></td><td>Icon-only controls keep their name for a screen reader. It is not optional</td></tr>
         </tbody></table></div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ============ 2. VARIANTS AND SIZES ============ -->
-    <section class="kit-sec" id="variants">
-      <h2 class="kit-h2">Variants and sizes</h2>
-      <p class="kit-lead">The axes from the consolidation, with the rule that chooses on each one.
-        A matrix without its rules is a table of facts from which everybody invents a reason
-        again.</p>
+      <section class="kit-sec" id="axes">
+        <h2 class="kit-h2">Axes, with the rule that chooses</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
+          <tr><td>emphasis</td><td>fill 67 &middot; outline 33 &middot; bare 4</td><td><b>One filled button per zone, and it is the next move.</b> Two filled buttons in one zone is not a strong screen, it is a screen that has not decided</td></tr>
+          <tr><td>content</td><td>label 55 &middot; icon plus label 12 &middot; icon only 13</td><td><b>A leading icon promises "acts here".</b> Icon-only is for a control that repeats down a list, where a label would be read fifty times to say one thing</td></tr>
+          <tr><td>size</td><td>medium 116 &middot; large 11</td><td><b>Size is given by the density of the place, never by the importance of the action.</b> Large exists on 0.0 alone, which is the one screen read by somebody who has not decided to read it</td></tr>
+          <tr><td>width</td><td><b>not an axis</b></td><td>100% against auto is layout. A full-width button is the same button in a one-column container, and it takes <code>.u-full</code> from base.css</td></tr>
+        </tbody></table></div>
+        <p class="kit-note">Every number is read from the rendered product rather than from the first declaration in the
+          stylesheet. A class can carry two steps, and a cell that is true about the CSS and false about the screen is worse
+          than an empty one, because it looks checked.</p>
+      </section>
 
-      <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
-        <tr><td>emphasis</td><td>fill 67 &middot; outline 33 &middot; bare 4</td><td><b>One filled button per zone, and it is the next move.</b> Two filled buttons in one zone is not a strong screen, it is a screen that has not decided</td></tr>
-        <tr><td>content</td><td>label 55 &middot; icon plus label 12 &middot; icon only 13</td><td><b>A leading icon promises "acts here".</b> Icon-only is for a control that repeats down a list, where a label would be read fifty times to say one thing</td></tr>
-        <tr><td>size</td><td>medium 116 &middot; large 11</td><td><b>Size is given by the density of the place, never by the importance of the action.</b> Large exists on 0.0 alone, which is the one screen read by somebody who has not decided to read it</td></tr>
-        <tr><td>width</td><td><b>not an axis</b></td><td>100% against auto is layout. A full-width button is the same button in a one-column container, and it takes <code>.u-full</code> from base.css</td></tr>
-      </tbody></table></div>
+      <section class="kit-sec" id="tokens">
+        <h2 class="kit-h2">Tokens it reads</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Reads</th><th>Which grows from</th><th>For</th></tr></thead><tbody>
+          <tr><td><code>--bg-action</code></td><td><code>--cyan-400</code>, plate B pixel</td><td>the ground of the filled button</td></tr>
+          <tr><td><code>--text-on-action</code></td><td><code>--grey-950</code> dark, <code>--grey-000</code> light</td><td>the ink ON it. Its own role, not the page colour: a theme that lightens the page must not lighten this</td></tr>
+          <tr><td><code>--bg-action-hover</code></td><td><code>--cyan-300</code> dark, <code>--cyan-800</code> light</td><td>the hover of the filled button. The pair moves in opposite directions</td></tr>
+          <tr><td><code>--line-control</code></td><td><code>--grey-600</code></td><td>the boundary of the outlined button. Raised at the Step 4 review to clear 3:1</td></tr>
+          <tr><td><code>--line-hover</code>, <code>--bg-hover</code></td><td><code>--grey-400</code>, <code>--grey-900</code></td><td>outline and bare, under the pointer</td></tr>
+          <tr><td><code>--line-focus</code></td><td>drawn once in base.css</td><td>the one focus ring the whole product uses. A component that redraws it is a second focus style</td></tr>
+          <tr><td><code>--opacity-disabled</code></td><td>0.45 dark, 0.50 light</td><td>disabled. Not a colour</td></tr>
+        </tbody></table></div>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>State</th><th>Token it reads</th><th>What moves</th></tr></thead><tbody>
+          <tr><td>hover</td><td><code>--bg-action-hover</code> (fill), <code>--line-hover</code> and <code>--bg-hover</code> (outline, bare)</td><td>The ground and the line. Never the geometry: a border appearing on hover moves the neighbours by a pixel, and that is the jump</td></tr>
+          <tr><td>pressed</td><td>back to <code>--bg-action</code> / <code>--bg-hover</code></td><td>The press reads as a return, not as a third colour</td></tr>
+          <tr><td>focus-visible</td><td><code>--line-focus</code></td><td>The ring from base.css, keyboard only</td></tr>
+          <tr><td>disabled</td><td><code>--opacity-disabled</code></td><td>Dimmed, never repainted by hand: the control keeps its identity and loses its weight</td></tr>
+        </tbody></table></div>
+        <p class="kit-note">The filled hover used to be <code class="kit-mono">filter: brightness(1.08)</code>, the one state in this
+          product written as a style. It is <code class="kit-mono">--bg-action-hover</code> now, and it arrived in both themes at once.</p>
+      </section>
 
-      <div class="scene">
-        <div class="scene-label">emphasis, medium</div>
-        <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
-          <button class="btn">Build brief</button>
-          <button class="btn--ghost">Save draft</button>
-          <button class="btn--bare" style="width:auto">Load 6 more themes</button>
-        </div>
-        <div class="scene-label" style="margin-top:22px">emphasis, large. 0.0 only</div>
-        <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
-          <button class="btn btn--lg">Start free</button>
-          <button class="btn--ghost btn--lg">Compare plans</button>
-          <span class="geo-cap" style="margin:0">bare has no large form: see the empty cell below</span>
-        </div>
-        <div class="scene-label" style="margin-top:22px">content</div>
-        <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
-          <button class="btn">Import 840 items</button>
-          <button class="btn"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-evidence"></use></svg> Add to brief</button>
-          <button class="btn--icon"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-close"></use></svg><span class="vh">Remove from brief</span></button>
-        </div>
-        <div class="scene-label" style="margin-top:22px">width is layout: the same button, in a one-column container</div>
-        <div style="max-width:300px"><button class="btn u-full">Log in</button></div>
-      </div>
-
-      <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>&nbsp;</th><th>medium</th><th>large</th><th>where it stands</th></tr></thead><tbody>
-        <tr><td>fill</td><td>yes, 116</td><td>yes, 11</td><td>every screen. 0.0 for large</td></tr>
-        <tr><td>outline</td><td>yes</td><td>yes</td><td>3.0, 3.2, 6.0, 6.1, 6.3, 7.2, 0.0</td></tr>
-        <tr><td>bare</td><td>yes, 4</td><td><b>empty, and it is a prohibition:</b> a bare control has no box, so a size step would be a font size floating in a list with nothing to anchor it. Load more is the whole population of this cell</td><td>2.0, 4.0</td></tr>
-        <tr><td>icon only</td><td>yes, 13</td><td><b>empty, and it is a prohibition:</b> the target is already at the 44px floor, and a larger one would be a bigger hit area for a control that repeats down a list</td><td>6.1, 6.2</td></tr>
-      </tbody></table></div>
-      <p class="kit-note">Every number in the matrix is read from the rendered product rather than
-        from the first declaration in the stylesheet. A class can carry two steps, and a cell that
-        is true about the CSS and false about the screen is worse than an empty one, because it
-        looks checked.</p>
-    </section>
-
-    <!-- ============ 3. WHEN TO USE IT ============ -->
-    <section class="kit-sec" id="when">
-      <h2 class="kit-h2">When to use it</h2>
-      <p class="kit-lead">A button is where the person acts, and in this product that is the whole
-        point of the fourth design principle: <b>one decision at a time.</b> Every screen has
-        exactly one primary action at rest, and the product enforces it in CSS rather than by
-        convention: while the selection bar is up, the screen head's action is gone.</p>
-      <p class="kit-lead">The label is a verb and its object, taken from
-        <code class="kit-mono">voice/docs/microcopy.md</code>: "Build brief", "Import 840 items",
-        "Generate share link". The voice rules forbid a bare "OK", an exclamation mark, and the
-        word "just". A count inside a label is not decoration: "Import 840 items" tells the person
-        what they are about to commit to, which is the same promise the confidence indicator makes
-        one screen earlier.</p>
-      <p class="kit-lead">The person meeting this control is a product manager under time pressure,
-        often minutes before a meeting (persona D1, the Overloaded PM). That is why the filled
-        button is reserved so hard: on a dense screen, two of them cost a decision.</p>
-    </section>
-
-    <!-- ============ 4. RULE AND ANTI-RULE ============ -->
-    <section class="kit-sec" id="rules">
-      <h2 class="kit-h2">Rule and anti-rule</h2>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-top:18px">
-        <div class="scene">
-          <div class="scene-label" style="color:var(--text-evidence)">rule</div>
-          <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:12px">
-            <span style="font-size:12.5px;color:var(--text-secondary);margin-right:auto">2 themes selected</span>
-            <button class="btn--ghost">Set priority</button>
-            <button class="btn">Add to brief</button>
-          </div>
-          <p class="kit-note">One filled action in the zone, and it is the move the person came to
-            make. Everything else that is a real action takes the outline.</p>
-        </div>
-        <div class="scene">
-          <div class="scene-label" style="color:var(--text-danger)">anti-rule</div>
-          <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:12px">
-            <button class="btn">Add to brief</button>
-            <button class="btn">Set priority</button>
-            <button class="btn">Export</button>
-          </div>
-          <p class="kit-note">Three filled buttons is not three important actions, it is a zone
-            with no decision in it. The screen stops saying what to do next, which is the one thing
-            it is for.</p>
-        </div>
-      </div>
-      <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>If you are about to</th><th>Take instead</th><th>Why</th></tr></thead><tbody>
-        <tr><td>use a button to go somewhere</td><td><code>.link</code>, the inline text link</td><td>A button acts, a link travels. The product's breadcrumb, its footers and its legal TOC are all links, and none of them is a button that happens to navigate</td></tr>
-        <tr><td>use a bare button for "Clear filters"</td><td><code>.link--action</code></td><td>A text action with a control's target. This exact fold happened at Stage 07: the old <code>.clear</code> was a fourth button emphasis until the census counted it</td></tr>
-        <tr><td>make a button full width by declaring a variant</td><td><code>.u-full</code> from base.css</td><td>Width is layout. The auth screen's full-width button and the composer's inline one are the same button</td></tr>
-        <tr><td>put a destructive action beside the primary one</td><td><code>.u-apart</code> and the outline emphasis</td><td>The dialog on 6.3 and 3.6 holds "Disable link" and "Disconnect" apart from the confirm. A destructive action never sits where the hand is already going</td></tr>
-      </tbody></table></div>
-    </section>
-
-    <!-- ============ 5. STATES ============ -->
-    <section class="kit-sec" id="states">
-      <h2 class="kit-h2">States</h2>
-      <p class="kit-lead">Four, and every one of them is a token override rather than a style. The
-        filled hover used to be <code class="kit-mono">filter: brightness(1.08)</code>, which was
-        the one state in this product written as a style: it is
-        <code class="kit-mono">--bg-action-hover</code> now, and it arrived in both themes at once.</p>
-
-      <div class="scene" id="live">
-        <div class="scene-label">rest, live. Hover it, tab to it, hold it down. This is the same
-          CSS entry point a product screen links, so what happens here happens there</div>
-        <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
-          <button class="btn">Build brief</button>
-          <button class="btn--ghost">Save draft</button>
-          <button class="btn--bare" style="width:auto">Load 6 more themes</button>
-          <button class="btn" disabled>Import 840 items</button>
-        </div>
-      </div>
-
-      <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>State</th><th>Token it reads</th><th>What moves</th></tr></thead><tbody>
-        <tr><td>hover</td><td><code>--bg-action-hover</code> (fill), <code>--line-hover</code> and <code>--bg-hover</code> (outline, bare)</td><td>The ground and the line. Never the geometry: a border appearing on hover moves the neighbours by a pixel, and that is the jump</td></tr>
-        <tr><td>active</td><td>back to <code>--bg-action</code> / <code>--bg-hover</code></td><td>The press reads as a return, not as a third colour</td></tr>
-        <tr><td>focus-visible</td><td><code>--line-focus</code>, drawn once in base.css</td><td>The one ring the whole product uses. A component that redraws it is a second focus style</td></tr>
-        <tr><td>disabled</td><td><code>--opacity-disabled</code></td><td>Dimmed, never repainted by hand: the control keeps its identity and loses its weight</td></tr>
-      </tbody></table></div>
-
-      <div class="scene">
-        <div class="scene-label">the four states, both themes, snapshots</div>
-        <div id="shots" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px">
-          <figure><img src="screens/button-hover-dark.png" alt="hover, dark" style="width:100%;border:1px solid var(--line-hairline);border-radius:var(--radius-md)"><figcaption class="geo-cap">hover &middot; dark</figcaption></figure>
-          <figure><img src="screens/button-hover-light.png" alt="hover, light" style="width:100%;border:1px solid var(--line-hairline);border-radius:var(--radius-md)"><figcaption class="geo-cap">hover &middot; light</figcaption></figure>
-          <figure><img src="screens/button-active-dark.png" alt="active, dark" style="width:100%;border:1px solid var(--line-hairline);border-radius:var(--radius-md)"><figcaption class="geo-cap">active &middot; dark</figcaption></figure>
-          <figure><img src="screens/button-active-light.png" alt="active, light" style="width:100%;border:1px solid var(--line-hairline);border-radius:var(--radius-md)"><figcaption class="geo-cap">active &middot; light</figcaption></figure>
-          <figure><img src="screens/button-focus-dark.png" alt="focus-visible, dark" style="width:100%;border:1px solid var(--line-hairline);border-radius:var(--radius-md)"><figcaption class="geo-cap">focus-visible &middot; dark</figcaption></figure>
-          <figure><img src="screens/button-focus-light.png" alt="focus-visible, light" style="width:100%;border:1px solid var(--line-hairline);border-radius:var(--radius-md)"><figcaption class="geo-cap">focus-visible &middot; light</figcaption></figure>
-          <figure><img src="screens/button-disabled-dark.png" alt="disabled, dark" style="width:100%;border:1px solid var(--line-hairline);border-radius:var(--radius-md)"><figcaption class="geo-cap">disabled &middot; dark</figcaption></figure>
-          <figure><img src="screens/button-disabled-light.png" alt="disabled, light" style="width:100%;border:1px solid var(--line-hairline);border-radius:var(--radius-md)"><figcaption class="geo-cap">disabled &middot; light</figcaption></figure>
-        </div>
-        <p class="kit-note" style="margin-top:14px"><b>Eight snapshots, and eight named
-          differences.</b> Four states by two themes, taken on the whole family at once so the
-          delta between fill, outline and bare is visible in one frame rather than in three. A
-          snapshot here is a measurement and not an illustration: Step 9 checks them for byte
-          drift, and a snapshot nobody re-takes freezes silently, which is worse than none.<br>
+      <section class="kit-sec" id="shots">
+        <h2 class="kit-h2">Snapshots, taken with a real pointer</h2>
+        <p class="kit-note"><b>The matrix on Overview is derived; these are measured.</b> The matrix is drawn by
+          <code class="kit-mono">_states.js</code>, which copies every <code class="kit-mono">:hover</code>,
+          <code class="kit-mono">:active</code> and <code class="kit-mono">:focus-visible</code> rule of design/system/ onto an
+          attribute that exists only inside the inert matrix. These eight frames are the same states reached by a real
+          mouse and a real Tab key. Step 9 compares the two and checks the frames for byte drift.<br>
           Re-take: <code class="kit-mono">node scripts/shoot-states.js button</code></p>
-      </div>
-    </section>
+        <div class="kit-forms">
+          <figure><img src="screens/button-hover-dark.png" alt="hover, dark theme" class="kit-shot"><figcaption class="geo-cap">hover &middot; dark</figcaption></figure>
+          <figure><img src="screens/button-hover-light.png" alt="hover, light theme" class="kit-shot"><figcaption class="geo-cap">hover &middot; light</figcaption></figure>
+          <figure><img src="screens/button-active-dark.png" alt="pressed, dark theme" class="kit-shot"><figcaption class="geo-cap">pressed &middot; dark</figcaption></figure>
+          <figure><img src="screens/button-active-light.png" alt="pressed, light theme" class="kit-shot"><figcaption class="geo-cap">pressed &middot; light</figcaption></figure>
+          <figure><img src="screens/button-focus-dark.png" alt="focus-visible, dark theme" class="kit-shot"><figcaption class="geo-cap">focus-visible &middot; dark</figcaption></figure>
+          <figure><img src="screens/button-focus-light.png" alt="focus-visible, light theme" class="kit-shot"><figcaption class="geo-cap">focus-visible &middot; light</figcaption></figure>
+          <figure><img src="screens/button-disabled-dark.png" alt="disabled, dark theme" class="kit-shot"><figcaption class="geo-cap">disabled &middot; dark</figcaption></figure>
+          <figure><img src="screens/button-disabled-light.png" alt="disabled, light theme" class="kit-shot"><figcaption class="geo-cap">disabled &middot; light</figcaption></figure>
+        </div>
+      </section>
 
-    <!-- ============ technical ============ -->
-    <section class="kit-sec" id="tech">
-      <h2 class="kit-h2">The file, the tokens, the markup</h2>
-      <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Reads</th><th>Which grows from</th><th>For</th></tr></thead><tbody>
-        <tr><td><code>--bg-action</code></td><td><code>--cyan-400</code>, plate B pixel</td><td>the ground of the filled button</td></tr>
-        <tr><td><code>--text-on-action</code></td><td><code>--grey-950</code> dark, <code>--grey-000</code> light</td><td>the ink ON it. Its own role, not the page colour: a theme that lightens the page must not lighten this</td></tr>
-        <tr><td><code>--bg-action-hover</code></td><td><code>--cyan-300</code> dark, <code>--cyan-800</code> light</td><td>the hover of the filled button. The pair moves in opposite directions</td></tr>
-        <tr><td><code>--line-control</code></td><td><code>--grey-600</code></td><td>the boundary of the outlined button. Raised at the Step 4 review to clear 3:1</td></tr>
-        <tr><td><code>--line-hover</code>, <code>--bg-hover</code></td><td><code>--grey-400</code>, <code>--grey-900</code></td><td>outline and bare, under the pointer</td></tr>
-        <tr><td><code>--opacity-disabled</code></td><td>0.45 dark, 0.50 light</td><td>disabled. Not a colour</td></tr>
-      </tbody></table></div>
-      <div class="scene">
-        <div class="scene-label">copy this</div>
-        <pre style="font-family:var(--font-mono);font-size:12px;color:var(--text-secondary);line-height:1.8;overflow-x:auto">&lt;button class="btn"&gt;Build brief&lt;/button&gt;
+      <section class="kit-sec" id="markup">
+        <h2 class="kit-h2">Copy this</h2>
+        <div class="scene">
+          <pre class="kit-pre">&lt;button class="btn"&gt;Build brief&lt;/button&gt;
 &lt;button class="btn--ghost"&gt;Save draft&lt;/button&gt;
 &lt;div class="list-foot"&gt;&lt;button class="btn--bare"&gt;Load 6 more themes&lt;/button&gt;&lt;/div&gt;
 &lt;button class="btn--icon"&gt;&lt;svg class="ic"&gt;&lt;use href="#i-close"&gt;&lt;/use&gt;&lt;/svg&gt;&lt;span class="vh"&gt;Remove&lt;/span&gt;&lt;/button&gt;
 &lt;a class="btn btn--lg" href="#"&gt;Start free&lt;/a&gt;</pre>
-      </div>
-      <p class="kit-note">Stands on: <a href="../synthesis.html">2.0 Synthesis</a>,
-        <a href="../sources.html">3.0 Sources</a>, <a href="../connect-csv.html">3.2 Import a CSV</a>,
-        <a href="../theme.html">4.0 Theme detail</a>, <a href="../briefs.html">6.0 Briefs</a>,
-        <a href="../build-brief.html">6.1 Build brief</a>, <a href="../share-link.html">6.3 Share link</a>,
-        <a href="../account-data.html">7.2 Data and privacy</a>, <a href="../index.html">0.0 Home</a>.</p>
-    </section>
+        </div>
+        <p class="kit-note">File: <code class="kit-mono">design/system/components/button.css</code>, imported in the atoms group of
+          <code class="kit-mono">design/system/index.css</code>. The bare button lives in <code class="kit-mono">.list-foot</code>,
+          which is a flex container on purpose: an inline-flex button in a block parent sits on a line box, and the line box
+          adds a pixel under the list.</p>
+      </section>
+    </div>
 
-    <footer class="kit-foot">
-      <span>Level 1 &middot; Atom &middot; button.css</span>
-      <a href="overview.html">The whole system</a>
-      <a href="architecture.html">Architecture</a>
-      <a href="../overview.html">The product</a>
-    </footer>
+    <!-- ================================================================ HISTORY -->
+    <div class="kit-tabpanel" role="tabpanel" id="history" aria-labelledby="tab-history">
+      <section class="kit-sec">
+        <h2 class="kit-h2">Changes, newest first</h2>
+        <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-20</td><td>The page moved to the card format: Overview, Technical, History. The states became a live matrix drawn from the product's own rules; the snapshots moved to Technical as the measurement beside it</td><td><code>docs/decisions.md</code>, "The showcase is read by purpose"</td></tr>
+          <tr><td>2026-08-19</td><td>Split out of the flat kit into <code>components/button.css</code>. The filled hover went from <code>filter: brightness(1.08)</code> to the token pair <code>--bg-action-hover</code>. This page became the etalon of Step 5</td><td>commit <code>3ebbae1</code></td></tr>
+          <tr><td>2026-08-19</td><td><code>--line-control</code> raised to clear 3:1 in both themes: the outlined button got a brighter boundary</td><td><code>docs/tokens-audit.md</code>, Step 4 review</td></tr>
+          <tr><td>2026-08-18</td><td>The load-more row became a bare button inside <code>.list-foot</code>, and <code>.list-foot</code> became a flex container to drop the line-box pixel</td><td><code>docs/decisions.md</code>, "The kit was proved on the seed screens"</td></tr>
+          <tr><td>2026-08-18</td><td>The family closed from four undeclared overrides to six declared forms. Width left the size axis for <code>.u-full</code>; "Clear filters" folded into the inline link</td><td><code>docs/decisions.md</code>, "The kit grew out of the colour layer"</td></tr>
+        </tbody></table></div>
+      </section>
+    </div>
+
+    <div id="kit-pager"></div>
+
   </main>
 </div>
 
@@ -248,5 +340,6 @@
 </defs></svg>
 
 <script src="_nav.js"></script>
+<script src="_states.js"></script>
 </body>
 </html>
