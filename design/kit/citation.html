@@ -12,12 +12,12 @@
 <link rel="stylesheet" href="_page.css">
 </head>
 <!--
-  design/kit/citation.html - Stage 08 Step 5, level 1.
+  design/kit/citation.html - a component page in the card format of 2026-11-20 (template: button.html).
 
-  Links ../system/index.css, the same entry point a product screen links, so the page cannot
-  drift from the product: it does not show a copy of the component, it shows the component.
+  OVERVIEW for the person placing the component, TECHNICAL for the person changing it, HISTORY
+  with the record of each change. The page links ../system/index.css, the same entry point a
+  product screen links.
 
-  Five blocks: anatomy, variants, when to use it, rule and anti-rule, states.
   No em dash anywhere.
 -->
 <body>
@@ -25,99 +25,179 @@
   <div id="kit-panel"></div>
   <main class="kit-main">
 
-    <div class="kit-eyebrow">Level 1 &middot; Atom</div>
-    <h1 class="kit-h1">Citation marker</h1>
-    <p class="kit-lead">Where the accent goes on a document. Attribute A2 signs cyan as the evidence marker, and on a page with no action to spend it on, the citation IS the trust surface.</p>
-    <p class="kit-lead"><code class="kit-mono">design/system/components/citation.css</code> &middot; 4.0, 4.1, 5.0, 5.1, 6.4. 25 static, 6 linked.</p>
+    <div id="kit-crumbs"></div>
+    <div id="kit-head"></div>
 
-    <section class="kit-sec" id="anatomy">
-      <h2 class="kit-h2">Anatomy</h2>
-      <div class="scene">
-        <p style="font-size:14.5px;line-height:1.8;color:var(--text-primary);max-width:70ch">New users cannot tell what to do first <span class="cited"><a class="citechip" href="#">Intercom +11</a>,</span> and the empty first-run screen is the most cited single point of friction <span class="cited"><a class="citechip" href="#">Intercom +8</a>.</span></p>
-        <div style="margin-top:16px;display:flex;gap:12px;align-items:center"><span class="cite">3</span><span style="font-size:13px;color:var(--text-secondary)">the static index, inside the public document</span></div>
+    <div class="kit-tabs" role="tablist" aria-label="Citation marker page">
+      <button class="kit-tab" role="tab" id="tab-overview" aria-controls="overview" aria-selected="true">Overview</button>
+      <button class="kit-tab" role="tab" id="tab-tech" aria-controls="tech" aria-selected="false" tabindex="-1">Technical</button>
+      <button class="kit-tab" role="tab" id="tab-history" aria-controls="history" aria-selected="false" tabindex="-1">History</button>
+    </div>
+
+    <!-- ================================================================ OVERVIEW -->
+    <div class="kit-tabpanel" role="tabpanel" id="overview" aria-labelledby="tab-overview">
+
+      <div class="kit-hero">
+        <p>New users cannot tell what to do first <span class="cited"><a class="citechip" href="#">Intercom +11</a>,</span> and the empty first-run screen is the most cited single point of friction <span class="cited"><a class="citechip" href="#">Intercom +8</a>.</span></p>
+        <span class="cite">3</span>
+        <p class="kit-hero-note">Live</p>
       </div>
-      <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
-        <tr><td>the static index</td><td><code>.cite</code></td><td>A number that ties a claim to a line in the citation list below it. Inside a document, where there is nothing to click through to</td></tr>
-        <tr><td>the linked chip</td><td><code>.citechip</code></td><td>Names the SOURCE and how many items stand behind it, so diversity is legible without a click, and resolves into the evidence list</td></tr>
-        <tr><td>the tie</td><td><code>.cited</code></td><td>A wrapper that keeps the chip and the sentence punctuation on one line. A chip is an atomic inline, so without it a line can open with a stray full stop</td></tr>
-      </tbody></table></div>
-    </section>
+      <p class="kit-note">The linked chip hovers and takes focus; the static index (the 3) is a mark, not a control.</p>
 
-    <section class="kit-sec" id="variants">
-      <h2 class="kit-h2">Variants</h2>
-      <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
-        <tr><td>behaviour</td><td>static 25 &middot; linked 6</td><td><b>Linked where there is somewhere to go.</b> Inside the public brief the reader has no app to open, so the citation resolves downward on the same page</td></tr>
-        <tr><td>target</td><td><b>exempt from 44px</b></td><td>A citation chip sits inside running text, and WCAG exempts inline links there for the reason this product also accepts: enlarging them would break the line</td></tr>
-      </tbody></table></div>
+      <section class="kit-sec" id="variants">
+        <h2 class="kit-h2">Variants and states</h2>
+        <p class="kit-note">Two behaviours of one component: static 25 &middot; linked 6. Only the linked chip is interactive, so only it has hover and focus-visible.
+          The static index has no states: it is a mark, not a control. The linked chip is exempt from the 44px floor.</p>
+        <div class="kit-matrix-wrap">
+          <table class="kit-matrix" inert>
+            <thead><tr><th>Behaviour</th><th>State</th><th>Specimen</th></tr></thead>
+            <tbody>
+              <tr><th rowspan="3">Linked chip<code>.citechip</code></th><td class="kit-st">Rest</td>
+                <td><a class="citechip" href="#">Intercom +11</a></td></tr>
+              <tr><td class="kit-st">Hover</td>
+                <td><a class="citechip" href="#" data-kit-st="hover">Intercom +11</a></td></tr>
+              <tr class="kit-group-end"><td class="kit-st">Focus</td>
+                <td><a class="citechip" href="#" data-kit-st="focus">Intercom +11</a></td></tr>
+              <tr><th rowspan="3">Static index<code>.cite</code></th><td class="kit-st">Rest</td>
+                <td><span class="cite">3</span></td></tr>
+              <tr><td class="kit-st">Hover</td>
+                <td rowspan="2" class="kit-cell-none">No hover, focus or pressed state: a static index is a mark, not a control, and there is nothing to click through to inside the public document.</td></tr>
+              <tr><td class="kit-st">Focus</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
 
-    </section>
+      <section class="kit-sec" id="props">
+        <h2 class="kit-h2">Properties</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Property</th><th>Type</th><th>Values</th><th>Default</th></tr></thead><tbody>
+          <tr><td>Behaviour</td><td>variant</td><td>static index <code>.cite</code> &middot; linked chip <code>.citechip</code></td><td>none: one class is required</td></tr>
+          <tr><td>Tie</td><td>wrapper</td><td><code>.cited</code> around a chip and its punctuation</td><td>absent</td></tr>
+          <tr><td>Label</td><td>content</td><td>the chip names the source and the count: "Intercom +11"</td><td>required</td></tr>
+          <tr><td>Target size</td><td>exemption</td><td>exempt from the 44px floor, inside running text</td><td>exempt</td></tr>
+          <tr><td>State</td><td>variant</td><td>linked only: rest &middot; hover &middot; focus-visible. Static: none</td><td>rest</td></tr>
+        </tbody></table></div>
+      </section>
 
-    <section class="kit-sec" id="when">
-      <h2 class="kit-h2">When to use it</h2>
-      <p class="kit-lead">On every claim the synthesis makes. This is the component that makes the fifth design principle real: traceable or it does not exist. A summary sentence without one is a sentence this product is not allowed to print.</p>
-      <p class="kit-lead">It carries the SOURCE and the COUNT rather than just a number, which is a deliberate difference from an academic footnote: "Intercom +11" tells a sceptical reader both where the evidence came from and how much of it there is, before they decide whether to open it.</p>
-    </section>
+      <section class="kit-sec" id="when">
+        <h2 class="kit-h2">How to use it</h2>
+        <div class="kit-when">
+          <div>
+            <h3>When</h3>
+            <p>On every claim the synthesis makes. This is the component that makes the fifth design principle real: traceable or it does not exist. A summary sentence without one is a sentence this product is not allowed to print.</p>
+            <p>It carries the SOURCE and the COUNT rather than just a number, which is a deliberate difference from an academic footnote: "Intercom +11" tells a sceptical reader both where the evidence came from and how much of it there is, before they decide whether to open it.</p>
+          </div>
+          <div>
+            <h3>When not</h3>
+            <ul>
+              <li>To show the size of a theme: take <code>.conf</code>. Confidence counts a theme; a citation ties one clause.</li>
+              <li>To link out of a sentence to a page: take <code>.link</code>. A citation resolves to evidence inside the product; a link travels.</li>
+              <li>To mark a quote as coming from somewhere: take the meta line of <code>.snippet</code>. The snippet carries its own provenance in words.</li>
+            </ul>
+          </div>
+        </div>
 
-    <section class="kit-sec" id="rules">
-      <h2 class="kit-h2">Rule and anti-rule</h2>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-top:18px">
-        <div class="scene"><div class="scene-label" style="color:var(--text-evidence)">rule</div><p style="font-size:14px;line-height:1.8;color:var(--text-primary);max-width:44ch">Several accounts abandoned setup entirely <span class="cited"><a class="citechip" href="#">Intercom +4</a>.</span></p>
-          <p class="kit-note">One clause, one citation, and the citation names its source and its size.</p></div>
-        <div class="scene"><div class="scene-label" style="color:var(--text-danger)">anti-rule</div><p style="font-size:14px;line-height:1.8;color:var(--text-primary);max-width:44ch">Several accounts abandoned setup entirely <a class="citechip" href="#">1</a> <a class="citechip" href="#">2</a> <a class="citechip" href="#">3</a>.</p>
-          <p class="kit-note">Three bare indices. They say a claim has support without saying from where or how much, which is the shape of a footnote rather than of evidence.</p></div>
-      </div>
-      <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>If you are about to</th><th>Take instead</th><th>Why</th></tr></thead><tbody>
-        <tr><td>show the size of a theme</td><td><code>.conf</code></td><td>Confidence counts a theme. A citation ties one clause</td></tr>
-        <tr><td>link out of a sentence to a page</td><td><code>.link</code></td><td>A citation resolves to evidence inside the product. A link travels</td></tr>
-        <tr><td>mark a quote as coming from somewhere</td><td>the meta line of <code>.snippet</code></td><td>The snippet carries its own provenance in words</td></tr>
-      </tbody></table></div>
-    </section>
+        <div class="kit-dodont">
+          <div class="kit-dd kit-dd--do">
+            <div class="kit-dd-c" inert>
+              <p class="kit-dd-aside">Several accounts abandoned setup entirely <span class="cited"><a class="citechip" href="#">Intercom +4</a>.</span></p>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do</div><div class="kit-dd-t">One clause, one citation</div>
+              <div class="kit-dd-d">The citation names its source and its size.</div></div>
+          </div>
+          <div class="kit-dd kit-dd--dont">
+            <div class="kit-dd-c" inert>
+              <p class="kit-dd-aside">Several accounts abandoned setup entirely <a class="citechip" href="#">1</a> <a class="citechip" href="#">2</a> <a class="citechip" href="#">3</a>.</p>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do not</div><div class="kit-dd-t">Three bare indices</div>
+              <div class="kit-dd-d">They say a claim has support without saying from where or how much, which is the shape of a footnote rather than of evidence.</div></div>
+          </div>
+        </div>
+      </section>
 
-    <section class="kit-sec" id="states">
-      <h2 class="kit-h2">States</h2>
-      <div class="scene" id="live"><div class="scene-label">rest, live. The linked chip only: the static index is not interactive</div>
-        <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap"><a class="citechip" href="#">Intercom +11</a><a class="citechip" href="#">CSV +6</a><span class="cite">3</span></div>
-      </div>
-      <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>State</th><th>Token</th><th>What moves</th></tr></thead><tbody>
-        <tr><td>hover, linked only</td><td><code>--line-evidence</code> becomes the ground, <code>--text-on-action</code> the ink</td><td>The chip inverts. It is the one inversion in the product, and it is here because a citation inside prose has no room for a border change to be visible</td></tr>
-        <tr><td>focus-visible</td><td><code>--line-focus</code></td><td>The product ring</td></tr>
-        <tr><td>static index</td><td><b>no states</b></td><td>It is a mark, not a control</td></tr>
-      </tbody></table></div>
-      <p class="kit-note">The snapshots for this component are the hover pair on the button page: the mechanism is the same inversion, and the difference is named rather than photographed. A group of snapshots with no named difference is a list of occurrences.</p>
-    </section>
+      <section class="kit-sec" id="where">
+        <h2 class="kit-h2">Where it stands</h2>
+        <p class="kit-note">4.0, 4.1, 5.0, 5.1, 6.4. 25 static, 6 linked. The ones already in colour:</p>
+        <div class="kit-where">
+          <a href="../theme.html">4.0 Theme detail</a>
+          <a href="../theme-low-signal.html">4.1 Theme detail, low signal</a>
+          <a href="../shared-brief.html">6.4 Shared brief</a>
+          <a href="../../wireframes/overview.html">the rest, in grey</a>
+        </div>
+      </section>
+    </div>
 
-    <section class="kit-sec" id="tech">
-      <h2 class="kit-h2">The file and the tokens</h2>
-      <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Reads</th><th>Grows from</th><th>For</th></tr></thead><tbody>
-        <tr><td><code>--text-evidence</code></td><td><code>--cyan-400</code>, plate B pixel</td><td>the mark. Its own role, not <code>--bg-action</code>: the action and the evidence are different claims and a rebrand can move one without the other</td></tr>
-        <tr><td><code>--bg-evidence</code>, <code>--line-evidence</code></td><td><code>--cyan-a10</code>, <code>--cyan-a30</code></td><td>the wash and the edge</td></tr>
-      </tbody></table></div>
-      <div class="scene">
-        <div class="scene-label">copy this</div>
-        <pre style="font-family:var(--font-mono);font-size:12px;color:var(--text-secondary);line-height:1.8;overflow-x:auto">&lt;span class="cite"&gt;3&lt;/span&gt;
+    <!-- ================================================================ TECHNICAL -->
+    <div class="kit-tabpanel" role="tabpanel" id="tech" aria-labelledby="tab-tech">
+
+      <section class="kit-sec" id="anatomy">
+        <h2 class="kit-h2">Anatomy</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
+          <tr><td>the static index</td><td><code>.cite</code></td><td>A number that ties a claim to a line in the citation list below it. Inside a document, where there is nothing to click through to</td></tr>
+          <tr><td>the linked chip</td><td><code>.citechip</code></td><td>Names the SOURCE and how many items stand behind it, so diversity is legible without a click, and resolves into the evidence list</td></tr>
+          <tr><td>the tie</td><td><code>.cited</code></td><td>A wrapper that keeps the chip and the sentence punctuation on one line. A chip is an atomic inline, so without it a line can open with a stray full stop</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="axes">
+        <h2 class="kit-h2">Axes, with the rule that chooses</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
+          <tr><td>behaviour</td><td>static 25 &middot; linked 6</td><td><b>Linked where there is somewhere to go.</b> Inside the public brief the reader has no app to open, so the citation resolves downward on the same page</td></tr>
+          <tr><td>target</td><td><b>exempt from 44px</b></td><td>A citation chip sits inside running text, and WCAG exempts inline links there for the reason this product also accepts: enlarging them would break the line</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="tokens">
+        <h2 class="kit-h2">Tokens it reads</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Reads</th><th>Grows from</th><th>For</th></tr></thead><tbody>
+          <tr><td><code>--text-evidence</code></td><td><code>--cyan-400</code>, plate B pixel</td><td>the mark. Its own role, not <code>--bg-action</code>: the action and the evidence are different claims and a rebrand can move one without the other</td></tr>
+          <tr><td><code>--bg-evidence</code>, <code>--line-evidence</code></td><td><code>--cyan-a10</code>, <code>--cyan-a30</code></td><td>the wash and the edge</td></tr>
+          <tr><td><code>--text-on-action</code></td><td><code>--grey-950</code> dark, <code>--grey-000</code> light</td><td>the ink of the hovered chip</td></tr>
+          <tr><td><code>--font-mono</code></td><td>the mono face</td><td>both forms</td></tr>
+        </tbody></table></div>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>State</th><th>Token</th><th>What moves</th></tr></thead><tbody>
+          <tr><td>hover, linked only</td><td><code>--line-evidence</code> becomes the ground, <code>--text-on-action</code> the ink</td><td>The chip inverts. It is the one inversion in the product, and it is here because a citation inside prose has no room for a border change to be visible</td></tr>
+          <tr><td>focus-visible</td><td><code>--line-focus</code></td><td>The product ring</td></tr>
+          <tr><td>static index</td><td><b>no states</b></td><td>It is a mark, not a control</td></tr>
+        </tbody></table></div>
+        <p class="kit-note"><b>This is where the accent goes on a document.</b> Attribute A2 signs cyan as the evidence marker, and on a page with no action to spend it on, the citation IS the trust surface.</p>
+      </section>
+
+      <section class="kit-sec" id="shots">
+        <h2 class="kit-h2">Snapshots</h2>
+        <p class="kit-note">The snapshots for this component are the hover pair on the button page: the mechanism is the same inversion, and the difference is named rather than photographed. A group of snapshots with no named difference is a list of occurrences.</p>
+      </section>
+
+      <section class="kit-sec" id="markup">
+        <h2 class="kit-h2">Copy this</h2>
+        <div class="scene">
+          <pre class="kit-pre">&lt;span class="cite"&gt;3&lt;/span&gt;
 &lt;span class="cited"&gt;&lt;a class="citechip" href="#e1"&gt;Intercom +11&lt;/a&gt;,&lt;/span&gt;</pre>
-      </div>
-      <p class="kit-note">Stands on: <a href="../theme.html">4.0 Theme detail</a>, <a href="../shared-brief.html">6.4 Shared brief</a></p>
-    </section>
+        </div>
+        <p class="kit-note">The static index (the 3 in the hero) sits inside the public document.</p>
+        <p class="kit-note">File: <code class="kit-mono">design/system/components/citation.css</code>. Stands on: 4.0, 4.1, 5.0, 5.1, 6.4. 25 static, 6 linked.</p>
+      </section>
+    </div>
 
-    <footer class="kit-foot">
-      <span>Level 1 &middot; Atom &middot; citation.css</span>
-      <a href="overview.html">The whole system</a>
-      <a href="architecture.html">Architecture</a>
-      <a href="../overview.html">The product</a>
-    </footer>
+    <!-- ================================================================ HISTORY -->
+    <div class="kit-tabpanel" role="tabpanel" id="history" aria-labelledby="tab-history">
+      <section class="kit-sec">
+        <h2 class="kit-h2">Changes, newest first</h2>
+        <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-20</td><td>The page moved to the card format: Overview, Technical, History. The states became a live matrix drawn from the product's own rules</td><td><code>docs/decisions.md</code>, "The showcase is read by purpose"</td></tr>
+          <tr><td>2026-08-19</td><td>Split out of the flat kit into <code>components/citation.css</code>, with its page among the 17 atoms</td><td>commit <code>2353608</code></td></tr>
+          <tr><td>2026-08-19</td><td>The two tables of facts, read and measured: the counts and axes on this page come from them</td><td>commit <code>2aa7baa</code></td></tr>
+          <tr><td>2026-08-18</td><td>The component entered the kit, grown out of the colour layer</td><td>commit <code>d461e12</code></td></tr>
+        </tbody></table></div>
+      </section>
+    </div>
+
+    <div id="kit-pager"></div>
+
   </main>
 </div>
-<svg class="sprite" aria-hidden="true"><defs>
-  <symbol id="i-signal" viewBox="0 0 24 24"><path d="M6 18v-3.5M12 18v-8M18 18v-12.5"/></symbol>
-  <symbol id="i-source" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.66 3.13 3 7 3s7-1.34 7-3V6"/><path d="M5 12v6c0 1.66 3.13 3 7 3s7-1.34 7-3v-6"/></symbol>
-  <symbol id="i-brief" viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h7"/></symbol>
-  <symbol id="i-filter" viewBox="0 0 24 24"><path d="M3 5.5h18l-7 8v5l-4 2v-7z"/></symbol>
-  <symbol id="i-evidence" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-4 4v-4H4z"/><path d="M8.5 10.5h7M8.5 13h4"/></symbol>
-  <symbol id="i-drag" viewBox="0 0 24 24"><path d="M9 7h.1M15 7h.1M9 12h.1M15 12h.1M9 17h.1M15 17h.1"/></symbol>
-  <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V5"/><path d="m7.5 9.5 4.5-4.5 4.5 4.5"/><path d="M4.5 15v3.5a1.5 1.5 0 0 0 1.5 1.5h12a1.5 1.5 0 0 0 1.5-1.5V15"/></symbol>
-  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
-</defs></svg>
+
 <script src="_nav.js"></script>
+<script src="_states.js"></script>
 </body>
 </html>

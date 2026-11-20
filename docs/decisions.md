@@ -538,6 +538,19 @@ written: on the Button page the forced hover and focus of fill and outline match
 and a real Tab key in background, border, colour, outline and opacity, in both themes, with zero
 differences. The snapshots stay on the Technical tab as the measured counterpart.
 
+**Corrected on 2026-11-21, when the other 16 atom pages were laid on it.** The first version
+appended the twins in one style block at the end of the document, and the sweep over all pages
+caught what that costs: a twin then outranks every later rule of equal weight, so the forced
+hover of a checked checkbox showed the hover border although `.check:checked`, which follows
+`.check:hover`, wins on a real pointer. The twins are now inserted directly after their original,
+in the same sheet or `@media` block, so they keep its place in the cascade as well as its
+specificity. And "Pressed" in the matrix is `hover active`, not `active` alone: a real press is
+always a hover too, and the filled button's pressed border is its hover border. After both
+fixes, 45 forced cells on 8 pages were compared with a real pointer and a real Tab key in both
+themes, 90 comparisons over background, border, colour, outline, shadow, decoration and opacity:
+zero differences. The comparison script disables transitions and smooth scrolling first; without
+that it measures the animation, not the state.
+
 **One stand value changed:** `--kit-accent` in the light theme, `#7C6AF7` to `#6250E6`, because the
 first gave 3.99:1 on the light page under the small mono headings and crumbs it inks (5.51 now).
 Stand chrome only; no product token moved.

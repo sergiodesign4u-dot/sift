@@ -12,12 +12,19 @@
 <link rel="stylesheet" href="_page.css">
 </head>
 <!--
-  design/kit/scope.html - Stage 08 Step 5, level 1.
+  design/kit/scope.html - a component page in the card format of 2026-11-20, laid after button.html.
 
-  Links ../system/index.css, the same entry point a product screen links, so the page cannot
-  drift from the product: it does not show a copy of the component, it shows the component.
+  OVERVIEW, for the person placing the component: a live specimen, the content state matrix,
+  other forms, properties, when and when not, do and do not, where it stands.
+  TECHNICAL, for the person changing it: anatomy, the axes with their counts, the tokens it
+  reads, the markup to copy.
+  HISTORY: every change, each with the record it came from.
 
-  Five blocks: anatomy, variants, when to use it, rule and anti-rule, states.
+  The page links ../system/index.css, the SAME entry point a product screen links: it is not a
+  copy of the component, it is the component. This component is not interactive: the matrix rows
+  are content states, written in words, and nothing is forced, hovered or painted by hand.
+  The lines are the product's own, copied from the colour screens.
+
   No em dash anywhere.
 -->
 <body>
@@ -25,95 +32,207 @@
   <div id="kit-panel"></div>
   <main class="kit-main">
 
-    <div class="kit-eyebrow">Level 1 &middot; Atom</div>
-    <h1 class="kit-h1">Scope line</h1>
-    <p class="kit-lead">The denominator of the ranking, and it exists because of one sentence: a ranking with no denominator cannot be checked. Attributes A2 and A4 both land here, and 2.0 owns it.</p>
-    <p class="kit-lead"><code class="kit-mono">design/system/components/scope.css</code> &middot; 13 screens. Owned by 2.0, referenced by 3.0 and 6.1.</p>
+    <div id="kit-crumbs"></div>
+    <div id="kit-head"></div>
 
-    <section class="kit-sec" id="anatomy">
-      <h2 class="kit-h2">Anatomy</h2>
-      <div class="scene">
+    <div class="kit-tabs" role="tablist" aria-label="Scope line page">
+      <button class="kit-tab" role="tab" id="tab-overview" aria-controls="overview" aria-selected="true">Overview</button>
+      <button class="kit-tab" role="tab" id="tab-tech" aria-controls="tech" aria-selected="false" tabindex="-1">Technical</button>
+      <button class="kit-tab" role="tab" id="tab-history" aria-controls="history" aria-selected="false" tabindex="-1">History</button>
+    </div>
+
+    <!-- ================================================================ OVERVIEW -->
+    <div class="kit-tabpanel" role="tabpanel" id="overview" aria-labelledby="tab-overview">
+
+      <div class="kit-hero">
         <p class="scope"><b>12</b> themes from <b>2,904</b> of 3,750 feedback items in the last 30 days, across 2 sources. Synthesized 2 hours ago.</p>
+        <p class="kit-hero-note">Live</p>
       </div>
-      <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
-        <tr><td>the line</td><td><code>.scope</code></td><td>Secondary ink, capped at the product measure. It is prose, not a stat strip</td></tr>
-        <tr><td>the numbers</td><td><code>.scope b</code></td><td>Mono and primary ink. The number is what carries the weight, so it is the only thing that steps forward</td></tr>
-        <tr><td>the link</td><td><code>.scope a</code></td><td>Where a number is worth opening. Rare</td></tr>
-      </tbody></table></div>
-    </section>
+      <p class="kit-note">The denominator of the ranking: a ranking with no denominator cannot be checked.</p>
 
-    <section class="kit-sec" id="variants">
-      <h2 class="kit-h2">Variants</h2>
-      <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
-        <tr><td>state</td><td>populated 9 &middot; zero 2 &middot; filtered 1 &middot; stale 1</td><td><b>The line restates itself rather than going stale.</b> Under a filter it says the filtered denominator; on an empty screen it says what there is to build from; on 3.5 it says the corpus is the same as two days ago and why</td></tr>
-        <tr><td>emphasis</td><td><b>not an axis</b></td><td>A denominator does not get louder. If it needed emphasis to be believed, the number would be the problem</td></tr>
-      </tbody></table></div>
-      <div class="scene">
-        <div class="scene-label">the four states, in words</div>
-        <p class="scope"><b>2</b> sources connected, <b>3,750</b> items in. This is the corpus every theme on Synthesis is counted from.</p>
-        <p class="scope" style="margin-top:12px"><b>0</b> briefs. There are <b>12</b> themes on Synthesis to build one from, and the top three carry 89 feedback items between them.</p>
-        <p class="scope" style="margin-top:12px"><b>2</b> sources connected, <b>3,750</b> items in. Intercom was last reached <b>2 days ago</b>, so nothing new has been added since then and today's ranking is counted from the same corpus as two days ago.</p>
-      </div>
-    </section>
+      <section class="kit-sec" id="variants">
+        <h2 class="kit-h2">Variants and states</h2>
+        <p class="kit-note">Not interactive: no hover, focus or pressed state. The scope line is a sentence. Its four states are
+          content states, written in words by whoever owns the screen, not interaction states. The line restates itself rather
+          than going stale: under a filter it says the filtered denominator; on an empty screen it says what there is to build
+          from; on 3.5 it says the corpus is the same as two days ago and why.</p>
+        <div class="kit-matrix-wrap">
+          <table class="kit-matrix" inert>
+            <thead><tr><th>Content state</th><th>The line, in words</th></tr></thead>
+            <tbody>
+              <tr><th>Populated<code>.scope</code></th>
+                <td><p class="scope"><b>2</b> sources connected, <b>3,750</b> items in. This is the corpus every theme on Synthesis is counted from.</p></td></tr>
+              <tr><th>Zero<code>.scope</code></th>
+                <td><p class="scope"><b>0</b> briefs. There are <b>12</b> themes on Synthesis to build one from, and the top three carry 89 feedback items between them.</p></td></tr>
+              <tr><th>Filtered<code>.scope</code></th>
+                <td class="kit-cell-none">[?] No colour screen carries a filtered line yet. The rule is stated in the note above; the words are not drawn here because none exist to copy.</td></tr>
+              <tr><th>Stale<code>.scope</code></th>
+                <td><p class="scope"><b>2</b> sources connected, <b>3,750</b> items in. Intercom was last reached <b>2 days ago</b>, so nothing new has been added since then and today's ranking is counted from the same corpus as two days ago.</p></td></tr>
+              <tr><th>Emphasis</th>
+                <td class="kit-cell-none">Not an axis, and that is a rule: a denominator does not get louder. If it needed emphasis to be believed, the number would be the problem.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
 
-    <section class="kit-sec" id="when">
-      <h2 class="kit-h2">When to use it</h2>
-      <p class="kit-lead">Under the head of every screen that ranks, counts or filters anything. It is the sentence that turns a list into a claim somebody can check, and in this product that is the difference between a synthesis and a summary.</p>
-      <p class="kit-lead">Its hardest job is the stale case. On 3.5 a source has failed, and the honest line is not "something went wrong": it is that the ranking is counted from the same corpus as two days ago, which tells the person exactly how much to trust what they are looking at.</p>
-    </section>
+      <section class="kit-sec" id="forms">
+        <h2 class="kit-h2">Other forms</h2>
+        <p class="kit-note">Lines on the colour screens that go beyond the four content states. All of them are the one <code class="kit-mono">.scope</code>.</p>
+        <div class="kit-forms">
+          <div>
+            <div class="kit-form-c" inert>
+              <p class="scope"><b>42</b> items from 2 sources: <b>Intercom 30</b>, <b>CSV 12</b>. First seen 5 weeks ago, latest 2 days ago.</p>
+            </div>
+            <div class="kit-form-t">With the split by source</div>
+            <div class="kit-form-d">4.0 Theme detail. The size, the split by source, and the age.</div>
+          </div>
+          <div>
+            <div class="kit-form-c" inert>
+              <p class="scope">Reading <b>3,750</b> feedback items from 2 sources. Themes and their counts appear when clustering finishes. You can leave this screen, the work carries on.</p>
+            </div>
+            <div class="kit-form-t">While the work runs</div>
+            <div class="kit-form-d">2.2 Synthesis loading. The known number is printed as itself.</div>
+          </div>
+          <div>
+            <div class="kit-form-c" inert>
+              <p class="scope">The last complete synthesis is from <b>2 hours ago</b>, over 12 themes and 3,750 feedback items. It is still readable: <a href="../synthesis.html">open the version from 2 hours ago</a>.</p>
+            </div>
+            <div class="kit-form-t">With a link</div>
+            <div class="kit-form-d"><code>.scope a</code>, where a number is worth opening. Rare. 2.3 Synthesis error.</div>
+          </div>
+        </div>
+      </section>
 
-    <section class="kit-sec" id="rules">
-      <h2 class="kit-h2">Rule and anti-rule</h2>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-top:18px">
-        <div class="scene"><div class="scene-label" style="color:var(--text-evidence)">rule</div><p class="scope"><b>42</b> items from 2 sources: <b>Intercom 30</b>, <b>CSV 12</b>. First seen 5 weeks ago, latest 2 days ago.</p>
-          <p class="kit-note">The size, the split by source, and the age. Three facts that let a person judge the claim without opening anything.</p></div>
-        <div class="scene"><div class="scene-label" style="color:var(--text-danger)">anti-rule</div><p class="scope">Showing the most relevant themes from your feedback.</p>
-          <p class="kit-note">A sentence with no number in it. It says the ranking exists and nothing about what it is counted from, which is the one thing the line is for.</p></div>
-      </div>
-      <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>If you are about to</th><th>Take instead</th><th>Why</th></tr></thead><tbody>
-        <tr><td>count one theme</td><td><code>.conf</code></td><td>Confidence is per theme. Scope is per screen</td></tr>
-        <tr><td>explain a failure</td><td><code>.notice</code></td><td>Scope states the corpus. A notice states the event</td></tr>
-        <tr><td>label a group inside a list</td><td><code>.group-t</code></td><td>The group heading counts a group. The scope line counts the screen</td></tr>
-      </tbody></table></div>
-    </section>
+      <section class="kit-sec" id="props">
+        <h2 class="kit-h2">Properties</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Property</th><th>Type</th><th>Values</th><th>Default</th></tr></thead><tbody>
+          <tr><td>Line</td><td>block</td><td><code>.scope</code> on a <code>p</code>: secondary ink, capped at the product measure</td><td>none: the class is required</td></tr>
+          <tr><td>Number</td><td>inline</td><td><code>.scope b</code>: mono and primary ink</td><td>plain secondary ink</td></tr>
+          <tr><td>Link</td><td>inline</td><td><code>.scope a</code>: primary ink, rare</td><td>none</td></tr>
+          <tr><td>Content state</td><td>variant, in words</td><td>populated &middot; zero &middot; filtered &middot; stale</td><td>populated</td></tr>
+          <tr><td>Emphasis</td><td>not an axis</td><td>one form</td><td>the one form</td></tr>
+          <tr><td>State</td><td>none</td><td>not interactive: no hover, focus or pressed</td><td>none</td></tr>
+        </tbody></table></div>
+      </section>
 
-    <section class="kit-sec" id="states">
-      <h2 class="kit-h2">States</h2>
-      <p class="kit-lead"><b>No states, and that is a decision rather than an omission.</b> The scope line is a sentence. Its four states are content states, written in words by whoever owns the screen, not interaction states.</p>
-      <p class="kit-note">Four states are given to a component because it is interactive, not because a template has four cells. Faking one with a class the product does not carry (<code class="kit-mono">.is-hover</code>) would be the same defect as an invented role.</p>
-    </section>
+      <section class="kit-sec" id="when">
+        <h2 class="kit-h2">How to use it</h2>
+        <div class="kit-when">
+          <div>
+            <h3>When</h3>
+            <p>Under the head of every screen that ranks, counts or filters anything. It is the sentence that turns a list into a claim somebody can check, and in this product that is the difference between a synthesis and a summary.</p>
+            <p>Its hardest job is the stale case. On 3.5 a source has failed, and the honest line is not "something went wrong": it is that the ranking is counted from the same corpus as two days ago, which tells the person exactly how much to trust what they are looking at.</p>
+          </div>
+          <div>
+            <h3>When not</h3>
+            <ul>
+              <li>To count one theme: take <code>.conf</code>. Confidence is per theme. Scope is per screen.</li>
+              <li>To explain a failure: take <code>.notice</code>. Scope states the corpus. A notice states the event.</li>
+              <li>To label a group inside a list: take <code>.group-t</code>. The group heading counts a group. The scope line counts the screen.</li>
+            </ul>
+          </div>
+        </div>
 
-    <section class="kit-sec" id="tech">
-      <h2 class="kit-h2">The file and the tokens</h2>
-      <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Reads</th><th>Grows from</th><th>For</th></tr></thead><tbody>
-        <tr><td><code>--text-secondary</code></td><td><code>--grey-400</code></td><td>the prose</td></tr>
-        <tr><td><code>--text-primary</code> plus <code>--font-mono</code></td><td><code>--grey-050</code></td><td>every number in it</td></tr>
-      </tbody></table></div>
-      <div class="scene">
-        <div class="scene-label">copy this</div>
-        <pre style="font-family:var(--font-mono);font-size:12px;color:var(--text-secondary);line-height:1.8;overflow-x:auto">&lt;p class="scope"&gt;&lt;b&gt;12&lt;/b&gt; themes from &lt;b&gt;2,904&lt;/b&gt; of 3,750 feedback items ...&lt;/p&gt;</pre>
-      </div>
-      <p class="kit-note">Stands on: <a href="../synthesis.html">2.0 Synthesis</a>, <a href="../sources.html">3.0 Sources</a>, <a href="../theme.html">4.0 Theme detail</a></p>
-    </section>
+        <div class="kit-dodont">
+          <div class="kit-dd kit-dd--do">
+            <div class="kit-dd-c" inert>
+              <p class="scope"><b>42</b> items from 2 sources: <b>Intercom 30</b>, <b>CSV 12</b>. First seen 5 weeks ago, latest 2 days ago.</p>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do</div><div class="kit-dd-t">The size, the split by source, and the age</div>
+              <div class="kit-dd-d">Three facts that let a person judge the claim without opening anything.</div></div>
+          </div>
+          <div class="kit-dd kit-dd--dont">
+            <div class="kit-dd-c" inert>
+              <p class="scope">Showing the most relevant themes from your feedback.</p>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do not</div><div class="kit-dd-t">A sentence with no number in it</div>
+              <div class="kit-dd-d">It says the ranking exists and nothing about what it is counted from, which is the one thing the line is for.</div></div>
+          </div>
+        </div>
+      </section>
 
-    <footer class="kit-foot">
-      <span>Level 1 &middot; Atom &middot; scope.css</span>
-      <a href="overview.html">The whole system</a>
-      <a href="architecture.html">Architecture</a>
-      <a href="../overview.html">The product</a>
-    </footer>
+      <section class="kit-sec" id="where">
+        <h2 class="kit-h2">Where it stands</h2>
+        <p class="kit-note">13 screens. Owned by 2.0, referenced by 3.0 and 6.1. The ones already in colour:</p>
+        <div class="kit-where">
+          <a href="../synthesis.html">2.0 Synthesis</a>
+          <a href="../synthesis-empty.html">2.1 Synthesis first-run empty</a>
+          <a href="../synthesis-loading.html">2.2 Synthesis loading</a>
+          <a href="../synthesis-error.html">2.3 Synthesis error</a>
+          <a href="../sources.html">3.0 Sources</a>
+          <a href="../sources-empty.html">3.4 Sources, none connected</a>
+          <a href="../sources-sync-error.html">3.5 Sources, sync error</a>
+          <a href="../theme.html">4.0 Theme detail</a>
+          <a href="../theme-error.html">4.0 Theme detail, error</a>
+          <a href="../theme-low-signal.html">4.1 Theme detail, low signal</a>
+          <a href="../theme-loading.html">4.2 Theme detail, loading</a>
+          <a href="../briefs.html">6.0 Briefs</a>
+          <a href="../briefs-empty.html">6.5 Briefs, none yet</a>
+          <a href="../../wireframes/overview.html">the rest, in grey</a>
+        </div>
+      </section>
+    </div>
+
+    <!-- ================================================================ TECHNICAL -->
+    <div class="kit-tabpanel" role="tabpanel" id="tech" aria-labelledby="tab-tech">
+
+      <section class="kit-sec" id="anatomy">
+        <h2 class="kit-h2">Anatomy</h2>
+        <p class="kit-note">The denominator of the ranking, and it exists because of one sentence: a ranking with no denominator cannot be checked. Attributes A2 and A4 both land here, and 2.0 owns it.</p>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
+          <tr><td>the line</td><td><code>.scope</code></td><td>Secondary ink, capped at the product measure. It is prose, not a stat strip</td></tr>
+          <tr><td>the numbers</td><td><code>.scope b</code></td><td>Mono and primary ink. The number is what carries the weight, so it is the only thing that steps forward</td></tr>
+          <tr><td>the link</td><td><code>.scope a</code></td><td>Where a number is worth opening. Rare</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="axes">
+        <h2 class="kit-h2">Axes, with the rule that chooses</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
+          <tr><td>state</td><td>populated 9 &middot; zero 2 &middot; filtered 1 &middot; stale 1</td><td><b>The line restates itself rather than going stale.</b> Under a filter it says the filtered denominator; on an empty screen it says what there is to build from; on 3.5 it says the corpus is the same as two days ago and why</td></tr>
+          <tr><td>emphasis</td><td><b>not an axis</b></td><td>A denominator does not get louder. If it needed emphasis to be believed, the number would be the problem</td></tr>
+        </tbody></table></div>
+        <p class="kit-note"><b>No states, and that is a decision rather than an omission.</b> The scope line is a sentence. Its four states are content states, written in words by whoever owns the screen, not interaction states.</p>
+        <p class="kit-note">Four states are given to a component because it is interactive, not because a template has four cells. Faking one with a class the product does not carry (<code class="kit-mono">.is-hover</code>) would be the same defect as an invented role.</p>
+      </section>
+
+      <section class="kit-sec" id="tokens">
+        <h2 class="kit-h2">Tokens it reads</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Reads</th><th>Grows from</th><th>For</th></tr></thead><tbody>
+          <tr><td><code>--text-secondary</code></td><td><code>--grey-400</code></td><td>the prose</td></tr>
+          <tr><td><code>--text-primary</code> plus <code>--font-mono</code></td><td><code>--grey-050</code></td><td>every number in it</td></tr>
+          <tr><td><code>--type-xs</code>, <code>--leading-body</code>, <code>--space-4</code>, <code>--measure-prose</code>, <code>--weight-medium</code></td><td><code>design/system/tokens.css</code></td><td>the size, the line height, the gap above, the measure and the weight of the numbers</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="markup">
+        <h2 class="kit-h2">Copy this</h2>
+        <div class="scene">
+          <pre class="kit-pre">&lt;p class="scope"&gt;&lt;b&gt;12&lt;/b&gt; themes from &lt;b&gt;2,904&lt;/b&gt; of 3,750 feedback items ...&lt;/p&gt;</pre>
+        </div>
+        <p class="kit-note">File: <code class="kit-mono">design/system/components/scope.css</code>, imported in the atoms group of
+          <code class="kit-mono">design/system/index.css</code>. Stands on: <a href="../synthesis.html">2.0 Synthesis</a>, <a href="../sources.html">3.0 Sources</a>, <a href="../theme.html">4.0 Theme detail</a></p>
+      </section>
+    </div>
+
+    <!-- ================================================================ HISTORY -->
+    <div class="kit-tabpanel" role="tabpanel" id="history" aria-labelledby="tab-history">
+      <section class="kit-sec">
+        <h2 class="kit-h2">Changes, newest first</h2>
+        <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-20</td><td>The page moved to the card format: Overview, Technical, History. The four content states became a table of the product's own lines; the old Rule and anti-rule specimens became the Do and Do not cards</td><td><code>docs/decisions.md</code>, "The showcase is read by purpose"</td></tr>
+          <tr><td>2026-08-19</td><td>Split out of the flat kit into <code>components/scope.css</code>, with its page, in the round that took all 17 atoms</td><td>commit <code>2353608</code></td></tr>
+          <tr><td>2026-08</td><td>3.5 became the sources list with the failed row carrying its own status, and the scope line carrying the consequence a PM actually needs: the corpus has not moved since the last successful sync</td><td><code>docs/decisions.md</code>, "A sync error is a row, not a takeover (August 2026)"</td></tr>
+        </tbody></table></div>
+      </section>
+    </div>
+
+    <div id="kit-pager"></div>
+
   </main>
 </div>
-<svg class="sprite" aria-hidden="true"><defs>
-  <symbol id="i-signal" viewBox="0 0 24 24"><path d="M6 18v-3.5M12 18v-8M18 18v-12.5"/></symbol>
-  <symbol id="i-source" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.66 3.13 3 7 3s7-1.34 7-3V6"/><path d="M5 12v6c0 1.66 3.13 3 7 3s7-1.34 7-3v-6"/></symbol>
-  <symbol id="i-brief" viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h7"/></symbol>
-  <symbol id="i-filter" viewBox="0 0 24 24"><path d="M3 5.5h18l-7 8v5l-4 2v-7z"/></symbol>
-  <symbol id="i-evidence" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-4 4v-4H4z"/><path d="M8.5 10.5h7M8.5 13h4"/></symbol>
-  <symbol id="i-drag" viewBox="0 0 24 24"><path d="M9 7h.1M15 7h.1M9 12h.1M15 12h.1M9 17h.1M15 17h.1"/></symbol>
-  <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V5"/><path d="m7.5 9.5 4.5-4.5 4.5 4.5"/><path d="M4.5 15v3.5a1.5 1.5 0 0 0 1.5 1.5h12a1.5 1.5 0 0 0 1.5-1.5V15"/></symbol>
-  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
-</defs></svg>
+
 <script src="_nav.js"></script>
+<script src="_states.js"></script>
 </body>
 </html>

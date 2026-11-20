@@ -12,12 +12,15 @@
 <link rel="stylesheet" href="_page.css">
 </head>
 <!--
-  design/kit/link.html - Stage 08 Step 5, level 1.
+  design/kit/link.html - a component page in the card format of 2026-11-20, laid out on the template button.html.
 
-  Links ../system/index.css, the same entry point a product screen links, so the page cannot
-  drift from the product: it does not show a copy of the component, it shows the component.
+  OVERVIEW: a live specimen, the variant by state matrix, properties, when and when not, do and do not, where it stands.
+  TECHNICAL: anatomy, the axes, the tokens it reads, the markup to copy.
+  HISTORY: every change, each with the record it came from.
 
-  Five blocks: anatomy, variants, when to use it, rule and anti-rule, states.
+  The page links ../system/index.css, the SAME entry point a product screen links. The matrix is
+  drawn by _states.js from the product's own rules; nothing in it is painted by hand.
+
   No em dash anywhere.
 -->
 <body>
@@ -25,110 +28,210 @@
   <div id="kit-panel"></div>
   <main class="kit-main">
 
-    <div class="kit-eyebrow">Level 1 &middot; Atom</div>
-    <h1 class="kit-h1">Inline text link</h1>
-    <p class="kit-lead">The family this product did not have. The Stage 07 census counted 88 unclassed anchors across 18 screens, in prose, footers, tables of contents and breadcrumbs, and not one of them had a declaration anywhere, which is exactly why the colour layer had no rule for any of them either.</p>
-    <p class="kit-lead"><code class="kit-mono">design/system/components/link.css</code> &middot; 18 screens, 88 occurrences: the largest single group of controls in the product.</p>
+    <div id="kit-crumbs"></div>
+    <div id="kit-head"></div>
 
-    <section class="kit-sec" id="anatomy">
-      <h2 class="kit-h2">Anatomy</h2>
-      <div class="scene">
-        <p style="font-size:14px;color:var(--text-secondary);max-width:70ch">Every conclusion here traces to the items behind it. Read how synthesis works in <a class="link" href="#">Security and GDPR</a>, or go straight to <a class="link" href="#">Sources</a>.</p>
-        <div style="display:flex;gap:16px;margin-top:14px;align-items:center;flex-wrap:wrap"><a class="link--muted" href="#">Privacy</a><a class="link--muted" href="#">Terms</a><button class="link--action">Clear filters</button></div>
+    <div class="kit-tabs" role="tablist" aria-label="Inline text link page">
+      <button class="kit-tab" role="tab" id="tab-overview" aria-controls="overview" aria-selected="true">Overview</button>
+      <button class="kit-tab" role="tab" id="tab-tech" aria-controls="tech" aria-selected="false" tabindex="-1">Technical</button>
+      <button class="kit-tab" role="tab" id="tab-history" aria-controls="history" aria-selected="false" tabindex="-1">History</button>
+    </div>
+
+    <!-- ================================================================ OVERVIEW -->
+    <div class="kit-tabpanel" role="tabpanel" id="overview" aria-labelledby="tab-overview">
+
+      <div class="kit-hero">
+        <p>Every conclusion here traces to the items behind it. Read how synthesis works in <a class="link" href="#">Security and GDPR</a>, or go straight to <a class="link" href="#">Sources</a>.</p>
+        <a class="link--muted" href="#">Privacy</a>
+        <a class="link--muted" href="#">Terms</a>
+        <button class="link--action">Clear filters</button>
+        <p class="kit-hero-note">Live. Hover, tab to it: this is the product's own CSS entry point</p>
       </div>
-      <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
-        <tr><td>the link</td><td><code>.link</code></td><td>Primary ink, no underline at rest. In a dense list a permanent underline on every link is noise</td></tr>
-        <tr><td>the muted form</td><td><code>.link--muted</code></td><td>Secondary ink, for a footer or a legal column where the link is the whole content and the ink is what recedes</td></tr>
-        <tr><td>the text action</td><td><code>.link--action</code></td><td>A 44px target and an underline. It is a control, not a destination</td></tr>
-      </tbody></table></div>
-    </section>
+      <p class="kit-note">The family this product did not have. 18 screens, 88 occurrences: the largest single group of controls in the product.</p>
 
-    <section class="kit-sec" id="variants">
-      <h2 class="kit-h2">Variants</h2>
-      <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
-        <tr><td>emphasis</td><td>plain 62 &middot; muted 26</td><td><b>Ink recedes where links are the content.</b> A footer of primary-ink links would be the loudest thing on the page</td></tr>
-        <tr><td>behaviour</td><td>destination &middot; action 2</td><td><b>A link travels, an action acts.</b> "Clear filters" is a text action with a control target, folded here at Stage 07 from a fourth button emphasis</td></tr>
-        <tr><td>target</td><td>inline &middot; 44px</td><td><b>An inline link inside running text is exempt from the floor</b>, for the same reason WCAG exempts it. A standalone one is not</td></tr>
-      </tbody></table></div>
-
-    </section>
-
-    <section class="kit-sec" id="when">
-      <h2 class="kit-h2">When to use it</h2>
-      <p class="kit-lead">Everywhere a person leaves the current screen without acting on it: the breadcrumb back to Synthesis, the legal table of contents, the marketing footer, the line under a settings panel pointing at the document that explains it.</p>
-      <p class="kit-lead">The rule that keeps it apart from the button is one sentence, and this product needs it more than most: <b>a button acts, a link travels.</b> On a screen whose whole promise is that every claim can be opened, the difference between "this does something" and "this shows you the evidence" is not cosmetic.</p>
-    </section>
-
-    <section class="kit-sec" id="rules">
-      <h2 class="kit-h2">Rule and anti-rule</h2>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-top:18px">
-        <div class="scene"><div class="scene-label" style="color:var(--text-evidence)">rule</div><p style="font-size:14px;color:var(--text-secondary);max-width:44ch">Read how Sift stores and protects your data on the <a class="link" href="#">Security and GDPR</a> page.</p>
-          <p class="kit-note">A link inside a sentence, named by what it opens.</p></div>
-        <div class="scene"><div class="scene-label" style="color:var(--text-danger)">anti-rule</div><p style="font-size:14px;color:var(--text-secondary);max-width:44ch">Read how Sift stores your data <a class="link" href="#">here</a>.</p>
-          <p class="kit-note">"Here" names nothing. Read out by a screen reader as a list of links, the page offers five destinations all called "here".</p></div>
-      </div>
-      <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>If you are about to</th><th>Take instead</th><th>Why</th></tr></thead><tbody>
-        <tr><td>make something happen on this screen</td><td><code>.btn--ghost</code>, or <code>.link--action</code> for a text action</td><td>A link that acts is a button in disguise</td></tr>
-        <tr><td>point at a row that is entirely a destination</td><td><code>.cardrow</code></td><td>The whole row is the target there, not a word inside it</td></tr>
-        <tr><td>underline a link permanently in a list</td><td>the muted form</td><td>Ink recedes, the underline does not multiply</td></tr>
-      </tbody></table></div>
-    </section>
-
-    <section class="kit-sec" id="states">
-      <h2 class="kit-h2">States</h2>
-      <div class="scene" id="live"><div class="scene-label">rest, live. Hover, tab</div>
-        <div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap"><a class="link" href="#">Security and GDPR</a><a class="link--muted" href="#">Privacy</a><button class="link--action">Clear filters</button></div>
-      </div>
-      <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>State</th><th>Token</th><th>What moves</th></tr></thead><tbody>
-        <tr><td>hover</td><td>none: <code>text-decoration</code></td><td>The underline appears. No colour token, because the ink is already at its role and a second ink would be a second link style</td></tr>
-        <tr><td>focus-visible</td><td><code>--line-focus</code></td><td>The product ring, from base.css</td></tr>
-        <tr><td>visited</td><td><b>absent, deliberately</b></td><td>A visited style on a product screen tells a stranger which evidence this person already opened. In an app, visited is a privacy leak rather than a convenience</td></tr>
-        <tr><td>disabled</td><td><b>absent</b></td><td>A link that cannot be followed is not a link. Where a destination is unavailable the product shows text, not a dead anchor</td></tr>
-      </tbody></table></div>
-      <div class="scene"><div class="scene-label">the two live states, both themes</div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px">
-          <figure><img src="screens/link-hover-dark.png" alt="hover, dark" style="width:100%;border:1px solid var(--line-hairline);border-radius:var(--radius-md)"><figcaption class="geo-cap">hover &middot; dark</figcaption></figure>
-          <figure><img src="screens/link-hover-light.png" alt="hover, light" style="width:100%;border:1px solid var(--line-hairline);border-radius:var(--radius-md)"><figcaption class="geo-cap">hover &middot; light</figcaption></figure>
-          <figure><img src="screens/link-focus-dark.png" alt="focus, dark" style="width:100%;border:1px solid var(--line-hairline);border-radius:var(--radius-md)"><figcaption class="geo-cap">focus-visible &middot; dark</figcaption></figure>
-          <figure><img src="screens/link-focus-light.png" alt="focus, light" style="width:100%;border:1px solid var(--line-hairline);border-radius:var(--radius-md)"><figcaption class="geo-cap">focus-visible &middot; light</figcaption></figure>
+      <section class="kit-sec" id="variants">
+        <h2 class="kit-h2">Variants and states</h2>
+        <p class="kit-note">Emphasis says how much ink the link carries; behaviour says whether it travels or acts. Three forms, three states each:
+          rest, hover, focus-visible. Every cell is the product's own rule: the states are drawn from the CSS, not painted.
+          There is no pressed row, because link.css has no <code class="kit-mono">:active</code> rule. There is no disabled row, and no visited row: both are absent on purpose, with the reasons under Technical.</p>
+        <div class="kit-matrix-wrap">
+          <table class="kit-matrix" inert>
+            <thead><tr><th>Form</th><th>State</th><th>Link</th></tr></thead>
+            <tbody>
+              <tr><th rowspan="3">Plain<code>.link</code></th><td class="kit-st">Rest</td><td><a class="link" href="#">Security and GDPR</a></td></tr>
+              <tr><td class="kit-st">Hover</td><td><a class="link" href="#" data-kit-st="hover">Security and GDPR</a></td></tr>
+              <tr class="kit-group-end"><td class="kit-st">Focus</td><td><a class="link" href="#" data-kit-st="focus">Security and GDPR</a></td></tr>
+              <tr><th rowspan="3">Muted<code>.link--muted</code></th><td class="kit-st">Rest</td><td><a class="link--muted" href="#">Privacy</a></td></tr>
+              <tr><td class="kit-st">Hover</td><td><a class="link--muted" href="#" data-kit-st="hover">Privacy</a></td></tr>
+              <tr class="kit-group-end"><td class="kit-st">Focus</td><td><a class="link--muted" href="#" data-kit-st="focus">Privacy</a></td></tr>
+              <tr><th rowspan="3">Text action<code>.link--action</code></th><td class="kit-st">Rest</td><td><button class="link--action">Clear filters</button></td></tr>
+              <tr><td class="kit-st">Hover</td><td><button class="link--action" data-kit-st="hover">Clear filters</button></td></tr>
+              <tr><td class="kit-st">Focus</td><td><button class="link--action" data-kit-st="focus">Clear filters</button></td></tr>
+            </tbody>
+          </table>
         </div>
-        <p class="kit-note" style="margin-top:14px">Four snapshots, and two states named as ABSENT with their reasons above. That is the point of the block: a state this component cannot have is written down rather than left for somebody to add later.<br>Re-take: <code class="kit-mono">node scripts/shoot-states.js link</code></p>
-      </div>
-    </section>
+      </section>
 
-    <section class="kit-sec" id="tech">
-      <h2 class="kit-h2">The file and the tokens</h2>
-      <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Reads</th><th>Grows from</th><th>For</th></tr></thead><tbody>
-        <tr><td><code>--text-primary</code></td><td><code>--grey-050</code></td><td>the link ink</td></tr>
-        <tr><td><code>--text-secondary</code></td><td><code>--grey-400</code></td><td>the muted form, and the text action at rest</td></tr>
-      </tbody></table></div>
-      <div class="scene">
-        <div class="scene-label">copy this</div>
-        <pre style="font-family:var(--font-mono);font-size:12px;color:var(--text-secondary);line-height:1.8;overflow-x:auto">&lt;a class="link" href="#"&gt;Security and GDPR&lt;/a&gt;
+      <section class="kit-sec" id="props">
+        <h2 class="kit-h2">Properties</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Property</th><th>Type</th><th>Values</th><th>Default</th></tr></thead><tbody>
+          <tr><td>Emphasis</td><td>variant</td><td>plain 62 <code>.link</code> &middot; muted 26 <code>.link--muted</code></td><td>none: one class is required</td></tr>
+          <tr><td>Behaviour</td><td>variant</td><td>destination <code>a.link</code> &middot; action 2 <code>button.link--action</code></td><td>destination</td></tr>
+          <tr><td>Target</td><td>context</td><td>inline, exempt from the 44px floor &middot; standalone 44px, which <code>.link--action</code> carries itself</td><td>inline</td></tr>
+          <tr><td>State</td><td>variant</td><td>rest &middot; hover &middot; focus-visible</td><td>rest</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="when">
+        <h2 class="kit-h2">How to use it</h2>
+        <div class="kit-when">
+          <div>
+            <h3>When</h3>
+            <p>Everywhere a person leaves the current screen without acting on it: the breadcrumb back to Synthesis, the legal table of contents, the marketing footer, the line under a settings panel pointing at the document that explains it.</p>
+            <p>The rule that keeps it apart from the button is one sentence, and this product needs it more than most: <b>a button acts, a link travels.</b> On a screen whose whole promise is that every claim can be opened, the difference between "this does something" and "this shows you the evidence" is not cosmetic.</p>
+          </div>
+          <div>
+            <h3>When not</h3>
+            <ul>
+              <li>To make something happen on this screen: take <code>.btn--ghost</code>, or <code>.link--action</code> for a text action. A link that acts is a button in disguise.</li>
+              <li>To point at a row that is entirely a destination: take <code>.cardrow</code>. The whole row is the target there, not a word inside it.</li>
+              <li>To underline a link permanently in a list: take the muted form. Ink recedes, the underline does not multiply.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="kit-dodont">
+          <div class="kit-dd kit-dd--do">
+            <div class="kit-dd-c" inert>
+              <p>Read how Sift stores and protects your data on the <a class="link" href="#">Security and GDPR</a> page.</p>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do</div><div class="kit-dd-t">A link inside a sentence, named by what it opens</div>
+              <div class="kit-dd-d">The person knows where it goes before they follow it.</div></div>
+          </div>
+          <div class="kit-dd kit-dd--dont">
+            <div class="kit-dd-c" inert>
+              <p>Read how Sift stores your data <a class="link" href="#">here</a>.</p>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do not</div><div class="kit-dd-t">"Here"</div>
+              <div class="kit-dd-d">"Here" names nothing. Read out by a screen reader as a list of links, the page offers five destinations all called "here".</div></div>
+          </div>
+          <div class="kit-dd kit-dd--do">
+            <div class="kit-dd-c" inert>
+              <a class="link--muted" href="#">Privacy</a>
+              <a class="link--muted" href="#">Terms</a>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do</div><div class="kit-dd-t">The muted form where links are the content</div>
+              <div class="kit-dd-d">Ink recedes where links are the content. A footer of primary-ink links would be the loudest thing on the page.</div></div>
+          </div>
+          <div class="kit-dd kit-dd--dont">
+            <div class="kit-dd-c" inert>
+              <a class="link" href="#">Clear filters</a>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do not</div><div class="kit-dd-t">A destination link for an action</div>
+              <div class="kit-dd-d">A link that acts is a button in disguise. "Clear filters" is a text action with a control's target, folded here at Stage 07 from a fourth button emphasis: it is <code>.link--action</code>.</div></div>
+          </div>
+        </div>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>If you are about to</th><th>Take instead</th><th>Why</th></tr></thead><tbody>
+          <tr><td>make something happen on this screen</td><td><code>.btn--ghost</code>, or <code>.link--action</code> for a text action</td><td>A link that acts is a button in disguise</td></tr>
+          <tr><td>point at a row that is entirely a destination</td><td><code>.cardrow</code></td><td>The whole row is the target there, not a word inside it</td></tr>
+          <tr><td>underline a link permanently in a list</td><td>the muted form</td><td>Ink recedes, the underline does not multiply</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="where">
+        <h2 class="kit-h2">Where it stands</h2>
+        <p class="kit-note">18 screens, 88 occurrences across the wireframes. The colour screens that carry the classes today: <code class="kit-mono">.link</code> on 7.2, <code class="kit-mono">.link--action</code> on 2.0. The rest are unclassed anchors in the colour copies, and the families live in grey.</p>
+        <div class="kit-where">
+          <a href="../account-data.html">7.2 Data and privacy</a>
+          <a href="../synthesis.html">2.0 Synthesis</a>
+          <a href="../../wireframes/overview.html">the rest, in grey</a>
+        </div>
+        <p class="kit-note">The earlier page named 0.0 Home among the screens it stands on. The colour copy of Home carries its anchors without a class, so it is not chipped here [?].</p>
+      </section>
+
+    </div>
+
+    <!-- ================================================================ TECHNICAL -->
+    <div class="kit-tabpanel" role="tabpanel" id="tech" aria-labelledby="tab-tech">
+
+      <section class="kit-sec" id="anatomy">
+        <h2 class="kit-h2">Anatomy</h2>
+        <p class="kit-note">The family this product did not have. The Stage 07 census counted 88 unclassed anchors across 18 screens, in prose, footers, tables of contents and breadcrumbs, and not one of them had a declaration anywhere, which is exactly why the colour layer had no rule for any of them either.</p>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
+          <tr><td>the link</td><td><code>.link</code></td><td>Primary ink, no underline at rest. In a dense list a permanent underline on every link is noise</td></tr>
+          <tr><td>the muted form</td><td><code>.link--muted</code></td><td>Secondary ink, for a footer or a legal column where the link is the whole content and the ink is what recedes</td></tr>
+          <tr><td>the text action</td><td><code>.link--action</code></td><td>A 44px target and an underline. It is a control, not a destination</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="axes">
+        <h2 class="kit-h2">Axes, with the rule that chooses</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
+          <tr><td>emphasis</td><td>plain 62 &middot; muted 26</td><td><b>Ink recedes where links are the content.</b> A footer of primary-ink links would be the loudest thing on the page</td></tr>
+          <tr><td>behaviour</td><td>destination &middot; action 2</td><td><b>A link travels, an action acts.</b> "Clear filters" is a text action with a control target, folded here at Stage 07 from a fourth button emphasis</td></tr>
+          <tr><td>target</td><td>inline &middot; 44px</td><td><b>An inline link inside running text is exempt from the floor</b>, for the same reason WCAG exempts it. A standalone one is not</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="tokens">
+        <h2 class="kit-h2">Tokens it reads</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Reads</th><th>Which grows from</th><th>For</th></tr></thead><tbody>
+          <tr><td><code>--text-primary</code></td><td><code>--grey-050</code></td><td>the link ink</td></tr>
+          <tr><td><code>--text-secondary</code></td><td><code>--grey-400</code></td><td>the muted form, and the text action at rest</td></tr>
+          <tr><td><code>--size-target</code>, <code>--space-1</code>, <code>--type-xs</code></td><td>declared in <code>link.css</code> for <code>.link--action</code></td><td>the 44px target, the side padding and the size of the text action</td></tr>
+        </tbody></table></div>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>State</th><th>Token</th><th>What moves</th></tr></thead><tbody>
+          <tr><td>hover</td><td>none: <code>text-decoration</code></td><td>The underline appears. No colour token, because the ink is already at its role and a second ink would be a second link style</td></tr>
+          <tr><td>focus-visible</td><td><code>--line-focus</code></td><td>The product ring, from base.css</td></tr>
+          <tr><td>visited</td><td><b>absent, deliberately</b></td><td>A visited style on a product screen tells a stranger which evidence this person already opened. In an app, visited is a privacy leak rather than a convenience</td></tr>
+          <tr><td>disabled</td><td><b>absent</b></td><td>A link that cannot be followed is not a link. Where a destination is unavailable the product shows text, not a dead anchor</td></tr>
+        </tbody></table></div>
+        <p class="kit-note">Underlined on hover only. The muted form and the text action change ink on hover, from <code class="kit-mono">--text-secondary</code> to <code class="kit-mono">--text-primary</code>; the plain form changes only its underline.</p>
+      </section>
+
+      <section class="kit-sec" id="shots">
+        <h2 class="kit-h2">Snapshots, the two live states, both themes</h2>
+        <div class="kit-forms">
+          <figure><img src="screens/link-hover-dark.png" alt="hover, dark" class="kit-shot"><figcaption class="geo-cap">hover &middot; dark</figcaption></figure>
+          <figure><img src="screens/link-hover-light.png" alt="hover, light" class="kit-shot"><figcaption class="geo-cap">hover &middot; light</figcaption></figure>
+          <figure><img src="screens/link-focus-dark.png" alt="focus, dark" class="kit-shot"><figcaption class="geo-cap">focus-visible &middot; dark</figcaption></figure>
+          <figure><img src="screens/link-focus-light.png" alt="focus, light" class="kit-shot"><figcaption class="geo-cap">focus-visible &middot; light</figcaption></figure>
+        </div>
+        <p class="kit-note">Four snapshots, and two states named as ABSENT with their reasons above. That is the point of the block: a state this component cannot have is written down rather than left for somebody to add later.<br>
+          Re-take: <code class="kit-mono">node scripts/shoot-states.js link</code></p>
+      </section>
+
+      <section class="kit-sec" id="markup">
+        <h2 class="kit-h2">Copy this</h2>
+        <div class="scene">
+          <pre class="kit-pre">&lt;a class="link" href="#"&gt;Security and GDPR&lt;/a&gt;
 &lt;a class="link--muted" href="#"&gt;Privacy&lt;/a&gt;
 &lt;button class="link--action"&gt;Clear filters&lt;/button&gt;</pre>
-      </div>
-      <p class="kit-note">Stands on: <a href="../index.html">0.0 Home</a>, <a href="../account-data.html">7.2 Data and privacy</a>, <a href="../synthesis.html">2.0 Synthesis</a></p>
-    </section>
+        </div>
+        <p class="kit-note">File: <code class="kit-mono">design/system/components/link.css</code>, imported in the atoms group of <code class="kit-mono">design/system/index.css</code>.</p>
+      </section>
 
-    <footer class="kit-foot">
-      <span>Level 1 &middot; Atom &middot; link.css</span>
-      <a href="overview.html">The whole system</a>
-      <a href="architecture.html">Architecture</a>
-      <a href="../overview.html">The product</a>
-    </footer>
+    </div>
+
+    <!-- ================================================================ HISTORY -->
+    <div class="kit-tabpanel" role="tabpanel" id="history" aria-labelledby="tab-history">
+      <section class="kit-sec">
+        <h2 class="kit-h2">Changes, newest first</h2>
+        <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-20</td><td>The page moved to the card format: Overview, Technical, History. The states became a live matrix drawn from the product's own rules; the snapshots moved to Technical</td><td><code>docs/decisions.md</code>, "The showcase is read by purpose"</td></tr>
+          <tr><td>2026-08-19</td><td>Split out of the flat kit into <code>components/link.css</code>, with its page at Step 5 of Tokens + Components</td><td>commit <code>2353608</code></td></tr>
+          <tr><td>2026-08-18</td><td>The family was given a declaration: the 88 unclassed anchors across 18 screens became the Inline text link, level 1. "Clear filters" folded into it as <code>.link--action</code> instead of becoming a fourth button emphasis</td><td><code>design/kit/docs/inventory.md</code>, "Cross-check 2: control without a family"; <code>docs/decisions.md</code>, "The kit grew out of the colour layer, it was not written from the language again"</td></tr>
+          <tr><td>2026-08-18</td><td>The two Stage 06 seed screens were re-pointed to the kit and <code>clear</code> was replaced by <code>link--action</code></td><td><code>docs/decisions.md</code>, "The kit was proved on the seed screens before anything new was built"</td></tr>
+        </tbody></table></div>
+      </section>
+    </div>
+
+    <div id="kit-pager"></div>
+
   </main>
 </div>
-<svg class="sprite" aria-hidden="true"><defs>
-  <symbol id="i-signal" viewBox="0 0 24 24"><path d="M6 18v-3.5M12 18v-8M18 18v-12.5"/></symbol>
-  <symbol id="i-source" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.66 3.13 3 7 3s7-1.34 7-3V6"/><path d="M5 12v6c0 1.66 3.13 3 7 3s7-1.34 7-3v-6"/></symbol>
-  <symbol id="i-brief" viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h7"/></symbol>
-  <symbol id="i-filter" viewBox="0 0 24 24"><path d="M3 5.5h18l-7 8v5l-4 2v-7z"/></symbol>
-  <symbol id="i-evidence" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-4 4v-4H4z"/><path d="M8.5 10.5h7M8.5 13h4"/></symbol>
-  <symbol id="i-drag" viewBox="0 0 24 24"><path d="M9 7h.1M15 7h.1M9 12h.1M15 12h.1M9 17h.1M15 17h.1"/></symbol>
-  <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V5"/><path d="m7.5 9.5 4.5-4.5 4.5 4.5"/><path d="M4.5 15v3.5a1.5 1.5 0 0 0 1.5 1.5h12a1.5 1.5 0 0 0 1.5-1.5V15"/></symbol>
-  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
-</defs></svg>
+
 <script src="_nav.js"></script>
+<script src="_states.js"></script>
 </body>
 </html>

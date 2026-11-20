@@ -12,12 +12,17 @@
 <link rel="stylesheet" href="_page.css">
 </head>
 <!--
-  design/kit/avatar.html - Stage 08 Step 5, level 1.
+  design/kit/avatar.html - a component page in the card format of 2026-11-20, built like button.html.
 
-  Links ../system/index.css, the same entry point a product screen links, so the page cannot
-  drift from the product: it does not show a copy of the component, it shows the component.
+  Overview: the live disc, the matrix (rest, hover as a stated empty rule, focus drawn from the product's
+  own rule), properties, when and when not, do and do not, where it stands. Technical: anatomy, axes,
+  tokens, snapshots note, markup. History: the changes, newest first.
 
-  Five blocks: anatomy, variants, when to use it, rule and anti-rule, states.
+  The 44px target is an ::after overlay, so it cannot be drawn in a cell; it is stated in the properties.
+
+  The page links ../system/index.css, the SAME entry point a product screen links: it is not a
+  copy of the component, it is the component.
+
   No em dash anywhere.
 -->
 <body>
@@ -25,100 +30,217 @@
   <div id="kit-panel"></div>
   <main class="kit-main">
 
-    <div class="kit-eyebrow">Level 1 &middot; Atom</div>
-    <h1 class="kit-h1">Avatar</h1>
-    <p class="kit-lead">A monochrome disc, and it stays one. This product scrubs personal data by default, so a face here would be the same lie as a face on a piece of evidence.</p>
-    <p class="kit-lead"><code class="kit-mono">design/system/components/avatar.css</code> &middot; 28 screens: the app bar on 27, plus the identity block on 7.0.</p>
+    <div id="kit-crumbs"></div>
+    <div id="kit-head"></div>
 
-    <section class="kit-sec" id="anatomy">
-      <h2 class="kit-h2">Anatomy</h2>
-      <div class="scene">
-        <div style="display:flex;gap:26px;align-items:center">
-          <span class="avatar"></span><span class="geo-cap" style="margin:0">28px in the app bar, hit at 44</span>
-          <span class="acct-id-avatar"></span><span class="geo-cap" style="margin:0">40px on the identity block</span>
+    <div class="kit-tabs" role="tablist" aria-label="Avatar page">
+      <button class="kit-tab" role="tab" id="tab-overview" aria-controls="overview" aria-selected="true">Overview</button>
+      <button class="kit-tab" role="tab" id="tab-tech" aria-controls="tech" aria-selected="false" tabindex="-1">Technical</button>
+      <button class="kit-tab" role="tab" id="tab-history" aria-controls="history" aria-selected="false" tabindex="-1">History</button>
+    </div>
+
+    <!-- ================================================================ OVERVIEW -->
+    <div class="kit-tabpanel" role="tabpanel" id="overview" aria-labelledby="tab-overview">
+
+      <div class="kit-hero">
+        <a class="avatar" href="#" aria-label="Account"></a>
+        <span class="acct-id-avatar"></span>
+        <p class="kit-hero-note">Live</p>
+      </div>
+      <p class="kit-note">The 28px disc is a link: tab to it and the ring appears; hover it and nothing moves. The 40px disc is the identity block on 7.0.</p>
+
+      <section class="kit-sec" id="variants">
+        <h2 class="kit-h2">Variants and states</h2>
+        <p class="kit-note">A monochrome disc, and it stays one. This product scrubs personal data by default, so a face here would be the same lie as a face on a piece of evidence. Size is given by the place: two sizes, and one content value, which is empty. Two states, and one of them is deliberately empty: hover paints nothing, and focus-visible is the product ring.</p>
+        <div class="kit-matrix-wrap">
+          <table class="kit-matrix" inert>
+            <thead><tr><th>Disc</th><th>State</th><th>28px, app bar</th><th>40px, identity block</th></tr></thead>
+            <tbody>
+              <tr><th rowspan="3">Empty<code>.avatar</code><code>.acct-id-avatar</code></th><td class="kit-st">Rest</td>
+                <td><a class="avatar" href="#" aria-label="Account"></a></td><td><span class="acct-id-avatar"></span></td></tr>
+              <tr><td class="kit-st">Hover</td>
+                <td colspan="2" class="kit-cell-none">Nothing moves, deliberately. A 28px disc that changes under the pointer draws the eye to a corner the product wants quiet</td></tr>
+              <tr><td class="kit-st">Focus</td>
+                <td><a class="avatar" href="#" aria-label="Account" data-kit-st="focus"></a></td>
+                <td class="kit-cell-none">Not a control: the identity block is a span, not a link, so it takes no focus and has no ring</td></tr>
+            </tbody>
+          </table>
         </div>
-      </div>
-      <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
-        <tr><td>the disc</td><td><code>.avatar</code></td><td>28px, raised ground, hairline border</td></tr>
-        <tr><td>the target</td><td><code>.avatar::after</code></td><td>A transparent overlay at inset -8px, which makes the hit area 44. THE VISUAL AND THE TARGET MAY DIFFER, and where they do the component says so instead of leaving a 28px target</td></tr>
-        <tr><td>the large form</td><td><code>.acct-id-avatar</code></td><td>40px, on the one screen that is about the person rather than about the work</td></tr>
-      </tbody></table></div>
-    </section>
+      </section>
 
-    <section class="kit-sec" id="variants">
-      <h2 class="kit-h2">Variants</h2>
-      <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
-        <tr><td>size</td><td>28px 27 &middot; 40px 1</td><td><b>Size is given by the place.</b> In a bar it is a corner marker; on the account screen it is the subject</td></tr>
-        <tr><td>content</td><td><b>empty, and it is a prohibition</b></td><td>No image, no initials, no generated colour. See below</td></tr>
-      </tbody></table></div>
+      <section class="kit-sec" id="props">
+        <h2 class="kit-h2">Properties</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Property</th><th>Type</th><th>Values</th><th>Default</th></tr></thead><tbody>
+          <tr><td>Size</td><td>variant</td><td>28px <code>.avatar</code>, 27 &middot; 40px <code>.acct-id-avatar</code>, 1</td><td>28px</td></tr>
+          <tr><td>Content</td><td>a prohibition, not a slot</td><td>empty: no image, no initials, no generated colour</td><td>empty</td></tr>
+          <tr><td>Element</td><td>markup</td><td><code>a.avatar</code> with <code>href</code> and <code>aria-label</code> &middot; <code>span.acct-id-avatar</code></td><td>none: one is required</td></tr>
+          <tr><td>Hit area</td><td>fixed</td><td>44px, through <code>.avatar::after</code> at inset -8px</td><td>44px</td></tr>
+          <tr><td>State</td><td>variant</td><td>rest &middot; focus-visible. Hover is deliberately empty</td><td>rest</td></tr>
+        </tbody></table></div>
+      </section>
 
-    </section>
+      <section class="kit-sec" id="when">
+        <h2 class="kit-h2">How to use it</h2>
+        <div class="kit-when">
+          <div>
+            <h3>When</h3>
+            <p>In the corner of the app bar, as the way into the account, and once at 40px on the account screen itself. The navigation of this product is three entries plus account, and the account lives in a corner precisely because account work is not the job the product is for.</p>
+            <p>The empty content cell is the interesting one. A product whose promise is that every claim traces to a real customer cannot decorate itself with invented people, and the same rule that keeps stock photography out of the interface keeps a generated face out of this disc. Where a SOURCE needs an identity, it is a channel token: the icon slot.</p>
+          </div>
+          <div>
+            <h3>When not</h3>
+            <ul>
+              <li>To show which source an item came from: take <code>.iconslot</code>. A channel token, not a person.</li>
+              <li>To show a real person: take nothing. There is no such component, and there will not be one while feedback authors are scrubbed.</li>
+              <li>To make the corner more prominent: take nothing. The corner is quiet on purpose. Account is not the job.</li>
+            </ul>
+          </div>
+        </div>
 
-    <section class="kit-sec" id="when">
-      <h2 class="kit-h2">When to use it</h2>
-      <p class="kit-lead">In the corner of the app bar, as the way into the account, and once at 40px on the account screen itself. The navigation of this product is three entries plus account, and the account lives in a corner precisely because account work is not the job the product is for.</p>
-      <p class="kit-lead">The empty content cell is the interesting one. A product whose promise is that every claim traces to a real customer cannot decorate itself with invented people, and the same rule that keeps stock photography out of the interface keeps a generated face out of this disc. Where a SOURCE needs an identity, it is a channel token: the icon slot.</p>
-    </section>
+        <div class="kit-dodont">
+          <div class="kit-dd kit-dd--do">
+            <div class="kit-dd-c" inert>
+              <a class="avatar" href="#" aria-label="Account"></a>
+              <span class="kit-dd-aside">28px, and the hand hits 44</span>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do</div><div class="kit-dd-t">Let the visual stay quiet and the target clear the floor</div>
+              <div class="kit-dd-d">The visual stays quiet in a bar full of navigation, and the target still clears the floor.</div></div>
+          </div>
+          <div class="kit-dd kit-dd--dont">
+            <div class="kit-dd-c" inert>
+              <span class="kit-dd-aside">The accent spent on a corner. No live example: it would need a colour the component does not carry</span>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do not</div><div class="kit-dd-t">A coloured avatar</div>
+              <div class="kit-dd-d">The one accent of the product now sits in the corner of every screen, competing with the primary action it is supposed to mark.</div></div>
+          </div>
+          <div class="kit-dd kit-dd--do">
+            <div class="kit-dd-c" inert>
+              <span class="iconslot iconslot--row" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-source"></use></svg></span>
+              <span class="kit-dd-aside">Intercom</span>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do</div><div class="kit-dd-t">A channel token where a source needs an identity</div>
+              <div class="kit-dd-d">A channel token, not a person: the icon slot, never a face.</div></div>
+          </div>
+        </div>
+      </section>
 
-    <section class="kit-sec" id="rules">
-      <h2 class="kit-h2">Rule and anti-rule</h2>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-top:18px">
-        <div class="scene"><div class="scene-label" style="color:var(--text-evidence)">rule</div><div style="display:flex;gap:12px;align-items:center"><span class="avatar"></span><span style="font-size:12.5px;color:var(--text-secondary)">28px, and the hand hits 44</span></div>
-          <p class="kit-note">The visual stays quiet in a bar full of navigation, and the target still clears the floor.</p></div>
-        <div class="scene"><div class="scene-label" style="color:var(--text-danger)">anti-rule</div><div style="display:flex;gap:12px;align-items:center"><span class="avatar" style="background:var(--bg-action);border-color:var(--bg-action)"></span><span style="font-size:12.5px;color:var(--text-secondary)">the accent spent on a corner</span></div>
-          <p class="kit-note">A coloured avatar. The one accent of the product now sits in the corner of every screen, competing with the primary action it is supposed to mark.</p></div>
-      </div>
-      <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>If you are about to</th><th>Take instead</th><th>Why</th></tr></thead><tbody>
-        <tr><td>show which source an item came from</td><td><code>.iconslot</code></td><td>A channel token, not a person</td></tr>
-        <tr><td>show a real person</td><td>nothing</td><td>There is no such component, and there will not be one while feedback authors are scrubbed</td></tr>
-        <tr><td>make the corner more prominent</td><td>nothing</td><td>The corner is quiet on purpose. Account is not the job</td></tr>
-      </tbody></table></div>
-    </section>
+      <section class="kit-sec" id="where">
+        <h2 class="kit-h2">Where it stands</h2>
+        <p class="kit-note">28 screens: the app bar on 27, plus the identity block on 7.0. The ones already in colour:</p>
+        <div class="kit-where">
+          <a href="../synthesis.html">2.0 Synthesis</a>
+          <a href="../synthesis-empty.html">2.1 Synthesis first-run empty</a>
+          <a href="../synthesis-loading.html">2.2 Synthesis loading</a>
+          <a href="../synthesis-error.html">2.3 Synthesis error</a>
+          <a href="../sources.html">3.0 Sources</a>
+          <a href="../connect-csv.html">3.2 Import a CSV</a>
+          <a href="../sources-empty.html">3.4 Sources, none connected</a>
+          <a href="../sources-sync-error.html">3.5 Sources, sync error</a>
+          <a href="../theme-error.html">4.0 Theme detail, error</a>
+          <a href="../theme.html">4.0 Theme detail</a>
+          <a href="../theme-low-signal.html">4.1 Theme detail, low signal</a>
+          <a href="../theme-loading.html">4.2 Theme detail, loading</a>
+          <a href="../briefs.html">6.0 Briefs</a>
+          <a href="../build-brief.html">6.1 Build brief</a>
+          <a href="../build-brief-thin-warning.html">6.2 Build brief, thin-theme warning</a>
+          <a href="../share-link-loading.html">6.3 Share link, generating</a>
+          <a href="../share-link.html">6.3 Share link</a>
+          <a href="../briefs-empty.html">6.5 Briefs, none yet</a>
+          <a href="../account.html">7.0 Account</a>
+          <a href="../account-data.html">7.2 Data and privacy</a>
+          <a href="../../wireframes/overview.html">the rest, in grey</a>
+        </div>
+      </section>
 
-    <section class="kit-sec" id="states">
-      <h2 class="kit-h2">States</h2>
-      <div class="scene" id="live"><div class="scene-label">rest, live. It is a link: tab to it, hover it</div>
-        <div style="display:flex;gap:20px;align-items:center"><a class="avatar" href="#" aria-label="Account"></a><a class="avatar" href="#" aria-label="Account"></a></div>
-      </div>
-      <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>State</th><th>Token</th><th>What moves</th></tr></thead><tbody>
-        <tr><td>hover</td><td><b>none</b></td><td>Nothing moves, deliberately. A 28px disc that changes under the pointer draws the eye to a corner the product wants quiet</td></tr>
-        <tr><td>focus-visible</td><td><code>--line-focus</code></td><td>The product ring, drawn on the 28px box. The 44px overlay is a target and not a shape, so the ring follows the visual</td></tr>
-      </tbody></table></div>
-      <p class="kit-note">Two states, and one of them is deliberately empty. The snapshot pair lives on the button page: the focus ring is the same ring from the same token, and the difference here is its radius, which is named rather than photographed.</p>
-    </section>
+    </div>
 
-    <section class="kit-sec" id="tech">
-      <h2 class="kit-h2">The file and the tokens</h2>
-      <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Reads</th><th>Grows from</th><th>For</th></tr></thead><tbody>
-        <tr><td><code>--bg-raised</code></td><td><code>--grey-850</code></td><td>the disc</td></tr>
-        <tr><td><code>--line-hairline</code></td><td><code>--grey-800</code></td><td>its edge</td></tr>
-      </tbody></table></div>
-      <div class="scene">
-        <div class="scene-label">copy this</div>
-        <pre style="font-family:var(--font-mono);font-size:12px;color:var(--text-secondary);line-height:1.8;overflow-x:auto">&lt;a class="avatar" href="account.html" aria-label="Account"&gt;&lt;/a&gt;
+    <!-- ================================================================ TECHNICAL -->
+    <div class="kit-tabpanel" role="tabpanel" id="tech" aria-labelledby="tab-tech">
+
+      <section class="kit-sec" id="anatomy">
+        <h2 class="kit-h2">Anatomy</h2>
+        <div class="kit-forms">
+          <div>
+            <div class="kit-form-c" inert><span class="avatar"></span></div>
+            <div class="kit-form-t">28px in the app bar, hit at 44</div>
+            <div class="kit-form-d"><code>.avatar</code>, with the 44px target drawn by <code>::after</code>.</div>
+          </div>
+          <div>
+            <div class="kit-form-c" inert><span class="acct-id-avatar"></span></div>
+            <div class="kit-form-t">40px on the identity block</div>
+            <div class="kit-form-d"><code>.acct-id-avatar</code>, on the one screen that is about the person.</div>
+          </div>
+        </div>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
+          <tr><td>the disc</td><td><code>.avatar</code></td><td>28px, raised ground, hairline border</td></tr>
+          <tr><td>the target</td><td><code>.avatar::after</code></td><td>A transparent overlay at inset -8px, which makes the hit area 44. THE VISUAL AND THE TARGET MAY DIFFER, and where they do the component says so instead of leaving a 28px target</td></tr>
+          <tr><td>the large form</td><td><code>.acct-id-avatar</code></td><td>40px, on the one screen that is about the person rather than about the work</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="axes">
+        <h2 class="kit-h2">Axes, with the rule that chooses</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
+          <tr><td>size</td><td>28px 27 &middot; 40px 1</td><td><b>Size is given by the place.</b> In a bar it is a corner marker; on the account screen it is the subject</td></tr>
+          <tr><td>content</td><td><b>empty, and it is a prohibition</b></td><td>No image, no initials, no generated colour. See When and When not</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="tokens">
+        <h2 class="kit-h2">Tokens it reads</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Reads</th><th>Grows from</th><th>For</th></tr></thead><tbody>
+          <tr><td><code>--bg-raised</code></td><td><code>--grey-850</code></td><td>the disc</td></tr>
+          <tr><td><code>--line-hairline</code></td><td><code>--grey-800</code></td><td>its edge</td></tr>
+          <tr><td><code>--radius-pill</code></td><td>tokens.css</td><td>the round shape, on the disc and on its 44px overlay</td></tr>
+          <tr><td><code>--line-focus</code></td><td>drawn once in base.css</td><td>the focus ring, through the one <code>:focus-visible</code> rule</td></tr>
+        </tbody></table></div>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>State</th><th>Token</th><th>What moves</th></tr></thead><tbody>
+          <tr><td>hover</td><td><b>none</b></td><td>Nothing moves, deliberately. A 28px disc that changes under the pointer draws the eye to a corner the product wants quiet</td></tr>
+          <tr><td>focus-visible</td><td><code>--line-focus</code></td><td>The product ring, drawn on the 28px box. The 44px overlay is a target and not a shape, so the ring follows the visual</td></tr>
+        </tbody></table></div>
+        <p class="kit-note">Two states, and one of them is deliberately empty. The snapshot pair lives on the button page: the focus ring is the same ring from the same token, and the difference here is its radius, which is named rather than photographed.</p>
+      </section>
+
+      <section class="kit-sec" id="shots">
+        <h2 class="kit-h2">Snapshots</h2>
+        <p class="kit-note">None taken for this component. The focus frames live on <a href="button.html">the button page</a>: same ring, same token. The matrix on Overview draws the avatar focus from the product's own <code class="kit-mono">:focus-visible</code> rule through <code class="kit-mono">_states.js</code>.</p>
+      </section>
+
+      <section class="kit-sec" id="markup">
+        <h2 class="kit-h2">Copy this</h2>
+        <div class="scene">
+          <pre class="kit-pre">&lt;a class="avatar" href="account.html" aria-label="Account"&gt;&lt;/a&gt;
 &lt;span class="acct-id-avatar"&gt;&lt;/span&gt;</pre>
-      </div>
-      <p class="kit-note">Stands on: <a href="../synthesis.html">2.0 Synthesis</a>, <a href="../account.html">7.0 Account</a></p>
-    </section>
+        </div>
+        <p class="kit-note">File: <code class="kit-mono">design/system/components/avatar.css</code>, imported in the atoms group of <code class="kit-mono">design/system/index.css</code>. Stands on: <a href="../synthesis.html">2.0 Synthesis</a>, <a href="../account.html">7.0 Account</a></p>
+      </section>
 
-    <footer class="kit-foot">
-      <span>Level 1 &middot; Atom &middot; avatar.css</span>
-      <a href="overview.html">The whole system</a>
-      <a href="architecture.html">Architecture</a>
-      <a href="../overview.html">The product</a>
-    </footer>
+    </div>
+
+    <!-- ================================================================ HISTORY -->
+    <div class="kit-tabpanel" role="tabpanel" id="history" aria-labelledby="tab-history">
+      <section class="kit-sec">
+        <h2 class="kit-h2">Changes, newest first</h2>
+        <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-20</td><td>The page moved to the card format: Overview, Technical, History. The empty disc and its two sizes became a live matrix (rest, hover as a stated rule, focus drawn from the product's own rule); the old anatomy, rule and anti-rule and states blocks were folded into Overview and Technical</td><td><code>docs/decisions.md</code>, "The showcase is read by purpose"</td></tr>
+          <tr><td>2026-08-19</td><td>Level 1 atom page and <code>components/avatar.css</code> written in the Tokens + Components round of all 17 atoms</td><td>commit <code>2353608</code></td></tr>
+          <tr><td>2026-08-19</td><td>The two tables of facts, read and measured: the component's counts were taken from the rendered product</td><td>commit <code>2aa7baa</code></td></tr>
+          <tr><td>2026-08-19</td><td>UI + Visual Steps 6 and 7: critique on three instruments, and the stage closes</td><td>commit <code>0980e88</code>; <code>docs/decisions.md</code>, "The critique ran on three instruments, and the two that measure found what reading cannot"</td></tr>
+          <tr><td>2026-08-18</td><td>UI + Visual Step 5: the sample screens were assembled from the kit (commits <code>f2b20b8</code>, <code>2ee2c3b</code>, <code>400f936</code>, <code>41ae8c4</code>)</td><td>commit <code>41ae8c4</code>; <code>docs/decisions.md</code>, "The colour stage got its own two-part navigation, and its screens stopped being exhibits"</td></tr>
+          <tr><td>2026-08-18</td><td>No photography and the kit proved on the seed screens: the disc stays a monochrome disc because feedback authors are PII-scrubbed</td><td>commit <code>2461d5a</code>; <code>docs/decisions.md</code>, "This product carries no photography, and the set is empty on purpose"</td></tr>
+          <tr><td>2026-08-18</td><td>Grown out of the colour layer into the kit rather than written again from the language</td><td>commit <code>d461e12</code>; <code>docs/decisions.md</code>, "The kit grew out of the colour layer, it was not written from the language again"</td></tr>
+        </tbody></table></div>
+      </section>
+    </div>
+
+    <div id="kit-pager"></div>
+
   </main>
 </div>
 <svg class="sprite" aria-hidden="true"><defs>
-  <symbol id="i-signal" viewBox="0 0 24 24"><path d="M6 18v-3.5M12 18v-8M18 18v-12.5"/></symbol>
   <symbol id="i-source" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.66 3.13 3 7 3s7-1.34 7-3V6"/><path d="M5 12v6c0 1.66 3.13 3 7 3s7-1.34 7-3v-6"/></symbol>
-  <symbol id="i-brief" viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h7"/></symbol>
-  <symbol id="i-filter" viewBox="0 0 24 24"><path d="M3 5.5h18l-7 8v5l-4 2v-7z"/></symbol>
-  <symbol id="i-evidence" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-4 4v-4H4z"/><path d="M8.5 10.5h7M8.5 13h4"/></symbol>
-  <symbol id="i-drag" viewBox="0 0 24 24"><path d="M9 7h.1M15 7h.1M9 12h.1M15 12h.1M9 17h.1M15 17h.1"/></symbol>
-  <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V5"/><path d="m7.5 9.5 4.5-4.5 4.5 4.5"/><path d="M4.5 15v3.5a1.5 1.5 0 0 0 1.5 1.5h12a1.5 1.5 0 0 0 1.5-1.5V15"/></symbol>
-  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
 </defs></svg>
 <script src="_nav.js"></script>
+<script src="_states.js"></script>
 </body>
 </html>

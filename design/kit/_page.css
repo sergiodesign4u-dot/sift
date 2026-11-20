@@ -128,7 +128,7 @@ a.kit-link:hover { color: var(--text-primary); background: var(--bg-raised); }
 .pair-chip { display: inline-block; margin-top: 8px; padding: 4px 9px; border-radius: var(--radius-sm); font-family: var(--font-mono); font-size: var(--type-3xs); }
 
 /* ---------- tables ---------- */
-.tbl-wrap { overflow-x: auto; border: 1px solid var(--line-hairline); border-radius: var(--radius-lg); margin-top: 16px; }
+.tbl-wrap { position: relative; overflow-x: auto; border: 1px solid var(--line-hairline); border-radius: var(--radius-lg); margin-top: 16px; }
 table.kit-tbl { width: 100%; border-collapse: collapse; font-size: var(--type-xs); min-width: 700px; }
 table.kit-tbl th, table.kit-tbl td { text-align: left; vertical-align: top; padding: 10px 13px; border-bottom: 1px solid var(--line-hairline); }
 table.kit-tbl thead th { font-family: var(--font-mono); font-size: var(--type-3xs); font-weight: var(--weight-medium); letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-secondary); background: var(--bg-surface); }
@@ -192,7 +192,7 @@ table.kit-tbl tbody tr:last-child td { border-bottom: none; }
 
 /* the matrix: variant rows, state sub-rows, size columns. Inert: a specimen of thirty
    controls is looked at, not tabbed through. The live set stands in the specimen above it. */
-.kit-matrix-wrap { overflow-x: auto; margin-top: 16px; border: 1px solid var(--line-hairline); border-radius: var(--radius-lg); background: var(--bg-page); }
+.kit-matrix-wrap { position: relative; overflow-x: auto; margin-top: 16px; border: 1px solid var(--line-hairline); border-radius: var(--radius-lg); background: var(--bg-page); }
 table.kit-matrix { width: 100%; min-width: 620px; border-collapse: collapse; }
 .kit-matrix th, .kit-matrix td { text-align: left; vertical-align: middle; padding: 12px 14px; border-bottom: 1px solid var(--line-hairline); }
 .kit-matrix thead th { font-family: var(--font-mono); font-size: var(--type-3xs); font-weight: var(--weight-medium); letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-secondary); background: var(--bg-surface); }
