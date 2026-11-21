@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift design system - Marketing page shell</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../system/index.css">
+<link rel="stylesheet" href="_page.css">
+</head>
+<!--
+  design/kit/marketing-shell.html - a component page in the card format of 2026-11-20, laid after button.html.
+  Level 3, an organism of the shell, 0.0 only. Not interactive: the matrix has no forced states.
+  The page links ../system/index.css, the SAME entry point a product screen links.
+  No em dash anywhere.
+-->
+<body>
+<div class="kit-shell">
+  <div id="kit-panel"></div>
+  <main class="kit-main">
+
+    <div id="kit-crumbs"></div>
+    <div id="kit-head"></div>
+
+    <div class="kit-tabs" role="tablist" aria-label="Marketing page shell page">
+      <button class="kit-tab" role="tab" id="tab-overview" aria-controls="overview" aria-selected="true">Overview</button>
+      <button class="kit-tab" role="tab" id="tab-tech" aria-controls="tech" aria-selected="false" tabindex="-1">Technical</button>
+      <button class="kit-tab" role="tab" id="tab-history" aria-controls="history" aria-selected="false" tabindex="-1">History</button>
+    </div>
+
+    <!-- ================================================================ OVERVIEW -->
+    <div class="kit-tabpanel" role="tabpanel" id="overview" aria-labelledby="tab-overview">
+
+      <div class="kit-hero">
+        <div class="u-full">
+          <div class="public-main--wide">
+            <section class="mk-hero">
+              <h1 class="mk-h1">Turn scattered customer feedback into decisions you can defend.</h1>
+              <p class="mk-lead">Sift reads your support tickets, sales calls, reviews, and interviews, and gives you a ranked, evidence-backed picture of what customers need most, with every claim traceable to the quote behind it.</p>
+              <div class="mk-cta">
+                <a class="btn btn--lg" href="#">Start free</a>
+                <a class="btn--ghost btn--lg" href="#">Log in</a>
+              </div>
+              <p class="mk-note">Free plan, no card required. Start with a CSV export or connect Intercom.</p>
+            </section>
+            <section class="mk-section">
+              <h2 class="mk-h2">How Sift works</h2>
+              <p class="mk-section-sub">Three steps from scattered signal to a call you can stand behind. It mirrors the path you take inside the app.</p>
+              <ol class="mk-grid">
+                <li class="mk-step">
+                  <span class="mk-step-n">1</span>
+                  <h3 class="mk-step-t">Connect a source</h3>
+                  <p class="mk-step-d">Import a CSV export or connect Intercom. Feedback is normalized on the way in, and PII is scrubbed by default.</p>
+                </li>
+                <li class="mk-step">
+                  <span class="mk-step-n">2</span>
+                  <h3 class="mk-step-t">See ranked themes with confidence</h3>
+                  <p class="mk-step-d">Sift clusters the feedback into themes and shows how strong each one is, so you can tell a real pattern from a thin one.</p>
+                  <span class="conf"><span class="conf-n">n=42</span></span>
+                </li>
+                <li class="mk-step">
+                  <span class="mk-step-n">3</span>
+                  <h3 class="mk-step-t">Trace every claim to evidence</h3>
+                  <p class="mk-step-d">Open any theme to read the exact customer quotes behind it. If a claim cannot be traced, it is marked, not dressed up.</p>
+                </li>
+              </ol>
+            </section>
+          </div>
+        </div>
+        <p class="kit-hero-note">Live. Copy from 0.0, the hero and How Sift works</p>
+      </div>
+      <p class="kit-note">The shell holds sections in a column at marketing measure. The wide column, <code>.public-main--wide</code>, modifies the public document's <code>.public-main</code>; here it is shown alone, so only the max width applies.</p>
+
+      <section class="kit-sec" id="variants">
+        <h2 class="kit-h2">Variants and states</h2>
+        <p class="kit-note">Not interactive in itself: the shell has no hover, focus or pressed state of its own. The buttons inside keep theirs on <a href="button.html">the button page</a>. One form, so the rows are its parts, in reading order on 0.0.</p>
+        <div class="kit-matrix-wrap">
+          <table class="kit-matrix" inert>
+            <thead><tr><th>Part</th><th>Specimen</th><th>Note</th></tr></thead>
+            <tbody>
+              <tr><th>Hero<code>.mk-hero</code></th><td><section class="mk-hero">
+              <h1 class="mk-h1">Turn scattered customer feedback into decisions you can defend.</h1>
+              <p class="mk-lead">Sift reads your support tickets, sales calls, reviews, and interviews, and gives you a ranked, evidence-backed picture of what customers need most, with every claim traceable to the quote behind it.</p>
+              <div class="mk-cta">
+                <a class="btn btn--lg" href="#">Start free</a>
+                <a class="btn--ghost btn--lg" href="#">Log in</a>
+              </div>
+              <p class="mk-note">Free plan, no card required. Start with a CSV export or connect Intercom.</p>
+            </section></td><td class="kit-cell-none">First line, lead, two calls to action, one note.</td></tr>
+              <tr><th>Steps<code>.mk-section</code> + <code>.mk-grid</code></th><td><section class="mk-section">
+              <h2 class="mk-h2">How Sift works</h2>
+              <p class="mk-section-sub">Three steps from scattered signal to a call you can stand behind. It mirrors the path you take inside the app.</p>
+              <ol class="mk-grid">
+                <li class="mk-step">
+                  <span class="mk-step-n">1</span>
+                  <h3 class="mk-step-t">Connect a source</h3>
+                  <p class="mk-step-d">Import a CSV export or connect Intercom. Feedback is normalized on the way in, and PII is scrubbed by default.</p>
+                </li>
+                <li class="mk-step">
+                  <span class="mk-step-n">2</span>
+                  <h3 class="mk-step-t">See ranked themes with confidence</h3>
+                  <p class="mk-step-d">Sift clusters the feedback into themes and shows how strong each one is, so you can tell a real pattern from a thin one.</p>
+                  <span class="conf"><span class="conf-n">n=42</span></span>
+                </li>
+                <li class="mk-step">
+                  <span class="mk-step-n">3</span>
+                  <h3 class="mk-step-t">Trace every claim to evidence</h3>
+                  <p class="mk-step-d">Open any theme to read the exact customer quotes behind it. If a claim cannot be traced, it is marked, not dressed up.</p>
+                </li>
+              </ol>
+            </section></td><td class="kit-cell-none">The <a href="step-card.html">step card</a> molecule in the grid.</td></tr>
+              <tr><th>Pricing<code>.mk-section</code> + <code>.mk-grid</code></th><td><section class="mk-section">
+              <h2 class="mk-h2">Pricing</h2>
+              <p class="mk-section-sub">Start free with a monthly feedback limit. Upgrade when you need full coverage and traceability. Plan names, limits, and prices are early hypotheses, not final.</p>
+              <ul class="mk-grid">
+                <li class="tier">
+                  <h3 class="tier-name">Free</h3>
+                  <p class="tier-price">$0</p>
+                  <ul class="tier-feat"><li>Up to 250 feedback items per month</li><li>Theme clusters, basic synthesis</li><li>1 source</li></ul>
+                </li>
+                <li class="tier">
+                  <h3 class="tier-name">Starter</h3>
+                  <p class="tier-price">$30 to $60</p>
+                  <span class="tier-unit">per seat / month</span>
+                  <ul class="tier-feat"><li>Unlimited feedback volume</li><li>Full synthesis with traceability</li><li>3 sources, 1 to 3 seats</li></ul>
+                </li>
+              </ul>
+              <div class="mk-cta">
+                <a class="btn btn--lg" href="#">Start free</a>
+                <a class="btn--ghost btn--lg" href="#">See plans and limits</a>
+              </div>
+            </section></td><td class="kit-cell-none">The <a href="tier-card.html">tier card</a> molecule in the grid. 0.0 shows four tiers; two are shown here.</td></tr>
+              <tr><th>Trust<code>.mk-trust</code></th><td class="kit-cell-none">No specimen here.</td><td class="kit-cell-none">A declared one-off, left to Step 6.</td></tr>
+              <tr><th>Footer link block<code>.mk-footer</code></th><td class="kit-cell-none">No specimen here.</td><td class="kit-cell-none">A declared one-off, composed with the <a href="app-footer.html">app footer</a>. Left to Step 6.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="props">
+        <h2 class="kit-h2">Properties</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Property</th><th>Type</th><th>Values</th><th>Default</th></tr></thead><tbody>
+          <tr><td>Hero</td><td>zone</td><td><code>.mk-hero</code> holding <code>.mk-h1</code>, <code>.mk-lead</code>, <code>.mk-cta</code>, <code>.mk-note</code></td><td>first on the page</td></tr>
+          <tr><td>Section</td><td>zone</td><td><code>.mk-section</code> holding <code>.mk-h2</code> and <code>.mk-section-sub</code></td><td>repeats</td></tr>
+          <tr><td>Grid</td><td>layout</td><td><code>.mk-grid</code> on a list, cards at 220px or wider, auto-fit</td><td>one column at 360</td></tr>
+          <tr><td>Column</td><td>modifier</td><td><code>.public-main--wide</code>, max 1040px</td><td>720px without it</td></tr>
+          <tr><td>Calls to action</td><td>slot</td><td><code>.mk-cta</code> with large buttons: the one place the large size exists</td><td>none</td></tr>
+          <tr><td>State</td><td>none</td><td>not interactive</td><td>none</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="when">
+        <h2 class="kit-h2">How to use it</h2>
+        <div class="kit-when">
+          <div>
+            <h3>When</h3>
+            <p>On the one screen read by somebody who has not signed in and has not decided to read it: the marketing home. It has a wider measure and a larger first line because of that (the comment above the rules in <code>kit.css</code>).</p>
+          </div>
+          <div>
+            <h3>When not</h3>
+            <ul>
+              <li>Inside the application: <code>.mk-h1</code> at 36px is for 0.0 alone, and so is the large button.</li>
+              <li>For prose: the shared brief is a reading column at 720px, not a section stack.</li>
+              <li>For a trust block or a footer link block: those are one-offs and are not in this file.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="where">
+        <h2 class="kit-h2">Where it stands</h2>
+        <p class="kit-note">Only 0.0 Home, in colour. The inventory counts 1 screen, in grey as well. On photography, the inventory row says "See Findings 4": 0.0 is the one place the concept allows a hero photo, the wireframe has no image block, and Step 4 has two options (add the block upstream, or record that the product carries none). The decision is the owner's and is not made here.</p>
+        <div class="kit-where">
+          <a href="../index.html">0.0 Home</a>
+          <a href="../../wireframes/overview.html">the rest, in grey</a>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ================================================================ TECHNICAL -->
+    <div class="kit-tabpanel" role="tabpanel" id="tech" aria-labelledby="tab-tech">
+
+      <section class="kit-sec" id="anatomy">
+        <h2 class="kit-h2">Anatomy</h2>
+        <p class="kit-note">Sections in a column, top to bottom, on 0.0.</p>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
+          <tr><td>hero</td><td><code>.mk-hero</code></td><td>The first line (<code>.mk-h1</code>, 36px, 27px at 360), the lead, the calls to action, the note. A hairline edge below</td></tr>
+          <tr><td>section</td><td><code>.mk-section</code></td><td>A headline, one line of context, then a grid or a list. A hairline edge below</td></tr>
+          <tr><td>grid</td><td><code>.mk-grid</code></td><td>Holds the <a href="step-card.html">step card</a> and the <a href="tier-card.html">tier card</a></td></tr>
+          <tr><td>trust</td><td><code>.mk-trust</code></td><td>A one-off. Not in this file</td></tr>
+          <tr><td>footer link block</td><td><code>.mk-footer</code></td><td>A one-off. Not in this file</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="axes">
+        <h2 class="kit-h2">Axes, with the rule that chooses</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
+          <tr><td></td><td><b>no axes</b></td><td>One form: hero, steps, trust, pricing, footer link block (inventory, "Marketing page shell"). One screen</td></tr>
+        </tbody></table></div>
+        <p class="kit-note"><b>No states, and that is a decision rather than an omission.</b> The shell has no state of its own. At 820px and below the first line steps from 36px to 27px and the lead from 16px to 14.5px: the two 360 rules.</p>
+      </section>
+
+      <section class="kit-sec" id="tokens">
+        <h2 class="kit-h2">Tokens it reads</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Reads</th><th>Grows from</th><th>For</th></tr></thead><tbody>
+          <tr><td><code>--text-primary</code>, <code>--text-secondary</code></td><td><code>--grey-050</code>, <code>--grey-400</code></td><td>the headlines; the lead, the notes and the section line</td></tr>
+          <tr><td><code>--line-hairline</code></td><td><code>--grey-800</code></td><td>the edge under the hero and under each section</td></tr>
+          <tr><td><code>--type-3xl</code>, <code>--type-xl</code>, <code>--type-sm</code>, <code>--type-2xs</code></td><td>tokens.css</td><td>the first line (36), the section headline (22), the section line (13.5), the note (11)</td></tr>
+          <tr><td><code>--weight-strong</code>, <code>--tracking-head</code>, <code>--leading-body</code></td><td>tokens.css</td><td>both headlines; the section headline's tracking; the section line</td></tr>
+          <tr><td><code>--font-mono</code></td><td>tokens.css</td><td>the note</td></tr>
+          <tr><td><code>--space-4</code>, <code>--space-5</code>, <code>--space-6</code>, <code>--space-7</code>, <code>--space-10</code>, <code>--space-12</code></td><td>tokens.css</td><td>the gaps and the section padding</td></tr>
+        </tbody></table></div>
+        <p class="kit-note">Kept as literals because no primitive equals them: 30px hero top padding, 16px lead, line heights 1.15 and 1.65, tracking -0.025em on the first line, 7px and 20px margins, 27px and 14.5px at 360, and the widths 20ch, 58ch, 60ch, 220px, 1040px.</p>
+        <h3 class="kit-h3">Snapshots</h3>
+        <p class="kit-note">No snapshots: the shell has no interactive state.</p>
+      </section>
+
+      <section class="kit-sec" id="markup">
+        <h2 class="kit-h2">Copy this</h2>
+        <div class="scene">
+          <pre class="kit-pre">&lt;main class="public-main public-main--wide"&gt;
+  &lt;section class="mk-hero"&gt;
+    &lt;h1 class="mk-h1"&gt;Turn scattered customer feedback into decisions you can defend.&lt;/h1&gt;
+    &lt;p class="mk-lead"&gt;...&lt;/p&gt;
+    &lt;div class="mk-cta"&gt;
+      &lt;a class="btn btn--lg" href="#"&gt;Start free&lt;/a&gt;
+      &lt;a class="btn--ghost btn--lg" href="#"&gt;Log in&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;p class="mk-note"&gt;Free plan, no card required.&lt;/p&gt;
+  &lt;/section&gt;
+  &lt;section class="mk-section"&gt;
+    &lt;h2 class="mk-h2"&gt;How Sift works&lt;/h2&gt;
+    &lt;p class="mk-section-sub"&gt;...&lt;/p&gt;
+    &lt;ol class="mk-grid"&gt;&lt;li class="mk-step"&gt;...&lt;/li&gt;&lt;/ol&gt;
+  &lt;/section&gt;
+&lt;/main&gt;</pre>
+        </div>
+        <p class="kit-note">File: <code class="kit-mono">design/system/components/marketing-shell.css</code>, imported in the organisms group of
+          <code class="kit-mono">design/system/index.css</code>. Stands on: <a href="../index.html">0.0 Home</a></p>
+      </section>
+
+    </div>
+
+    <!-- ================================================================ HISTORY -->
+    <div class="kit-tabpanel" role="tabpanel" id="history" aria-labelledby="tab-history">
+      <section class="kit-sec">
+        <h2 class="kit-h2">Changes, newest first</h2>
+        <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-21</td><td>Entered the system: <code>components/marketing-shell.css</code>, on semantic roles, and this page in the card format</td><td><code>docs/decisions.md</code>, "The organisms entered the system"</td></tr>
+          <tr><td>2026-08-19</td><td><code>.public-main--wide</code> added: the public document at marketing measure, for 0.0</td><td>commit <code>41ae8c4</code>, "UI + Visual Step 5: the sample is complete, seven screens plus the two seeds"; <code>docs/inventory.md</code>, "Added" table</td></tr>
+          <tr><td>2026-08-18</td><td>Written into <code>kit.css</code> from the colour layer as the marketing page shell</td><td>commit <code>d461e12</code>, "UI + Visual Step 3: the kit, grown out of the colour layer rather than written again"</td></tr>
+        </tbody></table></div>
+      </section>
+    </div>
+
+    <div id="kit-pager"></div>
+
+  </main>
+</div>
+
+<script src="_nav.js"></script>
+<script src="_states.js"></script>
+</body>
+</html>

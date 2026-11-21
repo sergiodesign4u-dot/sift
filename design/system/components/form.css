@@ -1,0 +1,15 @@
+/* design/system/components/form.css - level 3, organism.
+   Reads: --space-8
+   Page:  design/kit/form.html
+   Stands on: 9 screens in grey (inventory). Purpose: auth 3, connect 2, settings 2, composer 2.
+   No colour screen carries the class yet [?]: the product screens that hold a form put the fields in
+   their own wrappers. The grey screens use a bare <form>.
+
+   Form. Four purposes (auth, connect, settings, composer), one appearance. It declares nothing but
+   rhythm: the fields, the labels and the buttons are already components, so the block holds the
+   gap under the last field and nothing else.
+   No em dash anywhere in this file.
+*/
+
+.form { display: block; }
+.form .field:last-of-type { margin-bottom: var(--space-8); }

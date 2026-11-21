@@ -581,3 +581,15 @@ group of its own level.*
 | 2 | **Auth card** | `components/auth-card.css` | `kit/auth-card.html` | none, not interactive. Three content forms | 1.0, 1.1, 1.2 (grey only) |
 | 2 | **Marketing tier card** | `components/tier-card.css` | `kit/tier-card.html` | none, not interactive | 0.0. 4 tiers measured, the Level 2 table says three |
 | 2 | **Marketing step card** | `components/step-card.css` | `kit/step-card.html` | none, not interactive | 0.0. 3 measured |
+| 3 | **App header** | `components/app-header.css` | `kit/app-header.html` | per tab: rest, hover, current (`.active`), focus-visible. Tabs hidden at 820 and below | 27 screens. Canonical global 0.1 |
+| 3 | **Bottom tabs** | `components/bottom-tabs.css` | `kit/bottom-tabs.html` | per tab: rest, current (`.active`), focus-visible. Drawn at 820 and below only | 27 screens. Canonical global 0.1 |
+| 3 | **App footer** | `components/app-footer.css` | `kit/app-footer.html` | none, not interactive | 27 screens. Canonical global 0.2 |
+| 3 | **Public bar** | `components/public-bar.css` | `kit/public-bar.html` | none, not interactive | 10 screens |
+| 3 | **Empty / error state block** | `components/state.css` | `kit/state.html` | none, not interactive; its exits keep the button's | 8 screens. Centred 6, inline 2 |
+| 3 | **Form** | `components/form.css` | `kit/form.html` | none of its own; the error is the field's line. Submitting `[?]` | 9 screens, all grey |
+| 3 | **Dialog** | `components/dialog.css` | `kit/dialog.html` | none, not interactive. Generating is the 6.3 loading form | 6.3, 3.6 |
+| 3 | **Legal document** | `components/legal-doc.css` | `kit/legal-doc.html` | crumb and related links: hover, focus-visible | 9.0, 9.1, 9.2 (grey only) |
+| 3 | **Account shell** | `components/account-shell.css` | `kit/account-shell.html` | per nav item: hover, current, focus-visible | 7.0, 7.1, 7.2, 7.3 |
+| 3 | **Public document (shared brief)** | `components/public-doc.css` | `kit/public-doc.html` | none, not interactive | 6.4 |
+| 3 | **Marketing page shell** | `components/marketing-shell.css` | `kit/marketing-shell.html` | none, not interactive | 0.0 |
+| 3 | **Screen shell** | `components/screen-shell.css` | `kit/screen-shell.html` | none of its own. Owns the selection trigger, the notice gutter, the centring of a lone state or dialog | 27 screens. `.app` for a screen, `.appframe` for a stand |

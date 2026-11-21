@@ -1,0 +1,21 @@
+/* design/system/components/dialog.css - level 3, organism.
+   Reads: --bg-raised, --line-hairline, --radius-lg, --shadow-sheet, --text-primary, --text-secondary,
+          --space-4, --space-7, --type-lg, --type-xs, --weight-strong, --tracking-title, --leading-body
+   Page:  design/kit/dialog.html
+   Stands on: 6.3 (share-link, share-link-loading in colour) and 3.6 in grey. Link row plus actions 1,
+   confirm with a destructive action held apart 1.
+
+   Dialog. It floats, so it is the one surface besides the frame that carries the shadow, and it
+   takes the frame's radius so the two read as the same material. A destructive action is held apart
+   by .u-apart and never sits beside the primary one.
+
+   NOT HERE: `.appmain:has(> .dialog:only-child)` (centres the dialog on the canvas) is the screen
+   shell's. `.linkrow` is a one-off block, not part of the system yet [?].
+   The 24px padding and the 7px under the title have no exact step and stay literals.
+   No em dash anywhere in this file.
+*/
+
+.dialog { width: 100%; max-width: 460px; background: var(--bg-raised); border: 1px solid var(--line-hairline); border-radius: var(--radius-lg); box-shadow: var(--shadow-sheet); padding: 24px; }
+.dialog h1 { font-size: var(--type-lg); font-weight: var(--weight-strong); letter-spacing: var(--tracking-title); color: var(--text-primary); margin-bottom: 7px; }
+.dialog p { font-size: var(--type-xs); color: var(--text-secondary); line-height: var(--leading-body); margin-bottom: var(--space-7); }
+.dialog-actions { display: flex; align-items: center; gap: var(--space-4); flex-wrap: wrap; margin-top: var(--space-7); }

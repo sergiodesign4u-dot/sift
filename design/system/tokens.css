@@ -208,6 +208,7 @@
          any semantic role. Each one keeps the exact kit.css value in the dark theme, so nothing
          moves; each one is PENDING the owner's review at the molecule gate. --- */
   --step-current-line: var(--grey-050);  /* LINE. The ring of the current phase in the phase strip: kit.css drew it in --porcelain, and no line role carries that step. 1 rule, 2.1 and 2.2 */
+  --text-accent:       var(--cyan-400);  /* INK. Born at round 3 (organisms), PENDING, and a semantic role if accepted: the accent as ink where it marks "this is the product" or "you are here", 2 rules (the brand mark in the app header, the current bottom tab). Not --text-evidence, which A2 keeps for the citation alone. Same pair as --text-evidence, so the same ratios */
   --tier-mark:         var(--grey-700);  /* FILL. The square bullet of a tier feature on 0.0: kit.css drew it in --line-2, which became --line-control, a line role. A fill may not borrow a line role. 1 rule, decorative */
 }
 
@@ -255,5 +256,6 @@
 
   /* COMPONENT */
   --step-current-line: var(--grey-950);  /* the same step as --text-primary here, as in the dark theme */
+  --text-accent:       var(--cyan-700);  /* the same step as --text-evidence here */
   --tier-mark:         var(--grey-350);  /* the light pair --line-2 had before the Step 4 review moved --line-control */
 }

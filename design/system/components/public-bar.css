@@ -1,0 +1,18 @@
+/* design/system/components/public-bar.css - level 3, organism (shell).
+   Reads: --bg-surface, --text-primary, --text-secondary, --line-hairline, --font-mono, --size-bar, --space-5, --space-9, --type-2xs
+   Page:  design/kit/public-bar.html
+   Stands on: 0.0 Home and 6.4 Shared brief in colour; 10 screens in grey (inventory).
+
+   The top bar of every screen read by somebody who is not signed in: the brand on the left and one
+   line of context on the right. No app chrome, no navigation, no actions: a visitor has not decided
+   to use the product yet, and a bar that asks for a decision would be the wrong first sentence.
+   Its content axis is the one line: a read-only tag on the shared brief, the product line on the
+   marketing and legal screens.
+   .brand and .brand .mark belong to the app header and are used here, not redeclared. The rule
+   below sets only the brand's ink on this bar. Height is the app bar's own step, --size-bar.
+   No em dash anywhere in this file.
+*/
+
+.public-bar { display: flex; align-items: center; gap: var(--space-5); height: var(--size-bar); padding: 0 var(--space-9); border-bottom: 1px solid var(--line-hairline); background: var(--bg-surface); }
+.public-bar .brand { color: var(--text-primary); }
+.public-tag { font-family: var(--font-mono); font-size: var(--type-2xs); color: var(--text-secondary); }

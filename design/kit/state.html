@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift design system - Empty and error state</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../system/index.css">
+<link rel="stylesheet" href="_page.css">
+</head>
+<!--
+  design/kit/state.html - a component page in the card format of 2026-11-20, laid out on the template button.html.
+
+  OVERVIEW: a live specimen, the variant by state matrix, properties, when and when not, do and do not, where it stands.
+  TECHNICAL: anatomy, the axes, the tokens it reads, the markup to copy.
+  HISTORY: every change, each with the record it came from.
+
+  The page links ../system/index.css, the SAME entry point a product screen links. The matrix is
+  drawn by _states.js from the product's own rules where the component has states; nothing in it is painted by hand.
+
+  No em dash anywhere.
+-->
+<body>
+<div class="kit-shell">
+  <div id="kit-panel"></div>
+  <main class="kit-main">
+
+    <div id="kit-crumbs"></div>
+    <div id="kit-head"></div>
+
+    <div class="kit-tabs" role="tablist" aria-label="Empty and error state page">
+      <button class="kit-tab" role="tab" id="tab-overview" aria-controls="overview" aria-selected="true">Overview</button>
+      <button class="kit-tab" role="tab" id="tab-tech" aria-controls="tech" aria-selected="false" tabindex="-1">Technical</button>
+      <button class="kit-tab" role="tab" id="tab-history" aria-controls="history" aria-selected="false" tabindex="-1">History</button>
+    </div>
+
+    <!-- ================================================================ OVERVIEW -->
+    <div class="kit-tabpanel" role="tabpanel" id="overview" aria-labelledby="tab-overview">
+
+      <div class="kit-hero">
+        <div class="state"><div class="state-ic"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-source"></use></svg></div><h2 class="state-t">Nothing to synthesize yet</h2><div class="state-d">Connect a source to see your first synthesis. Sift reads your feedback, removes personal details, then clusters what is left into ranked themes. Every theme keeps the items behind it, so you can open any conclusion and read the words it came from.</div><div class="state-actions"><a class="btn" href="../sources-empty.html"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-source"></use></svg> Connect a source</a></div></div>
+        <p class="kit-hero-note">Live. Icon, title, one explanation, one exit</p>
+      </div>
+      <p class="kit-note">Text and icon from the colour screen synthesis-empty (2.0 empty). The centring is not the block's: <code class="kit-mono">.appmain:has(&gt; .state:only-child)</code> belongs to the screen shell, so here the block centres itself only by its own <code class="kit-mono">margin: 40px auto</code>. The 44px icon circle is the icon slot atom's, see <a class="link" href="iconslot.html">iconslot.html</a>.</p>
+
+      <section class="kit-sec" id="variants">
+        <h2 class="kit-h2">Variants and states</h2>
+        <p class="kit-note">Not interactive: the block has no hover, focus or pressed state of its own. Its exits are the button atom and keep their own states, see <a class="link" href="button.html">button.html</a>. Two axes: the placement (the block takes the canvas, or sits inline) and the state it speaks about (empty, error, first run). The inventory counts 6 centred and 2 inline across 8 screens.</p>
+        <div class="kit-matrix-wrap">
+          <table class="kit-matrix" inert>
+            <thead><tr><th>Placement</th><th>State</th><th>Block</th></tr></thead>
+            <tbody>
+              <tr><th rowspan="3">Takes the canvas<code>.state</code></th><td class="kit-st">Empty</td><td><div class="state"><div class="state-ic"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-source"></use></svg></div><h2 class="state-t">Nothing to synthesize yet</h2><div class="state-d">Connect a source to see your first synthesis. Sift reads your feedback, removes personal details, then clusters what is left into ranked themes. Every theme keeps the items behind it, so you can open any conclusion and read the words it came from.</div><div class="state-actions"><a class="btn" href="#"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-source"></use></svg> Connect a source</a></div></div></td></tr>
+              <tr><td class="kit-st">Error</td><td><div class="state"><div class="state-ic"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-alert"></use></svg></div><h2 class="state-t">Synthesis failed</h2><div class="state-d">We could not build the picture this time. Your sources are still connected and no feedback was lost, so a new run starts from the same 3,750 items.</div><div class="state-actions"><a class="btn--ghost" href="#">Go to Sources</a> <a class="btn" href="#">Try again</a></div></div></td></tr>
+              <tr><td class="kit-st">Error, own screen</td><td><div class="state"><div class="state-ic"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-evidence"></use></svg></div><h2 class="state-t">Could not load this theme</h2><div class="state-d">The evidence for this theme did not come back this time. Nothing is lost and no item was removed. Until it opens, treat the count above as unverified: the point of this screen is that you can check it.</div><div class="state-actions"><a class="btn--ghost" href="#">Back to Synthesis</a> <a class="btn" href="#">Try again</a></div></div></td></tr>
+              <tr><th rowspan="2">Inline, first group<code>.state--inline</code></th><td class="kit-st">Empty</td><td><div class="state state--inline"><div class="state-ic"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-brief"></use></svg></div><h2 class="state-t">No briefs yet</h2><div class="state-d">Pick the themes that should drive the next roadmap conversation, put them in the order you would defend, and say why. Sift keeps every quote attached, so the people reading it can check the claim instead of taking your word for it.</div><div class="state-actions"><a class="btn" href="#">Build your first brief</a></div></div></td></tr>
+              <tr><td class="kit-st">First run [?]</td><td><div class="state state--inline"><div class="state-ic"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-source"></use></svg></div><h2 class="state-t">No sources connected</h2><div class="state-d">Bring your feedback in and Sift normalizes it, scrubs personal details by default, then clusters it into ranked themes with the evidence behind each one. Pick a source below. You can add the second one later, and the themes recount when you do.</div></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="kit-note">[?] The inventory lists a state "first run" and does not say which screen is it. No Sift screen is labelled that way; sources-empty (3.0 with no source yet) is the closest and is used here. The block on that screen has no exit of its own, its exit is the list of sources below it: that is a break of the rule "at least one exit", and the rule itself is the inventory's. Also not in the system yet: the plain 404, 500 and maintenance screens exist in grey only.</p>
+      </section>
+
+      <section class="kit-sec" id="props">
+        <h2 class="kit-h2">Properties</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Property</th><th>Type</th><th>Values</th><th>Default</th></tr></thead><tbody>
+          <tr><td>Block</td><td>own class</td><td><code>.state</code> on a <code>div</code>: a column, centred, 440px at most, 40px above and below</td><td>none: the class is required</td></tr>
+          <tr><td>Placement</td><td>variant</td><td><code>.state</code> takes the canvas &middot; <code>.state--inline</code> sits in the flow of a populated list, left aligned, a hairline under it</td><td>takes the canvas</td></tr>
+          <tr><td>Icon</td><td>zone</td><td><code>.state-ic</code> with an <code>svg.ic</code>. Owned by the icon slot atom</td><td>required</td></tr>
+          <tr><td>Title</td><td>zone</td><td><code>.state-t</code>, 19px, strong weight. A heading element, <code>h1</code> or <code>h2</code> as the screen needs</td><td>required</td></tr>
+          <tr><td>Explanation</td><td>zone</td><td><code>.state-d</code>, one paragraph, secondary ink. Inline it stops at 60ch</td><td>required</td></tr>
+          <tr><td>Exits</td><td>zone</td><td><code>.state-actions</code> with one or two buttons. Wraps, and centres or left-aligns with the placement</td><td>at least one (inventory) [?] see the note above</td></tr>
+          <tr><td>State</td><td>none</td><td>not interactive</td><td>n/a</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="when">
+        <h2 class="kit-h2">How to use it</h2>
+        <div class="kit-when">
+          <div>
+            <h3>When</h3>
+            <p>When a view has nothing to show, or could not show it, and the person needs to know why and what to do next. Take the canvas when the whole screen is the empty or the failed thing. Sit inline when the screen is otherwise populated and the next action is further down: the empty group stays in the flow of the list.</p>
+          </div>
+          <div>
+            <h3>When not</h3>
+            <ul>
+              <li>To say something about a screen that still works: take the notice band. A state block replaces the content, a notice sits beside it.</li>
+              <li>For a wait: take the skeleton card. A skeleton mirrors the real row, so the wait promises what arrives.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="kit-dodont">
+          <div class="kit-dd kit-dd--do">
+            <div class="kit-dd-c" inert>
+              <div class="state"><div class="state-ic"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-alert"></use></svg></div><h2 class="state-t">Synthesis failed</h2><div class="state-d">We could not build the picture this time. Your sources are still connected and no feedback was lost, so a new run starts from the same 3,750 items.</div><div class="state-actions"><a class="btn--ghost" href="#">Go to Sources</a> <a class="btn" href="#">Try again</a></div></div>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do</div><div class="kit-dd-t">Say what is safe, then name the next move</div>
+              <div class="kit-dd-d">Principle 1 and the voice rule: every state names the next move. This one says no feedback was lost and offers the retry.</div></div>
+          </div>
+          <div class="kit-dd kit-dd--dont">
+            <div class="kit-dd-c" inert>
+              <div class="state"><div class="state-ic"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-alert"></use></svg></div><h2 class="state-t">Synthesis failed</h2><div class="state-d">We could not build the picture this time. Your sources are still connected and no feedback was lost, so a new run starts from the same 3,750 items.</div></div>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do not</div><div class="kit-dd-t">Leave the block without an exit</div>
+              <div class="kit-dd-d">A dead end. The inventory: always icon, title, one explanation and at least one exit. The text is the synthesis-error text with its exits removed, to show the rule.</div></div>
+          </div>
+        </div>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>If you are about to</th><th>Take instead</th><th>Why</th></tr></thead><tbody>
+          <tr><td>write &quot;Something went wrong&quot;</td><td>a title that names what failed</td><td>The voice rules forbid it, and it names no next move</td></tr>
+          <tr><td>tell a person about a working screen</td><td><code>.notice</code></td><td>A state block replaces the content</td></tr>
+          <tr><td>centre an empty group inside a populated list</td><td><code>.state--inline</code></td><td>The next action is further down the screen, not in the block</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="where">
+        <h2 class="kit-h2">Where it stands</h2>
+        <p class="kit-note">Eight screens in the inventory: centred 6, inline 2 (3.4 and 6.5, in colour as sources-empty and briefs-empty). The other grey screens are 404, 500 and maintenance, which have no colour copy yet.</p>
+        <div class="kit-where">
+          <a href="../synthesis-empty.html">2.0 empty</a>
+          <a href="../synthesis-error.html">2.0 error</a>
+          <a href="../theme-error.html">4.0 error</a>
+          <a href="../sources-empty.html">3.0 empty, inline</a>
+          <a href="../briefs-empty.html">6.0 empty, inline</a>
+          <a href="../../wireframes/overview.html">the rest, in grey</a>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ================================================================ TECHNICAL -->
+    <div class="kit-tabpanel" role="tabpanel" id="tech" aria-labelledby="tab-tech">
+
+      <section class="kit-sec" id="anatomy">
+        <h2 class="kit-h2">Anatomy</h2>
+        <p class="kit-note">Empty / error state block, level 3. Four zones in reading order. Placement is the only axis the block has.</p>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
+          <tr><td>the icon</td><td><code>.state-ic</code> with <code>svg.ic</code></td><td>Owned by the icon slot atom: a 44px circle, hairline edge, surface ground, 22px glyph</td></tr>
+          <tr><td>the title</td><td><code>.state-t</code></td><td>19px, strong weight, primary ink, a heading element</td></tr>
+          <tr><td>the explanation</td><td><code>.state-d</code></td><td>13.5px, secondary ink, 1.6 line height. One paragraph</td></tr>
+          <tr><td>the exits</td><td><code>.state-actions</code></td><td>A wrapping row of buttons, 10px apart, 6px above</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="axes">
+        <h2 class="kit-h2">Axes, with the rule that chooses</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
+          <tr><td>placement</td><td><b>takes the canvas, 6</b> / inline, 2</td><td>If the whole screen is the empty or failed thing, take the canvas. If the screen is otherwise populated and the next action is further down, sit inline</td></tr>
+          <tr><td>content</td><td>one form</td><td>Always icon, title, one explanation and at least one exit</td></tr>
+          <tr><td>state</td><td>empty / error / first run [?]</td><td>Chosen by what the screen is saying. No class changes with it: the state is carried by the words and the icon</td></tr>
+          <tr><td>centring on the canvas</td><td>not an axis</td><td><code>.appmain:has(&gt; .state:only-child)</code> is the screen shell's</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="tokens">
+        <h2 class="kit-h2">Tokens it reads</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Reads</th><th>Which grows from</th><th>For</th></tr></thead><tbody>
+          <tr><td><code>--text-primary</code>, <code>--text-secondary</code></td><td>tokens.css</td><td>the title, and the explanation</td></tr>
+          <tr><td><code>--line-hairline</code></td><td><code>--grey-800</code></td><td>the rule under the inline block</td></tr>
+          <tr><td><code>--space-2</code>, <code>--space-3</code>, <code>--space-4</code>, <code>--space-6</code>, <code>--space-9</code></td><td>tokens.css</td><td>the gaps, and the inline padding</td></tr>
+          <tr><td><code>--type-sm</code>, <code>--weight-strong</code>, <code>--tracking-head</code>, <code>--leading-body</code></td><td>tokens.css</td><td>the type of the title and the explanation</td></tr>
+        </tbody></table></div>
+        <p class="kit-note">Literals kept: 19px (the title), 20px (the padding), 24px (the inline bottom padding), 40px (the margin), 440px and 60ch. None has an exact step on the scales. Not interactive: no hover, focus or active token.</p>
+      </section>
+
+      <section class="kit-sec" id="snapshots">
+        <h2 class="kit-h2">Snapshots</h2>
+        <p class="kit-note">Organisms get no new snapshots this round. The states are shown live in the matrix above, and the block has no hover token to compare.</p>
+      </section>
+
+      <section class="kit-sec" id="markup">
+        <h2 class="kit-h2">Copy this</h2>
+        <div class="scene">
+          <pre class="kit-pre">&lt;div class="state"&gt;
+  &lt;div class="state-ic"&gt;&lt;svg class="ic"&gt;&lt;use href="#i-source"&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/div&gt;
+  &lt;h2 class="state-t"&gt;Nothing to synthesize yet&lt;/h2&gt;
+  &lt;div class="state-d"&gt;Connect a source to see your first synthesis. ...&lt;/div&gt;
+  &lt;div class="state-actions"&gt;&lt;a class="btn" href="..."&gt;Connect a source&lt;/a&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="state state--inline"&gt; ... &lt;/div&gt;</pre>
+        </div>
+        <p class="kit-note">File: <code class="kit-mono">design/system/components/state.css</code>. Not in the file: <code class="kit-mono">.state-ic</code> (iconslot.css) and <code class="kit-mono">.appmain:has(&gt; .state:only-child)</code> (the screen shell).</p>
+      </section>
+
+    </div>
+
+    <!-- ================================================================ HISTORY -->
+    <div class="kit-tabpanel" role="tabpanel" id="history" aria-labelledby="tab-history">
+      <section class="kit-sec">
+        <h2 class="kit-h2">Changes, newest first</h2>
+        <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-21</td><td>Entered the system: <code>components/state.css</code>, on semantic roles, and this page in the card format</td><td><code>docs/decisions.md</code>, "The organisms entered the system"</td></tr>
+          <tr><td>2026-08-18</td><td>Declared in the flat kit with its two placements: it takes the canvas, or sits inline as an empty first group</td><td>commit <code>d461e12</code></td></tr>
+          <tr><td>2026-08-05</td><td><code>.state-ic</code> first appears, in the flat theme of the wireframe rebuild on the block bank</td><td>commit <code>b8ee56b</code></td></tr>
+        </tbody></table></div>
+      </section>
+    </div>
+
+    <div id="kit-pager"></div>
+
+  </main>
+</div>
+
+<svg class="sprite" aria-hidden="true"><defs>
+  <symbol id="i-source" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.66 3.13 3 7 3s7-1.34 7-3V6"/><path d="M5 12v6c0 1.66 3.13 3 7 3s7-1.34 7-3v-6"/></symbol>
+  <symbol id="i-brief" viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h7"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 4.5 21 19.5H3z"/><path d="M12 10v4.2M12 17.1v.1"/></symbol>
+  <symbol id="i-evidence" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-4 4v-4H4z"/><path d="M8.5 10.5h7M8.5 13h4"/></symbol>
+</defs></svg>
+
+<script src="_nav.js"></script>
+<script src="_states.js"></script>
+</body>
+</html>

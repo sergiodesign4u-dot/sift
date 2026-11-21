@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift design system - Account shell</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../system/index.css">
+<link rel="stylesheet" href="_page.css">
+</head>
+<!--
+  design/kit/account-shell.html - Account shell, level 3 organism, in the card format of 2026-11-20.
+  The page follows design/kit/button.html. It links ../system/index.css, the same entry point a
+  product screen links, so the specimen is the component itself. The matrix is drawn by
+  _states.js from the product's own rules.
+  Specimen: the panel of 7.2 Data and privacy, in colour (design/account-data.html).
+  No em dash anywhere.
+-->
+<body>
+<div class="kit-shell">
+  <div id="kit-panel"></div>
+  <main class="kit-main">
+
+    <div id="kit-crumbs"></div>
+    <div id="kit-head"></div>
+
+    <div class="kit-tabs" role="tablist" aria-label="Account shell page">
+      <button class="kit-tab" role="tab" id="tab-overview" aria-controls="overview" aria-selected="true">Overview</button>
+      <button class="kit-tab" role="tab" id="tab-tech" aria-controls="tech" aria-selected="false" tabindex="-1">Technical</button>
+      <button class="kit-tab" role="tab" id="tab-history" aria-controls="history" aria-selected="false" tabindex="-1">History</button>
+    </div>
+
+    <!-- ================================================================ OVERVIEW -->
+    <div class="kit-tabpanel" role="tabpanel" id="overview" aria-labelledby="tab-overview">
+
+      <div class="kit-hero">
+        <div class="u-full">
+<div class="acct-id">
+            <span class="acct-id-avatar" aria-hidden="true"></span>
+            <div>
+              <div class="acct-id-name">Alex Rivera</div>
+              <div class="acct-id-meta">alex@northwind.io &middot; Northwind workspace</div>
+            </div>
+          </div>
+          <div class="acct-layout">
+            <nav class="acct-nav" aria-label="Account sections">
+              <a class="acct-nav-home" href="#">Account</a>
+              <a class="acct-nav-link" href="#">Plan and limits</a>
+              <a class="acct-nav-link is-current" href="#" aria-current="page">Data and privacy</a>
+              <a class="acct-nav-link" href="#">Profile</a>
+            </nav>
+            <div class="acct-panel">
+              <div class="acct-section-t">Privacy</div>
+              <label class="acct-row">
+                <input type="checkbox" class="check" checked>
+                <span class="acct-row-main">
+                  <span class="acct-row-t">Scrub PII by default</span>
+                  <span class="acct-row-d">Names and email addresses in imported feedback are scrubbed on ingest. On by default for every source.</span>
+                </span>
+              </label>
+              <div class="acct-row">
+                <span class="acct-row-main">
+                  <span class="acct-row-t">Data residency</span>
+                  <span class="acct-row-d">Your workspace data is stored in the United States. EU data residency is available for European teams.</span>
+                </span>
+              </div>
+              <div class="acct-section-t">Your data</div>
+              <div class="acct-row">
+                <span class="acct-row-main">
+                  <span class="acct-row-t">Export data</span>
+                  <span class="acct-row-d">Download your feedback, themes, and briefs. Meets GDPR and CCPA access requests.</span>
+                </span>
+                <button class="btn--ghost" type="button">Export data</button>
+              </div>
+              <p class="acct-seclink">Read how Sift stores and protects your data on the <a class="link" href="#">Security and GDPR</a> page.</p>
+            </div>
+          </div>
+        </div>
+        <p class="kit-hero-note">Live. 7.2 Data and privacy: hover a nav item, tab to it</p>
+      </div>
+
+      <section class="kit-sec" id="variants">
+        <h2 class="kit-h2">Variants and states</h2>
+        <p class="kit-note">One form, so the rows are the states of one nav item. Rest is secondary ink on the nav's own surface. Hover and current share one look, primary ink on the page ground, and current adds the 2px accent strip on the left edge: that strip is the only thing that says "you are here". The home link paints no hover, so it has Rest and Focus only. No pressed state: the css does not paint one. The current row reads the same with a pointer on it, which is the last row.</p>
+        <div class="kit-matrix-wrap">
+          <table class="kit-matrix" inert>
+            <thead><tr><th>Part</th><th>State</th><th>Specimen</th></tr></thead>
+            <tbody>
+              <tr><th rowspan="5">Nav link<code>.acct-nav-link</code></th><td class="kit-st">Rest</td><td><div class="kit-cell-fixed"><nav class="acct-nav" aria-label="Account sections"><a class="acct-nav-link" href="#">Data and privacy</a></nav></div></td></tr>
+              <tr><td class="kit-st">Hover</td><td><div class="kit-cell-fixed"><nav class="acct-nav" aria-label="Account sections"><a class="acct-nav-link" href="#" data-kit-st="hover">Data and privacy</a></nav></div></td></tr>
+              <tr><td class="kit-st">Focus</td><td><div class="kit-cell-fixed"><nav class="acct-nav" aria-label="Account sections"><a class="acct-nav-link" href="#" data-kit-st="focus">Data and privacy</a></nav></div></td></tr>
+              <tr><td class="kit-st">Current</td><td><div class="kit-cell-fixed"><nav class="acct-nav" aria-label="Account sections"><a class="acct-nav-link is-current" href="#" aria-current="page">Data and privacy</a></nav></div></td></tr>
+              <tr class="kit-group-end"><td class="kit-st">Current, hover</td><td><div class="kit-cell-fixed"><nav class="acct-nav" aria-label="Account sections"><a class="acct-nav-link is-current" href="#" data-kit-st="hover" aria-current="page">Data and privacy</a></nav></div></td></tr>
+              <tr><th rowspan="2">Nav home<code>.acct-nav-home</code></th><td class="kit-st">Rest</td><td><div class="kit-cell-fixed"><nav class="acct-nav" aria-label="Account sections"><a class="acct-nav-home" href="#">Account</a></nav></div></td></tr>
+              <tr class="kit-group-end"><td class="kit-st">Focus</td><td><div class="kit-cell-fixed"><nav class="acct-nav" aria-label="Account sections"><a class="acct-nav-home" href="#" data-kit-st="focus">Account</a></nav></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="forms">
+        <h2 class="kit-h2">Other forms</h2>
+        <div class="kit-forms">
+          <div>
+            <div class="kit-form-c" inert>
+              <div class="acct-id">
+                <span class="acct-id-avatar" aria-hidden="true"></span>
+                <div>
+                  <div class="acct-id-name">Alex Rivera</div>
+                  <div class="acct-id-meta">alex@northwind.io &middot; Northwind workspace</div>
+                </div>
+              </div>
+            </div>
+            <div class="kit-form-t">Identity block</div>
+            <div class="kit-form-d"><code>.acct-id</code> above the layout, on 7.0: a monochrome disc, the name and one meta line. Its own disc, not the app bar's avatar atom, which is 28px.</div>
+          </div>
+          <div>
+            <div class="kit-form-c" inert>
+              <div class="kit-cell-fixed"><div class="acct-section-t">Privacy</div><div class="acct-section-t">Your data</div></div>
+            </div>
+            <div class="kit-form-t">Section title</div>
+            <div class="kit-form-d"><code>.acct-section-t</code>, mono uppercase. The first one in the panel drops its top margin (<code>:first-child</code>).</div>
+          </div>
+          <div>
+            <div class="kit-form-c" inert>
+              <p class="acct-seclink">Read how Sift stores and protects your data on the <a class="link" href="#">Security and GDPR</a> page.</p>
+            </div>
+            <div class="kit-form-t">Closing line</div>
+            <div class="kit-form-d"><code>.acct-seclink</code>: one line pointing out of the settings and into the document that explains them. 7.2.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="props">
+        <h2 class="kit-h2">Properties</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Property</th><th>Type</th><th>Values</th><th>Default</th></tr></thead><tbody>
+          <tr><td>Layout</td><td>class</td><td><code>.acct-layout</code>: a column; a row from 821px</td><td>required</td></tr>
+          <tr><td>Nav</td><td>zone</td><td><code>.acct-nav</code> on a <code>nav</code> with <code>aria-label="Account sections"</code>; 208px wide from 821px</td><td>required</td></tr>
+          <tr><td>Home link</td><td>zone</td><td><code>.acct-nav-home</code>, uppercase, 12px</td><td>required</td></tr>
+          <tr><td>Nav link</td><td>zone</td><td><code>.acct-nav-link</code>, 44px target, a 2px transparent left edge</td><td>required</td></tr>
+          <tr><td>Current</td><td>modifier</td><td><code>.is-current</code> on the link, with <code>aria-current="page"</code></td><td>off</td></tr>
+          <tr><td>Panel</td><td>zone</td><td><code>.acct-panel</code>, takes the remaining width. Holds the molecules <code>account-row</code>, <code>cardrow</code> and the three classes below</td><td>required</td></tr>
+          <tr><td>Identity</td><td>zone</td><td><code>.acct-id</code> with <code>.acct-id-avatar</code>, <code>.acct-id-name</code>, <code>.acct-id-meta</code></td><td>optional, 7.0 only</td></tr>
+          <tr><td>Section title</td><td>zone</td><td><code>.acct-section-t</code></td><td>optional</td></tr>
+          <tr><td>Closing line</td><td>zone</td><td><code>.acct-seclink</code></td><td>optional</td></tr>
+          <tr><td>State</td><td>variant</td><td>rest &middot; hover &middot; current &middot; focus-visible</td><td>rest</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="when">
+        <h2 class="kit-h2">How to use it</h2>
+        <div class="kit-when">
+          <div>
+            <h3>When</h3>
+            <p>On the four account screens, 7.0 to 7.3: the same nav and the same panel on all of them, so the place you are is always the same shape. The panel is where the account rows live.</p>
+            <p>The nav sits above the panel when there is no room and beside it from 821px (<code>kit.css</code>, "Account shell"). The current item is marked by ink, ground and strip together, never by colour alone.</p>
+          </div>
+          <div>
+            <h3>When not</h3>
+            <ul>
+              <li>For the product's three destinations: those are Synthesis, Sources and Briefs in the app header. Account sits in a corner menu, not in a nav of its own.</li>
+              <li>For a list of links that go somewhere with a sentence each: take the row link, <a href="cardrow.html">cardrow.html</a>.</li>
+              <li>For one setting with a switch: take <a href="account-row.html">the account row</a>.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="where">
+        <h2 class="kit-h2">Where it stands</h2>
+        <p class="kit-note">7.0, 7.1, 7.2, 7.3. The nav links: 13 occurrences on 4 screens (inventory). In colour:</p>
+        <div class="kit-where">
+          <a href="../account.html">7.0 Account</a>
+          <a href="../account-data.html">7.2 Data and privacy</a>
+          <span>7.1 Plan and limits (grey, wireframes/account-plan.html)</span>
+          <span>7.3 Profile (grey, wireframes/account-profile.html)</span>
+          <a href="../../wireframes/overview.html">the rest, in grey</a>
+        </div>
+      </section>
+    </div>
+
+    <!-- ================================================================ TECHNICAL -->
+    <div class="kit-tabpanel" role="tabpanel" id="tech" aria-labelledby="tab-tech">
+
+      <section class="kit-sec" id="anatomy">
+        <h2 class="kit-h2">Anatomy</h2>
+        <p class="kit-note">Four screens share it. The identity block stands above the layout on 7.0 and 7.2; the layout is the nav and the panel.</p>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
+          <tr><td>identity</td><td><code>.acct-id</code></td><td>Disc, name, one meta line, a rule below</td></tr>
+          <tr><td>the layout</td><td><code>.acct-layout</code></td><td>Column first; a row from 821px</td></tr>
+          <tr><td>the nav</td><td><code>.acct-nav</code></td><td>Surface ground, hairline edge, medium radius, 6px padding; 208px from 821px</td></tr>
+          <tr><td>home link</td><td><code>.acct-nav-home</code></td><td>Uppercase 12px, primary ink, a 44px target</td></tr>
+          <tr><td>nav link</td><td><code>.acct-nav-link</code></td><td>44px target, secondary ink. Hover and current go to primary ink on the page ground; current adds the accent strip</td></tr>
+          <tr><td>the panel</td><td><code>.acct-panel</code></td><td>Flexible, with <code>min-width: 0</code> so a long row cannot push the nav</td></tr>
+          <tr><td>inside the panel</td><td><code>.acct-section-t</code>, <code>.acct-seclink</code>, molecules</td><td>A title for each group, a closing line, and the rows themselves</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="axes">
+        <h2 class="kit-h2">Axes, with the rule that chooses</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
+          <tr><td></td><td><b>no axes</b></td><td>One form: side nav plus panel, on 7.0, 7.1, 7.2, 7.3 (inventory, Level 3)</td></tr>
+          <tr><td>nav item</td><td>rest &middot; hover &middot; current</td><td>Per nav item (inventory states: rest, current). Hover is shown too, because the css paints it</td></tr>
+          <tr><td>width</td><td>column below 821px, row from 821px</td><td>The inventory text says the nav collapses above the panel below 600px, and <code>kit.css</code> says the same in its comment, but the rule is at 821px. This page follows the rule</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="tokens">
+        <h2 class="kit-h2">Tokens it reads</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Reads</th><th>Grows from</th><th>For</th></tr></thead><tbody>
+          <tr><td><code>--bg-surface</code>, <code>--line-hairline</code></td><td><code>--grey-900</code>, <code>--grey-800</code></td><td>the nav's box; the identity rule and the avatar edge</td></tr>
+          <tr><td><code>--bg-page</code></td><td><code>--grey-950</code></td><td>the hover and the current ground of a nav item. <b>PENDING:</b> a hover that goes darker than its surface; no state token carries it</td></tr>
+          <tr><td><code>--bg-action</code></td><td><code>--cyan-400</code></td><td>the strip on the current item. A strip is a fill, as on the selected theme card</td></tr>
+          <tr><td><code>--bg-raised</code></td><td><code>--grey-850</code></td><td>the identity disc</td></tr>
+          <tr><td><code>--text-primary</code>, <code>--text-secondary</code></td><td>tokens.css</td><td>current and hover; rest, meta and section title</td></tr>
+          <tr><td><code>--radius-md</code>, <code>--radius-sm</code>, <code>--radius-pill</code></td><td>tokens.css</td><td>the nav box; the nav link; the identity disc</td></tr>
+          <tr><td><code>--size-target</code></td><td>tokens.css</td><td>the 44px of the home link and each nav link</td></tr>
+          <tr><td><code>--font-mono</code>, <code>--type-3xs</code>, <code>--type-sm</code>, <code>--type-xs</code>, <code>--weight-strong</code>, <code>--weight-medium</code>, <code>--tracking-caps</code></td><td>tokens.css</td><td>the section title, nav link, meta and closing line, the home link and identity name, the section title</td></tr>
+          <tr><td><code>--space-1</code>, <code>--space-2</code>, <code>--space-3</code>, <code>--space-4</code>, <code>--space-6</code>, <code>--space-7</code>, <code>--space-8</code>, <code>--space-9</code></td><td>tokens.css</td><td>padding, gaps and margins</td></tr>
+          <tr><td><code>--ease</code></td><td>tokens.css</td><td>the background transition of a nav link</td></tr>
+        </tbody></table></div>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>State</th><th>Token</th><th>What moves</th></tr></thead><tbody>
+          <tr><td>hover</td><td><code>--text-primary</code>, <code>--bg-page</code></td><td>Ink up, ground darker. The geometry stays: the 2px edge is already there, transparent</td></tr>
+          <tr><td>current</td><td>the same pair, plus <code>--bg-action</code></td><td>The strip fills with the accent</td></tr>
+          <tr><td>focus-visible</td><td><code>--line-focus</code></td><td>The one ring from <code>base.css</code></td></tr>
+          <tr><td>active, disabled</td><td><b>absent</b></td><td>The css paints neither</td></tr>
+        </tbody></table></div>
+        <p class="kit-note">Kept as literals because no primitive equals them: 2px (the nav gap and the strip), 12px with 0.04em tracking (the home link), 14.5px (the name), 40px (the disc), 3px (the meta margin), 208px (the nav width), 821px (the breakpoint).</p>
+        <h3 class="kit-h3">Snapshots</h3>
+        <p class="kit-note">No new snapshots this round: the states are shown live in the matrix above. The hover here is a ground, but a darker one than the nav, so it is not the <code class="kit-mono">--bg-hover</code> of the list row link (<a href="cardrow.html">cardrow.html</a>).</p>
+      </section>
+
+      <section class="kit-sec" id="markup">
+        <h2 class="kit-h2">Copy this</h2>
+        <div class="scene">
+          <pre class="kit-pre">&lt;div class="acct-layout"&gt;
+  &lt;nav class="acct-nav" aria-label="Account sections"&gt;
+    &lt;a class="acct-nav-home" href="account.html"&gt;Account&lt;/a&gt;
+    &lt;a class="acct-nav-link" href="account-plan.html"&gt;Plan and limits&lt;/a&gt;
+    &lt;a class="acct-nav-link is-current" href="account-data.html" aria-current="page"&gt;Data and privacy&lt;/a&gt;
+    &lt;a class="acct-nav-link" href="account-profile.html"&gt;Profile&lt;/a&gt;
+  &lt;/nav&gt;
+  &lt;div class="acct-panel"&gt;
+    &lt;div class="acct-section-t"&gt;Privacy&lt;/div&gt;
+    &lt;!-- account rows --&gt;
+    &lt;p class="acct-seclink"&gt;...&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+        </div>
+        <p class="kit-note">File: <code class="kit-mono">design/system/components/account-shell.css</code>. <code class="kit-mono">.acct-card-t</code> and <code class="kit-mono">.acct-card-d</code> are not in it: they belong to the account hub's row link and go to Step 6.</p>
+      </section>
+    </div>
+
+    <!-- ================================================================ HISTORY -->
+    <div class="kit-tabpanel" role="tabpanel" id="history" aria-labelledby="tab-history">
+      <section class="kit-sec">
+        <h2 class="kit-h2">Changes, newest first</h2>
+        <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-21</td><td>Entered the system: <code>components/account-shell.css</code>, on semantic roles, and this page in the card format. The nav strip reads <code>--bg-action</code>; the hover and current ground reads <code>--bg-page</code>, marked PENDING</td><td><code>docs/decisions.md</code>, "The organisms entered the system"</td></tr>
+          <tr><td>2026-08</td><td>The row layout was first written as a container query, copying the grey contract. Nothing in the colour layer declares a container, so it would never have fired; it became a media query at 821px</td><td><code>docs/decisions.md</code>, "The kit was proved on the seed screens before anything new was built"</td></tr>
+          <tr><td>2026-08</td><td><code>acct-nav-home</code> and <code>acct-nav-link</code> classed as one family, the Account shell nav (13 occurrences, 4 screens)</td><td><code>design/kit/docs/inventory.md</code></td></tr>
+          <tr><td>2026-08</td><td>The account rules first appeared in <code>kit.css</code>, grown out of the colour layer</td><td>commit <code>d461e12</code></td></tr>
+        </tbody></table></div>
+      </section>
+    </div>
+
+    <div id="kit-pager"></div>
+
+  </main>
+</div>
+
+<script src="_nav.js"></script>
+<script src="_states.js"></script>
+</body>
+</html>

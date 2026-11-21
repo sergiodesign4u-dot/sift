@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift design system - Legal document</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../system/index.css">
+<link rel="stylesheet" href="_page.css">
+</head>
+<!--
+  design/kit/legal-doc.html - Legal document, level 3 organism, in the card format of 2026-11-20.
+  The page follows design/kit/button.html. It links ../system/index.css, the same entry point a
+  product screen links, so the specimen is the component itself. The matrix is drawn by
+  _states.js from the product's own rules.
+  The three screens (9.0, 9.1, 9.2) are still in grey, so the copy is from wireframes/terms.html.
+  No em dash anywhere.
+-->
+<body>
+<div class="kit-shell">
+  <div id="kit-panel"></div>
+  <main class="kit-main">
+
+    <div id="kit-crumbs"></div>
+    <div id="kit-head"></div>
+
+    <div class="kit-tabs" role="tablist" aria-label="Legal document page">
+      <button class="kit-tab" role="tab" id="tab-overview" aria-controls="overview" aria-selected="true">Overview</button>
+      <button class="kit-tab" role="tab" id="tab-tech" aria-controls="tech" aria-selected="false" tabindex="-1">Technical</button>
+      <button class="kit-tab" role="tab" id="tab-history" aria-controls="history" aria-selected="false" tabindex="-1">History</button>
+    </div>
+
+    <!-- ================================================================ OVERVIEW -->
+    <div class="kit-tabpanel" role="tabpanel" id="overview" aria-labelledby="tab-overview">
+
+      <div class="kit-hero">
+        <div class="u-full">
+<nav class="legal-crumb" aria-label="Breadcrumb">
+            <a href="#">Home</a> <span>&rsaquo;</span> Legal <span>&rsaquo;</span> Terms of Service
+          </nav>
+          <header>
+            <h1 class="h1">Terms of Service</h1>
+            <p class="legal-meta">Last updated 19 July 2026</p>
+          </header>
+          <div class="legal-prose">
+            <p>These terms govern your use of Sift. By creating an account or using the product, you agree to them. Please read them alongside our <a href="#">Privacy Policy</a> and <a href="#">Security and GDPR</a> page.</p>
+          </div>
+          <nav class="legal-toc" aria-label="On this page">
+            <div class="legal-toc-t">On this page</div>
+            <ul>
+              <li><a href="#agreement">The agreement</a></li>
+              <li><a href="#use">Acceptable use</a></li>
+              <li><a href="#liability">Liability</a></li>
+              <li><a href="#changes">Changes</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </nav>
+          <div class="legal-prose">
+            <h2 id="agreement">The agreement</h2>
+            <p>Sift provides a hosted product that ingests customer feedback and synthesizes it into themes, evidence, and briefs. These terms form the agreement between you, or the company you represent, and Sift. You are responsible for the accounts in your workspace and for the feedback data you import. Plans, seats, and limits are described at sign-up and in your account; the Free plan carries a monthly feedback limit.</p>
+            <h2 id="use">Acceptable use</h2>
+            <p>You agree to use Sift only for lawful purposes and only with feedback data you have the right to process. You will not:</p>
+            <ul>
+              <li>upload data you are not permitted to share,</li>
+              <li>attempt to re-identify individuals from scrubbed feedback,</li>
+              <li>resell or redistribute the service,</li>
+              <li>probe, overload, or disrupt the platform.</li>
+            </ul>
+            <p>We may suspend accounts that put customer data or the service at risk.</p>
+            <h2 id="liability">Liability</h2>
+            <p>Sift is provided on a commercially reasonable basis. Synthesis is a decision aid: it surfaces themes and evidence to support your judgment, and every conclusion is traceable to its source so you can check it. To the extent the law allows, Sift is not liable for indirect or consequential loss, and our total liability is limited as set out in your plan or order. Final liability caps are confirmed with counsel before launch.</p>
+            <h2 id="changes">Changes</h2>
+            <p>We may update these terms as the product evolves. When we make a material change, we update the date above and notify workspace owners. Continued use after a change means you accept the updated terms.</p>
+            <h2 id="contact">Contact</h2>
+            <p>Questions about these terms can go to <a href="mailto:legal@sift.app">legal@sift.app</a>. For how we handle data, see the <a href="#">Privacy Policy</a> and <a href="#">Security and GDPR</a> page.</p>
+          </div>
+          <div class="legal-related">
+            More: <a href="#">Privacy Policy</a><a href="#">Security and GDPR</a><a href="#">Home</a>
+          </div>
+        </div>
+        <p class="kit-hero-note">Live. Terms of Service, copied from the grey 9.1. Hover a link, tab to it</p>
+      </div>
+
+      <section class="kit-sec" id="variants">
+        <h2 class="kit-h2">Variants and states</h2>
+        <p class="kit-note">One form, so there are no variant rows: the rows are the three kinds of link the document holds. The crumb link and the related link have a hover; the prose link paints none, so it has Rest and Focus only. No pressed state: the css does not paint one. The TOC molecule keeps its own states on <a href="legal-toc.html">legal-toc.html</a>, and the 360 step of the prose is in Properties.</p>
+        <div class="kit-matrix-wrap">
+          <table class="kit-matrix" inert>
+            <thead><tr><th>Part</th><th>State</th><th>Specimen</th></tr></thead>
+            <tbody>
+              <tr><th rowspan="3">Crumb link<code>.legal-crumb a</code></th><td class="kit-st">Rest</td><td><nav class="legal-crumb" aria-label="Breadcrumb"><a href="#">Home</a> <span>&rsaquo;</span> Legal <span>&rsaquo;</span> Terms of Service</nav></td></tr>
+              <tr><td class="kit-st">Hover</td><td><nav class="legal-crumb" aria-label="Breadcrumb"><a href="#" data-kit-st="hover">Home</a> <span>&rsaquo;</span> Legal <span>&rsaquo;</span> Terms of Service</nav></td></tr>
+              <tr class="kit-group-end"><td class="kit-st">Focus</td><td><nav class="legal-crumb" aria-label="Breadcrumb"><a href="#" data-kit-st="focus">Home</a> <span>&rsaquo;</span> Legal <span>&rsaquo;</span> Terms of Service</nav></td></tr>
+              <tr><th rowspan="3">Related link<code>.legal-related a</code></th><td class="kit-st">Rest</td><td><div class="legal-related">More: <a href="#">Privacy Policy</a><a href="#">Security and GDPR</a></div></td></tr>
+              <tr><td class="kit-st">Hover</td><td><div class="legal-related">More: <a href="#" data-kit-st="hover">Privacy Policy</a><a href="#">Security and GDPR</a></div></td></tr>
+              <tr class="kit-group-end"><td class="kit-st">Focus</td><td><div class="legal-related">More: <a href="#" data-kit-st="focus">Privacy Policy</a><a href="#">Security and GDPR</a></div></td></tr>
+              <tr><th rowspan="2">Prose link<code>.legal-prose a</code></th><td class="kit-st">Rest</td><td><div class="legal-prose"><p>Questions about these terms can go to <a href="mailto:legal@sift.app">legal@sift.app</a>.</p></div></td></tr>
+              <tr class="kit-group-end"><td class="kit-st">Focus</td><td><div class="legal-prose"><p>Questions about these terms can go to <a href="mailto:legal@sift.app" data-kit-st="focus">legal@sift.app</a>.</p></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="props">
+        <h2 class="kit-h2">Properties</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Property</th><th>Type</th><th>Values</th><th>Default</th></tr></thead><tbody>
+          <tr><td>Crumb</td><td>zone</td><td><code>.legal-crumb</code> on a <code>nav</code> with <code>aria-label="Breadcrumb"</code>: plain links and <code>&amp;rsaquo;</code> separators in 12px secondary ink</td><td>required</td></tr>
+          <tr><td>Title</td><td>zone</td><td>an <code>h1</code>. No class of the organism declares it: see the note below</td><td>required</td></tr>
+          <tr><td>Meta</td><td>zone</td><td><code>.legal-meta</code>, mono 11px, the last-updated line</td><td>required</td></tr>
+          <tr><td>Contents</td><td>molecule</td><td><code>.legal-toc</code>, see <a href="legal-toc.html">legal-toc.html</a></td><td>required</td></tr>
+          <tr><td>Prose</td><td>zone</td><td><code>.legal-prose</code> holding <code>h2</code>, <code>p</code>, <code>ul</code>, <code>li</code>, <code>a</code>. Each <code>h2</code> carries an <code>id</code> that the TOC links to</td><td>required</td></tr>
+          <tr><td>Related</td><td>zone</td><td><code>.legal-related</code>, a rule above and the other legal pages as links, 44px target</td><td>required</td></tr>
+          <tr><td>Size</td><td>responsive</td><td>prose 14.5px; 14px at 820px and below (the product's one narrow step)</td><td>14.5px</td></tr>
+          <tr><td>Axes</td><td>none</td><td>one form</td><td>n/a</td></tr>
+          <tr><td>State</td><td>variant</td><td>rest &middot; hover (crumb link, related link) &middot; focus-visible</td><td>rest</td></tr>
+        </tbody></table></div>
+        <p class="kit-note">The H1 of a legal page has no rule in <code class="kit-mono">kit.css</code>: the grey screens set it with <code class="kit-mono">wf-h1--doc</code> (24px), and the colour layer never painted it. This page shows it with the screen head's <code class="kit-mono">.h1</code>. Which title size a document takes is <b>[?]</b> until a colour screen decides it.</p>
+      </section>
+
+      <section class="kit-sec" id="when">
+        <h2 class="kit-h2">How to use it</h2>
+        <div class="kit-when">
+          <div>
+            <h3>When</h3>
+            <p>For a document that is read, not operated: the privacy policy, the terms, the security page. The column is at document scale, not app scale, and the headings open with a rule so a scanned page still has structure (<code>kit.css</code>, "Legal document").</p>
+            <p>Every section the TOC lists is an <code>h2</code> with an <code>id</code>. The TOC and the headings are one list read twice.</p>
+          </div>
+          <div>
+            <h3>When not</h3>
+            <ul>
+              <li>For the shared brief: that is a different document, with its own measure and a trust surface. Take <a href="public-doc.html">the public document</a>.</li>
+              <li>For a screen with actions: the product shell holds those, and a prose column holds none.</li>
+              <li>For a link inside a sentence outside a document: take <code>.link</code>.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="where">
+        <h2 class="kit-h2">Where it stands</h2>
+        <p class="kit-note">9.0, 9.1, 9.2, one form. <b>No colour screen carries this organism yet:</b> none of <code class="kit-mono">design/*.html</code> holds it, and the copy on this page is from the grey screens in <code class="kit-mono">wireframes/</code> (the <code class="kit-mono">wf-legal</code> family, here 9.1). The grey screens, by node:</p>
+        <div class="kit-where">
+          <span>9.0 Privacy policy (wireframes/privacy.html)</span>
+          <span>9.1 Terms of service (wireframes/terms.html)</span>
+          <span>9.2 Security and GDPR (wireframes/security.html)</span>
+          <a href="../../wireframes/overview.html">the rest, in grey</a>
+        </div>
+      </section>
+    </div>
+
+    <!-- ================================================================ TECHNICAL -->
+    <div class="kit-tabpanel" role="tabpanel" id="tech" aria-labelledby="tab-tech">
+
+      <section class="kit-sec" id="anatomy">
+        <h2 class="kit-h2">Anatomy</h2>
+        <p class="kit-note">A reading column, top to bottom. The TOC is a molecule and sits between the opening paragraph and the body.</p>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
+          <tr><td>the crumb</td><td><code>.legal-crumb</code></td><td>12px, secondary ink, links with no underline; hover steps the ink to primary</td></tr>
+          <tr><td>the title and meta</td><td><code>h1</code>, <code>.legal-meta</code></td><td>The H1 is not styled by the organism ([?]). The meta is a mono line under it</td></tr>
+          <tr><td>the opening</td><td><code>.legal-prose</code> with one <code>p</code></td><td>Says what the document is and points to its two neighbours</td></tr>
+          <tr><td>the contents</td><td><code>.legal-toc</code> (molecule)</td><td>Jumps to the <code>h2</code> ids below</td></tr>
+          <tr><td>the body</td><td><code>.legal-prose</code></td><td>14.5px, 1.75 line, secondary ink; <code>h2</code> in primary with a rule above and a 64px scroll margin so a jump clears the bar</td></tr>
+          <tr><td>the related line</td><td><code>.legal-related</code></td><td>A rule above, the other legal pages as links, each a 44px target</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="axes">
+        <h2 class="kit-h2">Axes, with the rule that chooses</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
+          <tr><td></td><td><b>no axes</b></td><td>One form: 9.0, 9.1 and 9.2 (inventory, Level 3). Everything that varies is the content</td></tr>
+          <tr><td>width</td><td>prose 14.5px, 14px at 820px and below</td><td>The step is one media query on the prose, not a second layout</td></tr>
+        </tbody></table></div>
+        <p class="kit-note"><b>Crumb against the breadcrumb molecule.</b> <code>.legal-crumb</code> and <a href="breadcrumb.html"><code>.breadcrumb</code></a> do the same job in the same 12px and the same two inks. They are different rules: the breadcrumb is a bar (22px side padding, a bottom border, a 44px link target, an opacity on the separator); the legal crumb is a plain line inside the column (a bottom margin, inline links with no target size). They are not merged here, because the rules come over byte for byte. Whether one replaces the other is a Step 6 question.</p>
+      </section>
+
+      <section class="kit-sec" id="tokens">
+        <h2 class="kit-h2">Tokens it reads</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Reads</th><th>Grows from</th><th>For</th></tr></thead><tbody>
+          <tr><td><code>--text-secondary</code>, <code>--text-primary</code></td><td>tokens.css</td><td>body and meta at rest; headings, prose links, related links; crumb link on hover</td></tr>
+          <tr><td><code>--line-hairline</code></td><td><code>--grey-800</code></td><td>the rule above each <code>h2</code> and above the related line</td></tr>
+          <tr><td><code>--font-mono</code>, <code>--type-2xs</code></td><td>tokens.css</td><td>the meta line</td></tr>
+          <tr><td><code>--type-lg</code>, <code>--weight-strong</code>, <code>--tracking-title</code></td><td>tokens.css</td><td>the prose headings</td></tr>
+          <tr><td><code>--type-xs</code>, <code>--type-base</code>, <code>--leading-loose</code></td><td>tokens.css</td><td>the related line; the 14px prose step; the 1.75 line</td></tr>
+          <tr><td><code>--size-target</code></td><td>tokens.css</td><td>the 44px target of a related link</td></tr>
+          <tr><td><code>--space-2</code>, <code>--space-3</code>, <code>--space-4</code>, <code>--space-5</code>, <code>--space-6</code>, <code>--space-7</code>, <code>--space-8</code></td><td>tokens.css</td><td>margins and padding of the crumb, meta, headings, paragraphs, lists and the related line</td></tr>
+        </tbody></table></div>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>State</th><th>Token</th><th>What moves</th></tr></thead><tbody>
+          <tr><td>hover, crumb link</td><td><code>--text-primary</code></td><td>The ink steps up from secondary. No ground, no underline</td></tr>
+          <tr><td>hover, related link</td><td>none</td><td>An underline appears. The ink is already primary</td></tr>
+          <tr><td>focus-visible</td><td><code>--line-focus</code></td><td>The one ring from <code>base.css</code></td></tr>
+          <tr><td>active, disabled</td><td><b>absent</b></td><td>The css paints neither</td></tr>
+        </tbody></table></div>
+        <p class="kit-note">Kept as literals because no primitive equals them: 12px (the crumb), 14.5px (the prose), 20px and 30px (heading padding and margin), 64px (the scroll margin), 20px (list indent), 7px (list item gap), 30px (the related line's top margin).</p>
+        <h3 class="kit-h3">Snapshots</h3>
+        <p class="kit-note">No new snapshots this round: the states are shown live in the matrix above. A hover that changes ink or draws an underline, never a ground, so it is not the <code class="kit-mono">--bg-hover</code> of the list row link (<a href="cardrow.html">cardrow.html</a>).</p>
+      </section>
+
+      <section class="kit-sec" id="markup">
+        <h2 class="kit-h2">Copy this</h2>
+        <div class="scene">
+          <pre class="kit-pre">&lt;nav class="legal-crumb" aria-label="Breadcrumb"&gt;
+  &lt;a href="index.html"&gt;Home&lt;/a&gt; &lt;span&gt;&amp;rsaquo;&lt;/span&gt; Legal &lt;span&gt;&amp;rsaquo;&lt;/span&gt; Terms of Service
+&lt;/nav&gt;
+&lt;header&gt;
+  &lt;h1 class="h1"&gt;Terms of Service&lt;/h1&gt;
+  &lt;p class="legal-meta"&gt;Last updated 19 July 2026&lt;/p&gt;
+&lt;/header&gt;
+&lt;div class="legal-prose"&gt;&lt;p&gt;Opening paragraph.&lt;/p&gt;&lt;/div&gt;
+&lt;nav class="legal-toc" aria-label="On this page"&gt;...&lt;/nav&gt;
+&lt;div class="legal-prose"&gt;
+  &lt;h2 id="agreement"&gt;The agreement&lt;/h2&gt;
+  &lt;p&gt;...&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="legal-related"&gt;
+  More: &lt;a href="privacy.html"&gt;Privacy Policy&lt;/a&gt;&lt;a href="security.html"&gt;Security and GDPR&lt;/a&gt;
+&lt;/div&gt;</pre>
+        </div>
+        <p class="kit-note">File: <code class="kit-mono">design/system/components/legal-doc.css</code>. The TOC inside is the molecule <code class="kit-mono">legal-toc.css</code>.</p>
+      </section>
+    </div>
+
+    <!-- ================================================================ HISTORY -->
+    <div class="kit-tabpanel" role="tabpanel" id="history" aria-labelledby="tab-history">
+      <section class="kit-sec">
+        <h2 class="kit-h2">Changes, newest first</h2>
+        <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-21</td><td>Entered the system: <code>components/legal-doc.css</code>, on semantic roles, and this page in the card format</td><td><code>docs/decisions.md</code>, "The organisms entered the system"</td></tr>
+          <tr><td>2026-08</td><td>Declared in the kit with the five <code>legal-*</code> classes, and accepted as a form with no colour screen: "the component page shows the prose scale, the TOC and the related block"</td><td><code>design/kit/docs/inventory.md</code>, "Control without a form: every row closed"</td></tr>
+          <tr><td>2026-08</td><td>The legal rules first appeared in <code>kit.css</code>, grown out of the colour layer</td><td>commit <code>d461e12</code></td></tr>
+        </tbody></table></div>
+      </section>
+    </div>
+
+    <div id="kit-pager"></div>
+
+  </main>
+</div>
+
+<script src="_nav.js"></script>
+<script src="_states.js"></script>
+</body>
+</html>

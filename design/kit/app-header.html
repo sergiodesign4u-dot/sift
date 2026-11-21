@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift design system - App header</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../system/index.css">
+<link rel="stylesheet" href="_page.css">
+</head>
+<!--
+  design/kit/app-header.html - a component page in the card format of 2026-11-20, laid out on the template button.html.
+
+  OVERVIEW, for the person placing the component: a live specimen, the variant by state matrix,
+  the 360 form, properties, when and when not, do and do not, where it stands.
+  TECHNICAL, for the person changing it: anatomy, the axes with their counts, the tokens it
+  reads, the markup to copy.
+  HISTORY: every change, each with the record it came from.
+
+  The page links ../system/index.css, the SAME entry point a product screen links: it is not a
+  copy of the component, it is the component. The matrix is drawn by _states.js from the
+  product's own :hover and :focus-visible rules; nothing in it is painted by hand. The markup is
+  copied from design/synthesis.html and design/account.html; the skeleton is the one in
+  design/kit/shell.html.
+
+  No em dash anywhere.
+-->
+<body>
+<div class="kit-shell">
+  <div id="kit-panel"></div>
+  <main class="kit-main">
+
+    <div id="kit-crumbs"></div>
+    <div id="kit-head"></div>
+
+    <div class="kit-tabs" role="tablist" aria-label="App header page">
+      <button class="kit-tab" role="tab" id="tab-overview" aria-controls="overview" aria-selected="true">Overview</button>
+      <button class="kit-tab" role="tab" id="tab-tech" aria-controls="tech" aria-selected="false" tabindex="-1">Technical</button>
+      <button class="kit-tab" role="tab" id="tab-history" aria-controls="history" aria-selected="false" tabindex="-1">History</button>
+    </div>
+
+    <!-- ================================================================ OVERVIEW -->
+    <div class="kit-tabpanel" role="tabpanel" id="overview" aria-labelledby="tab-overview">
+
+      <div class="kit-hero">
+        <div class="u-full">
+          <header class="appbar">
+            <span class="brand"><svg class="ic mark" width="15" height="15" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-signal"></use></svg> Sift</span>
+            <nav class="navtabs" aria-label="Sections">
+              <a href="#" class="active" aria-current="page">Synthesis</a>
+              <a href="#">Sources</a>
+              <a href="#">Briefs</a>
+            </nav>
+            <span class="spacer"></span>
+            <a href="#" class="avatar" aria-label="Account"></a>
+          </header>
+        </div>
+        <p class="kit-hero-note">Live. Hover a tab, tab to it, narrow the window below 820px</p>
+      </div>
+      <p class="kit-note">The top bar of every signed-in screen, shown alone at real scale. In place it is the first zone of the screen shell: see it in a frame on <a href="screen-shell.html">Screen shell</a>, or on <a href="../synthesis.html">2.0 Synthesis</a>.</p>
+
+      <section class="kit-sec" id="variants">
+        <h2 class="kit-h2">Variants and states</h2>
+        <p class="kit-note">The states belong to each tab: rest, hover, focus and current. Hover moves the ink only; current is primary ink on a raised ground, marked by tone and never by the accent. There is no pressed tab and no disabled tab, because app-header.css paints neither. The bar itself is not interactive: its content changes with the screen, and on an account screen no tab is current, because the account is the avatar in the corner. The avatar keeps its own states on <a href="avatar.html">Avatar</a>.</p>
+        <div class="kit-matrix-wrap">
+          <table class="kit-matrix" inert>
+            <thead><tr><th>Part</th><th>State or content</th><th>Header</th></tr></thead>
+            <tbody>
+              <tr><th rowspan="4">Tab<code>.navtabs a</code></th><td class="kit-st">Rest</td>
+                <td><nav class="navtabs" aria-label="Sections"><a href="#">Sources</a></nav></td></tr>
+              <tr><td class="kit-st">Hover</td>
+                <td><nav class="navtabs" aria-label="Sections"><a href="#" data-kit-st="hover">Sources</a></nav></td></tr>
+              <tr><td class="kit-st">Focus</td>
+                <td><nav class="navtabs" aria-label="Sections"><a href="#" data-kit-st="focus">Sources</a></nav></td></tr>
+              <tr class="kit-group-end"><td class="kit-st">Current<code>.active</code></td>
+                <td><nav class="navtabs" aria-label="Sections"><a href="#" class="active" aria-current="page">Sources</a></nav></td></tr>
+
+              <tr><th rowspan="3">Bar<code>.appbar</code></th><td class="kit-st">Section screen, above 820</td>
+                <td><header class="appbar"><span class="brand"><svg class="ic mark" width="15" height="15" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-signal"></use></svg> Sift</span><nav class="navtabs" aria-label="Sections"><a href="#">Synthesis</a><a href="#" class="active" aria-current="page">Sources</a><a href="#">Briefs</a></nav><span class="spacer"></span><a href="#" class="avatar" aria-label="Account"></a></header></td></tr>
+              <tr><td class="kit-st">Account screen, 7.x</td>
+                <td><header class="appbar"><span class="brand"><svg class="ic mark" width="15" height="15" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-signal"></use></svg> Sift</span><nav class="navtabs" aria-label="Sections"><a href="#">Synthesis</a><a href="#">Sources</a><a href="#">Briefs</a></nav><span class="spacer"></span><a href="#" class="avatar" aria-label="Account"></a></header></td></tr>
+              <tr><td class="kit-st">820 and below</td>
+                <td><p class="kit-cell-none">Not drawn here. It is a viewport rule, not a state: the page is wider than 820 and the rule cannot be forced in a cell without a class the product does not carry. Narrow the window and the specimen at the top keeps the brand and the avatar only.</p></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="forms">
+        <h2 class="kit-h2">Other forms</h2>
+        <p class="kit-note"><b>The 360 form, brand and avatar only.</b> At 820px and below <code class="kit-mono">.navtabs</code> is not drawn and the bottom tabs carry the navigation, with Account as a fourth tab. The bar keeps its height, its brand and its avatar; the spacer still pushes the avatar to the corner. It is a media query, so it cannot be forced inside this page: narrow the window and the specimen at the top drops its tabs, or open <a href="../synthesis.html">2.0 Synthesis</a> at 360. The tabs that replace these are on <a href="bottom-tabs.html">Bottom tabs</a>.</p>
+      </section>
+
+      <section class="kit-sec" id="props">
+        <h2 class="kit-h2">Properties</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Property</th><th>Type</th><th>Values</th><th>Default</th></tr></thead><tbody>
+          <tr><td>Bar</td><td>own class</td><td><code>.appbar</code> on a <code>header</code>, the first child of the shell</td><td>none: the class is required</td></tr>
+          <tr><td>Brand</td><td>zone</td><td><code>.brand</code> with <code>svg.ic.mark</code> (the signal glyph, 15px) and the word "Sift"</td><td>required</td></tr>
+          <tr><td>Sections</td><td>zone</td><td><code>nav.navtabs</code> with three <code>a</code>: Synthesis, Sources, Briefs, in that order</td><td>required</td></tr>
+          <tr><td>Current</td><td>state, by class</td><td><code>.active</code> plus <code>aria-current="page"</code> on the tab of the screen's section; none on an account screen</td><td>none</td></tr>
+          <tr><td>Spacer</td><td>zone</td><td><code>span.spacer</code>, takes the free width</td><td>required</td></tr>
+          <tr><td>Account</td><td>atom, zone</td><td><code>a.avatar</code> with <code>aria-label="Account"</code>, links to 7.0</td><td>required</td></tr>
+          <tr><td>Viewport</td><td>axis</td><td>with text tabs above 820 &middot; brand and avatar only at 820 and below</td><td>with text tabs</td></tr>
+          <tr><td>State, per tab</td><td>variant</td><td>rest &middot; hover &middot; focus-visible &middot; current</td><td>rest</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="when">
+        <h2 class="kit-h2">How to use it</h2>
+        <div class="kit-when">
+          <div>
+            <h3>When</h3>
+            <p>At the top of every signed-in screen, as the first zone of the <a href="screen-shell.html">screen shell</a>. Canonical global 0.1: its skeleton is defined once, in <code>design/kit/shell.html</code>, and copied from there.</p>
+            <p><b>Three entries plus account.</b> Synthesis is the default landing, then Sources and Briefs. The account sits in the corner as the avatar. Three, not five, is the calm-under-density choice.</p>
+          </div>
+          <div>
+            <h3>When not</h3>
+            <ul>
+              <li>For a screen read by somebody who is not signed in (0.0, 6.4, 9.x): take <a href="public-bar.html">the public bar</a>. A shared brief is a read-only artifact with no navigation to offer.</li>
+              <li>At 820 and below: the tabs give way to <a href="bottom-tabs.html">the bottom tabs</a>, which add Account as a fourth destination.</li>
+              <li>For the way back inside a section: take <a href="breadcrumb.html">the breadcrumb</a>, the way back in one line.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="kit-dodont">
+          <div class="kit-dd kit-dd--do">
+            <div class="kit-dd-c" inert>
+              <div class="u-full"><header class="appbar"><span class="brand"><svg class="ic mark" width="15" height="15" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-signal"></use></svg> Sift</span><nav class="navtabs" aria-label="Sections"><a href="#" class="active" aria-current="page">Synthesis</a><a href="#">Sources</a><a href="#">Briefs</a></nav><span class="spacer"></span><a href="#" class="avatar" aria-label="Account"></a></header></div>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do</div><div class="kit-dd-t">Three sections, and the account in the corner</div>
+              <div class="kit-dd-d">The avatar is the way to 7.0. On an account screen no tab is current, because the header has no tab for it.</div></div>
+          </div>
+          <div class="kit-dd kit-dd--dont">
+            <div class="kit-dd-c" inert>
+              <div class="u-full"><header class="appbar"><span class="brand"><svg class="ic mark" width="15" height="15" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-signal"></use></svg> Sift</span><nav class="navtabs" aria-label="Sections"><a href="#" class="active" aria-current="page">Synthesis</a><a href="#">Sources</a><a href="#">Briefs</a><a href="#">Account</a></nav><span class="spacer"></span></header></div>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do not</div><div class="kit-dd-t">A fourth tab for the account</div>
+              <div class="kit-dd-d">Account is not a section of the work. It sits in a corner menu, and the bar keeps three entries.</div></div>
+          </div>
+        </div>
+        <p class="kit-note">Sources: <code class="kit-mono">CLAUDE.md</code>, "Navigation is three entries plus account"; the comment in <code class="kit-mono">design/kit/shell.html</code> on the public shell; <code class="kit-mono">design/kit/docs/inventory.md</code>, "Level 3 - Organisms".</p>
+      </section>
+
+      <section class="kit-sec" id="where">
+        <h2 class="kit-h2">Where it stands</h2>
+        <p class="kit-note">27 screens in the inventory, canonical global 0.1. In grey it is injected by <code class="kit-mono">wireframes/_nav.js</code> and typed into no page; in grey only: 3.3, 3.6, 5.0, 5.1, 7.1, 7.3, 8.0. The 20 already in colour:</p>
+        <div class="kit-where">
+          <a href="../synthesis.html">2.0 Synthesis</a>
+          <a href="../synthesis-empty.html">2.1 Synthesis empty</a>
+          <a href="../synthesis-loading.html">2.2 Synthesizing</a>
+          <a href="../synthesis-error.html">2.3 Synthesis error</a>
+          <a href="../sources.html">3.0 Sources</a>
+          <a href="../connect-csv.html">3.2 Import a CSV</a>
+          <a href="../sources-empty.html">3.4 No sources</a>
+          <a href="../sources-sync-error.html">3.5 Sync error</a>
+          <a href="../theme.html">4.0 Theme detail</a>
+          <a href="../theme-low-signal.html">4.1 Low signal</a>
+          <a href="../theme-loading.html">4.0 loading</a>
+          <a href="../theme-error.html">4.0 error</a>
+          <a href="../briefs.html">6.0 Briefs</a>
+          <a href="../briefs-empty.html">6.5 No briefs</a>
+          <a href="../build-brief.html">6.1 Build brief</a>
+          <a href="../build-brief-thin-warning.html">6.2 Thin warning</a>
+          <a href="../share-link.html">6.3 Share link</a>
+          <a href="../share-link-loading.html">6.3 generating</a>
+          <a href="../account.html">7.0 Account</a>
+          <a href="../account-data.html">7.2 Data and privacy</a>
+          <a href="../../wireframes/overview.html">the rest, in grey</a>
+        </div>
+      </section>
+    </div>
+
+    <!-- ================================================================ TECHNICAL -->
+    <div class="kit-tabpanel" role="tabpanel" id="tech" aria-labelledby="tab-tech">
+
+      <section class="kit-sec" id="anatomy">
+        <h2 class="kit-h2">Anatomy</h2>
+        <p class="kit-note">Four zones in reading order. One of them is an atom with its own page; the other three belong to this bar.</p>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
+          <tr><td>brand</td><td><code>.brand</code>, <code>svg.ic.mark</code></td><td>Uppercase, strong weight, 13px with 0.06em tracking. The mark is the accent as ink: the one place on the bar that says "this is the product"</td></tr>
+          <tr><td>sections</td><td><code>nav.navtabs</code>, <code>a</code>, <code>a.active</code></td><td>Three tabs, each a 44px target. The current one is primary ink on a raised ground</td></tr>
+          <tr><td>spacer</td><td><code>.spacer</code></td><td><code>flex: 1</code>, so the account lands in the corner. The public bar uses the same spacer</td></tr>
+          <tr><td>account</td><td><code>a.avatar</code></td><td>The atom. Reads at 28px and is hit at 44 through an overlay</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="axes">
+        <h2 class="kit-h2">Axes, with the rule that chooses</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
+          <tr><td>viewport</td><td>with text tabs above 820 &middot; brand and avatar only at 820 and below</td><td>At 820 and below the bottom tabs carry the navigation; kit.css states the swap and no reason for the width. The grey contract switches at a 600px canvas, kit.css at 820px [?]</td></tr>
+          <tr><td>current tab</td><td>Synthesis 8 &middot; Sources 4 &middot; Briefs 6 &middot; none 2, across the 20 colour screens</td><td>Chosen by the section the screen belongs to, never by the designer. Account screens carry none</td></tr>
+          <tr><td>state, per tab</td><td>rest &middot; hover &middot; focus-visible &middot; current</td><td>The inventory names rest, hover and active; focus-visible is the ring from base.css on every link</td></tr>
+        </tbody></table></div>
+        <p class="kit-note">The counts of the current tab are read from the markup of <code class="kit-mono">design/*.html</code>. The inventory gives the component 27 screens and no per-tab count.</p>
+      </section>
+
+      <section class="kit-sec" id="tokens">
+        <h2 class="kit-h2">Tokens it reads</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Reads</th><th>Which grows from</th><th>For</th></tr></thead><tbody>
+          <tr><td><code>--bg-surface</code></td><td><code>--grey-900</code> dark, <code>--grey-025</code> light</td><td>the ground of the bar</td></tr>
+          <tr><td><code>--line-hairline</code></td><td><code>--grey-800</code> dark, <code>--grey-150</code> light</td><td>the rule under the bar</td></tr>
+          <tr><td><code>--text-primary</code>, <code>--text-secondary</code></td><td><code>--grey-050</code> / <code>--grey-400</code> dark, <code>--grey-950</code> / <code>--grey-550</code> light</td><td>the brand word, a tab on hover and the current tab; a tab at rest</td></tr>
+          <tr><td><code>--text-accent</code></td><td><code>--cyan-400</code> dark, <code>--cyan-700</code> light</td><td>the brand mark. <b>PENDING the owner</b>: born at round 3, the accent as ink where it marks "this is the product"</td></tr>
+          <tr><td><code>--bg-raised</code></td><td><code>--grey-850</code> dark, <code>--grey-075</code> light</td><td>the ground of the current tab</td></tr>
+          <tr><td><code>--size-bar</code>, <code>--size-target</code></td><td>tokens.css</td><td>the 52px bar, shared with the public bar; the 44px tab</td></tr>
+          <tr><td><code>--type-sm</code>, <code>--weight-strong</code>, <code>--radius-md</code></td><td>tokens.css</td><td>the tab label; the brand weight; the tab corners</td></tr>
+          <tr><td><code>--space-3</code>, <code>--space-5</code>, <code>--space-6</code>, <code>--space-8</code></td><td>tokens.css</td><td>the brand gap; the tab side padding; the gap between zones; the bar's side padding</td></tr>
+        </tbody></table></div>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>State</th><th>Token</th><th>What moves</th></tr></thead><tbody>
+          <tr><td>hover</td><td><code>--text-primary</code></td><td>The ink only, in .15s. No ground and no geometry</td></tr>
+          <tr><td>current</td><td><code>--text-primary</code>, <code>--bg-raised</code></td><td>Primary ink on a raised ground, by <code>.active</code></td></tr>
+          <tr><td>focus-visible</td><td><code>--line-focus</code></td><td>The ring from base.css</td></tr>
+          <tr><td>active, disabled</td><td><b>absent</b></td><td>app-header.css paints neither</td></tr>
+        </tbody></table></div>
+        <p class="kit-note">Kept off the scale, byte for byte, because no primitive equals them: the brand at 13px with 0.06em tracking, and the 2px gap between tabs. The transition has no easing in kit.css and has none here.</p>
+      </section>
+
+      <section class="kit-sec" id="shots">
+        <h2 class="kit-h2">Snapshots</h2>
+        <p class="kit-note">Organisms get no new snapshots this round: the states are shown live in the matrix on Overview. The hover moves the ink only, the same way <a href="breadcrumb.html">the breadcrumb</a> link does.</p>
+      </section>
+
+      <section class="kit-sec" id="markup">
+        <h2 class="kit-h2">Copy this</h2>
+        <div class="scene">
+          <pre class="kit-pre">&lt;header class="appbar"&gt;
+  &lt;span class="brand"&gt;&lt;svg class="ic mark" width="15" height="15"&gt;&lt;use href="#i-signal"&gt;&lt;/use&gt;&lt;/svg&gt; Sift&lt;/span&gt;
+  &lt;nav class="navtabs" aria-label="Sections"&gt;
+    &lt;a href="synthesis.html" class="active" aria-current="page"&gt;Synthesis&lt;/a&gt;
+    &lt;a href="sources.html"&gt;Sources&lt;/a&gt;
+    &lt;a href="briefs.html"&gt;Briefs&lt;/a&gt;
+  &lt;/nav&gt;
+  &lt;span class="spacer"&gt;&lt;/span&gt;
+  &lt;a href="account.html" class="avatar" aria-label="Account"&gt;&lt;/a&gt;
+&lt;/header&gt;</pre>
+        </div>
+        <p class="kit-note">File: <code class="kit-mono">design/system/components/app-header.css</code>, imported in the organisms group of <code class="kit-mono">design/system/index.css</code>. The system has no <code class="kit-mono">.ic</code> base rule yet, so on this page the mark carries its stroke inline [?]. The nav is labelled "Sections" in <code class="kit-mono">shell.html</code> and on 16 colour screens, "Primary" on the four 2.0 screens and in the grey layer [?].</p>
+      </section>
+    </div>
+
+    <!-- ================================================================ HISTORY -->
+    <div class="kit-tabpanel" role="tabpanel" id="history" aria-labelledby="tab-history">
+      <section class="kit-sec">
+        <h2 class="kit-h2">Changes, newest first</h2>
+        <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-21</td><td>Entered the system: <code>components/app-header.css</code>, on semantic roles, and this page in the card format. The brand mark reads <code>--text-accent</code>, pending the owner; the current tab reads <code>--bg-raised</code></td><td><code>docs/decisions.md</code>, "The organisms entered the system"</td></tr>
+          <tr><td>2026-08-18</td><td>Stage 07 Step 3: the colour layer moved into the flat kit <code>design/kit/kit.css</code>, and the header entered it with the shell markup in <code>design/kit/shell.html</code></td><td>commit <code>d461e12</code></td></tr>
+          <tr><td>2026-08-18</td><td>The brand weight went from 600 to 590: the one strong weight</td><td>commit <code>c6bb418</code>; <code>docs/decisions.md</code>, "Stage 07 Step 1: the product DESIGN.md is formed from code"</td></tr>
+          <tr><td>2026-08-05</td><td>Each tab became a 44px target: <code>padding: 6px 12px</code> became <code>min-height: 44px</code> with <code>padding: 0 12px</code></td><td>commit <code>1a808be</code></td></tr>
+          <tr><td>2026-08-05</td><td>First colour header in <code>design/_theme.css</code>: the brand with its mark, three tabs, the spacer and the avatar</td><td>commit <code>b8ee56b</code></td></tr>
+        </tbody></table></div>
+      </section>
+    </div>
+
+    <div id="kit-pager"></div>
+
+  </main>
+</div>
+
+<svg class="sprite" aria-hidden="true"><defs>
+  <symbol id="i-signal" viewBox="0 0 24 24"><path d="M6 18v-3.5M12 18v-8M18 18v-12.5"/></symbol>
+</defs></svg>
+
+<script src="_nav.js"></script>
+<script src="_states.js"></script>
+</body>
+</html>

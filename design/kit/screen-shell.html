@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift design system - Screen shell</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../system/index.css">
+<link rel="stylesheet" href="_page.css">
+</head>
+<!--
+  design/kit/screen-shell.html - a component page in the card format of 2026-11-20, laid out on the template button.html.
+
+  OVERVIEW, for the person placing the component: a live specimen, the variant by state matrix,
+  other forms, properties, when and when not, do and do not, where it stands.
+  TECHNICAL, for the person changing it: anatomy, the axes with their counts, the tokens it
+  reads, the markup to copy.
+  HISTORY: every change, each with the record it came from.
+
+  The page links ../system/index.css, the SAME entry point a product screen links: it is not a
+  copy of the component, it is the component. The specimen is the stand edition, .appframe,
+  because kit.css says it is the same organism framed for a stand; .app takes the whole viewport
+  and cannot stand inside a page. Every line of text in the frames is copied from
+  design/synthesis.html, design/synthesis-empty.html, design/share-link-loading.html and
+  design/sources-sync-error.html. Inside the frames the main region is a div and the screen
+  title an h2: this page already has its one main and its one h1. On a screen they are main
+  and h1, as Copy this shows.
+
+  No em dash anywhere.
+-->
+<body>
+<div class="kit-shell">
+  <div id="kit-panel"></div>
+  <main class="kit-main">
+
+    <div id="kit-crumbs"></div>
+    <div id="kit-head"></div>
+
+    <div class="kit-tabs" role="tablist" aria-label="Screen shell page">
+      <button class="kit-tab" role="tab" id="tab-overview" aria-controls="overview" aria-selected="true">Overview</button>
+      <button class="kit-tab" role="tab" id="tab-tech" aria-controls="tech" aria-selected="false" tabindex="-1">Technical</button>
+      <button class="kit-tab" role="tab" id="tab-history" aria-controls="history" aria-selected="false" tabindex="-1">History</button>
+    </div>
+
+    <!-- ================================================================ OVERVIEW -->
+    <div class="kit-tabpanel" role="tabpanel" id="overview" aria-labelledby="tab-overview">
+
+      <div class="kit-hero">
+        <div class="u-full">
+          <div class="appframe">
+            <header class="appbar"><span class="brand"><svg class="ic mark" width="15" height="15" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-signal"></use></svg> Sift</span><nav class="navtabs" aria-label="Sections"><a href="#" class="active" aria-current="page">Synthesis</a><a href="#">Sources</a><a href="#">Briefs</a></nav><span class="spacer"></span><a href="#" class="avatar" aria-label="Account"></a></header>
+            <div class="appmain"><header class="screenhead"><div class="screenhead-row"><div class="head-text"><h2 class="h1">Synthesis</h2><p class="sub">Your feedback, clustered into ranked themes. Open one to trace the evidence behind it.</p></div><a class="btn head-action" href="#"><svg class="ic" viewBox="0 0 24 24" width="15" height="15" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-evidence"></use></svg> Build brief</a></div><p class="scope"><b>12</b> themes from <b>2,904</b> of 3,750 feedback items in the last 30 days, across 2 sources. Synthesized 2 hours ago.</p></header><ul><li class="theme"><input type="checkbox" class="check" aria-label="Select theme: Onboarding is confusing"><span class="rank" aria-hidden="true">1</span><a class="theme-main" href="#"><span class="theme-label">Onboarding is confusing</span><span class="theme-quote">"I signed up and just stared at an empty dashboard. No idea what to do first."</span><span class="theme-prov">CSV, Intercom &middot; latest feedback 2 days ago</span></a><span class="conf"><span class="conf-n">n=42</span></span><a class="theme-drill" href="#" aria-label="Open theme: Onboarding is confusing">&rsaquo;</a></li><li class="theme"><input type="checkbox" class="check" aria-label="Select theme: Slow export on large accounts"><span class="rank" aria-hidden="true">2</span><a class="theme-main" href="#"><span class="theme-label">Slow export on large accounts</span><span class="theme-quote">"Exporting our account data takes minutes and sometimes just fails."</span><span class="theme-prov">Intercom &middot; latest feedback 5 days ago</span></a><span class="conf"><span class="conf-n">n=28</span></span><a class="theme-drill" href="#" aria-label="Open theme: Slow export on large accounts">&rsaquo;</a></li><li class="theme"><input type="checkbox" class="check" aria-label="Select theme: Wants Salesforce integration"><span class="rank" aria-hidden="true">5</span><a class="theme-main" href="#"><span class="theme-label">Wants Salesforce integration</span><span class="theme-quote">"We keep our accounts in Salesforce, so right now I copy things across by hand."</span><span class="theme-prov">Intercom only &middot; latest feedback 9 days ago</span></a><span class="conf"><span class="conf-n">n=6</span> <span class="badge-low">low signal</span></span><a class="theme-drill" href="#" aria-label="Open theme: Wants Salesforce integration">&rsaquo;</a></li></ul><div class="selbar"><span class="selbar-note">1 theme selected</span><button class="btn--ghost"><svg class="ic" viewBox="0 0 24 24" width="15" height="15" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-flag"></use></svg> Set priority</button><a class="btn" href="#"><svg class="ic" viewBox="0 0 24 24" width="15" height="15" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-evidence"></use></svg> Build brief</a></div></div>
+            <footer class="appfoot">Sift workspace &middot; feedback from CSV and Intercom, PII scrubbed by default</footer>
+            <nav class="bottomtabs" aria-label="Sections"><a href="#" class="btab active" aria-current="page"><span class="ico"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-signal"></use></svg></span>Synthesis</a><a href="#" class="btab"><span class="ico"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-source"></use></svg></span>Sources</a><a href="#" class="btab"><span class="ico"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-brief"></use></svg></span>Briefs</a><a href="#" class="btab"><span class="ico"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-user"></use></svg></span>Account</a></nav>
+          </div>
+        </div>
+        <p class="kit-hero-note">Live. Tick a theme: the selection bar rises and Build brief goes</p>
+      </div>
+      <p class="kit-note"><b>That is the coupling rule working, and it lives in this file.</b> <code class="kit-mono">.appframe:has(.check:checked) .selbar</code> shows the selection bar and <code class="kit-mono">.appframe:has(.check:checked) .head-action</code> hides the head action, so the screen never carries two primary actions. Pure CSS, no script. On a product screen the same two rules are written on <code class="kit-mono">.app</code>: open <a href="../synthesis.html">2.0 Synthesis</a> and tick a theme. Narrow the window below 820px and the header drops its tabs while the bottom tabs appear at the foot of the frame.</p>
+
+      <section class="kit-sec" id="variants">
+        <h2 class="kit-h2">Variants and states</h2>
+        <p class="kit-note">The shell is not interactive itself: it has no hover, focus or pressed state, and its zones keep their own states on their own pages (<a href="app-header.html">App header</a>, <a href="bottom-tabs.html">Bottom tabs</a>, <a href="app-footer.html">App footer</a>). One axis, the neighbour: a screen that is the page, or a screen shown on a stand. What changes inside it is the selection trigger, which is a rule of the shell on its children. The bar's note is the screen's own static text.</p>
+        <div class="kit-matrix-wrap">
+          <table class="kit-matrix" inert>
+            <thead><tr><th>Neighbour</th><th>Selection</th><th>Shell</th></tr></thead>
+            <tbody>
+              <tr><th rowspan="2">A stand<code>.appframe</code></th><td class="kit-st">Nothing selected</td>
+                <td>
+                  <div class="appframe">
+                    <header class="appbar"><span class="brand"><svg class="ic mark" width="15" height="15" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-signal"></use></svg> Sift</span><nav class="navtabs" aria-label="Sections"><a href="#" class="active" aria-current="page">Synthesis</a><a href="#">Sources</a><a href="#">Briefs</a></nav><span class="spacer"></span><a href="#" class="avatar" aria-label="Account"></a></header>
+                    <div class="appmain"><header class="screenhead"><div class="screenhead-row"><div class="head-text"><h2 class="h1">Synthesis</h2><p class="sub">Your feedback, clustered into ranked themes. Open one to trace the evidence behind it.</p></div><a class="btn head-action" href="#"><svg class="ic" viewBox="0 0 24 24" width="15" height="15" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-evidence"></use></svg> Build brief</a></div><p class="scope"><b>12</b> themes from <b>2,904</b> of 3,750 feedback items in the last 30 days, across 2 sources. Synthesized 2 hours ago.</p></header><ul><li class="theme"><input type="checkbox" class="check" aria-label="Select theme: Onboarding is confusing"><span class="rank" aria-hidden="true">1</span><a class="theme-main" href="#"><span class="theme-label">Onboarding is confusing</span><span class="theme-quote">"I signed up and just stared at an empty dashboard. No idea what to do first."</span><span class="theme-prov">CSV, Intercom &middot; latest feedback 2 days ago</span></a><span class="conf"><span class="conf-n">n=42</span></span><a class="theme-drill" href="#" aria-label="Open theme: Onboarding is confusing">&rsaquo;</a></li><li class="theme"><input type="checkbox" class="check" aria-label="Select theme: Slow export on large accounts"><span class="rank" aria-hidden="true">2</span><a class="theme-main" href="#"><span class="theme-label">Slow export on large accounts</span><span class="theme-quote">"Exporting our account data takes minutes and sometimes just fails."</span><span class="theme-prov">Intercom &middot; latest feedback 5 days ago</span></a><span class="conf"><span class="conf-n">n=28</span></span><a class="theme-drill" href="#" aria-label="Open theme: Slow export on large accounts">&rsaquo;</a></li></ul><div class="selbar"><span class="selbar-note">1 theme selected</span><button class="btn--ghost"><svg class="ic" viewBox="0 0 24 24" width="15" height="15" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-flag"></use></svg> Set priority</button><a class="btn" href="#"><svg class="ic" viewBox="0 0 24 24" width="15" height="15" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-evidence"></use></svg> Build brief</a></div></div>
+                    <footer class="appfoot">Sift workspace &middot; feedback from CSV and Intercom, PII scrubbed by default</footer>
+                    <nav class="bottomtabs" aria-label="Sections"><a href="#" class="btab active" aria-current="page"><span class="ico"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-signal"></use></svg></span>Synthesis</a><a href="#" class="btab"><span class="ico"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-source"></use></svg></span>Sources</a><a href="#" class="btab"><span class="ico"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-brief"></use></svg></span>Briefs</a><a href="#" class="btab"><span class="ico"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-user"></use></svg></span>Account</a></nav>
+                  </div>
+                </td></tr>
+              <tr class="kit-group-end"><td class="kit-st">One theme selected<code>.check:checked</code></td>
+                <td>
+                  <div class="appframe">
+                    <header class="appbar"><span class="brand"><svg class="ic mark" width="15" height="15" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-signal"></use></svg> Sift</span><nav class="navtabs" aria-label="Sections"><a href="#" class="active" aria-current="page">Synthesis</a><a href="#">Sources</a><a href="#">Briefs</a></nav><span class="spacer"></span><a href="#" class="avatar" aria-label="Account"></a></header>
+                    <div class="appmain"><header class="screenhead"><div class="screenhead-row"><div class="head-text"><h2 class="h1">Synthesis</h2><p class="sub">Your feedback, clustered into ranked themes. Open one to trace the evidence behind it.</p></div><a class="btn head-action" href="#"><svg class="ic" viewBox="0 0 24 24" width="15" height="15" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-evidence"></use></svg> Build brief</a></div><p class="scope"><b>12</b> themes from <b>2,904</b> of 3,750 feedback items in the last 30 days, across 2 sources. Synthesized 2 hours ago.</p></header><ul><li class="theme"><input type="checkbox" class="check" checked aria-label="Select theme: Onboarding is confusing"><span class="rank" aria-hidden="true">1</span><a class="theme-main" href="#"><span class="theme-label">Onboarding is confusing</span><span class="theme-quote">"I signed up and just stared at an empty dashboard. No idea what to do first."</span><span class="theme-prov">CSV, Intercom &middot; latest feedback 2 days ago</span></a><span class="conf"><span class="conf-n">n=42</span></span><a class="theme-drill" href="#" aria-label="Open theme: Onboarding is confusing">&rsaquo;</a></li><li class="theme"><input type="checkbox" class="check" aria-label="Select theme: Slow export on large accounts"><span class="rank" aria-hidden="true">2</span><a class="theme-main" href="#"><span class="theme-label">Slow export on large accounts</span><span class="theme-quote">"Exporting our account data takes minutes and sometimes just fails."</span><span class="theme-prov">Intercom &middot; latest feedback 5 days ago</span></a><span class="conf"><span class="conf-n">n=28</span></span><a class="theme-drill" href="#" aria-label="Open theme: Slow export on large accounts">&rsaquo;</a></li></ul><div class="selbar"><span class="selbar-note">1 theme selected</span><button class="btn--ghost"><svg class="ic" viewBox="0 0 24 24" width="15" height="15" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-flag"></use></svg> Set priority</button><a class="btn" href="#"><svg class="ic" viewBox="0 0 24 24" width="15" height="15" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-evidence"></use></svg> Build brief</a></div></div>
+                    <footer class="appfoot">Sift workspace &middot; feedback from CSV and Intercom, PII scrubbed by default</footer>
+                    <nav class="bottomtabs" aria-label="Sections"><a href="#" class="btab active" aria-current="page"><span class="ico"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-signal"></use></svg></span>Synthesis</a><a href="#" class="btab"><span class="ico"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-source"></use></svg></span>Sources</a><a href="#" class="btab"><span class="ico"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-brief"></use></svg></span>Briefs</a><a href="#" class="btab"><span class="ico"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-user"></use></svg></span>Account</a></nav>
+                  </div>
+                </td></tr>
+
+              <tr><th>The page<code>.app</code></th><td class="kit-st">both</td>
+                <td><p class="kit-cell-none">Not drawn here. <code>.app</code> takes 100vh and is the page, so a cell cannot hold it without becoming a picture of a screen, which is what <code>.appframe</code> is for. Open <a href="../synthesis.html">2.0 Synthesis</a> and tick a theme.</p></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="forms">
+        <h2 class="kit-h2">Other forms</h2>
+        <p class="kit-note">Three rules of the shell that place a molecule in it. Each tile is the stand edition holding real system classes.</p>
+        <div class="kit-forms">
+          <div>
+            <div class="kit-form-c" inert>
+              <div class="appframe u-full"><header class="appbar"><span class="brand"><svg class="ic mark" width="15" height="15" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-signal"></use></svg> Sift</span><nav class="navtabs" aria-label="Sections"><a href="#">Synthesis</a><a href="#">Sources</a><a href="#" class="active" aria-current="page">Briefs</a></nav><span class="spacer"></span><a href="#" class="avatar" aria-label="Account"></a></header><div class="appmain"><div class="dialog" aria-busy="true"><h1>Generating share link</h1><p>Publishing the brief and creating a public link. This takes a moment.</p><div class="skelcard"><div class="skel c"></div><div class="skel a"></div></div><div class="dialog-actions"><a class="btn" href="#">Continue</a></div></div></div><footer class="appfoot">Sift workspace &middot; feedback from CSV and Intercom, PII scrubbed by default</footer></div>
+            </div>
+            <div class="kit-form-t">A dialog that IS the screen</div>
+            <div class="kit-form-d"><code>.appmain:has(&gt; .dialog:only-child)</code> centres it in the canvas. 6.3 Share link and its generating state, in colour.</div>
+          </div>
+          <div>
+            <div class="kit-form-c" inert>
+              <div class="appframe u-full"><header class="appbar"><span class="brand"><svg class="ic mark" width="15" height="15" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-signal"></use></svg> Sift</span><nav class="navtabs" aria-label="Sections"><a href="#" class="active" aria-current="page">Synthesis</a><a href="#">Sources</a><a href="#">Briefs</a></nav><span class="spacer"></span><a href="#" class="avatar" aria-label="Account"></a></header><div class="appmain"><div class="state"><div class="state-ic"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-source"></use></svg></div><h2 class="state-t">Nothing to synthesize yet</h2><div class="state-d">Connect a source to see your first synthesis. Sift reads your feedback, removes personal details, then clusters what is left into ranked themes. Every theme keeps the items behind it, so you can open any conclusion and read the words it came from.</div><div class="state-actions"><a class="btn" href="#"><svg class="ic" viewBox="0 0 24 24" width="15" height="15" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-source"></use></svg> Connect a source</a></div></div></div><footer class="appfoot">Sift workspace &middot; feedback from CSV and Intercom, PII scrubbed by default</footer></div>
+            </div>
+            <div class="kit-form-t">A state block that IS the screen</div>
+            <div class="kit-form-d"><code>.appmain:has(&gt; .state:only-child)</code>. <code>:only-child</code> is load-bearing: a state that is one group inside a populated screen must not turn the whole main into a flex row. No colour screen fires it today: each state screen carries its screen head above the block [?].</div>
+          </div>
+          <div>
+            <div class="kit-form-c" inert>
+              <div class="appframe u-full"><header class="appbar"><span class="brand"><svg class="ic mark" width="15" height="15" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-signal"></use></svg> Sift</span><nav class="navtabs" aria-label="Sections"><a href="#">Synthesis</a><a href="#" class="active" aria-current="page">Sources</a><a href="#">Briefs</a></nav><span class="spacer"></span><a href="#" class="avatar" aria-label="Account"></a></header><div class="notice notice--warn">Intercom sync failed. 3 themes cite Intercom evidence, including "Onboarding is confusing" and "Slow export on large accounts". Those citations still open, because the items already ingested are stored in Sift. What is paused is new feedback arriving.</div><div class="appmain"><div class="group-t">Connected &middot; 2</div></div><footer class="appfoot">Sift workspace &middot; feedback from CSV and Intercom, PII scrubbed by default</footer></div>
+            </div>
+            <div class="kit-form-t">A notice in the frame</div>
+            <div class="kit-form-d"><code>.appframe &gt; .notice</code>, <code>.app &gt; .notice</code>: outside the padded main it brings the 22px gutter with it, 16px at 820 and below. The grey layer places it so on 3.5, 4.1 and 6.2; the colour copies put it inside the main [?].</div>
+          </div>
+        </div>
+        <p class="kit-note"><b>The public shell.</b> 0.0 Home and 6.4 Shared brief are <code class="kit-mono">.app</code> too, with <a href="public-bar.html">the public bar</a> in place of the app header and no tabs at all: the reader of a shared brief has no session and nothing to navigate to (<code class="kit-mono">design/kit/shell.html</code>). See it on <a href="../shared-brief.html">6.4 Shared brief</a>.</p>
+      </section>
+
+      <section class="kit-sec" id="props">
+        <h2 class="kit-h2">Properties</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Property</th><th>Type</th><th>Values</th><th>Default</th></tr></thead><tbody>
+          <tr><td>Neighbour</td><td>variant, own class</td><td><code>.app</code>, the screen is the page &middot; <code>.appframe</code>, the screen on a stand: border, 12px radius, the sheet shadow, 560px floor</td><td>none: one class is required</td></tr>
+          <tr><td>Header</td><td>organism, zone</td><td><code>header.appbar</code> on a signed-in screen &middot; <code>.public-bar</code> on 0.0, 6.4, 9.x</td><td>required</td></tr>
+          <tr><td>Notice in the frame</td><td>molecule, zone</td><td><code>.notice</code> as a direct child, between the header and the main</td><td>none</td></tr>
+          <tr><td>Main</td><td>zone</td><td><code>main.appmain</code>, takes the free height, 20px by 22px padding</td><td>required</td></tr>
+          <tr><td>Footer</td><td>organism, zone</td><td><code>footer.appfoot</code> &middot; <code>.pubfoot</code> on the public document</td><td>required</td></tr>
+          <tr><td>Bottom tabs</td><td>organism, zone</td><td><code>nav.bottomtabs</code>, last; drawn at 820 and below</td><td>required on a signed-in screen</td></tr>
+          <tr><td>Selection trigger</td><td>coupling rule</td><td>any <code>.check:checked</code> inside the shell shows <code>.selbar</code> and hides <code>.head-action</code></td><td>nothing checked</td></tr>
+          <tr><td>Centring</td><td>coupling rule</td><td>a <code>.state</code> or a <code>.dialog</code> that is the only child of <code>.appmain</code></td><td>off</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="when">
+        <h2 class="kit-h2">How to use it</h2>
+        <div class="kit-when">
+          <div>
+            <h3>When</h3>
+            <p><b><code>.app</code> for every product screen.</b> A screen fills its canvas: header, main, footer, bottom tabs, nothing around it. A colour screen is a copy of a wireframe, and a wireframe is a real screen, not an exhibit.</p>
+            <p><b><code>.appframe</code> for a stand only</b>, the kit and the concept, where a screen is shown as an exhibit. Same zones, different neighbour.</p>
+            <p>A selection bar and a head action on the same screen are mutually exclusive, and the shell is what enforces it.</p>
+          </div>
+          <div>
+            <h3>When not</h3>
+            <ul>
+              <li>Do not frame a product screen. Two kinds of screen in one folder is how a reviewer learns to distrust the folder.</li>
+              <li>Do not show the selection bar or hide the head action from inside a molecule: the trigger is the shell's, and <a href="selbar.html">the selection bar</a> and <a href="screen-head.html">the screen head</a> leave it out on purpose.</li>
+              <li>Do not drop <code>:only-child</code> from the centring rules: an inline state inside a populated list would lay the whole main out as a row.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="kit-dodont">
+          <div class="kit-dd kit-dd--do">
+            <div class="kit-dd-c" inert>
+              <div class="appframe u-full"><header class="appbar"><span class="brand"><svg class="ic mark" width="15" height="15" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-signal"></use></svg> Sift</span><nav class="navtabs" aria-label="Sections"><a href="#" class="active" aria-current="page">Synthesis</a><a href="#">Sources</a><a href="#">Briefs</a></nav><span class="spacer"></span><a href="#" class="avatar" aria-label="Account"></a></header><div class="appmain"><header class="screenhead"><div class="screenhead-row"><div class="head-text"><h2 class="h1">Synthesis</h2><p class="sub">Your feedback, clustered into ranked themes. Open one to trace the evidence behind it.</p></div><a class="btn head-action" href="#"><svg class="ic" viewBox="0 0 24 24" width="15" height="15" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-evidence"></use></svg> Build brief</a></div><p class="scope"><b>12</b> themes from <b>2,904</b> of 3,750 feedback items in the last 30 days, across 2 sources. Synthesized 2 hours ago.</p></header><ul><li class="theme"><input type="checkbox" class="check" checked aria-label="Select theme: Onboarding is confusing"><span class="rank" aria-hidden="true">1</span><a class="theme-main" href="#"><span class="theme-label">Onboarding is confusing</span><span class="theme-quote">"I signed up and just stared at an empty dashboard. No idea what to do first."</span><span class="theme-prov">CSV, Intercom &middot; latest feedback 2 days ago</span></a><span class="conf"><span class="conf-n">n=42</span></span><a class="theme-drill" href="#" aria-label="Open theme: Onboarding is confusing">&rsaquo;</a></li></ul><div class="selbar"><span class="selbar-note">1 theme selected</span><button class="btn--ghost"><svg class="ic" viewBox="0 0 24 24" width="15" height="15" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-flag"></use></svg> Set priority</button><a class="btn" href="#"><svg class="ic" viewBox="0 0 24 24" width="15" height="15" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-evidence"></use></svg> Build brief</a></div></div><footer class="appfoot">Sift workspace &middot; feedback from CSV and Intercom, PII scrubbed by default</footer></div>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do</div><div class="kit-dd-t">Let the shell swap the one action</div>
+              <div class="kit-dd-d">A theme is ticked: the bar is up with Build brief, and the head action is gone. One primary action on the screen at any moment.</div></div>
+          </div>
+          <div class="kit-dd kit-dd--dont">
+            <div class="kit-dd-c" inert>
+              <div class="appframe u-full"><header class="appbar"><span class="brand"><svg class="ic mark" width="15" height="15" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-signal"></use></svg> Sift</span><nav class="navtabs" aria-label="Sections"><a href="#" class="active" aria-current="page">Synthesis</a><a href="#">Sources</a><a href="#">Briefs</a></nav><span class="spacer"></span><a href="#" class="avatar" aria-label="Account"></a></header><div class="appmain"><header class="screenhead"><div class="screenhead-row"><div class="head-text"><h2 class="h1">Synthesis</h2><p class="sub">Your feedback, clustered into ranked themes. Open one to trace the evidence behind it.</p></div><a class="btn head-action" href="#"><svg class="ic" viewBox="0 0 24 24" width="15" height="15" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-evidence"></use></svg> Build brief</a></div><p class="scope"><b>12</b> themes from <b>2,904</b> of 3,750 feedback items in the last 30 days, across 2 sources. Synthesized 2 hours ago.</p></header><ul><li class="theme"><input type="checkbox" class="check" aria-label="Select theme: Onboarding is confusing"><span class="rank" aria-hidden="true">1</span><a class="theme-main" href="#"><span class="theme-label">Onboarding is confusing</span><span class="theme-quote">"I signed up and just stared at an empty dashboard. No idea what to do first."</span><span class="theme-prov">CSV, Intercom &middot; latest feedback 2 days ago</span></a><span class="conf"><span class="conf-n">n=42</span></span><a class="theme-drill" href="#" aria-label="Open theme: Onboarding is confusing">&rsaquo;</a></li></ul><div class="selbar selbar--static"><span class="selbar-note">1 theme selected</span><a class="btn--ghost" href="#">Set priority</a><a class="btn" href="#">Build brief</a></div></div><footer class="appfoot">Sift workspace &middot; feedback from CSV and Intercom, PII scrubbed by default</footer></div>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do not</div><div class="kit-dd-t">Force the bar on with the static form</div>
+              <div class="kit-dd-d">The static bar ignores the trigger: it stands with nothing ticked, the head action stays, and the screen carries two Build brief buttons. The static form is for the composer, where the artifact is the selection.</div></div>
+          </div>
+        </div>
+        <p class="kit-note">Sources: the comments above <code class="kit-mono">.app</code>, <code class="kit-mono">.selbar</code> and <code class="kit-mono">.screenhead</code> in <code class="kit-mono">design/kit/kit.css</code>; <code class="kit-mono">docs/decisions.md</code>, "The colour stage got its own two-part navigation, and its screens stopped being exhibits"; <code class="kit-mono">design/kit/docs/inventory.md</code>, "Level 3, organisms"; <code class="kit-mono">CLAUDE.md</code>, design principle 4.</p>
+      </section>
+
+      <section class="kit-sec" id="where">
+        <h2 class="kit-h2">Where it stands</h2>
+        <p class="kit-note">27 screens in the inventory. In colour <code class="kit-mono">.app</code> holds 22: the 20 signed-in screens and the two public ones. <code class="kit-mono">.appframe</code> holds no product screen; it stands on the frozen Stage 07 stands <code class="kit-mono">design/kit/kit.html</code> and <code class="kit-mono">design/kit/shell.html</code>, and on this page. In grey only: 3.3, 3.6, 5.0, 5.1, 7.1, 7.3, 8.0 and the rest of the public screens.</p>
+        <div class="kit-where">
+          <a href="../index.html">0.0 Home</a>
+          <a href="../synthesis.html">2.0 Synthesis</a>
+          <a href="../synthesis-empty.html">2.1 Synthesis empty</a>
+          <a href="../synthesis-loading.html">2.2 Synthesizing</a>
+          <a href="../synthesis-error.html">2.3 Synthesis error</a>
+          <a href="../sources.html">3.0 Sources</a>
+          <a href="../connect-csv.html">3.2 Import a CSV</a>
+          <a href="../sources-empty.html">3.4 No sources</a>
+          <a href="../sources-sync-error.html">3.5 Sync error</a>
+          <a href="../theme.html">4.0 Theme detail</a>
+          <a href="../theme-low-signal.html">4.1 Low signal</a>
+          <a href="../theme-loading.html">4.0 loading</a>
+          <a href="../theme-error.html">4.0 error</a>
+          <a href="../briefs.html">6.0 Briefs</a>
+          <a href="../briefs-empty.html">6.5 No briefs</a>
+          <a href="../build-brief.html">6.1 Build brief</a>
+          <a href="../build-brief-thin-warning.html">6.2 Thin warning</a>
+          <a href="../share-link.html">6.3 Share link</a>
+          <a href="../share-link-loading.html">6.3 generating</a>
+          <a href="../shared-brief.html">6.4 Shared brief</a>
+          <a href="../account.html">7.0 Account</a>
+          <a href="../account-data.html">7.2 Data and privacy</a>
+          <a href="../../wireframes/overview.html">the rest, in grey</a>
+        </div>
+      </section>
+    </div>
+
+    <!-- ================================================================ TECHNICAL -->
+    <div class="kit-tabpanel" role="tabpanel" id="tech" aria-labelledby="tab-tech">
+
+      <section class="kit-sec" id="anatomy">
+        <h2 class="kit-h2">Anatomy</h2>
+        <p class="kit-note">Five zones top to bottom. Three are organisms with their own pages, one is a molecule placed by the shell, and the main region is the shell's own.</p>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
+          <tr><td>header</td><td><code>.appbar</code> or <code>.public-bar</code></td><td>Organisms with their own files. 52px, the first child</td></tr>
+          <tr><td>notice, optional</td><td><code>.notice</code> as a direct child</td><td>The molecule, given the 22px gutter by this file, 16px at 820 and below</td></tr>
+          <tr><td>main</td><td><code>.appmain</code></td><td>Takes the free height (<code>flex: 1</code>), 20px by 22px padding. Centres a lone state block or dialog</td></tr>
+          <tr><td>footer</td><td><code>.appfoot</code> or <code>.pubfoot</code></td><td>Organisms with their own files</td></tr>
+          <tr><td>bottom tabs</td><td><code>.bottomtabs</code></td><td>The organism. Last, sticky, drawn at 820 and below</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="axes">
+        <h2 class="kit-h2">Axes, with the rule that chooses</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
+          <tr><td>neighbour</td><td><code>.app</code> 22 colour screens &middot; <code>.appframe</code> 0 product screens, 2 stands</td><td><b>Same zones, different neighbour.</b> A screen that is the page takes <code>.app</code>; a screen shown as an exhibit takes <code>.appframe</code></td></tr>
+          <tr><td>header</td><td>app header 20 &middot; public bar 2, in colour</td><td>Signed in or not. A reader with no session has nothing to navigate to</td></tr>
+          <tr><td>selection</td><td>nothing checked &middot; a checkbox checked</td><td>The trigger reads ANY checked <code>.check</code> in the shell. It fires on 2.0 when a theme is ticked, and also on 3.2 and 7.2, which hold checked settings boxes but no selection bar and no head action, so nothing moves there [?]</td></tr>
+          <tr><td>centring</td><td>a lone dialog: 6.3 and its generating state &middot; a lone state block: none in colour</td><td><code>:only-child</code>, never a class on the main</td></tr>
+        </tbody></table></div>
+        <p class="kit-note">The counts are read from the markup of <code class="kit-mono">design/*.html</code>. The inventory gives the shell 27 screens and two forms, and calls the pair an axis, not two components.</p>
+      </section>
+
+      <section class="kit-sec" id="tokens">
+        <h2 class="kit-h2">Tokens it reads</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Reads</th><th>Which grows from</th><th>For</th></tr></thead><tbody>
+          <tr><td><code>--bg-page</code></td><td><code>--grey-950</code> dark, <code>--grey-000</code> light</td><td>the ground of the screen and of the frame</td></tr>
+          <tr><td><code>--text-primary</code></td><td><code>--grey-050</code> dark, <code>--grey-950</code> light</td><td>the ink every zone inherits on <code>.app</code></td></tr>
+          <tr><td><code>--line-hairline</code></td><td><code>--grey-800</code> dark, <code>--grey-150</code> light</td><td>the edge of the stand frame</td></tr>
+          <tr><td><code>--shadow-sheet</code></td><td><code>--shadow-dark</code>, <code>--shadow-light</code></td><td>the stand frame: the one depth, shared with the dialog</td></tr>
+          <tr><td><code>--radius-lg</code></td><td>tokens.css</td><td>the 12px corners of the stand frame, the sheet radius</td></tr>
+          <tr><td><code>--space-6</code>, <code>--space-7</code>, <code>--space-9</code></td><td>tokens.css</td><td>the notice's 14px above and below; its 16px gutter at 820 and below; the 22px gutter of the main and of the notice</td></tr>
+        </tbody></table></div>
+        <p class="kit-note">Kept off the scale, byte for byte, because no primitive equals them: the stand frame's 560px floor, the main's 20px vertical padding and the screen's 100vh. No state token: the shell has no state of its own.</p>
+      </section>
+
+      <section class="kit-sec" id="shots">
+        <h2 class="kit-h2">Snapshots</h2>
+        <p class="kit-note">Organisms get no new snapshots this round: the selection trigger is shown live in the hero and in the matrix on Overview.</p>
+      </section>
+
+      <section class="kit-sec" id="markup">
+        <h2 class="kit-h2">Copy this</h2>
+        <div class="scene">
+          <pre class="kit-pre">&lt;div class="app"&gt;
+  &lt;header class="appbar"&gt;...&lt;/header&gt;          &lt;!-- app-header.html --&gt;
+  &lt;main class="appmain"&gt;
+    &lt;header class="screenhead"&gt;... &lt;a class="btn head-action" href="build-brief.html"&gt;Build brief&lt;/a&gt; ...&lt;/header&gt;
+    &lt;ul class="list"&gt;&lt;li class="theme"&gt;&lt;input type="checkbox" class="check" ...&gt; ...&lt;/li&gt;&lt;/ul&gt;
+    &lt;div class="selbar"&gt;...&lt;/div&gt;               &lt;!-- shown by the shell on a checked .check --&gt;
+  &lt;/main&gt;
+  &lt;footer class="appfoot"&gt;Sift workspace &amp;middot; feedback from CSV and Intercom, PII scrubbed by default&lt;/footer&gt;
+  &lt;nav class="bottomtabs" aria-label="Sections"&gt;...&lt;/nav&gt;   &lt;!-- bottom-tabs.html --&gt;
+&lt;/div&gt;</pre>
+        </div>
+        <p class="kit-note">File: <code class="kit-mono">design/system/components/screen-shell.css</code>, imported last in the organisms group of <code class="kit-mono">design/system/index.css</code>, because it contains the other shell organisms. For a stand, write <code class="kit-mono">.appframe</code> in place of <code class="kit-mono">.app</code>. The full skeleton with the sprite is in <code class="kit-mono">design/kit/shell.html</code>. On 2.0 the rows sit in <code class="kit-mono">ul.list</code>, which is not in design/system/ yet; this page uses a bare <code class="kit-mono">ul</code> [?].</p>
+      </section>
+    </div>
+
+    <!-- ================================================================ HISTORY -->
+    <div class="kit-tabpanel" role="tabpanel" id="history" aria-labelledby="tab-history">
+      <section class="kit-sec">
+        <h2 class="kit-h2">Changes, newest first</h2>
+        <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-21</td><td>Entered the system: <code>components/screen-shell.css</code>, on semantic roles, and this page in the card format. It took every rule that ties a molecule to the shell, which the molecule round left out: the selection trigger, the notice in the frame, the centring of a lone state or dialog</td><td><code>docs/decisions.md</code>, "The organisms entered the system"</td></tr>
+          <tr><td>2026-08-18</td><td>Stage 07 Step 5: <code>.app</code> entered the kit as the screen shell, with the selection trigger, the notice gutter and the centring of a lone state written on it. <code>.appframe</code> was kept and labelled the stand edition of the same organism</td><td>commit <code>f2b20b8</code>; <code>docs/decisions.md</code>, "The colour stage got its own two-part navigation, and its screens stopped being exhibits"</td></tr>
+          <tr><td>2026-08-18</td><td>Stage 07 Step 3: the colour layer moved into the flat kit <code>design/kit/kit.css</code>. The frame's literals became <code>--shadow</code> and <code>--r-lg</code>; the notice in the frame and the centring of a lone dialog were added</td><td>commit <code>d461e12</code></td></tr>
+          <tr><td>2026-08-05</td><td>The selection trigger on <code>.appframe</code>: the bar shows and the head action hides on a checked box</td><td>commit <code>08a8b2f</code></td></tr>
+          <tr><td>2026-08-05</td><td>First colour frame in <code>design/_theme.css</code>: <code>.appframe</code> and <code>.appmain</code>, with the 12px radius and the shadow written as literals</td><td>commit <code>b8ee56b</code></td></tr>
+        </tbody></table></div>
+      </section>
+    </div>
+
+    <div id="kit-pager"></div>
+
+  </main>
+</div>
+
+<svg class="sprite" aria-hidden="true"><defs>
+  <symbol id="i-signal" viewBox="0 0 24 24"><path d="M6 18v-3.5M12 18v-8M18 18v-12.5"/></symbol>
+  <symbol id="i-source" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.66 3.13 3 7 3s7-1.34 7-3V6"/><path d="M5 12v6c0 1.66 3.13 3 7 3s7-1.34 7-3v-6"/></symbol>
+  <symbol id="i-brief" viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h7"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 19c0-3.6 2.9-5.5 6.5-5.5s6.5 1.9 6.5 5.5"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M6 3v18"/><path d="M6 4h12l-2.5 4L18 12H6"/></symbol>
+  <symbol id="i-evidence" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-4 4v-4H4z"/><path d="M8.5 10.5h7M8.5 13h4"/></symbol>
+</defs></svg>
+
+<script src="_nav.js"></script>
+<script src="_states.js"></script>
+</body>
+</html>

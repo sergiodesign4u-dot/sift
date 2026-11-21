@@ -1,0 +1,15 @@
+/* design/system/components/app-footer.css - level 3, organism (shell).
+   Reads: --bg-surface, --text-secondary, --line-hairline, --font-mono, --space-6, --space-9, --type-2xs
+   Page:  design/kit/app-footer.html
+   Stands on: every product screen, canonical global 0.2. 27 screens (inventory). In colour, 20 of them.
+
+   One form, one line: where the workspace is and how its data is treated, said at the foot of the
+   frame so the PII default stays visible on every screen and never has to be looked for. It is the
+   component the marketing footer composes with (0.0 sets class="appfoot mk-footer"): the marketing
+   edition adds a link block and is a Step 6 one-off, not part of this file.
+   Not interactive: it holds text and nothing to press.
+   Coupling to the shell (.app, .appframe, .appmain) is owned by screen-shell, not here.
+   No em dash anywhere in this file.
+*/
+
+.appfoot { padding: var(--space-6) var(--space-9); border-top: 1px solid var(--line-hairline); background: var(--bg-surface); font-family: var(--font-mono); font-size: var(--type-2xs); color: var(--text-secondary); }

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift design system - App footer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../system/index.css">
+<link rel="stylesheet" href="_page.css">
+</head>
+<!--
+  design/kit/app-footer.html - a component page in the card format of 2026-11-20, laid after button.html.
+  Level 3, an organism of the shell. Not interactive: the matrix has no forced states.
+  The page links ../system/index.css, the SAME entry point a product screen links.
+  No em dash anywhere.
+-->
+<body>
+<div class="kit-shell">
+  <div id="kit-panel"></div>
+  <main class="kit-main">
+
+    <div id="kit-crumbs"></div>
+    <div id="kit-head"></div>
+
+    <div class="kit-tabs" role="tablist" aria-label="App footer page">
+      <button class="kit-tab" role="tab" id="tab-overview" aria-controls="overview" aria-selected="true">Overview</button>
+      <button class="kit-tab" role="tab" id="tab-tech" aria-controls="tech" aria-selected="false" tabindex="-1">Technical</button>
+      <button class="kit-tab" role="tab" id="tab-history" aria-controls="history" aria-selected="false" tabindex="-1">History</button>
+    </div>
+
+    <!-- ================================================================ OVERVIEW -->
+    <div class="kit-tabpanel" role="tabpanel" id="overview" aria-labelledby="tab-overview">
+
+      <div class="kit-hero">
+        <div class="u-full"><footer class="appfoot">Sift workspace &middot; feedback from CSV and Intercom, PII scrubbed by default</footer></div>
+        <p class="kit-hero-note">Live. Copy from every product screen</p>
+      </div>
+
+      <section class="kit-sec" id="variants">
+        <h2 class="kit-h2">Variants and states</h2>
+        <p class="kit-note">Not interactive: no hover, focus or pressed state, and nothing in it to press. One form, one line, so there is one row. The footer is an organism of the shell: it sits at the foot of the frame, under the main area, and the frame (<code>.appframe</code>) is owned by the screen shell.</p>
+        <div class="kit-matrix-wrap">
+          <table class="kit-matrix" inert>
+            <thead><tr><th>Form</th><th>Specimen</th><th>Note</th></tr></thead>
+            <tbody>
+              <tr><th>One line<code>.appfoot</code></th><td><footer class="appfoot">Sift workspace &middot; feedback from CSV and Intercom, PII scrubbed by default</footer></td><td class="kit-cell-none">The only form. Canonical global 0.2.</td></tr>
+              <tr><th>With a link block<code>.appfoot.mk-footer</code></th><td class="kit-cell-none">No specimen here.</td><td class="kit-cell-none">0.0 composes the footer with the marketing link block. That block is a declared one-off, left to Step 6.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="props">
+        <h2 class="kit-h2">Properties</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Property</th><th>Type</th><th>Values</th><th>Default</th></tr></thead><tbody>
+          <tr><td>Footer</td><td>class</td><td><code>.appfoot</code> on a <code>&lt;footer&gt;</code></td><td>required</td></tr>
+          <tr><td>Content</td><td>slot</td><td>one line of text, mono, 11px</td><td>"Sift workspace, feedback from CSV and Intercom, PII scrubbed by default"</td></tr>
+          <tr><td>Zones</td><td>none</td><td>no child classes</td><td>none</td></tr>
+          <tr><td>State</td><td>none</td><td>not interactive</td><td>none</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="when">
+        <h2 class="kit-h2">How to use it</h2>
+        <div class="kit-when">
+          <div>
+            <h3>When</h3>
+            <p>At the foot of every product frame, as the injected global 0.2. The line is the product's data promise, kept in view on every screen: customer feedback carries PII, it is scrubbed by default, and that default has to be visible (<code>CLAUDE.md</code>, "Compliance is day one").</p>
+          </div>
+          <div>
+            <h3>When not</h3>
+            <ul>
+              <li>As a second action area: principle 4 says the screen has one primary action and the footer does not compete with it.</li>
+              <li>For a marketing link block: 0.0 composes <code>.mk-footer</code> with it, and that block is a one-off, not a variant of this one.</li>
+              <li>On the public document: 6.4 has its own closing line, <code>.pubfoot</code>, which belongs to the public document.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="where">
+        <h2 class="kit-h2">Where it stands</h2>
+        <p class="kit-note">21 screens in colour carry <code>.appfoot</code>; the inventory counts 27 in grey (the canonical global 0.2). The colour ones:</p>
+        <div class="kit-where">
+          <a href="../account.html">7.0 Account</a>
+          <a href="../account-data.html">7.2 Data and privacy</a>
+          <a href="../briefs.html">6.0 Briefs</a>
+          <a href="../briefs-empty.html">6.0 Briefs, empty</a>
+          <a href="../build-brief.html">6.1 Build brief</a>
+          <a href="../build-brief-thin-warning.html">6.1 Build brief, thin warning</a>
+          <a href="../connect-csv.html">3.2 Import a CSV</a>
+          <a href="../index.html">0.0 Home, composed with the marketing footer</a>
+          <a href="../share-link.html">6.3 Share link</a>
+          <a href="../share-link-loading.html">6.3 Share link, loading</a>
+          <a href="../sources.html">3.0 Sources</a>
+          <a href="../sources-empty.html">3.0 Sources, empty</a>
+          <a href="../sources-sync-error.html">3.0 Sources, sync error</a>
+          <a href="../synthesis.html">2.0 Synthesis</a>
+          <a href="../synthesis-empty.html">2.0 Synthesis, empty</a>
+          <a href="../synthesis-loading.html">2.0 Synthesis, loading</a>
+          <a href="../synthesis-error.html">2.0 Synthesis, error</a>
+          <a href="../theme.html">4.0 Theme detail</a>
+          <a href="../theme-error.html">4.0 Theme, error</a>
+          <a href="../theme-loading.html">4.0 Theme, loading</a>
+          <a href="../theme-low-signal.html">4.0 Theme, low signal</a>
+          <a href="../../wireframes/overview.html">the rest, in grey</a>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ================================================================ TECHNICAL -->
+    <div class="kit-tabpanel" role="tabpanel" id="tech" aria-labelledby="tab-tech">
+
+      <section class="kit-sec" id="anatomy">
+        <h2 class="kit-h2">Anatomy</h2>
+        <p class="kit-note">One zone: the line. The box around it is the component.</p>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
+          <tr><td>the box</td><td><code>.appfoot</code></td><td>Surface ground, a hairline edge on top, 14px above and below, 22px at the sides</td></tr>
+          <tr><td>the line</td><td>the text node</td><td>Mono, 11px, secondary ink. One line: the promise about the data</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="axes">
+        <h2 class="kit-h2">Axes, with the rule that chooses</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
+          <tr><td></td><td><b>no axes</b></td><td>One form, one line, on 27 screens in grey (inventory, "App footer"). The inventory counts 27 in grey; 21 colour screens carry it today</td></tr>
+        </tbody></table></div>
+        <p class="kit-note"><b>No states, and that is a decision rather than an omission.</b> The footer has nothing to press.</p>
+      </section>
+
+      <section class="kit-sec" id="tokens">
+        <h2 class="kit-h2">Tokens it reads</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Reads</th><th>Grows from</th><th>For</th></tr></thead><tbody>
+          <tr><td><code>--bg-surface</code></td><td><code>--grey-900</code> dark, <code>--grey-025</code> light</td><td>the ground of the bar. kit.css had <code>--surface</code></td></tr>
+          <tr><td><code>--line-hairline</code></td><td><code>--grey-800</code></td><td>the edge above it. kit.css had <code>--line</code></td></tr>
+          <tr><td><code>--text-secondary</code></td><td><code>--grey-400</code></td><td>the ink of the line. kit.css had <code>--ash</code></td></tr>
+          <tr><td><code>--font-mono</code>, <code>--type-2xs</code></td><td>tokens.css</td><td>the face and the 11px step</td></tr>
+          <tr><td><code>--space-6</code>, <code>--space-9</code></td><td>tokens.css</td><td>the 14px and 22px padding</td></tr>
+        </tbody></table></div>
+        <p class="kit-note">No literals kept: every value equals a primitive.</p>
+        <h3 class="kit-h3">Snapshots</h3>
+        <p class="kit-note">No snapshots: the footer has no interactive state, so there is nothing to take with a pointer.</p>
+      </section>
+
+      <section class="kit-sec" id="markup">
+        <h2 class="kit-h2">Copy this</h2>
+        <div class="scene">
+          <pre class="kit-pre">&lt;footer class="appfoot"&gt;Sift workspace &amp;middot; feedback from CSV and Intercom, PII scrubbed by default&lt;/footer&gt;</pre>
+        </div>
+        <p class="kit-note">File: <code class="kit-mono">design/system/components/app-footer.css</code>, imported in the organisms group of
+          <code class="kit-mono">design/system/index.css</code>. Rules that tie it to the shell belong to the screen shell, not to this file.</p>
+      </section>
+
+    </div>
+
+    <!-- ================================================================ HISTORY -->
+    <div class="kit-tabpanel" role="tabpanel" id="history" aria-labelledby="tab-history">
+      <section class="kit-sec">
+        <h2 class="kit-h2">Changes, newest first</h2>
+        <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-21</td><td>Entered the system: <code>components/app-footer.css</code>, on semantic roles, and this page in the card format</td><td><code>docs/decisions.md</code>, "The organisms entered the system"</td></tr>
+          <tr><td>2026-08-18</td><td>Written into <code>kit.css</code> from the colour layer, and then carried to the 20 colour screens that hold it</td><td>commit <code>d461e12</code>, "UI + Visual Step 3: the kit, grown out of the colour layer rather than written again"; commit <code>41ae8c4</code>, "UI + Visual Step 5: the sample is complete, seven screens plus the two seeds"</td></tr>
+        </tbody></table></div>
+      </section>
+    </div>
+
+    <div id="kit-pager"></div>
+
+  </main>
+</div>
+
+<script src="_nav.js"></script>
+<script src="_states.js"></script>
+</body>
+</html>

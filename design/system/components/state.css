@@ -1,0 +1,30 @@
+/* design/system/components/state.css - level 3, organism.
+   Reads: --text-primary, --text-secondary, --line-hairline, --space-2, --space-3, --space-4, --space-6,
+          --space-9, --type-sm, --weight-strong, --tracking-head, --leading-body
+   Page:  design/kit/state.html
+   Stands on: 8 screens. Centred on the canvas 6, inline as an empty first group 2 (3.4, 6.5).
+   Colour screens: synthesis-empty, synthesis-error, theme-error (centred), sources-empty, briefs-empty (inline).
+
+   Empty / error state block. It always carries an icon, a title, ONE explanation and at least one
+   exit, because every state names the next move. Two placements: it takes the canvas and centres,
+   or, inside a screen that is otherwise populated, it sits in the flow of the list, left aligned,
+   because the next action is further down the screen and not in here.
+
+   NOT HERE: `.state-ic` and `.state-ic .ic`. The 44px icon circle is the iconslot atom's
+   (components/iconslot.css), already in the system. `.appmain:has(> .state:only-child)`, the rule
+   that centres the block on the canvas, is the screen shell's (it comes with screen-shell).
+   19px (the title) and the 20px and 24px paddings have no exact step on the primitive scales and
+   stay literals: values migrate, they are never rounded.
+   No em dash anywhere in this file.
+*/
+
+.state { max-width: 440px; margin: 40px auto; text-align: center; display: flex; flex-direction: column; align-items: center; gap: var(--space-6); padding: 20px; }
+.state-t { font-size: 19px; font-weight: var(--weight-strong); letter-spacing: var(--tracking-head); color: var(--text-primary); }
+.state-d { font-size: var(--type-sm); color: var(--text-secondary); line-height: var(--leading-body); }
+.state-actions { display: flex; gap: var(--space-4); margin-top: var(--space-2); flex-wrap: wrap; justify-content: center; }
+
+/* An empty group inside a screen that is otherwise populated: it sits in the flow of the list,
+   left aligned, because the next action is further down the screen and not in here. */
+.state--inline { max-width: none; margin: 0; text-align: left; align-items: flex-start; padding: var(--space-9) var(--space-3) 24px; border-bottom: 1px solid var(--line-hairline); }
+.state--inline .state-d { max-width: 60ch; }
+.state--inline .state-actions { justify-content: flex-start; }

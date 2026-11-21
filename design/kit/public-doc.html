@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift design system - Public document (shared brief)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../system/index.css">
+<link rel="stylesheet" href="_page.css">
+</head>
+<!--
+  design/kit/public-doc.html - Public document (shared brief), level 3 organism, in the card format of 2026-11-20.
+  The page follows design/kit/button.html. It links ../system/index.css, the same entry point a
+  product screen links, so the specimen is the component itself. The matrix is drawn by
+  _states.js from the product's own rules.
+  Specimen: the document of 6.4, in colour (design/shared-brief.html), without the public bar and the footer.
+  No em dash anywhere.
+-->
+<body>
+<div class="kit-shell">
+  <div id="kit-panel"></div>
+  <main class="kit-main">
+
+    <div id="kit-crumbs"></div>
+    <div id="kit-head"></div>
+
+    <div class="kit-tabs" role="tablist" aria-label="Public document (shared brief) page">
+      <button class="kit-tab" role="tab" id="tab-overview" aria-controls="overview" aria-selected="true">Overview</button>
+      <button class="kit-tab" role="tab" id="tab-tech" aria-controls="tech" aria-selected="false" tabindex="-1">Technical</button>
+      <button class="kit-tab" role="tab" id="tab-history" aria-controls="history" aria-selected="false" tabindex="-1">History</button>
+    </div>
+
+    <!-- ================================================================ OVERVIEW -->
+    <div class="kit-tabpanel" role="tabpanel" id="overview" aria-labelledby="tab-overview">
+
+      <div class="kit-hero">
+        <div class="u-full">
+<div class="public-main">
+          <header>
+            <div class="public-eyebrow">Evidence brief &middot; no login required</div>
+            <h1 class="pub-h1">Q3 roadmap: what customers need most</h1>
+            <p class="pub-lede">Three themes carry 89 of the 3,750 feedback items in this workspace. Onboarding leads by a wide margin: 42 items across both sources, and it is the only theme that blocks new accounts before they reach any other problem.</p>
+            <div class="pub-meta">
+              <span>Prepared by <b>Alex Rivera</b>, Product</span>
+              <span>Published <b>4 August 2026</b></span>
+              <span>Covers <b>all feedback to 4 August 2026</b></span>
+              <span>Sources <b>CSV, Intercom</b></span>
+              <span>Reading time <b>3 min</b></span>
+            </div>
+          </header>
+          <div class="pub-key">
+            <h2>Recommended priority</h2>
+            <ol>
+              <li><span class="rank">1</span> Onboarding is confusing <span class="conf"><span class="conf-n">n=42</span></span></li>
+              <li><span class="rank">2</span> Slow export on large accounts <span class="conf"><span class="conf-n">n=28</span></span></li>
+              <li><span class="rank">3</span> Confusing billing and invoices <span class="conf"><span class="conf-n">n=19</span></span></li>
+            </ol>
+          </div>
+          <p class="pub-rationale">
+            <b>Why this order, from Alex:</b> onboarding blocks activation for every new account, so it
+            leads. Export and billing are high volume but affect users who are already working, so they
+            follow.
+          </p>
+          <h2 class="pub-h2">Themes and evidence</h2>
+          <section class="pub-theme">
+            <h3>1 &middot; Onboarding is confusing <span class="conf"><span class="conf-n">n=42</span></span></h3>
+            <p>New users cannot tell what to do first <span class="cite">1</span>. The blank first-run screen is the most cited single point of friction, and several accounts abandoned setup entirely <span class="cite">2</span>.</p>
+            <blockquote class="pub-quote">"I signed up and just stared at an empty dashboard. No idea what to do first."</blockquote>
+            <blockquote class="pub-quote">"My team gave up during setup because the first-run screen was blank with no guidance."</blockquote>
+          </section>
+          <section class="pub-theme">
+            <h3>2 &middot; Slow export on large accounts <span class="conf"><span class="conf-n">n=28</span></span></h3>
+            <p>Exports time out or lag for accounts with large datasets, blocking reporting workflows <span class="cite">3</span>. The complaint scales with workspace size <span class="cite">4</span>.</p>
+            <blockquote class="pub-quote">"Exporting our account data takes minutes and sometimes just fails."</blockquote>
+            <blockquote class="pub-quote">"The bigger our workspace gets, the slower export becomes."</blockquote>
+          </section>
+          <section class="pub-theme">
+            <h3>3 &middot; Confusing billing and invoices <span class="conf"><span class="conf-n">n=19</span></span></h3>
+            <p>Invoices are hard to read and the plan limits are unclear, which drives billing tickets <span class="cite">5</span>.</p>
+            <blockquote class="pub-quote">"I could not tell what I was being charged for on the invoice."</blockquote>
+            <blockquote class="pub-quote">"The plan limits are not clear until you hit them."</blockquote>
+          </section>
+          <h2 class="pub-h2">Citations</h2>
+          <ol class="pub-cites">
+            <li><span class="cite">1</span> <span>"I signed up and just stared at an empty dashboard. No idea what to do first, or where my data was supposed to come from." Intercom, 2 days ago, customer, mid-market.</span></li>
+            <li><span class="cite">2</span> <span>"My team gave up during setup because the first-run screen was blank with no guidance." Intercom, 9 days ago, customer, enterprise.</span></li>
+            <li><span class="cite">3</span> <span>"Exporting our account data takes minutes and sometimes just fails." Intercom, 5 days ago, customer, mid-market.</span></li>
+            <li><span class="cite">4</span> <span>"The bigger our workspace gets, the slower export becomes." Intercom, 8 days ago, customer, enterprise.</span></li>
+            <li><span class="cite">5</span> <span>"I could not tell what I was being charged for on the invoice." CSV import, 3 days ago, support ticket.</span></li>
+          </ol>
+          <h2 class="pub-h2">Sources</h2>
+          <ul class="pub-sources">
+            <li><span>Intercom conversations</span> <b>2,910</b></li>
+            <li><span>CSV import, support tickets and survey responses</span> <b>840</b></li>
+            <li><span>Total in the workspace</span> <b>3,750</b></li>
+          </ul>
+          <p class="pub-method">
+            How this was made: the 3,750 items above were clustered into themes, personal details were
+            scrubbed before anything was read, and any theme with thin evidence is labelled rather than
+            dropped. Nothing in this brief was written by hand except the paragraph marked as Alex's.
+          </p>
+        </div>
+        </div>
+        <p class="kit-hero-note">Live. The shared brief, 6.4: one column of reading, no action in it</p>
+      </div>
+
+      <section class="kit-sec" id="variants">
+        <h2 class="kit-h2">Variants and states</h2>
+        <p class="kit-note"><b>Not interactive.</b> A shared brief is a document with no action in it: there is no hover, no pressed and no focus rule in this organism, so the matrix has no state columns. One form, so the rows are the eight blocks of the document, each as it stands alone. The rank, the confidence and the citation marker are atoms and keep their own states on <a href="rank.html">rank.html</a>, <a href="confidence.html">confidence.html</a> and <a href="citation.html">citation.html</a>.</p>
+        <div class="kit-matrix-wrap">
+          <table class="kit-matrix" inert>
+            <thead><tr><th>Block</th><th>Specimen</th></tr></thead>
+            <tbody>
+              <tr><th>Opening<code>.public-eyebrow .pub-h1 .pub-lede</code></th><td><div class="public-eyebrow">Evidence brief &middot; no login required</div><h1 class="pub-h1">Q3 roadmap: what customers need most</h1><p class="pub-lede">Three themes carry 89 of the 3,750 feedback items in this workspace.</p></td></tr>
+              <tr><th>Meta line<code>.pub-meta</code></th><td><div class="pub-meta"><span>Prepared by <b>Alex Rivera</b>, Product</span><span>Published <b>4 August 2026</b></span><span>Covers <b>all feedback to 4 August 2026</b></span><span>Sources <b>CSV, Intercom</b></span><span>Reading time <b>3 min</b></span>
+            </div></td></tr>
+              <tr><th>Key takeaways<code>.pub-key</code></th><td><div class="pub-key"><h2>Recommended priority</h2><ol>  <li><span class="rank">1</span> Onboarding is confusing <span class="conf"><span class="conf-n">n=42</span></span></li>  <li><span class="rank">2</span> Slow export on large accounts <span class="conf"><span class="conf-n">n=28</span></span></li>  <li><span class="rank">3</span> Confusing billing and invoices <span class="conf"><span class="conf-n">n=19</span></span></li></ol>
+          </div></td></tr>
+              <tr><th>Rationale<code>.pub-rationale</code></th><td><p class="pub-rationale"><b>Why this order, from Alex:</b> onboarding blocks activation for every new account, so itleads. Export and billing are high volume but affect users who are already working, so theyfollow.
+          </p></td></tr>
+              <tr><th>Theme<code>.pub-theme</code></th><td><section class="pub-theme"><h3>1 &middot; Onboarding is confusing <span class="conf"><span class="conf-n">n=42</span></span></h3><p>New users cannot tell what to do first <span class="cite">1</span>. The blank first-run screen is the most cited single point of friction, and several accounts abandoned setup entirely <span class="cite">2</span>.</p><blockquote class="pub-quote">"I signed up and just stared at an empty dashboard. No idea what to do first."</blockquote><blockquote class="pub-quote">"My team gave up during setup because the first-run screen was blank with no guidance."</blockquote>
+          </section></td></tr>
+              <tr><th>Citations<code>.pub-cites</code></th><td><ol class="pub-cites"><li><span class="cite">1</span> <span>"I signed up and just stared at an empty dashboard. No idea what to do first, or where my data was supposed to come from." Intercom, 2 days ago, customer, mid-market.</span></li><li><span class="cite">2</span> <span>"My team gave up during setup because the first-run screen was blank with no guidance." Intercom, 9 days ago, customer, enterprise.</span></li><li><span class="cite">3</span> <span>"Exporting our account data takes minutes and sometimes just fails." Intercom, 5 days ago, customer, mid-market.</span></li><li><span class="cite">4</span> <span>"The bigger our workspace gets, the slower export becomes." Intercom, 8 days ago, customer, enterprise.</span></li><li><span class="cite">5</span> <span>"I could not tell what I was being charged for on the invoice." CSV import, 3 days ago, support ticket.</span></li>
+          </ol></td></tr>
+              <tr><th>Sources<code>.pub-sources</code></th><td><ul class="pub-sources"><li><span>Intercom conversations</span> <b>2,910</b></li><li><span>CSV import, support tickets and survey responses</span> <b>840</b></li><li><span>Total in the workspace</span> <b>3,750</b></li>
+          </ul></td></tr>
+              <tr><th>Method<code>.pub-method</code></th><td><p class="pub-method">How this was made: the 3,750 items above were clustered into themes, personal details werescrubbed before anything was read, and any theme with thin evidence is labelled rather thandropped. Nothing in this brief was written by hand except the paragraph marked as Alex's.
+          </p></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="props">
+        <h2 class="kit-h2">Properties</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Property</th><th>Type</th><th>Values</th><th>Default</th></tr></thead><tbody>
+          <tr><td>Column</td><td>class</td><td><code>.public-main</code>: 720px, centred. The wide measure of 0.0 is <code>.public-main--wide</code>, which belongs to the marketing shell</td><td>required</td></tr>
+          <tr><td>Eyebrow, title, lede</td><td>zones</td><td><code>.public-eyebrow</code>, <code>.pub-h1</code>, <code>.pub-lede</code></td><td>required</td></tr>
+          <tr><td>Meta</td><td>zone</td><td><code>.pub-meta</code>, a wrapping row of facts, each value in a <code>b</code></td><td>required</td></tr>
+          <tr><td>Key takeaways</td><td>zone</td><td><code>.pub-key</code> with an <code>h2</code> and an <code>ol</code> of items: <code>.rank</code>, a label, <code>.conf</code></td><td>required</td></tr>
+          <tr><td>Rationale</td><td>zone</td><td><code>.pub-rationale</code>: the author's judgement, attributed, with a rule on the left</td><td>required</td></tr>
+          <tr><td>Section heading</td><td>zone</td><td><code>.pub-h2</code>, small uppercase heading with a rule above</td><td>required</td></tr>
+          <tr><td>Theme</td><td>zone</td><td><code>.pub-theme</code>: an <code>h3</code> with <code>.conf</code>, a paragraph with <code>.cite</code> markers, <code>.pub-quote</code> blocks</td><td>one or more</td></tr>
+          <tr><td>Citations</td><td>zone</td><td><code>.pub-cites</code>, an <code>ol</code>: <code>.cite</code> and the quote with its provenance</td><td>required</td></tr>
+          <tr><td>Sources</td><td>zone</td><td><code>.pub-sources</code>: coverage per source and a total, the last row in primary ink</td><td>required</td></tr>
+          <tr><td>Method</td><td>zone</td><td><code>.pub-method</code>, one honest line on how it was made</td><td>required</td></tr>
+          <tr><td>Width</td><td>responsive</td><td>at 820px and below: smaller padding, the title 24px, the confidence pill goes to its own row (margin-left 0)</td><td>720px column</td></tr>
+          <tr><td>State</td><td>variant</td><td>none: not interactive</td><td>n/a</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="when">
+        <h2 class="kit-h2">How to use it</h2>
+        <div class="kit-when">
+          <div>
+            <h3>When</h3>
+            <p>For the brief that a person outside the workspace reads, with no login: one column of reading, no actions. The accent appears on the citation markers and nowhere else, because on a document with no action to spend it on, the citation IS the trust surface (<code>kit.css</code>, 6.4 block).</p>
+            <p>The key takeaways come first for the reader who will not scroll: the order IS the recommendation. The author's judgement sits apart from the evidence, attributed by name.</p>
+          </div>
+          <div>
+            <h3>When not</h3>
+            <ul>
+              <li>For the app's own evidence view: that is the theme detail, which has actions and filters.</li>
+              <li>For a legal page: take <a href="legal-doc.html">the legal document</a>.</li>
+              <li>At the marketing measure: that is <code>.public-main--wide</code>, on 0.0, in the marketing shell.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="kit-dodont">
+          <div class="kit-dd kit-dd--do">
+            <div class="kit-dd-c" inert>
+              <div class="pub-rationale"><b>Why this order, from Alex:</b> onboarding blocks activation for every new account, so it leads.</div>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do</div><div class="kit-dd-t">Attribute the judgement</div>
+              <div class="kit-dd-d">The author's reasoning is named and visibly separate from the evidence (A5). The method line says the same: nothing was written by hand except that paragraph.</div></div>
+          </div>
+          <div class="kit-dd kit-dd--dont">
+            <div class="kit-dd-c" inert>
+              <div class="pub-theme"><p>Onboarding is the biggest problem for everyone.</p></div>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do not</div><div class="kit-dd-t">A claim with no marker and no count</div>
+              <div class="kit-dd-d">Principle 5: traceable or it does not exist. A theme carries its <code>n=</code> and its <code>.cite</code> markers, or the claim is removed.</div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="where">
+        <h2 class="kit-h2">Where it stands</h2>
+        <p class="kit-note">6.4 Shared brief, one screen. The public bar above it and the footer below it are not part of this organism. In colour:</p>
+        <div class="kit-where">
+          <a href="../shared-brief.html">6.4 Shared brief</a>
+          <a href="../../wireframes/overview.html">the rest, in grey</a>
+        </div>
+      </section>
+    </div>
+
+    <!-- ================================================================ TECHNICAL -->
+    <div class="kit-tabpanel" role="tabpanel" id="tech" aria-labelledby="tab-tech">
+
+      <section class="kit-sec" id="anatomy">
+        <h2 class="kit-h2">Anatomy</h2>
+        <p class="kit-note">Ten zones, top to bottom, in reading order. Every one of them is required.</p>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
+          <tr><td>eyebrow</td><td><code>.public-eyebrow</code></td><td>Mono, uppercase, secondary. Says what this is and that no login is needed</td></tr>
+          <tr><td>title</td><td><code>.pub-h1</code></td><td>29px, 24px at 820px and below</td></tr>
+          <tr><td>lede</td><td><code>.pub-lede</code></td><td>15.5px, secondary ink. States the finding, with numbers</td></tr>
+          <tr><td>meta</td><td><code>.pub-meta</code></td><td>Rules above and below; who, when, what it covers, which sources, how long</td></tr>
+          <tr><td>key takeaways</td><td><code>.pub-key</code></td><td>A raised box with the ranked list and each theme's count</td></tr>
+          <tr><td>rationale</td><td><code>.pub-rationale</code></td><td>The author's judgement, set apart by a left rule</td></tr>
+          <tr><td>themes</td><td><code>.pub-h2</code>, <code>.pub-theme</code>, <code>.pub-quote</code></td><td>A heading, then per theme a title with its count, the claim with citation markers, the customers' words</td></tr>
+          <tr><td>citations</td><td><code>.pub-cites</code></td><td>Each marker with its quote and provenance</td></tr>
+          <tr><td>sources</td><td><code>.pub-sources</code></td><td>Coverage: what the brief could and could not have seen. Not a bibliography (A2)</td></tr>
+          <tr><td>method</td><td><code>.pub-method</code></td><td>One line on how it was made (A3)</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="axes">
+        <h2 class="kit-h2">Axes, with the rule that chooses</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
+          <tr><td></td><td><b>no axes</b></td><td>One form, on 6.4 alone (inventory, Level 3). Everything that varies is the content: the number of themes and of citations</td></tr>
+          <tr><td>width</td><td>720px column; 820px and below steps padding, title and the pill</td><td>At 360 the confidence pill would squeeze the theme label to three lines, so it takes its own row under the body</td></tr>
+        </tbody></table></div>
+        <p class="kit-note"><b>.pubfoot is in this file.</b> The footer under the document (<code class="kit-mono">.pubfoot</code>, 6.4 only, in the <code class="kit-mono">kit.css</code> 6.4 block) was read by both the public bar and this page as the other's. It stands only under the shared brief, so it belongs to the document: one centred mono line, on the same values as <code class="kit-mono">kit.css</code>.</p>
+      </section>
+
+      <section class="kit-sec" id="tokens">
+        <h2 class="kit-h2">Tokens it reads</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Reads</th><th>Grows from</th><th>For</th></tr></thead><tbody>
+          <tr><td><code>--text-primary</code>, <code>--text-secondary</code></td><td>tokens.css</td><td>the title block, the labels and the values in <code>b</code>; lede, meta, rationale, method</td></tr>
+          <tr><td><code>--line-hairline</code></td><td><code>--grey-800</code></td><td>every rule: meta, key box, rationale edge, section headings, quotes, sources, method</td></tr>
+          <tr><td><code>--bg-surface</code>, <code>--radius-md</code></td><td><code>--grey-900</code>, tokens.css</td><td>the key takeaways box</td></tr>
+          <tr><td><code>--font-mono</code></td><td>tokens.css</td><td>the eyebrow and the source counts</td></tr>
+          <tr><td><code>--type-2xl</code>, <code>--type-lg</code>, <code>--type-md</code>, <code>--type-base</code>, <code>--type-sm</code>, <code>--type-xs</code>, <code>--type-2xs</code></td><td>tokens.css</td><td>title, theme title, key items, rationale and quote, sources, method, the small caps</td></tr>
+          <tr><td><code>--weight-strong</code>, <code>--weight-medium</code></td><td>tokens.css</td><td>titles and small caps; the values in <code>b</code></td></tr>
+          <tr><td><code>--leading-tight</code>, <code>--leading-loose</code></td><td>tokens.css</td><td>the title; the theme paragraph</td></tr>
+          <tr><td><code>--tracking-display</code>, <code>--tracking-title</code>, <code>--tracking-caps</code></td><td>tokens.css</td><td>the title; the theme title; the small caps</td></tr>
+          <tr><td><code>--space-2</code>, <code>--space-4</code>, <code>--space-5</code>, <code>--space-6</code>, <code>--space-7</code>, <code>--space-8</code>, <code>--space-9</code>, <code>--space-10</code></td><td>tokens.css</td><td>margins, gaps and padding</td></tr>
+        </tbody></table></div>
+        <p class="kit-note">No state, so no state table: the organism paints none. The accent is not read here at all: it arrives through the atom <code class="kit-mono">.cite</code>. Kept as literals because no primitive equals them: 720px, 34px, 24px, 44px (the column), 15.5px (the lede), 12px (the meta), 20px, 14px and 15px, 1.65 and 1.7 (lines), 9px, 11px.</p>
+        <h3 class="kit-h3">Snapshots</h3>
+        <p class="kit-note">No snapshots: the organism has no state to show. It is shown whole in the specimen above.</p>
+      </section>
+
+      <section class="kit-sec" id="markup">
+        <h2 class="kit-h2">Copy this</h2>
+        <div class="scene">
+          <pre class="kit-pre">&lt;div class="public-main"&gt;
+  &lt;header&gt;
+    &lt;div class="public-eyebrow"&gt;Evidence brief &amp;middot; no login required&lt;/div&gt;
+    &lt;h1 class="pub-h1"&gt;Q3 roadmap: what customers need most&lt;/h1&gt;
+    &lt;p class="pub-lede"&gt;...&lt;/p&gt;
+    &lt;div class="pub-meta"&gt;&lt;span&gt;Prepared by &lt;b&gt;Alex Rivera&lt;/b&gt;, Product&lt;/span&gt;...&lt;/div&gt;
+  &lt;/header&gt;
+  &lt;div class="pub-key"&gt;
+    &lt;h2&gt;Recommended priority&lt;/h2&gt;
+    &lt;ol&gt;&lt;li&gt;&lt;span class="rank"&gt;1&lt;/span&gt; Onboarding is confusing &lt;span class="conf"&gt;&lt;span class="conf-n"&gt;n=42&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;&lt;/ol&gt;
+  &lt;/div&gt;
+  &lt;p class="pub-rationale"&gt;&lt;b&gt;Why this order, from Alex:&lt;/b&gt; ...&lt;/p&gt;
+  &lt;h2 class="pub-h2"&gt;Themes and evidence&lt;/h2&gt;
+  &lt;section class="pub-theme"&gt;
+    &lt;h3&gt;1 &amp;middot; Onboarding is confusing &lt;span class="conf"&gt;...&lt;/span&gt;&lt;/h3&gt;
+    &lt;p&gt;... &lt;span class="cite"&gt;1&lt;/span&gt;.&lt;/p&gt;
+    &lt;blockquote class="pub-quote"&gt;"..."&lt;/blockquote&gt;
+  &lt;/section&gt;
+  &lt;h2 class="pub-h2"&gt;Citations&lt;/h2&gt;
+  &lt;ol class="pub-cites"&gt;&lt;li&gt;&lt;span class="cite"&gt;1&lt;/span&gt; &lt;span&gt;"..." Intercom, 2 days ago.&lt;/span&gt;&lt;/li&gt;&lt;/ol&gt;
+  &lt;h2 class="pub-h2"&gt;Sources&lt;/h2&gt;
+  &lt;ul class="pub-sources"&gt;&lt;li&gt;&lt;span&gt;Intercom conversations&lt;/span&gt; &lt;b&gt;2,910&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;
+  &lt;p class="pub-method"&gt;How this was made: ...&lt;/p&gt;
+&lt;/div&gt;</pre>
+        </div>
+        <p class="kit-note">File: <code class="kit-mono">design/system/components/public-doc.css</code>. The public bar above and the footer below are separate.</p>
+      </section>
+    </div>
+
+    <!-- ================================================================ HISTORY -->
+    <div class="kit-tabpanel" role="tabpanel" id="history" aria-labelledby="tab-history">
+      <section class="kit-sec">
+        <h2 class="kit-h2">Changes, newest first</h2>
+        <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-21</td><td>Entered the system: <code>components/public-doc.css</code>, on semantic roles, and this page in the card format</td><td><code>docs/decisions.md</code>, "The organisms entered the system"</td></tr>
+          <tr><td>2026-08</td><td>The <code>pub-*</code> rules were first drawn for the contrast screen 6.4, then taken into the kit with the rest of the colour layer</td><td>commits <code>f86e9ff</code> (Concept Step 7) and <code>d461e12</code></td></tr>
+          <tr><td>2026-08</td><td><code>.public-main--wide</code> declared so a landing page can use the same column at marketing measure; it stays with the marketing shell</td><td><code>design/kit/docs/inventory.md</code></td></tr>
+        </tbody></table></div>
+      </section>
+    </div>
+
+    <div id="kit-pager"></div>
+
+  </main>
+</div>
+
+<script src="_nav.js"></script>
+<script src="_states.js"></script>
+</body>
+</html>

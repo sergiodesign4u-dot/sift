@@ -1,0 +1,56 @@
+/* design/system/components/screen-shell.css - level 3, organism (shell).
+   Reads: --line-hairline, --radius-lg, --shadow-sheet, --bg-page, --text-primary, --space-6,
+          --space-7, --space-9
+   Page:  design/kit/screen-shell.html
+   Stands on: 27 screens (inventory). In colour .app holds 22: the 20 signed-in screens, plus 0.0
+   Home and 6.4 Shared brief under the public bar. .appframe holds no product screen: it is the
+   stand edition.
+   Contains: the app header, the main region, the app footer and the bottom tabs, each with its own
+   file (app-header.css, app-footer.css, bottom-tabs.css), plus whatever molecules the screen holds.
+
+   The screen shell. A product screen fills its canvas: header, main, footer, bottom tabs, nothing
+   around it. .appframe is the same organism with a border, a radius and a shadow, and it is for a
+   STAND (the kit, the concept) where a screen is an exhibit. A screen that is the page uses .app,
+   so it is a screen and not a picture of one. The pair is an axis, not two components: same zones,
+   different neighbour (design/kit/docs/inventory.md, "Level 3, organisms").
+
+   THIS FILE OWNS EVERY RULE THAT TIES A MOLECULE TO THE SHELL, and nobody else takes them:
+   - the selection trigger. While a checkbox in the screen is ticked the selection bar is shown and
+     the head action is hidden, so the screen never carries two primary actions (Design Principle
+     4). Pure CSS, so the proof is clickable. selbar.css and screen-head.css leave it out on purpose.
+   - a notice in the frame rather than inside a padded main brings the gutter with it, 22px, and
+     16px at 360.
+   - a state block or a dialog that IS the screen is centred in the canvas. :only-child is
+     load-bearing: an empty state that became a group inside a populated screen would otherwise
+     lay the whole main out as a flex row. Same clause the grey contract carries, for the same
+     reason.
+
+   Kept as literals, byte for byte, because no primitive equals them: the stand frame's 560px
+   floor, the main's 20px vertical padding and the screen's 100vh. .app > .appmain repeats the
+   flex:1 that .appmain already declares; kit.css carries both and so does this file.
+   No em dash anywhere in this file.
+*/
+
+/* the stand edition: a screen as an exhibit */
+.appframe { border: 1px solid var(--line-hairline); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sheet); background: var(--bg-page); display: flex; flex-direction: column; min-height: 560px; }
+
+.appmain { flex: 1; padding: 20px var(--space-9); }
+
+.appframe:has(.check:checked) .selbar { display: flex; }
+.appframe:has(.check:checked) .head-action { display: none; }
+.appframe > .notice { margin: var(--space-6) var(--space-9); }
+
+/* the screen edition: a screen that is the page */
+.app { display: flex; flex-direction: column; min-height: 100vh; background: var(--bg-page); color: var(--text-primary); }
+.app > .appmain { flex: 1; }
+.app > .notice { margin: var(--space-6) var(--space-9); }
+.app:has(.check:checked) .selbar { display: flex; }
+.app:has(.check:checked) .head-action { display: none; }
+
+/* a block that IS the screen is centred in the canvas */
+.appmain:has(> .state:only-child) { display: flex; align-items: center; justify-content: center; }
+.appmain:has(> .dialog:only-child) { display: flex; align-items: center; justify-content: center; }
+
+@media (max-width: 820px) {
+  .appframe > .notice, .app > .notice { margin: var(--space-6) var(--space-7); }
+}

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift design system - Dialog</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../system/index.css">
+<link rel="stylesheet" href="_page.css">
+</head>
+<!--
+  design/kit/dialog.html - a component page in the card format of 2026-11-20, laid out on the template button.html.
+
+  OVERVIEW: a live specimen, the variant by state matrix, properties, when and when not, do and do not, where it stands.
+  TECHNICAL: anatomy, the axes, the tokens it reads, the markup to copy.
+  HISTORY: every change, each with the record it came from.
+
+  The page links ../system/index.css, the SAME entry point a product screen links. The matrix is
+  drawn by _states.js from the product's own rules where the component has states; nothing in it is painted by hand.
+
+  No em dash anywhere.
+-->
+<body>
+<div class="kit-shell">
+  <div id="kit-panel"></div>
+  <main class="kit-main">
+
+    <div id="kit-crumbs"></div>
+    <div id="kit-head"></div>
+
+    <div class="kit-tabs" role="tablist" aria-label="Dialog page">
+      <button class="kit-tab" role="tab" id="tab-overview" aria-controls="overview" aria-selected="true">Overview</button>
+      <button class="kit-tab" role="tab" id="tab-tech" aria-controls="tech" aria-selected="false" tabindex="-1">Technical</button>
+      <button class="kit-tab" role="tab" id="tab-history" aria-controls="history" aria-selected="false" tabindex="-1">History</button>
+    </div>
+
+    <!-- ================================================================ OVERVIEW -->
+    <div class="kit-tabpanel" role="tabpanel" id="overview" aria-labelledby="tab-overview">
+
+      <div class="kit-hero">
+        <div class="dialog"><h1>The link is live</h1><p>Anyone with this link can read the brief without logging in. It carries customer feedback, scrubbed of personal details. Disable the link and it stops working for everyone.</p><p class="sub">Created 2 minutes ago by Alex Rivera. Not opened yet.</p><div class="dialog-actions"><button class="btn--ghost u-apart">Disable link</button><a class="btn--ghost" href="../briefs.html">Done</a><a class="btn" href="../shared-brief.html">See what they see</a></div></div>
+        <p class="kit-hero-note">Live. Title, one paragraph, the actions</p>
+      </div>
+      <p class="kit-note">Text from the colour screen share-link (6.3). The screen also holds a link row, an input with a Copy button between the paragraph and the actions. <code class="kit-mono">.linkrow</code> is a one-off block and is not in the system yet [?], so it is left out here and no rule is invented for it: the dialog is shown without it. The centring on the canvas, <code class="kit-mono">.appmain:has(&gt; .dialog:only-child)</code>, is the screen shell's. The shadow is <code class="kit-mono">--shadow-sheet</code>.</p>
+
+      <section class="kit-sec" id="variants">
+        <h2 class="kit-h2">Variants and states</h2>
+        <p class="kit-note">Not interactive itself: no hover, focus or pressed state. Its buttons keep their own, see <a class="link" href="button.html">button.html</a>. One axis, the content. The states are the inventory's: rest, and generating (6.3 loading), where the dialog is marked <code class="kit-mono">aria-busy</code> and holds a skeleton, see <a class="link" href="skeleton-card.html">skeleton-card.html</a>.</p>
+        <div class="kit-matrix-wrap">
+          <table class="kit-matrix" inert>
+            <thead><tr><th>Content</th><th>State</th><th>Dialog</th></tr></thead>
+            <tbody>
+              <tr><th rowspan="2">Link and actions<code>.dialog</code></th><td class="kit-st">Rest</td><td><div class="dialog"><h1>The link is live</h1><p>Anyone with this link can read the brief without logging in. It carries customer feedback, scrubbed of personal details. Disable the link and it stops working for everyone.</p><p class="sub">Created 2 minutes ago by Alex Rivera. Not opened yet.</p><div class="dialog-actions"><button class="btn--ghost u-apart">Disable link</button><a class="btn--ghost" href="#">Done</a><a class="btn" href="#">See what they see</a></div></div></td></tr>
+              <tr><td class="kit-st">Generating</td><td><div class="dialog" aria-busy="true"><h1>Generating share link</h1><p>Publishing the brief and creating a public link. This takes a moment.</p><div class="skelcard"><div class="skel c"></div><div class="skel a"></div></div><div class="dialog-actions"><a class="btn" href="#">Continue</a></div></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="kit-note">[?] The second content form in the inventory, "confirm with a destructive action held apart (3.6)", has no dialog in any screen. The grey 3.6 screen (sources-manage) draws its Disconnect confirm as an inline <code class="kit-mono">.src-confirm</code> panel, a one-off, with Cancel and a filled button and no <code class="kit-mono">.u-apart</code>. The destructive action held apart is real in 6.3: "Disable link" carries <code class="kit-mono">.u-apart</code>, so it is pushed to the left edge and never sits beside the primary one.</p>
+      </section>
+
+      <section class="kit-sec" id="props">
+        <h2 class="kit-h2">Properties</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Property</th><th>Type</th><th>Values</th><th>Default</th></tr></thead><tbody>
+          <tr><td>Sheet</td><td>own class</td><td><code>.dialog</code>: 460px at most, raised ground, hairline edge, the large radius, the sheet shadow</td><td>none: the class is required</td></tr>
+          <tr><td>Title</td><td>zone</td><td><code>h1</code> inside, 17px, strong weight</td><td>required</td></tr>
+          <tr><td>Text</td><td>zone</td><td><code>p</code> inside, 12.5px, secondary ink</td><td>one or more</td></tr>
+          <tr><td>Actions</td><td>zone</td><td><code>.dialog-actions</code>, a wrapping row. The destructive action takes <code>.u-apart</code> and sits at the left edge</td><td>required</td></tr>
+          <tr><td>Busy</td><td>attribute</td><td><code>aria-busy='true'</code> while generating, with a skeleton in the body</td><td>absent</td></tr>
+          <tr><td>Centring</td><td>not a property</td><td><code>.appmain:has(&gt; .dialog:only-child)</code>, the screen shell's</td><td>n/a</td></tr>
+          <tr><td>State</td><td>none</td><td>not interactive</td><td>n/a</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="when">
+        <h2 class="kit-h2">How to use it</h2>
+        <div class="kit-when">
+          <div>
+            <h3>When</h3>
+            <p>When one decision about one thing needs the whole attention, and the person can finish it or step back. It floats, so it is the one surface besides the frame that carries the shadow, and it takes the frame's radius so the two read as the same material.</p>
+          </div>
+          <div>
+            <h3>When not</h3>
+            <ul>
+              <li>To say something about a screen that still works: take the notice band.</li>
+              <li>To put the destructive action beside the primary one: it is held apart by <code>.u-apart</code>.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="kit-dodont">
+          <div class="kit-dd kit-dd--do">
+            <div class="kit-dd-c" inert>
+              <div class="dialog"><h1>The link is live</h1><p>Anyone with this link can read the brief without logging in. It carries customer feedback, scrubbed of personal details. Disable the link and it stops working for everyone.</p><p class="sub">Created 2 minutes ago by Alex Rivera. Not opened yet.</p><div class="dialog-actions"><button class="btn--ghost u-apart">Disable link</button><a class="btn--ghost" href="#">Done</a><a class="btn" href="#">See what they see</a></div></div>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do</div><div class="kit-dd-t">Hold the destructive action apart</div>
+              <div class="kit-dd-d">"Disable link" sits at the left edge; the primary action is on the right. The rule is in kit.css and in the design principle: one primary action on a screen.</div></div>
+          </div>
+          <div class="kit-dd kit-dd--dont">
+            <div class="kit-dd-c" inert>
+              <div class="dialog"><h1>The link is live</h1><p>Anyone with this link can read the brief without logging in.</p><div class="dialog-actions"><a class="btn--ghost" href="#">Done</a><button class="btn--ghost">Disable link</button><a class="btn" href="#">See what they see</a></div></div>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do not</div><div class="kit-dd-t">Put the destructive action beside the primary one</div>
+              <div class="kit-dd-d">The kit comment: a destructive action never sits beside the primary one. The text is shortened from 6.3 and the order changed, to show the mistake.</div></div>
+          </div>
+        </div>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>If you are about to</th><th>Take instead</th><th>Why</th></tr></thead><tbody>
+          <tr><td>place the delete next to the filled button</td><td><code>.u-apart</code> on the delete</td><td>It is held apart, never beside the primary action</td></tr>
+          <tr><td>shadow a card or a row</td><td>nothing</td><td>The dialog and the frame are the only surfaces that float</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="where">
+        <h2 class="kit-h2">Where it stands</h2>
+        <p class="kit-note">Two screens in the inventory: 6.3 Share link with its generating state, and 3.6 in grey, which carries a confirm that is not a <code>.dialog</code> [?].</p>
+        <div class="kit-where">
+          <a href="../share-link.html">6.3 Share link</a>
+          <a href="../share-link-loading.html">6.3 Generating</a>
+          <a href="../../wireframes/sources-manage.html">3.6 in grey</a>
+          <a href="../../wireframes/overview.html">the rest, in grey</a>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ================================================================ TECHNICAL -->
+    <div class="kit-tabpanel" role="tabpanel" id="tech" aria-labelledby="tab-tech">
+
+      <section class="kit-sec" id="anatomy">
+        <h2 class="kit-h2">Anatomy</h2>
+        <p class="kit-note">Dialog, level 3. A sheet that holds a title, text and actions, and in 6.3 a link row.</p>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
+          <tr><td>the sheet</td><td><code>.dialog</code></td><td>Raised ground, hairline edge, large radius, sheet shadow, 24px padding, 460px at most</td></tr>
+          <tr><td>the title</td><td><code>h1</code></td><td>17px, strong weight, primary ink</td></tr>
+          <tr><td>the text</td><td><code>p</code></td><td>12.5px, secondary ink, 1.6 line height</td></tr>
+          <tr><td>the link row</td><td><code>.linkrow</code></td><td>A one-off block, not in the system yet [?]</td></tr>
+          <tr><td>the actions</td><td><code>.dialog-actions</code></td><td>A wrapping row, 10px apart, 16px above</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="axes">
+        <h2 class="kit-h2">Axes, with the rule that chooses</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
+          <tr><td>content</td><td><b>link row plus actions, 1</b> / confirm with a destructive action held apart, 1 [?]</td><td>The decision the dialog carries. The destructive action takes <code>.u-apart</code></td></tr>
+          <tr><td>state</td><td>rest / generating</td><td>Generating is the same dialog with <code>aria-busy</code> and a skeleton in the body</td></tr>
+          <tr><td>centring on the canvas</td><td>not an axis</td><td>The screen shell's</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="tokens">
+        <h2 class="kit-h2">Tokens it reads</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Reads</th><th>Which grows from</th><th>For</th></tr></thead><tbody>
+          <tr><td><code>--bg-raised</code></td><td><code>--grey-850</code> dark, <code>--grey-075</code> light</td><td>the sheet ground, one step above the page</td></tr>
+          <tr><td><code>--line-hairline</code></td><td><code>--grey-800</code></td><td>the edge of the sheet</td></tr>
+          <tr><td><code>--radius-lg</code></td><td>12px</td><td>the sheet corner, the same as the frame</td></tr>
+          <tr><td><code>--shadow-sheet</code></td><td><code>--shadow-dark</code> / <code>--shadow-light</code></td><td>the one shadow besides the frame's. <code>--shadow</code> in the flat kit</td></tr>
+          <tr><td><code>--text-primary</code>, <code>--text-secondary</code></td><td>tokens.css</td><td>the title, and the text</td></tr>
+          <tr><td><code>--space-4</code>, <code>--space-7</code>, <code>--type-lg</code>, <code>--type-xs</code>, <code>--weight-strong</code>, <code>--tracking-title</code>, <code>--leading-body</code></td><td>tokens.css</td><td>the gaps and the type</td></tr>
+        </tbody></table></div>
+        <p class="kit-note">Literals kept: 24px (the padding), 7px under the title, 460px. Not interactive: no hover, focus or active token.</p>
+      </section>
+
+      <section class="kit-sec" id="snapshots">
+        <h2 class="kit-h2">Snapshots</h2>
+        <p class="kit-note">Organisms get no new snapshots this round. The states are shown live in the matrix above.</p>
+      </section>
+
+      <section class="kit-sec" id="markup">
+        <h2 class="kit-h2">Copy this</h2>
+        <div class="scene">
+          <pre class="kit-pre">&lt;div class="dialog"&gt;
+  &lt;h1&gt;The link is live&lt;/h1&gt;
+  &lt;p&gt;Anyone with this link can read the brief without logging in. ...&lt;/p&gt;
+  &lt;div class="dialog-actions"&gt;
+    &lt;button class="btn--ghost u-apart"&gt;Disable link&lt;/button&gt;
+    &lt;a class="btn--ghost" href="..."&gt;Done&lt;/a&gt;
+    &lt;a class="btn" href="..."&gt;See what they see&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+        </div>
+        <p class="kit-note">File: <code class="kit-mono">design/system/components/dialog.css</code>. Not in the file: <code class="kit-mono">.appmain:has(&gt; .dialog:only-child)</code> (the screen shell) and <code class="kit-mono">.linkrow</code> (a one-off).</p>
+      </section>
+
+    </div>
+
+    <!-- ================================================================ HISTORY -->
+    <div class="kit-tabpanel" role="tabpanel" id="history" aria-labelledby="tab-history">
+      <section class="kit-sec">
+        <h2 class="kit-h2">Changes, newest first</h2>
+        <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-21</td><td>Entered the system: <code>components/dialog.css</code>, on semantic roles, and this page in the card format</td><td><code>docs/decisions.md</code>, "The organisms entered the system"</td></tr>
+          <tr><td>2026-08-18</td><td>Declared in the flat kit with the rule that a destructive action is held apart by <code>.u-apart</code></td><td>commit <code>d461e12</code></td></tr>
+        </tbody></table></div>
+      </section>
+    </div>
+
+    <div id="kit-pager"></div>
+
+  </main>
+</div>
+
+<svg class="sprite" aria-hidden="true"><defs>
+</defs></svg>
+
+<script src="_nav.js"></script>
+<script src="_states.js"></script>
+</body>
+</html>

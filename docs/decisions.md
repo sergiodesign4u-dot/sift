@@ -609,3 +609,40 @@ type sizes moved to the nearest step (rank, field label and the action link 12 t
 went from 24px to 26px, and the group heading lost its 360 rule (`padding: 14px 16px 6px` in
 `kit.css`, absent from `group-heading.css`). Step 8 will fail on every one of them unless each is named or reverted. Recorded
 here, not fixed: it is a decision about accepted work.
+
+## The organisms entered the system (2026-11-21)
+
+Stage 08 Step 5, round 3, on the owner's "делаем дальше" after the molecules were committed. Twelve
+organisms from the Level 3 table of the inventory, by the same brief and the same colour mapping as
+the molecules, each with its css in the organisms group of `index.css` (the ones that contain no
+other organism first, the screen shell last), its page, its catalog entry and its register row.
+49 of 51 components are in the system now; the provenance list waits for Step 6.
+
+**The screen shell owns every rule that ties a molecule to the frame.** The selection trigger
+(`.app:has(.check:checked)` shows `.selbar` and hides `.head-action`), the notice gutter and the
+centring of a lone state or dialog were left out of the molecules on purpose and now live in
+`screen-shell.css`, with their `.appframe` twins for stands. Measured on the stand: ticking a theme
+in the live frame shows the selection bar and hides "Build brief" at 1440 and at 360.
+
+**Measured the same way as the molecules:** the twelve files over `kit.css` on all 22 colour
+screens at 1440 and 360 change no property of any organism element. The only differences are on
+0.0, where loading the system after `kit.css` lets `.appfoot` override the one-off `.mk-footer`:
+an artefact of the comparison order, and a reminder that the one-offs need a home after the
+organisms at Step 6. Every forced matrix cell (24 cells, both themes) matches a real pointer and
+Tab key; all twelve pages pass at 360 and 1440 in both themes with no horizontal scroll, no console
+error and no text under AA.
+
+**Two more colours PENDING the owner:** `--text-accent`, the accent as ink for the brand mark and
+the current bottom tab (two uses, so a role if accepted, kept apart from `--text-evidence`, which A2
+reserves for the citation); and the account nav's hover and current ground, which goes darker than
+its own surface, so no state token carries it (`--bg-page` for now).
+
+**`.pubfoot` was placed by the lead.** Two agents read it as each other's; it stands only under the
+shared brief, so it is in `public-doc.css`.
+
+**For Step 6, found by this round:** the inventory says the header and the bottom tabs switch at
+600px, `kit.css` switches at 820; the selection trigger reads any checked box on the screen, not only
+a theme (harmless today, a trap for a future screen with a settings box and a head action); the 2.0
+screens label their navs "Primary" where the other screens say "Sections"; 3.6 draws its confirm
+inline, not as a dialog; no colour screen uses `.form`; the account nav "below 600px" is 820 in the
+rule; `.acct-id-avatar` repeats the avatar at 40px.

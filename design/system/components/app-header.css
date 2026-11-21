@@ -1,0 +1,47 @@
+/* design/system/components/app-header.css - level 3, organism (shell).
+   Reads: --bg-surface, --line-hairline, --text-primary, --text-secondary, --text-accent, --bg-raised,
+          --size-bar, --size-target, --type-sm, --weight-strong, --space-3, --space-5, --space-6,
+          --space-8, --radius-md
+   Page:  design/kit/app-header.html
+   Stands on: 27 screens, canonical global 0.1 (inventory). In colour, 20 of them.
+   Contains: .avatar, an atom with its own file (avatar.css).
+
+   The top bar of every signed-in screen: the brand, the three sections, the account. Three
+   entries plus account, and three rather than five is the calm-under-density choice (CLAUDE.md,
+   navigation). The account sits in the corner as the avatar, so the account screens 7.x carry
+   no current tab here: the header has no tab for them.
+
+   The brand mark is the accent as ink, and it reads --text-accent: the accent where it marks "this
+   is the product". PENDING the owner, born at round 3. Not --text-evidence, which A2 keeps for the
+   citation alone.
+
+   The current tab is marked by TONE, not by hue: primary ink on a raised ground, and no accent.
+   kit.css states no reason beside this rule; the one it states for the active filter chip (the
+   one accent is never spent in two places at once) reads the same, and is borrowed here as [?].
+
+   Each tab is a 44px target. The colour tab used to be padding 6px 12px and was raised to the
+   floor in the target audit of Stage 06 (commit 1a808be).
+
+   Below 820px the text tabs disappear and the bottom tabs take over: the bar keeps the brand and
+   the avatar only. The swap is a media rule here and in bottom-tabs.css; the grey contract
+   states it at a 600px canvas.
+
+   .brand and .spacer are this file's, and the public bar uses both (public-bar.css only sets the
+   brand's ink on its own bar). Kept as literals, byte for byte, because no primitive equals them:
+   the brand at 13px with 0.06em tracking, and the 2px gap between tabs.
+   No em dash anywhere in this file.
+*/
+
+.appbar { display: flex; align-items: center; gap: var(--space-6); height: var(--size-bar); padding: 0 var(--space-8); border-bottom: 1px solid var(--line-hairline); background: var(--bg-surface); }
+.brand { display: flex; align-items: center; gap: var(--space-3); font-weight: var(--weight-strong); letter-spacing: 0.06em; text-transform: uppercase; font-size: 13px; color: var(--text-primary); }
+/* PENDING owner: --text-accent, born at round 3; kit.css drew it in --cyan */
+.brand .mark { color: var(--text-accent); }
+.navtabs { display: flex; gap: 2px; }
+.navtabs a { display: inline-flex; align-items: center; min-height: var(--size-target); font-size: var(--type-sm); color: var(--text-secondary); text-decoration: none; padding: 0 var(--space-5); border-radius: var(--radius-md); transition: color .15s, background .15s; }
+.navtabs a:hover { color: var(--text-primary); }
+.navtabs a.active { color: var(--text-primary); background: var(--bg-raised); }
+.spacer { flex: 1; }
+
+@media (max-width: 820px) {
+  .navtabs { display: none; }
+}
