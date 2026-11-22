@@ -48,10 +48,10 @@
     <div class="kit-tabpanel" role="tabpanel" id="overview" aria-labelledby="tab-overview">
 
       <div class="kit-hero">
-        <button class="btn"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-brief"></use></svg> Build brief</button>
+        <button class="btn"><svg class="ic" viewBox="0 0 24 24"><use href="#i-brief"></use></svg> Build brief</button>
         <button class="btn--ghost">Save draft</button>
         <div class="kit-cell-fixed"><div class="list-foot"><button class="btn--bare">Load 6 more themes</button></div></div>
-        <button class="btn--icon"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-close"></use></svg><span class="vh">Remove from brief</span></button>
+        <button class="btn--icon"><svg class="ic" viewBox="0 0 24 24"><use href="#i-close"></use></svg><span class="vh">Remove from brief</span></button>
         <button class="btn" disabled>Import 840 items</button>
         <p class="kit-hero-note">Live. Hover, tab to it, hold it down: this is the product's own CSS entry point</p>
       </div>
@@ -108,16 +108,16 @@
         <div class="kit-forms">
           <div>
             <div class="kit-form-c" inert>
-              <button class="btn--icon"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-close"></use></svg><span class="vh">Remove from brief</span></button>
-              <button class="btn--icon" data-kit-st="hover"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-close"></use></svg><span class="vh">Remove from brief</span></button>
-              <button class="btn--icon" data-kit-st="focus"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-close"></use></svg><span class="vh">Remove from brief</span></button>
+              <button class="btn--icon"><svg class="ic" viewBox="0 0 24 24"><use href="#i-close"></use></svg><span class="vh">Remove from brief</span></button>
+              <button class="btn--icon" data-kit-st="hover"><svg class="ic" viewBox="0 0 24 24"><use href="#i-close"></use></svg><span class="vh">Remove from brief</span></button>
+              <button class="btn--icon" data-kit-st="focus"><svg class="ic" viewBox="0 0 24 24"><use href="#i-close"></use></svg><span class="vh">Remove from brief</span></button>
             </div>
             <div class="kit-form-t">Icon only: rest, hover, focus</div>
             <div class="kit-form-d"><code>.btn--icon</code> with the label in <code>.vh</code>. For a control that repeats down a list. 13 in the product, medium only: the target is already the 44px floor.</div>
           </div>
           <div>
             <div class="kit-form-c" inert>
-              <button class="btn"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-evidence"></use></svg> Add to brief</button>
+              <button class="btn"><svg class="ic" viewBox="0 0 24 24"><use href="#i-evidence"></use></svg> Add to brief</button>
             </div>
             <div class="kit-form-t">Icon and label</div>
             <div class="kit-form-d"><code>svg.ic</code> before the label. A leading icon promises "acts here". 12 in the product.</div>
@@ -319,6 +319,7 @@
       <section class="kit-sec">
         <h2 class="kit-h2">Changes, newest first</h2>
         <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-21</td><td>Reconciled with <code>kit.css</code> byte for byte: the gap is 7px, <code>.btn</code> and <code>.btn--bare</code> draw no border (only <code>.btn--ghost</code> does), the bare button is regular weight with 13px vertical padding, and the icon button is 15px with no gap. The August values were drift nobody approved</td><td><code>docs/decisions.md</code>, "Step 6: the system reconciled with the product"</td></tr>
           <tr><td>2026-11-20</td><td>The page moved to the card format: Overview, Technical, History. The states became a live matrix drawn from the product's own rules; the snapshots moved to Technical as the measurement beside it</td><td><code>docs/decisions.md</code>, "The showcase is read by purpose"</td></tr>
           <tr><td>2026-08-19</td><td>Split out of the flat kit into <code>components/button.css</code>. The filled hover went from <code>filter: brightness(1.08)</code> to the token pair <code>--bg-action-hover</code>. This page became the etalon of Step 5</td><td>commit <code>3ebbae1</code></td></tr>
           <tr><td>2026-08-19</td><td><code>--line-control</code> raised to clear 3:1 in both themes: the outlined button got a brighter boundary</td><td><code>docs/tokens-audit.md</code>, Step 4 review</td></tr>

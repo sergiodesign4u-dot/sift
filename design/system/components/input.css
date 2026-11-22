@@ -28,7 +28,7 @@
 .input::placeholder { color: var(--text-secondary); }
 .input[disabled] { opacity: var(--opacity-disabled); cursor: not-allowed; }
 
-textarea.input { resize: vertical; line-height: var(--leading-snug); min-height: 88px; }
+textarea.input { resize: vertical; line-height: 1.55; /* kit.css:346, byte for byte. Reverted at Step 6 */ min-height: 88px; }
 
 /* select: its native chrome is removed, so the affordance has to be put back. The chevron is
    drawn from the placeholder's own ink on a WRAPPER, because a select cannot carry a

@@ -41,8 +41,8 @@
     <div class="kit-tabpanel" role="tabpanel" id="overview" aria-labelledby="tab-overview">
 
       <div class="kit-hero">
-        <a class="cardrow" href="#"><strong class="acct-card-t">Plan and limits</strong><span class="acct-card-d">Free plan. 3,750 of 5,000 items used this month.</span></a>
-        <a class="cardrow" href="#"><strong class="acct-card-t">Data and privacy</strong><span class="acct-card-d">PII scrub on by default, EU data residency, export or delete your data.</span></a>
+        <a class="cardrow" href="#"><strong class="cardrow-t">Plan and limits</strong><span class="cardrow-d">Free plan. 3,750 of 5,000 items used this month.</span></a>
+        <a class="cardrow" href="#"><strong class="cardrow-t">Data and privacy</strong><span class="cardrow-d">PII scrub on by default, EU data residency, export or delete your data.</span></a>
         <p class="kit-hero-note">Live. Hover it, tab to it: this is the product's own CSS entry point</p>
       </div>
       <p class="kit-note">A row that IS the link: the whole strip is the target, not a word inside it.</p>
@@ -54,9 +54,9 @@
           <table class="kit-matrix" inert>
             <thead><tr><th>Form</th><th>State</th><th>Row</th></tr></thead>
             <tbody>
-              <tr><th rowspan="3">List row link<code>.cardrow</code></th><td class="kit-st">Rest</td><td><a class="cardrow" href="#"><strong class="acct-card-t">Plan and limits</strong><span class="acct-card-d">Free plan. 3,750 of 5,000 items used this month.</span></a></td></tr>
-              <tr><td class="kit-st">Hover</td><td><a class="cardrow" href="#" data-kit-st="hover"><strong class="acct-card-t">Plan and limits</strong><span class="acct-card-d">Free plan. 3,750 of 5,000 items used this month.</span></a></td></tr>
-              <tr><td class="kit-st">Focus</td><td><a class="cardrow" href="#" data-kit-st="focus"><strong class="acct-card-t">Plan and limits</strong><span class="acct-card-d">Free plan. 3,750 of 5,000 items used this month.</span></a></td></tr>
+              <tr><th rowspan="3">List row link<code>.cardrow</code></th><td class="kit-st">Rest</td><td><a class="cardrow" href="#"><strong class="cardrow-t">Plan and limits</strong><span class="cardrow-d">Free plan. 3,750 of 5,000 items used this month.</span></a></td></tr>
+              <tr><td class="kit-st">Hover</td><td><a class="cardrow" href="#" data-kit-st="hover"><strong class="cardrow-t">Plan and limits</strong><span class="cardrow-d">Free plan. 3,750 of 5,000 items used this month.</span></a></td></tr>
+              <tr><td class="kit-st">Focus</td><td><a class="cardrow" href="#" data-kit-st="focus"><strong class="cardrow-t">Plan and limits</strong><span class="cardrow-d">Free plan. 3,750 of 5,000 items used this month.</span></a></td></tr>
             </tbody>
           </table>
         </div>
@@ -93,14 +93,14 @@
         <div class="kit-dodont">
           <div class="kit-dd kit-dd--do">
             <div class="kit-dd-c" inert>
-              <a class="cardrow" href="#"><strong class="acct-card-t">Plan and limits</strong><span class="acct-card-d">Free plan. 3,750 of 5,000 items used this month.</span></a>
+              <a class="cardrow" href="#"><strong class="cardrow-t">Plan and limits</strong><span class="cardrow-d">Free plan. 3,750 of 5,000 items used this month.</span></a>
             </div>
             <div class="kit-dd-b"><div class="kit-dd-k">Do</div><div class="kit-dd-t">The title and the fact</div>
               <div class="kit-dd-d">The person can decide not to go there.</div></div>
           </div>
           <div class="kit-dd kit-dd--dont">
             <div class="kit-dd-c" inert>
-              <a class="cardrow" href="#"><strong class="acct-card-t">Plan and limits</strong></a>
+              <a class="cardrow" href="#"><strong class="cardrow-t">Plan and limits</strong></a>
             </div>
             <div class="kit-dd-b"><div class="kit-dd-k">Do not</div><div class="kit-dd-t">A destination with no content behind it</div>
               <div class="kit-dd-d">Now every row has to be opened to find out whether it mattered.</div></div>
@@ -132,8 +132,8 @@
         <p class="kit-note">A row that IS the link: the whole strip is the target, not a word inside it. It is kept apart from the six other row-shaped components in this product because its zone set is different, and a zone that is gone means a different component rather than a variant.</p>
         <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
           <tr><td>the row</td><td><code>.cardrow</code></td><td>The anchor itself. The whole strip is the target, so there is no small link to aim at</td></tr>
-          <tr><td>the title</td><td>a <code>strong</code> inside</td><td>Primary ink, one line</td></tr>
-          <tr><td>the line</td><td>a <code>span</code> inside</td><td>Secondary ink. It says what is behind the row, with a number where there is one</td></tr>
+          <tr><td>the title</td><td><code>strong.cardrow-t</code></td><td>Primary ink, one line</td></tr>
+          <tr><td>the line</td><td><code>span.cardrow-d</code></td><td>Secondary ink. It says what is behind the row, with a number where there is one</td></tr>
           <tr><td>the rule</td><td><code>border-bottom</code></td><td>Belongs to the row and not to a list wrapper, so a row can stand alone</td></tr>
         </tbody></table></div>
       </section>
@@ -153,6 +153,7 @@
           <tr><td><code>--line-hairline</code></td><td><code>--grey-800</code></td><td>the rule under the row</td></tr>
           <tr><td><code>--ease</code></td><td>tokens.css</td><td>the .12s background transition on hover</td></tr>
           <tr><td><code>--space-3</code></td><td>tokens.css</td><td>the side padding of the row</td></tr>
+          <tr><td><code>--text-primary</code>, <code>--text-secondary</code>, <code>--type-sm</code>, <code>--type-xs</code>, <code>--weight-medium</code>, <code>--space-1</code></td><td>tokens.css</td><td>the two zones: the title (<code>.cardrow-t</code>) and the line under it (<code>.cardrow-d</code>, whose 1.55 line height is a literal from <code>kit.css</code>)</td></tr>
         </tbody></table></div>
         <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>State</th><th>Token</th><th>What moves</th></tr></thead><tbody>
           <tr><td>hover</td><td><code>--bg-hover</code></td><td>The ground lifts one step across the whole strip, which is the only signal that the row is one target</td></tr>
@@ -165,9 +166,9 @@
       <section class="kit-sec" id="markup">
         <h2 class="kit-h2">Copy this</h2>
         <div class="scene">
-          <pre class="kit-pre">&lt;a class="cardrow" href="account-data.html"&gt;&lt;strong class="acct-card-t"&gt;Data and privacy&lt;/strong&gt;&lt;span class="acct-card-d"&gt;...&lt;/span&gt;&lt;/a&gt;</pre>
+          <pre class="kit-pre">&lt;a class="cardrow" href="account-data.html"&gt;&lt;strong class="cardrow-t"&gt;Data and privacy&lt;/strong&gt;&lt;span class="cardrow-d"&gt;...&lt;/span&gt;&lt;/a&gt;</pre>
         </div>
-        <p class="kit-note">File: <code class="kit-mono">design/system/components/cardrow.css</code>, imported in the atoms group of <code class="kit-mono">design/system/index.css</code>. The title and the line carry <code class="kit-mono">.acct-card-t</code> and <code class="kit-mono">.acct-card-d</code> on 7.0; those two are declared in <code class="kit-mono">design/kit/kit.css</code>, not in design/system/, so this page shows them as plain <code class="kit-mono">strong</code> and <code class="kit-mono">span</code> [?].</p>
+        <p class="kit-note">File: <code class="kit-mono">design/system/components/cardrow.css</code>, imported in the atoms group of <code class="kit-mono">design/system/index.css</code>. The title and the line are this component's two zones, <code class="kit-mono">.cardrow-t</code> and <code class="kit-mono">.cardrow-d</code>, in the same file. Until Step 6 they were written on 7.0 under the local names <code class="kit-mono">.acct-card-t</code> and <code class="kit-mono">.acct-card-d</code>.</p>
       </section>
 
     </div>
@@ -177,6 +178,7 @@
       <section class="kit-sec">
         <h2 class="kit-h2">Changes, newest first</h2>
         <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-21</td><td>Gained its two zones, <code>.cardrow-t</code> and <code>.cardrow-d</code>, formerly <code>.acct-card-t</code> and <code>.acct-card-d</code> on 7.0, byte for byte from <code>kit.css</code></td><td><code>docs/decisions.md</code>, "Step 6: the system reconciled with the product"</td></tr>
           <tr><td>2026-11-20</td><td>The page moved to the card format: Overview, Technical, History. The states became a live matrix drawn from the product's own rules</td><td><code>docs/decisions.md</code>, "The showcase is read by purpose"</td></tr>
           <tr><td>2026-08-19</td><td>Split out of the flat kit into <code>components/cardrow.css</code>, with its page at Step 5 of Tokens + Components</td><td>commit <code>2353608</code></td></tr>
           <tr><td>2026-08-18</td><td>The generic list row <code>wf-card</code> was kept as an atom-level link row, because the rollout will need it. Its contents <code>.acct-card-t</code> and <code>.acct-card-d</code> were declared as the account hub's row-link contents</td><td><code>design/kit/docs/inventory.md</code>, "Cross-check 2: control without a family" and "Step 3 close-out"</td></tr>

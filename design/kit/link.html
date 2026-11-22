@@ -178,7 +178,7 @@
         <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Reads</th><th>Which grows from</th><th>For</th></tr></thead><tbody>
           <tr><td><code>--text-primary</code></td><td><code>--grey-050</code></td><td>the link ink</td></tr>
           <tr><td><code>--text-secondary</code></td><td><code>--grey-400</code></td><td>the muted form, and the text action at rest</td></tr>
-          <tr><td><code>--size-target</code>, <code>--space-1</code>, <code>--type-xs</code></td><td>declared in <code>link.css</code> for <code>.link--action</code></td><td>the 44px target, the side padding and the size of the text action</td></tr>
+          <tr><td><code>--size-target</code></td><td>declared in <code>link.css</code> for <code>.link--action</code></td><td>the 44px target. The text action is the literal 12px of <code>kit.css</code> with no side padding: no type step is 12</td></tr>
         </tbody></table></div>
         <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>State</th><th>Token</th><th>What moves</th></tr></thead><tbody>
           <tr><td>hover</td><td>none: <code>text-decoration</code></td><td>The underline appears. No colour token, because the ink is already at its role and a second ink would be a second link style</td></tr>
@@ -218,6 +218,7 @@
       <section class="kit-sec">
         <h2 class="kit-h2">Changes, newest first</h2>
         <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-21</td><td><code>.link--action</code> is 12px with no side padding again, as in <code>kit.css</code>. The August <code>--type-xs</code> size and <code>--space-1</code> padding were drift nobody approved</td><td><code>docs/decisions.md</code>, "Step 6: the system reconciled with the product"</td></tr>
           <tr><td>2026-11-20</td><td>The page moved to the card format: Overview, Technical, History. The states became a live matrix drawn from the product's own rules; the snapshots moved to Technical</td><td><code>docs/decisions.md</code>, "The showcase is read by purpose"</td></tr>
           <tr><td>2026-08-19</td><td>Split out of the flat kit into <code>components/link.css</code>, with its page at Step 5 of Tokens + Components</td><td>commit <code>2353608</code></td></tr>
           <tr><td>2026-08-18</td><td>The family was given a declaration: the 88 unclassed anchors across 18 screens became the Inline text link, level 1. "Clear filters" folded into it as <code>.link--action</code> instead of becoming a fourth button emphasis</td><td><code>design/kit/docs/inventory.md</code>, "Cross-check 2: control without a family"; <code>docs/decisions.md</code>, "The kit grew out of the colour layer, it was not written from the language again"</td></tr>

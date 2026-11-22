@@ -148,7 +148,7 @@
         <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Reads</th><th>Grows from</th><th>For</th></tr></thead><tbody>
           <tr><td><code>--text-secondary</code></td><td><code>--grey-400</code></td><td>the label ink</td></tr>
         </tbody></table></div>
-        <p class="kit-note">The CSS also reads <code class="kit-mono">--type-xs</code>, <code class="kit-mono">--space-2</code> and <code class="kit-mono">--space-5</code> for size and spacing.</p>
+        <p class="kit-note">The CSS also reads <code class="kit-mono">--space-2</code> and <code class="kit-mono">--space-5</code> for spacing. The size is the literal 12px of <code class="kit-mono">kit.css</code>: no type step is 12.</p>
       </section>
 
       <section class="kit-sec" id="markup">
@@ -167,6 +167,7 @@
       <section class="kit-sec">
         <h2 class="kit-h2">Changes, newest first</h2>
         <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-21</td><td>The label is 12px again, as in <code>kit.css</code>, instead of <code>--type-xs</code> (12.5px). Drift nobody approved, reverted</td><td><code>docs/decisions.md</code>, "Step 6: the system reconciled with the product"</td></tr>
           <tr><td>2026-11-20</td><td>The page moved to the card format: Overview, Technical, History. The matrix became the content forms against a field, with no forced states, because the label is not interactive</td><td><code>docs/decisions.md</code>, "The showcase is read by purpose"</td></tr>
           <tr><td>2026-08-19</td><td>Split out of the flat kit into <code>components/field-label.css</code>, with a page of its own at Step 5</td><td>commit <code>2353608</code></td></tr>
           <tr><td>2026-08-19</td><td>The atom was renamed from <code>.label</code> to <code>.field-label</code> after it collided with the colour-proof bar's <code>.label</code> and added 6px to all five screens</td><td><code>docs/decisions.md</code>, "The kit was proved on the seed screens"</td></tr>

@@ -111,6 +111,7 @@ body { font-family:var(--font-ui); background:var(--canvas); color:var(--porcela
 .sortnote b { color:var(--porcelain); font-weight:500; }
 .toolbar-full { display:flex; align-items:center; gap:8px; flex-wrap:wrap; flex:1; }
 .toolbar-compact { display:none; }
+.toolbar-row { display:flex; align-items:center; gap:8px; flex-wrap:wrap; flex:1; }   /* Stage 08 Step 6: the row form, no compact twin; see design/system/components/toolbar.css */
 
 /* ---- screen head: identity, the ONE action at rest, and the denominator ---- */
 /* The head action and the selection bar are mutually exclusive, so the screen never carries
@@ -616,8 +617,8 @@ label.acct-row { cursor:pointer; }
 .acct-section-t { font-family:var(--font-mono); font-size:10px; font-weight:500; letter-spacing:0.07em; text-transform:uppercase; color:var(--ash); margin:22px 0 6px; }
 .acct-section-t:first-child { margin-top:0; }
 /* the card title and its one line, inside a whole-row link on the account hub */
-.acct-card-t { display:block; font-size:13.5px; font-weight:500; color:var(--porcelain); }
-.acct-card-d { display:block; font-size:12.5px; color:var(--ash); margin-top:4px; line-height:1.55; }
+.cardrow-t { display:block; font-size:13.5px; font-weight:500; color:var(--porcelain); }
+.cardrow-d { display:block; font-size:12.5px; color:var(--ash); margin-top:4px; line-height:1.55; }
 /* one closing line pointing out of the settings and into the document that explains them */
 .acct-seclink { font-size:12.5px; color:var(--ash); margin-top:18px; }
 

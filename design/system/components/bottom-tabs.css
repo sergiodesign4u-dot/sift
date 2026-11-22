@@ -8,8 +8,8 @@
    at all, and the header's text tabs carry the navigation. The swap is this file's media rule and
    the one in app-header.css; the grey contract states it at a 600px canvas.
 
-   The current tab reads --text-accent: the accent as ink where it says "you are here". PENDING the
-   owner, born at round 3. Its glyph and its label take the same ink.
+   The current tab reads --text-accent: the accent as ink where it says "you are here". Born at
+   round 3, accepted at Step 6. Its glyph and its label take the same ink.
 
    The tab is tall enough to hit. In the grey layer the icon holder is an inline span that ignores
    its 20px box, and the tab measures 29px against a 44px floor (inventory, Finding 3). Here the
@@ -27,7 +27,6 @@
 .btab { display: flex; flex-direction: column; align-items: center; gap: 3px; text-decoration: none; color: var(--text-secondary); font-size: var(--type-3xs); flex: 1; padding: var(--space-3) 0; }
 .btab .ico { width: 20px; height: 20px; color: var(--text-secondary); }
 .btab .ico svg { width: 20px; height: 20px; display: block; }
-/* PENDING owner: --text-accent, born at round 3; kit.css drew both in --cyan */
 .btab.active { color: var(--text-accent); }
 .btab.active .ico { color: var(--text-accent); }
 

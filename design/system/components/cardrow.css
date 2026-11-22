@@ -1,5 +1,5 @@
 /* design/system/components/cardrow.css - level 1, atom.
-   Reads: --line-hairline, --bg-hover, --ease
+   Reads: --line-hairline, --bg-hover, --text-primary, --text-secondary, --type-sm, --type-xs, --weight-medium, --space-1, --ease
    Page:  design/kit/cardrow.html
    Stands on: 7.0 Account. 3 occurrences, and the rollout needs it.
 
@@ -16,3 +16,9 @@
   transition: background-color .12s var(--ease);
 }
 .cardrow:hover { background: var(--bg-hover); }
+
+/* The two zones: a title, and the line under it. They were written on 7.0 as .acct-card-t and
+   .acct-card-d, a local name for exactly these two zones, and moved here at Step 6 (tokens-audit.md,
+   "Moved onto system classes"). kit.css:619-620, byte for byte. */
+.cardrow-t { display: block; font-size: var(--type-sm); font-weight: var(--weight-medium); color: var(--text-primary); }
+.cardrow-d { display: block; font-size: var(--type-xs); color: var(--text-secondary); margin-top: var(--space-1); line-height: 1.55; }

@@ -8,8 +8,8 @@
    carries a checkbox (atom .check), and there the whole row is the label, which is correct and
    worth keeping: the target is the strip, not a 24px box.
 
-   NOT HERE: .acct-card-t, .acct-card-d and .acct-seclink belong to the list row link and the
-   account hub, not to this row.
+   NOT HERE: .cardrow-t and .cardrow-d (the list row link's zones since Step 6) and .acct-seclink
+   belong to the list row link and the account hub, not to this row.
    No em dash anywhere in this file.
 */
 

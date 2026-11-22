@@ -4,8 +4,8 @@
 
      1. Prototype chrome. This file. The panel that carries the way back to the hub, the whole
         screen tree, the states of the screen you are standing on, and the links out of the
-        artifact. It is drawn on the --pf-* portfolio variables, which kit.css declares and
-        marks as "not product language". Nothing in here may ever be read as part of the
+        artifact. It is drawn on the --pf-* portfolio variables, declared at the top of this
+        file and marked "not product language". Nothing in here may ever be read as part of the
         product's visual system.
      2. The product screen. design/kit/kit.css. Every class on the screen itself.
 
@@ -21,6 +21,16 @@
 
    Rendered from design/_nav.js. A page never writes a ds-* or ov-* class itself.
    No em dash anywhere in this file. */
+
+/* ---- The portfolio chrome values. NOT product language: prototype chrome for the portfolio
+   around the product (the purple rail shared with research.html). Moved here at Stage 08 Step 6
+   from kit.css:60-61, byte for byte, as Step 2 decided ("moved, not deleted"): this file is the
+   one that reads them, and the product system never declares them. kit.css keeps its copy only
+   for the two frozen Stage 07 stands and goes with kit.css at Step 8. ---- */
+:root {
+  --pf-bg:#0c0c0e; --pf-bg-3:#17171c; --pf-border-light:#1e1e28;
+  --pf-text:#e8e8ec; --pf-text-3:#66667a; --pf-accent:#7c6af7; --pf-accent-glow:rgba(124,106,247,0.12);
+}
 
 .ds-shell { display: flex; align-items: flex-start; min-height: 100vh; }
 

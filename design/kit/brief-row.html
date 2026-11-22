@@ -206,7 +206,7 @@
   &lt;div class="brief-actions"&gt;&lt;a class="btn--ghost" href="build-brief.html"&gt;Continue&lt;/a&gt;&lt;/div&gt;
 &lt;/li&gt;</pre>
         </div>
-        <p class="kit-note">File: <code class="kit-mono">design/system/components/brief-row.css</code>, in the molecules group of <code class="kit-mono">design/system/index.css</code>. On the screen the row is an <code class="kit-mono">li</code> of <code class="kit-mono">ul.list</code>; <code class="kit-mono">.list</code> is declared in kit.css and is not in the system yet [?]. At 360 the row wraps and the actions take their own full row, the buttons sharing it.</p>
+        <p class="kit-note">File: <code class="kit-mono">design/system/components/brief-row.css</code>, in the molecules group of <code class="kit-mono">design/system/index.css</code>. On the screen the row is an <code class="kit-mono">li</code> of <code class="kit-mono">ul.list</code>; <code class="kit-mono">.list</code> is the list reset in <code class="kit-mono">design/system/base.css</code>. At 360 the row wraps and the actions take their own full row, the buttons sharing it.</p>
       </section>
     </div>
 
@@ -215,6 +215,7 @@
       <section class="kit-sec">
         <h2 class="kit-h2">Changes, newest first</h2>
         <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-21</td><td><code>.list</code>, the list reset, now lives in <code>base.css</code></td><td><code>docs/decisions.md</code>, "Step 6: the system reconciled with the product"</td></tr>
           <tr><td>2026-11-21</td><td>Entered the system: <code>components/brief-row.css</code>, on semantic roles, and this page in the card format</td><td><code>docs/decisions.md</code>, "The molecules entered the system"</td></tr>
           <tr><td>2026-08-18</td><td>Declared in kit.css from the colour layer. The title overlay was set to -12px so the target reaches the 44px floor. The status became <code>.tag</code> (was <code>.brief-status</code>)</td><td>commit <code>d461e12</code>; <code>design/kit/docs/inventory.md</code>, the fold tables</td></tr>
         </tbody></table></div>

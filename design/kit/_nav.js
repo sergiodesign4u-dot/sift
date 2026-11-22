@@ -140,6 +140,9 @@ window.KIT_NAV = {
     { file: 'snippet.html', css: 'snippet.css', title: 'Evidence snippet', category: 'evidence', level: 2, card: true,
       purpose: 'The customer\'s words first, in primary ink; everything about them in mono. Owner 4.0.',
       uses: '12', screens: '4.0, 4.1', states: 'hover, focus-visible; redacted is a mark' },
+    { file: 'provlist.html', css: 'provlist.css', title: 'Provenance list', category: 'evidence', level: 2, card: true,
+      purpose: 'Where one item came from, a line per fact. Promoted from one-off at Step 2, built at Step 6.',
+      uses: '3', screens: '5.0, 5.1, 3.6 (grey only)', states: 'none, not interactive; its links keep their own' },
 
     { file: 'notice.html', css: 'notice.css', title: 'Notice band', category: 'feedback', level: 2, card: true,
       purpose: 'One statement about the screen, and the tone is the claim: neutral, amber, red.',
@@ -215,8 +218,8 @@ window.KIT_NAV = {
       uses: '1 screen', screens: '0.0', states: 'none, not interactive' },
   ],
 
-  /* 51 components after the Step 2 consolidation (docs/inventory.md, "Rows after consolidation") */
-  total: 51,
+  /* 50 components: Step 2 counted 51, corrected at Step 6 (docs/inventory.md, "Rows after consolidation") */
+  total: 50,
 };
 
 (function () {

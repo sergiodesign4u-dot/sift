@@ -28,7 +28,7 @@
 }
 .chip:hover { color: var(--text-primary); border-color: var(--line-hover); }
 .chip .ic { width: 14px; height: 14px; }
-.chip-count { font-family: var(--font-mono); font-size: var(--type-2xs); color: var(--text-secondary); }
+.chip-count { font-family: var(--font-mono); font-size: 11.5px; /* kit.css:106. Reverted at Step 6 */ color: var(--text-secondary); }
 .chip.is-on { color: var(--text-primary); background: var(--bg-raised); border-color: var(--line-hover); }
 .chip.is-on .chip-count { color: var(--text-primary); }
 .chip[disabled] { opacity: var(--opacity-disabled); cursor: not-allowed; }

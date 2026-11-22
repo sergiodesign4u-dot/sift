@@ -19,6 +19,12 @@
 .sortnote b { color: var(--text-primary); font-weight: var(--weight-medium); }
 .toolbar-full { display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; flex: 1; }
 .toolbar-compact { display: none; }
+/* The row form: a few chips that are the screen's own evidence controls rather than the filter
+   (Group by source on 4.0 and 4.1, Add themes on 6.1 and 6.2). It has no compact twin, so it stays
+   at every width and wraps, as the grey draws it (wf-evi-controls on wireframes/theme.html:81).
+   Added at Stage 08 Step 6: these screens wore .toolbar-full, which hides below 820, and the
+   controls simply vanished on a phone. Same box as .toolbar-full, minus the hiding. */
+.toolbar-row { display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; flex: 1; }
 
 @media (max-width: 820px) {
   .toolbar-full { display: none; }

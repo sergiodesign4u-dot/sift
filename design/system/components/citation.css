@@ -1,5 +1,5 @@
 /* design/system/components/citation.css - level 1, atom.
-   Reads: --text-evidence, --bg-evidence, --line-evidence, --text-on-action, --font-mono
+   Reads: --text-evidence, --bg-evidence, --line-evidence, --bg-action, --text-on-action, --font-mono
    Page:  design/kit/citation.html
    Stands on: 4.0, 4.1, 5.0, 5.1, 6.4. 25 static, 6 linked.
 
@@ -35,7 +35,10 @@
   text-decoration: none; white-space: nowrap; vertical-align: baseline;
   transition: background-color .15s var(--ease), color .15s var(--ease);
 }
-.citechip:hover { background: var(--line-evidence); color: var(--text-on-action); }
+/* Hover fills the chip with the action ground. kit.css:387 put the page ink on the 30 percent
+   edge, 1.82:1 dark and 1.73:1 light, which no text may sit on; the action ground carries
+   --text-on-action at 9.13 / 6.27. A named fix of a measured AA failure, Step 6. */
+.citechip:hover { background: var(--bg-action); color: var(--text-on-action); }
 /* a chip is an atomic inline, so a line could break between it and the sentence's full stop and
    open the next line with a period. Chip and punctuation travel together. */
 .cited { white-space: nowrap; }

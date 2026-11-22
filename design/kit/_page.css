@@ -276,3 +276,15 @@ table.kit-matrix { width: 100%; min-width: 620px; border-collapse: collapse; }
   .kit-pager { grid-template-columns: 1fr; }
   .kit-pager-next { grid-column: 1; }
 }
+
+/* ---- the stand edition of the screen shell. Moved here from design/system/components/screen-shell.css
+   at Stage 08 Step 6: it wears no product screen, only the kit pages, and a stand style inside a
+   component file is a defect by the stage rule. Values unchanged, byte for byte; the twins of the
+   shell's own selection trigger and notice gutter come with it. ---- */
+.appframe { border: 1px solid var(--line-hairline); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sheet); background: var(--bg-page); display: flex; flex-direction: column; min-height: 560px; }
+.appframe:has(.check:checked) .selbar { display: flex; }
+.appframe:has(.check:checked) .head-action { display: none; }
+.appframe > .notice { margin: var(--space-6) var(--space-9); }
+@media (max-width: 820px) {
+  .appframe > .notice { margin: var(--space-6) var(--space-7); }
+}

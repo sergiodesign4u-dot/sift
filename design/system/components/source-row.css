@@ -1,5 +1,5 @@
 /* design/system/components/source-row.css - level 2, molecule.
-   Reads: --line-hairline, --bg-hover, --text-primary, --text-secondary, --line-warning,
+   Reads: --line-hairline, --bg-hover, --text-primary, --text-secondary, --line-warning-strong,
           --font-mono, --weight-medium, --type-base, --type-xs, --type-2xs, --type-3xs, --space-*, --ease
    Page:  design/kit/source-row.html
    Stands on: 3.0, 3.5, 3.6. Healthy 5 occurrences, failed 1.
@@ -12,9 +12,9 @@
    It is one of seven row-shaped components kept apart on purpose: its zones are icon, name, stats,
    status, action, and a zone that is gone means a different component, not a variant.
 
-   .rowalert draws its left rule in --line-warning, which is the 32 percent edge. kit.css drew it in
-   solid --amber, and that role does not exist yet.  PENDING owner: the solid amber left rule has no
-   role of its own today.
+   .rowalert draws its left rule in --line-warning-strong, the solid amber kit.css drew. The role was
+   born at Step 6 on the owner's decision: the 32 percent --line-warning is the soft edge of a small
+   mark, and a band's rule is a different role.
 
    No em dash anywhere in this file.
 */
@@ -38,7 +38,7 @@
 .rowalert {
   display: block; font-size: 12px; color: var(--text-secondary);
   margin-top: var(--space-3); padding-left: var(--space-4);
-  border-left: 2px solid var(--line-warning); /* PENDING owner: kit.css drew this in solid --amber */
+  border-left: 2px solid var(--line-warning-strong);
 }
 
 /* At 360 a row becomes a stack only where it would otherwise cut a value in half. */

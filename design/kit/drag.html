@@ -41,7 +41,7 @@
     <div class="kit-tabpanel" role="tabpanel" id="overview" aria-labelledby="tab-overview">
 
       <div class="kit-hero">
-        <span class="drag"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-drag"></use></svg></span>
+        <span class="drag"><svg class="ic" viewBox="0 0 24 24"><use href="#i-drag"></use></svg></span>
         <span class="rank">1</span>
         <span>Onboarding is confusing</span>
         <span>n=42 &middot; CSV, Intercom</span>
@@ -57,8 +57,8 @@
             <thead><tr><th>Form</th><th>State</th><th>Handle alone</th><th>In a composer row</th></tr></thead>
             <tbody>
               <tr><th>Handle<code>.drag</code></th><td class="kit-st">Rest</td>
-                <td><span class="drag"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-drag"></use></svg></span></td>
-                <td><span class="drag"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-drag"></use></svg></span><span class="rank">1</span><span>Onboarding is confusing</span></td></tr>
+                <td><span class="drag"><svg class="ic" viewBox="0 0 24 24"><use href="#i-drag"></use></svg></span></td>
+                <td><span class="drag"><svg class="ic" viewBox="0 0 24 24"><use href="#i-drag"></use></svg></span><span class="rank">1</span><span>Onboarding is confusing</span></td></tr>
             </tbody>
           </table>
         </div>
@@ -95,14 +95,14 @@
         <div class="kit-dodont">
           <div class="kit-dd kit-dd--do">
             <div class="kit-dd-c" inert>
-              <span class="drag"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-drag"></use></svg></span><span class="rank">2</span><span>Slow export on large accounts</span>
+              <span class="drag"><svg class="ic" viewBox="0 0 24 24"><use href="#i-drag"></use></svg></span><span class="rank">2</span><span>Slow export on large accounts</span>
             </div>
             <div class="kit-dd-b"><div class="kit-dd-k">Do</div><div class="kit-dd-t">The handle first, then the position it produces</div>
               <div class="kit-dd-d">Reading order and the order of the zones agree.</div></div>
           </div>
           <div class="kit-dd kit-dd--dont">
             <div class="kit-dd-c" inert>
-              <span>Slow export on large accounts</span><span class="drag"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-drag"></use></svg></span>
+              <span>Slow export on large accounts</span><span class="drag"><svg class="ic" viewBox="0 0 24 24"><use href="#i-drag"></use></svg></span>
             </div>
             <div class="kit-dd-b"><div class="kit-dd-k">Do not</div><div class="kit-dd-t">The handle at the far end</div>
               <div class="kit-dd-d">Beside the remove control, the two things a hand can do to a row sit together, and the one that reorders looks like the one that deletes.</div></div>
@@ -175,6 +175,7 @@
       <section class="kit-sec">
         <h2 class="kit-h2">Changes, newest first</h2>
         <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-21</td><td>The handle carries <code>font-size: 13px</code> again, as in <code>kit.css</code>. It had been dropped in the August split, and was drift nobody approved</td><td><code>docs/decisions.md</code>, "Step 6: the system reconciled with the product"</td></tr>
           <tr><td>2026-11-20</td><td>The page moved to the card format: Overview, Technical, History. The handle has no painted state, so the matrix shows it alone and in its row, and the cursor states are named in words</td><td><code>docs/decisions.md</code>, "The showcase is read by purpose"</td></tr>
           <tr><td>2026-08-19</td><td>Split out of the flat kit into <code>components/drag.css</code>, with its page at Step 5 of Tokens + Components</td><td>commit <code>2353608</code></td></tr>
           <tr><td>2026-08-19</td><td>The icon inside the handle was given its own size: an <code>svg</code> with no width is 300x150, so the handle had taken 300px of a 316px row and pushed the composer off a 360 screen. Found in the browser, not in the file</td><td><code>docs/decisions.md</code>, "The critique ran on three instruments, and the two that measure found what reading cannot"; <code>design/kit/docs/inventory.md</code>, "Step 3 close-out"</td></tr>

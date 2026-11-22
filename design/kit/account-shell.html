@@ -212,7 +212,7 @@
         <h2 class="kit-h2">Tokens it reads</h2>
         <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Reads</th><th>Grows from</th><th>For</th></tr></thead><tbody>
           <tr><td><code>--bg-surface</code>, <code>--line-hairline</code></td><td><code>--grey-900</code>, <code>--grey-800</code></td><td>the nav's box; the identity rule and the avatar edge</td></tr>
-          <tr><td><code>--bg-page</code></td><td><code>--grey-950</code></td><td>the hover and the current ground of a nav item. <b>PENDING:</b> a hover that goes darker than its surface; no state token carries it</td></tr>
+          <tr><td><code>--bg-page</code></td><td><code>--grey-950</code></td><td>the hover and the current ground of a nav item. Accepted at Step 6: a hover that goes darker than its surface, kept as <code>kit.css</code> drew it</td></tr>
           <tr><td><code>--bg-action</code></td><td><code>--cyan-400</code></td><td>the strip on the current item. A strip is a fill, as on the selected theme card</td></tr>
           <tr><td><code>--bg-raised</code></td><td><code>--grey-850</code></td><td>the identity disc</td></tr>
           <tr><td><code>--text-primary</code>, <code>--text-secondary</code></td><td>tokens.css</td><td>current and hover; rest, meta and section title</td></tr>
@@ -250,7 +250,7 @@
   &lt;/div&gt;
 &lt;/div&gt;</pre>
         </div>
-        <p class="kit-note">File: <code class="kit-mono">design/system/components/account-shell.css</code>. <code class="kit-mono">.acct-card-t</code> and <code class="kit-mono">.acct-card-d</code> are not in it: they belong to the account hub's row link and go to Step 6.</p>
+        <p class="kit-note">File: <code class="kit-mono">design/system/components/account-shell.css</code>. The row link's title and line are not in it: they are the zones <code class="kit-mono">.cardrow-t</code> and <code class="kit-mono">.cardrow-d</code> of the list row link, since Step 6.</p>
       </section>
     </div>
 
@@ -259,7 +259,8 @@
       <section class="kit-sec">
         <h2 class="kit-h2">Changes, newest first</h2>
         <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
-          <tr><td>2026-11-21</td><td>Entered the system: <code>components/account-shell.css</code>, on semantic roles, and this page in the card format. The nav strip reads <code>--bg-action</code>; the hover and current ground reads <code>--bg-page</code>, marked PENDING</td><td><code>docs/decisions.md</code>, "The organisms entered the system"</td></tr>
+          <tr><td>2026-11-21</td><td>The nav hover and current ground on <code>--bg-page</code> is accepted, no longer pending</td><td><code>docs/decisions.md</code>, "Step 6: the system reconciled with the product"</td></tr>
+          <tr><td>2026-11-21</td><td>Entered the system: <code>components/account-shell.css</code>, on semantic roles, and this page in the card format. The nav strip reads <code>--bg-action</code>; the hover and current ground reads <code>--bg-page</code>, marked as awaiting the owner</td><td><code>docs/decisions.md</code>, "The organisms entered the system"</td></tr>
           <tr><td>2026-08</td><td>The row layout was first written as a container query, copying the grey contract. Nothing in the colour layer declares a container, so it would never have fired; it became a media query at 821px</td><td><code>docs/decisions.md</code>, "The kit was proved on the seed screens before anything new was built"</td></tr>
           <tr><td>2026-08</td><td><code>acct-nav-home</code> and <code>acct-nav-link</code> classed as one family, the Account shell nav (13 occurrences, 4 screens)</td><td><code>design/kit/docs/inventory.md</code></td></tr>
           <tr><td>2026-08</td><td>The account rules first appeared in <code>kit.css</code>, grown out of the colour layer</td><td>commit <code>d461e12</code></td></tr>

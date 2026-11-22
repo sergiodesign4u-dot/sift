@@ -646,3 +646,97 @@ a theme (harmless today, a trap for a future screen with a settings box and a he
 screens label their navs "Primary" where the other screens say "Sections"; 3.6 draws its confirm
 inline, not as a dialog; no colour screen uses `.form`; the account nav "below 600px" is 820 in the
 rule; `.acct-id-avatar` repeats the avatar at 40px.
+
+## Step 6: the system reconciled with the product (2026-11-21)
+
+Stage 08 Step 6. The second measurement rendered all 22 colour screens at 360 and 1440 twice: once
+as shipped on `kit.css`, once with `kit.css` replaced by `design/system/index.css`. That second
+render IS Step 8 seen in advance. The owner saw the three lists on a report page before any change
+and answered "как ти рекомендуешь, делай все что нужно": every recommendation was taken, and the
+decisions left open since the molecule round were closed with it.
+
+**What the measurement found.** With `kit.css` gone the product lost:
+- every icon: the system sized `.ic` and never drew it, so 40 of 40 measured icons rendered as
+  filled black shapes;
+- the list reset;
+- 31 one-off classes, together with `.summary`, `.titlerow` and `.block`;
+- `.src-map`, which was declared nowhere at all.
+
+On the screens it found no `style=`, no `<style>` and no old names, and one local name for a
+component's own zones (`.acct-card-t/-d`). It also found the August atom drift, still unnamed.
+
+**What was done.**
+- **`.ic` and `.list` went to `base.css`.** The 136 inline stroke styles on the kit pages were
+  removed with them, because the base rule now draws every icon.
+- **`one-off.css`** holds the blocks that stand on one screen. It is imported in its own group
+  after the organisms, so a one-off wins the tie with the component it rides on without a raised
+  specificity. **Rejected:** a stylesheet per screen, which breaks "one stylesheet per screen", and
+  promoting the blocks to components, which the inventory's threshold forbids.
+- **The provenance list** was built as the 50th component (`provlist.css` and its page). Its
+  anatomy comes from `wireframes/_wf.css:310-313` and its colour from the role mapping. No colour
+  screen wears it yet.
+- **`.cardrow-t` and `.cardrow-d`** are the list row link's two zones; 7.0 is renamed.
+- **`.appframe` moved to `design/kit/_page.css`**, because a stand style in a component file is a
+  defect. **The `--pf-*` chrome values moved to `design/_panel.css`**, as Step 2 decided.
+- **The August atom drift was reverted byte for byte**, not named. None of it was ever decided, and
+  "a value changes only by a decision stated out loud" leaves no other reading. The full list is in
+  `tokens-audit.md`.
+- **The bands are solid again.**
+  - New role `--line-warning-strong`, read by the warning band and the failed source row.
+  - `--line-danger` back to solid red. The Step 3 row that softened it rested on the belief that
+    the warning band was already soft; it was not, so the row is withdrawn.
+  - **Rejected:** keeping both bands soft, which would repaint a band the product draws.
+- **New decorative role `--line-strong`** (`--grey-700`) for the two rules in one-offs that
+  `kit.css` drew in `--line-2`. Mapping them to `--line-control` would have brightened two rules
+  that identify nothing.
+- **Accepted:**
+  - `--text-accent`, as a role;
+  - the component tokens `--step-current-line` and `--tier-mark`;
+  - the account nav's darker hover on `--bg-page`;
+  - the brighter step circles. Those circles are exactly the Step 4 `--line-control` change.
+- **Fixed AA failures:**
+  - the citation chip hover, which was ink on the 30 percent edge at 1.82:1; it now sits on the
+    action ground;
+  - the `--bg-action` swatch on `color.html`.
+- **Named in `tokens-audit.md`**, because each one follows a decision already taken:
+  - the corrected "was" of the Step 4 boundary for the outlined button and the chip, which were
+    hairline and not `#3A444C`;
+  - the chip's on border moving one step up to `--line-hover`;
+  - the full control font inheritance.
+- **A defect found while verifying:** on 4.0, 4.1, 6.1 and 6.2 the evidence chips sat in the
+  filter's full row, which hides at 820 and below with no compact twin, so at 360 they vanished.
+  The row form `.toolbar-row` keeps them at every width, as the grey draws them.
+- **The duplicate `.acct-id-avatar`** in `account-shell.css` was removed; the atom owns it.
+- **The inventory was corrected:**
+  - the selection bar counts were swapped;
+  - there are four tiers, not three;
+  - there are 50 components, not 51. Step 5 folded three atoms into two and the register added
+    Group heading and Screen shell.
+
+**Withdrawn on verification:** deleting `.link--muted`. The Step 6 report proposed it from a class
+grep that found nothing. But the form is counted in the inventory's 88 unclassed links: 26 in the
+footers and the legal columns are muted. So it waits for the rollout, like the auth card and the
+legal document.
+
+**Deferred, with the stage that closes each:** `design/kit/docs/backlog.md`.
+
+**Measured after the change.** With `kit.css` replaced, the differences against the shipped product
+are only the named ones. The numbers are in `census.md`, "Measurement after the system (Step 6)".
+
+**Critique on two instruments, collected independently.** Nine mechanical classes were checked by
+Claude's script and by Codex (read-only):
+- a colour literal in a component;
+- a primitive read directly;
+- an `@import` missing or out of its level;
+- a page or catalog entry missing;
+- a role with no light pair;
+- an undeclared variable;
+- a base rule declared in two files;
+- a "Reads:" header out of step with the file;
+- an em dash.
+
+| Finding | Who found it | State |
+|---|---|---|
+| `.acct-id-avatar` declared in both `avatar.css` and `account-shell.css` | Claude, while verifying the backlog, before Codex ran | fixed: the atom owns it |
+| "Reads:" headers of `account-shell.css` (`--bg-raised`, left over from the duplicate), `cardrow.css` (the two new zones) and `screen-head.css` (`--text-primary`, unused) | Codex | fixed |
+| The other seven classes | both | none found |

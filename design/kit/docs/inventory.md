@@ -91,14 +91,14 @@ controls in this product.
 | **Notice band** | 2 | **Placement:** inside a padded main 4 occ · in the screen frame with its own gutter 3 occ (`wf-app > .wf-notice`) | 3.5, 4.1, 6.2, 3.2, 7.3, 5.1, 2.3 | information, warning | No |
 | **Screen head** | 2 | **Content:** H1 plus sub 15 occ · plus the one primary action 5 occ (`wf-head-action`, hidden while the selection bar is up) · plus the scope line 13 occ | 15 screens | rest, action hidden | No |
 | **Toolbar (filter and sort)** | 2 | **Viewport:** full row with chips, clear and sort (canvas 600px and up) · compact single Filter button carrying the active count (below 600px). Canonical, owner 2.0, lighter variant on 3.0 | 2.0, 3.0, 4.0, 5.0, 6.0, 6.1 | at rest, filtered (clear appears) | No |
-| **Selection bar** | 2 | **Trigger:** appears on `:has(.wf-check:checked)` 2 occ · always present on the composer 1 occ (`wf-selbar--static`, the artifact IS the selection) | 2.0, 6.1, 6.2 | hidden, present | No |
+| **Selection bar** | 2 | **Trigger:** appears on `:has(.wf-check:checked)` 1 occ (2.0) · always present on the composer 2 occ (6.1, 6.2; `wf-selbar--static`, the artifact IS the selection). Counts corrected at Stage 08 Step 6: they were written swapped | 2.0, 6.1, 6.2 | hidden, present | No |
 | **Action bar** | 2 | **Alignment:** right-aligned 3 occ · with a note pushed left 1 occ (`wf-actionbar-note`) | 3.2, 3.3, 3.6, 6.1 | rest | No |
 | **Phase strip** | 2 | **Step state:** upcoming · current (`is-current`) · done. Three phases, named before the user commits, because the As-Is barrier is that ingestion is a black box | 2.1, 2.2, 3.2, 3.3, 6.1, 6.2 | per-step: upcoming, current, done | No |
 | **Breadcrumb** | 2 | one form | 9 screens | rest | No |
 | **Skeleton card** | 2 | **Shape:** generic rows 1 occ · shaped like the real theme card 1 occ, so the wait promises what arrives | 2.2, 4.2 | animating | No |
 | **Legal TOC** | 2 | one form, wrapping link list in a bordered box | 9.0, 9.1, 9.2 | rest | No |
 | **Auth card** | 2 | **Content:** form card 3 occ · value card 3 occ (`wf-auth-value`) · sent confirmation 1 occ (`wf-auth-sent`) | 1.0, 1.1, 1.2 | rest, submitted | No |
-| **Marketing tier card** | 2 | **Value:** three tiers, one per plan | 0.0 | rest | No |
+| **Marketing tier card** | 2 | **Value:** four tiers, one per plan (`mk-tier` 4 in `wireframes/index.html` and on 0.0; corrected from "three" at Stage 08 Step 6) | 0.0 | rest | No |
 | **Marketing step card** | 2 | numbered circle, title, description, and a confidence indicator as the proof | 0.0 | rest | No |
 
 ---
@@ -440,7 +440,7 @@ one-off, because it is a form of the label and a one-off would put the same anat
 | **Notice band** | 7 | One component. **emphasis:** information 5 / warning 1 / error 1 |
 | **Screen head** | 15 | One component. **content:** with the one action 5 / without 10; with the scope line 13 |
 | **Toolbar** | 6 | One component. **viewport:** full row above 820 / compact below |
-| **Selection bar** | 3 | One component. **trigger:** on selection 2 / always present 1 |
+| **Selection bar** | 3 | One component. **trigger:** on selection 1 / always present 2 (corrected at Step 6) |
 | **Action bar, phase strip, breadcrumb, skeleton card, legal TOC, auth card, tier card, step card** | | One component each |
 
 ## Level 3, organisms
@@ -520,14 +520,15 @@ axis, not two components:** same zones, different neighbour.
 | `.wf-label-row` | `.field-label-row` | not painted | 1.0 |
 | `.acct-check` | `.check` | account-data | 7.2 |
 | `.wf-card` | `.cardrow` | account | 7.0 |
-| `.wf-prov-list` | `.provlist` (new component) | not painted | 5.0, 5.1, 3.6 |
+| `.wf-prov-list` | `.provlist` (new component, built at Step 6) | not painted | 5.0, 5.1, 3.6 |
+| `.acct-card-t`, `.acct-card-d` | `.cardrow-t`, `.cardrow-d`, the two zones of the list row link (added at Step 6) | account (executed at Step 6) | 7.0 |
 | `.wf-main--flush` | dropped: the colour layer uses one padded `.appmain` | n/a | n/a |
 
 ## Rows after consolidation
 
 | | Stage 07 | Stage 08 Step 2 |
 |---|--:|--:|
-| Components | 50 | **51** (the provenance list promoted) |
+| Components | 50 | **51** (the provenance list promoted). **Corrected at Step 6: 50.** Step 5 folded textarea, select and the low-signal badge into Input and Confidence (minus 3) and the register carries Group heading and Screen shell (plus 2): 49 in the register plus the provenance list |
 | One-off blocks | 13 | **12** |
 | Rows counted per occurrence | 248 classes | **51 component rows plus 12 one-offs** |
 
@@ -562,6 +563,7 @@ group of its own level.*
 | 1 | **List row link** | `components/cardrow.css` | `kit/cardrow.html` | hover, focus-visible | 7.0. 3 |
 | 1 | **Group heading** | `components/group-heading.css` | `kit/group-heading.html` | none, not interactive | 12 screens. 29 |
 | 2 | **Theme card (ranked row)** | `components/theme-card.css` | `kit/theme-card.html` | hover, selected (`.check:checked`), focus-visible on the links inside. Low signal is a content variant, the clamped quote is the 360 form | 2.0. 6 rows, declared exception |
+| 2 | **Provenance list** | `components/provlist.css` | `kit/provlist.html` | none, not interactive; its links keep their own | 5.0, 5.1, 3.6 (grey only). 3. Built at Step 6 from the grey anatomy |
 | 2 | **Evidence snippet** | `components/snippet.css` | `kit/snippet.html` | hover, focus-visible. Redacted is a `.redacted` mark in the meta line | 4.0, 4.1. 12 |
 | 2 | **Source row** | `components/source-row.css` | `kit/source-row.html` | hover on the row; focus-visible on its buttons. Failed carries `.rowalert` | 3.0, 3.5, 3.6. Healthy 5, failed 1 |
 | 2 | **Source card (available)** | `components/source-card.css` | `kit/source-card.html` | none, not interactive; its button keeps its own | 3.0, 3.4, 3.5. Connectable 6, not yet available 3 |
@@ -579,7 +581,7 @@ group of its own level.*
 | 2 | **Skeleton card** | `components/skeleton-card.css` | `kit/skeleton-card.html` | none, not interactive. The shimmer is the bar atom's | 2.2, 4.2, and 6.3 measured |
 | 2 | **Legal TOC** | `components/legal-toc.css` | `kit/legal-toc.html` | hover, focus-visible | 9.0, 9.1, 9.2 (grey only) |
 | 2 | **Auth card** | `components/auth-card.css` | `kit/auth-card.html` | none, not interactive. Three content forms | 1.0, 1.1, 1.2 (grey only) |
-| 2 | **Marketing tier card** | `components/tier-card.css` | `kit/tier-card.html` | none, not interactive | 0.0. 4 tiers measured, the Level 2 table says three |
+| 2 | **Marketing tier card** | `components/tier-card.css` | `kit/tier-card.html` | none, not interactive | 0.0. 4 tiers, measured; the Level 2 table now says four (Step 6) |
 | 2 | **Marketing step card** | `components/step-card.css` | `kit/step-card.html` | none, not interactive | 0.0. 3 measured |
 | 3 | **App header** | `components/app-header.css` | `kit/app-header.html` | per tab: rest, hover, current (`.active`), focus-visible. Tabs hidden at 820 and below | 27 screens. Canonical global 0.1 |
 | 3 | **Bottom tabs** | `components/bottom-tabs.css` | `kit/bottom-tabs.html` | per tab: rest, current (`.active`), focus-visible. Drawn at 820 and below only | 27 screens. Canonical global 0.1 |

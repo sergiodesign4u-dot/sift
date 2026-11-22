@@ -162,7 +162,7 @@
         <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Reads</th><th>Grows from</th><th>For</th></tr></thead><tbody>
           <tr><td><code>--text-secondary</code></td><td><code>--grey-400</code></td><td>the number</td></tr>
           <tr><td><code>--font-mono</code></td><td>attribute A2</td><td>so a column of ranks lines up</td></tr>
-          <tr><td><code>--type-xs</code></td><td><code>design/system/tokens.css</code></td><td>the size of the number</td></tr>
+          <tr><td><code>12px</code>, a literal</td><td><code>kit.css</code>, byte for byte</td><td>the size of the number. No type step is 12 (<code>--type-xs</code> is 12.5px), so the value stays as the flat kit drew it</td></tr>
         </tbody></table></div>
       </section>
 
@@ -181,6 +181,7 @@
       <section class="kit-sec">
         <h2 class="kit-h2">Changes, newest first</h2>
         <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-21</td><td>The number is 12px again, as in <code>kit.css</code>. The August move to <code>--type-xs</code> (12.5px) was drift nobody approved</td><td><code>docs/decisions.md</code>, "Step 6: the system reconciled with the product"</td></tr>
           <tr><td>2026-11-20</td><td>The page moved to the card format: Overview, Technical, History. The old Rule and anti-rule specimens became the Do and Do not cards; the single "no states" decision became a note on Overview and Technical</td><td><code>docs/decisions.md</code>, "The showcase is read by purpose"</td></tr>
           <tr><td>2026-08-19</td><td>Split out of the flat kit into <code>components/rank.css</code>, with its page, in the round that took all 17 atoms</td><td>commit <code>2353608</code></td></tr>
           <tr><td>2026-08</td><td>A4 promised a volume bar on every ranked row and the mockups had none. Dropped rather than built: rank and <code>n=X</code> already encode volume twice</td><td><code>docs/decisions.md</code>, "Stage 07 Step 1: the product DESIGN.md is formed from code, and four divergences are settled out loud (August 2026)"</td></tr>

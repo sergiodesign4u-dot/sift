@@ -4,8 +4,10 @@
    utilities. Everything here is either a rule on a bare element or a utility that exists so that
    a width or an alignment never has to be written as a contextual override of a component.
 
-   It reads tokens and declares none: every value below is a var(). That is checkable by grep and
-   Step 9 checks it.
+   It reads tokens and declares none. Every value below is a var() except three literals that have
+   no exact primitive and so migrate byte for byte from kit.css, as a literal does everywhere in
+   this system: the body's line height 1.5, the icon's stroke width 1.6, and the clip of .vh.
+   That is checkable by grep and Step 9 checks it.
 
    No em dash anywhere in this file.
 */
@@ -17,7 +19,7 @@ html { scroll-behavior: smooth; }
 body {
   font-family: var(--font-ui);
   font-size: var(--type-base);
-  line-height: var(--leading-body);
+  line-height: 1.5;   /* kit.css:66, byte for byte. --leading-body is 1.6 and belongs to the 9 rules that drew 1.6; the body never did. Reverted at Step 6, decisions.md */
   letter-spacing: var(--tracking-body);
   color: var(--text-primary);
   background: var(--bg-page);
@@ -42,6 +44,16 @@ a { color: inherit; }
   outline-offset: 2px;
   border-radius: var(--radius-sm);
 }
+
+/* The icon. Every glyph in this product is a stroke drawing from the sprite, so the base rule
+   is the stroke and never a fill; a component only sets the SIZE of an .ic inside it. Moved
+   here from kit.css:73 at Step 6: until then the system had the sizes and not the icon, and with
+   kit.css removed all 145 icons on the 22 screens rendered as filled black shapes. */
+.ic { display: inline-block; vertical-align: middle; stroke: currentColor; fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+
+/* A list of rows is a list for the reader and a stack of blocks for the eye: the reset that says
+   so. kit.css:143, moved at Step 6; worn 14 times on 11 screens. */
+.list { list-style: none; }
 
 /* Two layout utilities, and there are only two. They exist so that a full-width button stays the
    same button: width is a layout decision and never an axis of a component. */

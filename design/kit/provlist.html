@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift design system - Provenance list</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../system/index.css">
+<link rel="stylesheet" href="_page.css">
+</head>
+<!--
+  design/kit/provlist.html - a component page in the card format of 2026-11-20, laid after snippet.html.
+
+  OVERVIEW, for the person placing the component: a live specimen, the content by form matrix,
+  properties, when and when not, where it stands.
+  TECHNICAL, for the person changing it: anatomy, the axes, the tokens it reads, the markup to copy.
+  HISTORY: every change, each with the record it came from.
+
+  The page links ../system/index.css, the SAME entry point a product screen links. The text of
+  both content forms is copied from the grey screens wireframes/evidence.html (5.0),
+  evidence-redacted.html (5.1) and sources-manage.html (3.6); no colour screen draws this list.
+
+  No em dash anywhere.
+-->
+<body>
+<div class="kit-shell">
+  <div id="kit-panel"></div>
+  <main class="kit-main">
+
+    <div id="kit-crumbs"></div>
+    <div id="kit-head"></div>
+
+    <div class="kit-tabs" role="tablist" aria-label="Provenance list page">
+      <button class="kit-tab" role="tab" id="tab-overview" aria-controls="overview" aria-selected="true">Overview</button>
+      <button class="kit-tab" role="tab" id="tab-tech" aria-controls="tech" aria-selected="false" tabindex="-1">Technical</button>
+      <button class="kit-tab" role="tab" id="tab-history" aria-controls="history" aria-selected="false" tabindex="-1">History</button>
+    </div>
+
+    <!-- ================================================================ OVERVIEW -->
+    <div class="kit-tabpanel" role="tabpanel" id="overview" aria-labelledby="tab-overview">
+
+      <div class="kit-hero">
+        <ul class="provlist u-full">
+          <li>Source: <b>Intercom connection</b> &middot; synced 2 days ago</li>
+          <li>Author: <b>not shown</b> (PII scrubbed by default) &middot; segment: mid-market</li>
+          <li>Supports theme: <a href="#">Onboarding is confusing</a> &middot; citation <span class="cite">1</span></li>
+        </ul>
+        <p class="kit-hero-note">Prose form, from 5.0. Links keep the link atom's states</p>
+      </div>
+      <p class="kit-note">One line per fact, 12px, secondary ink, with a hairline under each line. The lead word of a fact, or its value, takes primary ink. Not interactive; only the links inside it are.</p>
+
+      <section class="kit-sec" id="variants">
+        <h2 class="kit-h2">Variants and states</h2>
+        <p class="kit-note">Not interactive: the list has no hover, no pressed and no focus of its own, and provlist.css paints none. Its links keep the link and focus behaviour of <a href="link.html">the link atom</a> and base.css, and its citation index keeps its own page: <a href="citation.html">Citation marker</a>. The rows are therefore content forms, not states.</p>
+        <div class="kit-matrix-wrap">
+          <table class="kit-matrix" inert>
+            <thead><tr><th>Content form</th><th>Provenance list</th></tr></thead>
+            <tbody>
+              <tr><th>Prose line with a link and a citation index<code>.provlist li, a, .cite</code></th>
+                <td><ul class="provlist u-full">
+                  <li>Theme: <a href="#">Onboarding is confusing</a> &middot; citation <span class="cite">7</span> is flagged as unresolved</li>
+                  <li>Reason: <b>PII scrubbed beyond display</b> (GDPR)</li>
+                  <li>Source: Intercom connection &middot; synced 9 days ago</li>
+                </ul></td></tr>
+              <tr><th>Label then value<code>.provlist li, b</code></th>
+                <td><ul class="provlist u-full">
+                  <li><b>Type</b> Live connection, OAuth</li>
+                  <li><b>Status</b> Synced</li>
+                  <li><b>Items</b> 2,910</li>
+                  <li><b>Last sync</b> 2 days ago</li>
+                  <li><b>PII scrub</b> On, default</li>
+                </ul></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="kit-note">The text of the first row is from 5.1, of the second from 3.6, of the hero from 5.0. In the label form the grey draws only a space between the label and the value, so the gap is whatever the line's own word space gives, nothing added [?].</p>
+      </section>
+
+      <section class="kit-sec" id="props">
+        <h2 class="kit-h2">Properties</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Property</th><th>Type</th><th>Values</th><th>Default</th></tr></thead><tbody>
+          <tr><td>List</td><td>own class</td><td><code>ul.provlist</code></td><td>none: the class is required</td></tr>
+          <tr><td>Fact</td><td>zone</td><td><code>li</code>, one fact per line, a hairline under it</td><td>required</td></tr>
+          <tr><td>Emphasis</td><td>zone, content</td><td><code>b</code> inside a line: the label (3.6) or the value (5.0, 5.1), primary ink</td><td>absent</td></tr>
+          <tr><td>Link</td><td>atom, content</td><td><code>a</code> inside a line, primary ink</td><td>absent</td></tr>
+          <tr><td>Citation index</td><td>atom, content</td><td><code>.cite</code> inside a line, after the link</td><td>absent</td></tr>
+          <tr><td>State</td><td>variant</td><td>none</td><td>none</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="when">
+        <h2 class="kit-h2">How to use it</h2>
+        <div class="kit-when">
+          <div>
+            <h3>When</h3>
+            <p>Where one item came from, as a line per fact, under a heading that names the subject: Provenance (5.0), Affected citation (5.1), Source detail (3.6).</p>
+            <p><b>Same list, two forms.</b> Prose with a link when the fact leads somewhere (the theme the item supports); label then value when every line is a property of one object.</p>
+          </div>
+          <div>
+            <h3>When not</h3>
+            <ul>
+              <li>For the customer's words: take <a href="snippet.html">the evidence snippet</a>. The list holds facts about the words, not the words.</li>
+              <li>For a row that is itself a link to a thing: take <a href="cardrow.html">the list row link</a>.</li>
+            </ul>
+          </div>
+        </div>
+        <p class="kit-note">Sources: the three grey screens and <code class="kit-mono">wireframes/_wf.css</code> lines 310-313. No further rule has a source, so none is written [?].</p>
+      </section>
+
+      <section class="kit-sec" id="where">
+        <h2 class="kit-h2">Where it stands</h2>
+        <p class="kit-note">Three grey screens, and no colour screen wears it yet. Stage 12 paints it. In grey:</p>
+        <div class="kit-where">
+          <a href="../../wireframes/evidence.html">5.0 Evidence source</a>
+          <a href="../../wireframes/evidence-redacted.html">5.1 Evidence redacted</a>
+          <a href="../../wireframes/sources-manage.html">3.6 Source detail</a>
+          <a href="../../wireframes/overview.html">the rest, in grey</a>
+        </div>
+      </section>
+    </div>
+
+    <!-- ================================================================ TECHNICAL -->
+    <div class="kit-tabpanel" role="tabpanel" id="tech" aria-labelledby="tab-tech">
+
+      <section class="kit-sec" id="anatomy">
+        <h2 class="kit-h2">Anatomy</h2>
+        <p class="kit-note">Facts in reading order, one per line. The emphasised word is the one the eye lands on, and the rest recedes.</p>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
+          <tr><td>the list</td><td><code>ul.provlist</code></td><td>No bullets, 12px, secondary ink, 4px above and 12px below</td></tr>
+          <tr><td>a fact</td><td><code>.provlist li</code></td><td>6px above and below, a hairline underneath</td></tr>
+          <tr><td>the emphasis</td><td><code>.provlist b</code></td><td>Primary ink, the one strong weight</td></tr>
+          <tr><td>the link</td><td><code>.provlist a</code></td><td>Primary ink; underline and hover are the browser's and the link atom's, nothing added</td></tr>
+          <tr><td>the index</td><td><code>.cite</code></td><td>The citation atom, inside a prose line</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="axes">
+        <h2 class="kit-h2">Axes, with the rule that chooses</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
+          <tr><td>content form</td><td>prose line &middot; label then value: 2 forms on 3 grey screens</td><td>Prose where a fact leads somewhere (5.0, 5.1); label then value where every line is a property of one object (3.6)</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="tokens">
+        <h2 class="kit-h2">Tokens it reads</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Reads</th><th>Which grows from</th><th>For</th></tr></thead><tbody>
+          <tr><td><code>--text-secondary</code></td><td><code>--grey-400</code> dark, <code>--grey-550</code> light</td><td>the line's ink (grey: ink-2)</td></tr>
+          <tr><td><code>--text-primary</code></td><td><code>--grey-050</code> dark, <code>--grey-950</code> light</td><td>the emphasis and the link (grey: ink)</td></tr>
+          <tr><td><code>--line-hairline</code></td><td><code>--grey-800</code> dark, <code>--grey-150</code> light</td><td>the rule under each fact (grey: line)</td></tr>
+          <tr><td><code>--weight-strong</code></td><td>tokens.css, 590</td><td>the emphasis (grey: 600, folded into it at Stage 07)</td></tr>
+          <tr><td><code>--space-1</code>, <code>--space-2</code>, <code>--space-5</code></td><td>tokens.css</td><td>the 4px top margin, the 6px line padding, the 12px bottom margin</td></tr>
+        </tbody></table></div>
+        <p class="kit-note">States: none. provlist.css paints no hover, active or disabled. Kept off the scale, byte for byte: the 12px font size, which no <code class="kit-mono">--type-*</code> step equals.</p>
+      </section>
+
+      <section class="kit-sec" id="shots">
+        <h2 class="kit-h2">Snapshots</h2>
+        <p class="kit-note">Molecules get no new snapshots this round: the two content forms are shown live in the matrix on Overview. The component has no hover of its own; its links keep <a href="link.html">the link atom's</a>.</p>
+      </section>
+
+      <section class="kit-sec" id="markup">
+        <h2 class="kit-h2">Copy this</h2>
+        <div class="scene">
+          <pre class="kit-pre">&lt;ul class="provlist"&gt;
+  &lt;li&gt;Source: &lt;b&gt;Intercom connection&lt;/b&gt; &amp;middot; synced 2 days ago&lt;/li&gt;
+  &lt;li&gt;Supports theme: &lt;a href="theme.html"&gt;Onboarding is confusing&lt;/a&gt; &amp;middot; citation &lt;span class="cite"&gt;1&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul class="provlist"&gt;
+  &lt;li&gt;&lt;b&gt;Type&lt;/b&gt; Live connection, OAuth&lt;/li&gt;
+  &lt;li&gt;&lt;b&gt;Status&lt;/b&gt; Synced&lt;/li&gt;
+&lt;/ul&gt;</pre>
+        </div>
+        <p class="kit-note">File: <code class="kit-mono">design/system/components/provlist.css</code>, imported in the molecules group of <code class="kit-mono">design/system/index.css</code>.</p>
+      </section>
+    </div>
+
+    <!-- ================================================================ HISTORY -->
+    <div class="kit-tabpanel" role="tabpanel" id="history" aria-labelledby="tab-history">
+      <section class="kit-sec">
+        <h2 class="kit-h2">Changes, newest first</h2>
+        <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-21</td><td>Entered the system at Step 6: promoted from the one-off <code>wf-prov-list</code> at Step 2, built from the grey anatomy</td><td><code>docs/decisions.md</code>, "Step 6: the system reconciled with the product"</td></tr>
+        </tbody></table></div>
+      </section>
+    </div>
+
+    <div id="kit-pager"></div>
+
+  </main>
+</div>
+
+<script src="_nav.js"></script>
+<script src="_states.js"></script>
+</body>
+</html>

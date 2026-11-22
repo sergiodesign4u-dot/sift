@@ -12,7 +12,7 @@
    no current tab here: the header has no tab for them.
 
    The brand mark is the accent as ink, and it reads --text-accent: the accent where it marks "this
-   is the product". PENDING the owner, born at round 3. Not --text-evidence, which A2 keeps for the
+   is the product". Born at round 3, accepted at Step 6. Not --text-evidence, which A2 keeps for the
    citation alone.
 
    The current tab is marked by TONE, not by hue: primary ink on a raised ground, and no accent.
@@ -34,7 +34,6 @@
 
 .appbar { display: flex; align-items: center; gap: var(--space-6); height: var(--size-bar); padding: 0 var(--space-8); border-bottom: 1px solid var(--line-hairline); background: var(--bg-surface); }
 .brand { display: flex; align-items: center; gap: var(--space-3); font-weight: var(--weight-strong); letter-spacing: 0.06em; text-transform: uppercase; font-size: 13px; color: var(--text-primary); }
-/* PENDING owner: --text-accent, born at round 3; kit.css drew it in --cyan */
 .brand .mark { color: var(--text-accent); }
 .navtabs { display: flex; gap: 2px; }
 .navtabs a { display: inline-flex; align-items: center; min-height: var(--size-target); font-size: var(--type-sm); color: var(--text-secondary); text-decoration: none; padding: 0 var(--space-5); border-radius: var(--radius-md); transition: color .15s, background .15s; }

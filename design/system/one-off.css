@@ -1,0 +1,122 @@
+/* design/system/one-off.css - the blocks that stand on ONE screen.
+
+   Not components. Each block here occurs on a single screen (a screen in two states counts as one),
+   so by the inventory's threshold it stays a one-off: no kit page, no state matrix, no catalog
+   entry. It still lives in the system, because from Stage 08 a product screen links one stylesheet
+   and nothing else, and a block that lived only in kit.css would vanish with kit.css at Step 8.
+   The list is on design/kit/overview.html, section "One-off blocks".
+
+   A SECOND OCCURRENCE TURNS A BLOCK INTO A COMPONENT, and that is a decision made out loud: the
+   block leaves this file for components/ with the full five (css, page, catalog entry, inventory
+   row, @import in its level).
+
+   Imported in its own group AFTER the organisms in index.css: a one-off composes with the
+   components it sits in (.mk-footer rides on .appfoot) and has to win the tie, which the order
+   gives it without a raised specificity.
+
+   Moved from kit.css at Stage 08 Step 6, byte for byte, by the colour mapping of Step 5:
+   --porcelain is --text-primary, --ash is --text-secondary, --surface is --bg-surface, --line is
+   --line-hairline, --r is --radius-md. kit.css's --line-2 here is a DECORATIVE rule (the trust
+   item, the reason), not a control boundary, so it reads --line-strong, which keeps its value;
+   the drop zone's dashed edge identifies a target and reads --line-control. A literal takes a
+   primitive only on an exact match and otherwise stays as kit.css wrote it.
+
+   No em dash anywhere in this file.
+*/
+
+/* ---------- layout pieces of one screen ---------- */
+
+/* 4.0 and 4.1 Theme detail: the synthesis itself. Set at reading size in primary ink, because this
+   paragraph IS the product's claim, and every clause of it carries a citation that resolves in the
+   list below (A2). kit.css:130 */
+.summary { font-size: 14.5px; line-height: 1.8; color: var(--text-primary); margin-top: var(--space-7); max-width: 88ch; }
+
+/* 6.1 and 6.2 Build brief: the title row of an artifact. The name is typed where it will be read,
+   and the marker beside it says the artifact has not been shared yet. kit.css:429 */
+.titlerow { display: flex; align-items: center; gap: var(--space-5); flex-wrap: wrap; }
+
+/* 6.1 and 6.2: a block inside a main that otherwise holds rows. A rule above it rather than a card
+   around it, because a card would claim it is a different kind of thing. kit.css:433 */
+.block { padding-top: 20px; margin-top: 20px; border-top: 1px solid var(--line-hairline); }
+
+/* ---------- 0.0 Home ---------- */
+
+/* The trust list: a list of claims, a rule above each one instead of a box around it. kit.css:655 */
+.mk-trust { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: var(--space-6) 24px; margin-top: 20px; }
+.mk-trust-item { padding-top: var(--space-6); border-top: 2px solid var(--line-strong); }
+.mk-trust-t { font-size: var(--type-base); font-weight: var(--weight-strong); letter-spacing: -0.01em; color: var(--text-primary); margin-bottom: 7px; }
+.mk-trust-t a { display: inline-flex; align-items: center; min-height: var(--size-target); color: var(--text-primary); text-decoration: none; }
+.mk-trust-t a:hover { text-decoration: underline; }
+.mk-trust-d { font-size: 13px; color: var(--text-secondary); line-height: 1.65; }
+
+/* The marketing footer. The app footer is the component; this is the one screen that needs a link
+   block under it, and it composes with .appfoot rather than replacing it. kit.css:664 */
+.mk-footer { display: flex; flex-wrap: wrap; gap: 24px 48px; align-items: flex-start; padding: 28px var(--space-9) var(--space-12); font-family: var(--font-ui); font-size: 13px; }
+.mk-foot-brand { display: flex; flex-direction: column; gap: var(--space-4); min-width: 200px; flex: 1; }
+.mk-foot-tag { font-size: var(--type-xs); color: var(--text-secondary); max-width: 30ch; line-height: 1.55; }
+.mk-foot-cols { display: flex; gap: 48px; flex-wrap: wrap; }
+.mk-foot-col { display: flex; flex-direction: column; }
+.mk-foot-h { font-family: var(--font-mono); font-size: var(--type-3xs); font-weight: var(--weight-medium); letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-secondary); }
+.mk-foot-col a { display: flex; align-items: center; min-height: var(--size-target); font-size: var(--type-xs); color: var(--text-secondary); text-decoration: none; }
+.mk-foot-col a:hover { color: var(--text-primary); }
+.mk-foot-legal { flex-basis: 100%; font-family: var(--font-mono); font-size: var(--type-2xs); color: var(--text-secondary); border-top: 1px solid var(--line-hairline); padding-top: var(--space-8); }
+
+/* ---------- 6.3 Share link ---------- */
+
+/* The row that holds the value and the one control that copies it. kit.css:676 */
+.linkrow { display: flex; gap: var(--space-3); margin-bottom: var(--space-6); }
+
+/* ---------- 4.0 and 4.1 Theme detail ---------- */
+
+/* Why these items are one theme, and what was LEFT OUT, which is the half that makes the
+   explanation checkable. kit.css:682 */
+.reason { font-size: 13px; line-height: 1.7; color: var(--text-secondary); border-left: 2px solid var(--line-strong); padding-left: var(--space-6); margin-top: var(--space-8); max-width: 88ch; }
+.reason b { color: var(--text-primary); font-weight: var(--weight-medium); }
+
+/* 4.1: the line that closes a list with no "load more". kit.css:687 */
+.listnote { font-size: var(--type-xs); color: var(--text-secondary); line-height: var(--leading-body); padding: 13px var(--space-3); border-bottom: 1px solid var(--line-hairline); }
+
+/* ---------- 3.2 Connect CSV ---------- */
+
+/* The drop zone. Dashed, because dashed is what the whole product uses for "nothing here yet, and
+   something goes here". The icon slot inside is centred: layout on the block's own child, not a
+   variant of the slot. kit.css:691 */
+.src-drop { border: 1px dashed var(--line-control); border-radius: var(--radius-md); background: var(--bg-surface); padding: var(--space-10) 20px; text-align: center; margin: var(--space-2) 0 var(--space-5); }
+.src-drop .iconslot { margin: 0 auto var(--space-6); }
+.src-drop-t { font-size: var(--type-base); font-weight: var(--weight-medium); color: var(--text-primary); }
+.src-drop-d { font-size: var(--type-xs); color: var(--text-secondary); margin: 5px 0 var(--space-7); }
+.src-file { font-family: var(--font-mono); font-size: 12px; color: var(--text-secondary); margin-bottom: var(--space-7); }
+.src-file b { color: var(--text-primary); font-weight: var(--weight-medium); }
+
+/* The column mapping. The SAMPLE is the point: a mapping screen without the customer's own data on
+   it is a form that has to be trusted rather than checked. .src-map is the container; Step 2
+   decided to declare it so that its rows never stand on an undeclared base. kit.css:700 */
+.src-map { display: block; }
+.src-map-head, .src-map-row { display: grid; grid-template-columns: 1fr 1.3fr 1fr 66px; gap: var(--space-6); align-items: center; }
+.src-map-head { font-family: var(--font-mono); font-size: var(--type-3xs); font-weight: var(--weight-medium); letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-secondary); padding-bottom: var(--space-3); border-bottom: 1px solid var(--line-hairline); }
+.src-map-row { padding: 11px 0; border-bottom: 1px solid var(--line-hairline); }
+.src-map-col { font-family: var(--font-mono); font-size: var(--type-xs); color: var(--text-primary); }
+.src-sample { font-family: var(--font-mono); font-size: 11.5px; color: var(--text-secondary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.src-inc { display: flex; justify-content: center; }
+
+/* The review summary: the count, and the two facts about privacy that the default makes true,
+   said before the import rather than in a settings screen afterwards. kit.css:710 */
+.src-review { border: 1px solid var(--line-hairline); border-radius: var(--radius-md); background: var(--bg-surface); padding: var(--space-7) var(--space-8); margin-top: 20px; }
+.src-review h2 { font-family: var(--font-mono); font-size: var(--type-3xs); font-weight: var(--weight-medium); letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-secondary); margin-bottom: var(--space-4); }
+.src-review ul { list-style: none; display: grid; gap: 2px; }
+.src-review li { display: flex; align-items: baseline; gap: var(--space-6); padding: 7px 0; font-size: 13px; color: var(--text-secondary); border-bottom: 1px solid var(--line-hairline); }
+.src-review li:last-child { border-bottom: 0; }
+.src-review b { margin-left: auto; font-family: var(--font-mono); font-weight: var(--weight-medium); color: var(--text-primary); white-space: nowrap; }
+
+/* ---------- at 820 and below: kit.css:750-772 ---------- */
+@media (max-width: 820px) {
+  .mk-footer { padding: 24px var(--space-7) 28px; gap: 20px 24px; }
+  .mk-foot-cols { gap: 28px; }
+  .listnote { padding: 13px var(--space-7); }
+  /* Four columns would cut every value in half, so the row becomes two: the column and its field
+     on one line, the customer's own sample on its own. Reading order is unchanged. */
+  .src-map-head { display: none; }
+  .src-map-row { grid-template-columns: 1fr auto; gap: var(--space-3) var(--space-5); padding: 13px 0; }
+  .src-sample { grid-column: 1 / -1; white-space: normal; }
+  .src-map-row .input { grid-column: 1; }
+}

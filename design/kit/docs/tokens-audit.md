@@ -199,5 +199,52 @@ are redefined, no primitive is touched, and Step 7 stress-tests the pair exactly
 
 ### Moved onto system classes (Step 6)
 
-*(empty until Step 6)*
+*The second measurement (`census.md`, "Measurement after the system") rendered every colour screen
+with `kit.css` replaced by `design/system/index.css`. Every row below is either a class the screen
+now wears from the system instead of from `kit.css`, or a value that changed while doing it.
+Format: class or variable, was, became, why.*
+
+**Moved with no change of appearance.** The value is identical; only the file that declares it
+moved. Step 8 should find no pixel difference from any of these.
+
+| Class or variable | Was | Became | Why |
+|---|---|---|---|
+| `.acct-card-t`, `.acct-card-d` on 7.0 | a local name, `kit.css:619-620` | `.cardrow-t`, `.cardrow-d`, the two zones of the list row link in `cardrow.css`; renamed on `design/account.html` (3 rows) | The inventory gives the list row link exactly these zones, a title and a line. A local name for a component's own zones is a desync |
+| `.ic` base rule | `kit.css:73` only | `base.css` | The system sized icons but never drew them: with `kit.css` gone, 40 of 40 icons measured on 6 screens rendered as filled black shapes |
+| `.list` | `kit.css:143` only | `base.css` | The list reset; worn 14 times on 11 screens |
+| 31 one-off classes (`mk-trust*`, `mk-footer`, `mk-foot-*`, `linkrow`, `reason`, `listnote`, `src-drop*`, `src-file`, `src-map*`, `src-review`, `src-sample`, `src-inc`) and the layout pieces `.summary`, `.titlerow`, `.block` | `kit.css` only | `design/system/one-off.css`, its own group after the organisms in `index.css` | One screen each, so not components; but a screen links one stylesheet, and they would have vanished with `kit.css` |
+| `.src-map` | declared nowhere | `one-off.css`, `display: block` | Step 2 decided to declare the base of a modifier that was used without one; it was never done |
+| `--line-2` as a decorative rule (`.mk-trust-item`, `.reason`) | `#3A444C` through `--line-2` | `--line-strong` (`--grey-700`, light `--grey-350`), a new decorative role | Mapping it to `--line-control` would have brightened two rules that identify nothing, by a Step 4 decision that was for controls |
+| `.notice--warn`, `.rowalert` left rule | solid `--amber` | `--line-warning-strong` (`--amber-400`, light `--amber-700`), a new role | The system had mapped it to the 32 percent edge; this restores the drawn value. Owner's decision at Step 6 |
+| `.appframe` and its twins | `screen-shell.css` | `design/kit/_page.css` | A stand style in a component file is a defect by the stage rule. Worn by kit pages only |
+| `--pf-*` (7 chrome values) | `kit.css:60-61` | `design/_panel.css` | Step 2 decided "moved, not deleted"; not product language |
+
+**Reverted to kit.css, byte for byte.** The atom round of 2026-08 changed these without a decision.
+None was approved, so each one goes back. Step 8 should find no difference here.
+
+| Class | Had drifted to | Back to |
+|---|---|---|
+| `body` | line-height 1.6 (`--leading-body`) | 1.5 |
+| `.btn`, `.btn--bare` | a 1px border | no border; only `.btn--ghost` draws one |
+| `.btn`, `.btn--ghost`, `.btn--bare` | gap 6px | 7px |
+| `.btn--bare` | weight 500, padding 12px 8px | weight 400, padding 13px 8px |
+| `.btn--icon` | font-size 14px (inherited), gap normal | 15px, gap 0 |
+| `.rank`, `.field-label`, `.link--action` | 12.5px | 12px |
+| `.link--action` | 4px side padding | none |
+| `.chip-count` | 11px | 11.5px |
+| `.drag` | 14px (inherited) | 13px |
+| `textarea.input` | line-height 1.45 | 1.55 |
+| `.group-t--section` | margin-top 26px | 24px |
+| `.group-t` at 820 and below | rule missing | `padding: 14px 16px 6px`, and 0 on the two other forms |
+
+**Changes of appearance, named here.**
+
+| Variable or class | Was | Becomes | Why |
+|---|---|---|---|
+| The Step 4 `--line-control` row, corrected | "was #3A444C" for every input, chip and outlined button | **The outlined button and the chip at rest were `--line` #262D34 (the hairline), not #3A444C.** They now read `--line-control` #647280 | The Step 4 decision named the right intent (every control boundary at 3:1) and the wrong "was" for two of the three controls. 24 outlined buttons and 10 chips on the colour screens |
+| `.chip.is-on` border | `--line-2` #3A444C | `--line-hover` #868F99 | Its rest boundary rose to #647280 at Step 4. The on state has to stay one step above its own off state, and `--line-hover` is that step. 6 chips |
+| `button, input, select, textarea` | `font-family: inherit` only, the Step 3 row | `font: inherit; letter-spacing: inherit; color: inherit` | The same rule as the Step 3 row, finished: a control's type is decided by its class and not by its tag. Measured effect: tracking -0.011em on control labels (widths 1 to 5px narrower or wider), and line height inherited, so the bare button is 44.75px tall instead of 44px |
+| `--line-danger` | the 32 percent edge, the Step 3 "consolidated drift" row | solid `--red-400`, light `--red-700`, as `kit.css` drew it | **The Step 3 row is withdrawn.** It rested on the belief that the warning band already used the soft edge; it did not. Both bands are solid again, built the same way |
+| `.citechip:hover` | ink on the 30 percent edge: 1.82:1 dark, 1.73:1 light | `--bg-action` ground, `--text-on-action` ink: 9.13 / 6.27 | A measured AA failure, carried from `kit.css:387`. A hover state, so the rest pixels do not move |
+| `.toolbar-row` (new zone) on 4.0, 4.1, 6.1, 6.2 | chips in `.toolbar-full`, hidden at 820 and below with no compact twin | chips in `.toolbar-row`, wrapping at every width | At 360 the evidence controls vanished. The grey draws them at every width (`wireframes/theme.html:81`). Visible at 820 and below only |
 

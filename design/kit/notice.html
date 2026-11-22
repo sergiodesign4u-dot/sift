@@ -167,13 +167,13 @@
           <tr><td><code>--bg-warning</code>, <code>--bg-danger</code></td><td><code>--amber-a10</code>, <code>--red-a10</code></td><td>the two washes</td></tr>
           <tr><td><code>--line-hairline</code></td><td><code>--grey-800</code></td><td>the edge of the band</td></tr>
           <tr><td><code>--line-control</code></td><td><code>--grey-600</code></td><td>the left rule of the information tone. <code>--line-2</code> in the flat kit</td></tr>
-          <tr><td><code>--line-warning</code>, <code>--line-danger</code></td><td><code>--amber-a32</code>, <code>--red-a32</code></td><td>the left rule of the two other tones</td></tr>
+          <tr><td><code>--line-warning-strong</code>, <code>--line-danger</code></td><td><code>--amber-400</code>, <code>--red-400</code> dark; <code>--amber-700</code>, <code>--red-700</code> light</td><td>the left rule of the two other tones, solid in the signal hue</td></tr>
           <tr><td><code>--text-secondary</code>, <code>--text-primary</code></td><td>tokens.css</td><td>the sentence, and the emphasis in it</td></tr>
           <tr><td><code>--radius-md</code>, <code>--space-5</code>, <code>--space-6</code>, <code>--type-xs</code>, <code>--leading-body</code>, <code>--weight-medium</code></td><td>tokens.css</td><td>the corner, the padding and margin, the size, the line height and the emphasis weight</td></tr>
         </tbody></table></div>
         <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>State</th><th>Token</th><th>What moves</th></tr></thead><tbody>
           <tr><td>information</td><td><code>--line-control</code></td><td>The left rule. Nothing else</td></tr>
-          <tr><td>warning</td><td><code>--line-warning</code>, <code>--bg-warning</code></td><td>The left rule and the ground. [?] PENDING owner: the flat kit drew this rule in solid amber, and <code>--line-warning</code> is the 32 percent edge. The error rule was solid red and is now <code>--line-danger</code>, an approved change</td></tr>
+          <tr><td>warning</td><td><code>--line-warning-strong</code>, <code>--bg-warning</code></td><td>The left rule and the ground. The rule is solid amber as the flat kit drew it, over the 10 percent wash. The error band is built the same way: solid <code>--line-danger</code> over <code>--bg-danger</code></td></tr>
           <tr><td>hover, focus, active, disabled</td><td><b>absent</b></td><td>Not interactive</td></tr>
         </tbody></table></div>
       </section>
@@ -188,7 +188,7 @@
         <div class="scene">
           <pre class="kit-pre">&lt;div class="notice notice--warn"&gt;"priority" is set to import but has no Sift field yet. Choose a field, or turn its Import off.&lt;/div&gt;</pre>
         </div>
-        <p class="kit-note">File: <code class="kit-mono">design/system/components/notice.css</code>. Not in the file: <code class="kit-mono">.appframe &gt; .notice</code> and <code class="kit-mono">.app &gt; .notice</code> with their 360 margins. They bring the screen gutter and belong to the shell.</p>
+        <p class="kit-note">File: <code class="kit-mono">design/system/components/notice.css</code>. Not in the file: <code class="kit-mono">.app &gt; .notice</code> with its 360 margin, and the stand twin <code class="kit-mono">.appframe &gt; .notice</code> in <code class="kit-mono">design/kit/_page.css</code>. They bring the screen gutter and belong to the shell.</p>
       </section>
 
     </div>
@@ -198,6 +198,7 @@
       <section class="kit-sec">
         <h2 class="kit-h2">Changes, newest first</h2>
         <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-21</td><td>The warning rule reads the new solid role <code>--line-warning-strong</code> and the error rule is solid <code>--line-danger</code>, as <code>kit.css</code> drew both. The 32 percent edge stays for the alert tag, not for a band</td><td><code>docs/decisions.md</code>, "Step 6: the system reconciled with the product"</td></tr>
           <tr><td>2026-11-21</td><td>Entered the system: <code>components/notice.css</code>, on semantic roles, and this page in the card format</td><td><code>docs/decisions.md</code>, "The molecules entered the system"</td></tr>
           <tr><td>2026-08-18</td><td>Declared in the flat kit with its three tones and the comment that the tone is the claim</td><td>commit <code>d461e12</code></td></tr>
           <tr><td>2026-08-18</td><td><code>.notice--error</code> kept although no painted screen uses it</td><td><code>design/kit/docs/inventory.md</code>, "What gets deleted"</td></tr>

@@ -1,6 +1,6 @@
 /* design/system/components/notice.css - level 2, molecule.
    Reads: --text-secondary, --text-primary, --bg-surface, --bg-warning, --bg-danger,
-          --line-hairline, --line-control, --line-warning, --line-danger, --radius-md,
+          --line-hairline, --line-control, --line-warning-strong, --line-danger, --radius-md,
           --space-5, --space-6, --type-xs, --leading-body, --weight-medium
    Page:  design/kit/notice.html
    Stands on: 3.5, 4.1, 6.2, 3.2, 7.3, 5.1, 2.3. 7 occurrences: information 5, warning 1, error 1.
@@ -23,6 +23,7 @@
   padding: var(--space-5) var(--space-6); margin: var(--space-6) 0;
 }
 .notice b { color: var(--text-primary); font-weight: var(--weight-medium); }
-/* PENDING owner: kit.css drew this in solid --amber. --line-warning is the 32 percent edge. */
-.notice--warn { border-left-color: var(--line-warning); background: var(--bg-warning); }
+/* The two bands are built the same way and as kit.css drew them: a solid rule in the signal hue
+   over its 10 percent wash. Step 6, owner's decision. */
+.notice--warn { border-left-color: var(--line-warning-strong); background: var(--bg-warning); }
 .notice--error { border-left-color: var(--line-danger); background: var(--bg-danger); }

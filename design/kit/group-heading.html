@@ -198,8 +198,8 @@
           <tr><td><code>--text-secondary</code></td><td><code>--grey-400</code></td><td>the ink</td></tr>
           <tr><td><code>--font-mono</code>, <code>--tracking-caps</code></td><td>attribute A2, and a technical decision</td><td>the micro uppercase treatment the whole product uses for a label</td></tr>
           <tr><td><code>--type-3xs</code>, <code>--weight-medium</code></td><td>tokens.css</td><td>the micro size and the medium weight of the label</td></tr>
-          <tr><td><code>--space-7</code>, <code>--space-3</code>, <code>--space-2</code></td><td>tokens.css</td><td>the list form padding: top, sides, bottom</td></tr>
-          <tr><td><code>--space-10</code>, <code>--space-4</code></td><td>tokens.css</td><td>the block form margin: above and below</td></tr>
+          <tr><td><code>--space-7</code>, <code>--space-3</code>, <code>--space-2</code></td><td>tokens.css</td><td>the list form padding: top, sides, bottom. At 820px and below the top is 14px and the sides are <code>--space-7</code>, the screen gutter</td></tr>
+          <tr><td>24px, a literal, and <code>--space-4</code></td><td><code>kit.css</code>, byte for byte; tokens.css</td><td>the block form margin: above and below. No space step is 24 (<code>--space-10</code> is 26px)</td></tr>
         </tbody></table></div>
         <p class="kit-note"><b>No states, and that is a decision rather than an omission.</b> A group heading is a label. It is not focusable, not pressable, and giving it a hover would make a person try to click a word that leads nowhere.</p>
         <p class="kit-note">Four states are given to a component because it is interactive, not because a template has four cells. Faking one with a class the product does not carry (<code class="kit-mono">.is-hover</code>) would be the same defect as an invented role.</p>
@@ -227,6 +227,7 @@
       <section class="kit-sec">
         <h2 class="kit-h2">Changes, newest first</h2>
         <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-21</td><td>The block form margin above is 24px again, as in <code>kit.css</code> (it had become <code>--space-10</code>, 26px), and the 820px rule that gives the list form <code>padding: 14px 16px 6px</code> is back</td><td><code>docs/decisions.md</code>, "Step 6: the system reconciled with the product"</td></tr>
           <tr><td>2026-11-20</td><td>The page moved to the card format: Overview, Technical, History. The three forms became a matrix by neighbour and content, with the not-interactive rule stated; the old anatomy, rule and anti-rule and states blocks were folded into Overview and Technical</td><td><code>docs/decisions.md</code>, "The showcase is read by purpose"</td></tr>
           <tr><td>2026-08-19</td><td>Level 1 atom page and <code>components/group-heading.css</code> written in the Tokens + Components round of all 17 atoms</td><td>commit <code>2353608</code></td></tr>
           <tr><td>2026-08-19</td><td>The two tables of facts, read and measured: the component's counts were taken from the rendered product</td><td>commit <code>2aa7baa</code></td></tr>

@@ -183,9 +183,11 @@
   --line-hairline: var(--grey-800);  /* DECORATIVE. Every divider and card edge: 64 rules, all 23 pages. 1.39 dark on page / 1.28 light, and exempt: it separates, it does not identify */
   --line-control:  var(--grey-600);  /* IDENTIFYING. The boundary of an input, a chip, an outlined button: 14 rules on 9 screens. 3.93 on --bg-page, 3.55 on --bg-surface, 3.14 on --bg-raised, against the 3:1 of WCAG 1.4.11. It was --grey-700 at 1.76 until the Step 4 review: an input on this product sits 1.19:1 off the page, so its border is the only thing that says it is a field */
   --line-focus:    var(--cyan-400);  /* IDENTIFYING. The keyboard ring, every focusable control on all 23 pages. 9.13 dark / 6.27 light */
+  --line-strong:   var(--grey-700);  /* DECORATIVE. A rule one step heavier than the hairline, that marks where a block starts: 2 rules, the trust item on 0.0 and the reason on 4.0 and 4.1 (one-off.css). kit.css drew both in --line-2, which became --line-control; a decorative rule may not borrow the identifying role, and the Step 4 brightening was for controls. 1.76 on a card, exempt as decorative. Step 6 */
   --line-evidence: var(--cyan-a30);  /* the edge of a citation chip: 3 rules */
-  --line-warning:  var(--amber-a32); /* the dashed edge of an alert tag and the left rule of a warning band: 2 rules */
-  --line-danger:   var(--red-a32);   /* the left rule of an error band: 1 rule. Given its second half at Stage 08 by the consolidation decision, so that the two bands are built the same way */
+  --line-warning:  var(--amber-a32); /* the dashed edge of an alert tag and the edge of the low-signal badge: 2 rules. A soft edge around a small mark */
+  --line-warning-strong: var(--amber-400); /* IDENTIFYING. The solid left rule of a warning band and of a failed source row: 2 rules on 3.2, 3.5, 4.1, 6.2. kit.css drew both in solid --amber, and the 32 percent edge is a different role. 8.60 on --bg-page. Step 6, owner's decision */
+  --line-danger:   var(--red-400);   /* IDENTIFYING. The solid left rule of an error band: 1 rule. kit.css drew it in solid --red. Step 3 moved it to the 32 percent edge on the belief that the warning band already used one; it did not, so Step 6 put both bands back to solid, as drawn */
 
   /* --- STATE. A state is a token and never a style, so that a theme is three lines rather than
          forty edits, twenty components cannot invent twenty hovers, and Stage 11 starts by
@@ -206,9 +208,9 @@
 
   /* --- COMPONENT. Born at Step 5, round 2 (molecules), and only where a colour did not land on
          any semantic role. Each one keeps the exact kit.css value in the dark theme, so nothing
-         moves; each one is PENDING the owner's review at the molecule gate. --- */
+         moves. Accepted by the owner at Step 6 ("as you recommend"). --- */
   --step-current-line: var(--grey-050);  /* LINE. The ring of the current phase in the phase strip: kit.css drew it in --porcelain, and no line role carries that step. 1 rule, 2.1 and 2.2 */
-  --text-accent:       var(--cyan-400);  /* INK. Born at round 3 (organisms), PENDING, and a semantic role if accepted: the accent as ink where it marks "this is the product" or "you are here", 2 rules (the brand mark in the app header, the current bottom tab). Not --text-evidence, which A2 keeps for the citation alone. Same pair as --text-evidence, so the same ratios */
+  --text-accent:       var(--cyan-400);  /* INK. Born at round 3 (organisms), accepted at Step 6 as a role: the accent as ink where it marks "this is the product" or "you are here", 2 rules (the brand mark in the app header, the current bottom tab). Not --text-evidence, which A2 keeps for the citation alone. Same pair as --text-evidence, so the same ratios */
   --tier-mark:         var(--grey-700);  /* FILL. The square bullet of a tier feature on 0.0: kit.css drew it in --line-2, which became --line-control, a line role. A fill may not borrow a line role. 1 rule, decorative */
 }
 
@@ -247,9 +249,11 @@
   --line-hairline: var(--grey-150);   /* decorative, 1.28 */
   --line-control:  var(--grey-450);   /* identifying, 3.52 / 3.30 / 3.10 on the three grounds. Was --grey-350 at 3.01 / 2.83, which passed on one ground and missed on the other */
   --line-focus:    var(--cyan-700);
+  --line-strong:   var(--grey-350);   /* the light pair --line-2 had before the Step 4 review */
   --line-evidence: var(--cyan-a35);
   --line-warning:  var(--amber-a35);
-  --line-danger:   var(--red-a35);
+  --line-warning-strong: var(--amber-700); /* 5.93 on --bg-page */
+  --line-danger:   var(--red-700);   /* 5.88 on --bg-page */
 
   /* DEPTH */
   --shadow-sheet: var(--shadow-light);

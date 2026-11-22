@@ -43,14 +43,14 @@
       <div class="kit-hero">
         <div class="toolbar">
           <div class="toolbar-full">
-            <button class="chip"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-source"></use></svg> Source: all <span class="chip-count">2</span></button>
+            <button class="chip"><svg class="ic" viewBox="0 0 24 24"><use href="#i-source"></use></svg> Source: all <span class="chip-count">2</span></button>
             <button class="chip is-on">Last 30 days <span class="chip-count">2,904</span></button>
-            <button class="chip"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-signal"></use></svg> Confidence: all <span class="chip-count">12</span></button>
+            <button class="chip"><svg class="ic" viewBox="0 0 24 24"><use href="#i-signal"></use></svg> Confidence: all <span class="chip-count">12</span></button>
             <button class="link--action">Clear filters</button>
             <span class="sortnote">Sort: <b>signal rank</b></span>
           </div>
           <div class="toolbar-compact">
-            <button class="chip is-on"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-filter"></use></svg> Filter <span class="chip-count">1</span></button>
+            <button class="chip is-on"><svg class="ic" viewBox="0 0 24 24"><use href="#i-filter"></use></svg> Filter <span class="chip-count">1</span></button>
             <button class="link--action">Clear</button>
             <span class="sortnote"><b>signal rank</b></span>
           </div>
@@ -67,9 +67,9 @@
             <tbody>
               <tr><th rowspan="2">Toolbar<code>.toolbar</code></th><td class="kit-st">Full row, above 820</td><td><div class="toolbar">
   <div class="toolbar-full">
-    <button class="chip"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-source"></use></svg> Source: all <span class="chip-count">2</span></button>
+    <button class="chip"><svg class="ic" viewBox="0 0 24 24"><use href="#i-source"></use></svg> Source: all <span class="chip-count">2</span></button>
     <button class="chip is-on">Last 30 days <span class="chip-count">2,904</span></button>
-    <button class="chip"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-signal"></use></svg> Confidence: all <span class="chip-count">12</span></button>
+    <button class="chip"><svg class="ic" viewBox="0 0 24 24"><use href="#i-signal"></use></svg> Confidence: all <span class="chip-count">12</span></button>
     <button class="link--action">Clear filters</button>
     <span class="sortnote">Sort: <b>signal rank</b></span>
   </div>
@@ -93,7 +93,7 @@
             <div class="kit-form-d">2.0 Synthesis. A single Filter button carrying the active count, instead of the facet chips.</div></div>
           <div><div class="kit-form-c"><div class="toolbar">
   <h2 class="group-t group-t--inline">Evidence &middot; 42 items</h2>
-  <div class="toolbar-full">
+  <div class="toolbar-row">
     <button class="chip is-on">Group by source</button>
     <button class="chip">Intercom <span class="chip-count">30</span></button>
     <button class="chip">CSV <span class="chip-count">12</span></button>
@@ -101,14 +101,14 @@
   <span class="sortnote">Sort: <b>most recent</b></span>
 </div></div>
             <div class="kit-form-t">With a heading</div>
-            <div class="kit-form-d">4.0 Theme detail. The group heading stands inside the toolbar (<code>.group-t--inline</code>) and the toolbar owns the rhythm.</div></div>
+            <div class="kit-form-d">4.0 Theme detail. The group heading stands inside the toolbar (<code>.group-t--inline</code>) and the toolbar owns the rhythm. The chips are the screen's own evidence controls, so they sit in the row form <code>.toolbar-row</code>, which stays and wraps at every width.</div></div>
           <div><div class="kit-form-c"><div class="toolbar">
   <h2 class="group-t group-t--inline">In this brief &middot; 3 themes</h2>
-  <div class="toolbar-full"><button class="chip">Add themes</button></div>
+  <div class="toolbar-row"><button class="chip">Add themes</button></div>
   <span class="sortnote">Order = <b>recommended priority</b></span>
 </div></div>
             <div class="kit-form-t">One chip and an order note</div>
-            <div class="kit-form-d">6.1 Build brief. Here <code>.sortnote</code> says what the order means. The markup has no compact row, so at 820 and below this toolbar shows only its heading and the note [?].</div></div>
+            <div class="kit-form-d">6.1 Build brief. Here <code>.sortnote</code> says what the order means. The chip sits in the row form <code>.toolbar-row</code>, so it stays at 820 and below. Until Step 6 it wore <code>.toolbar-full</code> and vanished on a phone.</div></div>
         </div>
       </section>
 
@@ -117,6 +117,7 @@
         <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Property</th><th>Type</th><th>Values</th><th>Default</th></tr></thead><tbody>
           <tr><td>Bar</td><td>own class</td><td><code>.toolbar</code>, a wrapping flex row with a rule under it</td><td>none: the class is required</td></tr>
           <tr><td>Full row</td><td>zone</td><td><code>.toolbar-full</code>, takes the free width. Holds the chips, the Clear link and the sort note</td><td>required</td></tr>
+          <tr><td>Row (no compact twin)</td><td>zone</td><td><code>.toolbar-row</code>, the box of the full row without the hiding. For a few chips that are the screen's own controls rather than the filter (4.0, 4.1, 6.1, 6.2)</td><td>absent</td></tr>
           <tr><td>Compact row</td><td>zone</td><td><code>.toolbar-compact</code>, hidden above 820, a flex row at 820 and below</td><td>present on the filter toolbar</td></tr>
           <tr><td>Facet</td><td>atom</td><td><code>.chip</code> and <code>.chip-count</code>, see the chip page</td><td>n/a</td></tr>
           <tr><td>Clear</td><td>atom</td><td><code>.link--action</code>, shown once a filter is active</td><td>absent at rest</td></tr>
@@ -147,7 +148,7 @@
             <div class="kit-dd-c" inert>
               <div class="toolbar">
   <div class="toolbar-full">
-    <button class="chip"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-source"></use></svg> Source: all <span class="chip-count">2</span></button>
+    <button class="chip"><svg class="ic" viewBox="0 0 24 24"><use href="#i-source"></use></svg> Source: all <span class="chip-count">2</span></button>
     <button class="chip is-on">Last 30 days <span class="chip-count">2,904</span></button>
     <span class="sortnote">Sort: <b>signal rank</b></span>
   </div>
@@ -250,6 +251,7 @@
       <section class="kit-sec">
         <h2 class="kit-h2">Changes, newest first</h2>
         <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-21</td><td>Step 6: the row form <code>.toolbar-row</code> was added. On 4.0, 4.1, 6.1 and 6.2 the evidence chips sat in <code>.toolbar-full</code>, which hides below 820 with no compact twin, so the controls vanished at 360; the grey draws them at every width</td><td><code>docs/decisions.md</code>, "Step 6: the system reconciled with the product"</td></tr>
           <tr><td>2026-11-21</td><td>Entered the system: <code>components/toolbar.css</code>, on semantic roles, and this page in the card format</td><td><code>docs/decisions.md</code>, "The molecules entered the system"</td></tr>
           <tr><td>2026-08-18</td><td>The kit was grown out of the colour layer: <code>.toolbar</code>, <code>.sortnote</code> and the two rows were declared in <code>kit.css</code>, with the 820px switch</td><td>commit <code>d461e12</code></td></tr>
           <tr><td>2026-08-05</td><td>The wireframes were rebuilt on the block bank, which is where the filter toolbar first existed in grey</td><td>commit <code>b8ee56b</code></td></tr>

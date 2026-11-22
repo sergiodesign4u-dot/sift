@@ -1,0 +1,24 @@
+/* design/system/components/provlist.css - level 2, molecule.
+   Reads: --text-secondary, --text-primary, --line-hairline, --weight-strong, --space-1, --space-2, --space-5
+   Page:  design/kit/provlist.html
+   Stands on: 5.0 Evidence source, 5.1 Evidence redacted, 3.6 Source detail, in grey only
+              (wireframes/evidence.html, evidence-redacted.html, sources-manage.html, class
+              wf-prov-list). No colour screen wears it yet; Stage 12 paints it.
+   Contains: .cite, the static citation index, an atom in components/citation.css.
+
+   Where one item came from, a line per fact. Promoted from the one-off wf-prov-list at Step 2
+   (three grey screens), built at Step 6 from the grey anatomy: wireframes/_wf.css lines 310-313.
+   Two content forms, one component: a prose line with a link and a citation index (5.0, 5.1),
+   and a label then value per line (3.6). Not interactive; its links keep the link atom's
+   hover and focus, the one focus ring is in base.css.
+
+   Colour from the nearest relative, not from the grey: ink-2 is --text-secondary, ink is
+   --text-primary, line is --line-hairline. Geometry stays as measured: 12px has no type token
+   and stays a literal. The grey's 600 weight was folded into --weight-strong (590) at Stage 07.
+   No em dash anywhere in this file.
+*/
+
+.provlist { list-style: none; font-size: 12px; color: var(--text-secondary); margin: var(--space-1) 0 var(--space-5); }
+.provlist li { padding: var(--space-2) 0; border-bottom: 1px solid var(--line-hairline); }
+.provlist b { color: var(--text-primary); font-weight: var(--weight-strong); }
+.provlist a { color: var(--text-primary); }

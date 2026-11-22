@@ -42,7 +42,7 @@
 
       <div class="kit-hero">
         <nav class="steps" aria-label="Import steps">
-          <span class="step is-done"><span class="step-n"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-check"></use></svg></span> Upload</span>
+          <span class="step is-done"><span class="step-n"><svg class="ic" viewBox="0 0 24 24"><use href="#i-check"></use></svg></span> Upload</span>
           <span class="step-sep" aria-hidden="true">&rsaquo;</span>
           <span class="step is-current"><span class="step-n">2</span> Map columns</span>
           <span class="step-sep" aria-hidden="true">&rsaquo;</span>
@@ -65,7 +65,7 @@
   <span class="step is-current"><span class="step-n">2</span> Map columns</span>
 </nav></td></tr>
               <tr><td class="kit-st">Done</td><td><nav class="steps" aria-label="Import steps">
-  <span class="step is-done"><span class="step-n"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-check"></use></svg></span> Upload</span>
+  <span class="step is-done"><span class="step-n"><svg class="ic" viewBox="0 0 24 24"><use href="#i-check"></use></svg></span> Upload</span>
 </nav></td></tr>
             </tbody>
           </table>
@@ -86,7 +86,7 @@
             <div class="kit-form-t">Current first</div>
             <div class="kit-form-d">2.1 Synthesis, first run. Nothing is done yet; the first phase is the one the person is on.</div></div>
           <div><div class="kit-form-c"><nav class="steps" aria-label="Synthesis progress">
-  <span class="step is-done"><span class="step-n"><svg class="ic" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><use href="#i-check"></use></svg></span> Ingested, 3,750 items</span>
+  <span class="step is-done"><span class="step-n"><svg class="ic" viewBox="0 0 24 24"><use href="#i-check"></use></svg></span> Ingested, 3,750 items</span>
   <span class="step-sep" aria-hidden="true">&rsaquo;</span>
   <span class="step is-current"><span class="step-n">2</span> Scrubbing and clustering</span>
   <span class="step-sep" aria-hidden="true">&rsaquo;</span>
@@ -191,7 +191,7 @@
       <section class="kit-sec" id="tokens">
         <h2 class="kit-h2">Tokens it reads</h2>
         <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Reads</th><th>Which grows from</th><th>For</th></tr></thead><tbody>
-<tr><td><code>--step-current-line</code></td><td><code>--grey-050</code> dark, <code>--grey-950</code> light</td><td>the ring of the current phase (component token: no line role carries that step)</td></tr>
+<tr><td><code>--step-current-line</code></td><td><code>--grey-050</code> dark, <code>--grey-950</code> light</td><td>the ring of the current phase (component token: no line role carries that step; accepted at Step 6)</td></tr>
 <tr><td><code>--bg-raised</code></td><td>tokens.css</td><td>the ground of the current marker</td></tr>
 <tr><td><code>--text-primary</code>, <code>--text-secondary</code></td><td>tokens.css</td><td>the current and done ink, and the upcoming ink</td></tr>
 <tr><td><code>--line-hairline</code>, <code>--line-control</code></td><td>tokens.css</td><td>the rule under the strip and the upcoming ring; the done ring</td></tr>
@@ -226,6 +226,7 @@
       <section class="kit-sec">
         <h2 class="kit-h2">Changes, newest first</h2>
         <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-21</td><td>The component token <code>--step-current-line</code> is accepted, no longer pending</td><td><code>docs/decisions.md</code>, "Step 6: the system reconciled with the product"</td></tr>
           <tr><td>2026-11-21</td><td>Entered the system: <code>components/phase-strip.css</code>, on semantic roles. The ring of the current phase reads the component token <code>--step-current-line</code>. This page in the card format</td><td><code>docs/decisions.md</code>, "The molecules entered the system"</td></tr>
           <tr><td>2026-08-18</td><td><code>.step-n .ic</code> was added: a finished phase carries a mark instead of its number, with the CSV import screen</td><td>commit <code>2ee2c3b</code>, <code>design/kit/docs/inventory.md</code></td></tr>
           <tr><td>2026-08-18</td><td>The kit was grown out of the colour layer: the strip, its steps and its separator were declared in <code>kit.css</code></td><td>commit <code>d461e12</code></td></tr>
