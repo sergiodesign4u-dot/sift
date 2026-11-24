@@ -163,29 +163,29 @@
 
   /* --- FILL --- */
   --bg-page:    var(--grey-950);  /* the ground of every screen: all 23 pages. Origin: plate B pixel */
-  --bg-surface: var(--grey-900);  /* card, panel, bar, and the hover ground of a row: 31 rules, 20 screens (theme card hover, source card, app bar) */
-  --bg-raised:  var(--grey-850);  /* a surface above another surface: 10 rules (active tab, dialog, checkbox field, avatar) */
+  --bg-surface: var(--grey-900);  /* card, panel, bar, and the hover ground of a row: 31 rules, 20 screens (theme card hover, source card, app bar). Step 7: 1.11 dark / 1.06 light off --bg-page. Exempt as a ground, and never the only separation: every card that sits on the page also carries --line-hairline */
+  --bg-raised:  var(--grey-850);  /* a surface above another surface: 10 rules (active tab, dialog, checkbox field, avatar). Step 7: 1.25 dark / 1.14 light off --bg-page, 1.13 / 1.07 off --bg-surface */
   --bg-action:  var(--cyan-400);  /* the one filled action: 36 controls across 12 screens (Build brief, Try again, Import 840 items). fill 3:1, measured 9.13 on page dark / 6.27 light */
-  --bg-evidence: var(--cyan-a10); /* the accent as a surface, under a citation: 2 rules (cite, citechip on 4.0 and 6.4) */
-  --bg-warning: var(--amber-a10); /* low signal and a recoverable failure: 3 rules (low-signal badge, warning band, alert tag) */
-  --bg-danger:  var(--red-a10);   /* a failure that blocks or destroys: 1 rule (the error band). One use today, and it is a role rather than a one-off because its pair --text-danger has three */
+  --bg-evidence: var(--cyan-a10); /* the accent as a surface, under a citation: 2 rules (cite, citechip on 4.0 and 6.4). Step 7: a wash, 1.19 dark / 1.19 light over --bg-surface, and --text-evidence on it reads 6.94 / 4.95 */
+  --bg-warning: var(--amber-a10); /* low signal and a recoverable failure: 3 rules (low-signal badge, warning band, alert tag). Step 7: 1.18 dark / 1.18 light over --bg-surface. --text-warning on it reads 6.59 / 4.72 over a card, but 5.77 / 4.44 over --bg-raised: a warning never sits on a raised surface, and no screen puts it there today */
+  --bg-danger:  var(--red-a10);   /* a failure that blocks or destroys: 1 rule (the error band). One use today, and it is a role rather than a one-off because its pair --text-danger has three. Step 7: 1.10 dark / 1.21 light over --bg-surface. --text-danger on it reads 4.92 / 4.57 over a card and 4.36 / 4.30 over --bg-raised, under 4.5 in BOTH themes: the error band never sits in a dialog or a menu, and no screen puts it there today */
 
   /* --- INK. Threshold 4.5:1, or 3:1 from 24px and from 19px bold. --- */
-  --text-primary:   var(--grey-050);  /* every heading, label and name: 78 rules, all 23 pages. 16.60 dark on page / 18.50 light. Origin: plate B pixel, A5 */
+  --text-primary:   var(--grey-050);  /* every heading, label and name: 78 rules, all 23 pages. 16.60 dark on page / 19.35 light (Step 7 re-measure; it was written as 18.50). Origin: plate B pixel, A5 */
   --text-secondary: var(--grey-400);  /* metadata, quote, placeholder, every recessed label: 104 rules, all 23 pages. 5.90 dark / 6.03 light */
   --text-on-action: var(--grey-950);  /* the ink that sits ON the accent: the label of a filled button, the checkmark inside a checked box. 9.13 dark / 6.27 light against --bg-action. SPLIT FROM --bg-page at Stage 08: they carried one value and are opposite roles, and a theme that lightens the page must never lighten the label of a button */
-  --text-evidence:  var(--cyan-400);  /* the citation marker, and nothing else: 2 rules on 4.0 and 6.4. Same value as --bg-action, different role: A2 signed the citation separately from the action, and they can part */
+  --text-evidence:  var(--cyan-400);  /* the citation marker, and nothing else: 2 rules on 4.0 and 6.4. Same value as --bg-action, different role: A2 signed the citation separately from the action, and they can part. Step 7: 9.13 dark / 6.27 light on --bg-page, 8.26 / 5.89 on --bg-surface */
   --text-warning:   var(--amber-400); /* the low-signal word and the alert tag: 4 rules on 2.0, 3.5, 4.1, 6.2. 8.60 dark / 5.93 light */
   --text-danger:    var(--red-300);   /* the field error and the error band's emphasis: 2 rules. 5.96 on --bg-page, 5.40 on --bg-surface, 4.78 on --bg-raised, all above 4.5. It reads --red-300 and not --red-400 because the fill keeps the darker step: the band does not move, only the two lines of small red text do. Step 4 review */
 
   /* --- LINE. Threshold 3:1 where the line identifies a control or a state; a decorative
          divider is exempt, and the comment says which of the two each role is. --- */
   --line-hairline: var(--grey-800);  /* DECORATIVE. Every divider and card edge: 64 rules, all 23 pages. 1.39 dark on page / 1.28 light, and exempt: it separates, it does not identify */
-  --line-control:  var(--grey-600);  /* IDENTIFYING. The boundary of an input, a chip, an outlined button: 14 rules on 9 screens. 3.93 on --bg-page, 3.55 on --bg-surface, 3.14 on --bg-raised, against the 3:1 of WCAG 1.4.11. It was --grey-700 at 1.76 until the Step 4 review: an input on this product sits 1.19:1 off the page, so its border is the only thing that says it is a field */
+  --line-control:  var(--grey-600);  /* IDENTIFYING. The boundary of an input, a chip, an outlined button, and since Step 7 the account avatar: 15 rules, the avatar alone on the 27 app-bar screens. 3.93 on --bg-page, 3.55 on --bg-surface, 3.14 on --bg-raised, against the 3:1 of WCAG 1.4.11. It was --grey-700 at 1.76 until the Step 4 review: an input on this product sits 1.19:1 off the page, so its border is the only thing that says it is a field */
   --line-focus:    var(--cyan-400);  /* IDENTIFYING. The keyboard ring, every focusable control on all 23 pages. 9.13 dark / 6.27 light */
   --line-strong:   var(--grey-700);  /* DECORATIVE. A rule one step heavier than the hairline, that marks where a block starts: 2 rules, the trust item on 0.0 and the reason on 4.0 and 4.1 (one-off.css). kit.css drew both in --line-2, which became --line-control; a decorative rule may not borrow the identifying role, and the Step 4 brightening was for controls. 1.76 on a card, exempt as decorative. Step 6 */
-  --line-evidence: var(--cyan-a30);  /* the edge of a citation chip: 3 rules */
-  --line-warning:  var(--amber-a32); /* the dashed edge of an alert tag and the edge of the low-signal badge: 2 rules. A soft edge around a small mark */
+  --line-evidence: var(--cyan-a30);  /* the edge of a citation chip: 3 rules. Step 7: 1.87 dark / 1.71 light over --bg-surface. DECORATIVE: the chip is identified by its ink and its fill, the edge only softens it */
+  --line-warning:  var(--amber-a32); /* the dashed edge of an alert tag and the edge of the low-signal badge: 2 rules. A soft edge around a small mark. Step 7: 1.91 dark / 1.67 light over --bg-surface. DECORATIVE, for the same reason: the word inside carries it */
   --line-warning-strong: var(--amber-400); /* IDENTIFYING. The solid left rule of a warning band and of a failed source row: 2 rules on 3.2, 3.5, 4.1, 6.2. kit.css drew both in solid --amber, and the 32 percent edge is a different role. 8.60 on --bg-page. Step 6, owner's decision */
   --line-danger:   var(--red-400);   /* IDENTIFYING. The solid left rule of an error band: 1 rule. kit.css drew it in solid --red. Step 3 moved it to the 32 percent edge on the belief that the warning band already used one; it did not, so Step 6 put both bands back to solid, as drawn */
 
@@ -195,29 +195,42 @@
          and each one born in BOTH themes at once: a token with a value in one theme only makes
          the focus ring vanish in the other, and the only way to see that is to switch, which is
          to say never. --- */
-  --bg-hover:        var(--grey-900);  /* FILL. A row, a bare button or a card lifting under the pointer. 1.11 off the page: a hover is a whisper, not a state change, and it is never the only signal */
-  --bg-action-hover: var(--cyan-300);  /* FILL. The filled action only. It replaces a filter: brightness(1.08), which was the one state in this product written as a style rather than a token. --text-on-action reads 10.85 against it */
-  --line-hover:      var(--grey-400);  /* LINE. The border of an outlined control under the pointer: 5.34 on a card, well past the 3:1 a line owes */
+  --bg-hover:        var(--grey-900);  /* FILL. A row, a bare button or a card lifting under the pointer. 1.11 off the page: a hover is a whisper, not a state change, and it is never the only signal. Step 7: 1.11 dark / 1.06 light off --bg-page, and 1.00 in BOTH themes off --bg-surface, because it is the same step: on a card the hover is carried by the border (--line-hover) or the ink, never by the fill */
+  --bg-action-hover: var(--cyan-300);  /* FILL. The filled action only. It replaces a filter: brightness(1.08), which was the one state in this product written as a style rather than a token. --text-on-action reads 10.85 against it. Step 7: 9.82 dark / 7.70 light on --bg-surface; the ink on it 10.85 / 8.20 */
+  --line-hover:      var(--grey-400);  /* LINE. The border of an outlined control under the pointer: 5.34 on a card, well past the 3:1 a line owes. Step 7: 5.34 dark / 5.66 light on a card */
   --opacity-disabled: 0.45;            /* Not a colour: a control that cannot act is dimmed, never repainted by hand, so it keeps its own identity while losing its weight */
 
   /* --- DEPTH. Not one of the three surfaces, and it gets a role anyway for the reason the
          three exist: a theme has to be able to change it. A shadow was a primitive here until
          the light pair tried to override it, which is precisely the check that says it is a
          role. Two rules use it: the frame and the dialog. --- */
-  --shadow-sheet: var(--shadow-dark);
+  --shadow-sheet: var(--shadow-dark);  /* Step 7: the shadow reads on the light ground and barely on the dark one, so no separation rests on it: both sheets that carry it (the frame, the dialog) also carry --line-hairline */
 
   /* --- COMPONENT. Born at Step 5, round 2 (molecules), and only where a colour did not land on
          any semantic role. Each one keeps the exact kit.css value in the dark theme, so nothing
          moves. Accepted by the owner at Step 6 ("as you recommend"). --- */
-  --step-current-line: var(--grey-050);  /* LINE. The ring of the current phase in the phase strip: kit.css drew it in --porcelain, and no line role carries that step. 1 rule, 2.1 and 2.2 */
-  --text-accent:       var(--cyan-400);  /* INK. Born at round 3 (organisms), accepted at Step 6 as a role: the accent as ink where it marks "this is the product" or "you are here", 2 rules (the brand mark in the app header, the current bottom tab). Not --text-evidence, which A2 keeps for the citation alone. Same pair as --text-evidence, so the same ratios */
-  --tier-mark:         var(--grey-700);  /* FILL. The square bullet of a tier feature on 0.0: kit.css drew it in --line-2, which became --line-control, a line role. A fill may not borrow a line role. 1 rule, decorative */
+  --step-current-line: var(--grey-050);  /* LINE. The ring of the current phase in the phase strip: kit.css drew it in --porcelain, and no line role carries that step. 1 rule, 2.1 and 2.2. Step 7: 16.60 dark / 19.35 light on --bg-page */
+  --text-accent:       var(--cyan-400);  /* INK. Born at round 3 (organisms), accepted at Step 6 as a role: the accent as ink where it marks "this is the product" or "you are here", 2 rules (the brand mark in the app header, the current bottom tab). Not --text-evidence, which A2 keeps for the citation alone. Same pair as --text-evidence, so the same ratios. Step 7: 9.13 dark / 6.27 light on --bg-page */
+  --tier-mark:         var(--grey-700);  /* FILL. The square bullet of a tier feature on 0.0: kit.css drew it in --line-2, which became --line-control, a line role. A fill may not borrow a line role. 1 rule, decorative. Step 7: 1.76 dark / 2.83 light on --bg-surface, decorative */
 }
 
 /* ============================ THE LIGHT PAIR ============================
    Only SEMANTIC roles are redefined. Not one primitive is touched, which is the whole proof
    that the two levels are really two levels: a theme is a different set of choices from the
    same ramp, not a different ramp.
+
+   STRESS-TESTED AT STEP 7 on the whole stand (57 pages), the two frozen stands and all 22 colour
+   screens on the system, at 1440 and 360. Not one value here had to move: no text under its floor,
+   no two surfaces that part in one theme and merge in the other, no role paired in one theme only,
+   no component reading a primitive, and one control boundary under 3:1, the avatar's, which was
+   under it in the dark theme as well (1.26) and so was a role choice, not a pair value: the
+   avatar now reads --line-control (3.55 dark, 3.30 light, owner's decision of 2026-11-24). What the test did find is a
+   property of the pair rather than a failure: the light ladder is half as steep as the dark one
+   (page to surface 1.06 against 1.11, surface to raised 1.07 against 1.13). Everything that sits on
+   a ladder step also carries the hairline (1.28 against 1.39), so nothing merges, and three
+   tone-only marks are the weakest places in the light theme: the current app-bar tab (1.07, also
+   carried by its ink), the skeleton (1.06, it is a wait, not a control) and the avatar's fill
+   (1.07), whose edge now carries it at 3.30 (docs/decisions.md).
    ======================================================================== */
 
 [data-theme="light"] {
@@ -231,10 +244,10 @@
   --bg-danger:   var(--red-a12);
 
   /* INK */
-  --text-primary:   var(--grey-950);  /* the dark ramp's deepest step, now carrying ink: 18.50 on --bg-page */
+  --text-primary:   var(--grey-950);  /* the dark ramp's deepest step, now carrying ink: 19.35 on --bg-page (Step 7 re-measure; it was written as 18.50) */
   --text-secondary: var(--grey-550);  /* 6.03 on --bg-page, 5.66 on --bg-surface */
   --text-on-action: var(--grey-000);  /* white ON the accent: 6.27. The dark theme puts the page colour here and the light theme puts white, which is exactly why this is its own role */
-  --text-evidence:  var(--cyan-700);  /* 4.97 on --bg-page */
+  --text-evidence:  var(--cyan-700);  /* 6.27 on --bg-page, the same step as --bg-action (Step 7 re-measure; it was written as 4.97) */
   --text-warning:   var(--amber-700); /* 5.93 on --bg-page */
   --text-danger:    var(--red-700);   /* 5.88 / 5.53 / 5.18. The light side already passed before the review, which is what showed the dark failure was in the value and not in the role */
 

@@ -215,6 +215,50 @@ is measured before it ships, not after.
 for emphasis, decoration, category coding, or chart series. A color that has learned a second
 meaning has lost the first.
 
+### Two themes
+
+The product ships dark. The light theme is the pair the semantic level owes: every role is
+redefined under `[data-theme="light"]` in `design/system/tokens.css`, and no primitive is. It was
+stress-tested at Stage 08 Step 7 on the whole stand, both frozen stands and all 22 colour screens,
+at 1440 and 360. Not one pair value had to move. Ratios below are WCAG contrast against the ground
+named; ink owes 4.5:1, a line or fill that identifies a control owes 3:1, a decorative divider
+owes nothing.
+
+| Pair | Dark | Light | Floor | Reading |
+|---|---|---|---|---|
+| `--text-primary` on the page | 16.60 | 19.35 | 4.5 | passes |
+| `--text-secondary` on a card | 5.34 | 5.66 | 4.5 | passes; the dimmest ink anywhere |
+| `--text-on-action` on `--bg-action` | 9.13 | 6.27 | 4.5 | passes; 10.85 / 8.20 on hover |
+| `--text-evidence` on the page | 9.13 | 6.27 | 4.5 | passes |
+| `--text-warning` on the page | 8.60 | 5.93 | 4.5 | passes |
+| `--text-danger` on a raised surface | 4.78 | 5.18 | 4.5 | passes |
+| `--text-warning` on its wash, over a card | 6.59 | 4.72 | 4.5 | passes |
+| `--text-warning` on its wash, over a raised surface | 5.77 | 4.44 | 4.5 | fails in light: never placed there |
+| `--text-danger` on its wash, over a raised surface | 4.36 | 4.30 | 4.5 | fails in both: never placed there |
+| `--line-control` on a raised surface | 3.14 | 3.10 | 3 | passes, at its narrowest |
+| `--line-focus` on a raised surface | 7.31 | 5.52 | 3 | passes |
+| `--line-warning-strong` / `--line-danger` on the page | 8.60 / 4.94 | 5.93 / 5.88 | 3 | passes |
+| `--line-hairline` on the page | 1.39 | 1.28 | none | decorative |
+| page to surface / surface to raised | 1.11 / 1.13 | 1.06 / 1.07 | none | a ground; see below |
+
+**The light ladder is half as steep.** Separation in this product is by tone plus the hairline,
+and in the light theme each tone step is about half the distance of the dark one. Nothing merges,
+because every surface that sits on a step also carries the hairline. The places that rely on tone
+alone are the weakest in the light theme: the current app-bar tab (1.07, also carried by its ink),
+the skeleton (1.06) and the account avatar's fill (1.07). The avatar is a control, and its edge
+read 1.20 light and 1.26 dark on the hairline: a role choice rather than a pair value. It now
+reads `--line-control`, 3.30 light and 3.55 dark, like every other control boundary (decided
+2026-11-24, `docs/decisions.md` under Stage 08 Step 7).
+
+**Two placements are forbidden by measurement, not by taste.** A warning or an error band never
+sits on a raised surface (a dialog, a menu): its ink on its own wash falls under 4.5 there. No
+screen does it today.
+
+**If the light theme is not kept as a feature,** only the switch in `design/_nav.js` goes. The
+light block in `tokens.css`, this table, both themes on `design/kit/color.html` and the switch on
+the stand stay: the pair is the only proof that the semantic level is overridden separately from
+the primitives.
+
 ## Typography
 
 **Display Font:** Inter (with `-apple-system`, `BlinkMacSystemFont`, `system-ui`, `sans-serif`)

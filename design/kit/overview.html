@@ -10,6 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../system/index.css">
 <link rel="stylesheet" href="_page.css">
+<script src="_theme.js"></script>
 </head>
 <!--
   design/kit/overview.html - the hub of the design system.
@@ -61,8 +62,8 @@
       <tr><td>3</td><td><code>tokens.css</code>, 82 primitives and 20 roles, every role with a theme pair; <code>base.css</code></td><td>done</td></tr>
       <tr><td>4</td><td>These foundation pages, and the review that fixed two contrast failures</td><td>done</td></tr>
       <tr><td>5</td><td>Components, in rounds from atoms upward, each one closed in a single pass. <b>Atoms done: 17 of 17, all in the card format</b> (from 2026-11-20, Button the template). <b>Molecules: 20 of 20</b> (2026-11-21). <b>Organisms: 12 of 12</b> (2026-11-21)</td><td>done</td></tr>
-      <tr><td>6</td><td>Reconciling the system with the product, in three lists. The product rendered on the system alone: icons, the list reset and 31 one-off classes were missing and are in now; the provenance list was built as the 50th component; the August atom drift was reverted; the bands are solid again. <b>Waiting for review</b> (2026-11-21)</td><td>running</td></tr>
-      <tr><td>7</td><td>The theme pair, stress-tested on the assembled showcase</td><td></td></tr>
+      <tr><td>6</td><td>Reconciling the system with the product, in three lists. The product rendered on the system alone: icons, the list reset and 31 one-off classes were missing and are in now; the provenance list was built as the 50th component; the August atom drift was reverted; the bands are solid again. Accepted 2026-11-24</td><td>done</td></tr>
+      <tr><td>7</td><td>The theme pair, stress-tested on the assembled showcase: 57 stand pages, the two frozen stands and the 22 colour screens on the system, in both themes at 1440 and 360. No pair value moved; the light ladder is half as steep; the avatar edge was under 3:1 in both themes and now reads the control line; the stand now applies its theme before the first paint, and the state snapshots were re-taken. See <a href="color.html#stress">Colour, the stress test</a></td><td>done</td></tr>
       <tr><td>8</td><td>The sample moved onto <code>index.css</code>, with the pixel proof</td><td></td></tr>
       <tr><td>9</td><td>Verification, the dry run over the still-grey screens, close-out</td><td></td></tr>
     </tbody></table></div>
@@ -87,7 +88,7 @@
 
   <section class="kit-sec" id="backlog">
     <h2 class="kit-h2">Backlog</h2>
-    <p class="kit-note">What Step 6 decided not to fill in now, and who closes it. Source: <code class="kit-mono">design/kit/docs/backlog.md</code>.</p>
+    <p class="kit-note">What Steps 6 and 7 decided not to fill in now, and who closes it. Source: <code class="kit-mono">design/kit/docs/backlog.md</code>.</p>
     <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>What</th><th>Why it waits</th><th>Closes</th></tr></thead><tbody>
       <tr><td>The provenance list in colour (5.0, 5.1, 3.6)</td><td>The component exists; painting the screens is the rollout</td><td>Stage 12</td></tr>
       <tr><td>The label/value gap and the link class in the provenance list</td><td>The grey draws neither; nothing to copy</td><td>Stage 12</td></tr>
@@ -101,6 +102,7 @@
       <tr><td><code>.legal-crumb</code> against <code>.breadcrumb</code></td><td>Two classes for one job, grey only</td><td>Stage 12</td></tr>
       <tr><td>The action bar's alignment</td><td>A design question, not a migration</td><td>Stage 09</td></tr>
       <tr><td>The rename map over <code>wireframes/</code></td><td>The grey is never edited; the map is the rollout's input</td><td>Stage 12</td></tr>
+      <tr><td>A warning or error band never on a raised surface (a dialog, a menu)</td><td>Step 7 measured its ink on its own wash under 4.5 there; no screen does it, so it is a rule of use</td><td>Stage 09</td></tr>
     </tbody></table></div>
   </section>
 

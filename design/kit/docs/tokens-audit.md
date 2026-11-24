@@ -184,6 +184,13 @@ comparison at Step 8 reads:
 | `--line-control` (dark) | `var(--grey-700)` #3A444C, 1.76 on a card | `var(--grey-600)` #647280, 3.93 / 3.55 / 3.14 | WCAG 1.4.11 asks 3:1 of anything that identifies a control. An input on this product sits 1.19:1 off the page, so its border is the only thing saying it is a field. This one is visible on every input, chip and outlined button, and that is the point |
 | `--line-control` (light) | `var(--grey-350)` #8A96A3, 3.01 / 2.83 | `var(--grey-450)` #7E8A97, 3.52 / 3.30 / 3.10 | Passed on one ground and missed on the other. Same decision, same reason |
 
+**One more, applied late at Step 7 under the same rule.** The theme stress test found the one
+control boundary that the Step 4 review had not reached. Accepted by the owner on 2026-11-24.
+
+| Class | Was | Became | Why |
+|---|---|---|---|
+| `.avatar` border | `var(--line-hairline)`, 1.26 dark and 1.20 light in the app bar | `var(--line-control)`, 3.55 dark and 3.30 light | The avatar is a control, the only way to Account, identified by its disc and its edge alone. WCAG 1.4.11 asks 3:1 of that edge and the hairline is decorative. Visible on all 27 app-bar screens as a brighter ring; `.acct-id-avatar` (a span on 7.0, not a control) keeps the hairline |
+
 Two new primitives came in with them, `--grey-600` and `--red-300`, plus the light pair
 `--grey-450`. They are steps the plate ramp did not have, and they exist because a threshold
 asked for them rather than because a taste did.

@@ -1,6 +1,6 @@
 # Backlog - Sift design system
 
-*Stage 08 Step 6. What the reconciliation of the system with the product decided NOT to fill in
+*Stage 08 Steps 6 and 7. What the reconciliation of the system with the product decided NOT to fill in
 now, with the reason and the stage that closes it. One row per item, in the format the stage asks
 for: what is missing, where it shows, why it is deferred, who closes it. Shown on
 `design/kit/overview.html`, section "Backlog".*
@@ -23,3 +23,4 @@ for: what is missing, where it shows, why it is deferred, who closes it. Shown o
 | `.legal-crumb` against `.breadcrumb` | 9.0, 9.1, 9.2 (grey) | Two classes for one job; the legal one is grey only | Stage 12, when 9.x is painted |
 | The action bar has no `justify-content` | 3.2, 3.3, 3.6, 6.1 | Measured identical to `kit.css`; whether the buttons should sit at the end is a design question, not a migration | Stage 09 |
 | The rename map rows for the grey | 31 + 23 screens in `wireframes/` | `wireframes/` is never edited after Stage 05; the map is the input of the rollout. Step 6 added one row (`.acct-card-*` to `.cardrow-*`) | Stage 12 |
+| A rule: a warning or an error band never sits on a raised surface | any future dialog or menu that would carry a band | Measured at Step 7: the ink on its own wash falls under 4.5 over `--bg-raised` (warning 4.44 in light, danger 4.36 dark and 4.30 light). No screen does it today, so it is a rule of use, not a value fix | Stage 09, in the usage rules of the notice |

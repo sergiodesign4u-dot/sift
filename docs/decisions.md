@@ -740,3 +740,91 @@ Claude's script and by Codex (read-only):
 | `.acct-id-avatar` declared in both `avatar.css` and `account-shell.css` | Claude, while verifying the backlog, before Codex ran | fixed: the atom owns it |
 | "Reads:" headers of `account-shell.css` (`--bg-raised`, left over from the duplicate), `cardrow.css` (the two new zones) and `screen-head.css` (`--text-primary`, unused) | Codex | fixed |
 | The other seven classes | both | none found |
+
+## Step 7: the theme pair stress-tested (2026-11-24)
+
+Stage 08 Step 7. In this project the shipped theme is dark (`:root`) and the pair is light
+(`[data-theme="light"]`), so the stress test runs on the light pair; the mechanism is the one the
+step names. The pair itself was written at Step 3 and every state token was born paired at Step 5;
+this step creates no pairs and looks at NEIGHBOURHOOD, which no single component can show.
+
+**The walk.** One script (Claude's instrument) rendered every page in both themes at 1440 and 360
+and measured, per element and per theme: text against its composited ground, every own fill
+against the ground below it, every border against that ground, and every control edge. Corpus:
+57 stand pages, the two frozen stands (`kit.html`, `shell.html`) and all 22 colour screens, the
+last three groups with `kit.css` replaced by `design/system/index.css`, so the product was tested
+on the system it moves to at Step 8. First pass on the screens switched the theme after load and
+caught the app-bar tabs mid-transition (0.15s); withdrawn on verification, and the screens were
+re-walked with the theme set and transitions settled.
+
+**What it found.**
+- **No pair value had to move.** No text under its floor in either theme on the system. No two
+  surfaces that part in one theme and merge in the other. No element count difference between the
+  themes, no horizontal scroll, no console error.
+- **The light ladder is half as steep.** Page to surface 1.06 against 1.11, surface to raised 1.07
+  against 1.13. Every surface on a step also carries the hairline (1.28 against 1.39), so nothing
+  merges. Three tone-only marks are the weakest places in light: the current app-bar tab (1.07,
+  also carried by its ink), the skeleton (1.06, a wait, not a control) and the avatar.
+- **The avatar's edge is under 3:1 in BOTH themes**, 1.26 dark and 1.20 light in the app bar. It
+  is a control (the only way to Account) identified by a disc and a hairline. The value is not
+  wrong for the pair; the role is wrong for a control, the same reasoning that moved inputs to
+  `--line-control` at the Step 4 review. It went to the owner because the fix changes the shipped
+  dark look on 27 screens. **Decided 2026-11-24: the 28px `.avatar` reads `--line-control`**, 3.55
+  dark and 3.30 light in the app bar. The 40px `.acct-id-avatar` keeps the hairline: it is a span
+  on 7.0, not a control. Recorded in `tokens-audit.md` as a Step 4 rule applied late, so the Step 8
+  pixel proof explains the brighter ring on every app-bar screen.
+- **Two placements are forbidden by measurement.** Ink on its own wash over `--bg-raised`: warning
+  4.44 in light, danger 4.36 dark and 4.30 light. No screen puts a band on a raised surface today;
+  the rule goes to the backlog for Stage 09.
+- **`--text-danger` and `--line-danger` are one value in light** (`--red-700`) and two in dark. Not
+  a defect: the ink and the rule of the same band, never two components that must be told apart.
+- **Three ratios in comments were wrong** and are corrected: `--text-primary` light reads 19.35,
+  not 18.50 (`tokens.css`, `color.html`); `--text-evidence` light reads 6.27, not 4.97.
+
+**Escapees from earlier steps.** None in the component files: no component reads a primitive, no
+role is paired in one theme only (both instruments agree). Two escapees outside them:
+- **The stand painted its theme late.** `_nav.js` loads at the end of `<body>`; with the light
+  theme chosen and the script held back 1.5 s, the page showed its full text on the dark ground.
+  Step 4 checked that the switch worked, not WHEN it applied. Fixed with `design/kit/_theme.js`,
+  loaded in the head of the 57 pages; measured again, the page is light while the script is still
+  loading.
+- **The state snapshots were stale.** `scripts/shoot-states.js` photographed `#live`, which the
+  card format of Step 5 (2026-11-20) removed, so the frames on five pages were the August ones, of
+  a layout that no longer exists, and the input focus frame had no ring. Step 5 replaced the
+  scene and never re-ran the script. The script now photographs `.kit-hero`, reaches focus by
+  Tab until the control itself holds it, and reports a state frame that equals rest. All 26
+  frames re-taken; the filled button's pressed frame equals its rest by decision ("the press reads
+  as a return").
+- **The snippet page drew bullets** in its live hero (`<ul>` without `.list`, after the reset
+  moved to `.list` at Step 6). Fixed on the page.
+
+**Component files changed for the theme: none.** Header lines only: `checkbox.css`, `chip.css` and
+`input.css` now list `--opacity-disabled`, which they read.
+
+**What happens on "no".** If the light theme is not kept as a product feature, only the switch in
+`design/_nav.js` (Step 8) goes. The light block in `tokens.css`, the two-theme table in `DESIGN.md`,
+both themes on `design/kit/color.html` and the stand's switch stay: the pair is the only proof that
+the semantic level is overridden separately from the primitives.
+
+**Critique on two instruments, collected independently.** Claude walked the browser (neighbourhood,
+contrast, separation, the late theme, the snapshots). Codex (read-only) checked the source: pair
+parity, collapse between roles, primitive and literal reads, separation that rests on a shadow,
+and the "Reads:" headers.
+
+| Finding | Who found it | State |
+|---|---|---|
+| The light ladder half as steep; three tone-only marks are the weakest places | Claude | recorded, no value moved |
+| The avatar edge under 3:1 in both themes | Claude | fixed by the owner's decision: `.avatar` reads `--line-control` |
+| Ink on its own wash over a raised surface under 4.5 | Claude | rule to the backlog, Stage 09 |
+| The stand applies its theme after the first paint | Claude | fixed, `_theme.js` |
+| The state snapshots stale since 2026-11-20, focus frame without a ring | Claude | fixed, script repointed, 26 frames re-taken |
+| Bullets in the snippet hero | Claude | fixed |
+| Three wrong ratios in comments | Claude | fixed |
+| `--text-danger` and `--line-danger` merge in light | Codex | verified, not a defect (one band) |
+| `opacity: 0.7` literals in `breadcrumb.css` and `phase-strip.css` | Codex | kept: decorative separators, moved byte for byte from `kit.css:212` and `kit.css:457`; not a theme value |
+| `opacity: 1` in `base.css` | Codex | kept: it resets the browser's placeholder opacity, not a state |
+| "Reads:" of `checkbox.css`, `chip.css`, `input.css` miss `--opacity-disabled` | Codex | fixed |
+| "Reads:" of `app-header.css` lists `--text-evidence`, `source-row.css` `--line-warning`, `tier-card.css` `--line-control` | Codex | withdrawn on verification: the names occur in prose ("Not --text-evidence"), or as the prefix of `--line-warning-strong`, not in the Reads line |
+| The stand's theme button edge at 1.26 | Claude | withdrawn on verification: a text button, identified by its word |
+| The frozen `kit.html` footer links read 2.58 in light | Claude | not touched: frozen stand chrome with its own literals, not the system |
+| Pair parity, primitive reads, shadow-only separation | both | none found |

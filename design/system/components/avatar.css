@@ -1,5 +1,5 @@
 /* design/system/components/avatar.css - level 1, atom.
-   Reads: --bg-raised, --line-hairline
+   Reads: --bg-raised, --line-control (.avatar), --line-hairline (.acct-id-avatar)
    Page:  design/kit/avatar.html
    Stands on: 28 screens: the app bar on 27, plus the identity block on 7.0.
 
@@ -9,6 +9,13 @@
    A monochrome disc by decision, and it stays one: this product scrubs PII by default, so a face
    here would be the same lie as a face on a piece of evidence. Where a SOURCE needs an identity
    it is a channel token, which is the icon slot.
+
+   THE 28px DISC IS A CONTROL, SO ITS EDGE IS A CONTROL BOUNDARY. It is the only way to Account and
+   it is identified by nothing but its disc and its edge. On --line-hairline the edge read 1.26 dark
+   and 1.20 light in the app bar, under the 3:1 of WCAG 1.4.11 in both themes; on --line-control it
+   reads 3.55 dark and 3.30 light. The Step 4 rule (every control boundary reads --line-control)
+   applied late, at the Step 7 theme stress test, by the owner's decision of 2026-11-24. The 40px
+   form is a span on the one screen about the person, not a control, so it keeps the hairline.
    No em dash anywhere in this file.
 */
 
@@ -17,7 +24,7 @@
   width: 28px; height: 28px;
   border-radius: var(--radius-pill);
   background: var(--bg-raised);
-  border: 1px solid var(--line-hairline);
+  border: 1px solid var(--line-control);
 }
 .avatar::after { content: ""; position: absolute; inset: -8px; border-radius: var(--radius-pill); }
 .acct-id-avatar { width: 40px; height: 40px; border-radius: var(--radius-pill); background: var(--bg-raised); border: 1px solid var(--line-hairline); flex: none; }
