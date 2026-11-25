@@ -48,9 +48,13 @@
           <section class="auth-card">
             <h2 class="auth-h2">Log in</h2>
             <p class="auth-value">Turn scattered customer feedback into clear, prioritized decisions, with the evidence to defend every call.</p>
-            <label class="field-label" for="hero-email">Work email</label>
-            <input class="input" id="hero-email" type="email" placeholder="alex@northwind.io">
-            <button class="btn u-full" type="button">Log in</button>
+            <form class="form">
+              <div class="field">
+                <label class="field-label" for="hero-email">Work email</label>
+                <input class="input" id="hero-email" type="email" placeholder="alex@northwind.io">
+              </div>
+              <button class="btn u-full" type="button">Log in</button>
+            </form>
             <div class="auth-or">or</div>
             <button class="btn--ghost u-full" type="button">Continue with SSO</button>
             <p class="auth-switch">New to Sift? <a class="link" href="#">Sign up</a></p>
@@ -58,7 +62,7 @@
         </div>
         <p class="kit-hero-note">Live. The log in card, copy from the grey 1.0</p>
       </div>
-      <p class="kit-note">No colour screen carries this molecule yet. The copy is from the grey screens in <code class="kit-mono">wireframes/</code>, and the screens are painted at Stage 12 (<code class="kit-mono">docs/decisions.md</code>, accepted: "Auth card, three forms"; <code class="kit-mono">design/kit/docs/inventory.md</code>). The grey fields and buttons are the system's atoms here: <a href="input.html">Input</a>, <a href="button.html">Button</a>, <a href="field-label.html">Field label</a>, <a href="link.html">Inline text link</a>. The field wrapper that spaces a label, a control and its error is not in the system yet, so the fields in this specimen stand without it.</p>
+      <p class="kit-note">No colour screen carries this molecule yet. The copy is from the grey screens in <code class="kit-mono">wireframes/</code>, and the screens are painted at Stage 12 (<code class="kit-mono">docs/decisions.md</code>, accepted: "Auth card, three forms"; <code class="kit-mono">design/kit/docs/inventory.md</code>). The grey fields and buttons are the system's atoms here: <a href="input.html">Input</a>, <a href="button.html">Button</a>, <a href="field-label.html">Field label</a>, <a href="link.html">Inline text link</a>. The fields stand in <a href="field.html"><code>.field</code></a> inside <a href="form.html"><code>.form</code></a>, which space a label, its control and its error, as on every other form of the product. The heading is <code>.auth-h2</code> because the card sits under the screen's own title; the grey 1.0 sets its title as an <code>h1</code> and the system has no title form for the card yet, which is a backlog row for Stage 12.</p>
 
       <section class="kit-sec" id="variants">
         <h2 class="kit-h2">Variants and states</h2>
@@ -205,9 +209,13 @@
           <pre class="kit-pre">&lt;section class="auth-card"&gt;
   &lt;h2 class="auth-h2"&gt;Log in&lt;/h2&gt;
   &lt;p class="auth-value"&gt;Turn scattered customer feedback into clear, prioritized decisions, with the evidence to defend every call.&lt;/p&gt;
-  &lt;label class="field-label" for="email"&gt;Work email&lt;/label&gt;
-  &lt;input class="input" id="email" type="email"&gt;
-  &lt;button class="btn u-full" type="submit"&gt;Log in&lt;/button&gt;
+  &lt;form class="form" action="synthesis.html"&gt;
+    &lt;div class="field"&gt;
+      &lt;label class="field-label" for="email"&gt;Work email&lt;/label&gt;
+      &lt;input class="input" id="email" type="email"&gt;
+    &lt;/div&gt;
+    &lt;button class="btn u-full" type="submit"&gt;Log in&lt;/button&gt;
+  &lt;/form&gt;
   &lt;div class="auth-or"&gt;or&lt;/div&gt;
   &lt;button class="btn--ghost u-full" type="submit"&gt;Continue with SSO&lt;/button&gt;
   &lt;p class="auth-switch"&gt;New to Sift? &lt;a class="link" href="auth-signup.html"&gt;Sign up&lt;/a&gt;&lt;/p&gt;

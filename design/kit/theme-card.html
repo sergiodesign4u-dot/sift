@@ -76,7 +76,7 @@
 
       <section class="kit-sec" id="variants">
         <h2 class="kit-h2">Variants and states</h2>
-        <p class="kit-note">One form. The variant is the confidence the row carries: a strong theme shows its count, a low-signal theme shows its count and the badge. The states are the row's own: hover lifts the ground and nudges the drill, selected draws the accent strip, focus is the ring from base.css on the link inside. There is no pressed row and no disabled row, because theme-card.css paints neither. The checkbox, the rank and the confidence indicator keep their own states on their own pages: <a href="checkbox.html">Checkbox</a>, <a href="rank.html">Rank number</a>, <a href="confidence.html">Confidence indicator</a>.</p>
+        <p class="kit-note">One form. The variant is the confidence the row carries: a strong theme shows its count, a low-signal theme shows its count and the badge. The states are the row's own: hover lifts the ground and steps the drill to primary ink, selected draws the accent strip, focus is the ring from base.css on the link inside. There is no pressed row and no disabled row, because theme-card.css paints neither. The checkbox, the rank and the confidence indicator keep their own states on their own pages: <a href="checkbox.html">Checkbox</a>, <a href="rank.html">Rank number</a>, <a href="confidence.html">Confidence indicator</a>.</p>
         <div class="kit-matrix-wrap">
           <table class="kit-matrix" inert>
             <thead><tr><th>Confidence</th><th>State</th><th>Row</th></tr></thead>
@@ -129,6 +129,7 @@
             <p>One theme in the ranked list of 2.0, in signal-rank order. The whole card links to 4.0 Theme detail; the select control adds the theme to a brief.</p>
             <p><b>The trust chain starts before the click.</b> The quote stands for the cluster, which is what separates a list of labels from evidence at a glance.</p>
             <p>The rank is written down so the ranking claim is quotable and re-checkable (A4).</p>
+            <p><b>The list sits on the page ground, <code>--bg-page</code>, never inside a card.</b> The hover lifts the row to <code>--bg-hover</code>, which carries the same value as <code>--bg-surface</code> in both themes (1.00 against a card), so a row placed on a card would have no visible hover at all.</p>
           </div>
           <div>
             <h3>When not</h3>
@@ -156,7 +157,7 @@
               <div class="kit-dd-d">Provenance is which sources, not who. Without it a one-source theme reads like every other theme.</div></div>
           </div>
         </div>
-        <p class="kit-note">Sources: <code class="kit-mono">ia/docs/pages/synthesis.md</code>, "Theme card"; the comments above <code class="kit-mono">.theme</code> in <code class="kit-mono">design/kit/kit.css</code>; <code class="kit-mono">design/kit/docs/inventory.md</code>, "Level 2, molecules".</p>
+        <p class="kit-note">Sources: <code class="kit-mono">ia/docs/pages/synthesis.md</code>, "Theme card"; the comments above <code class="kit-mono">.theme</code> in <code class="kit-mono">design/system/components/theme-card.css</code> (moved there from kit.css, deleted at Step 8); <code class="kit-mono">design/kit/docs/inventory.md</code>, "Level 2, molecules".</p>
       </section>
 
       <section class="kit-sec" id="where">
@@ -207,12 +208,12 @@
           <tr><td><code>--space-2</code>, <code>--space-3</code>, <code>--space-4</code>, <code>--space-6</code>, <code>--size-target</code>, <code>--ease</code></td><td>tokens.css</td><td>the gaps and side padding, the drill target, the transitions</td></tr>
         </tbody></table></div>
         <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>State</th><th>Token</th><th>What moves</th></tr></thead><tbody>
-          <tr><td>hover</td><td><code>--bg-hover</code>, <code>--text-primary</code> on the drill</td><td>The ground lifts one step and the drill steps to primary ink and nudges 2px right with a transform. A transform does not reflow the neighbours</td></tr>
+          <tr><td>hover</td><td><code>--bg-hover</code>, <code>--text-primary</code> on the drill</td><td>The ground lifts one step and the drill steps to primary ink. Nothing moves: the 2px nudge it carried from kit.css was removed at Stage 08 Step 9, against the rule that a state does not move the element</td></tr>
           <tr><td>selected</td><td><code>--bg-action</code></td><td>An inset strip on the left edge, drawn by <code>box-shadow</code>, so no geometry moves</td></tr>
           <tr><td>focus-visible</td><td><code>--line-focus</code></td><td>The ring from base.css, on whichever of the three focusable zones has focus</td></tr>
           <tr><td>active, disabled</td><td><b>absent</b></td><td>theme-card.css paints neither</td></tr>
         </tbody></table></div>
-        <p class="kit-note">Kept off the scale, byte for byte, because no primitive equals them: the grid tracks 22px, 20px, 18px, the 13px vertical padding, the quote's 7px top margin, 11px left padding, 1.55 line height and 78ch measure, the drill glyph at 18px, the 2px strip and the 2px nudge.</p>
+        <p class="kit-note">Kept off the scale, byte for byte, because no primitive equals them: the grid tracks 22px, 20px, 18px, the 13px vertical padding, the quote's 7px top margin, 11px left padding, 1.55 line height and 78ch measure, the drill glyph at 18px, and the 2px strip.</p>
       </section>
 
       <section class="kit-sec" id="shots">
@@ -235,7 +236,7 @@
   &lt;a class="theme-drill" href="theme.html" aria-label="Open theme: Onboarding is confusing"&gt;&amp;rsaquo;&lt;/a&gt;
 &lt;/li&gt;</pre>
         </div>
-        <p class="kit-note">File: <code class="kit-mono">design/system/components/theme-card.css</code>, imported in the molecules group of <code class="kit-mono">design/system/index.css</code>. On 2.0 the rows sit in <code class="kit-mono">ul.list</code>, which is not in design/system/ yet; this page uses a bare <code class="kit-mono">ul</code> [?].</p>
+        <p class="kit-note">File: <code class="kit-mono">design/system/components/theme-card.css</code>, imported in the molecules group of <code class="kit-mono">design/system/index.css</code>. On 2.0 the rows sit in <code class="kit-mono">ul.list</code>, the bare list reset declared in <code class="kit-mono">design/system/base.css</code>; copy it with the rows.</p>
       </section>
     </div>
 

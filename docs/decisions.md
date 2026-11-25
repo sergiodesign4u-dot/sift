@@ -908,3 +908,29 @@ coverage map, which now say "assembled from the system" and link the system and 
 | 19 other present-tense mentions ("kit.css states no reason", "kit.css switches at 820px", "as kit.css states it") | Codex | withdrawn on verification: provenance, they describe what the source said, not where a rule lives now |
 | Present-tense kit.css mentions in `kit.html` and `shell.html` | Codex | not touched: frozen exhibit text |
 
+
+## Step 9: the critique, the dry run, and the close of Stage 08 (2026-11-25)
+
+**Five sets, then one table, then the owner.** Codex read-only, a clean-context reader, Claude's
+four classes, `/impeccable audit` and a dry run over the still-grey screens were collected apart and
+merged into one table with a "who found it" column; the table was shown alone before any edit. The
+owner answered "go and do everything", which took every recommendation. The full log is
+`design/kit/docs/critique.md`; what follows is only what was decided.
+
+| Decision | Why | Rejected |
+|---|---|---|
+| The breadcrumb's current page loses its `opacity: 0.7` and carries `aria-current="page"` | 3.44 dark, 3.13 light, under 4.5; the item is told apart by position, not by a fainter ink | a darker or a primary ink for the current page: a new appearance nobody asked for |
+| The theme card's drill no longer moves 2px on hover | a state does not move the element, transform included | keeping it as a declared exception |
+| "Add themes" on 6.1 and 6.2 becomes `.btn--ghost` | it opens a picker; a chip only filters the view | a chip form that acts, which would make "a chip never acts" false |
+| The inline empty state may hand its exit to the list right below it | 3.0 with no source: the next move is already one line down | an extra button that repeats the list |
+| The 10px micro step stays, the question goes to Stage 10 | not a WCAG threshold; decided at Stage 07, uppercase and tracked | raising it to 11px now, a value change without a stage that owns type at 360 |
+| The format of `microcopy.md` against `CLAUDE.md` goes to Stage 12 | the rollout is its first heavy reader | rewriting either now |
+| `--red-a32`, `--red-a35`, `--leading-snug` deleted | no product consumer; the stand keeps 1.45 as its own literal | keeping them "for later": an empty token is noise |
+| Snapshots are hover and focus only; six frames removed | a frame identical to rest proves sameness, not a difference | keeping them as a full four-state set |
+| A fourth list of named changes, "Fixed at the critique (Step 9)", beside the stage's three | the critique closed defects only a change of appearance could close; each is held against the product like the others | folding them into the Step 6 list, which would rewrite history |
+| The pixel proof moves to its own last panel group, "Verification" | the pack asks for it; it sat under Overview since Step 8, found by the contract checklist | |
+| Contrast checks multiply opacity, written into `CLAUDE.md` and `architecture.md` | two walks passed a 3.44 because they read `color` alone | |
+
+**Left open, for the owner:** may the theme card stand on a second screen (Stage 09), and SOC 2
+Type II in year 1 or year 2 (`CLAUDE.md` says 1; IA, microcopy and the 9.2 heading say 2; no
+source in `research/`). Both are backlog rows.

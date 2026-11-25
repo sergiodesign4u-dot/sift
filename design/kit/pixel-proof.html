@@ -13,13 +13,16 @@
 <script src="_theme.js"></script>
 </head>
 <!--
-  design/kit/pixel-proof.html - Stage 08 Step 8, the sample moved onto the system.
+  design/kit/pixel-proof.html - Stage 08 Steps 8 and 9: the sample moved onto the system, and the
+  evidence about the system (the critique, the token, consolidation and census numbers, the theme
+  and the dry run). Registered in design/kit/_nav.js as its own last group, "Verification".
 
   The before frames are the product as Step 1 measured it (commit 2aa7baa, every screen on
   kit.css); the after frames are the same screens on design/system/index.css, in the shipped dark
   theme, at 360 and 1440, full page, cropped to the product canvas so the prototype chrome does
   not count. The viewer computes the difference in the browser from the two committed frames, so
-  the number on the page is the number in the files. Step 9 adds its summary block here.
+  the number on the page is the number in the files. At Step 9 the after frames of the 11 pages its
+  fixes touched were re-taken; the other 11 came back at 0 differing pixels and kept their frames.
 
   No em dash anywhere.
 -->
@@ -27,14 +30,14 @@
 <div class="kit-shell">
   <div id="kit-panel"></div>
   <main class="kit-main">
-    <div class="kit-eyebrow">Stage 08 &middot; Step 8</div>
-    <h1 class="kit-h1">Pixel proof</h1>
+    <div class="kit-eyebrow">Stage 08 &middot; Steps 8 and 9 &middot; Verification</div>
+    <h1 class="kit-h1">Pixel proof and critique</h1>
     <p class="kit-lead">Every colour screen moved from <code class="kit-mono">kit.css</code> to <code class="kit-mono">design/system/index.css</code>, and <code class="kit-mono">kit.css</code> is deleted. The question this page answers: does the product look the way it did, except where a change was decided out loud? Zero difference is not expected. This stage changed the look on purpose, and every change is a named line in <code class="kit-mono">docs/tokens-audit.md</code>. So the proof is that <b>every differing pixel is explained by one of those lines</b>, and that no line claims a change the product does not show.</p>
     <div class="kit-stats">
       <div class="kit-stat"><b>22</b><span>colour screens, every state its own page</span></div>
       <div class="kit-stat"><b>44</b><span>frame pairs, 360 and 1440</span></div>
       <div class="kit-stat"><b>42</b><span>pairs with a difference; 6.4 Shared brief is identical at both widths</span></div>
-      <div class="kit-stat"><b>6</b><span>named lines account for all of it</span></div>
+      <div class="kit-stat"><b>9</b><span>named lines account for all of it: six from Steps 4 to 7, three from the Step 9 critique</span></div>
       <div class="kit-stat"><b>0</b><span>differences without a line</span></div>
       <div class="kit-stat"><b>0</b><span>screens left unverified</span></div>
     </div>
@@ -80,12 +83,12 @@
           <option value="briefs-empty-1440">6.0 Briefs, empty &middot; 1440</option>
           <option value="build-brief-360">6.1 Build brief &middot; 360</option>
           <option value="build-brief-1440">6.1 Build brief &middot; 1440</option>
-          <option value="build-brief-thin-warning-360">6.1 Build brief, thin evidence &middot; 360</option>
-          <option value="build-brief-thin-warning-1440">6.1 Build brief, thin evidence &middot; 1440</option>
-          <option value="share-link-360">6.2 Share link &middot; 360</option>
-          <option value="share-link-1440">6.2 Share link &middot; 1440</option>
-          <option value="share-link-loading-360">6.2 Share link, loading &middot; 360</option>
-          <option value="share-link-loading-1440">6.2 Share link, loading &middot; 1440</option>
+          <option value="build-brief-thin-warning-360">6.2 Build brief, thin-theme warning &middot; 360</option>
+          <option value="build-brief-thin-warning-1440">6.2 Build brief, thin-theme warning &middot; 1440</option>
+          <option value="share-link-360">6.3 Share link &middot; 360</option>
+          <option value="share-link-1440">6.3 Share link &middot; 1440</option>
+          <option value="share-link-loading-360">6.3 Share link, loading &middot; 360</option>
+          <option value="share-link-loading-1440">6.3 Share link, loading &middot; 1440</option>
           <option value="shared-brief-360">6.4 Shared brief &middot; 360</option>
           <option value="shared-brief-1440">6.4 Shared brief &middot; 1440</option>
           <option value="account-360">7.0 Account &middot; 360</option>
@@ -113,16 +116,20 @@
       <tr><td>S6c</td><td>Step 6: <code>button, input, select, textarea</code> take <code>font: inherit; letter-spacing: inherit; color: inherit</code></td><td>a button label in Arial on some tags, browser tracking and line height</td><td>Inter, the body tracking, inherited line height: widths 1 to 5px apart, the load-more row 0.75px taller, and whatever stands after them moves by that much</td></tr>
       <tr><td>S6d</td><td>Step 6: <code>.toolbar-row</code> on 4.0, 4.1, 6.1, 6.2</td><td>the evidence chips hidden at 820 and below</td><td>the chips wrap at every width; at 360 the screen is taller and everything under the toolbar moves down</td></tr>
       <tr><td>S7</td><td>Applied late at Step 7, under the Step 4 rule: <code>.avatar</code> border</td><td><code>--line-hairline</code>, 1.26</td><td><code>--line-control</code>, 3.55</td></tr>
+      <tr><td>S9a</td><td>Fixed at the Step 9 critique: <code>.breadcrumb span</code>, the current page</td><td><code>--text-secondary</code> at opacity 0.7: 3.44, under the 4.5 ink floor</td><td><code>--text-secondary</code>, 5.90, with <code>aria-current="page"</code></td></tr>
+      <tr><td>S9b</td><td>Fixed at the Step 9 critique: <code>.step-sep</code> in the phase strip</td><td>opacity 0.7, a colour no role holds</td><td><code>--text-secondary</code></td></tr>
+      <tr><td>S9d</td><td>Owner decision at Step 9: "Add themes" on 6.1 and 6.2</td><td><code>.chip</code>, a filter facet that ran an action</td><td><code>.btn--ghost</code>, same 44px height: primary ink, the button's label and padding</td></tr>
     </tbody></table></div>
+    <p class="kit-note">S9c, the theme card's drill no longer moving on hover, is a line with no frame: the frames are at rest. Every line from S4 to S7 was explained at Step 8; the S9 lines were added to the rows below after the 22 after frames of the 11 touched pages were re-taken.</p>
     <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Screen</th><th>Width</th><th>What differs, and the line</th></tr></thead><tbody>
       <tr><td>0.0 Home</td><td>360</td><td>outlined button boundaries <span class="kit-mono">S6a</span>; the numbered circles <span class="kit-mono">S4</span></td></tr>
       <tr><td>0.0 Home</td><td>1440</td><td>outlined button boundaries <span class="kit-mono">S6a</span>; the numbered circles <span class="kit-mono">S4</span></td></tr>
       <tr><td>2.0 Synthesis</td><td>360</td><td>the avatar ring <span class="kit-mono">S7</span>; chip boundaries at rest <span class="kit-mono">S6a</span>; control type inherits: tracking, line height, widths, the load-more row 0.75px taller <span class="kit-mono">S6c</span>; the chip that is on <span class="kit-mono">S6b</span>; checkbox boundaries <span class="kit-mono">S4</span>; outlined button boundaries <span class="kit-mono">S6a</span></td></tr>
       <tr><td>2.0 Synthesis</td><td>1440</td><td>the avatar ring <span class="kit-mono">S7</span>; chip boundaries at rest <span class="kit-mono">S6a</span>; control type inherits: tracking, line height, widths, the load-more row 0.75px taller <span class="kit-mono">S6c</span>; the chip that is on <span class="kit-mono">S6b</span>; checkbox boundaries <span class="kit-mono">S4</span>; outlined button boundaries <span class="kit-mono">S6a</span></td></tr>
-      <tr><td>2.1 Synthesis, first run</td><td>360</td><td>the avatar ring <span class="kit-mono">S7</span></td></tr>
-      <tr><td>2.1 Synthesis, first run</td><td>1440</td><td>the avatar ring <span class="kit-mono">S7</span></td></tr>
-      <tr><td>2.2 Synthesis, loading</td><td>360</td><td>the avatar ring <span class="kit-mono">S7</span>; the done step ring <span class="kit-mono">S4</span></td></tr>
-      <tr><td>2.2 Synthesis, loading</td><td>1440</td><td>the avatar ring <span class="kit-mono">S7</span>; the done step ring <span class="kit-mono">S4</span></td></tr>
+      <tr><td>2.1 Synthesis, first run</td><td>360</td><td>the avatar ring <span class="kit-mono">S7</span>; the phase separators <span class="kit-mono">S9b</span></td></tr>
+      <tr><td>2.1 Synthesis, first run</td><td>1440</td><td>the avatar ring <span class="kit-mono">S7</span>; the phase separators <span class="kit-mono">S9b</span></td></tr>
+      <tr><td>2.2 Synthesis, loading</td><td>360</td><td>the avatar ring <span class="kit-mono">S7</span>; the done step ring <span class="kit-mono">S4</span>; the phase separators <span class="kit-mono">S9b</span></td></tr>
+      <tr><td>2.2 Synthesis, loading</td><td>1440</td><td>the avatar ring <span class="kit-mono">S7</span>; the done step ring <span class="kit-mono">S4</span>; the phase separators <span class="kit-mono">S9b</span></td></tr>
       <tr><td>2.3 Synthesis, error</td><td>360</td><td>the avatar ring <span class="kit-mono">S7</span>; outlined button boundaries <span class="kit-mono">S6a</span></td></tr>
       <tr><td>2.3 Synthesis, error</td><td>1440</td><td>the avatar ring <span class="kit-mono">S7</span>; outlined button boundaries <span class="kit-mono">S6a</span></td></tr>
       <tr><td>3.0 Sources</td><td>360</td><td>the avatar ring <span class="kit-mono">S7</span>; outlined button boundaries <span class="kit-mono">S6a</span></td></tr>
@@ -131,28 +138,28 @@
       <tr><td>3.0 Sources, empty</td><td>1440</td><td>the avatar ring <span class="kit-mono">S7</span>; outlined button boundaries <span class="kit-mono">S6a</span></td></tr>
       <tr><td>3.0 Sources, sync error</td><td>360</td><td>the avatar ring <span class="kit-mono">S7</span>; outlined button boundaries <span class="kit-mono">S6a</span></td></tr>
       <tr><td>3.0 Sources, sync error</td><td>1440</td><td>the avatar ring <span class="kit-mono">S7</span>; outlined button boundaries <span class="kit-mono">S6a</span></td></tr>
-      <tr><td>3.2 Import a CSV</td><td>360</td><td>the avatar ring <span class="kit-mono">S7</span>; the done step ring <span class="kit-mono">S4</span>; the drop zone edge <span class="kit-mono">S4</span>; outlined button boundaries <span class="kit-mono">S6a</span>; control type inherits: tracking, line height, widths, the load-more row 0.75px taller <span class="kit-mono">S6c</span>; select boundaries <span class="kit-mono">S4</span>; checkbox boundaries <span class="kit-mono">S4</span></td></tr>
-      <tr><td>3.2 Import a CSV</td><td>1440</td><td>the avatar ring <span class="kit-mono">S7</span>; the done step ring <span class="kit-mono">S4</span>; the drop zone edge <span class="kit-mono">S4</span>; outlined button boundaries <span class="kit-mono">S6a</span>; control type inherits: tracking, line height, widths, the load-more row 0.75px taller <span class="kit-mono">S6c</span>; select boundaries <span class="kit-mono">S4</span>; checkbox boundaries <span class="kit-mono">S4</span></td></tr>
-      <tr><td>4.0 Theme</td><td>360</td><td>the avatar ring <span class="kit-mono">S7</span>; the evidence chips appear at 360 and the content below moves down <span class="kit-mono">S6d</span>; chip boundaries at rest <span class="kit-mono">S6a</span>; control type inherits: tracking, line height, widths, the load-more row 0.75px taller <span class="kit-mono">S6c</span>; the chip that is on <span class="kit-mono">S6b</span></td></tr>
-      <tr><td>4.0 Theme</td><td>1440</td><td>the avatar ring <span class="kit-mono">S7</span>; chip boundaries at rest <span class="kit-mono">S6a</span>; control type inherits: tracking, line height, widths, the load-more row 0.75px taller <span class="kit-mono">S6c</span>; the chip that is on <span class="kit-mono">S6b</span></td></tr>
-      <tr><td>4.0 Theme, error</td><td>360</td><td>the avatar ring <span class="kit-mono">S7</span>; outlined button boundaries <span class="kit-mono">S6a</span></td></tr>
-      <tr><td>4.0 Theme, error</td><td>1440</td><td>the avatar ring <span class="kit-mono">S7</span>; outlined button boundaries <span class="kit-mono">S6a</span></td></tr>
-      <tr><td>4.0 Theme, loading</td><td>360</td><td>the avatar ring <span class="kit-mono">S7</span></td></tr>
-      <tr><td>4.0 Theme, loading</td><td>1440</td><td>the avatar ring <span class="kit-mono">S7</span></td></tr>
-      <tr><td>4.1 Theme, low signal</td><td>360</td><td>the avatar ring <span class="kit-mono">S7</span>; the evidence chips appear at 360 and the content below moves down <span class="kit-mono">S6d</span>; chip boundaries at rest <span class="kit-mono">S6a</span>; control type inherits: tracking, line height, widths, the load-more row 0.75px taller <span class="kit-mono">S6c</span>; the chip that is on <span class="kit-mono">S6b</span></td></tr>
-      <tr><td>4.1 Theme, low signal</td><td>1440</td><td>the avatar ring <span class="kit-mono">S7</span>; chip boundaries at rest <span class="kit-mono">S6a</span>; control type inherits: tracking, line height, widths, the load-more row 0.75px taller <span class="kit-mono">S6c</span>; the chip that is on <span class="kit-mono">S6b</span></td></tr>
+      <tr><td>3.2 Import a CSV</td><td>360</td><td>the avatar ring <span class="kit-mono">S7</span>; the done step ring <span class="kit-mono">S4</span>; the drop zone edge <span class="kit-mono">S4</span>; outlined button boundaries <span class="kit-mono">S6a</span>; control type inherits: tracking, line height, widths, the load-more row 0.75px taller <span class="kit-mono">S6c</span>; select boundaries <span class="kit-mono">S4</span>; checkbox boundaries <span class="kit-mono">S4</span>; the current page in the breadcrumb <span class="kit-mono">S9a</span>; the phase separators <span class="kit-mono">S9b</span></td></tr>
+      <tr><td>3.2 Import a CSV</td><td>1440</td><td>the avatar ring <span class="kit-mono">S7</span>; the done step ring <span class="kit-mono">S4</span>; the drop zone edge <span class="kit-mono">S4</span>; outlined button boundaries <span class="kit-mono">S6a</span>; control type inherits: tracking, line height, widths, the load-more row 0.75px taller <span class="kit-mono">S6c</span>; select boundaries <span class="kit-mono">S4</span>; checkbox boundaries <span class="kit-mono">S4</span>; the current page in the breadcrumb <span class="kit-mono">S9a</span>; the phase separators <span class="kit-mono">S9b</span></td></tr>
+      <tr><td>4.0 Theme</td><td>360</td><td>the avatar ring <span class="kit-mono">S7</span>; the evidence chips appear at 360 and the content below moves down <span class="kit-mono">S6d</span>; chip boundaries at rest <span class="kit-mono">S6a</span>; control type inherits: tracking, line height, widths, the load-more row 0.75px taller <span class="kit-mono">S6c</span>; the chip that is on <span class="kit-mono">S6b</span>; the current page in the breadcrumb <span class="kit-mono">S9a</span></td></tr>
+      <tr><td>4.0 Theme</td><td>1440</td><td>the avatar ring <span class="kit-mono">S7</span>; chip boundaries at rest <span class="kit-mono">S6a</span>; control type inherits: tracking, line height, widths, the load-more row 0.75px taller <span class="kit-mono">S6c</span>; the chip that is on <span class="kit-mono">S6b</span>; the current page in the breadcrumb <span class="kit-mono">S9a</span></td></tr>
+      <tr><td>4.0 Theme, error</td><td>360</td><td>the avatar ring <span class="kit-mono">S7</span>; outlined button boundaries <span class="kit-mono">S6a</span>; the current page in the breadcrumb <span class="kit-mono">S9a</span></td></tr>
+      <tr><td>4.0 Theme, error</td><td>1440</td><td>the avatar ring <span class="kit-mono">S7</span>; outlined button boundaries <span class="kit-mono">S6a</span>; the current page in the breadcrumb <span class="kit-mono">S9a</span></td></tr>
+      <tr><td>4.0 Theme, loading</td><td>360</td><td>the avatar ring <span class="kit-mono">S7</span>; the current page in the breadcrumb <span class="kit-mono">S9a</span></td></tr>
+      <tr><td>4.0 Theme, loading</td><td>1440</td><td>the avatar ring <span class="kit-mono">S7</span>; the current page in the breadcrumb <span class="kit-mono">S9a</span></td></tr>
+      <tr><td>4.1 Theme, low signal</td><td>360</td><td>the avatar ring <span class="kit-mono">S7</span>; the evidence chips appear at 360 and the content below moves down <span class="kit-mono">S6d</span>; chip boundaries at rest <span class="kit-mono">S6a</span>; control type inherits: tracking, line height, widths, the load-more row 0.75px taller <span class="kit-mono">S6c</span>; the chip that is on <span class="kit-mono">S6b</span>; the current page in the breadcrumb <span class="kit-mono">S9a</span></td></tr>
+      <tr><td>4.1 Theme, low signal</td><td>1440</td><td>the avatar ring <span class="kit-mono">S7</span>; chip boundaries at rest <span class="kit-mono">S6a</span>; control type inherits: tracking, line height, widths, the load-more row 0.75px taller <span class="kit-mono">S6c</span>; the chip that is on <span class="kit-mono">S6b</span>; the current page in the breadcrumb <span class="kit-mono">S9a</span></td></tr>
       <tr><td>6.0 Briefs</td><td>360</td><td>the avatar ring <span class="kit-mono">S7</span>; outlined button boundaries <span class="kit-mono">S6a</span></td></tr>
       <tr><td>6.0 Briefs</td><td>1440</td><td>the avatar ring <span class="kit-mono">S7</span>; outlined button boundaries <span class="kit-mono">S6a</span></td></tr>
       <tr><td>6.0 Briefs, empty</td><td>360</td><td>the avatar ring <span class="kit-mono">S7</span></td></tr>
       <tr><td>6.0 Briefs, empty</td><td>1440</td><td>the avatar ring <span class="kit-mono">S7</span></td></tr>
-      <tr><td>6.1 Build brief</td><td>360</td><td>the avatar ring <span class="kit-mono">S7</span>; field boundaries <span class="kit-mono">S4</span>; control type inherits: tracking, line height, widths, the load-more row 0.75px taller <span class="kit-mono">S6c</span>; the evidence chips appear at 360 and the content below moves down <span class="kit-mono">S6d</span>; chip boundaries at rest <span class="kit-mono">S6a</span>; outlined button boundaries <span class="kit-mono">S6a</span></td></tr>
-      <tr><td>6.1 Build brief</td><td>1440</td><td>the avatar ring <span class="kit-mono">S7</span>; field boundaries <span class="kit-mono">S4</span>; control type inherits: tracking, line height, widths, the load-more row 0.75px taller <span class="kit-mono">S6c</span>; chip boundaries at rest <span class="kit-mono">S6a</span>; outlined button boundaries <span class="kit-mono">S6a</span></td></tr>
-      <tr><td>6.1 Build brief, thin evidence</td><td>360</td><td>the avatar ring <span class="kit-mono">S7</span>; field boundaries <span class="kit-mono">S4</span>; control type inherits: tracking, line height, widths, the load-more row 0.75px taller <span class="kit-mono">S6c</span>; the evidence chips appear at 360 and the content below moves down <span class="kit-mono">S6d</span>; chip boundaries at rest <span class="kit-mono">S6a</span>; outlined button boundaries <span class="kit-mono">S6a</span></td></tr>
-      <tr><td>6.1 Build brief, thin evidence</td><td>1440</td><td>the avatar ring <span class="kit-mono">S7</span>; field boundaries <span class="kit-mono">S4</span>; control type inherits: tracking, line height, widths, the load-more row 0.75px taller <span class="kit-mono">S6c</span>; chip boundaries at rest <span class="kit-mono">S6a</span>; outlined button boundaries <span class="kit-mono">S6a</span></td></tr>
-      <tr><td>6.2 Share link</td><td>360</td><td>the avatar ring <span class="kit-mono">S7</span>; field boundaries <span class="kit-mono">S4</span>; control type inherits: tracking, line height, widths, the load-more row 0.75px taller <span class="kit-mono">S6c</span>; outlined button boundaries <span class="kit-mono">S6a</span></td></tr>
-      <tr><td>6.2 Share link</td><td>1440</td><td>the avatar ring <span class="kit-mono">S7</span>; field boundaries <span class="kit-mono">S4</span>; control type inherits: tracking, line height, widths, the load-more row 0.75px taller <span class="kit-mono">S6c</span>; outlined button boundaries <span class="kit-mono">S6a</span></td></tr>
-      <tr><td>6.2 Share link, loading</td><td>360</td><td>the avatar ring <span class="kit-mono">S7</span></td></tr>
-      <tr><td>6.2 Share link, loading</td><td>1440</td><td>the avatar ring <span class="kit-mono">S7</span></td></tr>
+      <tr><td>6.1 Build brief</td><td>360</td><td>the avatar ring <span class="kit-mono">S7</span>; field boundaries <span class="kit-mono">S4</span>; control type inherits: tracking, line height, widths, the load-more row 0.75px taller <span class="kit-mono">S6c</span>; the evidence chips appear at 360 and the content below moves down <span class="kit-mono">S6d</span>; chip boundaries at rest <span class="kit-mono">S6a</span>; outlined button boundaries <span class="kit-mono">S6a</span>; the phase separators <span class="kit-mono">S9b</span>; "Add themes" as a ghost button <span class="kit-mono">S9d</span></td></tr>
+      <tr><td>6.1 Build brief</td><td>1440</td><td>the avatar ring <span class="kit-mono">S7</span>; field boundaries <span class="kit-mono">S4</span>; control type inherits: tracking, line height, widths, the load-more row 0.75px taller <span class="kit-mono">S6c</span>; chip boundaries at rest <span class="kit-mono">S6a</span>; outlined button boundaries <span class="kit-mono">S6a</span>; the phase separators <span class="kit-mono">S9b</span>; "Add themes" as a ghost button <span class="kit-mono">S9d</span></td></tr>
+      <tr><td>6.2 Build brief, thin-theme warning</td><td>360</td><td>the avatar ring <span class="kit-mono">S7</span>; field boundaries <span class="kit-mono">S4</span>; control type inherits: tracking, line height, widths, the load-more row 0.75px taller <span class="kit-mono">S6c</span>; the evidence chips appear at 360 and the content below moves down <span class="kit-mono">S6d</span>; chip boundaries at rest <span class="kit-mono">S6a</span>; outlined button boundaries <span class="kit-mono">S6a</span>; the phase separators <span class="kit-mono">S9b</span>; "Add themes" as a ghost button <span class="kit-mono">S9d</span></td></tr>
+      <tr><td>6.2 Build brief, thin-theme warning</td><td>1440</td><td>the avatar ring <span class="kit-mono">S7</span>; field boundaries <span class="kit-mono">S4</span>; control type inherits: tracking, line height, widths, the load-more row 0.75px taller <span class="kit-mono">S6c</span>; chip boundaries at rest <span class="kit-mono">S6a</span>; outlined button boundaries <span class="kit-mono">S6a</span>; the phase separators <span class="kit-mono">S9b</span>; "Add themes" as a ghost button <span class="kit-mono">S9d</span></td></tr>
+      <tr><td>6.3 Share link</td><td>360</td><td>the avatar ring <span class="kit-mono">S7</span>; field boundaries <span class="kit-mono">S4</span>; control type inherits: tracking, line height, widths, the load-more row 0.75px taller <span class="kit-mono">S6c</span>; outlined button boundaries <span class="kit-mono">S6a</span>; the phase separators <span class="kit-mono">S9b</span></td></tr>
+      <tr><td>6.3 Share link</td><td>1440</td><td>the avatar ring <span class="kit-mono">S7</span>; field boundaries <span class="kit-mono">S4</span>; control type inherits: tracking, line height, widths, the load-more row 0.75px taller <span class="kit-mono">S6c</span>; outlined button boundaries <span class="kit-mono">S6a</span>; the phase separators <span class="kit-mono">S9b</span></td></tr>
+      <tr><td>6.3 Share link, loading</td><td>360</td><td>the avatar ring <span class="kit-mono">S7</span>; the phase separators <span class="kit-mono">S9b</span></td></tr>
+      <tr><td>6.3 Share link, loading</td><td>1440</td><td>the avatar ring <span class="kit-mono">S7</span>; the phase separators <span class="kit-mono">S9b</span></td></tr>
       <tr><td>6.4 Shared brief</td><td>360</td><td><b>none</b></td></tr>
       <tr><td>6.4 Shared brief</td><td>1440</td><td><b>none</b></td></tr>
       <tr><td>7.0 Account</td><td>360</td><td>the avatar ring <span class="kit-mono">S7</span></td></tr>
@@ -188,17 +195,80 @@
 
     <section class="kit-sec" id="theme"><h2 class="kit-h2">The product in the light theme, for the first time</h2>
     <p class="kit-lead">The switch is in the panel of every colour screen, beside "All screens". The stored choice is applied in the head of each screen before the first paint, so a light reader never sees a dark flash: with the light theme chosen and the panel script held back for 1.5 seconds, the screen was already light. The product keeps its own key, apart from the stand's.</p>
-    <p class="kit-note"><b>The walk:</b> all 22 screens at 1440 and 360 in both themes, every element measured, as at Step 7 on the showcase. No text under its floor (the lowest in light is the low-signal badge at 5.00), no two surfaces that part in one theme and merge in the other, no control edge under 3:1, equal element counts, no horizontal scroll, no console error. <b>Nothing had to be pulled apart in the pair</b>, so no line goes to the Step 9 summary from here.</p>
+    <p class="kit-note"><b>The walk:</b> all 22 screens at 1440 and 360 in both themes, every element measured, as at Step 7 on the showcase. It reported no text under its floor (the lowest in light the low-signal badge at 5.00), and that was wrong: it never multiplied an element's opacity, and the breadcrumb's current page sat at 3.44 / 3.13 (S9a, found at Step 9). Otherwise: no two surfaces that part in one theme and merge in the other, no control edge under 3:1, equal element counts, no horizontal scroll, no console error. <b>Nothing had to be pulled apart in the pair</b>, so no line goes to the Step 9 summary from here.</p>
     <div class="kit-proof-grid">
       <figure><figcaption>2.0 Synthesis, light, 1440</figcaption><a href="screens/proof/light-synthesis-1440.png"><img src="screens/proof/light-synthesis-1440.png" alt="Synthesis in the light theme at 1440"></a></figure>
       <figure><figcaption>3.2 Import a CSV, light, 1440</figcaption><a href="screens/proof/light-connect-csv-1440.png"><img src="screens/proof/light-connect-csv-1440.png" alt="Import a CSV in the light theme at 1440"></a></figure>
       <figure><figcaption>4.0 Theme, light, 360</figcaption><a href="screens/proof/light-theme-360.png"><img src="screens/proof/light-theme-360.png" alt="Theme detail in the light theme at 360"></a></figure>
-      <figure><figcaption>6.1 Build brief, thin evidence, light, 360</figcaption><a href="screens/proof/light-build-brief-thin-warning-360.png"><img src="screens/proof/light-build-brief-thin-warning-360.png" alt="Build brief with the thin evidence warning in the light theme at 360"></a></figure>
+      <figure><figcaption>6.2 Build brief, thin-theme warning, light, 360</figcaption><a href="screens/proof/light-build-brief-thin-warning-360.png"><img src="screens/proof/light-build-brief-thin-warning-360.png" alt="Build brief with the thin evidence warning in the light theme at 360"></a></figure>
     </div>
     </section>
 
     <section class="kit-sec" id="deleted"><h2 class="kit-h2">kit.css is deleted</h2>
     <p class="kit-lead">One source of style, not two. No file in the repository loads it any more: no link, no import, no url, checked by search and again by Codex. It is still named in many places as the origin of a value, which is history and stays. Statements that said a rule still lives in it were corrected where they were found, and the rule in <code class="kit-mono">CLAUDE.md</code> now names <code class="kit-mono">design/system/index.css</code> as the one stylesheet a screen may use. Git keeps the file: <code class="kit-mono">git show 1cd80a7:design/kit/kit.css</code>.</p>
+    </section>
+
+    <section class="kit-sec" id="critique"><h2 class="kit-h2">Critique by class, Step 9</h2>
+    <p class="kit-lead">Five sets, collected apart and merged into one table: Codex reading the source read-only, a clean-context reader placing three components on a new screen from the pages alone, Claude's four classes, <code class="kit-mono">/impeccable audit</code> on the rendered screens, and a dry run over the still-grey screens. Then a second Codex pass on the 39 files the fixes touched. The full log, row by row with the file and line: <code class="kit-mono">docs/critique.md</code>.</p>
+    <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Class</th><th>Found</th><th>Who found it</th><th>Fixed</th><th>Withdrawn</th><th>Deferred</th></tr></thead><tbody>
+      <tr><td>Contrast, ink, with the opacity multiplied</td><td>1</td><td>impeccable</td><td>1</td><td>0</td><td>0</td></tr>
+      <tr><td>Value past the tokens; state that moves the element</td><td>2</td><td>Claude; Codex and reader</td><td>2</td><td>0</td><td>0</td></tr>
+      <tr><td>Token comment, primitive with no consumer</td><td>4</td><td>Claude; Codex, second pass</td><td>4</td><td>0</td><td>0</td></tr>
+      <tr><td>Old path</td><td>4</td><td>Codex, both passes; Claude</td><td>3</td><td>1 (dated history)</td><td>0</td></tr>
+      <tr><td>Markup off the page, page against code, node numbers</td><td>5</td><td>reader; Claude</td><td>5</td><td>0</td><td>0</td></tr>
+      <tr><td>Misread, from the reader</td><td>1</td><td>reader</td><td>1</td><td>0</td><td>0</td></tr>
+      <tr><td>Could not understand, from the reader</td><td>10</td><td>reader</td><td>7, one by an owner rule</td><td>0</td><td>2</td></tr>
+      <tr><td>Usage data, list without idle control</td><td>3</td><td>Claude and reader; dry run; Codex</td><td>3</td><td>0</td><td>0</td></tr>
+      <tr><td>Snapshots proving sameness; page format</td><td>2</td><td>Claude</td><td>2</td><td>0</td><td>0</td></tr>
+      <tr><td>Off-ramp literals, geometry as a literal</td><td>3</td><td>impeccable; Codex, second pass</td><td>1, in DESIGN.md</td><td>2 (declared on the pages)</td><td>0</td></tr>
+      <tr><td>Surface of a role; disabled contrast</td><td>5</td><td>Codex, second pass</td><td>0</td><td>5 (one fill drawn by a border; WCAG exempts inactive controls)</td><td>0</td></tr>
+      <tr><td>Detector rules on brand decisions</td><td>2</td><td>impeccable</td><td>0</td><td>2 (the identifying band rule, the brand face)</td><td>0</td></tr>
+      <tr><td>Readability floor, line measure, stragglers</td><td>3</td><td>impeccable</td><td>0</td><td>0</td><td>3, Stage 10</td></tr>
+      <tr><td>Dry run holes; outside the stage</td><td>15</td><td>dry run</td><td>0</td><td>0</td><td>15, Stages 09, 10, 12, the owner</td></tr>
+    </tbody></table></div>
+    <p class="kit-note"><b>What the "who found it" column says.</b> Every class that lives in a file was found by Codex or by Claude reading it, and the second Codex pass found two that both first passes missed (an orphan leading step, eight stale head comments). The one real accessibility failure was found by neither: the current page in the breadcrumb sat at 3.44 and 3.13 because of an <code class="kit-mono">opacity: 0.7</code>, and every walk of Steps 7 and 8 read the colour without multiplying the opacity. A rendered detector caught it. The walk now multiplies the opacity of the element and every ancestor: 20 failures on the commit before the fix, 0 of 3,198 text nodes after. The reader found what no checker can: 10 rules the pages never wrote down.</p>
+    </section>
+
+    <section class="kit-sec" id="numbers"><h2 class="kit-h2">The stage in numbers, before and after</h2>
+    <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Token audit</th><th>Before the split (Step 1)</th><th>Now</th></tr></thead><tbody>
+      <tr><td>Variables in the product token file</td><td>30, of them 7 prototype chrome</td><td>81 primitives, 36 of them colour; 29 semantic declarations (22 colour roles, 4 state, 1 depth, 2 component); 0 chrome, moved to <code>design/_panel.css</code></td></tr>
+      <tr><td>Roles with a light pair</td><td>no theme existed</td><td>29 of 29</td></tr>
+      <tr><td>Variables with an origin</td><td>23 of 23 product variables</td><td>every role carries its origin and a usage count in its comment</td></tr>
+      <tr><td>One variable carrying several roles</td><td>3 (<code>--canvas</code>, <code>--surface</code>, <code>--cyan</code>)</td><td>0: split into roles by surface</td></tr>
+      <tr><td>Drift consolidated</td><td>3 lines decided at Step 2</td><td>2 applied, 1 withdrawn at Step 6 (<code>--red-edge</code>)</td></tr>
+      <tr><td>Values past the variables</td><td>3 radii, 0 colours</td><td>0; the declared literals are listed in <code>DESIGN.md</code></td></tr>
+      <tr><td>Primitives with no consumer, removed</td><td>n/a</td><td>3 at Step 9: <code>--red-a32</code>, <code>--red-a35</code>, <code>--leading-snug</code></td></tr>
+    </tbody></table></div>
+    <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Consolidation</th><th>Stage 07</th><th>Stage 08</th></tr></thead><tbody>
+      <tr><td>Rows describing the product</td><td>248 class rows, one per occurrence</td><td>63 at Step 2 (51 components, 12 one-offs); 50 components after Step 6 folded textarea, select and the low-signal badge into variants and promoted the provenance list</td></tr>
+      <tr><td>Classes moved by the rename map</td><td>n/a</td><td>22 rows, executed on the colour screens at Step 6; the grey waits for Stage 12</td></tr>
+      <tr><td>Deleted as dead</td><td>n/a</td><td><code>.page</code>, <code>.nav-links</code> at Step 3; the classes worn by no painted screen were kept on purpose, they are the auth and legal screens</td></tr>
+    </tbody></table></div>
+    <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Control census, two measurements</th><th>Step 1, on kit.css</th><th>Step 6, on the system</th></tr></thead><tbody>
+      <tr><td>Visible controls, 22 screens at 360 and 1440</td><td>478</td><td>478</td></tr>
+      <tr><td>Control families</td><td>not recorded</td><td>23</td></tr>
+      <tr><td>Rows that are a defect rather than a declared axis</td><td>1 (a button in Arial)</td><td>0</td></tr>
+      <tr><td>Classes worn on a screen and declared nowhere</td><td>n/a</td><td>31 found, 0 left</td></tr>
+      <tr><td>"Control without a form" rows open</td><td>16, all closed at Step 2</td><td>0; the dry run's 11 new holes are the Stage 12 list</td></tr>
+    </tbody></table></div>
+    <p class="kit-note">The census says the opposite of the pixel proof: the proof says nothing changed by accident, the census says the set of forms was closed on purpose. Sources: <code class="kit-mono">docs/tokens-audit.md</code>, <code class="kit-mono">docs/inventory.md</code>, <code class="kit-mono">docs/census.md</code>.</p>
+    </section>
+
+    <section class="kit-sec" id="theme-line"><h2 class="kit-h2">The theme, by three instruments</h2>
+    <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Instrument</th><th>Found</th><th>What it was</th></tr></thead><tbody>
+      <tr><td>The stress test on the showcase, Step 7</td><td>1 fixed, 2 rules</td><td>The avatar's edge read the hairline, 1.26 and 1.20, and now reads the control line. A warning or error band never on a raised surface, where its ink falls under 4.5</td></tr>
+      <tr><td>The second walk on the moved screens, Step 8</td><td>0</td><td>Nothing to pull apart in the pair</td></tr>
+      <tr><td>Escapes of Step 5, a component reading a colour primitive</td><td>0</td><td>Codex, both passes of Step 9</td></tr>
+      <tr><td>Added at Step 9: the walk itself</td><td>1</td><td>Not a theme pair but an instrument gap: both walks above read colour without opacity and passed the breadcrumb at 3.44 / 3.13 (S9a). That is a finding about the PROCESS: a check that cannot see a property will pass whatever that property breaks</td></tr>
+    </tbody></table></div>
+    </section>
+
+    <section class="kit-sec" id="dryrun"><h2 class="kit-h2">The dry run over the still-grey screens</h2>
+    <p class="kit-lead">The rollout moved to Stage 12, and with it the main test of whether the system is complete. In its place, on paper: the densest grey-only screens, held against the inventory, the system and <code class="kit-mono">microcopy.md</code>. <b>4 screen families on 6 pages</b> (7.1 Plan and limits, 1.0 Auth in three states, 9.x Legal, 7.3 Profile), of 15 grey-only pages. <b>20 holes:</b> 7 were already backlog rows, 13 are new; 2 were fixed in this step (the auth card page, the 7.x screens in the inventory) and 11 went to <code class="kit-mono">docs/backlog.md</code>, nearly all for Stage 12. 7.3 Profile has none. 7.1 cannot be painted from the system today: its plan summary, its limits list and its meter have no form.</p>
+    </section>
+
+    <section class="kit-sec" id="contract"><h2 class="kit-h2">The stage contract</h2>
+    <p class="kit-lead">A third instrument, apart from the defect table: every line of the stage's input and output, its gates and its "done when", answered done, not done or skipped on purpose, with where. 33 rows: 29 done, 3 done with a deviation decided earlier in the stage (the panel groups by purpose, the card format of the component pages, the inventory as the "All components" page), and 1 not done until this step: this page sat under "Overview" instead of its own "Verification" group. The table is in <code class="kit-mono">docs/critique.md</code>.</p>
     </section>
 
     <footer class="kit-foot">

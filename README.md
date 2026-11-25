@@ -19,8 +19,8 @@ This table and the `done` flags in `/_nav.js` are the only two places status is 
 | Wireframes | **Done, rebuilt on the block bank** (17 screens, 38 pages). Composition traces to `ia/docs/blocks.md`; states keep their screen's blocks; one stage panel replaced the top bar plus rail; critique run on two instruments (Claude in a browser, Codex read-only), 11 findings, all fixed |
 | Voice | Done (4 principles, dictionary, forbidden list, microcopy rules; every screen rewritten; voice.html deployed). Re-runs over whatever blocks the wireframe rebuild adds |
 | Concept | **Done.** Brand plate B chosen and entered into `DESIGN-artifacts.md`; five attributes, each signed to a data line; the etalon and its three states plus the public brief in color in `design/`; the split-evidence direction re-read against the rebuild and deferred with the reason; audited (targets, focus, contrast, overflow) and the before / after on `concept.html` |
-| UI + Visual | **Done.** `DESIGN.md` read out of the code; the inventory of the whole product (50 components, 3 levels, 13 one-offs); the kit `design/kit/kit.css` (arrived by `git mv`, `:root` byte for byte) with `shell.html` and the stand `kit.html`; no photography, by a stated decision, with the one prompt held ready; the sample of 7 screens plus the 2 seeds, 23 pages in colour, each assembled from the kit and carrying no style of its own; two-part navigation (`design/_nav.js` panel, `design/overview.html` hub with the honest coverage map); critique on three instruments, 9 findings fixed and 1 withdrawn on verification |
-| Tokens + Components | **In progress.** Steps 1 to 4 done. Two tables of facts read and measured in two instruments; consolidation turned 248 class rows into 63 that carry axes, with a rename map for Stage 12; `design/system/tokens.css` in two levels, 82 primitives and 20 roles, every role with a light pair and every ratio measured; `base.css`; and the foundation pages on `design/kit/overview.html`, where the review fixed two contrast failures. Step 5: all 17 atoms done; the showcase moved to the card format of the AMA lab and the Global Design System (components by purpose, a page per component with Overview, Technical and History tabs, a live state matrix drawn from the product rules), and all 17 atom pages are laid in it. Round 2: all 20 molecules. Round 3: all 12 organisms. Step 5 done. Step 6 done. Step 7 done: the theme pair was stress-tested on the whole stand, both frozen stands and the 22 colour screens on the system, in both themes; no pair value moved, the light ladder is half as steep as the dark, the avatar edge was under 3:1 in both themes and now reads the control line, the stand applies its theme before the first paint, the state snapshots were re-taken. Earlier, at Step 6: the product, rendered on the system alone, was reconciled in three lists; icons, the list reset and 31 one-off classes moved in; the provenance list was built as the 50th component (50 of 50); the August atom drift was reverted; `backlog.md` started. **Step 8, waiting for review:** all 22 colour screens and both frozen stands moved onto `design/system/index.css` and `kit.css` is deleted; 44 frame pairs at 360 and 1440 against the product as Step 1 measured it, every difference explained by one of six named lines (`design/kit/pixel-proof.html`); the light theme reaches the product through a switch in the screen panel, applied before the first paint, with nothing to pull apart. Next: Step 9, verification, `/impeccable audit`, the dry run over the still-grey screens and the close-out |
+| UI + Visual | **Done.** `DESIGN.md` read out of the code; the inventory of the whole product (50 components, 3 levels, 13 one-offs); the kit `design/kit/kit.css` (arrived by `git mv`, `:root` byte for byte) with `shell.html` and the stand `kit.html`; no photography, by a stated decision, with the one prompt held ready; the sample of 7 screens plus the 2 seeds, 23 pages in colour, each assembled from the kit and carrying no style of its own; two-part navigation (`design/_nav.js` panel, `design/overview.html` hub with the honest coverage map); critique on three instruments, 9 findings fixed and 1 withdrawn on verification. **In colour: the sample of 22 pages; the rest of the product (15 grey-only pages) waits for Stage 12, Rollout,** and the Stage 08 dry run listed what the system still lacks for it |
+| Tokens + Components | **Done.** The flat Stage 07 kit split into `design/system/`: `tokens.css` in two levels (81 primitives; 29 semantic declarations, every one with a light pair), `base.css`, `index.css` importing 50 component files by level, the one stylesheet a product screen may use; `kit.css` deleted. The showcase in `design/kit/`: foundations, a page per component (card format, live state matrix), the hub. Consolidation turned 248 class rows into 63; the census measured before and after the system; the theme pair stress-tested twice; the 22 colour screens moved with every pixel difference explained by a named line (`design/kit/pixel-proof.html`). Step 9: the critique in five independent sets plus a second Codex pass, 30 rows fixed, 10 withdrawn on verification, 20 to the backlog; the one real contrast failure (the breadcrumb, 3.44) was hidden in an opacity no walk multiplied. Log: `design/kit/docs/critique.md` |
 | Design System | Not started |
 | Responsive | Not started |
 | Animation | Not started |
@@ -67,24 +67,29 @@ design/              The roof of the whole visual half. Product screens sit flat
   synthesis*.html    First color copies of the wireframe screens, seeded by stage 06
   shared-brief.html  The contrast screen: the public read-only document
   system/            THE CODE of the design system. A package that could be lifted out whole
+    CLAUDE.md        Six rules that load when work happens in this folder
     tokens.css       primitive + semantic + the light pair. Colour through roles, geometry direct
     base.css         reset, type ground, the one focus ring, two layout utilities
-  kit/               THE SHOWCASE of the system, and the Stage 07 component kit it grew out of
-    overview.html    The hub: foundations, components by purpose, and the state of the stage
+    index.css        THE stylesheet a screen links: tokens, base, then components by level
+    components/      one file per component (50)
+    one-off.css      blocks that stand on one screen, imported after the organisms
+  kit/               THE SHOWCASE of the system
+    overview.html    The hub: foundations, components by purpose, the stage table, backlog
     components.html  Every component in one table, by category, with its level
-    _states.js       Draws a component page's state matrix from the product's own state rules
+    <component>.html One page per component: Overview, Technical, History
     architecture.html color.html typography.html geometry.html icons.html   the foundations
+    pixel-proof.html The Verification group: the before/after proof, the critique, the numbers
+    _states.js       Draws a component page's state matrix from the product's own state rules
     _nav.js _page.css  the registry of pages and the stand's own chrome, with the theme switch
-    docs/            tokens-audit.md, census.md, architecture.md, inventory.md
-    kit.css          THE stylesheet: :root plus every component class. Came from _theme.css by git mv
-    shell.html       The shell as markup: sprite, app header, bottom tabs, footer, public bar
-    kit.html         The stand: tokens, inventory, components, shell
-    inventory.md     The component inventory of the whole product, with the level column
+    docs/            tokens-audit.md, census.md, architecture.md, inventory.md, backlog.md, critique.md
+    screens/         State snapshots (hover, focus) and proof/, the pixel-proof frames
+    shell.html       Frozen Stage 07 stand of the shell, on the system
+    kit.html         Frozen Stage 07 smoke stand, on the system
   overview.html      The hub: screens by flow, the coverage map, and the way into the kit
   _nav.js            DESIGN_NAV, the colour-stage registry; renders the panel and the hub lists
   _panel.css         The chrome of the colour stage: the screen panel and the hub. Never product
   index.html         0.0 Home, the product home page in colour. The one indexed screen
-  <screen>.html      Colour copies, same file names as wireframes/. Assembled from the kit
+  <screen>.html      Colour copies, same file names as wireframes/. Assembled from design/system/index.css
   screens/           Before and after pairs, two viewports, captured with Playwright
   visuals/           The image set and its prompt. Empty by decision: this product carries no photography
   concept/           How the language was found
@@ -92,7 +97,8 @@ design/              The roof of the whole visual half. Product screens sit flat
     concept.html     The stand of the chosen language
     docs/            concept.md, references.md
     assets/          Brand plates
-DESIGN.md            The product design language, read out of the code. Every value carries its origin
+scripts/shoot-states.js  Re-takes a component page's hover and focus snapshots (Playwright)
+DESIGN.md            The product design language: tokens in two levels, both themes, declared literals, origins
 DESIGN-artifacts.md  Draft design language from the chosen brand plate; every value carries its origin
 ```
 

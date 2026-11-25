@@ -7,13 +7,18 @@
    The way back, one line, never the way forward. The bar carries no vertical padding of its own:
    the link inside it is the target and it is 44px, so the bar is exactly as tall as the thing you
    aim at. Found by measuring, where the link read 15px against a floor of 44.
+
+   The current item is a span with aria-current="page", in the same secondary ink as the links:
+   it is told apart by being plain text after the last separator, not by a fainter colour. Until
+   Stage 08 Step 9 it carried opacity 0.7, which put it at 3.44 in dark and 3.13 in light, under
+   the 4.5 ink floor; every walk before then read the colour and never multiplied the opacity.
    No em dash anywhere in this file.
 */
 
 .breadcrumb { display: flex; align-items: center; gap: var(--space-2); font-size: 12px; color: var(--text-secondary); padding: 0 var(--space-9); border-bottom: 1px solid var(--line-hairline); }
 .breadcrumb a { display: inline-flex; align-items: center; min-height: var(--size-target); color: var(--text-secondary); text-decoration: none; }
 .breadcrumb a:hover { color: var(--text-primary); }
-.breadcrumb span { color: var(--text-secondary); opacity: 0.7; }
+.breadcrumb span { color: var(--text-secondary); }
 
 @media (max-width: 820px) {
   .breadcrumb { padding: 0 var(--space-7); }

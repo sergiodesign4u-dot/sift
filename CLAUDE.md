@@ -139,17 +139,20 @@ page, a named section registered in that page's `NAV_SECTIONS`, or a satellite p
   product's; calm, not loud; every state names the next move. Forbidden: "Something went wrong",
   "successfully", exclamation marks and emoji, greetings and celebration, hype adjectives, "just" and
   "simply", blaming the reader, filler "please".
-- **Values migrate, they are never re-derived.** The CSS value line ran `design/_theme.css` to
-  `design/kit/kit.css` by `git mv` and on to `design/system/tokens.css` (kit.css deleted at Stage 08
-  Step 8), with the `:root` block moved byte for byte and the origin comment kept beside each variable. A value changes only by a
-  decision stated out loud as "variable, value, why", never as a side effect of a refactor.
-- **A screen is assembled from the system, and a fix lands in the system.** From Stage 08 Step 8 the
-  one stylesheet a product screen may use is `design/system/index.css`: no `style=` attribute, no
-  `<style>` block, no appearance written on a page. Missing a component or a variant means adding it
-  as `design/system/components/<name>.css`, its stand page `design/kit/<name>.html`, its registry
-  entry, its `@import` in its level group of `index.css` (never at the end) and its row in
-  `design/kit/docs/inventory.md` FIRST, then using it. A value fix goes to a role in `tokens.css`
-  and reaches every screen; a markup fix goes to the component page and is copied from there. A fix on one screen is a desync, and a difference written as a
-  contextual override (`.foo .btn { font-size: X }`) is an undeclared variant, not a patch.
-  Prototype chrome around the screen (`design/_panel.css`, the stands' own frames) is a separate
-  layer on the `--pf-*` values and never enters the kit.
+- **Tokens: two levels, not three, and values are never re-derived.** The code of the system lives
+  in `design/system/` (rules in `design/system/CLAUDE.md`), the showcase and its documents in
+  `design/kit/`. Primitive holds raw values; semantic holds colour roles, and a component reads
+  colour only through a role. A role or a state token exists only with its pair in
+  `[data-theme="light"]`. A value changes only by a decision stated out loud as "variable, value,
+  why", and it goes to the token of its level, from where it reaches every screen.
+- **A screen is assembled from the system, and a fix lands in the system.** The one stylesheet a
+  product screen may use is `design/system/index.css`: no `style=` attribute, no `<style>` block,
+  no appearance written on a page. A new component is five things, FIRST, then used: its css in
+  `design/system/components/`, its page in `design/kit/`, its `_nav.js` entry with its level, its
+  row in `design/kit/docs/inventory.md` with its level, and its `@import` in its level group of
+  `index.css` (never at the end). A markup fix goes to the component page and to the screens where
+  the component stands. A fix on one screen is a desync, and a contextual override
+  (`.foo .btn { font-size: X }`) is an undeclared variant, not a patch. Prototype chrome
+  (`design/_panel.css`, the stands' frames) is a separate layer on `--pf-*` and never enters it.
+- **A contrast check multiplies opacity.** Ink is the colour times the opacity of the element and
+  of every ancestor; a check that reads `color` alone passed a 3.44 for two steps.

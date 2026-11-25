@@ -33,13 +33,13 @@
         <div style="font-family:var(--font-mono);font-size:12.5px;line-height:2;color:var(--text-secondary)">
           <div><b style="color:var(--text-primary)">PRIMITIVE</b> &nbsp;a raw value, no role</div>
           <div style="padding-left:14px">--grey-900: #151A1F</div>
-          <div style="padding-left:14px;color:var(--text-evidence)">82 of them</div>
+          <div style="padding-left:14px;color:var(--text-evidence)">81 of them, 36 colour</div>
           <div style="margin-top:8px">&darr;</div>
           <div><b style="color:var(--text-primary)">SEMANTIC</b> &nbsp;a role, through var()</div>
           <div style="padding-left:14px">--bg-surface: var(--grey-900)</div>
-          <div style="padding-left:14px;color:var(--text-evidence)">20 of them</div>
+          <div style="padding-left:14px;color:var(--text-evidence)">29 of them: 22 colour roles, 4 state, 1 depth, 2 component</div>
         </div>
-        <p class="kit-note">Two levels, not three. A component token is a third layer of renaming that buys no flexibility, so it appears only where a state lands on no role at all. Nothing here has needed one yet.</p>
+        <p class="kit-note">Two levels, not three. A component token is a third layer of renaming that buys no flexibility, so it appears only where a colour lands on no role at all. Two have been needed: <code class="kit-mono">--step-current-line</code> and <code class="kit-mono">--tier-mark</code>, each in the semantic block with its light pair and a comment saying why no role fitted.</p>
       </div>
       <div class="scene">
         <div class="scene-label">the ladder of components</div>
@@ -77,20 +77,29 @@
       </div>
       <div class="scene"><div class="scene-label">design/kit/ &middot; what shows the system to a person</div>
         <div style="font-family:var(--font-mono);font-size:12px;line-height:1.9;color:var(--text-secondary)">
-          _nav.js  _page.css<br>overview.html<br>&lt;foundation&gt;.html<br>&lt;component&gt;.html<br>docs/*.md
+          _nav.js  _page.css<br>overview.html<br>&lt;foundation&gt;.html<br>&lt;component&gt;.html<br>pixel-proof.html, the Verification group<br>docs/*.md
         </div>
         <p class="kit-note">A product class in the stand, or a stand style inside design/system/, is a defect.</p>
       </div>
     </div>
     </section>
     <section class="kit-sec" id="adding"><h2 class="kit-h2">Adding a component: five things</h2>
-    <p class="kit-lead">The last two are the ones that get forgotten, and they matter most for a component added AFTER the build: at the reconciliation of Step 6, on a new screen at Stage 09, during the rollout at Stage 12.</p>
+    <p class="kit-lead">The fourth and the fifth are the ones that get forgotten, and they matter most for a component added AFTER the build: at the reconciliation of Step 6, on a new screen at Stage 09, during the rollout at Stage 12.</p>
     <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>#</th><th>What</th><th>Why it is on the list</th></tr></thead><tbody>
       <tr><td>1</td><td><code>design/system/components/&lt;name&gt;.css</code></td><td>colour through semantic, geometry through primitive</td></tr>
       <tr><td>2</td><td><code>design/kit/&lt;name&gt;.html</code></td><td>five blocks: what it is, anatomy, variants, states, rules</td></tr>
-      <tr><td>3</td><td>an entry in <code>_nav.js</code>, in the group of its OWN level</td><td>the panel and the hub read the ladder from here</td></tr>
+      <tr><td>3</td><td>an entry in <code>_nav.js</code> with its <code>level</code> and its <code>category</code></td><td>the panel groups by purpose and shows the level as a chip; an entry without its level drops off the ladder</td></tr>
       <tr><td>4</td><td>a row in <code>docs/inventory.md</code>, with its level</td><td>four later steps count the order from that column</td></tr>
       <tr><td>5</td><td>an <code>@import</code> in <code>index.css</code>, in the group of its level, <b>not at the end of the file</b></td><td>appended at the end it looks harmless, and that is exactly how the ladder collapses</td></tr>
+    </tbody></table></div>
+    </section>
+    <section class="kit-sec" id="theme"><h2 class="kit-h2">How the theme is built</h2>
+    <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Rule</th><th>Why</th></tr></thead><tbody>
+      <tr><td>The product ships dark: <code>:root</code> is the dark theme, <code>[data-theme="light"]</code> redefines every role and state token, 29 of 29</td><td>not one primitive is redefined, which is the proof that the semantic level is overridden on its own</td></tr>
+      <tr><td>A role or a state token without its pair does not exist</td><td>write both in the same edit; the check is a count of the two blocks, run at every critique</td></tr>
+      <tr><td>The pair is not a mirror</td><td>contrast is measured against the opposite ground, so the light theme takes a different step: the hover goes darker, the focus ring a deeper cyan</td></tr>
+      <tr><td>Two switches, two keys</td><td>the stand's in this panel; the product's in <code>design/_nav.js</code>, applied before the first paint by <code>design/_theme.js</code>. The roadmap has no theme</td></tr>
+      <tr><td>A theme problem is fixed in the pair</td><td>never on a screen, never by a component reading a primitive</td></tr>
     </tbody></table></div>
     </section>
     <section class="kit-sec" id="fixes"><h2 class="kit-h2">Where a fix goes</h2>
@@ -107,7 +116,10 @@
     <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Rule</th><th>Why</th></tr></thead><tbody>
       <tr><td>A state is a TOKEN, never a style</td><td>hover reads a role, focus reads a role, disabled reads an opacity. The price of breaking it is paid three times: the theme, the consistency of twenty components with twenty hovers, and Stage 11, which would start by collecting states instead of animating them</td></tr>
       <tr><td>focus-visible, never focus</td><td>the ring is for the person on the keyboard and in the way of the person who clicked</td></tr>
-      <tr><td>A state does not move the layout</td><td>a border on hover moves the neighbours by a pixel, and that is the jump</td></tr>
+      <tr><td>A state does not move the element</td><td>no shift, resize, transform or new border: a border on hover moves the neighbours by a pixel, and that is the jump. The theme card's 2px nudge was the last, removed at Step 9</td></tr>
+      <tr><td>disabled dims with <code>--opacity-disabled</code></td><td>never repainted by hand; WCAG exempts an inactive control from both contrast floors, and nothing else may sit under its floor</td></tr>
+      <tr><td>Opacity is part of the ink</td><td>every contrast check multiplies the element's and every ancestor's opacity into the colour. A walk that read the colour alone passed the breadcrumb at 3.44 for two steps (Step 9); the system never uses opacity for ink</td></tr>
+      <tr><td>A snapshot is a difference</td><td>rest stands live; hover and focus-visible are photographed. Pressed, when it equals rest, and disabled, the real attribute standing live, are a line of text</td></tr>
       <tr><td>Only an interactive component gets states</td><td>a badge, a heading and a divider do not, and their pages say so in those words. A hover on a badge is an invented role</td></tr>
     </tbody></table></div>
     </section>

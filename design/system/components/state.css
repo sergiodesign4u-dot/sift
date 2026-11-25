@@ -6,7 +6,8 @@
    Colour screens: synthesis-empty, synthesis-error, theme-error (centred), sources-empty, briefs-empty (inline).
 
    Empty / error state block. It always carries an icon, a title, ONE explanation and at least one
-   exit, because every state names the next move. Two placements: it takes the canvas and centres,
+   exit, because every state names the next move; the inline form may hand that exit to the list
+   right below it (3.0 with no source yet), decided at Stage 08 Step 9. Two placements: it takes the canvas and centres,
    or, inside a screen that is otherwise populated, it sits in the flow of the list, left aligned,
    because the next action is further down the screen and not in here.
 

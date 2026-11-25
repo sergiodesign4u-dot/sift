@@ -12,6 +12,8 @@
 
    The ring of the current phase is --step-current-line, a component token: kit.css drew it in
    --porcelain and no line role carries that step.
+   The separator reads --text-secondary as it is: the opacity 0.7 it carried made a colour no role
+   holds, and it was dropped at Stage 08 Step 9 with the same opacity on the breadcrumb.
    No em dash anywhere in this file.
 */
 
@@ -24,4 +26,4 @@
 .step-n .ic { width: 10px; height: 10px; }
 .step.is-current { color: var(--text-primary); }
 .step.is-current .step-n { color: var(--text-primary); border-color: var(--step-current-line); background: var(--bg-raised); }
-.step-sep { color: var(--text-secondary); opacity: 0.7; }
+.step-sep { color: var(--text-secondary); }

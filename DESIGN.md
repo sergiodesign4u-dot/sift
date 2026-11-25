@@ -120,7 +120,8 @@ components:
 (`_theme.css`, `synthesis.html` and its three states, `shared-brief.html`) plus the Stage 06 draft
 `DESIGN-artifacts.md`. Brand decisions come from the draft and are not rewritten here, only expanded
 with the values the code actually carries. Where code and draft disagree, the disagreement is named
-in Token origin rather than smoothed over.*
+in the Tokens section rather than smoothed over. From Stage 08 the values live in
+`design/system/tokens.css`, and this document's token section is read from it.*
 
 *Internal document, English. No em dash anywhere in this file.*
 
@@ -480,42 +481,225 @@ the error state it states what is still true and links to it.
 - **Don't** mix icon sets. Solar Linear, inline SVG, `currentColor`, one stroke weight.
 - **Don't** write a value directly into a class. Every value belongs to a variable in `:root`.
 
-## Token origin
+## Tokens: two levels
 
-Every value carries where it came from, in one word: `attribute <name>` for a decision derived from
-an attribute in `design/concept/docs/concept.md`, `taste` for the Designer's named taste,
-`technical decision` for a value chosen by implementation constraint, and `plate B pixel` for a value
-read off the approved brand plate at Stage 06 and recorded in `DESIGN-artifacts.md`.
+Tokens live on two levels in `design/system/tokens.css`. The **primitive** level holds raw values
+with no meaning: colour, type, geometry and motion. The **semantic** level holds the colour roles,
+each one a `var()` onto a primitive, each one redefined under `[data-theme="light"]`; the product
+ships dark, so `:root` carries the dark theme. Geometry has no semantic level by rule, because there
+is nothing for a theme to override in a radius: a component reads radius, space and size straight
+from the primitive. A component reads colour ONLY through a semantic role. Origins are carried as
+the comment beside each token in `tokens.css` has them, shortened to key words, never invented.
 
-| Token | Origin | Traced to |
+### Primitive
+
+**Neutral ramp, dark instrument.**
+
+| Token | Value | Origin |
 |---|---|---|
-| Canvas | plate B pixel | A1 quiet; base language (Linear layering) |
-| Surface | plate B pixel | A1; A4 ranked rows sit on it |
-| Elevated | plate B pixel | A1 |
-| Line | plate B pixel | A1, depth without shadow |
-| Porcelain | plate B pixel | A5, type does the work |
-| Ash | plate B pixel | A1, secondary recedes |
-| Cyan | plate B pixel | A1 one accent, A2 evidence marker, A4 |
-| Amber | attribute A3 | honest about thin, as information |
-| Red | attribute A3 | names a failed state, with the next move (Voice Principle 4) |
-| Inter (UI, body) | taste | Vercel / Geist, Linear; A5 |
-| IBM Plex Mono (data) | attribute A2 | the count is the trust surface; A4; Voice Principle 1 |
-| Weight 400 / 500 / 590 | matched to character | DESIGN-artifacts.md Typography |
-| Negative tracking, -0.011em to -0.022em | taste | tight but not touching, Identity |
-| Uppercase label, 0.07em | technical decision | the one uppercase, to separate document sections |
-| Radius 4px (`--r-sm`) | matched to character | marks and controls inside text |
-| Radius 6px (`--r`) | matched to character | anything a hand acts on |
-| Radius 12px (app frame) | technical decision | container scale, not yet a variable |
-| `cubic-bezier(0.22,1,0.36,1)` (`--ease`) | technical decision | ease-out, restrained (UI tone, motion) |
-| Durations 0.12s / 0.15s | technical decision | below the threshold where motion is noticed |
-| App frame shadow `0 2px 4px rgba(0,0,0,0.4)` | technical decision | containment, not elevation |
-| Inset 2px Cyan (selected row) | attribute A1 | active state without a background wash |
-| 44px target floor | technical decision | WCAG 2.5.5 / platform floor |
-| 24px checkbox | technical decision | AA floor, named exception (row density) |
-| Breakpoint 820px | technical decision | where the desktop filter row stops fitting |
-| Column caps 70 / 78 / 92ch, 720px | attribute A5 | reading measure for prose evidence |
+| `--grey-950` | `#0B0E11` | plate B pixel. Was --canvas |
+| `--grey-900` | `#151A1F` | plate B pixel. Was --surface |
+| `--grey-850` | `#1E252B` | plate B pixel. Was --elevated |
+| `--grey-800` | `#262D34` | plate B pixel. Was --line |
+| `--grey-700` | `#3A444C` | plate B pixel, recovered from four in-class literals at Stage 07. Was --line-2 |
+| `--grey-600` | `#647280` | Step 4 review. The step the plate ramp did not have: --grey-700 reads 1.76 against a card, and a border that identifies a control owes 3:1 |
+| `--grey-400` | `#868F99` | plate B pixel. Was --ash |
+| `--grey-050` | `#EAEEF2` | plate B pixel. Was --porcelain |
 
-**Resolved at Stage 07 Step 1 (kept here so the decision is not re-litigated):**
+**Light ramp.** New primitives: a theme pair cannot be built from the dark ramp, because a role is
+measured against the opposite ground. No semantic meaning is stored here.
+
+| Token | Value | Origin |
+|---|---|---|
+| `--grey-000` | `#FFFFFF` | light pair of --grey-950 |
+| `--grey-025` | `#F6F8FA` | light pair of --grey-900 |
+| `--grey-075` | `#EDF1F5` | light pair of --grey-850 |
+| `--grey-150` | `#DFE4EA` | light pair of --grey-800 |
+| `--grey-450` | `#7E8A97` | Step 4 review. Light pair of --grey-600 |
+| `--grey-350` | `#8A96A3` | light pair of --grey-700 |
+| `--grey-550` | `#5A646E` | light pair of --grey-400 |
+
+**Hues.** One accent and two signals.
+
+| Token | Value | Origin |
+|---|---|---|
+| `--cyan-300` | `#5BD3DA` | Step 5. One step up the accent, for the hover of the action in the dark theme |
+| `--cyan-400` | `#33C4CC` | plate B pixel. The one accent. Was --cyan |
+| `--cyan-700` | `#0B6B70` | light pair: the same accent at a step that holds on white |
+| `--cyan-800` | `#08585C` | Step 5. One step down, for the hover of the action in the light theme: a pair is not a mirror |
+| `--amber-400` | `#D9A441` | attribute A3. Low signal and warning. Was --amber |
+| `--amber-700` | `#8A5A00` | light pair |
+| `--red-400` | `#E5484D` | attribute A3. Blocking failure. Was --red. FILL and LINE only |
+| `--red-300` | `#EB6266` | Step 4 review. The same signal one step lighter, for INK: --red-400 fails 4.5:1 on two of the three grounds it can land on |
+| `--red-700` | `#C0272D` | light pair |
+
+**Alpha washes.** A hue used as a surface or an edge. Each was a literal inside a class until
+Stage 07 Step 3 named it.
+
+| Token | Value | Origin |
+|---|---|---|
+| `--cyan-a10` | `rgba(51,196,204,0.10)` | named at Stage 07 Step 3 |
+| `--cyan-a30` | `rgba(51,196,204,0.30)` | named at Stage 07 Step 3 |
+| `--amber-a10` | `rgba(217,164,65,0.10)` | named at Stage 07 Step 3 |
+| `--amber-a32` | `rgba(217,164,65,0.32)` | named at Stage 07 Step 3 |
+| `--red-a10` | `rgba(229,72,77,0.10)` | named at Stage 07 Step 3 |
+| `--black-a40` | `rgba(0,0,0,0.40)` | named at Stage 07 Step 3 |
+| `--cyan-a12` | `rgba(11,107,112,0.12)` | light pair: the same wash has to be darker to register on a white ground |
+| `--cyan-a35` | `rgba(11,107,112,0.35)` | light pair, as above |
+| `--amber-a12` | `rgba(138,90,0,0.12)` | light pair, as above |
+| `--amber-a35` | `rgba(138,90,0,0.35)` | light pair, as above |
+| `--red-a12` | `rgba(192,39,45,0.12)` | light pair, as above |
+| `--black-a12` | `rgba(16,20,24,0.12)` | light pair, as above |
+
+**Type.** Two faces, and the scale the product actually renders, measured on the screens. The scale
+is `--type-*` and not `--text-*`, because `--text-` means ink and nothing else.
+
+| Token | Value | Origin |
+|---|---|---|
+| `--font-ui` | `"Inter",-apple-system,BlinkMacSystemFont,system-ui,sans-serif` | taste. Vercel / Geist, Linear; A5 |
+| `--font-mono` | `"IBM Plex Mono",ui-monospace,Menlo,monospace` | attribute A2. The count is the trust surface; A4 |
+| `--type-3xl` | 36px | the marketing first line, 0.0 only |
+| `--type-2xl` | 29px | display: the public document H1 |
+| `--type-xl` | 22px | headline: a screen H1 |
+| `--type-lg` | 17px | title: a dialog, a section of a document |
+| `--type-md` | 15px | reading size on a document |
+| `--type-base` | 14px | body |
+| `--type-sm` | 13.5px | every control label |
+| `--type-xs` | 12.5px | secondary line, metadata |
+| `--type-2xs` | 11px | mono provenance, the badge |
+| `--type-3xs` | 10px | the micro uppercase label |
+| `--weight-regular` | 400 | not stated |
+| `--weight-medium` | 500 | not stated |
+| `--weight-strong` | 590 | the one strong weight. 600 was folded into it at Stage 07 |
+| `--leading-tight` | 1.2 | not stated |
+| `--leading-body` | 1.6 | not stated |
+| `--leading-loose` | 1.75 | document prose only |
+| `--tracking-display` | -0.022em | not stated |
+| `--tracking-head` | -0.02em | not stated |
+| `--tracking-title` | -0.015em | not stated |
+| `--tracking-body` | -0.011em | not stated |
+| `--tracking-caps` | 0.07em | the micro uppercase label |
+
+**Geometry.** No semantic level.
+
+| Token | Value | Origin |
+|---|---|---|
+| `--radius-sm` | 4px | matched to character. A mark or a control that sits inside text |
+| `--radius-md` | 6px | matched to character. Anything a hand acts on |
+| `--radius-lg` | 12px | matched to character. A sheet: the frame, the dialog, the auth card |
+| `--radius-pill` | 50% | the avatar and the numbered circle |
+| `--space-1` | 4px | not stated |
+| `--space-2` | 6px | not stated |
+| `--space-3` | 8px | not stated |
+| `--space-4` | 10px | not stated |
+| `--space-5` | 12px | not stated |
+| `--space-6` | 14px | not stated |
+| `--space-7` | 16px | not stated |
+| `--space-8` | 18px | not stated |
+| `--space-9` | 22px | not stated |
+| `--space-10` | 26px | not stated |
+| `--space-12` | 32px | not stated |
+| `--size-target` | 44px | the target floor. Three named exceptions, all in conventions.md |
+| `--size-check` | 24px | the checkbox, at the AA floor by a named exception |
+| `--size-bar` | 52px | the app bar and the public bar |
+| `--measure-prose` | 92ch | the longest line the product allows anywhere |
+
+**Motion and shadows.** `tokens.css` carries one motion token and no duration tokens.
+
+| Token | Value | Origin |
+|---|---|---|
+| `--ease` | `cubic-bezier(0.22,1,0.36,1)` | technical decision. Ease out, restrained |
+| `--shadow-dark` | `0 2px 4px var(--black-a40)` | the one depth, on a dark ground |
+| `--shadow-light` | `0 2px 4px var(--black-a12)` | its light pair: on white a shadow is a hint, not a hole |
+
+**Stage 07 brand names, still used in prose and in the front matter, and the primitive that holds
+each value now.**
+
+| Stage 07 name | Primitive |
+|---|---|
+| Canvas | `--grey-950` |
+| Surface | `--grey-900` |
+| Elevated | `--grey-850` |
+| Line | `--grey-800` |
+| Porcelain | `--grey-050` |
+| Ash | `--grey-400` |
+| Cyan | `--cyan-400` |
+| Amber | `--amber-400` |
+| Red | `--red-400` |
+
+### Semantic roles
+
+A role paints exactly one surface, and the prefix says which: `--bg-*` is a fill (3:1, WCAG 1.4.11),
+`--text-*` is ink (4.5:1, or 3:1 from 24px and from 19px bold), `--line-*` is a line (3:1 where it
+identifies a control or a state, exempt where decorative). The pair is not a mirror: contrast is
+measured against the opposite ground, so the light theme takes a different step. Numbers are the
+ones the comments in `tokens.css` state; where a comment gives none, the cell says "not stated".
+The "uses" column is the count and the examples as the comment gives them.
+
+| Role | Surface | Dark | Light | Uses | Contrast dark / light |
+|---|---|---|---|---|---|
+| `--bg-page` | fill | `--grey-950` | `--grey-000` | the ground of every screen: all 23 pages | not stated |
+| `--bg-surface` | fill | `--grey-900` | `--grey-025` | card, panel, bar, hover ground of a row: 31 rules, 20 screens | 1.11 / 1.06 off `--bg-page`; exempt as a ground, always with `--line-hairline` |
+| `--bg-raised` | fill | `--grey-850` | `--grey-075` | a surface above another surface: 10 rules (active tab, dialog, checkbox field, avatar) | 1.25 / 1.14 off `--bg-page`, 1.13 / 1.07 off `--bg-surface` |
+| `--bg-action` | fill | `--cyan-400` | `--cyan-700` | the one filled action: 36 controls across 12 screens | 9.13 / 6.27 on page |
+| `--bg-evidence` | fill | `--cyan-a10` | `--cyan-a12` | the accent as a surface, under a citation: 2 rules | 1.19 / 1.19 over `--bg-surface` |
+| `--bg-warning` | fill | `--amber-a10` | `--amber-a12` | low signal and a recoverable failure: 3 rules (low-signal badge, warning band, alert tag) | 1.18 / 1.18 over `--bg-surface` |
+| `--bg-danger` | fill | `--red-a10` | `--red-a12` | a failure that blocks or destroys: 1 rule (the error band) | 1.10 / 1.21 over `--bg-surface` |
+| `--text-primary` | ink | `--grey-050` | `--grey-950` | every heading, label and name: 78 rules, all 23 pages | 16.60 / 19.35 on page |
+| `--text-secondary` | ink | `--grey-400` | `--grey-550` | metadata, quote, placeholder, every recessed label: 104 rules, all 23 pages | 5.90 / 6.03 |
+| `--text-on-action` | ink | `--grey-950` | `--grey-000` | the ink ON the accent: the label of a filled button, the checkmark in a checked box | 9.13 / 6.27 against `--bg-action` |
+| `--text-evidence` | ink | `--cyan-400` | `--cyan-700` | the citation marker, and nothing else: 2 rules on 4.0 and 6.4 | 9.13 / 6.27 on page |
+| `--text-warning` | ink | `--amber-400` | `--amber-700` | the low-signal word and the alert tag: 4 rules | 8.60 / 5.93 |
+| `--text-danger` | ink | `--red-300` | `--red-700` | the field error, and nothing else: 1 rule (field.css) | 5.96 / 5.40 / 4.78 dark on page / surface / raised; 5.88 / 5.53 / 5.18 light |
+| `--line-hairline` | line | `--grey-800` | `--grey-150` | decorative. Every divider and card edge: 64 rules, all 23 pages | 1.39 / 1.28 on page, exempt |
+| `--line-control` | line | `--grey-600` | `--grey-450` | identifying. Input, chip, outlined button, account avatar: 15 rules | 3.93 / 3.55 / 3.14 dark on page / surface / raised; 3.52 / 3.30 / 3.10 light |
+| `--line-focus` | line | `--cyan-400` | `--cyan-700` | identifying. The keyboard ring, every focusable control on all 23 pages | 9.13 / 6.27 |
+| `--line-strong` | line | `--grey-700` | `--grey-350` | decorative. A rule one step heavier than the hairline: 2 rules (trust item on 0.0, reason on 4.0 and 4.1) | 1.76 on a card dark, exempt; light not stated |
+| `--line-evidence` | line | `--cyan-a30` | `--cyan-a35` | decorative. The edge of a citation chip: 3 rules | 1.87 / 1.71 over `--bg-surface` |
+| `--line-warning` | line | `--amber-a32` | `--amber-a35` | decorative. The dashed edge of an alert tag, the edge of the low-signal badge: 2 rules | 1.91 / 1.67 over `--bg-surface` |
+| `--line-warning-strong` | line | `--amber-400` | `--amber-700` | identifying. The solid left rule of a warning band and of a failed source row: 2 rules | 8.60 dark on page / 5.93 light on page |
+| `--line-danger` | line | `--red-400` | `--red-700` | identifying. The solid left rule of an error band: 1 rule | dark not stated / 5.88 light on page |
+
+### State tokens
+
+A state is a token, never a style. Every state token and every role has a pair in the light block or
+it does not exist.
+
+| Token | Dark | Light | Reason, from the comment |
+|---|---|---|---|
+| `--bg-hover` | `--grey-900` | `--grey-025` | a row, a bare button or a card lifting under the pointer. 1.11 / 1.06 off `--bg-page`, 1.00 in both themes off `--bg-surface` (same step): a hover is a whisper and never the only signal; on a card it is carried by the border or the ink |
+| `--bg-action-hover` | `--cyan-300` | `--cyan-800` | the filled action only. Replaces `filter: brightness(1.08)`, the one state that was written as a style. `--text-on-action` reads 10.85 / 8.20 against it; 9.82 / 7.70 on `--bg-surface`. The action lightens on hover in dark and darkens in light: a hover moves away from its ground |
+| `--line-hover` | `--grey-400` | `--grey-550` | the border of an outlined control under the pointer: 5.34 / 5.66 on a card |
+| `--opacity-disabled` | 0.45 | 0.50 | not a colour: a control that cannot act is dimmed, never repainted by hand. Light is a touch stronger because 45 percent on white reads as almost gone |
+
+### Depth and component tokens
+
+| Token | Surface | Dark | Light | Reason, from the comment | Contrast dark / light |
+|---|---|---|---|---|---|
+| `--shadow-sheet` | depth | `--shadow-dark` | `--shadow-light` | a role because a theme has to be able to change it. Two rules use it: the frame and the dialog. No separation rests on it: both also carry `--line-hairline` | not stated |
+| `--step-current-line` | line | `--grey-050` | `--grey-950` | the ring of the current phase in the phase strip: 1 rule, 2.1 and 2.2. No line role carries that step | 16.60 / 19.35 on `--bg-page` |
+| `--text-accent` | ink | `--cyan-400` | `--cyan-700` | the accent as ink where it marks "this is the product" or "you are here": 2 rules (brand mark in the app header, current bottom tab). Not `--text-evidence`, which A2 keeps for the citation | 9.13 / 6.27 on `--bg-page` |
+| `--tier-mark` | fill | `--grey-700` | `--grey-350` | the square bullet of a tier feature on 0.0: 1 rule, decorative. A fill may not borrow a line role | 1.76 / 2.83 on `--bg-surface`, decorative |
+
+### Declared literals
+
+These values stay off the type ramp and the radius scale on purpose. Each is kept byte for byte from
+the flat kit and declared on its component page. No value moves without a decision stated as
+"variable, value, why". This list exists so that a detector which reads this document does not flag
+them as drift.
+
+| File | Literal | Line |
+|---|---|---|
+| `design/system/components/marketing-shell.css` | 16px (`.mk-lead`) | 18 |
+| `design/system/components/marketing-shell.css` | 27px (`.mk-h1`, narrow) | 28 |
+| `design/system/components/public-doc.css` | 15.5px (`.pub-lede`) | 21 |
+| `design/system/components/public-doc.css` | 24px (`.pub-h1`, narrow) | 67 |
+| `design/system/components/state.css` | 19px (`.state-t`) | 23 |
+| `design/system/components/step-card.css` | 15px (`.mk-step-t`) | 15 |
+| `design/system/components/theme-card.css` | 18px (`.theme-drill`) | 43 |
+| `design/system/components/tier-card.css` | 1px radius (`.tier-feat li::before`) | 19 |
+
+### Resolved at Stage 07 Step 1 (kept here so the decision is not re-litigated)
 
 - `--bar-track` and `--bar-fill` were declared for the volume bar named in attribute A4 and used
   zero times. The bar is dropped and both variables are removed from `design/_theme.css` before it
@@ -525,23 +709,23 @@ read off the approved brand plate at Stage 06 and recorded in `DESIGN-artifacts.
   Folded to 590. The difference is invisible at 11px, so the only thing 600 added was a fourth
   weight, and 590 is the number somebody chose while 600 is the number a reflex reaches for.
 
-**Tokens with no origin (candidates for review, not defects):**
+### Tokens with no origin (resolved history)
 
-- `#333c44` and `#3a444c`. Two literal neutral values used five times between them (chip hover
-  border, chip-on border, checkbox border, ghost button hover border, completed phase step border).
-  They are one real step between Line and Ash that was never declared. One of them is referenced
-  through `var(--gunmetal, #3a444c)`, a variable that does not exist, so the fallback is doing the
-  work silently. Fixed at Step 3 by declaring the variable.
-- Font weight 600, used at three product sites (the wordmark, and two uppercase section labels).
-  `DESIGN-artifacts.md` declares 400, 500, and 590. Recorded in the frontmatter as the label weight
-  because that is what the code carries.
-- `rgba(51,196,204,0.08 / 0.10 / 0.30)` and `rgba(217,164,65,0.10 / 0.32)`. Accent and amber washes
-  and borders, derived from Cyan and Amber but written as literals.
+- `#333c44` and `#3a444c`: the two literal neutrals, one real step between Line and Ash that was
+  never declared. `tokens-audit.md` records the drift (`#333c44` in one rule against `#3a444c` in
+  four) as consolidated at Stage 07. The step is now the declared primitive `--grey-700`
+  (`#3A444C`, "recovered from four in-class literals at Stage 07"). It now carries `--line-strong`
+  and `--tier-mark`; the control boundary moved to `--grey-600` at the Step 4 review.
+- Font weight 600: folded into `--weight-strong` (590), see above.
+- `rgba(51,196,204,0.10 / 0.30)` and `rgba(217,164,65,0.10 / 0.32)`: now the named primitives
+  `--cyan-a10`, `--cyan-a30`, `--amber-a10` and `--amber-a32`, each with a light pair. The 0.08 cyan
+  value has no primitive in `tokens.css`.
 
-**Not product tokens.** `--pf-*` in `design/_theme.css` (purple roadmap rail, shared with
-`research/research.html`) is prototype chrome for the portfolio site around the product. It is not
-part of the product language, does not enter the component kit, and is excluded from this document
-on purpose.
+### Not product tokens
+
+`--pf-*` (the purple roadmap rail, shared with `research/research.html`) is prototype chrome for the
+portfolio site around the product. It lives in `design/_panel.css`, is not part of the product
+language, does not enter the component kit, and is excluded from this document on purpose.
 
 ## Sources
 
@@ -550,6 +734,8 @@ on purpose.
 - `design/concept/docs/references.md` (base language and borrowed techniques)
 - `DESIGN-artifacts.md` (Stage 06 draft: identity, palette with roles, typography, icon language, UI
   tone, verified contrast; the origin column above carries its signatures forward)
+- `design/system/tokens.css` (the two-level token source: every value, role, pair and origin comment)
+- `design/kit/docs/tokens-audit.md` (the audit and the named changes of appearance)
 - `design/_theme.css`, `design/synthesis.html` and its three states, `design/shared-brief.html` (the
   code this document was formed from)
 - `voice/docs/voice.md` (tone and forbidden vocabulary, which constrains state copy)

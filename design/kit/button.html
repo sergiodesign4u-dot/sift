@@ -284,18 +284,15 @@
         <p class="kit-note"><b>The matrix on Overview is derived; these are measured.</b> The matrix is drawn by
           <code class="kit-mono">_states.js</code>, which copies every <code class="kit-mono">:hover</code>,
           <code class="kit-mono">:active</code> and <code class="kit-mono">:focus-visible</code> rule of design/system/ onto an
-          attribute that exists only inside the inert matrix. These eight frames are the same states reached by a real
+          attribute that exists only inside the inert matrix. These four frames are the same states reached by a real
           mouse and a real Tab key. Step 9 compares the two and checks the frames for byte drift.<br>
+          <b>Two states have no frame, and each is a line instead.</b> Pressed: the filled button's pressed frame is byte for byte its rest frame, by decision (the press reads as a return, button.css), so a picture of it would prove sameness, not a difference. Disabled: it is the real attribute, standing live in the hero above and in the matrix; a frame of it was the rest scene photographed again. Both were removed at Stage 08 Step 9.<br>
           Re-take: <code class="kit-mono">node scripts/shoot-states.js button</code></p>
         <div class="kit-forms">
           <figure><img src="screens/button-hover-dark.png" alt="hover, dark theme" class="kit-shot"><figcaption class="geo-cap">hover &middot; dark</figcaption></figure>
           <figure><img src="screens/button-hover-light.png" alt="hover, light theme" class="kit-shot"><figcaption class="geo-cap">hover &middot; light</figcaption></figure>
-          <figure><img src="screens/button-active-dark.png" alt="pressed, dark theme" class="kit-shot"><figcaption class="geo-cap">pressed &middot; dark</figcaption></figure>
-          <figure><img src="screens/button-active-light.png" alt="pressed, light theme" class="kit-shot"><figcaption class="geo-cap">pressed &middot; light</figcaption></figure>
           <figure><img src="screens/button-focus-dark.png" alt="focus-visible, dark theme" class="kit-shot"><figcaption class="geo-cap">focus-visible &middot; dark</figcaption></figure>
           <figure><img src="screens/button-focus-light.png" alt="focus-visible, light theme" class="kit-shot"><figcaption class="geo-cap">focus-visible &middot; light</figcaption></figure>
-          <figure><img src="screens/button-disabled-dark.png" alt="disabled, dark theme" class="kit-shot"><figcaption class="geo-cap">disabled &middot; dark</figcaption></figure>
-          <figure><img src="screens/button-disabled-light.png" alt="disabled, light theme" class="kit-shot"><figcaption class="geo-cap">disabled &middot; light</figcaption></figure>
         </div>
       </section>
 

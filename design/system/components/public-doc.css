@@ -1,7 +1,8 @@
 /* design/system/components/public-doc.css - level 3, organism.
    Reads: --line-hairline, --bg-surface, --text-primary, --text-secondary, --font-mono, --radius-md, --space-*, --type-*, --weight-*, --leading-*, --tracking-*
    Page:  design/kit/public-doc.html
-   Stands on: 6.4 Shared brief, design/shared-brief.html. One form: eyebrow, H1, lede, meta, key
+   Stands on: 6.4 Shared brief, design/shared-brief.html; .public-main and .public-eyebrow also on
+   0.0 Home. One form: eyebrow, H1, lede, meta, key
    takeaways, rationale, themes, citations, sources, method.
 
    The same language at a completely different density: no app chrome, no actions, one column of

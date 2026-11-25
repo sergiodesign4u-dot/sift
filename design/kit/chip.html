@@ -43,14 +43,14 @@
         <button class="chip"><svg class="ic" viewBox="0 0 24 24"><use href="#i-source"></use></svg> Source: all <span class="chip-count">2</span></button>
         <button class="chip is-on">Last 30 days <span class="chip-count">2,904</span></button>
         <button class="chip">CSV <span class="chip-count">12</span></button>
-        <button class="chip" disabled>Confidence <span class="chip-count">12</span></button>
+        <button class="chip" disabled>Confidence <span class="chip-count">0</span></button>
         <p class="kit-hero-note">Live. Hover, tab to it, press it: this is the product's own CSS entry point</p>
       </div>
       <p class="kit-note">A chip is a button and never a link: it changes what the current screen shows; it does not travel.</p>
 
       <section class="kit-sec" id="variants">
         <h2 class="kit-h2">Variants and states</h2>
-        <p class="kit-note">State says whether the facet is applied; content says whether it carries a count. Off 8 &middot; on 4, with a count 9 &middot; label only 3.
+        <p class="kit-note">State says whether the facet is applied; content says whether it carries a count. On the colour sample: off 6 &middot; on 4, with a count 8 &middot; label only 2. A disabled chip counts 0, because disabled means there is nothing behind the facet.
           The states are drawn from the product's own CSS: hover and focus-visible by <code class="kit-mono">_states.js</code>, on by the real class <code class="kit-mono">.is-on</code>,
           disabled by the real attribute. There is no pressed row because chip.css has no <code class="kit-mono">:active</code> rule.</p>
         <div class="kit-matrix-wrap">
@@ -70,11 +70,24 @@
                 <td><button class="chip is-on" data-kit-st="focus">Intercom <span class="chip-count">30</span></button></td>
                 <td><button class="chip" data-kit-st="focus">Group by source</button></td></tr>
               <tr><td class="kit-st">Disabled</td>
-                <td><button class="chip" disabled>Confidence <span class="chip-count">12</span></button></td>
-                <td><button class="chip is-on" disabled>Intercom <span class="chip-count">30</span></button></td>
+                <td><button class="chip" disabled>Confidence <span class="chip-count">0</span></button></td>
+                <td><button class="chip is-on" disabled>Intercom <span class="chip-count">0</span></button></td>
                 <td><button class="chip" disabled>Group by source</button></td></tr>
             </tbody>
           </table>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="forms">
+        <h2 class="kit-h2">Other forms</h2>
+        <div class="kit-forms">
+          <div>
+            <div class="kit-form-c" inert>
+              <button class="chip is-on"><svg class="ic" viewBox="0 0 24 24"><use href="#i-filter"></use></svg> Filter <span class="chip-count">1</span></button>
+            </div>
+            <div class="kit-form-t">Compact Filter chip, 820 and below</div>
+            <div class="kit-form-d">2.0 Synthesis, in <code>.toolbar-compact</code> (see <a href="toolbar.html">the toolbar</a>). One chip stands for the whole facet row, so its count is the <b>number of filters applied</b>, not the size of an answer, and it is on whenever that number is above 0. It takes <code>#i-filter</code>. Off with no filter applied, it reads "Filter" with no count.</div>
+          </div>
         </div>
       </section>
 
@@ -84,7 +97,7 @@
           <tr><td>Chip</td><td>own class</td><td><code>.chip</code> on a <code>button</code>, never a link</td><td>none: the class is required</td></tr>
           <tr><td>State, on</td><td>modifier</td><td><code>.is-on</code>: the on chip reads its value instead of the word "all"</td><td>off</td></tr>
           <tr><td>Count</td><td>slot</td><td><code>.chip-count</code> after the label, mono</td><td>empty</td></tr>
-          <tr><td>Leading icon</td><td>slot</td><td><code>svg.ic</code>, 14px, only where the facet needs a category mark</td><td>empty</td></tr>
+          <tr><td>Leading icon</td><td>slot</td><td><code>svg.ic</code>, 14px. A facet over a source type or a confidence level takes the glyph of that category (<code>#i-source</code>, <code>#i-signal</code>); a facet over time or a grouping takes none. The compact Filter chip takes <code>#i-filter</code></td><td>empty</td></tr>
           <tr><td>Disabled</td><td>attribute</td><td><code>disabled</code>, dimmed by <code>--opacity-disabled</code></td><td>enabled</td></tr>
           <tr><td>State</td><td>variant</td><td>rest &middot; hover &middot; on &middot; focus-visible &middot; disabled</td><td>rest</td></tr>
         </tbody></table></div>
@@ -104,6 +117,7 @@
               <li>To offer one of a closed set inside a form: take <code>select.input</code>. A chip filters a view; a select answers a question the form will submit.</li>
               <li>To mark a state that the person cannot change: take <code>.tag</code>. A chip is pressable; a source status is not.</li>
               <li>To navigate: take <code>.link</code> or a tab. A chip that navigates is a link wearing a border.</li>
+              <li>To run an action, even a small one inside a toolbar: take <a href="button.html"><code>.btn--ghost</code></a>. "Add themes" on 6.1 and 6.2 was drawn as a chip in grey and became a ghost button at Stage 08 Step 9: it opens a picker, it does not filter the view.</li>
             </ul>
           </div>
         </div>
@@ -130,13 +144,11 @@
 
       <section class="kit-sec" id="where">
         <h2 class="kit-h2">Where it stands</h2>
-        <p class="kit-note">12 occurrences on 5 screens. The ones already in colour:</p>
+        <p class="kit-note">On the colour sample: 10 occurrences on 3 screens (2.0 four, counting the compact Filter chip; 4.0 three; 4.1 three). In grey: 12 on 5 screens, where 6.1 and 6.2 (the thin-theme warning) still draw "Add themes" as a chip; in colour it is a ghost button. The colour screens:</p>
         <div class="kit-where">
           <a href="../synthesis.html">2.0 Synthesis</a>
           <a href="../theme.html">4.0 Theme detail</a>
           <a href="../theme-low-signal.html">4.1 Theme detail, low signal</a>
-          <a href="../build-brief.html">6.1 Build brief</a>
-          <a href="../build-brief-thin-warning.html">6.2 Build brief, thin-theme warning</a>
           <a href="../../wireframes/overview.html">the rest, in grey</a>
         </div>
       </section>
@@ -150,15 +162,15 @@
         <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
           <tr><td>the pill</td><td><code>.chip</code></td><td>44px floor, 6px radius. It is a button, not a link: it changes the view rather than travelling</td></tr>
           <tr><td>the count</td><td><code>.chip-count</code></td><td>Mono, because it is a value. A count that shifts width between chips cannot be compared along a row</td></tr>
-          <tr><td>the icon</td><td><code>svg.ic</code>, 14px</td><td>Only where the facet needs a category mark. Most do not</td></tr>
+          <tr><td>the icon</td><td><code>svg.ic</code>, 14px</td><td>The rule that chooses: a facet over a source type or a confidence takes its category glyph; time ("Last 30 days") and grouping ("Group by source") take none. On 2.0 that is Source and Confidence with a glyph, Last 30 days without</td></tr>
         </tbody></table></div>
       </section>
 
       <section class="kit-sec" id="axes">
         <h2 class="kit-h2">Axes, with the rule that chooses</h2>
         <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
-          <tr><td>state</td><td>off 8 &middot; on 4</td><td><b>An on chip reads its value instead of the word "all".</b> "Source: all 2" becomes "Intercom 30": the filter says what it is doing, not that it is doing something</td></tr>
-          <tr><td>content</td><td>with a count 9 &middot; label only 3</td><td><b>A facet that can be counted is counted.</b> "Group by source" has nothing to count</td></tr>
+          <tr><td>state</td><td>off 6 &middot; on 4, on the colour sample</td><td><b>An on chip reads its value instead of the word "all".</b> "Source: all 2" becomes "Intercom 30": the filter says what it is doing, not that it is doing something</td></tr>
+          <tr><td>content</td><td>with a count 8 &middot; label only 2, on the colour sample</td><td><b>A facet that can be counted is counted.</b> "Group by source" has nothing to count</td></tr>
           <tr><td>emphasis</td><td><b>not an axis</b></td><td><b>The on state does NOT take the accent, and that is the decision.</b> Cyan could be read as allowed here, but spending it on a filter puts the one accent in two places at once and dilutes the primary action. The on chip steps up a surface instead</td></tr>
         </tbody></table></div>
       </section>
@@ -225,6 +237,7 @@
 </div>
 
 <svg class="sprite" aria-hidden="true"><defs>
+  <symbol id="i-filter" viewBox="0 0 24 24"><path d="M3 5.5h18l-7 8v5l-4 2v-7z"/></symbol>
   <symbol id="i-source" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.66 3.13 3 7 3s7-1.34 7-3V6"/><path d="M5 12v6c0 1.66 3.13 3 7 3s7-1.34 7-3v-6"/></symbol>
 </defs></svg>
 

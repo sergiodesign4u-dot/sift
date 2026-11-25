@@ -105,11 +105,11 @@
             <div class="kit-form-d">4.0 Theme detail. The group heading stands inside the toolbar (<code>.group-t--inline</code>) and the toolbar owns the rhythm. The chips are the screen's own evidence controls, so they sit in the row form <code>.toolbar-row</code>, which stays and wraps at every width.</div></div>
           <div><div class="kit-form-c"><div class="toolbar">
   <h2 class="group-t group-t--inline">In this brief &middot; 3 themes</h2>
-  <div class="toolbar-row"><button class="chip">Add themes</button></div>
+  <div class="toolbar-row"><button class="btn--ghost">Add themes</button></div>
   <span class="sortnote">Order = <b>recommended priority</b></span>
 </div></div>
-            <div class="kit-form-t">One chip and an order note</div>
-            <div class="kit-form-d">6.1 Build brief. Here <code>.sortnote</code> says what the order means. The chip sits in the row form <code>.toolbar-row</code>, so it stays at 820 and below. Until Step 6 it wore <code>.toolbar-full</code> and vanished on a phone.</div></div>
+            <div class="kit-form-t">One action and an order note</div>
+            <div class="kit-form-d">6.1 Build brief. Here <code>.sortnote</code> says what the order means. "Add themes" opens a picker, so it is an action and wears <code>.btn--ghost</code>, not a chip (a chip only filters the view; changed at Step 9). It sits in the row form <code>.toolbar-row</code>, so it stays at 820 and below. Until Step 6 it wore <code>.toolbar-full</code> and vanished on a phone.</div></div>
         </div>
       </section>
 
@@ -118,7 +118,7 @@
         <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Property</th><th>Type</th><th>Values</th><th>Default</th></tr></thead><tbody>
           <tr><td>Bar</td><td>own class</td><td><code>.toolbar</code>, a wrapping flex row with a rule under it</td><td>none: the class is required</td></tr>
           <tr><td>Full row</td><td>zone</td><td><code>.toolbar-full</code>, takes the free width. Holds the chips, the Clear link and the sort note</td><td>required</td></tr>
-          <tr><td>Row (no compact twin)</td><td>zone</td><td><code>.toolbar-row</code>, the box of the full row without the hiding. For a few chips that are the screen's own controls rather than the filter (4.0, 4.1, 6.1, 6.2)</td><td>absent</td></tr>
+          <tr><td>Row (no compact twin)</td><td>zone</td><td><code>.toolbar-row</code>, the box of the full row without the hiding. For the screen's own controls rather than the filter: the evidence chips on 4.0 and 4.1, the "Add themes" ghost button on 6.1 and 6.2</td><td>absent</td></tr>
           <tr><td>Compact row</td><td>zone</td><td><code>.toolbar-compact</code>, hidden above 820, a flex row at 820 and below</td><td>present on the filter toolbar</td></tr>
           <tr><td>Facet</td><td>atom</td><td><code>.chip</code> and <code>.chip-count</code>, see the chip page</td><td>n/a</td></tr>
           <tr><td>Clear</td><td>atom</td><td><code>.link--action</code>, shown once a filter is active</td><td>absent at rest</td></tr>

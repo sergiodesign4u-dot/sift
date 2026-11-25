@@ -29,11 +29,15 @@ window.KIT_NAV = {
   overview: [
     { file: 'overview.html',   label: 'System overview' },
     { file: 'components.html', label: 'All components' },
-    { file: 'pixel-proof.html', label: 'Pixel proof' },
+  ],
+  /* The evidence ABOUT the system, not part of it: its own group, last in the panel (Stage 08
+     Step 9). The pixel proof carries the stage's critique summary and its numbers. */
+  verification: [
+    { file: 'pixel-proof.html', label: 'Pixel proof and critique' },
   ],
   foundations: [
     { file: 'architecture.html', label: 'Architecture', blurb: 'Two ladders, three surfaces, and where a fix goes' },
-    { file: 'color.html',        label: 'Colour',       blurb: '84 primitives, 22 colour roles, both themes side by side, every ratio measured, the theme stress test' },
+    { file: 'color.html',        label: 'Colour',       blurb: '81 primitives, 22 colour roles, both themes side by side, every ratio measured, the theme stress test' },
     { file: 'typography.html',   label: 'Typography',   blurb: 'Two faces, ten steps, every one on real product text' },
     { file: 'geometry.html',     label: 'Geometry',     blurb: 'Space, radius and target, shown as space, radius and target' },
     { file: 'icons.html',        label: 'Icons',        blurb: 'The whole set, one sheet, at the sizes the product uses' },
@@ -240,11 +244,11 @@ window.KIT_NAV = {
   function comp(file) { for (var i = 0; i < K.components.length; i++) if (K.components[i].file === file) return K.components[i]; return null; }
 
   /* Reading order of the whole stand: overview, foundations, then components category by
-     category. The pager walks it. */
+     category, then the verification group. The pager walks it. */
   function order() {
     var out = K.overview.concat(K.foundations);
     usedCats().forEach(function (c) { inCat(c.id).forEach(function (x) { out.push({ file: x.file, label: x.title }); }); });
-    return out;
+    return out.concat(K.verification);
   }
 
   /* ---- the theme switch ----
@@ -317,6 +321,10 @@ window.KIT_NAV = {
       h += '</details>';
     });
     h += '<p class="kit-q-none" hidden>Nothing in the system by that name.</p>';
+    h += '</div>';
+
+    h += '<div class="kit-group"><div class="kit-group-t">Verification</div>';
+    K.verification.forEach(function (p) { h += link(p.file, p.label, cur); });
     h += '</div>';
 
     h += '</nav></details>';

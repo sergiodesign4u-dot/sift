@@ -85,7 +85,6 @@
   --amber-a10: rgba(217,164,65,0.10);
   --amber-a32: rgba(217,164,65,0.32);
   --red-a10:   rgba(229,72,77,0.10);
-  --red-a32:   rgba(229,72,77,0.32);
   --black-a40: rgba(0,0,0,0.40);
   /* light pairs: the same wash has to be darker to register on a white ground */
   --cyan-a12:  rgba(11,107,112,0.12);
@@ -93,7 +92,6 @@
   --amber-a12: rgba(138,90,0,0.12);
   --amber-a35: rgba(138,90,0,0.35);
   --red-a12:   rgba(192,39,45,0.12);
-  --red-a35:   rgba(192,39,45,0.35);
   --black-a12: rgba(16,20,24,0.12);
 
   /* --- type. Two faces, and the scale the product actually renders, measured on the screens
@@ -121,7 +119,6 @@
   --weight-strong:  590;   /* the one strong weight. 600 was folded into it at Stage 07 */
 
   --leading-tight: 1.2;
-  --leading-snug:  1.45;
   --leading-body:  1.6;
   --leading-loose: 1.75;   /* document prose only */
 
@@ -168,7 +165,7 @@
   --bg-action:  var(--cyan-400);  /* the one filled action: 36 controls across 12 screens (Build brief, Try again, Import 840 items). fill 3:1, measured 9.13 on page dark / 6.27 light */
   --bg-evidence: var(--cyan-a10); /* the accent as a surface, under a citation: 2 rules (cite, citechip on 4.0 and 6.4). Step 7: a wash, 1.19 dark / 1.19 light over --bg-surface, and --text-evidence on it reads 6.94 / 4.95 */
   --bg-warning: var(--amber-a10); /* low signal and a recoverable failure: 3 rules (low-signal badge, warning band, alert tag). Step 7: 1.18 dark / 1.18 light over --bg-surface. --text-warning on it reads 6.59 / 4.72 over a card, but 5.77 / 4.44 over --bg-raised: a warning never sits on a raised surface, and no screen puts it there today */
-  --bg-danger:  var(--red-a10);   /* a failure that blocks or destroys: 1 rule (the error band). One use today, and it is a role rather than a one-off because its pair --text-danger has three. Step 7: 1.10 dark / 1.21 light over --bg-surface. --text-danger on it reads 4.92 / 4.57 over a card and 4.36 / 4.30 over --bg-raised, under 4.5 in BOTH themes: the error band never sits in a dialog or a menu, and no screen puts it there today */
+  --bg-danger:  var(--red-a10);   /* a failure that blocks or destroys: 1 rule (the error band), and no colour screen draws the band yet: it waits for 3.4 at Stage 12 (backlog). A role rather than a one-off because it is one half of the failure trio with --text-danger and --line-danger, which part from each other by surface. Step 7: 1.10 dark / 1.21 light over --bg-surface. --text-danger on it reads 4.92 / 4.57 over a card and 4.36 / 4.30 over --bg-raised, under 4.5 in BOTH themes: the error band never sits in a dialog or a menu, and no screen puts it there today */
 
   /* --- INK. Threshold 4.5:1, or 3:1 from 24px and from 19px bold. --- */
   --text-primary:   var(--grey-050);  /* every heading, label and name: 78 rules, all 23 pages. 16.60 dark on page / 19.35 light (Step 7 re-measure; it was written as 18.50). Origin: plate B pixel, A5 */
@@ -176,7 +173,7 @@
   --text-on-action: var(--grey-950);  /* the ink that sits ON the accent: the label of a filled button, the checkmark inside a checked box. 9.13 dark / 6.27 light against --bg-action. SPLIT FROM --bg-page at Stage 08: they carried one value and are opposite roles, and a theme that lightens the page must never lighten the label of a button */
   --text-evidence:  var(--cyan-400);  /* the citation marker, and nothing else: 2 rules on 4.0 and 6.4. Same value as --bg-action, different role: A2 signed the citation separately from the action, and they can part. Step 7: 9.13 dark / 6.27 light on --bg-page, 8.26 / 5.89 on --bg-surface */
   --text-warning:   var(--amber-400); /* the low-signal word and the alert tag: 4 rules on 2.0, 3.5, 4.1, 6.2. 8.60 dark / 5.93 light */
-  --text-danger:    var(--red-300);   /* the field error and the error band's emphasis: 2 rules. 5.96 on --bg-page, 5.40 on --bg-surface, 4.78 on --bg-raised, all above 4.5. It reads --red-300 and not --red-400 because the fill keeps the darker step: the band does not move, only the two lines of small red text do. Step 4 review */
+  --text-danger:    var(--red-300);   /* the field error, and nothing else: 1 rule (field.css). 0 on the colour sample: .field-err is drawn on no screen until 1.0 and 1.2 are painted at Stage 12 (backlog). 5.96 on --bg-page, 5.40 on --bg-surface, 4.78 on --bg-raised, all above 4.5. It reads --red-300 and not --red-400 because the fill keeps the darker step: the band does not move, only the two lines of small red text do. Step 4 review */
 
   /* --- LINE. Threshold 3:1 where the line identifies a control or a state; a decorative
          divider is exempt, and the comment says which of the two each role is. --- */
@@ -198,12 +195,12 @@
   --bg-hover:        var(--grey-900);  /* FILL. A row, a bare button or a card lifting under the pointer. 1.11 off the page: a hover is a whisper, not a state change, and it is never the only signal. Step 7: 1.11 dark / 1.06 light off --bg-page, and 1.00 in BOTH themes off --bg-surface, because it is the same step: on a card the hover is carried by the border (--line-hover) or the ink, never by the fill */
   --bg-action-hover: var(--cyan-300);  /* FILL. The filled action only. It replaces a filter: brightness(1.08), which was the one state in this product written as a style rather than a token. --text-on-action reads 10.85 against it. Step 7: 9.82 dark / 7.70 light on --bg-surface; the ink on it 10.85 / 8.20 */
   --line-hover:      var(--grey-400);  /* LINE. The border of an outlined control under the pointer: 5.34 on a card, well past the 3:1 a line owes. Step 7: 5.34 dark / 5.66 light on a card */
-  --opacity-disabled: 0.45;            /* Not a colour: a control that cannot act is dimmed, never repainted by hand, so it keeps its own identity while losing its weight */
+  --opacity-disabled: 0.45;            /* Not a colour: a control that cannot act is dimmed, never repainted by hand, so it keeps its own identity while losing its weight. 4 rules: button, chip, checkbox, input. 0 drawn on a colour screen; the kit pages show it live. WCAG exempts an inactive control from both contrast floors (1.4.3, 1.4.11) */
 
   /* --- DEPTH. Not one of the three surfaces, and it gets a role anyway for the reason the
          three exist: a theme has to be able to change it. A shadow was a primitive here until
          the light pair tried to override it, which is precisely the check that says it is a
-         role. Two rules use it: the frame and the dialog. --- */
+         role. Two rules use it: the dialog (dialog.css), the one in the system, and the stand frame .appframe (design/kit/_page.css). --- */
   --shadow-sheet: var(--shadow-dark);  /* Step 7: the shadow reads on the light ground and barely on the dark one, so no separation rests on it: both sheets that carry it (the frame, the dialog) also carry --line-hairline */
 
   /* --- COMPONENT. Born at Step 5, round 2 (molecules), and only where a colour did not land on

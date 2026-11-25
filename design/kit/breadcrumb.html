@@ -42,7 +42,7 @@
     <div class="kit-tabpanel" role="tabpanel" id="overview" aria-labelledby="tab-overview">
 
       <div class="kit-hero">
-        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="#">Synthesis</a> &rsaquo; <span>Onboarding is confusing</span></nav>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="#">Synthesis</a> &rsaquo; <span aria-current="page">Onboarding is confusing</span></nav>
         <p class="kit-hero-note">Live. Hover the link, tab to it</p>
       </div>
 
@@ -53,9 +53,9 @@
           <table class="kit-matrix" inert>
             <thead><tr><th>Form</th><th>State</th><th>Trail</th></tr></thead>
             <tbody>
-              <tr><th rowspan="3">Breadcrumb<code>.breadcrumb</code></th><td class="kit-st">Rest</td><td><nav class="breadcrumb" aria-label="Breadcrumb"><a href="#">Synthesis</a> &rsaquo; <span>Onboarding is confusing</span></nav></td></tr>
-              <tr><td class="kit-st">Hover</td><td><nav class="breadcrumb" aria-label="Breadcrumb"><a href="#" data-kit-st="hover">Synthesis</a> &rsaquo; <span>Onboarding is confusing</span></nav></td></tr>
-              <tr><td class="kit-st">Focus</td><td><nav class="breadcrumb" aria-label="Breadcrumb"><a href="#" data-kit-st="focus">Synthesis</a> &rsaquo; <span>Onboarding is confusing</span></nav></td></tr>
+              <tr><th rowspan="3">Breadcrumb<code>.breadcrumb</code></th><td class="kit-st">Rest</td><td><nav class="breadcrumb" aria-label="Breadcrumb"><a href="#">Synthesis</a> &rsaquo; <span aria-current="page">Onboarding is confusing</span></nav></td></tr>
+              <tr><td class="kit-st">Hover</td><td><nav class="breadcrumb" aria-label="Breadcrumb"><a href="#" data-kit-st="hover">Synthesis</a> &rsaquo; <span aria-current="page">Onboarding is confusing</span></nav></td></tr>
+              <tr><td class="kit-st">Focus</td><td><nav class="breadcrumb" aria-label="Breadcrumb"><a href="#" data-kit-st="focus">Synthesis</a> &rsaquo; <span aria-current="page">Onboarding is confusing</span></nav></td></tr>
             </tbody>
           </table>
         </div>
@@ -64,10 +64,10 @@
       <section class="kit-sec" id="forms">
         <h2 class="kit-h2">Other forms</h2>
         <div class="kit-forms">
-          <div><div class="kit-form-c"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="#">Sources</a> &rsaquo; <span>CSV upload</span></nav></div>
+          <div><div class="kit-form-c"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="#">Sources</a> &rsaquo; <span aria-current="page">CSV upload</span></nav></div>
             <div class="kit-form-t">Two levels</div>
             <div class="kit-form-d">3.2 CSV upload, and the four 4.0 states. The way back to the list, then the current page.</div></div>
-          <div><div class="kit-form-c"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="#">Synthesis</a> &rsaquo; <a href="#">Onboarding is confusing</a> &rsaquo; <span>Evidence</span></nav></div>
+          <div><div class="kit-form-c"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="#">Synthesis</a> &rsaquo; <a href="#">Onboarding is confusing</a> &rsaquo; <span aria-current="page">Evidence</span></nav></div>
             <div class="kit-form-t">Three levels</div>
             <div class="kit-form-d">5.0 Evidence source and 5.1 Evidence redacted. Markup from the grey wireframes, which have no colour copy yet.</div></div>
         </div>
@@ -79,7 +79,7 @@
           <tr><td>Bar</td><td>own class</td><td><code>.breadcrumb</code> on a <code>nav</code> with <code>aria-label="Breadcrumb"</code></td><td>none: the class is required</td></tr>
           <tr><td>Ancestor</td><td>element</td><td>an <code>a</code>, 44px tall, secondary ink, no underline</td><td>required, at least one</td></tr>
           <tr><td>Separator</td><td>text</td><td>the character <code>&amp;rsaquo;</code> between items. It is a text node, not an element</td><td>required between items</td></tr>
-          <tr><td>Current page</td><td>element</td><td>a <code>span</code>, secondary ink at 70 percent opacity. Not a link</td><td>required, last</td></tr>
+          <tr><td>Current page</td><td>element</td><td>a <code>span</code> with <code>aria-current="page"</code>, secondary ink, the same as the links. Not a link: it is told apart by standing after the last separator and by having no hover</td><td>required, last</td></tr>
           <tr><td>Axes</td><td>none</td><td>one form. The depth of the trail is content</td><td>n/a</td></tr>
           <tr><td>State</td><td>variant</td><td>rest &middot; hover &middot; focus-visible</td><td>rest</td></tr>
         </tbody></table></div>
@@ -104,14 +104,14 @@
         <div class="kit-dodont">
           <div class="kit-dd kit-dd--do">
             <div class="kit-dd-c" inert>
-              <nav class="breadcrumb" aria-label="Breadcrumb"><a href="#">Synthesis</a> &rsaquo; <span>Onboarding is confusing</span></nav>
+              <nav class="breadcrumb" aria-label="Breadcrumb"><a href="#">Synthesis</a> &rsaquo; <span aria-current="page">Onboarding is confusing</span></nav>
             </div>
             <div class="kit-dd-b"><div class="kit-dd-k">Do</div><div class="kit-dd-t">Name the way back</div>
               <div class="kit-dd-d">The first item is the section the person came from, in the same words as the navigation.</div></div>
           </div>
           <div class="kit-dd kit-dd--dont">
             <div class="kit-dd-c" inert>
-              <nav class="breadcrumb" aria-label="Breadcrumb"><span>Onboarding is confusing</span></nav>
+              <nav class="breadcrumb" aria-label="Breadcrumb"><span aria-current="page">Onboarding is confusing</span></nav>
             </div>
             <div class="kit-dd-b"><div class="kit-dd-k">Do not</div><div class="kit-dd-t">A trail with nowhere to go</div>
               <div class="kit-dd-d">With no ancestor link the bar is only a label. The way back is the point of it.</div></div>
@@ -148,7 +148,7 @@
 <tr><td>the bar</td><td><code>.breadcrumb</code></td><td>A flex row with a rule under it and no vertical padding of its own</td></tr>
 <tr><td>the ancestor</td><td><code>a</code></td><td>The link is the target and it is 44px, so the bar is exactly as tall as the thing you aim at</td></tr>
 <tr><td>the separator</td><td>the text node</td><td>A right angle quote between items</td></tr>
-<tr><td>the current page</td><td><code>span</code></td><td>Secondary ink at 70 percent opacity</td></tr>
+<tr><td>the current page</td><td><code>span</code></td><td>Secondary ink, carries <code>aria-current="page"</code>. Until Stage 08 Step 9 it was at 70 percent opacity, 3.44 dark and 3.13 light, under the 4.5 ink floor</td></tr>
         </tbody></table></div>
         <p class="kit-note">The bar carries no vertical padding of its own: the link inside it is the target and it is 44px. Found by measuring, where the link read 15px against a floor of 44 (kit.css comment).</p>
       </section>
@@ -181,7 +181,7 @@
       <section class="kit-sec" id="markup">
         <h2 class="kit-h2">Copy this</h2>
         <div class="scene">
-          <pre class="kit-pre">&lt;nav class="breadcrumb" aria-label="Breadcrumb"&gt;&lt;a href="synthesis.html"&gt;Synthesis&lt;/a&gt; &amp;rsaquo; &lt;span&gt;Onboarding is confusing&lt;/span&gt;&lt;/nav&gt;</pre>
+          <pre class="kit-pre">&lt;nav class="breadcrumb" aria-label="Breadcrumb"&gt;&lt;a href="synthesis.html"&gt;Synthesis&lt;/a&gt; &amp;rsaquo; &lt;span aria-current="page"&gt;Onboarding is confusing&lt;/span&gt;&lt;/nav&gt;</pre>
         </div>
         <p class="kit-note">File: <code class="kit-mono">design/system/components/breadcrumb.css</code>.</p>
       </section>

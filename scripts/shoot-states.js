@@ -6,11 +6,15 @@
   page shows a live rest instance and photographs the rest. Step 9 checks these files for byte
   drift, and a snapshot nobody can re-take freezes silently, which is worse than none.
 
-  Usage:  node scripts/shoot-states.js button
-          PORT=8611 ONLY_STATES=hover,focus node scripts/shoot-states.js chip
-  ONLY_STATES writes only the frames a page shows (checkbox, chip and link show hover and focus;
-  input adds disabled; button shows all four). The filled button's pressed frame equals its rest
-  frame by decision (button.css: the press reads as a return), and the script says so.
+  Usage:  PORT=8611 node scripts/shoot-states.js button
+  It writes two frames per theme, hover and focus-visible: the unit of a snapshot is a DIFFERENCE,
+  and those are the two states a real pointer and a real Tab key draw differently from rest.
+  Pressed is still reached and compared, never saved: the filled button's pressed frame equals
+  its rest frame by decision (button.css: the press reads as a return), and the script says so.
+  Disabled is not a frame at all: it is the real attribute, standing live in the hero of the page,
+  so a "disabled" frame was the rest scene photographed again. Stage 08 Step 9 removed the six
+  frames that proved sameness (button pressed and disabled, input disabled, both themes).
+  ONLY_STATES=hover narrows the set further.
   Needs a static server on the port below and Playwright on the machine.
 
   The scene is the page's live hero (.kit-hero), the first block of a card-format page. Until
@@ -56,6 +60,7 @@ const name = process.argv[2] || 'button';
     async function shot(state, restIsFine) {
       const buf = await scene.screenshot();
       if (!restIsFine && buf.equals(rest)) console.log(`${name} ${theme}: the ${state} frame equals the rest frame`);
+      if (!['hover', 'focus'].includes(state)) return;
       if (process.env.ONLY_STATES && !process.env.ONLY_STATES.split(',').includes(state)) return;
       require('fs').writeFileSync(`design/kit/screens/${name}-${state}-${theme}.png`, buf);
     }
@@ -77,14 +82,8 @@ const name = process.argv[2] || 'button';
     if (!reached) console.log(`${name} ${theme}: Tab never reached the control, focus frame not taken`);
     else { await p.waitForTimeout(160); await shot('focus'); }
 
-    // disabled: no interaction at all, the control is dimmed at rest
-    await p.evaluate(() => document.activeElement && document.activeElement.blur());
-    await p.mouse.move(0, 0);
-    await p.waitForTimeout(160);
-    await shot('disabled', true);
-
     await ctx.close();
-    console.log(`${name}: four states taken in the ${theme} theme`);
+    console.log(`${name}: hover and focus taken in the ${theme} theme, pressed compared`);
   }
   await b.close();
 })();

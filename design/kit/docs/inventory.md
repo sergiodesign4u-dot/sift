@@ -48,12 +48,19 @@ controls in this product.
 
 ## Level 1 - Atoms
 
+> **Superseded: this is the Stage 07 census of the GREY layer, not the live spec.** It is kept as
+> the record of what the wireframes drew when the kit was first read. The forms, values and levels
+> in force live in "Stage 08 Step 2: consolidation" and "Stage 08 Step 5: the component register"
+> below, in `design/system/components/`, and on each page of `design/kit/`. Where a row here
+> disagrees with them (a radius, a size, a state that became a variant), they win. Added at
+> Stage 08 Step 9, after a clean-context reader took this table for the spec.
+
 *Contains no other kit component.*
 
 | Component | Level | Variants (axes x values, occurrences / screens) | Screens | States | Photo |
 |---|:--:|---|---|---|:--:|
 | **Button** | 1 | **Emphasis:** fill 25 occ / 22 scr (`wf-btn`) · outline 30 occ / 21 scr (`wf-btn--ghost`) · bare 3 occ / 3 scr (`wf-clear`, `wf-loadmore`). **Content:** label only 55 occ · icon only 13 occ (`wf-remove` 7, `wf-theme-drill` 6). **Size:** medium 58 occ (44px, 12px) · large 11 occ (13px, marketing CTA rows on 0.0 only). Width is not an axis: full-width `wf-auth-btn` and the mobile head action are the same button. | 30 screens | rest, hover, focus, disabled `[?]` (no disabled button exists in the grey layer) | No |
-| **Text input** | 1 | **Type:** text 2 · email 4 · password 4 · title-inline 2 (`wf-titleinput`, borderless with a dashed underline). All 44px min-height. | 1.0, 1.1, 1.2, 3.2, 6.1, 6.2, 7.0, 7.1 | rest, focus, error (`wf-notice` beside the field on 3.2) | No |
+| **Text input** | 1 | **Type:** text 2 · email 4 · password 4 · title-inline 2 (`wf-titleinput`, borderless with a dashed underline). All 44px min-height. | 1.0, 1.1, 1.2, 3.2, 6.1, 6.2, 7.3 (corrected at Stage 08 Step 9: was 7.0, 7.1) | rest, focus, error (`wf-notice` beside the field on 3.2) | No |
 | **Textarea** | 1 | one form, `resize: vertical` | 6.1, 6.2 | rest, focus | No |
 | **Select** | 1 | one form. Present once, in the CSV column mapping | 3.2 | rest, focus | No |
 | **Checkbox** | 1 | one form, 24px, native with `accent-color` | 2.0, 7.2 | unchecked, checked | No |
@@ -76,6 +83,13 @@ controls in this product.
 
 ## Level 2 - Molecules
 
+> **Superseded: this is the Stage 07 census of the GREY layer, not the live spec.** It is kept as
+> the record of what the wireframes drew when the kit was first read. The forms, values and levels
+> in force live in "Stage 08 Step 2: consolidation" and "Stage 08 Step 5: the component register"
+> below, in `design/system/components/`, and on each page of `design/kit/`. Where a row here
+> disagrees with them (a radius, a size, a state that became a variant), they win. Added at
+> Stage 08 Step 9.
+
 *Contains atoms, contains no molecules.*
 
 | Component | Level | Variants (axes x values, occurrences / screens) | Screens | States | Photo |
@@ -86,13 +100,13 @@ controls in this product.
 | **Source card (available)** | 2 | **State:** connectable 6 occ · not yet available 3 occ (`src-card-note` says so rather than hiding it) | 3.0, 3.4, 3.5 | available, unavailable | No |
 | **Saved brief row** | 2 | **Value:** shared 2 occ · draft 1 occ. Zones: title, meta, status, actions. A managed object, deliberately not a variant of the composer row | 6.0 | shared, draft | No |
 | **Composer brief row** | 2 | one form. Zones: drag handle, label, meta, remove. Different zones from the theme card and from the saved row, so a third component and not a variant | 6.1, 6.2 | rest, hover, dragging `[?]` | No |
-| **Account row** | 2 | **Content:** text only 1 occ · with a checkbox 1 occ (`acct-check`) | 7.1, 7.2 | rest, checked | No |
-| **Form field** | 2 | label plus input, optional trailing link, optional error | 1.0, 1.1, 1.2, 3.2, 6.1 | rest, focus, error | No |
-| **Notice band** | 2 | **Placement:** inside a padded main 4 occ · in the screen frame with its own gutter 3 occ (`wf-app > .wf-notice`) | 3.5, 4.1, 6.2, 3.2, 7.3, 5.1, 2.3 | information, warning | No |
+| **Account row** | 2 | **Content:** text only 1 occ · with a checkbox 1 occ (`acct-check`) | 7.2 (corrected at Stage 08 Step 9: 7.1 carries only `acct-row-d` outside a row) | rest, checked | No |
+| **Form field** | 2 | label plus input, optional trailing link, optional error | 1.0, 1.1, 1.2, 3.2, 6.1, 7.3 (7.3 added at Stage 08 Step 9) | rest, focus, error | No |
+| **Notice band** | 2 | **Placement:** inside a padded main 4 occ · in the screen frame with its own gutter 3 occ (`wf-app > .wf-notice`) | 3.5, 4.1, 6.2, 3.2, 5.1, 2.3 (corrected at Stage 08 Step 9: 7.3 draws none) | information, warning | No |
 | **Screen head** | 2 | **Content:** H1 plus sub 15 occ · plus the one primary action 5 occ (`wf-head-action`, hidden while the selection bar is up) · plus the scope line 13 occ | 15 screens | rest, action hidden | No |
 | **Toolbar (filter and sort)** | 2 | **Viewport:** full row with chips, clear and sort (canvas 600px and up) · compact single Filter button carrying the active count (below 600px). Canonical, owner 2.0, lighter variant on 3.0 | 2.0, 3.0, 4.0, 5.0, 6.0, 6.1 | at rest, filtered (clear appears) | No |
 | **Selection bar** | 2 | **Trigger:** appears on `:has(.wf-check:checked)` 1 occ (2.0) · always present on the composer 2 occ (6.1, 6.2; `wf-selbar--static`, the artifact IS the selection). Counts corrected at Stage 08 Step 6: they were written swapped | 2.0, 6.1, 6.2 | hidden, present | No |
-| **Action bar** | 2 | **Alignment:** right-aligned 3 occ · with a note pushed left 1 occ (`wf-actionbar-note`) | 3.2, 3.3, 3.6, 6.1 | rest | No |
+| **Action bar** | 2 | **Alignment:** right-aligned 3 occ · with a note pushed left 1 occ (`wf-actionbar-note`) | 3.2, 3.3, 3.6, 6.1, 7.2, 7.3 (7.2 and 7.3 added at Stage 08 Step 9) | rest | No |
 | **Phase strip** | 2 | **Step state:** upcoming · current (`is-current`) · done. Three phases, named before the user commits, because the As-Is barrier is that ingestion is a black box | 2.1, 2.2, 3.2, 3.3, 6.1, 6.2 | per-step: upcoming, current, done | No |
 | **Breadcrumb** | 2 | one form | 9 screens | rest | No |
 | **Skeleton card** | 2 | **Shape:** generic rows 1 occ · shaped like the real theme card 1 occ, so the wait promises what arrives | 2.2, 4.2 | animating | No |
@@ -104,6 +118,13 @@ controls in this product.
 ---
 
 ## Level 3 - Organisms
+
+> **Superseded: this is the Stage 07 census of the GREY layer, not the live spec.** It is kept as
+> the record of what the wireframes drew when the kit was first read. The forms, values and levels
+> in force live in "Stage 08 Step 2: consolidation" and "Stage 08 Step 5: the component register"
+> below, in `design/system/components/`, and on each page of `design/kit/`. Where a row here
+> disagrees with them (a radius, a size, a state that became a variant), they win. Added at
+> Stage 08 Step 9.
 
 *Contains molecules, or is a screen shell. Ordered so that organisms containing no other organism
 come first, then the ones that do. That order is the `@import` order Stage 08 inherits.*
@@ -126,11 +147,15 @@ come first, then the ones that do. That order is the `@import` order Stage 08 in
 
 ## One-off (`Разове`) - not taken into the kit
 
+> **Superseded: the Stage 07 list.** The one-off list was re-counted across the whole product at
+> Stage 08 Step 2 ("The one-off list, re-counted across the whole product" below); the provenance
+> list left it at Step 6 and is the component `provlist`. Added at Stage 08 Step 9.
+
 Single occurrence, no form-control exception, no canonical status.
 
 | Block | Where | Why it stays out |
 |---|---|---|
-| Usage meter (`acct-meter`) | 7.3 Plan | One screen, and the screen argues that a fraction beats a bar. If a second meter ever appears it comes back as a component |
+| Usage meter (`acct-meter`) | 7.1 Plan and limits (corrected at Stage 08 Step 9: was 7.3) | One screen, and the screen argues that a fraction beats a bar. If a second meter ever appears it comes back as a component |
 | CSV column mapping grid (`src-map`) | 3.2 | One screen, and its four-column-to-two-column reflow is specific to mapping |
 | File drop zone (`src-drop`) | 3.2 | One screen |
 | CSV review summary (`src-review`) | 3.2 | One screen |
@@ -139,7 +164,7 @@ Single occurrence, no form-control exception, no canonical status.
 | Link row (`wf-linkrow`) | 6.3 | One screen. Input plus copy button, and it is the only place a value is copied |
 | Reason line (`wf-reason`) | 4.0 | One screen. Explains why items cluster |
 | Raw quote (`wf-raw-quote`) | 5.0 | One screen. The expanded verbatim at document scale |
-| Provenance list (`wf-prov-list`) | 5.0, 5.1 | Two screens, but it is the same screen in two states, so one place |
+| ~~Provenance list (`wf-prov-list`)~~ | 5.0, 5.1, 3.6 | **Left this list at Stage 08 Step 6:** it is the component `provlist` (`design/system/components/provlist.css`, `design/kit/provlist.html`), on three grey screens. Struck at Step 9 |
 | Marketing trust list (`mk-trust`) | 0.0 | One screen |
 | Marketing footer block (`mk-footer`) | 0.0 | One screen. The app footer is the component; this is the marketing edition |
 | List-closing note (`wf-listnote`) | 4.1 | One screen. Closes a list that has no "load more" |

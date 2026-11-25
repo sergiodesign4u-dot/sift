@@ -1,6 +1,6 @@
 # Architecture of the Sift design system
 
-*Stage 08. The rules of the system, which is what you read first and what
+*Stage 08, final as of the Step 9 close-out. The rules of the system, which is what you read first and what
 `design/kit/architecture.html` shows. The evidence about the system, the token audit, the census,
 the inventory and the coverage, lives in the Verification group and is a different kind of
 document: this one says how it is built, those say what was found.*
@@ -17,19 +17,23 @@ Both use the word "level", which is exactly why they get separated here.
 
 ```
 PRIMITIVE          a raw value with no role.  --grey-900: #151A1F
-    |              79 of them. Named by what they ARE.
+    |              81 of them, 36 colour. Named by what they ARE.
     v
 SEMANTIC           a role, pointing at a primitive through var().
                    --bg-surface: var(--grey-900)
-                   20 of them. Named by what they DO, and by which of the
-                   three surfaces they paint.
+                   29 of them: 22 colour roles, 4 state tokens, 1 depth
+                   role, 2 component tokens. Named by what they DO, and by
+                   which of the three surfaces they paint.
 ```
 
 Two levels, not three. A component token (`--button-bg`) is a third layer of renaming that buys
 no flexibility, so it is introduced **only** where a state lands on no semantic role at all: the
 hover of a card and the hover of a list row are one `--bg-hover`, while the hover of a dangerous
-button has to darken from `--color-danger` and earns `--button-danger-bg-hover`. Nothing in this
-product has needed one yet.
+button has to darken from `--color-danger` and earns `--button-danger-bg-hover`. Two have been
+needed, both at Step 5 and both accepted at Step 6: `--step-current-line` (the ring of the current
+phase, a step no line role carries) and `--tier-mark` (the bullet of a tier feature, a fill that
+may not borrow a line role). A component token sits in the semantic block, has its light pair
+like any role, and says in its comment why no role fitted.
 
 **A component reads colour through SEMANTIC and geometry through PRIMITIVE.** Colour is what a
 theme and a rebrand override, so it must go through a role. A radius has nothing to override: a
@@ -108,9 +112,11 @@ design/system/                    THE CODE. What the product imports.
 design/kit/                       THE SHOWCASE. What shows the system to a person.
 ├── _nav.js  _page.css            the registry of pages, and the stand's own chrome
 ├── overview.html                 the hub
+├── pixel-proof.html              the Verification group: the proof and the critique
 ├── architecture.html color.html typography.html geometry.html icons.html
 ├── <name>.html                   one page per component, five blocks
-└── docs/*.md                     the sources: audit, census, inventory, this file, backlog
+└── docs/*.md                     the sources: audit, census, inventory, this file, backlog,
+                                  critique
 ```
 
 **A product class in the stand, or a stand style inside `design/system/`, is a defect.** The
@@ -124,14 +130,32 @@ stops being true.
 
 1. `design/system/components/<name>.css`
 2. `design/kit/<name>.html`, the page, with its five blocks
-3. an entry in `design/kit/_nav.js`, **in the group of its own level**
+3. an entry in `design/kit/_nav.js` with its `level` and its `category`: the panel groups by
+   purpose and shows the level as a chip (decided 2026-11-20), so the level is a FIELD of the
+   entry and must never be left out
 4. a row in `design/kit/docs/inventory.md`, with its level
 5. an `@import` in `design/system/index.css`, **in the group of its level, not at the end of the
    file**
 
-Three and five matter most for a component added AFTER the build: at the reconciliation of Step
+Four and five matter most for a component added AFTER the build: at the reconciliation of Step
 6, on a new screen at Stage 09, during the rollout at Stage 12. Appended at the end of the file
 it looks harmless, and that is exactly how the ladder collapses.
+
+---
+
+## How the theme is built
+
+- The product ships dark: `:root` in `tokens.css` IS the dark theme, and `[data-theme="light"]`
+  redefines every semantic role and state token, 29 of 29. Not one primitive is redefined.
+- **A role or a state token without its pair does not exist.** Write both in the same edit; the
+  check is a count of the two blocks, and Codex runs it at every critique.
+- The pair is not a mirror. Contrast is measured against the opposite ground, so the light theme
+  takes a different step: the hover goes darker, the focus ring a deeper cyan.
+- Where a theme lives: the stand's switch in `design/kit/_nav.js` (a key of its own), the
+  product's in `design/_nav.js`, with `design/_theme.js` applying the stored choice before the
+  first paint (key `sift-theme`). The root roadmap has no theme.
+- A theme problem is fixed in the pair in `tokens.css`, never on a screen, and never by a
+  component reading a primitive.
 
 ---
 
@@ -157,8 +181,21 @@ the inventory, or it is drift and it folds into the nearest declared form.
   `--line-focus`, `:disabled` reads `--opacity-disabled`. No component invents a hex for a state.
 - `:focus-visible`, never `:focus`. The ring is for the person on the keyboard and in the way of
   the person who clicked.
-- A state does not move the layout. Hover and active change fill, ink and line; they do not
-  shift, resize, or add a border where there was none, because a border on hover moves the
-  neighbours by a pixel and that is the jump.
+- A state does not move the element. Hover and active change fill, ink and line; they do not
+  shift, resize, transform, or add a border where there was none, because a border on hover moves
+  the neighbours by a pixel and that is the jump. The theme card's 2px nudge was the last one,
+  removed at Step 9.
+- `disabled` dims with `--opacity-disabled` and is never repainted by hand. WCAG exempts an
+  inactive control from both contrast floors; nothing else may sit under its floor.
+- **Opacity is part of the ink.** Any contrast check multiplies the element's opacity and every
+  ancestor's into the colour before it computes a ratio. A walk that read `color` alone passed
+  the breadcrumb at 3.44 for two steps (Step 9, S9a); `opacity` on text is a value no role holds,
+  so the system does not use it for ink at all.
+- **A snapshot is a difference, not an occurrence.** The stand shows the rest state live and
+  photographs hover and focus-visible only (`scripts/shoot-states.js`). Pressed, when it equals
+  rest, and disabled, which stands live as the real attribute, are a line of text, not a frame.
+- The state matrix on a component page copies the real `:hover`, `:active` and `:focus-visible`
+  rules onto `data-kit-st` inside an inert table (`_states.js`); at every critique each cell is
+  compared with the same element under a real pointer and a real Tab key.
 - **Only an interactive component gets states.** A badge, a heading and a divider do not, and
   their pages say so in those words. A hover on a badge is an invented role.

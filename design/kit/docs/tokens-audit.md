@@ -277,3 +277,30 @@ carries small red ink at rest; the change shows on the frozen `kit.html` field e
 (light): the proof runs in the shipped theme by construction. Every Step 3 and Step 6 line that
 promised no change showed none.
 
+
+### Fixed at the critique (Step 9)
+
+*A fourth source, stated rather than smuggled. The three lists above are the stage's legal sources
+of a visual change up to the pixel proof. The Step 9 critique found defects that only a change of
+appearance could close, and each one is written here as "variable or class, was, now, why", held
+against the product by the same instrument as Step 8: the after frames of the touched screens were
+re-taken, and every other screen came back at 0 differing pixels.*
+
+| Code | Variable or class | Was | Now | Why |
+|---|---|---|---|---|
+| S9a | `.breadcrumb span`, the current page | `--text-secondary` at `opacity: 0.7`: 3.44 dark, 3.13 light on the page | `--text-secondary` as it is: 5.90 dark, 6.03 light; carries `aria-current="page"` | Under the 4.5 ink floor in both themes. Found by `/impeccable audit`; the Step 7 and Step 8 walks read the colour and never multiplied the element's opacity |
+| S9b | `.step-sep`, the phase strip separator | `--text-secondary` at `opacity: 0.7` | `--text-secondary` | A colour no role holds. Decorative and `aria-hidden`, so no floor, dropped with S9a |
+| S9c | `.theme:hover .theme-drill` | the drill moved 2px right with a transform | the drill changes its ink only | Owner decision at Step 9: a state does not move the element. Hover only: no frame at rest changes |
+| S9d | "Add themes" on 6.1 and 6.2 | `.chip`, a facet that ran an action | `.btn--ghost`: primary ink, the ghost button's label size and padding, same 44px height | Owner decision at Step 9: a chip filters the view and never acts; the chip page forbade what the screen did. A markup change on two screens, copied from the toolbar page |
+
+**Deleted with no change of appearance.** `--red-a32` and `--red-a35`: the 32 and 35 percent danger
+edge had no consumer since Step 6 put the error band back to a solid rule; only their swatches on
+`color.html` showed them. And, found by the second Codex pass, `--leading-snug`: no product rule
+has read it since Step 6 put the textarea back to 1.55; the stand keeps 1.45 as its own literal.
+84 primitives became 81, 38 colour primitives became 36.
+
+**Held against the product.** Re-taken on 22 screens at 360 and 1440: 22 frames changed and 22 did
+not. S9a shows on 3.2 and the four 4.0 and 4.1 pages (283 to 618 pixels, rows 68 to 120). S9b shows on
+2.1, 2.2, 3.2, 6.1, 6.2 and 6.3 (22 or 23 pixels each, the two separators). S9d shows on 6.1 and
+6.2 (4,015 pixels with S9b). Every other page: 0. S9c has no frame by construction. The light
+illustrations on the pixel proof were re-taken for the same reason.

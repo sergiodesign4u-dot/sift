@@ -48,7 +48,7 @@
   <div class="kit-stats">
     <div class="kit-stat"><b>50 / 50</b><span>components built, of the consolidated total</span></div>
     <div class="kit-stat"><b>6</b><span>categories by purpose in use, of 8 declared</span></div>
-    <div class="kit-stat"><b>84</b><span>primitives, 38 of them colour</span></div>
+    <div class="kit-stat"><b>81</b><span>primitives, 36 of them colour</span></div>
     <div class="kit-stat"><b>22</b><span>colour roles, each with a theme pair</span></div>
   </div>
 
@@ -64,8 +64,8 @@
       <tr><td>5</td><td>Components, in rounds from atoms upward, each one closed in a single pass. <b>Atoms done: 17 of 17, all in the card format</b> (from 2026-11-20, Button the template). <b>Molecules: 20 of 20</b> (2026-11-21). <b>Organisms: 12 of 12</b> (2026-11-21)</td><td>done</td></tr>
       <tr><td>6</td><td>Reconciling the system with the product, in three lists. The product rendered on the system alone: icons, the list reset and 31 one-off classes were missing and are in now; the provenance list was built as the 50th component; the August atom drift was reverted; the bands are solid again. Accepted 2026-11-24</td><td>done</td></tr>
       <tr><td>7</td><td>The theme pair, stress-tested on the assembled showcase: 57 stand pages, the two frozen stands and the 22 colour screens on the system, in both themes at 1440 and 360. No pair value moved; the light ladder is half as steep; the avatar edge was under 3:1 in both themes and now reads the control line; the stand now applies its theme before the first paint, and the state snapshots were re-taken. See <a href="color.html#stress">Colour, the stress test</a></td><td>done</td></tr>
-      <tr><td>8</td><td>The sample moved onto <code>index.css</code>: all 22 colour screens and both frozen stands, <code>kit.css</code> deleted. 44 frame pairs at 360 and 1440 against the product as Step 1 measured it; every difference is one of six named lines and none is left without one. The light theme reaches the product through a switch in the screen panel, applied before the first paint, and walked on every screen with nothing to pull apart. See <a href="pixel-proof.html">the pixel proof</a></td><td>waiting for review</td></tr>
-      <tr><td>9</td><td>Verification, the dry run over the still-grey screens, close-out</td><td></td></tr>
+      <tr><td>8</td><td>The sample moved onto <code>index.css</code>: all 22 colour screens and both frozen stands, <code>kit.css</code> deleted. 44 frame pairs at 360 and 1440 against the product as Step 1 measured it; every difference is one of six named lines and none is left without one. The light theme reaches the product through a switch in the screen panel, applied before the first paint, and walked on every screen with nothing to pull apart. See <a href="pixel-proof.html">the pixel proof</a>. Accepted 2026-11-25</td><td>done</td></tr>
+      <tr><td>9</td><td>The critique in five independent sets (Codex, a clean-context reader, Claude, <code>/impeccable audit</code>, a dry run over the still-grey screens) and a second Codex pass on the touched files. One real contrast failure, missed by two walks that never multiplied opacity: the breadcrumb's current page, 3.44, now 5.90. 30 rows fixed, 10 withdrawn on verification with the reason, 20 to the backlog or the owner. Three named changes of appearance (S9a, S9b, S9d) held against the product. See <a href="pixel-proof.html#critique">the critique by class</a></td><td>done</td></tr>
     </tbody></table></div>
   </section>
 
@@ -88,7 +88,7 @@
 
   <section class="kit-sec" id="backlog">
     <h2 class="kit-h2">Backlog</h2>
-    <p class="kit-note">What Steps 6 and 7 decided not to fill in now, and who closes it. Source: <code class="kit-mono">design/kit/docs/backlog.md</code>.</p>
+    <p class="kit-note">What Steps 6, 7 and 9 decided not to fill in now, and who closes it: 35 rows. Source, with where each shows: <code class="kit-mono">design/kit/docs/backlog.md</code>.</p>
     <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>What</th><th>Why it waits</th><th>Closes</th></tr></thead><tbody>
       <tr><td>The provenance list in colour (5.0, 5.1, 3.6)</td><td>The component exists; painting the screens is the rollout</td><td>Stage 12</td></tr>
       <tr><td>The label/value gap and the link class in the provenance list</td><td>The grey draws neither; nothing to copy</td><td>Stage 12</td></tr>
@@ -103,6 +103,12 @@
       <tr><td>The action bar's alignment</td><td>A design question, not a migration</td><td>Stage 09</td></tr>
       <tr><td>The rename map over <code>wireframes/</code></td><td>The grey is never edited; the map is the rollout's input</td><td>Stage 12</td></tr>
       <tr><td>A warning or error band never on a raised surface (a dialog, a menu)</td><td>Step 7 measured its ink on its own wash under 4.5 there; no screen does it, so it is a rule of use</td><td>Stage 09</td></tr>
+      <tr><td>7.1 Plan and limits: the plan summary, the limits list, the meter and its near-limit and over-limit forms, the panel action row</td><td>The dry run: 7.1 cannot be painted from the system today</td><td>Stage 12</td></tr>
+      <tr><td>1.0 Auth: a title form for the card, a form-level message, the error strings</td><td>The dry run; a copied 1.0 would have no h1</td><td>Stage 12</td></tr>
+      <tr><td>9.x Legal: the document title size, a footer with links, the missing strings</td><td>The dry run; a value, so a decision</td><td>Stage 12; the footer link target rule at Stage 09</td></tr>
+      <tr><td>The 10px micro step, line measure past 80 characters, single-word last lines, a sticky legal contents rail</td><td><code>/impeccable audit</code> and IA; container and fluid type questions</td><td>Stage 10</td></tr>
+      <tr><td>404, 500, maintenance on <code>.state</code>; "Sign out" or "Log out"; the format of <code>microcopy.md</code></td><td>Grey only, or a string, or a rule against a file</td><td>Stage 12</td></tr>
+      <tr><td>The theme card on a second screen; SOC 2 in year 1 or year 2</td><td>Owner decisions; the SOC 2 year has no source in research</td><td>the owner</td></tr>
     </tbody></table></div>
   </section>
 

@@ -1,7 +1,9 @@
 /* design/system/components/chip.css - level 1, atom.
-   Reads: --bg-surface, --bg-raised, --text-secondary, --text-primary, --line-control, --line-hover, --opacity-disabled, --font-mono
+   Reads: --bg-surface, --bg-raised, --text-secondary, --text-primary, --line-control, --line-hover,
+          --opacity-disabled, --font-mono, --type-xs, --size-target, --space-2, --space-5, --radius-md, --ease
    Page:  design/kit/chip.html
-   Stands on: 2.0, 3.0, 4.0, 5.0, 6.0. 12 occurrences.
+   Stands on: in colour 2.0, 4.0, 4.1, 10 occurrences; in grey 2.0, 4.0, 4.1, 6.1 and 6.2,
+          12 occurrences (6.1 and 6.2 "Add themes" is a ghost button in colour since Stage 08 Step 9).
 
    The filter facet, and the one control in this product that carries its own count. The count is
    in the mono face because it is a value, and a value that shifts width between chips cannot be

@@ -1,7 +1,8 @@
 /* design/system/components/confidence.css - level 1, atom.
    Reads: --text-primary, --text-warning, --bg-warning, --line-warning, --font-mono
    Page:  design/kit/confidence.html
-   Stands on: 9 screens: 2.0, 4.0, 4.1, 6.1, 6.2, 6.4, 0.0. 24 occurrences.
+   Stands on: 9 pages: 0.0, 2.0, 4.0 with its loading and error states, 4.1, 6.1, 6.2, 6.4.
+          24 occurrences, the same in colour and in grey.
 
    Canonical, owned by 2.0, and MANDATORY IN MVP by founder decision D2. Its day-one scope is
    fixed: the item count per theme and a low-signal badge. Source diversity, time range and

@@ -56,14 +56,12 @@
       <div class="tok"><div class="tok-swatch" style="background:rgba(217,164,65,0.10)"></div><div class="tok-meta"><div class="tok-name">--amber-a10</div><div class="tok-val">rgba(217,164,65,0.10)</div></div></div>
       <div class="tok"><div class="tok-swatch" style="background:rgba(217,164,65,0.32)"></div><div class="tok-meta"><div class="tok-name">--amber-a32</div><div class="tok-val">rgba(217,164,65,0.32)</div></div></div>
       <div class="tok"><div class="tok-swatch" style="background:rgba(229,72,77,0.10)"></div><div class="tok-meta"><div class="tok-name">--red-a10</div><div class="tok-val">rgba(229,72,77,0.10)</div></div></div>
-      <div class="tok"><div class="tok-swatch" style="background:rgba(229,72,77,0.32)"></div><div class="tok-meta"><div class="tok-name">--red-a32</div><div class="tok-val">rgba(229,72,77,0.32)</div></div></div>
-      <div class="tok"><div class="tok-swatch" style="background:rgba(0,0,0,0.40)"></div><div class="tok-meta"><div class="tok-name">--black-a40</div><div class="tok-val">rgba(0,0,0,0.40)</div><div class="tok-origin">light pairs: the same wash has to be darker to register on a white ground</div></div></div>
-      <div class="tok"><div class="tok-swatch" style="background:rgba(11,107,112,0.12)"></div><div class="tok-meta"><div class="tok-name">--cyan-a12</div><div class="tok-val">rgba(11,107,112,0.12)</div></div></div>
+      <div class="tok"><div class="tok-swatch" style="background:rgba(0,0,0,0.40)"></div><div class="tok-meta"><div class="tok-name">--black-a40</div><div class="tok-val">rgba(0,0,0,0.40)</div></div></div>
+      <div class="tok"><div class="tok-swatch" style="background:rgba(11,107,112,0.12)"></div><div class="tok-meta"><div class="tok-name">--cyan-a12</div><div class="tok-val">rgba(11,107,112,0.12)</div><div class="tok-origin">light pairs: the same wash has to be darker to register on a white ground</div></div></div>
       <div class="tok"><div class="tok-swatch" style="background:rgba(11,107,112,0.35)"></div><div class="tok-meta"><div class="tok-name">--cyan-a35</div><div class="tok-val">rgba(11,107,112,0.35)</div></div></div>
       <div class="tok"><div class="tok-swatch" style="background:rgba(138,90,0,0.12)"></div><div class="tok-meta"><div class="tok-name">--amber-a12</div><div class="tok-val">rgba(138,90,0,0.12)</div></div></div>
       <div class="tok"><div class="tok-swatch" style="background:rgba(138,90,0,0.35)"></div><div class="tok-meta"><div class="tok-name">--amber-a35</div><div class="tok-val">rgba(138,90,0,0.35)</div></div></div>
       <div class="tok"><div class="tok-swatch" style="background:rgba(192,39,45,0.12)"></div><div class="tok-meta"><div class="tok-name">--red-a12</div><div class="tok-val">rgba(192,39,45,0.12)</div></div></div>
-      <div class="tok"><div class="tok-swatch" style="background:rgba(192,39,45,0.35)"></div><div class="tok-meta"><div class="tok-name">--red-a35</div><div class="tok-val">rgba(192,39,45,0.35)</div></div></div>
       <div class="tok"><div class="tok-swatch" style="background:rgba(16,20,24,0.12)"></div><div class="tok-meta"><div class="tok-name">--black-a12</div><div class="tok-val">rgba(16,20,24,0.12)</div></div></div>
     </div></section>
     <section class="kit-sec" id="semantic"><h2 class="kit-h2">Semantic</h2>
@@ -164,6 +162,7 @@
       <tr><td>two roles that part in one theme and merge in the other</td><td colspan="2"><code class="kit-mono">--text-danger</code> and <code class="kit-mono">--line-danger</code> are one value in light</td><td>none</td><td>not a defect: ink and rule of the same band, never two components that must be told apart</td></tr>
     </tbody></table></div>
     <p class="kit-note"><b>What the walk measured, per element and per theme:</b> every text against its composited ground, every own fill against the ground below it, every border against that ground, every control edge. Results: no text under its floor in either theme on the system, no element count difference between themes, no horizontal scroll, no console error. The full record and the method are in <code class="kit-mono">docs/decisions.md</code> under Stage 08 Step 7.</p>
+    <p class="kit-note"><b>Corrected at Step 9.</b> "No text under its floor" was wrong, and the method is why: the walk read each element's colour and never multiplied its opacity. The current page in the breadcrumb sat at <code class="kit-mono">opacity: 0.7</code>, 3.44 dark and 3.13 light, on 3.2 and the four 4.0 and 4.1 pages. <code class="kit-mono">/impeccable audit</code> found it; the opacity is gone (5.90 / 6.03), and the walk now multiplies the opacity of the element and every ancestor: 0 failures in 3,198 text nodes, the lowest 4.73. See <a href="pixel-proof.html#critique">the Step 9 critique</a>.</p>
     </section>
     <footer class="kit-foot">
       <span>Design system &middot; foundations</span>

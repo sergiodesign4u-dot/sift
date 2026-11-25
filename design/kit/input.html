@@ -189,19 +189,17 @@
           <tr><td><code>--line-hover</code></td><td><code>--grey-400</code></td><td>hover</td></tr>
           <tr><td><code>--text-primary</code>, <code>--text-secondary</code></td><td><code>--grey-050</code>, <code>--grey-400</code></td><td>the value, and the placeholder</td></tr>
         </tbody></table></div>
-        <p class="kit-note">The CSS also reads, beyond the four above: <code class="kit-mono">--size-target</code>, <code class="kit-mono">--radius-md</code>, <code class="kit-mono">--space-2</code>, <code class="kit-mono">--space-4</code>, <code class="kit-mono">--space-5</code>, <code class="kit-mono">--type-sm</code>, <code class="kit-mono">--type-xs</code>, <code class="kit-mono">--type-xl</code>, <code class="kit-mono">--weight-strong</code>, <code class="kit-mono">--tracking-head</code>, <code class="kit-mono">--font-mono</code>, <code class="kit-mono">--opacity-disabled</code>, <code class="kit-mono">--ease</code>. The textarea line height is the literal 1.55 of <code class="kit-mono">kit.css</code>, not <code class="kit-mono">--leading-snug</code> (1.45).</p>
+        <p class="kit-note">The CSS also reads, beyond the four above: <code class="kit-mono">--size-target</code>, <code class="kit-mono">--radius-md</code>, <code class="kit-mono">--space-2</code>, <code class="kit-mono">--space-4</code>, <code class="kit-mono">--space-5</code>, <code class="kit-mono">--type-sm</code>, <code class="kit-mono">--type-xs</code>, <code class="kit-mono">--type-xl</code>, <code class="kit-mono">--weight-strong</code>, <code class="kit-mono">--tracking-head</code>, <code class="kit-mono">--font-mono</code>, <code class="kit-mono">--opacity-disabled</code>, <code class="kit-mono">--ease</code>. The textarea line height is the literal 1.55 of <code class="kit-mono">kit.css</code>, kept off the leading ramp.</p>
       </section>
 
       <section class="kit-sec" id="shots">
         <h2 class="kit-h2">Snapshots, taken with a real pointer</h2>
-        <p class="kit-note"><b>The four states, both themes, snapshots.</b> The matrix on Overview is derived by <code class="kit-mono">_states.js</code>; these are the same states reached by a real mouse and a real Tab key. Six snapshots and six named differences. <b>Active is absent on purpose:</b> a field has no pressed state, and a cell filled for the sake of the template would be an invented one.<br>Re-take: <code class="kit-mono">node scripts/shoot-states.js input</code></p>
+        <p class="kit-note"><b>The four states, both themes, snapshots.</b> The matrix on Overview is derived by <code class="kit-mono">_states.js</code>; these are the same states reached by a real mouse and a real Tab key. Four snapshots and four named differences. <b>Active is absent on purpose:</b> a field has no pressed state, and a cell filled for the sake of the template would be an invented one. <b>Disabled has no frame:</b> it is the real attribute, live in the hero and in the matrix, and its frame was the rest scene again (removed at Stage 08 Step 9).<br>Re-take: <code class="kit-mono">node scripts/shoot-states.js input</code></p>
         <div class="kit-forms">
           <figure><img src="screens/input-hover-dark.png" alt="hover, dark" class="kit-shot"><figcaption class="geo-cap">hover &middot; dark</figcaption></figure>
           <figure><img src="screens/input-hover-light.png" alt="hover, light" class="kit-shot"><figcaption class="geo-cap">hover &middot; light</figcaption></figure>
           <figure><img src="screens/input-focus-dark.png" alt="focus, dark" class="kit-shot"><figcaption class="geo-cap">focus-visible &middot; dark</figcaption></figure>
           <figure><img src="screens/input-focus-light.png" alt="focus, light" class="kit-shot"><figcaption class="geo-cap">focus-visible &middot; light</figcaption></figure>
-          <figure><img src="screens/input-disabled-dark.png" alt="disabled, dark" class="kit-shot"><figcaption class="geo-cap">disabled &middot; dark</figcaption></figure>
-          <figure><img src="screens/input-disabled-light.png" alt="disabled, light" class="kit-shot"><figcaption class="geo-cap">disabled &middot; light</figcaption></figure>
         </div>
       </section>
 

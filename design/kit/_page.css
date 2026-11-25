@@ -116,7 +116,7 @@ a.kit-link:hover { color: var(--text-primary); background: var(--bg-raised); }
 .tok-meta { padding: 9px 11px; }
 .tok-name { font-family: var(--font-mono); font-size: var(--type-2xs); color: var(--text-primary); }
 .tok-val { font-family: var(--font-mono); font-size: var(--type-3xs); color: var(--text-secondary); margin-top: 3px; }
-.tok-origin { font-size: var(--type-3xs); color: var(--text-secondary); margin-top: 6px; line-height: var(--leading-snug); }
+.tok-origin { font-size: var(--type-3xs); color: var(--text-secondary); margin-top: 6px; line-height: 1.45; /* stand only; --leading-snug left the system at Stage 08 Step 9 */ }
 
 /* a role shown in BOTH themes at once. The right half is forced light, whatever the switch says:
    a pair has to be visible as material, not as the current position of a control. */
@@ -202,7 +202,7 @@ table.kit-matrix { width: 100%; min-width: 620px; border-collapse: collapse; }
 .kit-matrix tr.kit-group-end > * { border-bottom-color: var(--line-control); }
 .kit-matrix tbody tr:last-child > * { border-bottom: none; }
 .kit-cell-fixed { width: 220px; }
-.kit-cell-none { font-size: var(--type-3xs); color: var(--text-secondary); max-width: 26ch; line-height: var(--leading-snug); }
+.kit-cell-none { font-size: var(--type-3xs); color: var(--text-secondary); max-width: 26ch; line-height: 1.45; /* stand only; --leading-snug left the system at Stage 08 Step 9 */ }
 
 /* other forms: a tile per form that is not a cell of the matrix */
 .kit-forms { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 12px; margin-top: 16px; }
