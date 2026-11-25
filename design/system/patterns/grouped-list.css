@@ -1,0 +1,28 @@
+/* design/system/patterns/grouped-list.css - pattern.
+   Composed of: .group-t (atom, group-heading.css) over the body of its group, repeated: a
+     .list of rows (.src-row, .snippet, .skelcard, .briefrow), a .src-avail grid of .src-card,
+     an inline .state, or a .listnote. No component is new and no value is new.
+   Stands on, in the grey corpus (the count): 3.0 Sources, 4.0 Theme, 6.0 Briefs.
+     In colour (the proof): sources, sources-sync-error, sources-empty, theme, theme-loading,
+     theme-low-signal, briefs, briefs-empty. 8 pages.
+   Page:  design/kit/grouped-list.html (Stage 09 Step 2).
+
+   What moved here: the padding of the bare .group-t, the space that separates one group from the
+   next and a heading from its rows, plus its 820 and below form. Cut from
+   components/group-heading.css at Stage 09 Step 1, byte for byte, not copied: it is placement,
+   not type, and it held only where the heading stood over a list. The values are unchanged.
+
+   Markup: the groups sit in one wrapper, <div class="grouped-list">, whose direct children are the
+   headings and the bodies. A modifier form of the heading (--section, --inline) is never a direct
+   child here; it keeps its own margins.
+
+   No colour, no new visual decision. No em dash anywhere in this file.
+*/
+
+.grouped-list > .group-t { padding: var(--space-7) var(--space-3) var(--space-2); }
+
+/* At 820 and below the heading takes the screen's 16px gutter, the side padding a row has on a
+   phone. kit.css:754 and :764 originally, then group-heading.css until Stage 09. */
+@media (max-width: 820px) {
+  .grouped-list > .group-t { padding: 14px var(--space-7) var(--space-2); }
+}

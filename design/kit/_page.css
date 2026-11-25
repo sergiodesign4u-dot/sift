@@ -217,6 +217,10 @@ table.kit-matrix { width: 100%; min-width: 620px; border-collapse: collapse; }
 .kit-when p, .kit-when li { font-size: var(--type-xs); line-height: var(--leading-loose); color: var(--text-secondary); margin-top: 6px; }
 .kit-when ul { padding-left: 18px; }
 .kit-when code { font-family: var(--font-mono); font-size: var(--type-3xs); color: var(--text-primary); }
+/* Limits: the third sub-point of the rule block (Stage 09 Step 1). The usage rules that name this
+   component, copied short from architecture.html, which is their one author. Full width under the pair. */
+.kit-when > .kit-limits { grid-column: 1 / -1; border-top: 1px solid var(--line-hairline); padding-top: 16px; }
+.kit-limits a { color: var(--text-primary); }
 
 /* do and do not: the live example over the sentence, the sentence over nothing */
 .kit-dodont { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 18px; }
@@ -289,10 +293,11 @@ table.kit-matrix { width: 100%; min-width: 620px; border-collapse: collapse; }
 /* ---- the stand edition of the screen shell. Moved here from design/system/components/screen-shell.css
    at Stage 08 Step 6: it wears no product screen, only the kit pages, and a stand style inside a
    component file is a defect by the stage rule. Values unchanged, byte for byte; the twins of the
-   shell's own selection trigger and notice gutter come with it. ---- */
+   shell's own selection trigger and notice gutter come with it. The trigger was narrowed to
+   `.theme .check:checked` at Stage 09 Step 1, in both places at once. ---- */
 .appframe { border: 1px solid var(--line-hairline); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sheet); background: var(--bg-page); display: flex; flex-direction: column; min-height: 560px; }
-.appframe:has(.check:checked) .selbar { display: flex; }
-.appframe:has(.check:checked) .head-action { display: none; }
+.appframe:has(.theme .check:checked) .selbar { display: flex; }
+.appframe:has(.theme .check:checked) .head-action { display: none; }
 .appframe > .notice { margin: var(--space-6) var(--space-9); }
 @media (max-width: 820px) {
   .appframe > .notice { margin: var(--space-6) var(--space-7); }

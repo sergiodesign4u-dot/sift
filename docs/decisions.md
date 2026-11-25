@@ -934,3 +934,69 @@ owner answered "go and do everything", which took every recommendation. The full
 **Left open, for the owner:** may the theme card stand on a second screen (Stage 09), and SOC 2
 Type II in year 1 or year 2 (`CLAUDE.md` says 1; IA, microcopy and the 9.2 heading say 2; no
 source in `research/`). Both are backlog rows.
+
+
+# Stage 09: Design System
+
+## The registry rebuilt into the Design System group (2026-11-25)
+
+The input gate passed. The roadmap in `/_nav.js` showed Tokens + Components, Design System,
+Responsive and Animation as four separate items, while all four work in the one stand
+`design/kit/`, which has its own panel. The owner chose option A: one group, "Design System"
+(`group: true`), with four children and a counter of children done (`1/4` today); `wip` sits on
+the group from Stage 08 until Stage 11 closes it. Stage 09's child is "System guide", so it does
+not repeat the group's name; its page is `design/kit/why.html` (Step 3). Rollout got its own entry,
+which the old registry did not have. README keeps "Design System" as the stage's row.
+
+| Decision | Why | Rejected |
+|---|---|---|
+| One group with a counter, children dimmed until their page exists | the sidebar tracks that a page exists, the README tracks that a stage is finished | four items that all open the same stand |
+| Rollout as its own roadmap entry | Stage 12 is a stage with its own page to come | folding it into the group: it works on `design/`, not on the stand |
+
+## Step 1: patterns and usage rules, in one pass (2026-11-26)
+
+**Counted on the grey, proved on the colour.** The counter ran over all 37 pages of
+`wireframes/` (25 screens); the 22 colour pages were the proof. The owner took the two patterns
+recommended from the candidates table and then answered "do everything as you recommend" on the
+usage rules.
+
+**Two patterns, in `design/system/patterns/`, imported after the organisms.** Each holds
+composition only: spacing through primitives, no colour, no new style.
+
+| Pattern | Grey screens | Colour pages moved | What moved into it, cut and not copied |
+|---|---|---|---|
+| Grouped list, `.grouped-list` | 3.0, 4.0, 6.0 | 8 | the list form's padding of `.group-t` (16 8 6, and 14 16 6 at 820 and below), out of `group-heading.css`; the two modifiers lost the `padding: 0` that only cancelled it |
+| Filtered list, `.filtered-list` | 2.0, 4.0, 6.1 | 6 | the 6px under the toolbar, out of `toolbar.css`. The toolbar's padding and hairline stayed: they are the row's own edge, and a pattern carries no colour |
+
+Pixel proof: 44 frame pairs (11 moved pages at 360 and 1440), 0 px each, frames in
+`design/kit/screens/patterns/`; the 11 untouched colour pages, 0 px too. The first run differed on
+pages nobody touched: Google Fonts served a different file from one request to the next and the
+text moved by under a pixel. The fonts were cached for both runs, two identical runs gave 0 px on
+all 52 frames, and only then were before and after compared. On the stand, the examples of
+`group-heading.html`, `screen-shell.html` and the frozen `kit.html` were put on the patterns and
+hold at 0 px; `toolbar.html` shows the toolbar alone, so each example is 6px shorter, which its
+history row says.
+
+**Nine usage rules**, written in `design/kit/docs/architecture.md` and on
+`design/kit/architecture.html#usage`, each with where it was taken from; a "Limits" sub-point on
+the 14 component pages they name.
+
+| Decision | Why | Rejected |
+|---|---|---|
+| R1, one filled `.btn` per screen, counted per section on 0.0 Home | `conventions.md:44` and design principle 4; 0.0 is a long persuade page whose three sections each hold one fill and one ghost | exempting 0.0 from the rule; or counting three fills on 0.0 as a violation |
+| 6.3: "Copy" takes `.btn--ghost`, "See what they see" keeps the fill | the phase strip on the same screen names step 3 "What they see": that is the next move. Copy is a utility beside the field. The fix is on the screen, never in the system. The grey 6.3 still draws two fills and is never edited | demoting "See what they see", which would leave the dialog's closing row with no next move |
+| The outline button sizes its icon too: `.btn .ic, .btn--ghost .ic` at 15px, in `button.css` | the first 6.3 run overflowed at 360: an svg without width and height attributes in an outline rendered at its intrinsic size, 152px tall. 2.0 hid the gap with attributes on its svg. A gap in the system is fixed in the system. After it, 6.3 differs from HEAD only in the button (frames `design/kit/screens/patterns/share-link-r1-*`), the other 21 colour pages hold at 0 px | width and height attributes on the 6.3 svg, which would copy the workaround of 2.0 |
+| The button page now says "one filled button per SCREEN", not "per zone" | "per zone" let 6.3 hold two fills, against principle 4 | keeping both wordings |
+| R9 holds the count of the phase strip only; its placement is a backlog row | the count holds on 6 grey pages; the placement differs (under the app bar on four colour screens, under the breadcrumb on 3.2) and no source settles it | settling the placement now, a design decision with no source |
+| The selection trigger narrowed from `.check:checked` to `.theme .check:checked`, in `screen-shell.css` and the stand's `_page.css` | backlog row: a settings checkbox on a screen with a head action would hide that action. Today every ticked box on such a screen is in a theme card, so nothing changes on screen | leaving it as a trap; the frozen Stage 07 `kit.html` keeps its own copy of the old rule untouched |
+| Not rules though their maximum is one: the toolbar, the breadcrumb, the screen and main heads, the dialog, the auth card | one by the build of the shell or the pattern, or under the threshold (the dialog on 2 pages, the auth card one screen) | a rule per component with a maximum of one: an accident of a small product written as law |
+
+**Sources, checked.** `census.md` counts forms, not copies per screen, so it cannot cross-check
+these rules; the colour pages were recounted by hand and agree with the grey. The critique logs of
+04, 07 and 08 hold no composition defect caught on two or more screens; the one caught on one
+screen (two fills on 2.0) backs R1. Stage 06 has no critique log.
+
+**Backlog:** two rows closed (the selection trigger; the warning band on a raised surface, now
+R5), one added (where the phase strip stands). Still owed to Stage 09 and the owner: the avatar,
+26 or 28px, and the action bar's alignment, both values; the 44px rule for a footer link waits for
+a footer that has links.

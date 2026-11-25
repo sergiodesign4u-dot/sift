@@ -7,7 +7,7 @@
 
   Contract classes shared with /_nav.js:
     nav-roadmap, nav-item (+ is-active / is-done / is-partial / is-soon), nav-top,
-    nav-badge (nav-badge-next / nav-badge-soon), nav-sub, nav-subhead, nav-subitem,
+    nav-badge (nav-badge-next / nav-badge-soon), nav-count (a group's children done / declared), nav-sub, nav-subhead, nav-subitem,
     nav-link (+ is-current), nav-sections, nav-section (+ is-current).
 
   No em dash in output files.
@@ -96,6 +96,17 @@ a.nav-top:hover { color: var(--nav-fg); background: rgba(255, 255, 255, 0.03); }
 
 .nav-badge-next { color: #e8e8ec; background: var(--nav-badge); }
 .nav-badge-soon { color: var(--nav-muted); background: rgba(255, 255, 255, 0.04); }
+
+/* A group's counter sits right after its label and pushes the badge to the edge. */
+.nav-count {
+  margin-left: 6px;
+  margin-right: auto;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--nav-muted);
+  font-variant-numeric: tabular-nums;
+}
 
 .nav-sub {
   list-style: none;

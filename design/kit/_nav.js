@@ -36,7 +36,7 @@ window.KIT_NAV = {
     { file: 'pixel-proof.html', label: 'Pixel proof and critique' },
   ],
   foundations: [
-    { file: 'architecture.html', label: 'Architecture', blurb: 'Two ladders, three surfaces, and where a fix goes' },
+    { file: 'architecture.html', label: 'Architecture', blurb: 'Two ladders, three surfaces, where a fix goes, and the usage rules' },
     { file: 'color.html',        label: 'Colour',       blurb: '81 primitives, 22 colour roles, both themes side by side, every ratio measured, the theme stress test' },
     { file: 'typography.html',   label: 'Typography',   blurb: 'Two faces, ten steps, every one on real product text' },
     { file: 'geometry.html',     label: 'Geometry',     blurb: 'Space, radius and target, shown as space, radius and target' },

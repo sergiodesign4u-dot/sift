@@ -158,8 +158,8 @@
         <div class="kit-when">
           <div>
             <h3>When</h3>
-            <p>Where the person acts. <b>One filled button per zone, and it is the next move</b>: the fourth design
-              principle, one decision at a time. Every other real action in the zone takes the outline.</p>
+            <p>Where the person acts. <b>One filled button per screen, and it is the next move</b>: the fourth design
+              principle, one decision at a time, written as usage rule R1. Every other real action takes the outline.</p>
             <p>The label is a verb and its object from <code>voice/docs/microcopy.md</code>: "Build brief", "Import 840
               items". A count in a label tells the person what they are about to commit to.</p>
           </div>
@@ -172,6 +172,13 @@
               <li>For a bare "OK", an exclamation mark or "just": the voice rules forbid all three.</li>
             </ul>
           </div>
+          <div class="kit-limits">
+            <h3>Limits</h3>
+            <p>Usage rules that name this component. Each is written once, on <a href="architecture.html#usage">Architecture, the usage rules</a>, with where it was taken from; this is the short copy.</p>
+            <ul>
+              <li><b>R1.</b> At most one filled <code>.btn</code> visible on a screen; every other real action takes <code>.btn--ghost</code>. An action at rest and an action on selection are exclusive in CSS: a ticked theme card shows <code>.selbar</code> and hides <code>.head-action</code>. On 0.0 Home the count is per section.</li>
+            </ul>
+          </div>
         </div>
 
         <div class="kit-dodont">
@@ -181,7 +188,7 @@
               <button class="btn--ghost">Set priority</button>
               <button class="btn">Add to brief</button>
             </div>
-            <div class="kit-dd-b"><div class="kit-dd-k">Do</div><div class="kit-dd-t">One filled action in the zone</div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do</div><div class="kit-dd-t">One filled action on the screen</div>
               <div class="kit-dd-d">The move the person came to make. Everything else that is a real action takes the outline.</div></div>
           </div>
           <div class="kit-dd kit-dd--dont">
@@ -248,7 +255,7 @@
       <section class="kit-sec" id="axes">
         <h2 class="kit-h2">Axes, with the rule that chooses</h2>
         <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
-          <tr><td>emphasis</td><td>fill 67 &middot; outline 33 &middot; bare 4</td><td><b>One filled button per zone, and it is the next move.</b> Two filled buttons in one zone is not a strong screen, it is a screen that has not decided</td></tr>
+          <tr><td>emphasis</td><td>fill 67 &middot; outline 33 &middot; bare 4</td><td><b>One filled button per screen, and it is the next move</b> (usage rule R1). Two filled buttons on one screen is not a strong screen, it is a screen that has not decided</td></tr>
           <tr><td>content</td><td>label 55 &middot; icon plus label 12 &middot; icon only 13</td><td><b>A leading icon promises "acts here".</b> Icon-only is for a control that repeats down a list, where a label would be read fifty times to say one thing</td></tr>
           <tr><td>size</td><td>medium 116 &middot; large 11</td><td><b>Size is given by the density of the place, never by the importance of the action.</b> Large exists on 0.0 alone, which is the one screen read by somebody who has not decided to read it</td></tr>
           <tr><td>width</td><td><b>not an axis</b></td><td>100% against auto is layout. A full-width button is the same button in a one-column container, and it takes <code>.u-full</code> from base.css</td></tr>
@@ -317,6 +324,8 @@
       <section class="kit-sec">
         <h2 class="kit-h2">Changes, newest first</h2>
         <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-26</td><td>The icon inside a labelled button is sized in the outline too, <code>.btn--ghost .ic</code>, 15px. Until now only the fill sized it, and an outline with an icon leaned on attributes on the svg. Found when 6.3 "Copy" took the outline under usage rule R1</td><td><code>docs/decisions.md</code>, "Stage 09 Step 1"</td></tr>
+          <tr><td>2026-11-26</td><td>The rule block gained its third sub-point, <b>Limits</b>: R1 from the usage rules. The rules live on <code>architecture.html</code>; this page carries the short copy</td><td><code>docs/decisions.md</code>, "Stage 09 Step 1"</td></tr>
           <tr><td>2026-11-21</td><td>Reconciled with <code>kit.css</code> byte for byte: the gap is 7px, <code>.btn</code> and <code>.btn--bare</code> draw no border (only <code>.btn--ghost</code> does), the bare button is regular weight with 13px vertical padding, and the icon button is 15px with no gap. The August values were drift nobody approved</td><td><code>docs/decisions.md</code>, "Step 6: the system reconciled with the product"</td></tr>
           <tr><td>2026-11-20</td><td>The page moved to the card format: Overview, Technical, History. The states became a live matrix drawn from the product's own rules; the snapshots moved to Technical as the measurement beside it</td><td><code>docs/decisions.md</code>, "The showcase is read by purpose"</td></tr>
           <tr><td>2026-08-19</td><td>Split out of the flat kit into <code>components/button.css</code>. The filled hover went from <code>filter: brightness(1.08)</code> to the token pair <code>--bg-action-hover</code>. This page became the etalon of Step 5</td><td>commit <code>3ebbae1</code></td></tr>

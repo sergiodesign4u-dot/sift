@@ -86,6 +86,14 @@
               <li>To hold a selection: the selection bar is a different molecule.</li>
             </ul>
           </div>
+          <div class="kit-limits">
+            <h3>Limits</h3>
+            <p>Usage rules that name this component. Each is written once, on <a href="architecture.html#usage">Architecture, the usage rules</a>, with where it was taken from; this is the short copy.</p>
+            <ul>
+              <li><b>R2.</b> One bottom bar per screen: <code>.selbar</code> and <code>.actionbar</code> never stand on the same screen.</li>
+              <li><b>R3.</b> A <code>.state</code> never shares a screen with <code>.toolbar</code>, <code>.selbar</code> or <code>.actionbar</code>: there is nothing to filter, select or save on an empty or failed screen.</li>
+            </ul>
+          </div>
         </div>
         <div class="kit-dodont">
           <div class="kit-dd kit-dd--do">
@@ -176,6 +184,7 @@
       <section class="kit-sec">
         <h2 class="kit-h2">Changes, newest first</h2>
         <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-26</td><td>The rule block gained its third sub-point, <b>Limits</b>: R2, R3 from the usage rules. The rules live on <code>architecture.html</code>; this page carries the short copy</td><td><code>docs/decisions.md</code>, "Stage 09 Step 1"</td></tr>
           <tr><td>2026-11-21</td><td>Entered the system: <code>components/actionbar.css</code>, on semantic roles, and this page in the card format</td><td><code>docs/decisions.md</code>, "The molecules entered the system"</td></tr>
           <tr><td>2026-08-18</td><td>At 360 the note takes its own line and the buttons share the next. Layout on the bar's own children, not an undeclared variant</td><td>commit <code>2ee2c3b</code>, <code>design/kit/docs/inventory.md</code>, "Step 3 close-out: what the kit did with this table"</td></tr>
           <tr><td>2026-08-18</td><td>Declared in the flat kit with <code>.actionbar-note</code></td><td>commit <code>d461e12</code></td></tr>

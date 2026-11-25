@@ -7,6 +7,12 @@
    block, inside a toolbar. It is the only three-form atom in the system and the axis is named,
    which is the difference between a variant and drift.
 
+   The list form has no modifier and, since Stage 09 Step 1, no geometry of its own here: its
+   padding (16 8 6, and 14 16 6 at 820 and below) is the spacing between groups of a list, which
+   is a composition, so it moved to design/system/patterns/grouped-list.css. Cut from this file,
+   not copied. The bare class is the type; the pattern places it. The two modifiers lost the
+   `padding: 0` that only cancelled the list padding.
+
    It was missing from the Stage 07 census: the class census counted it inside its screens and
    never gave it a row of its own, and the first screen of Step 5 needed it. Not interactive.
    No em dash anywhere in this file.
@@ -16,14 +22,6 @@
   font-family: var(--font-mono); font-size: var(--type-3xs);
   font-weight: var(--weight-medium); letter-spacing: var(--tracking-caps);
   text-transform: uppercase; color: var(--text-secondary);
-  padding: var(--space-7) var(--space-3) var(--space-2);
 }
-.group-t--section { padding: 0; margin: 24px 0 var(--space-4); /* kit.css:408, no space step is 24. Reverted at Step 6 */ }
-.group-t--inline { padding: 0; margin: 0; }
-
-/* At 820 and below the list form takes the screen's 16px gutter, the side padding a row has on a
-   phone. kit.css:754 and :764, byte for byte; it was missing from this file until Step 6. */
-@media (max-width: 820px) {
-  .group-t { padding: 14px var(--space-7) var(--space-2); }
-  .group-t--section, .group-t--inline { padding: 0; }
-}
+.group-t--section { margin: 24px 0 var(--space-4); /* kit.css:408, no space step is 24. Reverted at Step 6 */ }
+.group-t--inline { margin: 0; }

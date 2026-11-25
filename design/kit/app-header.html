@@ -125,6 +125,13 @@
               <li>For the way back inside a section: take <a href="breadcrumb.html">the breadcrumb</a>, the way back in one line.</li>
             </ul>
           </div>
+          <div class="kit-limits">
+            <h3>Limits</h3>
+            <p>Usage rules that name this component. Each is written once, on <a href="architecture.html#usage">Architecture, the usage rules</a>, with where it was taken from; this is the short copy.</p>
+            <ul>
+              <li><b>R8.</b> <code>.appbar</code> and <code>.bottomtabs</code> only inside the signed-in app, and always together; <code>.public-bar</code> only on the public pages. The two never meet.</li>
+            </ul>
+          </div>
         </div>
 
         <div class="kit-dodont">
@@ -248,6 +255,7 @@
       <section class="kit-sec">
         <h2 class="kit-h2">Changes, newest first</h2>
         <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-26</td><td>The rule block gained its third sub-point, <b>Limits</b>: R8 from the usage rules. The rules live on <code>architecture.html</code>; this page carries the short copy</td><td><code>docs/decisions.md</code>, "Stage 09 Step 1"</td></tr>
           <tr><td>2026-11-21</td><td><code>--text-accent</code> is accepted as a role, and the account nav hover on <code>--bg-page</code> with it. The <code>.ic</code> base rule now lives in <code>base.css</code></td><td><code>docs/decisions.md</code>, "Step 6: the system reconciled with the product"</td></tr>
           <tr><td>2026-11-21</td><td>Entered the system: <code>components/app-header.css</code>, on semantic roles, and this page in the card format. The brand mark reads <code>--text-accent</code>, pending the owner; the current tab reads <code>--bg-raised</code></td><td><code>docs/decisions.md</code>, "The organisms entered the system"</td></tr>
           <tr><td>2026-08-18</td><td>Stage 07 Step 3: the colour layer moved into the flat kit <code>design/kit/kit.css</code>, and the header entered it with the shell markup in <code>design/kit/shell.html</code></td><td>commit <code>d461e12</code></td></tr>

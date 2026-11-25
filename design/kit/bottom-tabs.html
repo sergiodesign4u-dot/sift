@@ -125,6 +125,13 @@
               <li>On a screen read by somebody who is not signed in (0.0, 6.4, 9.x): no tabs at all. A shared brief has no navigation to offer (<a href="public-bar.html">the public bar</a>).</li>
             </ul>
           </div>
+          <div class="kit-limits">
+            <h3>Limits</h3>
+            <p>Usage rules that name this component. Each is written once, on <a href="architecture.html#usage">Architecture, the usage rules</a>, with where it was taken from; this is the short copy.</p>
+            <ul>
+              <li><b>R8.</b> <code>.appbar</code> and <code>.bottomtabs</code> only inside the signed-in app, and always together; <code>.public-bar</code> only on the public pages. The two never meet.</li>
+            </ul>
+          </div>
         </div>
 
         <div class="kit-dodont">
@@ -245,6 +252,7 @@
       <section class="kit-sec">
         <h2 class="kit-h2">Changes, newest first</h2>
         <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-26</td><td>The rule block gained its third sub-point, <b>Limits</b>: R8 from the usage rules. The rules live on <code>architecture.html</code>; this page carries the short copy</td><td><code>docs/decisions.md</code>, "Stage 09 Step 1"</td></tr>
           <tr><td>2026-11-21</td><td><code>--text-accent</code> is accepted as a role. The body line height is 1.5 again, as in <code>kit.css</code>, and the <code>.ic</code> base rule now lives in <code>base.css</code></td><td><code>docs/decisions.md</code>, "Step 6: the system reconciled with the product"</td></tr>
           <tr><td>2026-11-21</td><td>Entered the system: <code>components/bottom-tabs.css</code>, on semantic roles, and this page in the card format. The current tab reads <code>--text-accent</code>, pending the owner</td><td><code>docs/decisions.md</code>, "The organisms entered the system"</td></tr>
           <tr><td>2026-08-18</td><td>Stage 07 Step 3: the colour layer moved into the flat kit <code>design/kit/kit.css</code>, and the bottom tabs entered it with their markup in <code>design/kit/shell.html</code>. The tab measured 54px at 360, so the grey layer's 29px defect did not travel</td><td>commit <code>d461e12</code>; <code>design/kit/docs/inventory.md</code>, "Step 3 close-out"</td></tr>

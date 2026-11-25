@@ -1,8 +1,8 @@
 # Backlog - Sift design system
 
-*Stage 08 Steps 6, 7 and 9. What the reconciliation of the system with the product, the theme stress
-test, and the Step 9 critique and dry run over the still-grey screens decided NOT to fill in now, with the reason and the stage that closes it. One row per item, in the format the stage asks
-for: what is missing, where it shows, why it is deferred, who closes it. Shown on
+*Stage 08 Steps 6, 7 and 9, and Stage 09 Step 1. What the reconciliation of the system with the product, the theme stress
+test, and the Step 9 critique and dry run over the still-grey screens, and the Stage 09 usage rules decided NOT to fill in now, with the reason and the stage that closes it. One row per item, in the format the stage asks
+for: what is missing, where it shows, why it is deferred, who closes it. Closed by Stage 09 Step 1 and removed: the selection trigger (narrowed to `.theme .check:checked`) and the warning band on a raised surface (usage rule R5); both are in `docs/decisions.md`. Shown on
 `design/kit/overview.html`, section "Backlog".*
 
 *Internal document, English. No em dash anywhere in this file.*
@@ -17,13 +17,12 @@ for: what is missing, where it shows, why it is deferred, who closes it. Shown o
 | Whether `.redacted` is used | 5.1 Evidence redacted | The inventory gives the snippet a redacted form; the grey 5.1 shows the redacted case as a notice plus a reason line, not as a mark in the meta line | Stage 12 decides; if 5.1 keeps the notice, the mark is deleted then |
 | The breakpoint: 600 or 820 | the app header, the bottom tabs, the toolbar, the account shell | The grey contract switches at a 600px CANVAS (a container query on the stand); the colour layer at an 820px VIEWPORT. Both are written down, neither is wrong for its layer, and naming the breakpoints by what changes is that stage's first step | Stage 10, Responsive |
 | 3.6 is not a dialog | 3.6 Source manage | The inventory lists the dialog as standing on 6.3 and 3.6; the grey 3.6 draws its confirmation as a block on the page | Stage 12 decides the form; the inventory row is corrected then |
-| The selection trigger reads any checked box | `.app:has(.check:checked)` in `screen-shell.css` | Today only theme cards carry a `.check` on a screen that has a selection bar; a second kind of checkbox on such a screen would hide its head action by mistake | Stage 09, when the selection pattern is written |
 | "Primary" and "Sections" | the `aria-label` of the app header's nav and the bottom tabs: "Primary" on the four 2.0 screens and in the grey, "Sections" on the other 16 colour screens | Two names for one navigation; an interface string, and those belong to `voice/docs/microcopy.md` | Stage 12, through microcopy |
 | The avatar's size: 26 or 28px | the app bar, 27 screens | The grey draws 26px (`wireframes/_wf.css:146`) and the inventory says 26; `kit.css:93` and `avatar.css` draw 28px. A value, so it changes only by a decision, and the colour layer has carried 28 since Stage 07 | Stage 09, with the owner |
 | `.legal-crumb` against `.breadcrumb` | 9.0, 9.1, 9.2 (grey) | Two classes for one job; the legal one is grey only | Stage 12, when 9.x is painted |
 | The action bar has no `justify-content` | 3.2, 3.3, 3.6, 6.1, 7.3 (where "Log out" stands beside "Save changes") | Measured identical to `kit.css`; whether the buttons should sit at the end is a design question, not a migration | Stage 09 |
+| Where the phase strip stands on a screen | under the app bar on 2.1, 2.2, 6.1 and 6.3, under the breadcrumb on 3.2 (colour) | Stage 09 Step 1: usage rule R9 holds the count (one per screen); the placement differs from screen to screen and no rule fixes it yet | Stage 12, before the next screen with a phase strip is painted |
 | The rename map rows for the grey | 31 + 23 screens in `wireframes/` | `wireframes/` is never edited after Stage 05; the map is the input of the rollout. Step 6 added one row (`.acct-card-*` to `.cardrow-*`) | Stage 12 |
-| A rule: a warning or an error band never sits on a raised surface | any future dialog or menu that would carry a band | Measured at Step 7: the ink on its own wash falls under 4.5 over `--bg-raised` (warning 4.44 in light, danger 4.36 dark and 4.30 light). No screen does it today, so it is a rule of use, not a value fix | Stage 09, in the usage rules of the notice |
 | The plan summary: plan name (`acct-plan-name`) and the account row's description zone used as a bare paragraph | 7.1 Plan and limits (`wireframes/account-plan.html:59-60,96`) | Step 9 dry run: no component, no inventory row; never put to the component or one-off question | Stage 12, before 7.1 is painted |
 | The limits list: label against used/limit (`acct-limits`, `acct-limit-*`) | 7.1 (`account-plan.html:63-84`) | Step 9 dry run: neither a component nor a one-off. One-off on one screen, or a form of the provenance list | Stage 12, before 7.1 |
 | The usage meter and its label: not in `one-off.css`; no near-limit or over-limit form, which IA names (`ia/docs/pages/account.md:38-39`) | 7.1 (`account-plan.html:87-88`) | Step 9 dry run: listed as a one-off in the Stage 07 inventory, declared nowhere in the system | Stage 12, with the 7.1 state pages |

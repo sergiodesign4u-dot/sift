@@ -89,6 +89,14 @@
               <li>To put the destructive action beside the primary one: it is held apart by <code>.u-apart</code>.</li>
             </ul>
           </div>
+          <div class="kit-limits">
+            <h3>Limits</h3>
+            <p>Usage rules that name this component. Each is written once, on <a href="architecture.html#usage">Architecture, the usage rules</a>, with where it was taken from; this is the short copy.</p>
+            <ul>
+              <li><b>R1.</b> At most one filled <code>.btn</code> visible on a screen; every other real action takes <code>.btn--ghost</code>. An action at rest and an action on selection are exclusive in CSS: a ticked theme card shows <code>.selbar</code> and hides <code>.head-action</code>. On 0.0 Home the count is per section.</li>
+              <li><b>R5.</b> A <code>.notice--warn</code> or <code>.notice--error</code> never sits on a raised surface such as <code>.dialog</code>: its ink falls under 4.5 there.</li>
+            </ul>
+          </div>
         </div>
         <div class="kit-dodont">
           <div class="kit-dd kit-dd--do">
@@ -190,6 +198,7 @@
       <section class="kit-sec">
         <h2 class="kit-h2">Changes, newest first</h2>
         <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-26</td><td>The rule block gained its third sub-point, <b>Limits</b>: R1, R5 from the usage rules. The rules live on <code>architecture.html</code>; this page carries the short copy</td><td><code>docs/decisions.md</code>, "Stage 09 Step 1"</td></tr>
           <tr><td>2026-11-21</td><td>Entered the system: <code>components/dialog.css</code>, on semantic roles, and this page in the card format</td><td><code>docs/decisions.md</code>, "The organisms entered the system"</td></tr>
           <tr><td>2026-08-18</td><td>Declared in the flat kit with the rule that a destructive action is held apart by <code>.u-apart</code></td><td>commit <code>d461e12</code></td></tr>
         </tbody></table></div>

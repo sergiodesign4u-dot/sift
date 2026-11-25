@@ -13,7 +13,8 @@
    NOT IN THIS FILE: the rule that hides the action while the selection bar is up. kit.css writes
    it twice, as `.appframe:has(.check:checked) .head-action` and `.app:has(.check:checked)
    .head-action`. Both couple the head to the screen shell, which is an organism and comes in
-   round 3. It lives in screen-shell.css since round 3, as `.app:has(.check:checked) .head-action`.
+   round 3. It lives in screen-shell.css since round 3, as `.app:has(.check:checked) .head-action`,
+   narrowed to `.app:has(.theme .check:checked)` at Stage 09 Step 1.
 
    .head-meta is the meta row of a detail head: confidence, recency, rank. Everything the ranked
    row already said, restated where the decision is actually made, so the claim travels with the

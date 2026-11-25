@@ -104,6 +104,15 @@
               <li>For the one action of a screen at rest: that is the head action in the screen head, which this bar replaces while it is up.</li>
             </ul>
           </div>
+          <div class="kit-limits">
+            <h3>Limits</h3>
+            <p>Usage rules that name this component. Each is written once, on <a href="architecture.html#usage">Architecture, the usage rules</a>, with where it was taken from; this is the short copy.</p>
+            <ul>
+              <li><b>R1.</b> At most one filled <code>.btn</code> visible on a screen; every other real action takes <code>.btn--ghost</code>. An action at rest and an action on selection are exclusive in CSS: a ticked theme card shows <code>.selbar</code> and hides <code>.head-action</code>. On 0.0 Home the count is per section.</li>
+              <li><b>R2.</b> One bottom bar per screen: <code>.selbar</code> and <code>.actionbar</code> never stand on the same screen.</li>
+              <li><b>R3.</b> A <code>.state</code> never shares a screen with <code>.toolbar</code>, <code>.selbar</code> or <code>.actionbar</code>: there is nothing to filter, select or save on an empty or failed screen.</li>
+            </ul>
+          </div>
         </div>
 
         <div class="kit-dodont">
@@ -194,7 +203,7 @@
   &lt;a class="btn" href="share-link-loading.html"&gt;Generate share link&lt;/a&gt;
 &lt;/div&gt;</pre>
         </div>
-        <p class="kit-note">File: <code class="kit-mono">design/system/components/selbar.css</code>, imported in the molecules group of <code class="kit-mono">design/system/index.css</code>. The trigger, <code class="kit-mono">.app:has(.check:checked) .selbar { display: flex }</code> with its twin that hides <code class="kit-mono">.head-action</code>, is a rule of the screen shell and arrives with the shell organism, not in this file.</p>
+        <p class="kit-note">File: <code class="kit-mono">design/system/components/selbar.css</code>, imported in the molecules group of <code class="kit-mono">design/system/index.css</code>. The trigger, <code class="kit-mono">.app:has(.theme .check:checked) .selbar { display: flex }</code> with its twin that hides <code class="kit-mono">.head-action</code>, is a rule of the screen shell and arrives with the shell organism, not in this file.</p>
       </section>
     </div>
 
@@ -203,6 +212,7 @@
       <section class="kit-sec">
         <h2 class="kit-h2">Changes, newest first</h2>
         <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-26</td><td>The rule block gained its third sub-point, <b>Limits</b>: R1, R2, R3 from the usage rules. The rules live on <code>architecture.html</code>; this page carries the short copy</td><td><code>docs/decisions.md</code>, "Stage 09 Step 1"</td></tr>
           <tr><td>2026-11-21</td><td>Entered the system: <code>components/selbar.css</code>, on semantic roles, and this page in the card format. The trigger rules stayed with the shell</td><td><code>docs/decisions.md</code>, "The molecules entered the system"</td></tr>
           <tr><td>2026-08-18</td><td><code>.selbar--static</code> arrived for the composer, with its 360 rules: the artifact IS the selection</td><td>commit <code>41ae8c4</code></td></tr>
           <tr><td>2026-08-18</td><td>The trigger was added on <code>.app</code>, the shell of a screen that is the page, beside the one on <code>.appframe</code></td><td>commit <code>f2b20b8</code></td></tr>

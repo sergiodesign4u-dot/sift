@@ -60,7 +60,7 @@
         </div>
         <p class="kit-hero-note">Live. Tick a theme: the selection bar rises and Build brief goes</p>
       </div>
-      <p class="kit-note"><b>That is the coupling rule working, and it lives in this file.</b> <code class="kit-mono">.appframe:has(.check:checked) .selbar</code> shows the selection bar and <code class="kit-mono">.appframe:has(.check:checked) .head-action</code> hides the head action, so the screen never carries two primary actions. Pure CSS, no script. These two stand rules live in <code class="kit-mono">design/kit/_page.css</code>; on a product screen the same two rules are written on <code class="kit-mono">.app</code> in the component file: open <a href="../synthesis.html">2.0 Synthesis</a> and tick a theme. Narrow the window below 820px and the header drops its tabs while the bottom tabs appear at the foot of the frame.</p>
+      <p class="kit-note"><b>That is the coupling rule working, and it lives in this file.</b> <code class="kit-mono">.appframe:has(.theme .check:checked) .selbar</code> shows the selection bar and <code class="kit-mono">.appframe:has(.theme .check:checked) .head-action</code> hides the head action, so the screen never carries two primary actions. Pure CSS, no script. These two stand rules live in <code class="kit-mono">design/kit/_page.css</code>; on a product screen the same two rules are written on <code class="kit-mono">.app</code> in the component file: open <a href="../synthesis.html">2.0 Synthesis</a> and tick a theme. Narrow the window below 820px and the header drops its tabs while the bottom tabs appear at the foot of the frame.</p>
 
       <section class="kit-sec" id="variants">
         <h2 class="kit-h2">Variants and states</h2>
@@ -115,7 +115,7 @@
           </div>
           <div>
             <div class="kit-form-c" inert>
-              <div class="appframe u-full"><header class="appbar"><span class="brand"><svg class="ic mark" width="15" height="15"><use href="#i-signal"></use></svg> Sift</span><nav class="navtabs" aria-label="Sections"><a href="#">Synthesis</a><a href="#" class="active" aria-current="page">Sources</a><a href="#">Briefs</a></nav><span class="spacer"></span><a href="#" class="avatar" aria-label="Account"></a></header><div class="notice notice--warn">Intercom sync failed. 3 themes cite Intercom evidence, including "Onboarding is confusing" and "Slow export on large accounts". Those citations still open, because the items already ingested are stored in Sift. What is paused is new feedback arriving.</div><div class="appmain"><div class="group-t">Connected &middot; 2</div></div><footer class="appfoot">Sift workspace &middot; feedback from CSV and Intercom, PII scrubbed by default</footer></div>
+              <div class="appframe u-full"><header class="appbar"><span class="brand"><svg class="ic mark" width="15" height="15"><use href="#i-signal"></use></svg> Sift</span><nav class="navtabs" aria-label="Sections"><a href="#">Synthesis</a><a href="#" class="active" aria-current="page">Sources</a><a href="#">Briefs</a></nav><span class="spacer"></span><a href="#" class="avatar" aria-label="Account"></a></header><div class="notice notice--warn">Intercom sync failed. 3 themes cite Intercom evidence, including "Onboarding is confusing" and "Slow export on large accounts". Those citations still open, because the items already ingested are stored in Sift. What is paused is new feedback arriving.</div><div class="appmain"><div class="grouped-list"><div class="group-t">Connected &middot; 2</div></div></div><footer class="appfoot">Sift workspace &middot; feedback from CSV and Intercom, PII scrubbed by default</footer></div>
             </div>
             <div class="kit-form-t">A notice in the frame</div>
             <div class="kit-form-d"><code>.appframe &gt; .notice</code>, <code>.app &gt; .notice</code>: outside the padded main it brings the 22px gutter with it, 16px at 820 and below. The grey layer places it so on 3.5, 4.1 and 6.2; the colour copies put it inside the main [?].</div>
@@ -133,7 +133,7 @@
           <tr><td>Main</td><td>zone</td><td><code>main.appmain</code>, takes the free height, 20px by 22px padding</td><td>required</td></tr>
           <tr><td>Footer</td><td>organism, zone</td><td><code>footer.appfoot</code> &middot; <code>.pubfoot</code> on the public document</td><td>required</td></tr>
           <tr><td>Bottom tabs</td><td>organism, zone</td><td><code>nav.bottomtabs</code>, last; drawn at 820 and below</td><td>required on a signed-in screen</td></tr>
-          <tr><td>Selection trigger</td><td>coupling rule</td><td>any <code>.check:checked</code> inside the shell shows <code>.selbar</code> and hides <code>.head-action</code></td><td>nothing checked</td></tr>
+          <tr><td>Selection trigger</td><td>coupling rule</td><td>a ticked theme card, <code>.theme .check:checked</code>, inside the shell shows <code>.selbar</code> and hides <code>.head-action</code></td><td>nothing checked</td></tr>
           <tr><td>Centring</td><td>coupling rule</td><td>a <code>.state</code> or a <code>.dialog</code> that is the only child of <code>.appmain</code></td><td>off</td></tr>
         </tbody></table></div>
       </section>

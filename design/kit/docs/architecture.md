@@ -1,6 +1,6 @@
 # Architecture of the Sift design system
 
-*Stage 08, final as of the Step 9 close-out. The rules of the system, which is what you read first and what
+*Stage 08, final as of the Step 9 close-out; Stage 09 Step 1 added the usage rules at the end. The rules of the system, which is what you read first and what
 `design/kit/architecture.html` shows. The evidence about the system, the token audit, the census,
 the inventory and the coverage, lives in the Verification group and is a different kind of
 document: this one says how it is built, those say what was found.*
@@ -199,3 +199,45 @@ the inventory, or it is drift and it folds into the nearest declared form.
   compared with the same element under a real pointer and a real Tab key.
 - **Only an interactive component gets states.** A badge, a heading and a divider do not, and
   their pages say so in those words. A hover on a badge is an invented role.
+
+---
+
+## Usage rules
+
+*Stage 09 Step 1. Rules about how many of a component stand on one screen, and next to what, or
+where it never appears. Written once here, shown on `design/kit/architecture.html#usage`, and
+copied short into a "Limits" sub-point on the page of every component a rule names.*
+
+Three classes of rule exist, and only two of them live here:
+
+- **Substitution** ("not a badge here, a tag") stays the anti-rule on the component's own page,
+  because there is something else to take.
+- **Composition**: the component is right, its COUNT or its NEIGHBOUR is wrong. Checked by
+  counting on the screen.
+- **Context**: the component is right in itself and in number, its PLACE is wrong. Checked against
+  a list of screens.
+
+Counted on the grey corpus (`wireframes/*.html`, 37 pages), because a rule is a claim about the
+whole product and the colour sample is 22 pages of it; cross-checked on the colour pages. A rule
+with no source is not taken. A screen that breaks a rule is fixed on the screen, never in the
+system.
+
+| # | Rule | Class | Where it was taken from | Components | How to check it at a glance |
+|---|---|---|---|---|---|
+| R1 | At most one filled `.btn` (any size) visible on a screen; every other real action takes `.btn--ghost`. An action at rest and an action on selection are exclusive in CSS: a ticked theme card shows `.selbar` and hides `.head-action`. On 0.0 Home, a long persuade page, the count is per section | composition | `wireframes/docs/conventions.md:44` (one primary action per screen, design principle 4); `docs/decisions.md:90-95` (two fills on 2.0, caught and fixed in CSS); the counter: 33 of 37 grey pages hold at most one; 2.0 holds by the exclusion, 1.0 reset draws three steps with one fill each, 0.0 holds one fill and one ghost in each of its three sections; 6.3 held two and was fixed on the screen | button, selection bar, screen head, dialog | Count the visible `.btn` that are not `--ghost` or `--bare`: 1 or 0 (per section on 0.0) |
+| R2 | One bottom bar per screen: `.selbar` and `.actionbar` never stand on the same screen | composition | the counter: selection bar on 3 grey pages, action bar on 4, both on 0 | selection bar, action bar | Count both: the sum is 1 or 0 |
+| R3 | A `.state` never shares a screen with `.toolbar`, `.selbar` or `.actionbar`: nothing to filter, select or save on an empty or failed screen. It may stand under a `.notice` (8.2) | composition | the counter: state on 8 grey pages, with any of the three on 0, with a notice on 8.2 only | empty and error state, toolbar, selection bar, action bar | If `.state` is on the screen, none of the three is |
+| R4 | At most one `.notice` on a screen | composition | the counter: notice on 7 grey pages, never two | notice band | Count `.notice`: 1 or 0 |
+| R5 | A `.notice--warn` or `.notice--error` never sits on a raised surface (`.dialog`, or anything on `--bg-raised`) | composition | `design/kit/docs/backlog.md`, the Stage 08 Step 7 measurement: the ink on its own wash over `--bg-raised` is 4.44 (warning, light), 4.36 and 4.30 (danger, dark and light), under 4.5; the counter: a notice inside a dialog on 0 pages | notice band, dialog | No `.notice--warn` or `.notice--error` inside `.dialog` |
+| R6 | Exactly one `h1` on a screen, and it names the screen. A state title is an `h2` (`.state-t`), except on 8.0, 8.1 and 8.2, where the state is the screen and its title is the `h1` | composition | `wireframes/docs/conventions.md:41`; the counter: 37 of 37 grey pages | screen head, empty and error state | Count `h1`: exactly 1 |
+| R7 | A theme never shows without its confidence: every theme row and every theme head carries `.conf` (`n=X`, and `.badge-low` when the signal is thin) | composition | decision D2 in `CLAUDE.md` (confidence display is mandatory in MVP); the counter: `.conf` on all 9 grey pages that show a theme | theme card, confidence indicator | Every `.theme` has a `.conf` inside |
+| R8 | `.appbar` and `.bottomtabs` only inside the signed-in app, and always together; `.public-bar` only on the public pages (0.0, 1.0, 6.4, 8.1, 8.2, 9.x). The two never meet | context | the counter: app bar and bottom tabs on the same 27 grey pages, the public bar on the other 10, both on 0; `CLAUDE.md` (three entries plus account; the public and indexed pages) | app header, bottom tabs, public bar | The screen is on the app list or on the public list, never on both |
+| R9 | At most one `.steps` (phase strip) on a screen. Where it stands on the screen is not settled and is not part of the rule: it is a backlog row | composition | the counter: 6 grey pages, never two | phase strip | Count `.steps`: 1 or 0 |
+
+**What a count of one did not make a rule.** The toolbar (one filter per list is what the Filtered
+list pattern already says), the breadcrumb, the screen head and the main head (one by the build of
+the shell), the dialog (2 pages, under the threshold) and the auth card (one screen, 1.0, in three
+states). Their maximum is one on every page and none of them is a rule.
+
+**Checked by name on the first screen built from the system** (Step 5, "held / broken") and then
+on every batch of the rollout.

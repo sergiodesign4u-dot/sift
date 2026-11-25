@@ -89,8 +89,11 @@
 .btn--icon:hover { color: var(--text-primary); }
 .btn--icon .ic { width: 16px; height: 16px; }
 
-/* ---- the icon inside a labelled button ---- */
-.btn .ic { width: 15px; height: 15px; }
+/* ---- the icon inside a labelled button, in both emphases. Until Stage 09 Step 1 only the fill
+       sized it: the outline with an icon got its size from width and height attributes on the
+       svg (2.0, "Set priority"), and an svg without them rendered at its intrinsic size. Found when
+       6.3 "Copy" took the outline under usage rule R1. ---- */
+.btn .ic, .btn--ghost .ic { width: 15px; height: 15px; }
 
 /* ---- active: the press. It moves the ground, never the geometry: a state that shifts an
        element by a pixel moves its neighbours too, and that is the jump. ---- */

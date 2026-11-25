@@ -94,59 +94,61 @@
 
           <div class="notice notice--warn">Intercom sync failed. 3 themes cite Intercom evidence, including "Onboarding is confusing" and "Slow export on large accounts". Those citations still open, because the items already ingested are stored in Sift. What is paused is new feedback arriving.</div>
 
-          <div class="group-t">Connected &middot; 2</div>
-          <ul class="list">
-            <li class="src-row">
-              <span class="iconslot iconslot--row" aria-hidden="true"><svg class="ic"><use href="#i-source"></use></svg></span>
-              <div class="src-main">
-                <span class="src-name">Intercom <span class="tag tag--alert">Sync failed</span></span>
-                <span class="src-sub">Live connection</span>
-                <span class="rowalert">Sift could not reach Intercom on the last sync. The source may be unavailable, or the connection may need reauthorizing.</span>
-              </div>
-              <div class="src-stats">
-                <div class="src-stat"><span class="src-stat-l">Items</span><span class="src-stat-v">2,910</span></div>
-                <div class="src-stat"><span class="src-stat-l">Last sync</span><span class="src-stat-v">2 days ago</span></div>
-                <div class="src-stat"><span class="src-stat-l">PII scrub</span><span class="src-stat-v">On</span></div>
-              </div>
-              <div class="src-rowactions">
-                <a class="btn--ghost" href="../wireframes/sources-manage.html">Manage</a>
-                <a class="btn" href="sources.html">Try again</a>
-              </div>
-            </li>
-            <li class="src-row">
-              <span class="iconslot iconslot--row" aria-hidden="true"><svg class="ic"><use href="#i-upload"></use></svg></span>
-              <div class="src-main">
-                <span class="src-name">CSV import <span class="tag">Imported</span></span>
-                <span class="src-sub">Batch import</span>
-              </div>
-              <div class="src-stats">
-                <div class="src-stat"><span class="src-stat-l">Items</span><span class="src-stat-v">840</span></div>
-                <div class="src-stat"><span class="src-stat-l">Imported</span><span class="src-stat-v">2 days ago</span></div>
-                <div class="src-stat"><span class="src-stat-l">PII scrub</span><span class="src-stat-v">On</span></div>
-              </div>
-              <div class="src-rowactions"><a class="btn--ghost" href="../wireframes/sources-manage.html">Manage</a></div>
-            </li>
-          </ul>
+          <div class="grouped-list">
+            <div class="group-t">Connected &middot; 2</div>
+            <ul class="list">
+              <li class="src-row">
+                <span class="iconslot iconslot--row" aria-hidden="true"><svg class="ic"><use href="#i-source"></use></svg></span>
+                <div class="src-main">
+                  <span class="src-name">Intercom <span class="tag tag--alert">Sync failed</span></span>
+                  <span class="src-sub">Live connection</span>
+                  <span class="rowalert">Sift could not reach Intercom on the last sync. The source may be unavailable, or the connection may need reauthorizing.</span>
+                </div>
+                <div class="src-stats">
+                  <div class="src-stat"><span class="src-stat-l">Items</span><span class="src-stat-v">2,910</span></div>
+                  <div class="src-stat"><span class="src-stat-l">Last sync</span><span class="src-stat-v">2 days ago</span></div>
+                  <div class="src-stat"><span class="src-stat-l">PII scrub</span><span class="src-stat-v">On</span></div>
+                </div>
+                <div class="src-rowactions">
+                  <a class="btn--ghost" href="../wireframes/sources-manage.html">Manage</a>
+                  <a class="btn" href="sources.html">Try again</a>
+                </div>
+              </li>
+              <li class="src-row">
+                <span class="iconslot iconslot--row" aria-hidden="true"><svg class="ic"><use href="#i-upload"></use></svg></span>
+                <div class="src-main">
+                  <span class="src-name">CSV import <span class="tag">Imported</span></span>
+                  <span class="src-sub">Batch import</span>
+                </div>
+                <div class="src-stats">
+                  <div class="src-stat"><span class="src-stat-l">Items</span><span class="src-stat-v">840</span></div>
+                  <div class="src-stat"><span class="src-stat-l">Imported</span><span class="src-stat-v">2 days ago</span></div>
+                  <div class="src-stat"><span class="src-stat-l">PII scrub</span><span class="src-stat-v">On</span></div>
+                </div>
+                <div class="src-rowactions"><a class="btn--ghost" href="../wireframes/sources-manage.html">Manage</a></div>
+              </li>
+            </ul>
 
-          <div class="group-t">Available to connect</div>
-          <div class="src-avail">
-            <div class="src-card">
-              <span class="iconslot iconslot--card" aria-hidden="true"><svg class="ic"><use href="#i-upload"></use></svg></span>
-              <span class="src-card-name">CSV or spreadsheet</span>
-              <span class="src-card-d">Sift reads the feedback text, its date and its channel. You choose which columns are read, and you can leave contact columns out entirely.</span>
-              <a class="btn--ghost" href="connect-csv.html">Import a file</a>
-            </div>
-            <div class="src-card">
-              <span class="iconslot iconslot--card" aria-hidden="true"><svg class="ic"><use href="#i-source"></use></svg></span>
-              <span class="src-card-name">Intercom</span>
-              <span class="src-card-d">Sift reads conversations, not contacts. New conversations arrive on their own once connected.</span>
-              <a class="btn--ghost" href="../wireframes/connect-intercom.html">Connect</a>
-            </div>
-            <div class="src-card">
-              <span class="iconslot iconslot--card" aria-hidden="true"><svg class="ic"><use href="#i-source"></use></svg></span>
-              <span class="src-card-name">Zendesk</span>
-              <span class="src-card-d">Sift will read tickets and their replies, the same way it reads Intercom conversations.</span>
-              <span class="src-card-note">Not connectable yet. Import your tickets as a CSV in the meantime.</span>
+            <div class="group-t">Available to connect</div>
+            <div class="src-avail">
+              <div class="src-card">
+                <span class="iconslot iconslot--card" aria-hidden="true"><svg class="ic"><use href="#i-upload"></use></svg></span>
+                <span class="src-card-name">CSV or spreadsheet</span>
+                <span class="src-card-d">Sift reads the feedback text, its date and its channel. You choose which columns are read, and you can leave contact columns out entirely.</span>
+                <a class="btn--ghost" href="connect-csv.html">Import a file</a>
+              </div>
+              <div class="src-card">
+                <span class="iconslot iconslot--card" aria-hidden="true"><svg class="ic"><use href="#i-source"></use></svg></span>
+                <span class="src-card-name">Intercom</span>
+                <span class="src-card-d">Sift reads conversations, not contacts. New conversations arrive on their own once connected.</span>
+                <a class="btn--ghost" href="../wireframes/connect-intercom.html">Connect</a>
+              </div>
+              <div class="src-card">
+                <span class="iconslot iconslot--card" aria-hidden="true"><svg class="ic"><use href="#i-source"></use></svg></span>
+                <span class="src-card-name">Zendesk</span>
+                <span class="src-card-d">Sift will read tickets and their replies, the same way it reads Intercom conversations.</span>
+                <span class="src-card-note">Not connectable yet. Import your tickets as a CSV in the meantime.</span>
+              </div>
             </div>
           </div>
         </main>

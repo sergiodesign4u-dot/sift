@@ -14,9 +14,11 @@
    rule. Moved at Step 6, when the census found it worn only by the kit pages.
 
    THIS FILE OWNS EVERY RULE THAT TIES A MOLECULE TO THE SHELL, and nobody else takes them:
-   - the selection trigger. While a checkbox in the screen is ticked the selection bar is shown and
+   - the selection trigger. While a theme card's checkbox is ticked the selection bar is shown and
      the head action is hidden, so the screen never carries two primary actions (Design Principle
-     4). Pure CSS, so the proof is clickable. selbar.css and screen-head.css leave it out on purpose.
+     4, usage rule R1). Pure CSS, so the proof is clickable. selbar.css and screen-head.css leave it
+     out on purpose. Narrowed at Stage 09 Step 1 from any `.check:checked` to `.theme .check:checked`:
+     a settings checkbox on a screen with a head action would otherwise hide that action.
    - a notice in the frame rather than inside a padded main brings the gutter with it, 22px, and
      16px at 360.
    - a state block or a dialog that IS the screen is centred in the canvas. :only-child is
@@ -36,8 +38,8 @@
 .app { display: flex; flex-direction: column; min-height: 100vh; background: var(--bg-page); color: var(--text-primary); }
 .app > .appmain { flex: 1; }
 .app > .notice { margin: var(--space-6) var(--space-9); }
-.app:has(.check:checked) .selbar { display: flex; }
-.app:has(.check:checked) .head-action { display: none; }
+.app:has(.theme .check:checked) .selbar { display: flex; }
+.app:has(.theme .check:checked) .head-action { display: none; }
 
 /* a block that IS the screen is centred in the canvas */
 .appmain:has(> .state:only-child) { display: flex; align-items: center; justify-content: center; }

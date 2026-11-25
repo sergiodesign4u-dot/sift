@@ -1,0 +1,22 @@
+/* design/system/patterns/filtered-list.css - pattern.
+   Composed of: .toolbar (molecule, toolbar.css) directly over the list it filters or orders:
+     a .list of .theme rows, or a .grouped-list (pattern) of .snippet rows, or an ol.list of
+     .briefrow. An optional .notice and the .screenhead stand above it; they are slots of the
+     screen shell and stay outside the wrapper.
+   Stands on, in the grey corpus (the count): 2.0 Synthesis, 4.0 Theme, 6.1 Build a brief.
+     In colour (the proof): synthesis, theme, theme-loading, theme-low-signal, build-brief,
+     build-brief-thin-warning. 6 pages.
+   Page:  design/kit/filtered-list.html (Stage 09 Step 2).
+
+   What moved here: the 6px between the toolbar's hairline and the first line of the list. It sat
+   in components/toolbar.css as `margin-bottom: var(--space-2)`, cut from there at Stage 09 Step 1,
+   not copied. The toolbar's own padding and hairline stayed in toolbar.css: they are the row's
+   edge, and a pattern carries no colour.
+
+   Markup: <div class="filtered-list"> holds the .toolbar and the list that follows it. A "Load
+   more" foot or a closing note stays outside.
+
+   No colour, no new visual decision. No em dash anywhere in this file.
+*/
+
+.filtered-list > .toolbar { margin-bottom: var(--space-2); }

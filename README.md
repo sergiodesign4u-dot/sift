@@ -21,9 +21,10 @@ This table and the `done` flags in `/_nav.js` are the only two places status is 
 | Concept | **Done.** Brand plate B chosen and entered into `DESIGN-artifacts.md`; five attributes, each signed to a data line; the etalon and its three states plus the public brief in color in `design/`; the split-evidence direction re-read against the rebuild and deferred with the reason; audited (targets, focus, contrast, overflow) and the before / after on `concept.html` |
 | UI + Visual | **Done.** `DESIGN.md` read out of the code; the inventory of the whole product (50 components, 3 levels, 13 one-offs); the kit `design/kit/kit.css` (arrived by `git mv`, `:root` byte for byte) with `shell.html` and the stand `kit.html`; no photography, by a stated decision, with the one prompt held ready; the sample of 7 screens plus the 2 seeds, 23 pages in colour, each assembled from the kit and carrying no style of its own; two-part navigation (`design/_nav.js` panel, `design/overview.html` hub with the honest coverage map); critique on three instruments, 9 findings fixed and 1 withdrawn on verification. **In colour: the sample of 22 pages; the rest of the product (15 grey-only pages) waits for Stage 12, Rollout,** and the Stage 08 dry run listed what the system still lacks for it |
 | Tokens + Components | **Done.** The flat Stage 07 kit split into `design/system/`: `tokens.css` in two levels (81 primitives; 29 semantic declarations, every one with a light pair), `base.css`, `index.css` importing 50 component files by level, the one stylesheet a product screen may use; `kit.css` deleted. The showcase in `design/kit/`: foundations, a page per component (card format, live state matrix), the hub. Consolidation turned 248 class rows into 63; the census measured before and after the system; the theme pair stress-tested twice; the 22 colour screens moved with every pixel difference explained by a named line (`design/kit/pixel-proof.html`). Step 9: the critique in five independent sets plus a second Codex pass, 30 rows fixed, 10 withdrawn on verification, 20 to the backlog; the one real contrast failure (the breadcrumb, 3.44) was hidden in an opacity no walk multiplied. Log: `design/kit/docs/critique.md` |
-| Design System | Not started |
+| Design System | **In progress.** Stage 09 started 2026-11-25: the input gate passed; the roadmap registry rebuilt into the Design System group (08 to 11) with a counter, and Rollout given its own entry. Step 1: two patterns in `design/system/patterns/` (Grouped list, Filtered list), 11 colour pages moved onto them with 0 px of difference at 360 and 1440; nine usage rules on `design/kit/architecture.html#usage`, each with its source, and a Limits sub-point on 14 component pages; 6.3 fixed to one filled button |
 | Responsive | Not started |
 | Animation | Not started |
+| Rollout | Not started |
 | Handoff | Not started |
 
 ---
@@ -36,7 +37,7 @@ AGENTS.md            Entry for the Codex critic: what this repo is and what is d
 README.md            This living index and the one status table
 docs/decisions.md    What was decided, why, and what was rejected. Never auto-loaded
 index.html           Project entry page, deployed at the site root; renders the roadmap from /_nav.js
-_nav.js              THE registry: 12 stages, their pages, and the done flag. Draws every sidebar
+_nav.js              THE registry: 10 roadmap items (13 stages; 08 to 11 are one group), their pages, and the done flag. Draws every sidebar
 _nav.css             The one look of that sidebar; a page links it and describes no nav-* class itself
 research/            Stages 01, 02 and 02+ live together, because their files are read and edited together
   research.html      Foundation Research
@@ -70,8 +71,9 @@ design/              The roof of the whole visual half. Product screens sit flat
     CLAUDE.md        Six rules that load when work happens in this folder
     tokens.css       primitive + semantic + the light pair. Colour through roles, geometry direct
     base.css         reset, type ground, the one focus ring, two layout utilities
-    index.css        THE stylesheet a screen links: tokens, base, then components by level
+    index.css        THE stylesheet a screen links: tokens, base, components by level, then patterns
     components/      one file per component (50)
+    patterns/        fixed compositions on three or more grey screens (2): composition only, no colour
     one-off.css      blocks that stand on one screen, imported after the organisms
   kit/               THE SHOWCASE of the system
     overview.html    The hub: foundations, components by purpose, the stage table, backlog
@@ -82,7 +84,7 @@ design/              The roof of the whole visual half. Product screens sit flat
     _states.js       Draws a component page's state matrix from the product's own state rules
     _nav.js _page.css  the registry of pages and the stand's own chrome, with the theme switch
     docs/            tokens-audit.md, census.md, architecture.md, inventory.md, backlog.md, critique.md
-    screens/         State snapshots (hover, focus) and proof/, the pixel-proof frames
+    screens/         State snapshots (hover, focus); proof/, the Stage 08 pixel-proof frames; patterns/, Stage 09 Step 1 (the 11 moved pages, and 6.3 under R1)
     shell.html       Frozen Stage 07 stand of the shell, on the system
     kit.html         Frozen Stage 07 smoke stand, on the system
   overview.html      The hub: screens by flow, the coverage map, and the way into the kit

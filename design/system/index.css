@@ -8,7 +8,8 @@
    own parts in the cascade; the first contextual fix then reaches for !important and the system
    carries it for years. Imported by level, the cascade agrees with the anatomy by construction.
 
-   A NEW COMPONENT GOES IN THE GROUP OF ITS OWN LEVEL, never at the end of this file. Appended at
+   A NEW COMPONENT GOES IN THE GROUP OF ITS OWN LEVEL, never at the end of this file. Patterns
+   (Stage 09) are the rung above the organisms and come after them. Appended at
    the end it looks harmless, and that is exactly how the ladder collapses.
 
    No em dash anywhere in this file.
@@ -74,6 +75,13 @@
 @import url("components/public-doc.css");
 @import url("components/marketing-shell.css");
 @import url("components/screen-shell.css");
+
+/* ---------- patterns: fixed compositions of the components above, on three or more screens of
+              the grey corpus. After every component, because a pattern is assembled from them.
+              A pattern carries composition only (order, spacing through primitives), never colour
+              and never a new style; a rule it needs moved here from a component, cut, not copied. ---------- */
+@import url("patterns/grouped-list.css");
+@import url("patterns/filtered-list.css");
 
 /* ---------- one-off blocks: one screen each, not components. After the organisms on purpose: a
               one-off composes with the components it sits in and wins the tie by order. A block

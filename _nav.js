@@ -55,12 +55,19 @@ window.NAV = [
     { label: 'Component kit',  page: 'design/kit/kit.html',  done: true },
     { label: 'Sample screens', page: 'design/overview.html', done: true } ] },
 
-  { id: 'tokens', label: 'Tokens + Components', wip: true, pages: [
-    { label: 'Design system', page: 'design/kit/overview.html', done: true } ] },
-  { id: 'design-system', label: 'Design System',       pages: [ { label: 'Design System',       page: null, done: false } ] },
-  { id: 'responsive',    label: 'Responsive',          pages: [ { label: 'Responsive',          page: null, done: false } ] },
-  { id: 'animation',     label: 'Animation',           pages: [ { label: 'Animation',           page: null, done: false } ] },
-  { id: 'handoff',       label: 'Handoff',             pages: [ { label: 'Handoff',             page: null, done: false } ] }
+  /* A group collects several stages that open into ONE room. Stages 08 to 11 all work on the
+     stand design/kit/, which has its own panel, so the roadmap shows them as one item with a
+     counter of its children (group: true). wip sits on the GROUP from Stage 08 until Stage 11
+     closes it; a child gets done:true when the step that builds its page runs. A child with no
+     page yet stays visible as a dimmed line, never hidden. */
+  { id: 'design-system', label: 'Design System', group: true, wip: true, pages: [
+    { label: 'Tokens + Components', page: 'design/kit/overview.html', done: true },
+    { label: 'System guide',        page: null, done: false },
+    { label: 'Responsive',          page: null, done: false },
+    { label: 'Animation',           page: null, done: false } ] },
+
+  { id: 'rollout', label: 'Rollout',             pages: [ { label: 'Rollout',             page: null, done: false } ] },
+  { id: 'handoff', label: 'Handoff',             pages: [ { label: 'Handoff',             page: null, done: false } ] }
 ];
 
 (function () {
@@ -73,6 +80,14 @@ window.NAV = [
 
   function realPages(stage) {
     return stage.pages.filter(function (p) { return !p.subhead && p.page; });
+  }
+
+  /* A group's counter: children done of children declared, page or not. */
+  function countHtml(stage) {
+    if (!stage.group) return '';
+    var kids = stage.pages.filter(function (p) { return !p.subhead; });
+    var done = kids.filter(function (p) { return p.done; }).length;
+    return '<span class="nav-count">' + done + '/' + kids.length + '</span>';
   }
 
   function firstDone(stage) {
@@ -162,12 +177,12 @@ window.NAV = [
 
       var top;
       if (active) {
-        top = '<span class="nav-top">' + esc(stage.label) + badge + '</span>';
+        top = '<span class="nav-top">' + esc(stage.label) + countHtml(stage) + badge + '</span>';
       } else {
         var target = firstDone(stage);
         top = target
-          ? '<a class="nav-top" href="' + BASE + esc(target.page) + '">' + esc(stage.label) + badge + '</a>'
-          : '<span class="nav-top">' + esc(stage.label) + badge + '</span>';
+          ? '<a class="nav-top" href="' + BASE + esc(target.page) + '">' + esc(stage.label) + countHtml(stage) + badge + '</a>'
+          : '<span class="nav-top">' + esc(stage.label) + countHtml(stage) + badge + '</span>';
       }
 
       out += '<li class="' + cls + '">' + top;
@@ -185,7 +200,10 @@ window.NAV = [
           for (var k = 0; k < stage.pages.length; k++) {
             var p = stage.pages[k];
             if (p.subhead) { out += '<li class="nav-subhead">' + esc(p.subhead) + '</li>'; continue; }
-            if (!p.page) continue;
+            if (!p.page) {
+              out += '<li class="nav-subitem"><span class="nav-link is-soon">' + esc(p.label) + '</span></li>';
+              continue;
+            }
             var isCur = (p.page === cur.page);
             out += '<li class="nav-subitem">';
             out += p.done
@@ -235,8 +253,8 @@ window.NAV = [
     for (var n = 0; n < nodes.length; n++) io.observe(nodes[n]);
   }
 
-  /* The project entry page (root index.html) lists the same 12 stages from the same
-     registry, so "3 of 12 complete" can never drift from the sidebar. The page supplies
+  /* The project entry page (root index.html) lists the same roadmap items from the same
+     registry, so "7 of 10 complete" can never drift from the sidebar. A group is one item. The page supplies
      only the prose: window.STAGE_NOTES keyed by stage id. */
   function renderProjectIndex() {
     var host = document.getElementById('project-stages');
@@ -265,7 +283,7 @@ window.NAV = [
 
       out += '<div class="stage ' + cls + '"><div class="stage-num">' +
              (i + 1 < 10 ? '0' : '') + (i + 1) + '</div><div class="stage-body">' +
-             '<div class="stage-titlerow"><span class="stage-title">' + esc(stage.label) + '</span>' +
+             '<div class="stage-titlerow"><span class="stage-title">' + esc(stage.label) + countHtml(stage) + '</span>' +
              '<span class="badge ' + badge[0] + '">' + badge[1] + '</span></div>' +
              (notes[stage.id] ? '<div class="stage-note">' + notes[stage.id] + '</div>' : '') +
              (links ? '<div class="stage-links">' + links + '</div>' : '') +
@@ -274,7 +292,7 @@ window.NAV = [
 
     host.innerHTML = out;
     var counter = document.getElementById('project-count');
-    if (counter) counter.textContent = done + ' of ' + NAV.length + ' stages complete';
+    if (counter) counter.textContent = done + ' of ' + NAV.length + ' complete';
   }
 
   function boot() { render(); renderProjectIndex(); }
