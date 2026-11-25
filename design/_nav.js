@@ -9,7 +9,7 @@
   ONE source of navigation for the colour stage. A screen is registered here exactly once, and
   it appears in the panel of every screen and in the two lists on overview.html. The `state`
   field carries the truth the coverage map exists to tell: 'colour' means the screen has been
-  assembled from the kit, 'grey' means it is still only in wireframes/ and waits for the
+  assembled from the system (the kit until Stage 08 Step 8), 'grey' means it is still only in wireframes/ and waits for the
   rollout at Stage 12. The panel links a grey screen to its grey original rather than hiding
   it, because a map that shows only what is finished is not a map.
 
@@ -133,6 +133,7 @@ window.DESIGN_FLOWS = [
     var h = '<aside class="ds-panel" aria-label="Design stage navigation">';
     h += '<div class="ds-panel-head">';
     h += '<a class="ds-panel-hub" href="overview.html"><span aria-hidden="true">&larr;</span> All screens</a>';
+    h += '<button class="ds-theme" type="button">Dark</button>';
     h += '<span class="ds-panel-badge">Design</span>';
     if (sc) {
       h += '<p class="ds-panel-sub"><span class="ds-panel-node">' + esc(sc.key) + '</span>' + esc(sc.label) +
@@ -166,7 +167,7 @@ window.DESIGN_FLOWS = [
 
     h += '<div class="ds-panel-links"><div class="ds-panel-links-t">Out of the artifact</div>';
     h += '<a href="concept/concept.html">&larr; Product language (Concept)</a>';
-    h += '<a href="kit/kit.html">Component kit</a>';
+    h += '<a href="kit/overview.html">Design system</a>';
     if (sc) h += '<a href="../wireframes/' + esc(sc.file) + '">Grey original &nearr;</a>';
     h += '</div>';
 
@@ -198,7 +199,7 @@ window.DESIGN_FLOWS = [
     var h = '';
     h += '<section id="flows"><h2 class="ov-h2">Walk by flow</h2>';
     h += '<p class="ov-lead">The same five flows the prototype walks, in colour where the screen ' +
-         'has been assembled from the kit and in grey where it has not. A flow that runs out of ' +
+         'has been assembled from the design system and in grey where it has not. A flow that runs out of ' +
          'colour halfway is telling the truth about where this stage stopped.</p>';
     for (var f = 0; f < window.DESIGN_FLOWS.length; f++) {
       var fl = window.DESIGN_FLOWS[f];
@@ -226,9 +227,10 @@ window.DESIGN_FLOWS = [
     h += '<span class="ov-counter"><b>' + colour + '</b> in colour &middot; <b>' + grey + '</b> still grey</span></div>';
     h += '<p class="ov-lead">This map is the honest one. The sample is 5 to 7 screens plus the two ' +
          'seeded at Stage 06, chosen for how much of the component inventory they cover, not for how ' +
-         'they look. The rest of the product is assembled once at Stage 12, on the finished system, ' +
-         'so that every screen is built once rather than three times.</p>';
-    h += '<div class="ov-legend"><span class="ov-lg ov-lg--colour">solid = assembled from the kit</span>' +
+         'they look. Since Stage 08 they stand on design/system/index.css. The grey ones are not ' +
+         'unfinished: they are the plan. The rest of the product is assembled once at Stage 12, on the ' +
+         'finished system, so that every screen is built once rather than three times.</p>';
+    h += '<div class="ov-legend"><span class="ov-lg ov-lg--colour">solid = assembled from the system</span>' +
          '<span class="ov-lg ov-lg--grey">dashed = still grey, waiting for the rollout</span></div>';
     for (var c2 = 0; c2 < NAVD.length; c2++) {
       h += '<div class="ov-cluster"><h3 class="ov-cluster-t">' + esc(NAVD[c2].id) + ' &middot; ' + esc(NAVD[c2].title) + '</h3>';
@@ -249,7 +251,34 @@ window.DESIGN_FLOWS = [
     mount.innerHTML = h;
   }
 
+  /* ---- the product's theme switch (Stage 08 Step 8) ----
+     The pair has been in tokens.css since Step 3 and was stress-tested on the stand at Step 7;
+     this is the first place it meets the product. design/_theme.js applies the stored choice in
+     <head> before the first paint; this only toggles it and keeps the label true. The panel is
+     prototype chrome on the --pf-* values and stays as it is in both themes. */
+  var THEME_KEY = 'sift-theme';
+  function storedTheme() { try { return localStorage.getItem(THEME_KEY) === 'light' ? 'light' : 'dark'; } catch (e) { return 'dark'; } }
+  function applyTheme(t) {
+    if (t === 'light') document.documentElement.setAttribute('data-theme', 'light');
+    else document.documentElement.removeAttribute('data-theme');
+    var bs = document.querySelectorAll('.ds-theme');
+    for (var i = 0; i < bs.length; i++) {
+      bs[i].textContent = t === 'light' ? 'Light' : 'Dark';
+      bs[i].setAttribute('aria-label', 'Theme: ' + t + '. Switch');
+    }
+  }
+  function themeSwitch() {
+    var bs = document.querySelectorAll('.ds-theme');
+    for (var i = 0; i < bs.length; i++) bs[i].addEventListener('click', function () {
+      var next = storedTheme() === 'light' ? 'dark' : 'light';
+      try { localStorage.setItem(THEME_KEY, next); } catch (e) {}
+      applyTheme(next);
+    });
+    applyTheme(storedTheme());
+  }
+
   panel();
   disclosure();
+  themeSwitch();
   index();
 })();

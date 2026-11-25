@@ -28,8 +28,9 @@
   here with a style attribute, it is described.
 
   Bars are stacked by wrapping each in .u-full (base.css) inside a flex-wrap container. The group
-  molecules .skelcard and .skelrow are declared in design/kit/kit.css, not in design/system/, so
-  this page, which links the system only, does not draw them.
+  molecules .skelcard and .skelrow are declared in design/system/components/skeleton-card.css and
+  drawn on their own page, skeleton-card.html; this atom page draws the bars only. (Until Stage 08
+  round 2 they lived in kit.css; corrected at Step 8, when kit.css was deleted.)
 
   No em dash anywhere.
 -->
@@ -109,7 +110,7 @@
               <div class="u-full"><div class="skel b"></div></div>
             </div>
             <div class="kit-form-t">Shaped like the real row</div>
-            <div class="kit-form-d">Where the arriving thing has a distinctive shape, the skeleton takes it. On 2.2 the row also carries the checkbox and rank columns of the theme card (<code>.skelrow</code>, declared in kit.css), so the wait promises what arrives. Only the text lines are drawn here.</div>
+            <div class="kit-form-d">Where the arriving thing has a distinctive shape, the skeleton takes it. On 2.2 the row also carries the checkbox and rank columns of the theme card (<code>.skelrow</code>, the skeleton card molecule), so the wait promises what arrives. Only the text lines are drawn here.</div>
           </div>
         </div>
       </section>
@@ -190,7 +191,7 @@
           <tr><td>the widths</td><td><code>.a</code> 52%, <code>.b</code> 30%, <code>.c</code> 64%</td><td>Three widths, so a stack of them reads as text rather than as a bar chart</td></tr>
           <tr><td>the group</td><td><code>.skelcard</code>, <code>.skelrow</code></td><td>The molecule that arranges them into the shape of the real row</td></tr>
         </tbody></table></div>
-        <p class="kit-note">Both group classes are declared in <code class="kit-mono">design/kit/kit.css</code>, not in <code class="kit-mono">design/system/</code>, which is why this page does not draw them.</p>
+        <p class="kit-note">Both group classes are declared in <code class="kit-mono">design/system/components/skeleton-card.css</code>, a molecule with <a href="skeleton-card.html">its own page</a>, which is why this atom page does not draw them.</p>
       </section>
 
       <section class="kit-sec" id="axes">

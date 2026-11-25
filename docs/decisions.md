@@ -828,3 +828,83 @@ and the "Reads:" headers.
 | The stand's theme button edge at 1.26 | Claude | withdrawn on verification: a text button, identified by its word |
 | The frozen `kit.html` footer links read 2.58 in light | Claude | not touched: frozen stand chrome with its own literals, not the system |
 | Pair parity, primitive reads, shadow-only separation | both | none found |
+
+## Step 8: the sample moved onto the system, with the pixel proof (2026-11-24)
+
+**What moved.** All 22 colour screens in `design/` (every state is its own page) and the hub
+`design/overview.html` now link `system/index.css` instead of `kit/kit.css`. The two frozen Stage
+07 stands, `kit.html` and `shell.html`, link `../system/index.css`. `design/kit/kit.css` is deleted;
+git keeps it (`git show 1cd80a7:design/kit/kit.css`). No screen markup changed beyond the link: the
+Step 6 rename map had already been executed.
+
+**The before frames.** Step 1 measured computed styles and kept no frames, and today's files with
+kit.css are not "before" either: Step 6 changed both. So the before frames were rendered from
+commit `2aa7baa`, the product exactly as Step 1 measured it, served from a scratch worktree. Dark
+(the shipped theme), full page, motion off, at 360 and 1440, cropped to the product canvas; 92
+frames committed under `design/kit/screens/proof/` (13 MB). The stage panel was compared
+separately: its one difference is the new theme switch.
+
+**What it found.** Element counts equal on all 44 pairs. 42 pairs differ, 6.4 Shared brief is
+identical. A pixel comparison located each difference and a computed-style comparison of every
+element named it; every one is a line of `tokens-audit.md` (six lines, table on
+`design/kit/pixel-proof.html`), none is a defect. Two things looked unexplained and were not:
+on 7.2 at 360 the row text rewraps because the outlined buttons beside it are 3px wider (the
+control font inheritance), and the footer of 2.0 and 4.0 sits 0.75px lower because the load-more
+row above it is that much taller (the same line). The reverse check: two lines have no visible
+difference on the sample, `--text-danger` dark (no carrier; it shows on the frozen kit) and
+`--line-control` light (another theme). The reach of the Step 4 row to three non-control rings,
+each declared identifying in its own file, is now named in the audit.
+
+**The frozen stands.** "Frozen" was kept as "the exhibit does not change", and the link switch the
+pack requires was made. Their own chrome, swatches and inline exhibits read 20 Stage 07 variable
+names and 7 portfolio values that only kit.css declared. Rewriting the exhibit onto system names
+would have changed a frozen artifact; instead each name was copied byte for byte into kit.html's
+own `<style>` block, with a comment saying why, and `.appframe` (moved to `_page.css` at Step 6)
+was repeated in both stands, because `_page.css` also styles `.kit-*` classes that kit.html names
+differently. shell.html is now identical to before except the avatar ring. kit.html has no theme
+switch, so its chrome stays dark-only; light is reachable there only by forcing the attribute.
+
+**The prototype chrome.** `.ds-canvas` read `--canvas` and the hub legend and tile hover read
+`--cyan`, `--cyan-wash` and `--porcelain`, all kit.css names that would have resolved to nothing.
+The canvas now reads `--bg-page` (the product's ground, same pixel in dark, and the light theme
+reaches it); the hub chrome reads the primitives that hold the same values, because chrome is not
+a component and is not themed. On the hub, an unstyled prose link that rendered browser blue now
+takes the colour of its sentence (`base.css`, `a { color: inherit }`).
+
+**The product theme switch.** A button in the screen panel, beside "All screens", rendered by
+`design/_nav.js` and drawn in `_panel.css` on the portfolio values. `design/_theme.js` in the head
+of the 22 screens applies the stored choice before the first paint: with light stored and the
+panel script held back 1.5 s, the screen was already light. Its own key, `sift-theme`, not the
+stand's: two surfaces, two switches, and a "no" removes the product's three pieces without
+touching the stand. Measured: it toggles, labels itself, survives a reload and a change of screen,
+is reached by Tab and works with Enter.
+
+**The theme walk on the product.** All 22 screens at 1440 and 360 in both themes, every element,
+the Step 7 instrument. No text under its floor (lowest in light: the low-signal badge, 5.00), no
+surfaces that part in one theme and merge in the other, no control edge under 3:1, equal element
+counts, no horizontal scroll, no console error. Nothing in the dark pair had to be pulled apart,
+so no change goes to the Step 9 summary from here.
+
+**Statements that the deletion made false, corrected.** The rule in `CLAUDE.md` now names
+`design/system/index.css` as the one stylesheet and the system's five places for a new component.
+Also: `screen-head.css` and `screen-head.html` (the selection rule lives in `screen-shell.css`),
+`input.html` (the open `[?]` about `.field-err`: it is in `field.css`), the input entry in
+`design/kit/_nav.js`, `skeleton.html` (three places: `.skelcard` and `.skelrow` are in
+`skeleton-card.css`), `dialog.html` (`.u-apart` is in `base.css`), `_panel.css`, and the hub and the
+coverage map, which now say "assembled from the system" and link the system and the proof.
+
+**Critique on two instruments, collected independently.**
+
+| Finding | Who found it | State |
+|---|---|---|
+| Every pixel difference on 44 pairs belongs to a named line | Claude | verified, table on the proof page |
+| The frozen stands lose their chrome values and `.appframe` with kit.css | Claude | fixed in their own `<style>` blocks |
+| `.ds-canvas` and the hub legend read kit.css names | Claude | fixed: `--bg-page`, and primitives for the chrome |
+| The theme switch placed on its own line under the badge at 1440 | Claude | fixed: beside "All screens" |
+| No file loads kit.css; no class or variable left unresolved; every screen has the head script and the panel mount; no style on a screen | Codex | none found |
+| `.skelcard`/`.skelrow` "declared in kit.css, not in the system" (skeleton.html, three places) | Codex | fixed |
+| "The rule is in kit.css" (dialog.html) | Codex | fixed |
+| `.field-err` "not declared in design/system/" (input.html) and "error is still in kit.css only" (_nav.js) | Claude | fixed |
+| 19 other present-tense mentions ("kit.css states no reason", "kit.css switches at 820px", "as kit.css states it") | Codex | withdrawn on verification: provenance, they describe what the source said, not where a rule lives now |
+| Present-tense kit.css mentions in `kit.html` and `shell.html` | Codex | not touched: frozen exhibit text |
+

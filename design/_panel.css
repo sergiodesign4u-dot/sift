@@ -7,7 +7,8 @@
         artifact. It is drawn on the --pf-* portfolio variables, declared at the top of this
         file and marked "not product language". Nothing in here may ever be read as part of the
         product's visual system.
-     2. The product screen. design/kit/kit.css. Every class on the screen itself.
+     2. The product screen. design/system/index.css (design/kit/kit.css until Stage 08 Step 8).
+        Every class on the screen itself.
 
    The wireframe stage keeps the same split in wireframes/_wf.css, sections 1 and 2. It is kept
    here rather than folded into kit.css so that Stage 08, which audits kit.css line by line,
@@ -25,8 +26,8 @@
 /* ---- The portfolio chrome values. NOT product language: prototype chrome for the portfolio
    around the product (the purple rail shared with research.html). Moved here at Stage 08 Step 6
    from kit.css:60-61, byte for byte, as Step 2 decided ("moved, not deleted"): this file is the
-   one that reads them, and the product system never declares them. kit.css keeps its copy only
-   for the two frozen Stage 07 stands and goes with kit.css at Step 8. ---- */
+   one that reads them, and the product system never declares them. The copy kit.css kept for the
+   two frozen Stage 07 stands moved into kit.html's own <style> when kit.css was deleted at Step 8. ---- */
 :root {
   --pf-bg:#0c0c0e; --pf-bg-3:#17171c; --pf-border-light:#1e1e28;
   --pf-text:#e8e8ec; --pf-text-3:#66667a; --pf-accent:#7c6af7; --pf-accent-glow:rgba(124,106,247,0.12);
@@ -45,6 +46,10 @@
 .ds-panel-head { flex: none; padding: 14px 12px 12px; border-bottom: 1px solid var(--pf-border-light); }
 .ds-panel-hub { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; color: var(--pf-text-3); text-decoration: none; padding: 6px 11px; border: 1px solid var(--pf-border-light); border-radius: 6px; }
 .ds-panel-hub:hover { color: var(--pf-text); background: var(--pf-bg-3); }
+/* the product's theme switch (Stage 08 Step 8). Chrome, on the --pf-* values like the hub button
+   beside it: it switches the product, the panel itself stays as it is. A word, not an icon. */
+.ds-theme { display: inline-flex; align-items: center; margin-left: 8px; font-family: var(--font-mono); font-size: 10.5px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--pf-text-3); background: none; padding: 6px 11px; border: 1px solid var(--pf-border-light); border-radius: 6px; cursor: pointer; }
+.ds-theme:hover { color: var(--pf-text); background: var(--pf-bg-3); }
 .ds-panel-badge { display: block; margin-top: 12px; font-family: var(--font-mono); font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--pf-accent); }
 .ds-panel-sub { margin-top: 5px; font-size: 12.5px; color: var(--pf-text); font-weight: 500; line-height: 1.45; }
 .ds-panel-node { font-family: var(--font-mono); font-size: 10px; color: var(--pf-text-3); margin-right: 4px; }
@@ -78,7 +83,9 @@ a.ds-link:hover { color: var(--pf-text); background: var(--pf-bg-3); }
 
 /* Stage: the screen gets everything the panel does not */
 .ds-stage { flex: 1; min-width: 0; display: flex; }
-.ds-canvas { flex: 1; min-width: 0; background: var(--canvas); }
+/* The canvas is the product's ground, so it reads the product's page role and follows the theme.
+   It read --canvas, a kit.css name, until kit.css was deleted at Stage 08 Step 8; same value in dark. */
+.ds-canvas { flex: 1; min-width: 0; background: var(--bg-page); }
 
 /* Below 900px there is no room for a column, so the panel becomes its own header above the
    screen and the tree folds behind a disclosure. It is still the one navigation, in a second
@@ -88,6 +95,7 @@ a.ds-link:hover { color: var(--pf-text); background: var(--pf-bg-3); }
   .ds-panel { width: 100%; height: auto; overflow: visible; position: static; border-right: none; border-bottom: 1px solid var(--pf-border-light); }
   .ds-panel-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 10px 12px; border-bottom: none; }
   .ds-panel-badge { margin-top: 0; }
+  .ds-theme { margin-left: 0; }
   .ds-panel-sub { margin-top: 0; width: 100%; }
   .ds-panel-state { display: inline; margin-left: 6px; }
   .ds-panel-toggle { display: block; cursor: pointer; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--pf-text-3); padding: 8px 12px; border-top: 1px solid var(--pf-border-light); }
@@ -134,7 +142,11 @@ a.ds-link:hover { color: var(--pf-text); background: var(--pf-bg-3); }
 .ov-legend { display: flex; gap: 16px; margin: 4px 0 18px; font-size: 11.5px; color: var(--pf-text-3); flex-wrap: wrap; }
 .ov-lg { display: inline-flex; align-items: center; gap: 7px; }
 .ov-lg::before { content: ""; width: 16px; height: 12px; border-radius: 3px; }
-.ov-lg--colour::before { border: 1.5px solid var(--cyan); background: var(--cyan-wash); }
+/* The hub's legend and hover borrow the product accent as a SIGN ("this one is in colour"), not as a
+   role: chrome is not themed and is not a component, so it reads the primitives. They read the
+   kit.css names --cyan, --cyan-wash and --porcelain until kit.css was deleted at Stage 08 Step 8;
+   the primitives hold the same values. */
+.ov-lg--colour::before { border: 1.5px solid var(--cyan-400); background: var(--cyan-a10); }
 .ov-lg--grey::before { border: 1.5px dashed var(--pf-border-light); }
 
 .ov-cluster { margin-bottom: 18px; }
@@ -142,7 +154,7 @@ a.ds-link:hover { color: var(--pf-text); background: var(--pf-bg-3); }
 .ov-tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 8px; }
 .ov-tile { display: flex; flex-direction: column; gap: 3px; padding: 11px 13px; border-radius: 8px; text-decoration: none; }
 .ov-tile.is-colour { border: 1px solid var(--pf-border-light); background: var(--pf-bg-3); }
-.ov-tile.is-colour:hover { border-color: var(--cyan); }
+.ov-tile.is-colour:hover { border-color: var(--cyan-400); }
 .ov-tile.is-grey { border: 1px dashed var(--pf-border-light); background: transparent; }
 .ov-tile.is-grey:hover { border-color: var(--pf-text-3); }
 .ov-tile-node { font-family: var(--font-mono); font-size: 10px; color: var(--pf-text-3); }
@@ -178,5 +190,5 @@ table.inv thead th { font-family: var(--font-mono); font-size: 10px; font-weight
 table.inv td { color: var(--pf-text-3); line-height: 1.65; }
 table.inv td:first-child { color: var(--pf-text); white-space: nowrap; }
 table.inv td b { color: var(--pf-text); font-weight: 500; }
-table.inv code { font-family: var(--font-mono); font-size: 11.5px; color: var(--porcelain); }
+table.inv code { font-family: var(--font-mono); font-size: 11.5px; color: var(--grey-050); }
 table.inv tbody tr:last-child td { border-bottom: none; }

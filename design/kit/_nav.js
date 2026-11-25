@@ -29,6 +29,7 @@ window.KIT_NAV = {
   overview: [
     { file: 'overview.html',   label: 'System overview' },
     { file: 'components.html', label: 'All components' },
+    { file: 'pixel-proof.html', label: 'Pixel proof' },
   ],
   foundations: [
     { file: 'architecture.html', label: 'Architecture', blurb: 'Two ladders, three surfaces, and where a fix goes' },
@@ -67,7 +68,7 @@ window.KIT_NAV = {
 
     { file: 'input.html', css: 'input.css', title: 'Input', category: 'forms', level: 1, card: true,
       purpose: 'One component, three elements: text, textarea and select share one zone set.',
-      uses: '18 fields', screens: '8 screens', states: 'hover, focus-visible, disabled; error is still in kit.css only' },
+      uses: '18 fields', screens: '8 screens', states: 'hover, focus-visible, disabled; the error is the Field message' },
     { file: 'checkbox.html', css: 'checkbox.css', title: 'Checkbox', category: 'forms', level: 1, card: true,
       purpose: '24px by a named exception, because a 44px box would double every ranked row.',
       uses: '11', screens: '2.0, 7.2', states: 'hover, checked, focus-visible, disabled' },

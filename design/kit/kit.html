@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="../system/index.css">
 <link rel="stylesheet" href="../../_nav.css">
 </head>
 <!--
@@ -33,6 +33,24 @@
 -->
 <style>
   /* ---- stand chrome only. Not product language, not part of the kit. ---- */
+  /* ---- Stage 08 Step 8: kit.css is deleted and this frozen stand now stands on
+     design/system/index.css. Its own chrome, its swatches and its inline exhibits read the Stage 07
+     names below, copied byte for byte from the :root of kit.css at its last version (1cd80a7),
+     origin comments left in git. They belong to the exhibit, not to the product: nothing outside
+     this file reads them. The frame .appframe moved to design/kit/_page.css at Step 6; it is
+     repeated here because _page.css also styles .kit-* classes this stand names differently. ---- */
+  :root {
+    --canvas:#0B0E11; --surface:#151A1F; --elevated:#1E252B; --line:#262D34;
+    --porcelain:#EAEEF2; --ash:#868F99; --cyan:#33C4CC; --amber:#D9A441;
+    --red:#E5484D; --r:6px; --r-sm:4px; --line-2:#3a444c;
+    --cyan-wash:rgba(51,196,204,0.10); --cyan-edge:rgba(51,196,204,0.30); --amber-wash:rgba(217,164,65,0.10); --amber-edge:rgba(217,164,65,0.32);
+    --red-wash:rgba(229,72,77,0.10); --red-edge:rgba(229,72,77,0.32); --shadow:0 2px 4px rgba(0,0,0,0.4); --r-lg:12px;
+    --pf-bg:#0c0c0e; --pf-bg-3:#17171c; --pf-border-light:#1e1e28;
+    --pf-text:#e8e8ec; --pf-text-3:#66667a; --pf-accent:#7c6af7; --pf-accent-glow:rgba(124,106,247,0.12);
+  }
+  .appframe { border: 1px solid var(--line-hairline); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sheet); background: var(--bg-page); display: flex; flex-direction: column; min-height: 560px; }
+  .appframe:has(.check:checked) .selbar { display: flex; }
+  .appframe:has(.check:checked) .head-action { display: none; }
   /* The stand's own page frame. It used to come from a .page rule inside kit.css, which was
      part of the portfolio chrome the Step 6 critique took out of the product kit. Chrome that
      frames an exhibit belongs to the exhibit. */

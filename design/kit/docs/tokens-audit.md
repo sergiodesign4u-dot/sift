@@ -255,3 +255,25 @@ None was approved, so each one goes back. Step 8 should find no difference here.
 | `.citechip:hover` | ink on the 30 percent edge: 1.82:1 dark, 1.73:1 light | `--bg-action` ground, `--text-on-action` ink: 9.13 / 6.27 | A measured AA failure, carried from `kit.css:387`. A hover state, so the rest pixels do not move |
 | `.toolbar-row` (new zone) on 4.0, 4.1, 6.1, 6.2 | chips in `.toolbar-full`, hidden at 820 and below with no compact twin | chips in `.toolbar-row`, wrapping at every width | At 360 the evidence controls vanished. The grey draws them at every width (`wireframes/theme.html:81`). Visible at 820 and below only |
 
+### Held against the product (Step 8)
+
+*The pixel proof, `design/kit/pixel-proof.html`: the 22 colour screens rendered from commit
+`2aa7baa` (the product as Step 1 measured it, on `kit.css`) and again on `design/system/index.css`,
+dark, at 360 and 1440, cropped to the product canvas. Each difference was assigned to a line above
+by a computed-style comparison of every element.*
+
+**Every difference has a line.** 42 of 44 pairs differ, 6.4 Shared brief is identical at both
+widths, and six lines account for all of it: `--line-control` dark (Step 4), the corrected
+outlined-button and chip row, `.chip.is-on`, the control font inheritance and `.toolbar-row`
+(Step 6), and the avatar edge (applied at Step 7). None is left without a line.
+
+**The reach of the Step 4 `--line-control` row, named.** Besides inputs, selects and checkboxes it
+moves three rings that are not controls but are declared identifying in their own files: the done
+step of the phase strip (`phase-strip.css`), the numbered circle on 0.0 (`step-card.css`) and the
+drop zone edge on 3.2 (`one-off.css`). Visible on 0.0, 2.2 and 3.2.
+
+**Lines with no visible difference on the sample.** `--text-danger` (dark): no sample screen
+carries small red ink at rest; the change shows on the frozen `kit.html` field error. `--line-control`
+(light): the proof runs in the shipped theme by construction. Every Step 3 and Step 6 line that
+promised no change showed none.
+

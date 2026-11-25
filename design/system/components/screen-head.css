@@ -13,15 +13,15 @@
    NOT IN THIS FILE: the rule that hides the action while the selection bar is up. kit.css writes
    it twice, as `.appframe:has(.check:checked) .head-action` and `.app:has(.check:checked)
    .head-action`. Both couple the head to the screen shell, which is an organism and comes in
-   round 3. Until then the hiding stays in kit.css.
+   round 3. It lives in screen-shell.css since round 3, as `.app:has(.check:checked) .head-action`.
 
    .head-meta is the meta row of a detail head: confidence, recency, rank. Everything the ranked
    row already said, restated where the decision is actually made, so the claim travels with the
    screen.
 
    .main-head, .h1 and .sub are the plain head of a screen that has no border under it and no
-   action (3.2, 7.0). .summary stays in kit.css: it is the synthesis paragraph, a different
-   component, left for Step 6.
+   action (3.2, 7.0). .summary is the synthesis paragraph, a different block: one-off.css
+   since Step 6.
    No em dash anywhere in this file.
 */
 

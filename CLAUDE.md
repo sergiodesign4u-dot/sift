@@ -140,15 +140,16 @@ page, a named section registered in that page's `NAV_SECTIONS`, or a satellite p
   "successfully", exclamation marks and emoji, greetings and celebration, hype adjectives, "just" and
   "simply", blaming the reader, filler "please".
 - **Values migrate, they are never re-derived.** The CSS value line ran `design/_theme.css` to
-  `design/kit/kit.css` by `git mv` and runs on to `design/system/tokens.css`, with the `:root` block
-  moved byte for byte and the origin comment kept beside each variable. A value changes only by a
+  `design/kit/kit.css` by `git mv` and on to `design/system/tokens.css` (kit.css deleted at Stage 08
+  Step 8), with the `:root` block moved byte for byte and the origin comment kept beside each variable. A value changes only by a
   decision stated out loud as "variable, value, why", never as a side effect of a refactor.
-- **A screen is assembled from the kit, and a fix lands in the kit.** From stage 07 the one
-  stylesheet a product screen may use is `design/kit/kit.css`: no `style=` attribute, no `<style>`
-  block, no appearance written on a page. Missing a component or a variant means adding it to
-  `kit.css`, to the stand `design/kit/kit.html` and to `design/kit/docs/inventory.md` FIRST, then using
-  it. A value fix goes to a `:root` variable and reaches every screen; a markup fix goes to the
-  stand and is copied from there. A fix on one screen is a desync, and a difference written as a
+- **A screen is assembled from the system, and a fix lands in the system.** From Stage 08 Step 8 the
+  one stylesheet a product screen may use is `design/system/index.css`: no `style=` attribute, no
+  `<style>` block, no appearance written on a page. Missing a component or a variant means adding it
+  as `design/system/components/<name>.css`, its stand page `design/kit/<name>.html`, its registry
+  entry, its `@import` in its level group of `index.css` (never at the end) and its row in
+  `design/kit/docs/inventory.md` FIRST, then using it. A value fix goes to a role in `tokens.css`
+  and reaches every screen; a markup fix goes to the component page and is copied from there. A fix on one screen is a desync, and a difference written as a
   contextual override (`.foo .btn { font-size: X }`) is an undeclared variant, not a patch.
   Prototype chrome around the screen (`design/_panel.css`, the stands' own frames) is a separate
   layer on the `--pf-*` values and never enters the kit.

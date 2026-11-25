@@ -178,7 +178,7 @@
           <tr><td>error</td><td><code>--text-danger</code> on <code>.field-err</code></td><td>The error is a LINE UNDER THE FIELD and not a red border: the message says what to do, and a colour alone cannot</td></tr>
           <tr><td>disabled</td><td><code>--opacity-disabled</code></td><td>Dimmed, never repainted</td></tr>
         </tbody></table></div>
-        <p class="kit-note">Why error has no row in the matrix: <code class="kit-mono">.field-err</code> is not declared in <code class="kit-mono">design/system/</code>, and <code class="kit-mono">input.css</code> paints no error state, so there is nothing of the product's own to draw. [?] To be settled: either the rule moves into the system or this row leaves the table.</p>
+        <p class="kit-note">Why error has no row in the matrix: <code class="kit-mono">input.css</code> paints no error state, so the atom has nothing of its own to draw. The error is the line under the field, <code class="kit-mono">.field-err</code>, declared in <code class="kit-mono">field.css</code> and shown on <a href="field.html">the Field page</a>. Settled at Step 8, when <code class="kit-mono">kit.css</code> was deleted and the open question here was found stale.</p>
       </section>
 
       <section class="kit-sec" id="tokens">

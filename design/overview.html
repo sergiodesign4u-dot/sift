@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="kit/kit.css">
+<link rel="stylesheet" href="system/index.css">
 <link rel="stylesheet" href="_panel.css">
 <link rel="stylesheet" href="../_nav.css">
 </head>
@@ -25,7 +25,8 @@
   overview.html is the hub. One word means one thing in every folder of this project.
 
   Three sections, all rendered from design/_nav.js except the last: screens by flow, the
-  coverage map, and the link into the kit the screens are assembled from. The "before and after"
+  coverage map, and the link into the system the screens are assembled from (design/system/,
+  shown on design/kit/; the screens moved off kit.css at Stage 08 Step 8). The "before and after"
   section arrives at Step 7, when the critique closes.
 
   No em dash anywhere.
@@ -42,7 +43,11 @@
     <p>The product language applied to real screens. Each one is a copy of its grey wireframe
       that owns the visual layer and nothing else: the structure, the text and the set of states
       stay the property of <code>wireframes/</code>, which is frozen. Every screen here is
-      assembled from <a href="kit/kit.html">the component kit</a> and carries no style of its own.</p>
+      assembled from <a href="kit/overview.html">the design system</a>, links
+      <code>design/system/index.css</code> and nothing else, and carries no style of its own.
+      Until Stage 08 Step 8 that one file was the Stage 07 kit, <code>kit.css</code>; the move was
+      proved pixel by pixel on <a href="kit/pixel-proof.html">the pixel proof</a>, and the light
+      theme is a switch in the panel of every screen.</p>
     <p>Not the whole product, and the map below says so. This stage paints a sample chosen for
       how much of the component inventory it covers, and the rest is assembled once at Stage 12,
       on a system that by then has patterns, breakpoints and motion. Building a screen three
@@ -112,12 +117,20 @@
   <section class="ov-sec" id="kit">
     <h2 class="ov-h2">Kit and tokens</h2>
     <p class="ov-lead">One click from the product to the system it was assembled from. A screen
-      that needs something the kit does not have gets it added to the kit first and used second,
-      which is the whole reason the kit exists.</p>
+      that needs something the system does not have gets it added to the system first and used
+      second, which is the whole reason the system exists.</p>
     <div class="ov-kit">
+      <a class="ov-kit-card" href="kit/overview.html">
+        <span class="ov-kit-t">Design system</span>
+        <span class="ov-kit-d">Fifty components in three levels, a page each, the tokens in two levels with both themes, and the rules.</span>
+      </a>
+      <a class="ov-kit-card" href="kit/pixel-proof.html">
+        <span class="ov-kit-t">Pixel proof</span>
+        <span class="ov-kit-d">Every screen before and after the move onto the system, and the named line behind every difference.</span>
+      </a>
       <a class="ov-kit-card" href="kit/kit.html">
-        <span class="ov-kit-t">Component kit</span>
-        <span class="ov-kit-d">Fifty components in three levels, every token alive with its origin, and the inventory of the whole product.</span>
+        <span class="ov-kit-t">The Stage 07 kit, frozen</span>
+        <span class="ov-kit-d">The kit as it was handed to Stage 08, now standing on the system: the smoke test that the system renders what the kit drew.</span>
       </a>
       <a class="ov-kit-card" href="kit/shell.html">
         <span class="ov-kit-t">The shell as markup</span>

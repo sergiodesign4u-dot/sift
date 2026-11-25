@@ -254,7 +254,9 @@ reads `--line-control`, 3.30 light and 3.55 dark, like every other control bound
 sits on a raised surface (a dialog, a menu): its ink on its own wash falls under 4.5 there. No
 screen does it today.
 
-**If the light theme is not kept as a feature,** only the switch in `design/_nav.js` goes. The
+**If the light theme is not kept as a feature,** only the product's switch goes: the button in
+`design/_nav.js`, the file `design/_theme.js` and its `<script>` line in the head of each colour
+screen (all three added at Stage 08 Step 8, with their own key `sift-theme`). The
 light block in `tokens.css`, this table, both themes on `design/kit/color.html` and the switch on
 the stand stay: the pair is the only proof that the semantic level is overridden separately from
 the primitives.
