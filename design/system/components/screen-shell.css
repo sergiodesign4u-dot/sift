@@ -29,15 +29,21 @@
    Kept as literals, byte for byte, because no primitive equals them: the main's 20px vertical
    padding and the screen's 100vh. .app > .appmain repeats the
    flex:1 that .appmain already declares; kit.css carries both and so does this file.
+   THE PAGE FRAME (Stage 10 Step 3). The bars keep their full-width ground; their content and the
+   page stand in one column of --container-page (65rem), centred. --frame-inset is the space on
+   each side of that column: max(0px, (100% - 65rem) / 2), resolved against .app, so it is 0 on
+   any window up to 1040px and 360 does not move. The header, the breadcrumb, the page, a notice
+   in the frame, the static selection bar and the footer add it to their own gutter. A limit,
+   not a breakpoint: it stops, it never switches.
    No em dash anywhere in this file.
 */
 
-.appmain { flex: 1; padding: 20px var(--space-9); }
+.appmain { flex: 1; padding: 20px calc(var(--frame-inset, 0px) + var(--space-9)); }
 
 /* the screen edition: a screen that is the page */
-.app { display: flex; flex-direction: column; min-height: 100vh; background: var(--bg-page); color: var(--text-primary); }
+.app { --frame-inset: max(0px, (100% - var(--container-page)) / 2); display: flex; flex-direction: column; min-height: 100vh; background: var(--bg-page); color: var(--text-primary); }
 .app > .appmain { flex: 1; }
-.app > .notice { margin: var(--space-6) var(--space-9); }
+.app > .notice { margin: var(--space-6) calc(var(--frame-inset) + var(--space-9)); }
 .app:has(.theme .check:checked) .selbar { display: flex; }
 .app:has(.theme .check:checked) .head-action { display: none; }
 

@@ -25,7 +25,7 @@
   copy of the component, it is the component. The matrix is drawn by _states.js from the
   product's own rules; nothing in it is painted by hand.
 
-  THE BAR IS display:none ABOVE 820px, by its own rule, and this page is wider than that. The
+  THE BAR IS display:none FROM 37.5rem (600px), by its own rule, and this page is wider than that. The
   hero therefore shows the four tabs, which no rule hides, on the hero's own row; the bar itself
   is placed under Other forms, where it appears when the window is narrowed. No stand rule forces
   it: a rule that showed it here would be a second component. The markup is copied from
@@ -55,9 +55,9 @@
         <a href="#" class="btab"><span class="ico"><svg class="ic" viewBox="0 0 24 24"><use href="#i-source"></use></svg></span>Sources</a>
         <a href="#" class="btab"><span class="ico"><svg class="ic" viewBox="0 0 24 24"><use href="#i-brief"></use></svg></span>Briefs</a>
         <a href="#" class="btab"><span class="ico"><svg class="ic" viewBox="0 0 24 24"><use href="#i-user"></use></svg></span>Account</a>
-        <p class="kit-hero-note">Live. The four tabs; the bar itself is drawn only below 820px</p>
+        <p class="kit-hero-note">Live. The four tabs; the bar itself is drawn only below 600px</p>
       </div>
-      <p class="kit-note"><b>What stands here is the tabs, not the bar.</b> <code class="kit-mono">.bottomtabs</code> is <code class="kit-mono">display: none</code> above 820px by its own rule, and this page is wider than that, so the four <code class="kit-mono">.btab</code> links sit on the hero's own row, with the hero's 12px gap, which the bar does not have. The bar with its hairline, its surface ground and its sticky bottom edge is under <a href="#forms">Other forms</a> and appears when the window is narrowed to 820. In place: <a href="../synthesis.html">2.0 Synthesis</a> at 360, or the frame on <a href="screen-shell.html">Screen shell</a>.</p>
+      <p class="kit-note"><b>What stands here is the tabs, not the bar.</b> <code class="kit-mono">.bottomtabs</code> is <code class="kit-mono">display: none</code> from 37.5rem (600px) by its own rule, and this page is wider than that, so the four <code class="kit-mono">.btab</code> links sit on the hero's own row, with the hero's 12px gap, which the bar does not have. The bar with its hairline, its surface ground and its sticky bottom edge is under <a href="#forms">Other forms</a> and appears when the window is narrowed below 600. In place: <a href="../synthesis.html">2.0 Synthesis</a> at 360, or the frame on <a href="screen-shell.html">Screen shell</a>.</p>
 
       <section class="kit-sec" id="variants">
         <h2 class="kit-h2">Variants and states</h2>
@@ -73,8 +73,8 @@
               <tr class="kit-group-end"><td class="kit-st">Current<code>.active</code></td>
                 <td><div class="kit-cell-fixed"><a href="#" class="btab active" aria-current="page"><span class="ico"><svg class="ic" viewBox="0 0 24 24"><use href="#i-source"></use></svg></span>Sources</a></div></td></tr>
 
-              <tr><th>Bar<code>.bottomtabs</code></th><td class="kit-st">820 and below</td>
-                <td><p class="kit-cell-none">Not drawn here. It is a viewport rule, not a state: the page is wider than 820 and the rule cannot be forced in a cell without a class the product does not carry. See Other forms, and narrow the window.</p></td></tr>
+              <tr><th>Bar<code>.bottomtabs</code></th><td class="kit-st">Below 37.5rem</td>
+                <td><p class="kit-cell-none">Not drawn here. It is a viewport rule, not a state: the page is wider than 600 and the rule cannot be forced in a cell without a class the product does not carry. See Other forms, and narrow the window.</p></td></tr>
             </tbody>
           </table>
         </div>
@@ -92,8 +92,8 @@
                 <a href="#" class="btab"><span class="ico"><svg class="ic" viewBox="0 0 24 24"><use href="#i-user"></use></svg></span>Account</a>
               </nav>
             </div>
-            <div class="kit-form-t">The bar, 820 and below</div>
-            <div class="kit-form-d">The real <code>nav.bottomtabs</code>. This tile is empty above 820px, and that is the component's own rule working. Narrow the window and the bar appears with its hairline and surface.</div>
+            <div class="kit-form-t">The bar, below 37.5rem</div>
+            <div class="kit-form-d">The real <code>nav.bottomtabs</code>. This tile is empty from 600px, and that is the component's own rule working. Narrow the window and the bar appears with its hairline and surface.</div>
           </div>
         </div>
       </section>
@@ -101,7 +101,7 @@
       <section class="kit-sec" id="props">
         <h2 class="kit-h2">Properties</h2>
         <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Property</th><th>Type</th><th>Values</th><th>Default</th></tr></thead><tbody>
-          <tr><td>Bar</td><td>own class</td><td><code>nav.bottomtabs</code>, the last child of the shell</td><td>not drawn above 820</td></tr>
+          <tr><td>Bar</td><td>own class</td><td><code>nav.bottomtabs</code>, the last child of the shell</td><td>not drawn from 37.5rem</td></tr>
           <tr><td>Tab</td><td>zone</td><td><code>a.btab</code>, four of them, each taking an equal share of the width</td><td>required</td></tr>
           <tr><td>Glyph</td><td>zone</td><td><code>span.ico</code> holding <code>svg.ic</code> with <code>viewBox="0 0 24 24"</code>, 20px; Synthesis <code>#i-signal</code>, Sources <code>#i-source</code>, Briefs <code>#i-brief</code>, Account <code>#i-user</code></td><td>required</td></tr>
           <tr><td>Label</td><td>zone</td><td>the text node after the glyph</td><td>required</td></tr>
@@ -115,13 +115,13 @@
         <div class="kit-when">
           <div>
             <h3>When</h3>
-            <p>At the foot of every signed-in screen, as the last zone of the <a href="screen-shell.html">screen shell</a>, and seen at 820px and below only. Canonical global 0.1, the same as the header it replaces.</p>
+            <p>At the foot of every signed-in screen, as the last zone of the <a href="screen-shell.html">screen shell</a>, and seen below 37.5rem (600px) only. Canonical global 0.1, the same as the header it replaces.</p>
             <p><b>The same destinations as the header, plus Account.</b> On a wide screen the account is the avatar in the corner; on a narrow one it is the fourth tab.</p>
           </div>
           <div>
             <h3>When not</h3>
             <ul>
-              <li>Above 820: the navigation is <a href="app-header.html">the app header</a>'s text tabs. Both are in every screen's markup and the media rules choose.</li>
+              <li>From 37.5rem (600px): the navigation is <a href="app-header.html">the app header</a>'s text tabs. Both are in every screen's markup and the media rules choose.</li>
               <li>On a screen read by somebody who is not signed in (0.0, 6.4, 9.x): no tabs at all. A shared brief has no navigation to offer (<a href="public-bar.html">the public bar</a>).</li>
             </ul>
           </div>
@@ -194,17 +194,19 @@
         <h2 class="kit-h2">Anatomy</h2>
         <p class="kit-note">A bar of four tabs, and each tab has two zones, glyph over label.</p>
         <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
-          <tr><td>the bar</td><td><code>nav.bottomtabs</code></td><td>Not drawn above 820. At 820 and below a flex row, sticky to the bottom edge, a hairline above it, the surface ground</td></tr>
+          <tr><td>the bar</td><td><code>nav.bottomtabs</code></td><td>Not drawn from 37.5rem. Below it a flex row, sticky to the bottom edge, a hairline above it, the surface ground</td></tr>
           <tr><td>tab</td><td><code>a.btab</code></td><td>A column, centred, an equal share of the width, 8px above and below. Secondary ink at rest, the accent when current</td></tr>
           <tr><td>glyph</td><td><code>span.ico</code>, <code>svg.ic</code></td><td>A 20px box, and the svg inside it is <code>display: block</code> at 20px. That is what keeps the box from collapsing</td></tr>
           <tr><td>label</td><td>the text node</td><td>10px, the micro step, 3px under the glyph</td></tr>
         </tbody></table></div>
+              <h3 class="kit-h3">Behaviour at width</h3>
+        <p class="kit-note"><b>Shell form A, Stage 10 Step 3.</b> Mobile first: this bar is the base, drawn below <code class="kit-mono">--bp-shell-wide</code> (37.5rem, 600px), sticky to the bottom edge for the thumb, with Account as the fourth tab. From 37.5rem it is <code class="kit-mono">display: none</code>, out of the accessibility tree too, and <a href="app-header.html">the header</a> carries the same three sections in the same order with the same current state; Account becomes the avatar. Why there: the header row of brand, three tabs and avatar measures 24.1rem (385px) and does not fit a 360 phone, so below that this bar is required, and 37.5rem is the grey contract's 600 (backlog B-07). Exactly one carrier at every width, checked by computed style on 410 frames from 320 to 1600 and by a Tab walk. Both forms live on <a href="responsive.html#shell">Responsive</a>.</p>
       </section>
 
       <section class="kit-sec" id="axes">
         <h2 class="kit-h2">Axes, with the rule that chooses</h2>
         <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
-          <tr><td>viewport</td><td>not drawn above 820 &middot; a sticky bar at 820 and below</td><td>The bar and the header tabs are one navigation in two widths. The grey contract switches at a 600px canvas, kit.css at 820px [?]</td></tr>
+          <tr><td>viewport</td><td>a sticky bar below 37.5rem &middot; not drawn from it</td><td>The bar and the header tabs are one navigation in two widths, swapped at <code>--bp-shell-wide</code>, the one breakpoint of the product (Stage 10 Step 3; reason on <a href="responsive.html#points">Responsive</a>). Until Stage 10 the swap was at 820px with no reason stated</td></tr>
           <tr><td>current tab</td><td>Synthesis 8 &middot; Sources 4 &middot; Briefs 6 &middot; Account 2, across the 20 colour screens</td><td>Chosen by the section the screen belongs to. On the account screens this bar has a current tab and the header has none</td></tr>
           <tr><td>state, per tab</td><td>rest &middot; focus-visible &middot; current</td><td>The inventory names rest and active; focus-visible is the ring from base.css on every link</td></tr>
         </tbody></table></div>

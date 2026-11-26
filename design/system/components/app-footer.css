@@ -12,4 +12,4 @@
    No em dash anywhere in this file.
 */
 
-.appfoot { padding: var(--space-6) var(--space-9); border-top: 1px solid var(--line-hairline); background: var(--bg-surface); font-family: var(--font-mono); font-size: var(--type-2xs); color: var(--text-secondary); }
+.appfoot { padding: var(--space-6) calc(var(--frame-inset, 0px) + var(--space-9)); border-top: 1px solid var(--line-hairline); background: var(--bg-surface); font-family: var(--font-mono); font-size: var(--type-2xs); color: var(--text-secondary); }

@@ -11,6 +11,8 @@
 <link rel="stylesheet" href="../system/index.css">
 <style>/* stand only: two frames on one page need a gap between them, and the product never has two */
 .appframe--next { margin-top: 24px; }
+.shell-cap { font-family: var(--font-mono); font-size: var(--type-2xs); color: var(--text-secondary); margin: 18px 0 8px; }
+[data-shell-live="1280"] { margin-bottom: 28px; }
 /* Stage 08 Step 8: kit.css is deleted and this frozen stand now stands on design/system/index.css.
    The frame moved to design/kit/_page.css at Step 6 and is repeated here, because _page.css also
    carries the card stand's .kit-* furniture; the narrow page padding came from kit.css:719. */
@@ -29,8 +31,9 @@
 
   Four blocks, in the order a page uses them:
     1. The icon sprite. One set (Solar, stroke), inline SVG, referenced by <use>.
-    2. The frame plus the app header: brand, desktop tabs, avatar. Below 820px the tabs
-       disappear and the bottom tabs take over. That swap is in kit.css, not here.
+    2. The frame plus the app header: brand, desktop tabs, avatar. Below 37.5rem (600px) the
+       tabs disappear and the bottom tabs take over; from 37.5rem the header is sticky. That swap
+       is in app-header.css and bottom-tabs.css (Stage 10 Step 3, shell form A), not here.
     3. The main region and the app footer.
     4. The bottom tabs, mobile navigation, the same four destinations as the header.
 
@@ -38,7 +41,11 @@
   read-only artifact with no navigation to offer. Its markup is at the bottom of this file.
 
   Structure and text stay the property of wireframes/. This file owns nothing but the skeleton
-  the colour layer needs in order to be applied. No em dash anywhere.
+  the colour layer needs in order to be applied.
+
+  Stage 10 Step 3: the block "Both forms" at the top draws this same markup in two windows, 360
+  and 1280 wide (design/kit/_shell-live.js), because a media query reads the window and one page
+  can only ever show one form. No em dash anywhere.
 -->
 <body>
 
@@ -63,6 +70,12 @@
 
 <div class="page">
 
+<!-- ==== BOTH FORMS. The markup below, live, in a 360 and a 1280 window (_shell-live.js). ==== -->
+<p class="shell-cap">The shell in a 360 window: brand and avatar on top, the bottom tabs carry the sections</p>
+<div data-shell-live="360" data-h="420"></div>
+<p class="shell-cap">The same markup in a 1280 window: the header carries the sections and is sticky; the bars run the full width, their content stands over one 65rem column</p>
+<div data-shell-live="1280" data-h="300"></div>
+
 <!-- ==== 2 + 3. THE APPLICATION SHELL. Every product screen except 1.x, 6.4, 9.x and 0.0. ==== -->
 <div class="appframe">
 
@@ -83,7 +96,7 @@
 
   <footer class="appfoot">Sift workspace &middot; feedback from CSV and Intercom, PII scrubbed by default</footer>
 
-  <!-- ==== 4. BOTTOM TABS. Below 820px only; kit.css swaps them for the header tabs. ==== -->
+  <!-- ==== 4. BOTTOM TABS. Below 37.5rem only; bottom-tabs.css swaps them for the header tabs. ==== -->
   <nav class="bottomtabs" aria-label="Sections">
     <a href="#" class="btab active" aria-current="page"><span class="ico"><svg viewBox="0 0 24 24" class="ic"><use href="#i-signal"></use></svg></span>Synthesis</a>
     <a href="#" class="btab"><span class="ico"><svg viewBox="0 0 24 24" class="ic"><use href="#i-source"></use></svg></span>Sources</a>
@@ -109,5 +122,6 @@
 </div>
 
 </div>
+<script src="_shell-live.js"></script>
 </body>
 </html>

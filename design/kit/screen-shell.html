@@ -132,7 +132,7 @@
           <tr><td>Notice in the frame</td><td>molecule, zone</td><td><code>.notice</code> as a direct child, between the header and the main</td><td>none</td></tr>
           <tr><td>Main</td><td>zone</td><td><code>main.appmain</code>, takes the free height, 20px by 22px padding</td><td>required</td></tr>
           <tr><td>Footer</td><td>organism, zone</td><td><code>footer.appfoot</code> &middot; <code>.pubfoot</code> on the public document</td><td>required</td></tr>
-          <tr><td>Bottom tabs</td><td>organism, zone</td><td><code>nav.bottomtabs</code>, last; drawn at 820 and below</td><td>required on a signed-in screen</td></tr>
+          <tr><td>Bottom tabs</td><td>organism, zone</td><td><code>nav.bottomtabs</code>, last; drawn below 37.5rem</td><td>required on a signed-in screen</td></tr>
           <tr><td>Selection trigger</td><td>coupling rule</td><td>a ticked theme card, <code>.theme .check:checked</code>, inside the shell shows <code>.selbar</code> and hides <code>.head-action</code></td><td>nothing checked</td></tr>
           <tr><td>Centring</td><td>coupling rule</td><td>a <code>.state</code> or a <code>.dialog</code> that is the only child of <code>.appmain</code></td><td>off</td></tr>
         </tbody></table></div>
@@ -219,8 +219,10 @@
           <tr><td>notice, optional</td><td><code>.notice</code> as a direct child</td><td>The molecule, given the 22px gutter by this file, 16px at 820 and below</td></tr>
           <tr><td>main</td><td><code>.appmain</code></td><td>Takes the free height (<code>flex: 1</code>), 20px by 22px padding. Centres a lone state block or dialog</td></tr>
           <tr><td>footer</td><td><code>.appfoot</code> or <code>.pubfoot</code></td><td>Organisms with their own files</td></tr>
-          <tr><td>bottom tabs</td><td><code>.bottomtabs</code></td><td>The organism. Last, sticky, drawn at 820 and below</td></tr>
+          <tr><td>bottom tabs</td><td><code>.bottomtabs</code></td><td>The organism. Last, sticky, drawn below 37.5rem (<code>--bp-shell-wide</code>)</td></tr>
         </tbody></table></div>
+              <h3 class="kit-h3">Behaviour at width</h3>
+        <p class="kit-note"><b>The page frame, Stage 10 Step 3.</b> <code class="kit-mono">.app</code> declares <code class="kit-mono">--frame-inset: max(0px, (100% - var(--container-page)) / 2)</code>, the space on each side of one 65rem column. The header, the breadcrumb, the page, a notice in the frame, the static selection bar and the footer add it to their own gutter, so their grounds run the full width and their content stands over one centred column. It is 0 on any window up to 1040px, so 360 does not move. A limit, not a breakpoint: it stops, it never switches, and it has no <code class="kit-mono">@media</code>. The frame's own gutters at 360 stay as they are (owner's decision at Stage 10 Step 2, option A). On a stand frame, <code class="kit-mono">.appframe</code> declares no inset and the components fall back to 0. Measured on <a href="responsive.html#shell">Responsive</a>.</p>
       </section>
 
       <section class="kit-sec" id="axes">

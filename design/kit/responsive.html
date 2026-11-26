@@ -50,6 +50,9 @@
   .rs-gut div { border-bottom: 1px solid var(--line-hairline); padding-top: 7px; padding-bottom: 7px; font-size: var(--type-xs); color: var(--text-primary); }
   .rs-gut div:last-child { border-bottom: 0; }
   .rs-opts { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 18px; margin-top: 14px; }
+  .rs-pair { display: flex; flex-wrap: wrap; gap: 18px; align-items: flex-start; margin-top: 14px; }
+  .rs-pair > div:first-child { flex: 0 1 360px; min-width: 0; }
+  .rs-pair > div:last-child { flex: 1 1 320px; min-width: 0; }
   .rs-h4 { font-size: var(--type-md); margin-top: 26px; }
   .rs-ol { margin: 10px 0 0 20px; font-size: var(--type-xs); color: var(--text-secondary); line-height: var(--leading-loose); max-width: 78ch; }
   .rs-ol b { color: var(--text-primary); font-weight: var(--weight-medium); }
@@ -154,8 +157,27 @@
     <p class="kit-note"><b>A font size never switches at a breakpoint.</b> A switch is a jump at the moment somebody drags the window, and between two points it leaves widths where the size is either too big or too small. Four sizes switched at 820 until this step (the marketing H1 and lead, the public document H1, the legal prose); all four now read a fluid token, and two of those <code class="kit-mono">@media</code> rules are gone. Every change of value is a row in <code class="kit-mono">design/kit/docs/tokens-audit.md</code>; the scale itself is on <a href="typography.html">Typography</a>.</p>
     </section>
 
-    <section class="kit-sec" id="shell"><h2 class="kit-h2">Shell</h2>
-    <p class="rs-stub">Filled at Step 3: the fork A, B or C from the navigation model of Stage 03a, the page frame on <code class="kit-mono">--container-page</code>, and the one breakpoint applied.</p></section>
+    <section class="kit-sec" id="shell"><h2 class="kit-h2">Shell: form A, entries in the header</h2>
+    <p class="kit-lead">The shell is the header, the carrier of the top-level navigation, and the page frame. Its wide form follows from the navigation model of Stage 03a, not from taste, and the owner chose it at Step 3 from three answers.</p>
+    <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Question to the navigation model</th><th>Answer</th><th>Source</th></tr></thead><tbody>
+      <tr><td>How many top-level entries</td><td>Three plus account: Synthesis, Sources, Briefs; account is the avatar on a wide window and the 4th tab on a narrow one</td><td><code class="kit-mono">ia/docs/pages/navigation.md:16, 26, 28</code></td></tr>
+      <tr><td>A second level that must stay visible</td><td>No. Filters live inside a screen as a toolbar; the account's section list is a rail inside 7.x, owned by the account shell (Step 4)</td><td><code class="kit-mono">ia/docs/sitemap.md:115</code>, <code class="kit-mono">ia/docs/pages/account.md:53</code></td></tr>
+      <tr><td>A screen that takes side space for new behaviour</td><td>No: the audit found none</td><td>this page, New behaviour</td></tr>
+    </tbody></table></div>
+    <p class="kit-note"><b>A, not B or C.</b> A rail for three entries would spend a column on nothing (B), and the carrier does change between bottom tabs and header, so the shell is not form C and the one breakpoint stays. The entries, their order and their states are the IA's; only the layout changes.</p>
+    <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>What</th><th>Below 37.5rem</th><th>From 37.5rem</th><th>Where the code lives</th></tr></thead><tbody>
+      <tr><td>Navigation carrier</td><td>bottom tabs, four: three sections and Account, sticky to the bottom edge</td><td>header text tabs, three; Account is the avatar</td><td><code class="kit-mono">bottom-tabs.css</code>, <code class="kit-mono">app-header.css</code>: the two legal <code class="kit-mono">@media (min-width: 37.5rem)</code> of a component</td></tr>
+      <tr><td>The carrier that is not shown</td><td colspan="2"><code class="kit-mono">display: none</code>: gone from the accessibility tree too, not only from the eye</td><td>same</td></tr>
+      <tr><td>Header on scroll</td><td>scrolls away: it holds no navigation</td><td><b>sticky</b>, above the page (<code class="kit-mono">--layer-shell</code>): the IA's "Scrolled: navigation is sticky and persists" (<code class="kit-mono">navigation.md:35</code>) belongs to the carrier. Grey and colour had lost it; restored at Step 3</td><td><code class="kit-mono">app-header.css</code></td></tr>
+      <tr><td>Page frame</td><td colspan="2">no breakpoint at all: the bars' grounds run the full width, their content and the page stand in one centred column of <code class="kit-mono">--container-page</code> (65rem). <code class="kit-mono">--frame-inset</code> is 0 on any window up to 1040px</td><td><code class="kit-mono">screen-shell.css</code>, read by the header, breadcrumb, footer, static selection bar</td></tr>
+    </tbody></table></div>
+    <div class="rs-pair">
+      <div><div class="scene-label">a 360 window</div><div data-shell-live="360" data-h="420"></div></div>
+      <div><div class="scene-label">a 1280 window, scaled to the column</div><div data-shell-live="1280" data-h="300"></div></div>
+    </div>
+    <p class="kit-note"><b>Measured.</b> Exactly one carrier at every width: computed <code class="kit-mono">display</code> of both carriers on 10 screens at 41 window widths from 320 to 1600 (40px steps, 10px around 600, plus 599, 600 and 601), 410 frames, 0 failures, measured width equal to the asked one on all 410; the header sticky exactly from 600. A Tab walk on 2.0 in both forms: the nav stops are Synthesis, Sources, Briefs, Account at 360 and Synthesis, Sources, Briefs at 1280, none twice, none on an invisible element; the accessibility tree holds one navigation landmark at each width. At 360, 24 of 24 screens differ by 0 pixels from Step 2.</p>
+    <p class="kit-note"><b>The stand no longer lies.</b> Step 1 found the stand misleading between 901 and 1072px, where the panel takes 252px from the screen while an 820px query read the window. At 600 the gap is gone: above 900 the screen gets at least 649px, which is past the point anyway.</p>
+    </section>
     <section class="kit-sec" id="comps"><h2 class="kit-h2">Component behaviour</h2>
     <p class="rs-stub">Filled at Step 4: the seven components that rearrange at 820 today move to <code class="kit-mono">@container</code>, each with its local threshold listed here.</p></section>
     <section class="kit-sec" id="patterns"><h2 class="kit-h2">Pattern behaviour</h2>
@@ -170,8 +192,8 @@
 <p class="kit-lead">Everything sits on one number, 820, which <b>a viewport</b> measures. Of 17 rules, only 2 are what a viewport point is for (the shell swap). The other 15 split three ways: a gutter that changes from 22 to 16 (it belongs in a fluid token), a <code>font-size</code> switched at the point (forbidden by the stage: it belongs in <code>clamp()</code>), and a component rearranging itself (it belongs in <code>@container</code>, because the component measures its place, not the screen).</p>
 <div class="tbl-wrap"><table class="kit-tbl">
 <thead><tr><th>file:line</th><th>what it does below 820</th><th>way</th><th>where it must live</th><th>verdict</th><th>status after Step 2</th></tr></thead><tbody>
-<tr><td>app-header.css:44</td><td>hides the text tabs</td><td>point</td><td>shell, <code>@media</code> (legal here)</td><td>stays, the number goes into the register</td><td>waits: Step 3, the shell</td></tr>
-<tr><td>bottom-tabs.css:33</td><td>draws the bottom tabs, sticky</td><td>point</td><td>shell, <code>@media</code></td><td>stays, same</td><td>waits: Step 3, the shell</td></tr>
+<tr><td>app-header.css:44</td><td>hides the text tabs</td><td>point</td><td>shell, <code>@media</code> (legal here)</td><td>stays, the number goes into the register</td><td>moved, Step 3: <code>min-width: 37.5rem</code>, mobile first</td></tr>
+<tr><td>bottom-tabs.css:33</td><td>draws the bottom tabs, sticky</td><td>point</td><td>shell, <code>@media</code></td><td>stays, same</td><td>moved, Step 3: <code>min-width: 37.5rem</code>, mobile first</td></tr>
 <tr><td>screen-shell.css:48</td><td>a notice in the frame: gutter 22 to 16</td><td>point used as a gutter</td><td>a fluid gutter token</td><td>moves into a token</td><td>waits: Step 4</td></tr>
 <tr><td>breadcrumb.css:23</td><td>gutter 22 to 16</td><td>point used as a gutter</td><td>a fluid gutter token</td><td>moves into a token</td><td>waits: Step 4</td></tr>
 <tr><td>patterns/grouped-list.css:26</td><td>group heading padding, gutter 16</td><td>point used as a gutter</td><td>a fluid gutter token</td><td>moves into a token</td><td>waits: Step 4</td></tr>
@@ -354,6 +376,7 @@
   </main>
 </div>
 <script src="_nav.js"></script>
+<script src="_shell-live.js"></script>
 <script>
   /* live readouts: the window in px and rem, the computed size of each specimen, the grid's columns */
   (function () {

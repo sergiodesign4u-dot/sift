@@ -59,7 +59,7 @@
             <a href="#" class="avatar" aria-label="Account"></a>
           </header>
         </div>
-        <p class="kit-hero-note">Live. Hover a tab, tab to it, narrow the window below 820px</p>
+        <p class="kit-hero-note">Live. Hover a tab, tab to it, narrow the window below 600px</p>
       </div>
       <p class="kit-note">The top bar of every signed-in screen, shown alone at real scale. In place it is the first zone of the screen shell: see it in a frame on <a href="screen-shell.html">Screen shell</a>, or on <a href="../synthesis.html">2.0 Synthesis</a>.</p>
 
@@ -79,12 +79,12 @@
               <tr class="kit-group-end"><td class="kit-st">Current<code>.active</code></td>
                 <td><nav class="navtabs" aria-label="Sections"><a href="#" class="active" aria-current="page">Sources</a></nav></td></tr>
 
-              <tr><th rowspan="3">Bar<code>.appbar</code></th><td class="kit-st">Section screen, above 820</td>
+              <tr><th rowspan="3">Bar<code>.appbar</code></th><td class="kit-st">Section screen, from 37.5rem</td>
                 <td><header class="appbar"><span class="brand"><svg class="ic mark" width="15" height="15"><use href="#i-signal"></use></svg> Sift</span><nav class="navtabs" aria-label="Sections"><a href="#">Synthesis</a><a href="#" class="active" aria-current="page">Sources</a><a href="#">Briefs</a></nav><span class="spacer"></span><a href="#" class="avatar" aria-label="Account"></a></header></td></tr>
               <tr><td class="kit-st">Account screen, 7.x</td>
                 <td><header class="appbar"><span class="brand"><svg class="ic mark" width="15" height="15"><use href="#i-signal"></use></svg> Sift</span><nav class="navtabs" aria-label="Sections"><a href="#">Synthesis</a><a href="#">Sources</a><a href="#">Briefs</a></nav><span class="spacer"></span><a href="#" class="avatar" aria-label="Account"></a></header></td></tr>
-              <tr><td class="kit-st">820 and below</td>
-                <td><p class="kit-cell-none">Not drawn here. It is a viewport rule, not a state: the page is wider than 820 and the rule cannot be forced in a cell without a class the product does not carry. Narrow the window and the specimen at the top keeps the brand and the avatar only.</p></td></tr>
+              <tr><td class="kit-st">Below 37.5rem</td>
+                <td><p class="kit-cell-none">Not drawn here. It is a viewport rule, not a state: the page is wider than 600 and the rule cannot be forced in a cell without a class the product does not carry. Narrow the window and the specimen at the top keeps the brand and the avatar only.</p></td></tr>
             </tbody>
           </table>
         </div>
@@ -92,7 +92,7 @@
 
       <section class="kit-sec" id="forms">
         <h2 class="kit-h2">Other forms</h2>
-        <p class="kit-note"><b>The 360 form, brand and avatar only.</b> At 820px and below <code class="kit-mono">.navtabs</code> is not drawn and the bottom tabs carry the navigation, with Account as a fourth tab. The bar keeps its height, its brand and its avatar; the spacer still pushes the avatar to the corner. It is a media query, so it cannot be forced inside this page: narrow the window and the specimen at the top drops its tabs, or open <a href="../synthesis.html">2.0 Synthesis</a> at 360. The tabs that replace these are on <a href="bottom-tabs.html">Bottom tabs</a>.</p>
+        <p class="kit-note"><b>The 360 form, brand and avatar only.</b> Below 37.5rem (600px) <code class="kit-mono">.navtabs</code> is not drawn and the bottom tabs carry the navigation, with Account as a fourth tab. The bar keeps its height, its brand and its avatar; the spacer still pushes the avatar to the corner. It is a media query, so it cannot be forced inside this page: narrow the window and the specimen at the top drops its tabs, or open <a href="../synthesis.html">2.0 Synthesis</a> at 360. The tabs that replace these are on <a href="bottom-tabs.html">Bottom tabs</a>.</p>
       </section>
 
       <section class="kit-sec" id="props">
@@ -104,7 +104,7 @@
           <tr><td>Current</td><td>state, by class</td><td><code>.active</code> plus <code>aria-current="page"</code> on the tab of the screen's section; none on an account screen</td><td>none</td></tr>
           <tr><td>Spacer</td><td>zone</td><td><code>span.spacer</code>, takes the free width</td><td>required</td></tr>
           <tr><td>Account</td><td>atom, zone</td><td><code>a.avatar</code> with <code>aria-label="Account"</code>, links to 7.0</td><td>required</td></tr>
-          <tr><td>Viewport</td><td>axis</td><td>with text tabs above 820 &middot; brand and avatar only at 820 and below</td><td>with text tabs</td></tr>
+          <tr><td>Viewport</td><td>axis</td><td>with text tabs from 37.5rem &middot; brand and avatar only below it</td><td>with text tabs</td></tr>
           <tr><td>State, per tab</td><td>variant</td><td>rest &middot; hover &middot; focus-visible &middot; current</td><td>rest</td></tr>
         </tbody></table></div>
       </section>
@@ -121,7 +121,7 @@
             <h3>When not</h3>
             <ul>
               <li>For a screen read by somebody who is not signed in (0.0, 6.4, 9.x): take <a href="public-bar.html">the public bar</a>. A shared brief is a read-only artifact with no navigation to offer.</li>
-              <li>At 820 and below: the tabs give way to <a href="bottom-tabs.html">the bottom tabs</a>, which add Account as a fourth destination.</li>
+              <li>Below 37.5rem (600px): the tabs give way to <a href="bottom-tabs.html">the bottom tabs</a>, which add Account as a fourth destination.</li>
               <li>For the way back inside a section: take <a href="breadcrumb.html">the breadcrumb</a>, the way back in one line.</li>
             </ul>
           </div>
@@ -194,12 +194,14 @@
           <tr><td>spacer</td><td><code>.spacer</code></td><td><code>flex: 1</code>, so the account lands in the corner. The public bar uses the same spacer</td></tr>
           <tr><td>account</td><td><code>a.avatar</code></td><td>The atom. Reads at 28px and is hit at 44 through an overlay</td></tr>
         </tbody></table></div>
+        <h3 class="kit-h3">Behaviour at width</h3>
+        <p class="kit-note"><b>Shell form A, Stage 10 Step 3.</b> Mobile first: below <code class="kit-mono">--bp-shell-wide</code> (37.5rem, 600px) the bar holds the brand and the avatar, and <a href="bottom-tabs.html">the bottom tabs</a> carry the sections. From 37.5rem the three text tabs appear and the bar becomes <b>sticky</b>, because there it is the navigation carrier and the IA's state "Scrolled: navigation is sticky and persists" (<code class="kit-mono">ia/docs/pages/navigation.md:35</code>) belongs to the carrier; <code class="kit-mono">--layer-shell</code> keeps it above the page. Why this form: three entries and no persistent second level, so the entries go into the header, not a rail. The hidden tabs are <code class="kit-mono">display: none</code>, out of the accessibility tree too: exactly one carrier at every width, checked by computed style on 410 frames from 320 to 1600 and by a Tab walk. The ground runs the full width; the brand and the avatar stand over the page column (<code class="kit-mono">--frame-inset</code>, <a href="screen-shell.html">Screen shell</a>). This is one of the two legal <code class="kit-mono">@media</code> of a component, and its number is the register's literal: a media query cannot read <code class="kit-mono">var()</code>. Both forms live on <a href="responsive.html#shell">Responsive</a>.</p>
       </section>
 
       <section class="kit-sec" id="axes">
         <h2 class="kit-h2">Axes, with the rule that chooses</h2>
         <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
-          <tr><td>viewport</td><td>with text tabs above 820 &middot; brand and avatar only at 820 and below</td><td>At 820 and below the bottom tabs carry the navigation; kit.css states the swap and no reason for the width. The grey contract switches at a 600px canvas, kit.css at 820px [?]</td></tr>
+          <tr><td>viewport</td><td>with text tabs and sticky from 37.5rem &middot; brand and avatar only below it</td><td><code>--bp-shell-wide</code>, the one breakpoint of the product (Stage 10 Step 3). Below it the bottom tabs carry the navigation. Until Stage 10 the swap was at 820px with no reason stated; the grey contract's 600 is now the register's number, with its reason on <a href="responsive.html#points">Responsive</a></td></tr>
           <tr><td>current tab</td><td>Synthesis 8 &middot; Sources 4 &middot; Briefs 6 &middot; none 2, across the 20 colour screens</td><td>Chosen by the section the screen belongs to, never by the designer. Account screens carry none</td></tr>
           <tr><td>state, per tab</td><td>rest &middot; hover &middot; focus-visible &middot; current</td><td>The inventory names rest, hover and active; focus-visible is the ring from base.css on every link</td></tr>
         </tbody></table></div>

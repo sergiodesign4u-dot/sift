@@ -80,7 +80,35 @@ listed here, so that the check can tell it from a device breakpoint.
 
 ## The shell
 
-Empty until Step 3: the fork A, B or C from the navigation model of Stage 03a.
+**Form A: the entries go into the header.** Chosen by the owner at Step 3 from three answers of
+the navigation model (Stage 03a). The entries, their order and their states are the IA's; only
+the layout changes.
+
+| Question to the navigation model | Answer | Source |
+|---|---|---|
+| How many top-level entries | three plus account (avatar wide, 4th tab narrow) | `ia/docs/pages/navigation.md:16, 26, 28` |
+| A second level that must stay visible | no; filters are a toolbar inside a screen, the account's section list is a rail inside 7.x (account shell, Step 4) | `ia/docs/sitemap.md:115`, `ia/docs/pages/account.md:53` |
+| A screen that takes side space for new behaviour | no; the audit found none | this file, New behaviour |
+
+| What | Below 37.5rem | From 37.5rem | Code |
+|---|---|---|---|
+| Navigation carrier | bottom tabs: three sections and Account, sticky to the bottom | header text tabs: three sections; Account is the avatar | `bottom-tabs.css`, `app-header.css`, `@media (min-width: 37.5rem)`: the only legal `@media` in a component |
+| The hidden carrier | `display: none`, out of the accessibility tree too | same | same |
+| Header on scroll | scrolls away | sticky, above the page (`--layer-shell`); restores navigation.md:35, "Scrolled: navigation is sticky and persists", which grey and colour had lost | `app-header.css` |
+| Page frame | no breakpoint: grounds full width, content in one centred `--container-page` column; `--frame-inset` = max(0px, (100% - 65rem) / 2), 0 up to 1040px | same | `screen-shell.css`; read by the header, breadcrumb, page, notice, static selection bar, footer |
+
+Rejected: B, a rail (three entries and no persistent second level: a column spent on nothing);
+C, no change (the carrier does change, so the one point stays).
+
+Measured at Step 3: one carrier at every width, 410 frames (10 screens, 41 widths from 320 to
+1600, 10px steps around 600), 0 failures, measured width equal to the asked one on all; the
+header sticky exactly from 600. Tab walk on 2.0: nav stops Synthesis, Sources, Briefs, Account at
+360 and Synthesis, Sources, Briefs at 1280, none twice, none invisible; one navigation landmark in
+the accessibility tree at each width. At 360, 24 of 24 screens differ by 0 pixels. At 1024 0 of
+24 changed (the stand's canvas is 772px, under the 1040 column); at 1440 22 changed by the frame
+(the canvas is 1188px, so 74px each side), and 4.1 grew 20px taller because its lines wrap
+inside the column. 6.4 and 0.0 have no app frame and did not change. The stand gap of Step 1
+(901 to 1072px) is gone: above a 900 window the screen gets at least 649px, past 600.
 
 ## Component and pattern behaviour
 
@@ -118,8 +146,8 @@ Everything sits on one number, 820, which **a viewport** measures. Of 17 rules, 
 
 | file:line | what it does below 820 | way | where it must live | verdict | status after Step 2 |
 |---|---|---|---|---|---|
-| app-header.css:44 | hides the text tabs | point | shell, `@media` (legal here) | stays, the number goes into the register | waits: Step 3, the shell |
-| bottom-tabs.css:33 | draws the bottom tabs, sticky | point | shell, `@media` | stays, same | waits: Step 3, the shell |
+| app-header.css:44 | hides the text tabs | point | shell, `@media` (legal here) | stays, the number goes into the register | moved, Step 3: `min-width: 37.5rem`, mobile first |
+| bottom-tabs.css:33 | draws the bottom tabs, sticky | point | shell, `@media` | stays, same | moved, Step 3: `min-width: 37.5rem`, mobile first |
 | screen-shell.css:48 | a notice in the frame: gutter 22 to 16 | point used as a gutter | a fluid gutter token | moves into a token | waits: Step 4 |
 | breadcrumb.css:23 | gutter 22 to 16 | point used as a gutter | a fluid gutter token | moves into a token | waits: Step 4 |
 | patterns/grouped-list.css:26 | group heading padding, gutter 16 | point used as a gutter | a fluid gutter token | moves into a token | waits: Step 4 |

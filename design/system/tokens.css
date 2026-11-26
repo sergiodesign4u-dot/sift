@@ -204,6 +204,12 @@
   --grid-col-min: 15rem;            /* 240px. The source card, the product's own grid (3.0) */
   --grid-gap: var(--space-4);       /* 10px. The same grid's gap */
 
+  /* The one stacking level. Stage 10 Step 3: the header is sticky from --bp-shell-wide on (the IA's
+     "Scrolled: navigation is sticky and persists", navigation.md:35), and it comes FIRST in the
+     frame, so every positioned element after it (a checkbox, the avatar's hit area, the row link
+     of a brief) would paint over it while the page scrolls. The bottom tabs come last and need none. */
+  --layer-shell: 1;
+
   --ease: cubic-bezier(0.22,1,0.36,1);   /* technical decision. Ease out, restrained */
   --shadow-dark:  0 2px 4px var(--black-a40);   /* the one depth, on a dark ground */
   --shadow-light: 0 2px 4px var(--black-a12);   /* its light pair: on white a shadow is a hint, not a hole */
