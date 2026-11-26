@@ -99,6 +99,7 @@ account rail and the legal rail are added on top of a column).
 | legal document, legal TOC | `legal-doc.css`, `legal-toc.css` | `@container (width >= 46rem)` | the public column | from it, the contents are a sticky 13rem rail left of the prose, links in a column | the rail, a 2rem gap and the prose's full 52ch measure need 715.7px |
 | 0.0 footer (one-off) | `one-off.css` | `@container (width < 34rem)` | the frame | the gaps and the vertical padding tighten | the columns leave the brand's row under a 520px frame |
 | 3.2 column map (one-off) | `one-off.css` | `@container (width < 41rem)` | the page column | the head hides; the row is two lines, the sample on its own | the widest select clips its value under a 636px column |
+| grouped list heading, list note (one-off) | `patterns/grouped-list.css`, `one-off.css` | `@container (width < 20rem)` | the grouped list (the note outside it: the page column) | the heading and the note keep 16px at the sides, the rows 8 | not a break: the phone's drift kept for the 360 promise, exactly as wide as a 360 window's 316px place and no wider |
 
 **Who declares the place.** The shell places them, so `screen-shell.css` declares both of its
 places: `.appmain` (the page column) and `.app` (the frame, for the static selection bar, which
@@ -259,6 +260,36 @@ the wide padding and footer, 4.0's summary its measure; 3.2's map stays two line
 340, 350, 359, 361), 918 frames, 0 overflow, one navigation carrier where there is navigation, the
 header sticky from 600.
 
+### Round 4, patterns: N 2 = M 2 + K 0
+
+| Pattern | Verdict | Done |
+|---|---|---|
+| grouped list | container query, and it declares the place | `container-type: inline-size` on `.grouped-list`, for the rows it places (source row, brief row) and its heading; the heading's 820 viewport rule to `@container (width < 20rem)`, `patterns/grouped-list.css` |
+| filtered list | it declares the place | `container-type: inline-size` on `.filtered-list`, for the toolbar and the list it places (toolbar 39rem, theme card 29rem); the composition has nothing of its own to rearrange, `patterns/filtered-list.css` |
+
+**The heading: a drift kept, not a break.** On a phone the grouped list's heading and the 4.1 list
+note stand at 16px inside the list while every row stands at 8; in the wide form they align at 8.
+The census called it a gutter (round 1 revised that: it is the rows' padding, not the page's). It
+has no break to measure, so the threshold is the 360 promise itself: 20rem, the first whole rem
+above the 316px place a 360 window gives. 360 keeps its 16 and 0 pixels; every wider place, a
+412 phone included, gets the aligned form. Aligning 360 too is a question for the owner: it moves
+360 by 8px on the 8 screens with a grouped list.
+
+**Both patterns are exactly as wide as the page column** on every colour screen (316px at 360,
+996px at 1440, measured), so declaring them containers moved no threshold of the rows they hold.
+Patterns are two, not zero: Stage 09 took grouped list and filtered list, so step 2 of the pack
+runs in its normal form.
+
+Held against round 3: 72 of 72 frames 0 (360, 1024, 1440). At a 412 window, on purpose, the 8
+screens with a grouped list change: the headings and the note align with the rows, each heading
+2px taller (14 to 16 on top), the page 4px longer; at 640 the same. Width sweep: 17 screens, 54
+widths, 918 frames, 0 overflow, one carrier where there is navigation. Switch: 319px of list, 16;
+320px, 8, for the heading and both list notes.
+
+**The product's `@media` now: exactly the register.** Two, both `@media (min-width: 37.5rem)`, in
+`app-header.css` and `bottom-tabs.css`; 0 in a screen file. Every other width answer is one of
+the 16 container queries above (14 rows of thresholds: the legal pair and the heading and note pair share theirs), or a fluid value.
+
 ## New behaviour
 
 The audit found none (decided at Step 1). Step 5 runs in its short form.
@@ -302,7 +333,7 @@ Everything sits on one number, 820, which **a viewport** measures. Of 17 rules, 
 | bottom-tabs.css:33 | draws the bottom tabs, sticky | point | shell, `@media` | stays, same | moved, Step 3: `min-width: 37.5rem`, mobile first |
 | screen-shell.css:48 | a notice in the frame: gutter 22 to 16 | point used as a gutter | a fluid gutter token | moves into a token | moved, round 3: `--gutter-page`, the rule is gone |
 | breadcrumb.css:23 | gutter 22 to 16 | point used as a gutter | a fluid gutter token | moves into a token | moved, round 2: `--gutter-page`, the rule is gone |
-| patterns/grouped-list.css:26 | group heading padding, gutter 16 | point used as a gutter | a fluid gutter token | moves into a token | waits: Step 4 |
+| patterns/grouped-list.css:26 | group heading padding, gutter 16 | point used as a gutter | a fluid gutter token | moves into a token | moved, round 4: `@container (width < 20rem)` on the grouped list; not the gutter token, revised on verification (round 1): it is the rows' padding drift |
 | selbar.css:29 | gutter 16; buttons take equal width | point | gutter token + `@container` | moves | moved, round 2: `--gutter-page` and `@container (width < 42rem)` on the frame |
 | actionbar.css:19 | wraps; the note takes its own row; buttons equal width | point | `@container` | moves | moved, round 2: `@container (width < 29rem)` |
 | brief-row.css:33 | the actions take their own row | point | `@container` | moves | moved, round 2: `@container (width < 28rem)` |
@@ -314,7 +345,7 @@ Everything sits on one number, 820, which **a viewport** measures. Of 17 rules, 
 | legal-doc.css:28 | `font-size` of the prose 15 to 14 | point on type | `clamp()` in the type scale | moves into the scale | moved, Step 2: --type-legal; the rule is gone |
 | marketing-shell.css:27 | `font-size` h1 36 to 27, lead to 14.5 | point on type | `clamp()` | moves into the scale | moved, Step 2: --type-3xl and --type-lead; the rule is gone |
 | public-doc.css:65 | gutter 16; `font-size` h1 29 to 24; the confidence loses its margin | point | gutter token + `clamp()` + `@container` | moves | font size moved, Step 2 (--type-2xl); round 3: sides `--gutter-page`, top and bottom fluid, the pill `@container (width < 21rem)` |
-| one-off.css:112 | footer and list-note gutters; the CSV map goes from 4 columns to 2 | point | gutter token + `@container` declared by the map | moves | moved, round 3: the footer `@container (width < 34rem)`, the map `@container (width < 41rem)` on the column; the list note waits for round 4 |
+| one-off.css:112 | footer and list-note gutters; the CSV map goes from 4 columns to 2 | point | gutter token + `@container` declared by the map | moves | moved, round 3: the footer `@container (width < 34rem)`, the map `@container (width < 41rem)` on the column; the list note in round 4, `@container (width < 20rem)` |
 
 ### Home: the fluid and the container, already there
 

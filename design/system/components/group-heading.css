@@ -8,7 +8,7 @@
    which is the difference between a variant and drift.
 
    The list form has no modifier and, since Stage 09 Step 1, no geometry of its own here: its
-   padding (16 8 6, and 14 16 6 at 820 and below) is the spacing between groups of a list, which
+   padding (16 8 6, and 14 16 6 under a 20rem place since Stage 10) is the spacing between groups of a list, which
    is a composition, so it moved to design/system/patterns/grouped-list.css. Cut from this file,
    not copied. The bare class is the type; the pattern places it. The two modifiers lost the
    `padding: 0` that only cancelled the list padding.

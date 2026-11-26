@@ -42,7 +42,7 @@
 
       <section class="kit-sec" id="anatomy">
         <h2 class="kit-h2">Anatomy</h2>
-        <p class="kit-note">The live pattern from <a class="link" href="../synthesis.html">2.0 Synthesis</a>, three of its six ranked themes, one of them low signal. Narrow the window under 820px and the toolbar folds into one Filter button with its count: that is the toolbar's own form, not the pattern's.</p>
+        <p class="kit-note">The live pattern from <a class="link" href="../synthesis.html">2.0 Synthesis</a>, three of its six ranked themes, one of them low signal. When the list's place is narrower than 39rem (624px), the toolbar folds into one Filter button with its count: that is the toolbar's own form, not the pattern's.</p>
         <div class="scene kit-anat">
           <div class="filtered-list" data-kit-n="3">
             <div class="toolbar" data-kit-n="1">
@@ -269,7 +269,10 @@
         <h2 class="kit-h2">What the pattern owns</h2>
         <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Selector</th><th>Declaration</th><th>Where it came from</th></tr></thead><tbody>
           <tr><td>.filtered-list &gt; .toolbar</td><td><code>margin-bottom: var(--space-2)</code>, 6px</td><td><code>components/toolbar.css</code>, cut at Stage 09 Step 1, not copied. The toolbar's padding and its hairline stayed there: they are the row's own edge, and a pattern carries no colour</td></tr>
+          <tr><td>.filtered-list</td><td><code>container-type: inline-size</code></td><td>Stage 10 Step 4, round 4: the pattern places the toolbar and the list, so it declares their place</td></tr>
         </tbody></table></div>
+        <h3 class="kit-h3">Behaviour at width</h3>
+        <p class="kit-note"><b>The composition has nothing to rearrange</b>: a toolbar over its list at every width. What it adds is the place: <code class="kit-mono">.filtered-list</code> is a container, so the toolbar (full row from 39rem, the compact Filter button below) and the theme card (29rem) answer the list, not the window. The list is as wide as the page column on every screen, so neither threshold moved and no screen changed a pixel. A filtered list put in a narrower place on a later screen (a side panel, a dialog) gets the compact toolbar there by itself. Live: the anatomy above, and the toolbar's own pair on <a href="toolbar.html">toolbar.html</a>.</p>
         <p class="kit-note"><b>One declaration, and no new value.</b> A pattern that needs a style of its own is a missing component or a missing variant, and that comes first.</p>
       </section>
 
@@ -307,6 +310,7 @@
       <section class="kit-sec">
         <h2 class="kit-h2">Changes, newest first</h2>
         <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-27</td><td>Stage 10 Step 4, round 4: behaviour at width. The pattern declares <code>container-type</code> for the toolbar and the list it places; nothing of its own adapts</td><td><code>design/kit/docs/responsive.md</code>, "Round 4, patterns"</td></tr>
           <tr><td>2026-11-26</td><td>This page, in the card format of the component pages: anatomy with each part linked, the two toolbar forms, the path, the rule and anti-rule, where it stands in grey and in colour</td><td><code>docs/decisions.md</code>, "Step 2: the patterns showcase"</td></tr>
           <tr><td>2026-11-25</td><td>The pattern created: <code>patterns/filtered-list.css</code>, the 6px under the toolbar cut into it. 6 colour pages moved onto it, 0 differing pixels at 360 and 1440</td><td><code>docs/decisions.md</code>, "Step 1: patterns and usage rules, in one pass"</td></tr>
         </tbody></table></div>

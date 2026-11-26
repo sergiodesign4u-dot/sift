@@ -16,13 +16,23 @@
    headings and the bodies. A modifier form of the heading (--section, --inline) is never a direct
    child here; it keeps its own margins.
 
+   BEHAVIOUR AT WIDTH (Stage 10 Step 4, round 4). The pattern PLACES its rows, so it declares
+   their place: container-type on .grouped-list, and the source row, the brief row and the
+   heading read it (it is as wide as the column on every screen, so no threshold moved). The
+   heading's narrow form is not a break, it is a drift kept for the 360 promise: on the phone the
+   heading's text stands at 16px inside the list while every row's stands at 8, and from the wide
+   form on they align. So the narrow form holds exactly where the promise binds, under a 20rem
+   place, and every wider place, a 412 phone included, gets the aligned one. Aligning 360 too is
+   the owner's decision, not this file's: it moves 360.
    No colour, no new visual decision. No em dash anywhere in this file.
 */
 
+.grouped-list { container-type: inline-size; }
 .grouped-list > .group-t { padding: var(--space-7) var(--space-3) var(--space-2); }
 
-/* At 820 and below the heading takes the screen's 16px gutter, the side padding a row has on a
-   phone. kit.css:754 and :764 originally, then group-heading.css until Stage 09. */
-@media (max-width: 820px) {
+/* threshold 20rem, the narrowest place a 360 window gives (316px) and no wider: below it the
+   heading keeps the 14 16 6 the phone was drawn with. kit.css:754 and :764 originally, then
+   group-heading.css until Stage 09, an 820 viewport query until Stage 10. */
+@container (width < 20rem) {
   .grouped-list > .group-t { padding: 14px var(--space-7) var(--space-2); }
 }

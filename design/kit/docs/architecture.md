@@ -130,7 +130,7 @@ stops being true.
 ## Contributing to the system
 
 *Stage 09 Step 4. One rule: anything new appears in `design/system/` FIRST, and on a screen second.
-Never the other way round. Six kinds of new, each with its addresses. A thing with one of its
+Never the other way round. Seven kinds of new (the width rule added at Stage 10 Step 4), each with its addresses. A thing with one of its
 addresses missing is not ready, and a screen does not use it yet.*
 
 | What is new | Where it goes, in this order | Ready when |
@@ -140,6 +140,7 @@ addresses missing is not ready, and a screen does not use it yet.*
 | A composition | three grey screens first; then the pattern's five things | the colour screens that carry it moved onto it with a pixel proof; on two screens it stays markup, a row in the candidates on `patterns.html` |
 | A value | `tokens.css`, at its level | said out loud as "variable, value, why"; a role and a state token arrive with their light pair |
 | A block that stands on one screen | `design/system/one-off.css`, its own group after the organisms, and a row in "One-off blocks" on `overview.html`; no page, no registry entry, no inventory row | the owner said "keep"; a second occurrence moves it to `components/` with the five things |
+| A behaviour at width | a shared value in `tokens.css`; the brick in its place in the component's file through `@container`; a composition in its pattern's file; the shell in the shell's files through `@media`. **In a screen file: forbidden** | the threshold is measured and listed in "Container thresholds" of `responsive.md`; the placer declares `container-type`; 360 does not move |
 | Something on a screen with none of the five above | **nowhere: forbidden** | never. What the system lacks is a row in `backlog.md`, and the screen waits or ships without it |
 
 ### A component: five things, and the last two are the ones that get forgotten
@@ -198,6 +199,38 @@ like anything else, and is listed in "One-off blocks" on `overview.html`. A seco
 it into a component: it leaves `one-off.css` for `components/` with the five things, and that is
 said out loud. Added at Stage 09 Step 6: the reader who built 3.6 from this page found no address
 for its Disconnect confirm, which stands on one screen.
+
+### A behaviour at width
+
+*Stage 10 Step 4. The rule of growth for width, and the one Stage 12 is most likely to break: twenty
+screens built in parallel would each bring their own media query, and the responsive behaviour
+would scatter across twenty files the way inline style did at Stage 04.*
+
+Read top down, and take the first rung that works: **fluid** (`clamp()` with a `rem` term, `%`,
+`minmax()` with `auto-fit`, `flex-wrap`), then **container** (a `max-width` in `rem`, a measure in
+`ch`), then a **query**. Where the answer lives:
+
+- a value several things share (a measure, a gutter, a grid minimum, the page width): a token in
+  `tokens.css`, with its readers named in its comment;
+- a brick that rearranges itself: its own file, `@container` with a LOCAL threshold, never a token,
+  commented `/* threshold Xrem: below it ... */`. The threshold is the measured width of the PLACE
+  where the wide form breaks, plus at least 1rem, rounded up to a whole rem, and above what a 360
+  window gives that place, so 360 does not move. It is listed in "Container thresholds" of
+  `design/kit/docs/responsive.md`;
+- `container-type: inline-size` is declared by **the one who places** the brick (the screen shell,
+  a pattern, the public column, the legal document for its contents), never by the brick: a place
+  is not a property of a brick. A query with no container above it never matches and raises no
+  error, so after every new `@container`, narrow its place in the browser and watch it switch;
+- a composition: its pattern's file, one query, reaching every screen it stands on;
+- the navigation carrier: the shell's files, `app-header.css` and `bottom-tabs.css`, through
+  `@media (min-width: 37.5rem)`, the one point of the product (`--bp-shell-wide`). A media query
+  cannot read `var()`, so the literal stands there and the token is its register;
+- **a screen file: never.** No `@media`, no `style=`, no `<style>` in `design/*.html`; checked by
+  grep, not by eye.
+
+**A new point is the owner's decision**, with an audit row in `responsive.md` saying why the fluid
+and the container could not do it, and a name that says what changes, not which device. The
+product has one point; two is the ceiling; a third is never added in passing.
 
 ### Something new on a screen alone
 

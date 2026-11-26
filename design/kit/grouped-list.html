@@ -103,7 +103,7 @@
           <li><span class="kit-legend-n">1</span><span><a href="group-heading.html">Group heading</a>, atom, <code>.group-t</code> in its list form. Names the group and counts it: "Connected &middot; 2". The same heading opens every group.</span></li>
           <li><span class="kit-legend-n">2</span><span>A list of rows, <code>ul.list</code>: here <a href="source-row.html">Source row</a>, molecule. On other screens the rows are a <a href="brief-row.html">Saved brief row</a>, an <a href="snippet.html">Evidence snippet</a> or, while it loads, a <a href="skeleton-card.html">Skeleton card</a>.</span></li>
           <li><span class="kit-legend-n">3</span><span>A grid of cards, <code>.src-avail</code> of <a href="source-card.html">Source card</a>, molecule. A body does not have to be a list: an inline <a href="state.html">Empty state</a> is a body too (6.5).</span></li>
-          <li><span class="kit-legend-n">4</span><span>The pattern, <code>.grouped-list</code>. It owns one thing: the space above each heading and between a heading and its body, 16px above, 6px below, 8px at the sides (14, 16 and 6 at 820px and below). No colour, no line, nothing else.</span></li>
+          <li><span class="kit-legend-n">4</span><span>The pattern, <code>.grouped-list</code>. It owns one thing: the space above each heading and between a heading and its body, 16px above, 6px below, 8px at the sides (14, 16 and 6 under a 20rem place, the one a 360 window gives). No colour, no line, nothing else.</span></li>
         </ol>
       </section>
 
@@ -279,8 +279,15 @@
         <h2 class="kit-h2">What the pattern owns</h2>
         <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Selector</th><th>Declaration</th><th>Where it came from</th></tr></thead><tbody>
           <tr><td>.grouped-list &gt; .group-t</td><td><code>padding: var(--space-7) var(--space-3) var(--space-2)</code>, 16 8 6</td><td>the list form of <code>.group-t</code> in <code>components/group-heading.css</code>, cut at Stage 09 Step 1, byte for byte, not copied</td></tr>
-          <tr><td>at 820px and below</td><td><code>padding: 14px var(--space-7) var(--space-2)</code>, 14 16 6: the sides take the screen's 16px gutter, the padding a row has on a phone</td><td>the same file, <code>kit.css:754</code> and <code>:764</code> before that</td></tr>
+          <tr><td>under a 20rem place</td><td><code>@container (width &lt; 20rem)</code>: <code>padding: 14px var(--space-7) var(--space-2)</code>, 14 16 6</td><td>the same file; an 820 viewport query until Stage 10; <code>kit.css:754</code> and <code>:764</code> before that</td></tr>
+          <tr><td>.grouped-list</td><td><code>container-type: inline-size</code></td><td>Stage 10 Step 4, round 4: the pattern places the rows, so it declares their place</td></tr>
         </tbody></table></div>
+        <h3 class="kit-h3">Behaviour at width</h3>
+        <p class="kit-note"><b>The pattern declares the place of what it places.</b> <code class="kit-mono">.grouped-list</code> is a container, so the source row (36rem), the saved brief row (28rem) and the heading answer the list, not the window; the list is as wide as the page column on every screen, so no threshold moved. <b>The heading's narrow form is a drift kept, not a break:</b> on a phone its text stands at 16px inside the list while every row's stands at 8, and in the wide form they align. So the narrow form holds exactly where the 360 promise binds, under a 20rem place (a 360 window gives 316px), and every wider place, a 412 phone included, gets the aligned one. Aligning 360 too would move 360, which is the owner's decision. The list note (one-off, 4.1) takes the same threshold. The same list in two places:</p>
+        <div class="kit-widths">
+          <div class="kit-width kit-width--narrow"><div class="kit-width-cap">a 260px place: the heading at 16px, the row at 8</div><div class="grouped-list"><div class="group-t">Shared &middot; 1</div><ul class="list"><li class="brief-row"><div class="brief-main"><a class="brief-title" href="../shared-brief.html">Q3 roadmap: what customers need most</a><div class="brief-meta">3 themes &middot; 89 feedback items &middot; shared 2 days ago</div></div><span class="tag">Shared</span><div class="brief-actions"><a class="btn--ghost" href="../shared-brief.html">Open</a></div></li></ul></div></div>
+          <div class="kit-width kit-width--wide"><div class="kit-width-cap">the rest of this column: heading and row aligned at 8</div><div class="grouped-list"><div class="group-t">Shared &middot; 1</div><ul class="list"><li class="brief-row"><div class="brief-main"><a class="brief-title" href="../shared-brief.html">Q3 roadmap: what customers need most</a><div class="brief-meta">3 themes &middot; 89 feedback items &middot; shared 2 days ago</div></div><span class="tag">Shared</span><div class="brief-actions"><a class="btn--ghost" href="../shared-brief.html">Open</a></div></li></ul></div></div>
+        </div>
         <p class="kit-note"><b>Nothing else, and that is the rule of a pattern.</b> No colour, no line, no new value: every number above existed before the pattern did. A pattern that needs a style of its own is a missing component or a missing variant, and that comes first, through the five things a new component is.</p>
       </section>
 
@@ -320,6 +327,7 @@
       <section class="kit-sec">
         <h2 class="kit-h2">Changes, newest first</h2>
         <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-27</td><td>Stage 10 Step 4, round 4: behaviour at width. The pattern declares <code>container-type</code> for the rows it places; the heading's 820 viewport rule became <code>@container (width &lt; 20rem)</code>, so only the place a 360 window gives keeps the 16px drift</td><td><code>design/kit/docs/responsive.md</code>, "Round 4, patterns"</td></tr>
           <tr><td>2026-11-26</td><td>This page, in the card format of the component pages: anatomy with each part linked, four variants, the path, the rule and anti-rule, where it stands in grey and in colour</td><td><code>docs/decisions.md</code>, "Step 2: the patterns showcase"</td></tr>
           <tr><td>2026-11-25</td><td>The pattern created: <code>patterns/grouped-list.css</code>, the list form padding of <code>.group-t</code> cut into it. 8 colour pages moved onto it, 0 differing pixels at 360 and 1440</td><td><code>docs/decisions.md</code>, "Step 1: patterns and usage rules, in one pass"</td></tr>
         </tbody></table></div>

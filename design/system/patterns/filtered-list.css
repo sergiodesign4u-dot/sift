@@ -16,7 +16,12 @@
    Markup: <div class="filtered-list"> holds the .toolbar and the list that follows it. A "Load
    more" foot or a closing note stays outside.
 
+   BEHAVIOUR AT WIDTH (Stage 10 Step 4, round 4). The pattern places the toolbar and the list, so
+   it declares their place: container-type on .filtered-list. The toolbar (39rem) and the theme
+   card (29rem) read it; it is as wide as the page column on every screen, so neither threshold
+   moved. The composition itself has nothing to rearrange: a toolbar over a list at every width.
    No colour, no new visual decision. No em dash anywhere in this file.
 */
 
+.filtered-list { container-type: inline-size; }
 .filtered-list > .toolbar { margin-bottom: var(--space-2); }
