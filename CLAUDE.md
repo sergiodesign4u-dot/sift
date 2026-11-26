@@ -149,15 +149,17 @@ page, a named section registered in that page's `NAV_SECTIONS`, or a satellite p
   no appearance written on a page. A markup fix goes to the component page and to the screens where
   the component stands. A fix on one screen is a desync, and a contextual override
   (`.foo .btn { font-size: X }`) is an undeclared variant, not a patch. Prototype chrome
-  (`design/_panel.css`, the stands' frames) is a separate layer on `--pf-*` and never enters it.
+  (`design/_panel.css`, the stands' frames) is a separate layer on `--pf-*` and never enters it; it
+  stays dark in both themes, and its text owes 4.5:1 like the product's.
 - **A contrast check multiplies opacity.** Ink is the colour times the opacity of the element and
-  of every ancestor; a check that reads `color` alone passed a 3.44 for two steps.
+  of every ancestor.
 
 ## Contributing to the system
 
 New appears in `design/system/` FIRST and on a screen second, never the other way round; something
 new on a screen with none of the five below is forbidden, and what the system lacks is a row in
-`design/kit/docs/backlog.md`. When the owner says "keep" («залишаємо»):
+`design/kit/docs/backlog.md` with an ID, a level and a priority, shown in full on
+`design/kit/why.html#backlog`. When the owner says "keep" («залишаємо»):
 - about a **value**: the token of its level in `design/system/tokens.css`, said as "variable, value,
   why", in both themes if it is a role or a state; it reaches every screen by itself.
 - about a **component**: `design/system/components/<name>.css` and `design/kit/<name>.html`, plus its

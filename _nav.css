@@ -15,8 +15,12 @@
 
 :root {
   --nav-fg:     #a0a0b0;   /* sub-link ink */
-  --nav-active: #7c6af7;   /* current stage and current page */
-  --nav-muted:  #66667a;   /* stage labels, sections, SOON */
+  --nav-active: #8474f8;   /* current stage and current page. Was #7c6af7, 4.38 on its own tint; 4.86
+                              since Stage 09 Step 6 */
+  --nav-soon:   #7e7e92;   /* a stage or page not built yet: one step under --nav-muted, 4.92, instead
+                              of --nav-muted at 0.6 or 0.55 opacity, which read 2.77 (Stage 09 Step 6) */
+  --nav-muted:  #8a8a9e;   /* stage labels, sections, SOON. Was #66667a, 3.49 on --nav-bg; 5.78 since
+                              Stage 09 Step 6, one step under --nav-fg so hover still reads */
   --nav-rule:   #1e1e28;   /* dividers and the panel border */
   --nav-badge:  #3a3470;   /* badge fill */
   --nav-bg:     #0c0c0e;   /* panel background (the panel is fixed over content) */
@@ -81,7 +85,7 @@ a.nav-top:hover { color: var(--nav-fg); background: rgba(255, 255, 255, 0.03); }
   background: rgba(124, 106, 247, 0.12);
 }
 
-.nav-item.is-soon > .nav-top { opacity: 0.6; cursor: default; }
+.nav-item.is-soon > .nav-top { color: var(--nav-soon); cursor: default; }
 .nav-item.is-partial > .nav-top { color: var(--nav-fg); }
 
 .nav-badge {
@@ -95,7 +99,7 @@ a.nav-top:hover { color: var(--nav-fg); background: rgba(255, 255, 255, 0.03); }
 }
 
 .nav-badge-next { color: #e8e8ec; background: var(--nav-badge); }
-.nav-badge-soon { color: var(--nav-muted); background: rgba(255, 255, 255, 0.04); }
+.nav-badge-soon { color: var(--nav-soon); background: rgba(255, 255, 255, 0.04); }
 
 /* A group's counter sits right after its label and pushes the badge to the edge. */
 .nav-count {
@@ -146,7 +150,7 @@ a.nav-top:hover { color: var(--nav-fg); background: rgba(255, 255, 255, 0.03); }
   font-weight: 500;
 }
 
-.nav-link.is-soon { color: var(--nav-muted); opacity: 0.55; cursor: default; }
+.nav-link.is-soon { color: var(--nav-soon); cursor: default; }
 
 .nav-sections {
   list-style: none;

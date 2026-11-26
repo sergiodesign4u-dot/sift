@@ -1166,7 +1166,7 @@ style; its page gained the Limits sub-point (R7); the two provenance lines in `m
 Four independent sets (Codex read-only; a clean-context reader building 3.6 Source: manage from the
 system's pages alone; Claude in the browser on desync, layout-moving states and anatomy labels;
 `/impeccable audit`), merged after all four were in, every row checked in the current file. The
-owner answered "as you recommend". 28 found, 13 fixed, 10 withdrawn on verification, 5 deferred.
+owner answered "as you recommend". 28 found, 14 fixed, 10 withdrawn on verification, 4 deferred.
 The defect table and the contract checklist: `design/kit/docs/critique.md`, "Stage 09"; the proof:
 `design/kit/pixel-proof.html#s09`.
 
@@ -1179,7 +1179,7 @@ The defect table and the contract checklist: `design/kit/docs/critique.md`, "Sta
 | The focus ring's numbers became geometry primitives, `--ring-width` 2px, `--ring-offset` 2px, `--ring-offset-wide` 4px | Literals in a state selector, which the system forbids; values unchanged, the ring computes as before | a semantic level for them: geometry has none |
 | The prototype chrome: `--pf-text-3` from #66667a to #9696aa (3.49 to 6.74), a still-grey screen in the panel on `--pf-text-4` #7e7e92 (4.92) instead of 0.55 opacity (1.9), `--pf-accent-ink` #8474f8 for the hub's flow id (4.96). The theme switch applies only where the screen panel is: the hub stays dark | The detector and the re-check measured them; the hub took a stored light choice under dark chrome text, 1.22 | a light pair for the chrome: it is portfolio furniture, and the panel already stayed dark in both themes |
 | Two new backlog rows: S6-1 (a note under a section heading), S6-2 (a destructive action that is the confirm); the 5.0 quote's measure named in B-25 | Gaps in the system, not in its pages; Stage 12 paints 3.6, Stage 10 owns the measure | drawing them now: the stage tests completeness, it does not fill it |
-| The roadmap sidebar's top links on the hub, 3.49, left to the owner | `/_nav.css` belongs to the root roadmap, not to this stage | editing a file another stage owns |
+| The roadmap sidebar in `/_nav.css`, on the owner's "go, and the roadmap too": `--nav-muted` #66667a to #8a8a9e (3.49 to 5.78), `--nav-active` #7c6af7 to #8474f8 (4.38 to 4.86 on its tint), and a `--nav-soon` ink #7e7e92 (4.92) in place of 0.6 and 0.55 opacity (2.77) | The file belongs to the root roadmap, so it waited for the owner; it is on every page of the project | a light pair: the sidebar is dark on every page |
 
 **What Stage 09 leaves.** Patterns taken: Grouped list (3.0, 4.0, 6.0) and Filtered list (2.0, 4.0,
 6.1). Rejected as patterns, with the reason on `patterns.html`: the sub-page head (a slot of the
@@ -1190,3 +1190,11 @@ screen: a group heading over an inline empty state (3.0, 6.0), the list and its 
 (3.2, 3.3). No component level of tokens was made: two levels hold, and nothing at Stage 09 needed a
 third, since the one component the stage added, the raw item, reads existing roles only. The
 roadmap group Design System keeps `wip` (2/4); Stage 11 closes it.
+
+**The closing ritual,** written after the owner's "go": `CLAUDE.md` now says that a backlog row has
+an ID, a level and a priority and is shown in full on `design/kit/why.html#backlog`, and that the
+prototype chrome stays dark in both themes with its text at 4.5:1; the journal fragment "passed a
+3.44 for two steps" left the opacity rule (the story is in Stage 08 Step 9 above). With the Step 6
+addition of the one-screen kind, 169 to 173 lines of 200. README: Design System = Done. `/_nav.js`:
+`done:true` on System guide since Step 3, `wip` on the group kept, 2/4, for Stage 11 to remove.
+

@@ -229,7 +229,7 @@ The owner answered "as you recommend" (2026-11-26), which took the proposed prio
 | D14 | Contrast, prototype chrome | `design/_panel.css` | The panel's grey 3.49, a still-grey screen 1.9 | impeccable | **fixed**: 6.74 and 4.92 |
 | D15 | Contrast, prototype chrome | `design/overview.html`, `_panel.css` | The hub in the light theme, 1.22 | Claude, impeccable | **fixed**: the switch applies only where the screen panel is; the chrome stays dark |
 | D15a | Contrast, prototype chrome | `_panel.css`, `.ov-flow-id` | 4.48, found by the re-check after D14 | Claude | **fixed**: `--pf-accent-ink`, 4.96 |
-| D15b | Contrast, outside the stage | `/_nav.css`, the roadmap's top links on the hub | 3.49 | Claude | **owner**: the root sidebar is another stage's file |
+| D15b | Contrast, the roadmap sidebar | `/_nav.css` | The top links 3.49; on the re-check the current stage 4.38, the current page 4.48, the SOON entries 2.77 through opacity | Claude | **fixed** on the owner's "go, and the roadmap too": `--nav-muted` 5.78, `--nav-active` 4.86, a `--nav-soon` ink at 4.92 in place of the opacity; 0 under 4.5 on six pages that carry the sidebar |
 | D16 | The 10px step, line measure on the stand | the kit's panel and notes | Detector: 175 + 10 + 11 hits | impeccable | **backlog**: B-24, B-25, Stage 10 |
 | W1 | Documentation lies | `critique.md:162` | "50 of 50" | Codex | **withdrawn on verification**: a dated Stage 08 log line |
 | W2 | Token without a page | `color.html` | `--opacity-disabled` missing | Codex | **withdrawn on verification**: not a colour; on `button.html` and `architecture.html` |
@@ -245,7 +245,7 @@ Codex, read-only, over the 23 changed files and what they reference: 0 findings 
 Claude: 14 changed kit pages at 360 and 1440 in both themes, 56 renders, no overflow, no page
 error; the only flag is the disabled textarea specimen on `input.html`, exempt as an inactive
 control. The panel on all 24 screens in both themes at both widths: no text under 4.5. The hub:
-no text under 4.5 except D15b. The 11 pages moved onto patterns at Step 1, shot again: 22 pairs,
+no text under 4.5 except D15b, fixed after the owner's go. The 11 pages moved onto patterns at Step 1, shot again: 22 pairs,
 0 px against the Step 1 frames. The focus ring computes 2px / 2px, and 4px on the title input, as
 before the tokens.
 
@@ -294,10 +294,10 @@ status row was withdrawn on verification, a dated row true at the close of Stage
 | Done when: no moves, no `design-system/`, no `git mv` | done | no folder; no rename in `git log c8e001f..HEAD` |
 | Done when: `wireframes/` unchanged | done | 0 files changed since `c8e001f` |
 | Done when: README Design System = Done with a section, route in two or three clicks | done | README; root index, then "System guide" (1), then any component in the kit panel (2) |
-| Done when: the closing ritual | **not done** | the table of what to add and remove in `CLAUDE.md` is shown to the owner and waits for "go" |
+| Done when: the closing ritual | done | shown to the owner as a table, written after "go": the backlog line with ID, level, priority and its address; the chrome dark in both themes at 4.5; the journal fragment removed from the opacity rule. `CLAUDE.md` 169 to 173 lines of 200 |
 | Done when: the contract as a checklist | done | this table |
 
-Two rows are "skipped on purpose" and one is "not done". The inventory's visible section and the
+Two rows are "skipped on purpose". The closing ritual was "not done" until the owner's go. The inventory's visible section and the
 backlog's level and priority were missing until this step found them, so this table is not green by
 default.
 
