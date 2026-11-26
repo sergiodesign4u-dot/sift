@@ -175,7 +175,7 @@ window.KIT_NAV = {
       uses: '12', screens: '4.0, 4.1', states: 'hover, focus-visible; redacted is a mark' },
     { file: 'provlist.html', css: 'provlist.css', title: 'Provenance list', category: 'evidence', level: 2, card: true,
       purpose: 'Where one item came from, a line per fact. Promoted from one-off at Step 2, built at Step 6.',
-      uses: '3', screens: '5.0, 5.1, 3.6 (grey only)', states: 'none, not interactive; its links keep their own' },
+      uses: '3', screens: '5.0, 5.1, 3.6 (colour on 5.0 and 5.1)', states: 'none, not interactive; its links keep their own' },
 
     { file: 'notice.html', css: 'notice.css', title: 'Notice band', category: 'feedback', level: 2, card: true,
       purpose: 'One statement about the screen, and the tone is the claim: neutral, amber, red.',

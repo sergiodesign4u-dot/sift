@@ -60,7 +60,7 @@ window.DESIGN_NAV = [
       { key: 'error', label: 'error', file: 'theme-error.html' } ] },
   ]},
   { id: '5', title: 'Evidence trace', screens: [
-    { key: '5.0', label: 'Evidence source', file: 'evidence.html', state: 'grey', states: [
+    { key: '5.0', label: 'Evidence source', file: 'evidence.html', state: 'colour', states: [
       { key: 'base', label: 'raw in context', file: 'evidence.html' },
       { key: 'redacted', label: 'redacted (5.1)', file: 'evidence-redacted.html' } ] },
   ]},

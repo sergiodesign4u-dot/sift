@@ -1095,3 +1095,47 @@ patterns, in the md and on the page, at full ink. Checked: `architecture.html`, 
 `overview.html` and `patterns.html` at 360 and 1440 in both themes, 16 renders, no horizontal
 scroll, no console error, no dead local link, every text element on the two rebuilt pages at 4.5
 or above with opacity multiplied.
+
+## Step 5: the next screen of the product, built from the system (2026-11-26)
+
+**The screen.** 15 grey screens had no colour copy; the owner took the recommendation, 5.0
+Evidence source with its state 5.1: the one step of Flow 0 that was still grey (2.0, 4.0, 5.0,
+6.1, 6.3, 6.4), and the end of the chain claim, evidence, raw source. The product's colour scope
+grew by one screen, two pages: `design/evidence.html`, `design/evidence-redacted.html`. Standard
+branch: the node exists, so IA was not touched; the grey originals were not touched.
+
+**Built from `design/system/index.css` alone.** No `style=`, no `<style>`, nothing added to the
+system. The only change inside `design/system/` is the comment of `provlist.css`, which said no
+colour screen wore it. The 4.0 snippets (`theme.html`, `theme-low-signal.html`) now link to the
+colour 5.0 instead of the grey one: a link, no pixel moved. `design/_nav.js` marks 5.0 as colour.
+
+**Six rows to the backlog**, `design/kit/docs/backlog.md`, "Stage 09 Step 5", shown on
+`design/kit/why.html#backlog`: the raw item (S5-1), the copy action's done state and payload
+(S5-2), the theme's confidence on 5.0 (S5-3), the unresolved citation (S5-4), the breadcrumb's
+narrow form (S5-5), one edition of the author line (S5-6). None is drawn in on the screen.
+
+| Decision | Why | Rejected |
+|---|---|---|
+| The closing actions stand in `.actionbar` | the first assembly used a plain block on the claim that no component existed; the critique's design review showed `.actionbar` is "the row where a screen's closing actions sit". An assembly error, fixed on the screen | a backlog row for a component that exists |
+| R6 widened: a state's title may be the `h1` where the state is the whole screen, 8.0 to 8.2 and now 5.1 | 5.1's grey titles the page with the state; the rule was too narrow, not the screen wrong. Changed in `architecture.md`, `architecture.html` and the Limits of `screen-head.html` and `state.html` | rebuilding 5.1 as 5.0's head plus `.state--inline`, which changes the grey's structure |
+| R7 not widened here | whether every theme named as a claim must carry `n=X` is a decision on D2's reach; it goes to the owner with S5-3 | widening a product rule inside a test step |
+| The 5.1 article is labelled by its title | `ia/docs/pages/evidence.md:44` asks for a clear labelled region; markup, not a style | |
+| The provenance candidate on `patterns.html` now has its colour copy | it waited for "a third screen, and a colour copy"; only the third screen is missing now | |
+
+**Usage rules, by name, on 5.0 and 5.1.** R1 held (one fill each). R2 held (one action bar, no
+selection bar). R3 held (no `.state`). R4 held (0 and 1 notice). R5 held (information tone, on the
+canvas). R6 held after widening. R7 held as written (no `.theme`), too narrow in spirit: S5-3. R8
+held. R9 held.
+
+**`/impeccable critique`**, two isolated assessments. Design review 25/40: the materials are Sift,
+the composition is generic, and the quote is smaller than its title. Detector: the CLI's 4
+findings are false positives (it does not resolve the `@import`s of `index.css`; the browser shows
+the brand in primary ink and an h1 1.63 times the body); in the canvas the overlay found the
+quote's line length, the 10px section label (the existing micro-step row) and one straggler on
+5.1. Every text pair at 4.5 or above (lowest 5.25, the citation in light), no overflow at 360,
+every target 44px except the 28px avatar (decided by the owner) and inline links.
+
+**Found outside the step, not fixed.** The product hub `design/overview.html` (prototype chrome on
+`--pf-*`) fails contrast: its intro at 3.45 in the dark theme, and under the product's light switch
+its "Walk by flow" heading at 1.22. The panel of every colour screen has 10px labels and a 1.9
+greyed link. Both predate this step; they belong to Step 6.

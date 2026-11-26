@@ -1,9 +1,9 @@
 /* design/system/components/provlist.css - level 2, molecule.
    Reads: --text-secondary, --text-primary, --line-hairline, --weight-strong, --space-1, --space-2, --space-5
    Page:  design/kit/provlist.html
-   Stands on: 5.0 Evidence source, 5.1 Evidence redacted, 3.6 Source detail, in grey only
+   Stands on: 5.0 Evidence source, 5.1 Evidence redacted, 3.6 Source detail in grey
               (wireframes/evidence.html, evidence-redacted.html, sources-manage.html, class
-              wf-prov-list). No colour screen wears it yet; Stage 12 paints it.
+              wf-prov-list). In colour on 5.0 and 5.1 since Stage 09 Step 5; 3.6 waits for Stage 12.
    Contains: .cite, the static citation index, an atom in components/citation.css.
 
    Where one item came from, a line per fact. Promoted from the one-off wf-prov-list at Step 2
