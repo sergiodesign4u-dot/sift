@@ -75,7 +75,7 @@ at 360 differ from the commit before by 0 pixels.
 
 ## Container thresholds (local, not tokens)
 
-Empty until Step 4. A container threshold belongs to its component and is not a token, but it is
+None after round 1. A container threshold belongs to its component and is not a token, but it is
 listed here, so that the check can tell it from a device breakpoint.
 
 ## The shell
@@ -112,7 +112,21 @@ inside the column. 6.4 and 0.0 have no app frame and did not change. The stand g
 
 ## Component and pattern behaviour
 
-Empty until Step 4.
+Rounds bottom up (atoms, molecules, organisms, patterns). Each opens with the full roll call of its
+level from Part C and closes with N = M + K.
+
+### Round 1, atoms: N 17 = M 3 + K 14
+
+| Atom | Verdict | Done |
+|---|---|---|
+| scope line | container | `scope.css` reads `--container-text` (52ch) instead of `--measure-prose` (92ch) |
+| skeleton bar | fluid, already | none: percent lengths 64, 52, 30 |
+| group heading | through its placer | none here: its 820 rule is in `patterns/grouped-list.css` and is the rows' inner padding (8 to 16), not the page gutter; it moves with the pattern in round 4. The Step 1 verdict "gutter token" is revised on verification |
+| button, input, checkbox, field label, filter chip, confidence, citation, status tag, rank, avatar, icon slot, inline link, drag handle, list row link | does not adapt | reasons in the inventory's Width column |
+
+No container threshold among the atoms. Held against Step 3: 360 at 0 pixels on 24 of 24 screens;
+at 1024 and 1440 exactly the 13 screens with a scope line changed (26 frames), each from the scope
+line down; every other screen 0.
 
 ## New behaviour
 

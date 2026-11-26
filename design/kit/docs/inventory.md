@@ -574,59 +574,63 @@ The number that matters is the last one: the same product is now described by 63
 has all five: its css, its page, its entry in the kit registry, this row, and its `@import` in the
 group of its own level.*
 
-| Level | Component | CSS | Page | States | Screens |
-|:--:|---|---|---|---|---|
-| 1 | **Button** | `components/button.css` | `kit/button.html` | hover, active, focus-visible, disabled | every screen. 67 filled, 33 outlined, 4 bare, 13 icon-only, 11 large |
-| 1 | **Input** | `components/input.css` | `kit/input.html` | hover, focus-visible, error, disabled. No active: a field has no pressed state | 8 screens, 18 fields |
-| 1 | **Checkbox** | `components/checkbox.css` | `kit/checkbox.html` | hover, checked, focus-visible, disabled | 2.0, 7.2. 11 |
-| 1 | **Field label** | `components/field-label.css` | `kit/field-label.html` | none, not interactive | 6 screens. 14 |
-| 1 | **Filter chip** | `components/chip.css` | `kit/chip.html` | hover, on, focus-visible, disabled | 5 screens. 12 |
-| 1 | **Confidence indicator** | `components/confidence.css` | `kit/confidence.html` | none, not interactive | 9 screens. 24 |
-| 1 | **Citation marker** | `components/citation.css` | `kit/citation.html` | hover and focus on the linked form; the static index has none | 5 screens. 25 static, 6 linked |
-| 1 | **Status tag** | `components/tag.css` | `kit/tag.html` | none, not interactive | 5 screens: 3.0, 3.5, 6.0, 6.1, 6.2 (corrected at Stage 09 Step 6; 3.4 and 3.6 carry none). 8 |
-| 1 | **Rank number** | `components/rank.css` | `kit/rank.html` | none, not interactive | 4 screens. 16 |
-| 1 | **Avatar** | `components/avatar.css` | `kit/avatar.html` | focus-visible. Hover deliberately empty | 28 screens |
-| 1 | **Icon slot** | `components/iconslot.css` | `kit/iconslot.html` | none, not interactive | 34 screens |
-| 1 | **Scope line** | `components/scope.css` | `kit/scope.html` | none. Four CONTENT states, written in words | 13 screens |
-| 1 | **Skeleton bar** | `components/skeleton.css` | `kit/skeleton.html` | the shimmer, and it stops under prefers-reduced-motion | 2.2, 4.2 |
-| 1 | **Inline text link** | `components/link.css` | `kit/link.html` | hover, focus-visible. Visited and disabled named as absent, with reasons | 18 screens. 88 |
-| 1 | **Drag handle** | `components/drag.css` | `kit/drag.html` | the cursor only. Keyboard reordering named as a real gap | 6.1, 6.2. 7 |
-| 1 | **List row link** | `components/cardrow.css` | `kit/cardrow.html` | hover, focus-visible | 7.0. 3 |
-| 1 | **Group heading** | `components/group-heading.css` | `kit/group-heading.html` | none, not interactive | 12 screens. 29 |
-| 2 | **Theme card (ranked row)** | `components/theme-card.css` | `kit/theme-card.html` | hover, selected (`.check:checked`), focus-visible on the links inside. Low signal is a content variant, the clamped quote is the 360 form | 2.0. 6 rows, declared exception |
-| 2 | **Provenance list** | `components/provlist.css` | `kit/provlist.html` | none, not interactive; its links keep their own | 5.0, 5.1, 3.6 (grey only). 3. Built at Step 6 from the grey anatomy |
-| 2 | **Evidence snippet** | `components/snippet.css` | `kit/snippet.html` | hover, focus-visible. Redacted is a `.redacted` mark in the meta line | 4.0, 4.1. 12 |
-| 2 | **Raw item** | `components/rawitem.css` | `kit/rawitem.html` | none, not interactive; its links and citation index keep their own | 5.0, 5.1. 2. Added at Stage 09 Step 5 from backlog row S5-1: the first component the system grew by its own contribution rule |
-| 2 | **Source row** | `components/source-row.css` | `kit/source-row.html` | hover on the row; focus-visible on its buttons. Failed carries `.rowalert` | 3.0, 3.5. Healthy 3, failed 1 (recounted at Stage 09 Step 6: 3.6 draws no source row) |
-| 2 | **Source card (available)** | `components/source-card.css` | `kit/source-card.html` | none, not interactive; its button keeps its own | 3.0, 3.4, 3.5. Connectable 6, not yet available 3 |
-| 2 | **Saved brief row** | `components/brief-row.css` | `kit/brief-row.html` | row hover, title hover, focus-visible on the title | 6.0. Shared 2, draft 1 |
-| 2 | **Composer brief row** | `components/composer-row.css` | `kit/composer-row.html` | none of its own; the remove button keeps its focus. Dragging `[?]` | 6.1, 6.2 |
-| 2 | **Account row** | `components/account-row.css` | `kit/account-row.html` | checked, which is the checkbox's own | 7.1, 7.2 |
-| 2 | **Form field** | `components/field.css` | `kit/field.html` | the error line. Hover and focus are the input's | 1.0, 1.1, 1.2, 3.2, 6.1 |
-| 2 | **Notice band** | `components/notice.css` | `kit/notice.html` | none, not interactive. Three tones | 7 screens. Information 5, warning 1, error 1 |
-| 2 | **Screen head** | `components/screen-head.css` | `kit/screen-head.html` | none. The action hides while the selection bar is up: a shell rule, round 3 | 15 screens |
-| 2 | **Toolbar (filter and sort)** | `components/toolbar.css` | `kit/toolbar.html` | none of its own, the chips keep theirs. Full above 820, compact below | 2.0, 3.0, 4.0, 5.0, 6.0, 6.1 |
-| 2 | **Selection bar** | `components/selbar.css` | `kit/selbar.html` | none of its own. Hidden or present is the shell's trigger, round 3 | 2.0, 6.1, 6.2 |
-| 2 | **Action bar** | `components/actionbar.css` | `kit/actionbar.html` | none, not interactive | 3.2, 3.3, 3.6, 6.1 |
-| 2 | **Phase strip** | `components/phase-strip.css` | `kit/phase-strip.html` | per step: upcoming, current, done. Not interactive | 2.1, 2.2, 3.2, 3.3, 6.1, 6.2 |
-| 2 | **Breadcrumb** | `components/breadcrumb.css` | `kit/breadcrumb.html` | hover, focus-visible | 9 screens |
-| 2 | **Skeleton card** | `components/skeleton-card.css` | `kit/skeleton-card.html` | none, not interactive. The shimmer is the bar atom's | 2.2, 4.2, and 6.3 measured |
-| 2 | **Legal TOC** | `components/legal-toc.css` | `kit/legal-toc.html` | hover, focus-visible | 9.0, 9.1, 9.2 (grey only) |
-| 2 | **Auth card** | `components/auth-card.css` | `kit/auth-card.html` | none, not interactive. Three content forms | 1.0, 1.1, 1.2 (grey only) |
-| 2 | **Marketing tier card** | `components/tier-card.css` | `kit/tier-card.html` | none, not interactive | 0.0. 4 tiers, measured; the Level 2 table now says four (Step 6) |
-| 2 | **Marketing step card** | `components/step-card.css` | `kit/step-card.html` | none, not interactive | 0.0. 3 measured |
-| 3 | **App header** | `components/app-header.css` | `kit/app-header.html` | per tab: rest, hover, current (`.active`), focus-visible. Tabs hidden at 820 and below | 27 screens. Canonical global 0.1 |
-| 3 | **Bottom tabs** | `components/bottom-tabs.css` | `kit/bottom-tabs.html` | per tab: rest, current (`.active`), focus-visible. Drawn at 820 and below only | 27 screens. Canonical global 0.1 |
-| 3 | **App footer** | `components/app-footer.css` | `kit/app-footer.html` | none, not interactive | 27 screens. Canonical global 0.2 |
-| 3 | **Public bar** | `components/public-bar.css` | `kit/public-bar.html` | none, not interactive | 10 screens |
-| 3 | **Empty / error state block** | `components/state.css` | `kit/state.html` | none, not interactive; its exits keep the button's | 8 screens. Centred 6, inline 2 |
-| 3 | **Form** | `components/form.css` | `kit/form.html` | none of its own; the error is the field's line. Submitting `[?]` | 9 screens, all grey |
-| 3 | **Dialog** | `components/dialog.css` | `kit/dialog.html` | none, not interactive. Generating is the 6.3 loading form | 6.3 (3.6's confirm is inline: backlog B-08) |
-| 3 | **Legal document** | `components/legal-doc.css` | `kit/legal-doc.html` | crumb and related links: hover, focus-visible | 9.0, 9.1, 9.2 (grey only) |
-| 3 | **Account shell** | `components/account-shell.css` | `kit/account-shell.html` | per nav item: hover, current, focus-visible | 7.0, 7.1, 7.2, 7.3 |
-| 3 | **Public document (shared brief)** | `components/public-doc.css` | `kit/public-doc.html` | none, not interactive | 6.4 |
-| 3 | **Marketing page shell** | `components/marketing-shell.css` | `kit/marketing-shell.html` | none, not interactive | 0.0 |
-| 3 | **Screen shell** | `components/screen-shell.css` | `kit/screen-shell.html` | none of its own. Owns the selection trigger, the notice gutter, the centring of a lone state or dialog | 27 screens. `.app` for a screen, `.appframe` for a stand |
+*Since Stage 10 Step 4 the last column says how the component behaves at width: fluid, container
+(with its local threshold), point (the shell only), or does not adapt, with the reason. Stage 12
+checks a new screen against this column; an empty cell means "behaves unknown at width".*
+
+| Level | Component | CSS | Page | States | Screens | Width (Stage 10) |
+|:--:|---|---|---|---|---|---|
+| 1 | **Button** | `components/button.css` | `kit/button.html` | hover, active, focus-visible, disabled | every screen. 67 filled, 33 outlined, 4 bare, 13 icon-only, 11 large | does not adapt: width is the placer's decision (`.u-full`, action bar, screen head) |
+| 1 | **Input** | `components/input.css` | `kit/input.html` | hover, focus-visible, error, disabled. No active: a field has no pressed state | 8 screens, 18 fields | does not adapt: it fills its field; the form gives the measure |
+| 1 | **Checkbox** | `components/checkbox.css` | `kit/checkbox.html` | hover, checked, focus-visible, disabled | 2.0, 7.2. 11 | does not adapt: a fixed 24px target |
+| 1 | **Field label** | `components/field-label.css` | `kit/field-label.html` | none, not interactive | 6 screens. 14 | does not adapt |
+| 1 | **Filter chip** | `components/chip.css` | `kit/chip.html` | hover, on, focus-visible, disabled | 5 screens. 12 | does not adapt: the toolbar wraps the chips |
+| 1 | **Confidence indicator** | `components/confidence.css` | `kit/confidence.html` | none, not interactive | 9 screens. 24 | does not adapt: its place is set by the theme card |
+| 1 | **Citation marker** | `components/citation.css` | `kit/citation.html` | hover and focus on the linked form; the static index has none | 5 screens. 25 static, 6 linked | does not adapt: an inline mark |
+| 1 | **Status tag** | `components/tag.css` | `kit/tag.html` | none, not interactive | 5 screens: 3.0, 3.5, 6.0, 6.1, 6.2 (corrected at Stage 09 Step 6; 3.4 and 3.6 carry none). 8 | does not adapt |
+| 1 | **Rank number** | `components/rank.css` | `kit/rank.html` | none, not interactive | 4 screens. 16 | does not adapt |
+| 1 | **Avatar** | `components/avatar.css` | `kit/avatar.html` | focus-visible. Hover deliberately empty | 28 screens | does not adapt |
+| 1 | **Icon slot** | `components/iconslot.css` | `kit/iconslot.html` | none, not interactive | 34 screens | does not adapt |
+| 1 | **Scope line** | `components/scope.css` | `kit/scope.html` | none. Four CONTENT states, written in words | 13 screens | **container**: stops at `--container-text` (52ch); was `--measure-prose`. Stage 10 Step 4 |
+| 1 | **Skeleton bar** | `components/skeleton.css` | `kit/skeleton.html` | the shimmer, and it stops under prefers-reduced-motion | 2.2, 4.2 | **fluid**, already: percent lengths (64, 52, 30) |
+| 1 | **Inline text link** | `components/link.css` | `kit/link.html` | hover, focus-visible. Visited and disabled named as absent, with reasons | 18 screens. 88 | does not adapt |
+| 1 | **Drag handle** | `components/drag.css` | `kit/drag.html` | the cursor only. Keyboard reordering named as a real gap | 6.1, 6.2. 7 | does not adapt |
+| 1 | **List row link** | `components/cardrow.css` | `kit/cardrow.html` | hover, focus-visible | 7.0. 3 | does not adapt: it fills the rail or the column it stands in |
+| 1 | **Group heading** | `components/group-heading.css` | `kit/group-heading.html` | none, not interactive | 12 screens. 29 | **through its placer**: its 820 rule is the grouped-list pattern's and follows the rows it heads (round 4, patterns) |
+| 2 | **Theme card (ranked row)** | `components/theme-card.css` | `kit/theme-card.html` | hover, selected (`.check:checked`), focus-visible on the links inside. Low signal is a content variant, the clamped quote is the 360 form | 2.0. 6 rows, declared exception | pending: round 2, molecules |
+| 2 | **Provenance list** | `components/provlist.css` | `kit/provlist.html` | none, not interactive; its links keep their own | 5.0, 5.1, 3.6 (grey only). 3. Built at Step 6 from the grey anatomy | pending: round 2, molecules |
+| 2 | **Evidence snippet** | `components/snippet.css` | `kit/snippet.html` | hover, focus-visible. Redacted is a `.redacted` mark in the meta line | 4.0, 4.1. 12 | pending: round 2, molecules |
+| 2 | **Raw item** | `components/rawitem.css` | `kit/rawitem.html` | none, not interactive; its links and citation index keep their own | 5.0, 5.1. 2. Added at Stage 09 Step 5 from backlog row S5-1: the first component the system grew by its own contribution rule | pending: round 2, molecules |
+| 2 | **Source row** | `components/source-row.css` | `kit/source-row.html` | hover on the row; focus-visible on its buttons. Failed carries `.rowalert` | 3.0, 3.5. Healthy 3, failed 1 (recounted at Stage 09 Step 6: 3.6 draws no source row) | pending: round 2, molecules |
+| 2 | **Source card (available)** | `components/source-card.css` | `kit/source-card.html` | none, not interactive; its button keeps its own | 3.0, 3.4, 3.5. Connectable 6, not yet available 3 | pending: round 2, molecules |
+| 2 | **Saved brief row** | `components/brief-row.css` | `kit/brief-row.html` | row hover, title hover, focus-visible on the title | 6.0. Shared 2, draft 1 | pending: round 2, molecules |
+| 2 | **Composer brief row** | `components/composer-row.css` | `kit/composer-row.html` | none of its own; the remove button keeps its focus. Dragging `[?]` | 6.1, 6.2 | pending: round 2, molecules |
+| 2 | **Account row** | `components/account-row.css` | `kit/account-row.html` | checked, which is the checkbox's own | 7.1, 7.2 | pending: round 2, molecules |
+| 2 | **Form field** | `components/field.css` | `kit/field.html` | the error line. Hover and focus are the input's | 1.0, 1.1, 1.2, 3.2, 6.1 | pending: round 2, molecules |
+| 2 | **Notice band** | `components/notice.css` | `kit/notice.html` | none, not interactive. Three tones | 7 screens. Information 5, warning 1, error 1 | pending: round 2, molecules |
+| 2 | **Screen head** | `components/screen-head.css` | `kit/screen-head.html` | none. The action hides while the selection bar is up: a shell rule, round 3 | 15 screens | pending: round 2, molecules |
+| 2 | **Toolbar (filter and sort)** | `components/toolbar.css` | `kit/toolbar.html` | none of its own, the chips keep theirs. Full above 820, compact below | 2.0, 3.0, 4.0, 5.0, 6.0, 6.1 | pending: round 2, molecules |
+| 2 | **Selection bar** | `components/selbar.css` | `kit/selbar.html` | none of its own. Hidden or present is the shell's trigger, round 3 | 2.0, 6.1, 6.2 | pending: round 2, molecules |
+| 2 | **Action bar** | `components/actionbar.css` | `kit/actionbar.html` | none, not interactive | 3.2, 3.3, 3.6, 6.1 | pending: round 2, molecules |
+| 2 | **Phase strip** | `components/phase-strip.css` | `kit/phase-strip.html` | per step: upcoming, current, done. Not interactive | 2.1, 2.2, 3.2, 3.3, 6.1, 6.2 | pending: round 2, molecules |
+| 2 | **Breadcrumb** | `components/breadcrumb.css` | `kit/breadcrumb.html` | hover, focus-visible | 9 screens | pending: round 2, molecules |
+| 2 | **Skeleton card** | `components/skeleton-card.css` | `kit/skeleton-card.html` | none, not interactive. The shimmer is the bar atom's | 2.2, 4.2, and 6.3 measured | pending: round 2, molecules |
+| 2 | **Legal TOC** | `components/legal-toc.css` | `kit/legal-toc.html` | hover, focus-visible | 9.0, 9.1, 9.2 (grey only) | pending: round 2, molecules |
+| 2 | **Auth card** | `components/auth-card.css` | `kit/auth-card.html` | none, not interactive. Three content forms | 1.0, 1.1, 1.2 (grey only) | pending: round 2, molecules |
+| 2 | **Marketing tier card** | `components/tier-card.css` | `kit/tier-card.html` | none, not interactive | 0.0. 4 tiers, measured; the Level 2 table now says four (Step 6) | pending: round 2, molecules |
+| 2 | **Marketing step card** | `components/step-card.css` | `kit/step-card.html` | none, not interactive | 0.0. 3 measured | pending: round 2, molecules |
+| 3 | **App header** | `components/app-header.css` | `kit/app-header.html` | per tab: rest, hover, current (`.active`), focus-visible. Tabs hidden at 820 and below | 27 screens. Canonical global 0.1 | pending: round 3, organisms |
+| 3 | **Bottom tabs** | `components/bottom-tabs.css` | `kit/bottom-tabs.html` | per tab: rest, current (`.active`), focus-visible. Drawn at 820 and below only | 27 screens. Canonical global 0.1 | pending: round 3, organisms |
+| 3 | **App footer** | `components/app-footer.css` | `kit/app-footer.html` | none, not interactive | 27 screens. Canonical global 0.2 | pending: round 3, organisms |
+| 3 | **Public bar** | `components/public-bar.css` | `kit/public-bar.html` | none, not interactive | 10 screens | pending: round 3, organisms |
+| 3 | **Empty / error state block** | `components/state.css` | `kit/state.html` | none, not interactive; its exits keep the button's | 8 screens. Centred 6, inline 2 | pending: round 3, organisms |
+| 3 | **Form** | `components/form.css` | `kit/form.html` | none of its own; the error is the field's line. Submitting `[?]` | 9 screens, all grey | pending: round 3, organisms |
+| 3 | **Dialog** | `components/dialog.css` | `kit/dialog.html` | none, not interactive. Generating is the 6.3 loading form | 6.3 (3.6's confirm is inline: backlog B-08) | pending: round 3, organisms |
+| 3 | **Legal document** | `components/legal-doc.css` | `kit/legal-doc.html` | crumb and related links: hover, focus-visible | 9.0, 9.1, 9.2 (grey only) | pending: round 3, organisms |
+| 3 | **Account shell** | `components/account-shell.css` | `kit/account-shell.html` | per nav item: hover, current, focus-visible | 7.0, 7.1, 7.2, 7.3 | pending: round 3, organisms |
+| 3 | **Public document (shared brief)** | `components/public-doc.css` | `kit/public-doc.html` | none, not interactive | 6.4 | pending: round 3, organisms |
+| 3 | **Marketing page shell** | `components/marketing-shell.css` | `kit/marketing-shell.html` | none, not interactive | 0.0 | pending: round 3, organisms |
+| 3 | **Screen shell** | `components/screen-shell.css` | `kit/screen-shell.html` | none of its own. Owns the selection trigger, the notice gutter, the centring of a lone state or dialog | 27 screens. `.app` for a screen, `.appframe` for a stand | pending: round 3, organisms |
 
 # Stage 09 Step 2: the pattern register
 

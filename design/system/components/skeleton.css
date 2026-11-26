@@ -9,6 +9,9 @@
 
    The shimmer stops entirely under prefers-reduced-motion, which base.css handles for the whole
    product in one rule. Not interactive.
+   BEHAVIOUR AT WIDTH (Stage 10 Step 4, round 1): FLUID, and it already was. The three bar lengths
+   are percentages of whatever holds them (64, 52 and 30), so a loading row keeps its proportions
+   at any width with no threshold. Nothing changed here at Stage 10.
    No em dash anywhere in this file.
 */
 

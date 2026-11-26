@@ -108,6 +108,14 @@ a.kit-link:hover { color: var(--text-primary); background: var(--bg-raised); }
 .kit-mini--geometry { background: var(--bg-raised); border-radius: var(--radius-lg); }
 .kit-mini--icons { background: var(--bg-raised); }
 .kit-mini--architecture { background: repeating-linear-gradient(90deg, var(--bg-raised) 0 22px, transparent 22px 26px); }
+/* Stage 10 Step 4: "Behaviour at width" on a component page. The same component in a narrow and a
+   wide place, side by side. The stand is the placer here, so it declares the container type, the
+   way a pattern or a grid does in the product. */
+.kit-widths { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 14px; align-items: flex-start; }
+.kit-width { container-type: inline-size; min-width: 0; padding: 12px; border: 1px dashed var(--line-control); border-radius: var(--radius-md); }
+.kit-width--narrow { flex: 0 1 260px; }
+.kit-width--wide { flex: 1 1 420px; }
+.kit-width-cap { font-family: var(--font-mono); font-size: var(--type-2xs); color: var(--text-secondary); margin-bottom: 8px; }
 .kit-mini--responsive { background: linear-gradient(90deg, var(--bg-raised) 0 34%, transparent 34% 38%, var(--bg-raised) 38% 64%, transparent 64% 68%, var(--bg-raised) 68% 100%); }   /* Stage 10: one row at three widths */
 
 /* ---------- token tiles (colour page) ---------- */

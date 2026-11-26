@@ -179,7 +179,29 @@
     <p class="kit-note"><b>The stand no longer lies.</b> Step 1 found the stand misleading between 901 and 1072px, where the panel takes 252px from the screen while an 820px query read the window. At 600 the gap is gone: above 900 the screen gets at least 649px, which is past the point anyway.</p>
     </section>
     <section class="kit-sec" id="comps"><h2 class="kit-h2">Component behaviour</h2>
-    <p class="rs-stub">Filled at Step 4: the seven components that rearrange at 820 today move to <code class="kit-mono">@container</code>, each with its local threshold listed here.</p></section>
+    <p class="kit-lead">Rounds bottom up, atoms first, so that a molecule never gets a threshold where its atom already breathes. Each round opens with the full roll call of its level from the register of Step 1 and closes with a number: N components, M adapt, K deliberately do not, and M + K = N. A component measures its PLACE, not the screen: a local <code class="kit-mono">@container</code> threshold in its own file, the <code class="kit-mono">container-type</code> declared by whoever places it.</p>
+    <h3 class="kit-h3">Round 1, atoms: N 17 = M 3 + K 14</h3>
+    <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Atom</th><th>Stands on</th><th>Verdict</th><th>What was done</th></tr></thead><tbody>
+      <tr><td>button</td><td>every screen</td><td>does not adapt</td><td>width is the placer's decision (<code>.u-full</code>, action bar, screen head)</td></tr>
+      <tr><td>input</td><td>8 screens</td><td>does not adapt</td><td>it fills its field; the form gives the measure</td></tr>
+      <tr><td>checkbox</td><td>2.0, 7.2</td><td>does not adapt</td><td>a fixed 24px target</td></tr>
+      <tr><td>field label</td><td>6 screens</td><td>does not adapt</td><td>one line over its field</td></tr>
+      <tr><td>filter chip</td><td>5 screens</td><td>does not adapt</td><td>the toolbar wraps the chips</td></tr>
+      <tr><td>confidence</td><td>9 screens</td><td>does not adapt</td><td>its place is set by the theme card</td></tr>
+      <tr><td>citation</td><td>5 screens</td><td>does not adapt</td><td>an inline mark in running text</td></tr>
+      <tr><td>status tag</td><td>5 screens</td><td>does not adapt</td><td>a short label</td></tr>
+      <tr><td>rank</td><td>2.0, 6.1</td><td>does not adapt</td><td>a fixed number column</td></tr>
+      <tr><td>avatar</td><td>28 screens</td><td>does not adapt</td><td>a fixed target in the corner</td></tr>
+      <tr><td>icon slot</td><td>34 screens</td><td>does not adapt</td><td>a fixed glyph box</td></tr>
+      <tr><td>scope line</td><td>13 screens</td><td><b>container</b></td><td>stops at <code>--container-text</code>, 52ch; was <code>--measure-prose</code>, 92ch. <a href="scope.html#anatomy">Page</a></td></tr>
+      <tr><td>skeleton bar</td><td>2.2, 4.2</td><td><b>fluid</b>, already</td><td>percent lengths 64, 52, 30; nothing changed. <a href="skeleton.html#anatomy">Page</a></td></tr>
+      <tr><td>inline link</td><td>18 screens</td><td>does not adapt</td><td>inline in text</td></tr>
+      <tr><td>drag handle</td><td>6.1, 6.2</td><td>does not adapt</td><td>a fixed target</td></tr>
+      <tr><td>list row link</td><td>7.0</td><td>does not adapt</td><td>it fills the rail or the column it stands in</td></tr>
+      <tr><td>group heading</td><td>12 screens</td><td><b>through its placer</b></td><td>its 820 rule lives in <code>patterns/grouped-list.css</code> and is the rows' inner padding, not the page gutter: it moves with the pattern, round 4. Verdict of Step 1 ("gutter token") revised on verification</td></tr>
+    </tbody></table></div>
+    <p class="kit-note">One CSS change in the round: <code class="kit-mono">scope.css</code> reads <code class="kit-mono">--container-text</code>. No atom needs a container threshold: the atoms that could break do so as text, and text wraps. Held against Step 3: at 360, 24 of 24 screens at 0 pixels; at 1024 and 1440 exactly the 13 colour screens that carry a scope line changed, 26 frames (2.0 and its three states, 3.0 and its two, 4.0 and its three, 6.0 and its empty state), each from the scope line down, as the line now wraps at about 70 characters; every other screen 0. The pair, 2.0 Synthesis: <a href="screens/s10/r1-synthesis-360-before.png">360 before</a> and <a href="screens/s10/r1-synthesis-360-after.png">after</a> (identical files), <a href="screens/s10/r1-synthesis-1440-before.png">1440 before</a> and <a href="screens/s10/r1-synthesis-1440-after.png">after</a>.</p>
+    <p class="rs-stub">Round 2, molecules; round 3, organisms: next.</p></section>
     <section class="kit-sec" id="patterns"><h2 class="kit-h2">Pattern behaviour</h2>
     <p class="rs-stub">Filled at Step 4: Grouped list and Filtered list, and the <code class="kit-mono">container-type</code> each declares for what it places.</p></section>
     <section class="kit-sec" id="new"><h2 class="kit-h2">New behaviour</h2>

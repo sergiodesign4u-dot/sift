@@ -192,6 +192,12 @@
           <tr><td>the group</td><td><code>.skelcard</code>, <code>.skelrow</code></td><td>The molecule that arranges them into the shape of the real row</td></tr>
         </tbody></table></div>
         <p class="kit-note">Both group classes are declared in <code class="kit-mono">design/system/components/skeleton-card.css</code>, a molecule with <a href="skeleton-card.html">its own page</a>, which is why this atom page does not draw them.</p>
+        <h3 class="kit-h3">Behaviour at width</h3>
+        <p class="kit-note"><b>Fluid, and it already was</b> (verified at Stage 10 Step 4). The three lengths are percentages of whatever holds the bar, 64, 52 and 30, so a loading row keeps the proportions of the text it stands for at any width, with no threshold and no query. Nothing changed here at Stage 10. Live, in two places:</p>
+        <div class="kit-widths">
+          <div class="kit-width kit-width--narrow"><div class="kit-width-cap">a 260px place</div><div class="u-full"><div class="skel c"></div></div><div class="u-full" style="margin-top:8px"><div class="skel a"></div></div><div class="u-full" style="margin-top:8px"><div class="skel b"></div></div></div>
+          <div class="kit-width kit-width--wide"><div class="kit-width-cap">the rest of this column</div><div class="u-full"><div class="skel c"></div></div><div class="u-full" style="margin-top:8px"><div class="skel a"></div></div><div class="u-full" style="margin-top:8px"><div class="skel b"></div></div></div>
+        </div>
       </section>
 
       <section class="kit-sec" id="axes">

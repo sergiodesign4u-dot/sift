@@ -1,5 +1,5 @@
 /* design/system/components/scope.css - level 1, atom.
-   Reads: --text-secondary, --text-primary, --font-mono
+   Reads: --text-secondary, --text-primary, --font-mono, --type-xs, --leading-body, --space-4, --container-text
    Page:  design/kit/scope.html
    Stands on: 13 screens. Owned by 2.0, referenced by 3.0 and 6.1.
 
@@ -8,9 +8,12 @@
 
    Its numbers are set in the mono face because the number is what carries the weight, and it
    restates itself under a filter rather than going stale. Not interactive.
+   BEHAVIOUR AT WIDTH (Stage 10 Step 4, round 1): a CONTAINER. The line stops at --container-text
+   (52ch, about 70 characters) and wraps; until Stage 10 it ran to --measure-prose, 92ch, and held
+   88 to 108 characters on one line at 1440. No threshold, no query: it stops, it never switches.
    No em dash anywhere in this file.
 */
 
-.scope { font-size: var(--type-xs); color: var(--text-secondary); line-height: var(--leading-body); margin-top: var(--space-4); max-width: var(--measure-prose); }
+.scope { font-size: var(--type-xs); color: var(--text-secondary); line-height: var(--leading-body); margin-top: var(--space-4); max-width: var(--container-text); }
 .scope b { font-family: var(--font-mono); font-weight: var(--weight-medium); color: var(--text-primary); }
 .scope a { color: var(--text-primary); }
