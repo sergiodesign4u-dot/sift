@@ -347,9 +347,11 @@ Exactly one shadow exists in the entire product.
 
 ### Shadow Vocabulary
 
-- **App frame containment** (`box-shadow: 0 2px 4px rgba(0,0,0,0.4)`): sits on the app frame only,
-  to seat the product surface against the page behind it. Tight, low, and dark. It is a containment
-  device, not an elevation cue.
+- **Sheet** (`--shadow-sheet`: `0 2px 4px`, black at 40 percent in the dark theme, at 12 percent in
+  the light): the dialog, the one component in the system that reads it. Tight, low, and dark. It
+  is a containment device, not an elevation cue: the dialog also carries the hairline, and no
+  separation rests on the shadow. The stand's frame around a screen (`.appframe` in
+  `design/kit/_page.css`) borrows the same role; that frame is prototype chrome, not product.
 
 ### Named Rules
 
@@ -467,7 +469,7 @@ the error state it states what is still true and links to it.
 
 ### Don't:
 
-- **Don't** add a second shadow. There is exactly one in the product and it is on the app frame.
+- **Don't** add a second shadow. There is exactly one in the product and it is on the dialog.
 - **Don't** put Cyan on a filter chip, a rank number, a phase step, or a hover state. Those step up a
   tone instead.
 - **Don't** use Amber or Red for emphasis, category, or decoration. They mean low signal and blocking
@@ -665,18 +667,19 @@ The "uses" column is the count and the examples as the comment gives them.
 A state is a token, never a style. Every state token and every role has a pair in the light block or
 it does not exist.
 
-| Token | Dark | Light | Reason, from the comment |
-|---|---|---|---|
-| `--bg-hover` | `--grey-900` | `--grey-025` | a row, a bare button or a card lifting under the pointer. 1.11 / 1.06 off `--bg-page`, 1.00 in both themes off `--bg-surface` (same step): a hover is a whisper and never the only signal; on a card it is carried by the border or the ink |
-| `--bg-action-hover` | `--cyan-300` | `--cyan-800` | the filled action only. Replaces `filter: brightness(1.08)`, the one state that was written as a style. `--text-on-action` reads 10.85 / 8.20 against it; 9.82 / 7.70 on `--bg-surface`. The action lightens on hover in dark and darkens in light: a hover moves away from its ground |
-| `--line-hover` | `--grey-400` | `--grey-550` | the border of an outlined control under the pointer: 5.34 / 5.66 on a card |
-| `--opacity-disabled` | 0.45 | 0.50 | not a colour: a control that cannot act is dimmed, never repainted by hand. Light is a touch stronger because 45 percent on white reads as almost gone |
+| Token | Dark | Light | Contrast dark / light | Against, and the floor | Reason, from the comment |
+|---|---|---|---|---|---|
+| `--bg-hover` | `--grey-900` | `--grey-025` | 1.11 / 1.06; 1.00 / 1.00 | off `--bg-page`; off `--bg-surface`. A ground: none owed | a row, a bare button or a card lifting under the pointer. A hover is a whisper and never the only signal; on a card it is carried by the border or the ink |
+| `--bg-action-hover` | `--cyan-300` | `--cyan-800` | 9.82 / 7.70; ink 10.85 / 8.20 | the fill on `--bg-surface`, 3; `--text-on-action` on it, 4.5 | the filled action only. Replaces `filter: brightness(1.08)`, the one state that was written as a style. The action lightens on hover in dark and darkens in light: a hover moves away from its ground |
+| `--line-hover` | `--grey-400` | `--grey-550` | 5.34 / 5.66 | on a card, 3 | the border of an outlined control under the pointer |
+| `--line-focus` | `--cyan-400` | `--cyan-700` | 7.31 / 5.52 | on a raised surface, its narrowest ground, 3 | the keyboard ring on every focusable control. A line role rather than a state token, listed here because focus is the state it draws |
+| `--opacity-disabled` | 0.45 | 0.50 | exempt | WCAG 1.4.3 and 1.4.11 exempt an inactive control | not a colour: a control that cannot act is dimmed, never repainted by hand. Light is a touch stronger because 45 percent on white reads as almost gone |
 
 ### Depth and component tokens
 
 | Token | Surface | Dark | Light | Reason, from the comment | Contrast dark / light |
 |---|---|---|---|---|---|
-| `--shadow-sheet` | depth | `--shadow-dark` | `--shadow-light` | a role because a theme has to be able to change it. Two rules use it: the frame and the dialog. No separation rests on it: both also carry `--line-hairline` | not stated |
+| `--shadow-sheet` | depth | `--shadow-dark` | `--shadow-light` | a role because a theme has to be able to change it. Two rules use it: the dialog in the system, and the stand's frame `.appframe`, which is chrome. No separation rests on it: both also carry `--line-hairline` | not stated |
 | `--step-current-line` | line | `--grey-050` | `--grey-950` | the ring of the current phase in the phase strip: 1 rule, 2.1 and 2.2. No line role carries that step | 16.60 / 19.35 on `--bg-page` |
 | `--text-accent` | ink | `--cyan-400` | `--cyan-700` | the accent as ink where it marks "this is the product" or "you are here": 2 rules (brand mark in the app header, current bottom tab). Not `--text-evidence`, which A2 keeps for the citation | 9.13 / 6.27 on `--bg-page` |
 | `--tier-mark` | fill | `--grey-700` | `--grey-350` | the square bullet of a tier feature on 0.0: 1 rule, decorative. A fill may not borrow a line role | 1.76 / 2.83 on `--bg-surface`, decorative |
@@ -726,6 +729,31 @@ them as drift.
 `--pf-*` (the purple roadmap rail, shared with `research/research.html`) is prototype chrome for the
 portfolio site around the product. It lives in `design/_panel.css`, is not part of the product
 language, does not enter the component kit, and is excluded from this document on purpose.
+
+## Contributing to the system
+
+The system grows in one direction only: anything new appears in `design/system/` first and on a
+screen second, never the other way round. A screen is where the language is used, not where it
+grows, so a screen carries no style of its own. There are four ways in, and each has its address:
+
+- **A value** goes into `design/system/tokens.css` at its level: a raw value as a primitive with
+  its origin, a colour as a semantic role with its light pair and its contrast measured in both
+  themes. A state is a token, never a style, and it arrives in both themes in the same edit. The
+  decision is said out loud as "variable, value, why", and from the token it reaches every screen.
+- **A component** is five things before its first use: its css in `design/system/components/`, its
+  page in `design/kit/` (anatomy, variants, when to use it, rule and anti-rule, states in both
+  themes), its registry entry and its inventory row, both with its level, and its `@import` in the
+  group of its level in `index.css`, never at the end.
+- **A composition** becomes a pattern only when three grey screens already stand that way. It goes
+  into `design/system/patterns/`, holds the space between its parts and nothing else, and is
+  imported after the components. On two screens it stays markup and waits as a candidate.
+- **A usage rule** (how many of a component, next to what, where never) is written once in
+  `design/kit/docs/architecture.md`, with where it was taken from, and copied short onto the page
+  of each component it names.
+
+Anything a screen needs that none of the four covers is not drawn in by hand: it is a row in
+`design/kit/docs/backlog.md`, with its level and its priority. The addresses in full:
+`design/kit/docs/architecture.md`, "Contributing to the system".
 
 ## Sources
 

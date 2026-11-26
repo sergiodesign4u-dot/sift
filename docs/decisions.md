@@ -1071,3 +1071,27 @@ Checked: `why.html` and seven neighbours at 360 and 1440 in both themes, 32 rend
 scroll, no console error, no dead local link (the category anchors of `components.html` are written
 by the stand script and exist after render), every text element on the guide at 4.5 or above with
 opacity multiplied. The roadmap shows the Design System group at 2/4, still Next.
+
+## Step 4: the contribution rule (2026-11-26)
+
+One rule, written in the four places that have their own reader: anything new appears in
+`design/system/` first and on a screen second, never the other way round. The four edits were shown
+to the owner as a diff page before writing, and approved.
+
+| Where | What changed | Why |
+|---|---|---|
+| `CLAUDE.md` | A section "Contributing to the system": "keep" («залишаємо») about a value, a component, a composition, plus the usage-rule line and the forbidden case. Removed: D1, "A value changes only by a decision stated out loud ... reaches every screen" (the Stage 08 edition of "keep", which led a value into a token and nothing else), and D2, the five things of a new component (now the component line of the section). 158 lines to 169, of 200 | a replacement, not an addition: two answers to one question in the rules file is the defect the budget exists to prevent |
+| `design/system/CLAUDE.md` | Three rules in (a state is a token; a value in both themes or a defect; a pattern from three screens with no style of its own) plus the growth line; old rules 1 to 3 folded into one. Still 10 lines | the file is read on every entry into the folder, and a long one is followed worse |
+| `design/kit/docs/architecture.md` and `architecture.html` | "Contributing to the system" REPLACES "Adding a component", which is now its first sub-section; a table of five kinds of new and a sub-section each. On the page `#adding` became `#contributing`; the one link to it, on `why.html`, moved | one answer per question on the page |
+| `DESIGN.md` | The section in the document's own voice; the state-token table gained the contrast in both themes and what it is measured against, and the focus ring; the shadow corrected: the dialog is the one component that reads `--shadow-sheet`, the stand frame borrows it and is chrome | Stage 13 reads this file as the language of the product; the shadow line was the desync found at Step 3 |
+
+The trigger is written as "keep" with the Ukrainian word beside it, so the line is found by the
+word the owner actually types.
+
+**Found while rebuilding the page.** The ladder of components on `architecture.html` still showed
+"patterns, Stage 09, not before" as a dimmed future rung, at 0.55 opacity: 2.56 dark and 2.35
+light, under 4.5, and out of date since Step 1. The rung now reads as a live level with its two
+patterns, in the md and on the page, at full ink. Checked: `architecture.html`, `why.html`,
+`overview.html` and `patterns.html` at 360 and 1440 in both themes, 16 renders, no horizontal
+scroll, no console error, no dead local link, every text element on the two rebuilt pages at 4.5
+or above with opacity multiplied.

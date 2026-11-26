@@ -143,16 +143,27 @@ page, a named section registered in that page's `NAV_SECTIONS`, or a satellite p
   in `design/system/` (rules in `design/system/CLAUDE.md`), the showcase and its documents in
   `design/kit/`. Primitive holds raw values; semantic holds colour roles, and a component reads
   colour only through a role. A role or a state token exists only with its pair in
-  `[data-theme="light"]`. A value changes only by a decision stated out loud as "variable, value,
-  why", and it goes to the token of its level, from where it reaches every screen.
+  `[data-theme="light"]`.
 - **A screen is assembled from the system, and a fix lands in the system.** The one stylesheet a
   product screen may use is `design/system/index.css`: no `style=` attribute, no `<style>` block,
-  no appearance written on a page. A new component is five things, FIRST, then used: its css in
-  `design/system/components/`, its page in `design/kit/`, its `_nav.js` entry with its level, its
-  row in `design/kit/docs/inventory.md` with its level, and its `@import` in its level group of
-  `index.css` (never at the end). A markup fix goes to the component page and to the screens where
+  no appearance written on a page. A markup fix goes to the component page and to the screens where
   the component stands. A fix on one screen is a desync, and a contextual override
   (`.foo .btn { font-size: X }`) is an undeclared variant, not a patch. Prototype chrome
   (`design/_panel.css`, the stands' frames) is a separate layer on `--pf-*` and never enters it.
 - **A contrast check multiplies opacity.** Ink is the colour times the opacity of the element and
   of every ancestor; a check that reads `color` alone passed a 3.44 for two steps.
+
+## Contributing to the system
+
+New appears in `design/system/` FIRST and on a screen second, never the other way round; something
+new on a screen with none of the four below is forbidden, and what the system lacks is a row in
+`design/kit/docs/backlog.md`. When the owner says "keep" («залишаємо»):
+- about a **value**: the token of its level in `design/system/tokens.css`, said as "variable, value,
+  why", in both themes if it is a role or a state; it reaches every screen by itself.
+- about a **component**: `design/system/components/<name>.css` and `design/kit/<name>.html`, plus its
+  `_nav.js` entry and its `inventory.md` row, both with the level, and its `@import` in its level
+  group of `index.css`, never at the end.
+- about a **composition**: `design/system/patterns/<name>.css` and its pattern page, only from three
+  grey screens, with no style of its own, imported after the components.
+A new usage rule is a row in "Usage rules" with its source plus a "Limits" line on each page it
+names. Addresses and details: `design/kit/docs/architecture.md`, "Contributing to the system".

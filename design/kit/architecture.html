@@ -17,7 +17,8 @@
 
   The visible edition of design/kit/docs/architecture.md. It stands FIRST in the Foundations
   group by decision, not by accident: rules before evidence. Stage 09 Step 1 added the last
-  section, the usage rules, rebuilt from the same section of the md.
+  section, the usage rules, rebuilt from the same section of the md. Stage 09 Step 4 rebuilt
+  "Adding a component" as "Contributing to the system" (#contributing), from the md.
 -->
 <body>
 <div class="kit-shell">
@@ -51,7 +52,7 @@
           <div style="margin-top:4px">&darr;</div>
           <div><b style="color:var(--text-primary)">organisms</b> &nbsp;contain molecules, or are a shell</div>
           <div style="margin-top:4px">&darr;</div>
-          <div style="opacity:.55">patterns &nbsp;Stage 09, not before</div>
+          <div><b style="color:var(--text-primary)">patterns</b> &nbsp;compose components, from three grey screens: <a href="patterns.html">2 of them</a></div>
         </div>
         <p class="kit-note"><b>Three is the ceiling.</b> The deepest nesting here is a dialog holding a form, and a form is already an organism, so both stay at level three. Nesting decides the ORDER inside a level, not a fourth number.</p>
       </div>
@@ -84,15 +85,37 @@
       </div>
     </div>
     </section>
-    <section class="kit-sec" id="adding"><h2 class="kit-h2">Adding a component: five things</h2>
-    <p class="kit-lead">The fourth and the fifth are the ones that get forgotten, and they matter most for a component added AFTER the build: at the reconciliation of Step 6, on a new screen at Stage 09, during the rollout at Stage 12.</p>
+    <section class="kit-sec" id="contributing"><h2 class="kit-h2">Contributing to the system</h2>
+    <p class="kit-lead"><b>Anything new appears in <code class="kit-mono">design/system/</code> first, and on a screen second. Never the other way round.</b> Five kinds of new, each with its addresses. A thing with one of its addresses missing is not ready, and a screen does not use it yet (Stage 09 Step 4).</p>
+    <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>What is new</th><th>Where it goes, in this order</th><th>Ready when</th></tr></thead><tbody>
+      <tr><td>A component</td><td>the five things below</td><td>all five exist, and its states stand in both themes</td></tr>
+      <tr><td>A usage rule</td><td>a row in <a href="#usage">the usage rules</a> on this page, then a "Limits" line on the page of every component it names</td><td>"Where it was taken from" is filled: counted on the grey screens, decided in a named file, or caught by a critique on two screens or more</td></tr>
+      <tr><td>A composition</td><td>three grey screens first; then the pattern's five things</td><td>the colour screens that carry it moved onto it with a pixel proof; on two screens it stays markup, a row in the candidates on <a href="patterns.html#candidates">patterns.html</a></td></tr>
+      <tr><td>A value</td><td><code>tokens.css</code>, at its level</td><td>said out loud as "variable, value, why"; a role and a state token arrive with their light pair</td></tr>
+      <tr><td>Only on a screen</td><td><b>nowhere: forbidden</b></td><td>never. What the system lacks is a row in <code>backlog.md</code>, and the screen waits or ships without it</td></tr>
+    </tbody></table></div>
+
+    <h3 class="kit-h3">A component: five things, and the last two are the ones that get forgotten</h3>
+    <p class="kit-note">The fourth and the fifth matter most for a component added AFTER the build: at the reconciliation of Stage 08 Step 6, on a new screen at Stage 09, during the rollout at Stage 12.</p>
     <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>#</th><th>What</th><th>Why it is on the list</th></tr></thead><tbody>
-      <tr><td>1</td><td><code>design/system/components/&lt;name&gt;.css</code></td><td>colour through semantic, geometry through primitive</td></tr>
-      <tr><td>2</td><td><code>design/kit/&lt;name&gt;.html</code></td><td>five blocks: what it is, anatomy, variants, states, rules</td></tr>
+      <tr><td>1</td><td><code>design/system/components/&lt;name&gt;.css</code></td><td>colour through a semantic role, geometry through the primitive, every state a token with its light pair</td></tr>
+      <tr><td>2</td><td><code>design/kit/&lt;name&gt;.html</code></td><td>five blocks: anatomy, variants, when to use it, rule and anti-rule, states, each state in both themes</td></tr>
       <tr><td>3</td><td>an entry in <code>_nav.js</code> with its <code>level</code> and its <code>category</code></td><td>the panel groups by purpose and shows the level as a chip; an entry without its level drops off the ladder</td></tr>
       <tr><td>4</td><td>a row in <code>docs/inventory.md</code>, with its level</td><td>four later steps count the order from that column</td></tr>
       <tr><td>5</td><td>an <code>@import</code> in <code>index.css</code>, in the group of its level, <b>not at the end of the file</b></td><td>appended at the end it looks harmless, and that is exactly how the ladder collapses</td></tr>
     </tbody></table></div>
+
+    <h3 class="kit-h3">A usage rule</h3>
+    <p class="kit-note">A row in <a href="#usage">the usage rules</a>, every column filled. "Where it was taken from" names one of three sources: the counter on the grey corpus (<code class="kit-mono">wireframes/*.html</code>, with the numbers), a decision already written (<code class="kit-mono">conventions.md</code>, <code class="kit-mono">CLAUDE.md</code>, <code class="kit-mono">docs/decisions.md</code>, with the line), or a defect a critique caught on two screens or more. Then the short copy goes into the "Limits" sub-point on the page of every component the rule names, with a link back here. A rule that lives only in somebody's head or in a chat does not fire the next time.</p>
+
+    <h3 class="kit-h3">A composition</h3>
+    <p class="kit-note">Counted on the grey corpus, never on the colour sample. On three screens or more it becomes a pattern, with the same five things one rung up: <code class="kit-mono">design/system/patterns/&lt;name&gt;.css</code> holding only the space between its parts (no colour, no look, no new style; a style it needs is a missing component, built first), <code class="kit-mono">design/kit/&lt;name&gt;.html</code> with its anatomy, rule, anti-rule and screens, an entry in PATTERNS in <code class="kit-mono">_nav.js</code>, an <code class="kit-mono">@import</code> in <code class="kit-mono">index.css</code> AFTER the components, and a row in the pattern register of <code class="kit-mono">inventory.md</code>. A pattern with three grey screens and none in colour is still taken, and said out loud as waiting for Stage 12. On two screens a composition stays markup and is listed among the <a href="patterns.html#candidates">candidates</a>.</p>
+
+    <h3 class="kit-h3">A value</h3>
+    <p class="kit-note"><code class="kit-mono">tokens.css</code>, at its level. A raw value is a primitive and carries its origin comment; a colour role is semantic, reads a primitive through <code class="kit-mono">var()</code>, and arrives with its pair in <code class="kit-mono">[data-theme="light"]</code> and its contrast measured in both themes. A state token arrives in both themes in the same edit. Geometry has no semantic level. Nothing changes without "variable, value, why".</p>
+
+    <h3 class="kit-h3">Something new on a screen alone</h3>
+    <p class="kit-note">Forbidden. A product screen links <code class="kit-mono">design/system/index.css</code> and nothing else: no <code class="kit-mono">style=</code>, no <code class="kit-mono">&lt;style&gt;</code>, no class that exists on that screen only, no contextual override. The screen is where the system is used, never where it grows.</p>
     </section>
     <section class="kit-sec" id="theme"><h2 class="kit-h2">How the theme is built</h2>
     <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Rule</th><th>Why</th></tr></thead><tbody>

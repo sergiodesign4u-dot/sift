@@ -49,7 +49,8 @@ molecules    contain atoms, contain no molecule    theme card, source row, notic
 organisms    contain molecules, OR are a shell     app header, dialog, account shell, screen
    |                                               shell
    v
-patterns     Stage 09, and not before
+patterns     compose components, no style of their own;   grouped list, filtered list
+             from three grey screens (Stage 09)
 ```
 
 **Three is the ceiling.** The deepest nesting in this product is a dialog holding a form, and a
@@ -126,10 +127,26 @@ stops being true.
 
 ---
 
-## Adding a component: five things, and the last two are the ones that get forgotten
+## Contributing to the system
 
-1. `design/system/components/<name>.css`
-2. `design/kit/<name>.html`, the page, with its five blocks
+*Stage 09 Step 4. One rule: anything new appears in `design/system/` FIRST, and on a screen second.
+Never the other way round. Five kinds of new, each with its addresses. A thing with one of its
+addresses missing is not ready, and a screen does not use it yet.*
+
+| What is new | Where it goes, in this order | Ready when |
+|---|---|---|
+| A component | the five things below | all five exist, and its states stand in both themes |
+| A usage rule | a row in "Usage rules" on this page, then a "Limits" line on the page of every component it names | "Where it was taken from" is filled: counted on the grey screens, decided in a named file, or caught by a critique on two screens or more |
+| A composition | three grey screens first; then the pattern's five things | the colour screens that carry it moved onto it with a pixel proof; on two screens it stays markup, a row in the candidates on `patterns.html` |
+| A value | `tokens.css`, at its level | said out loud as "variable, value, why"; a role and a state token arrive with their light pair |
+| Something on a screen with none of the four above | **nowhere: forbidden** | never. What the system lacks is a row in `backlog.md`, and the screen waits or ships without it |
+
+### A component: five things, and the last two are the ones that get forgotten
+
+1. `design/system/components/<name>.css`, colour through a semantic role, geometry through the
+   primitive, every state a token with its pair in `[data-theme="light"]`
+2. `design/kit/<name>.html`, the page, with its five blocks: anatomy, variants, when to use it,
+   rule and anti-rule, states, each state shown in both themes
 3. an entry in `design/kit/_nav.js` with its `level` and its `category`: the panel groups by
    purpose and shows the level as a chip (decided 2026-11-20), so the level is a FIELD of the
    entry and must never be left out
@@ -137,9 +154,44 @@ stops being true.
 5. an `@import` in `design/system/index.css`, **in the group of its level, not at the end of the
    file**
 
-Four and five matter most for a component added AFTER the build: at the reconciliation of Step
-6, on a new screen at Stage 09, during the rollout at Stage 12. Appended at the end of the file
-it looks harmless, and that is exactly how the ladder collapses.
+Four and five matter most for a component added AFTER the build: at the reconciliation of Stage 08
+Step 6, on a new screen at Stage 09, during the rollout at Stage 12. Appended at the end of the
+file it looks harmless, and that is exactly how the ladder collapses.
+
+### A usage rule
+
+A row in "Usage rules" below, with every column filled. The column "Where it was taken from" names
+one of three sources: the counter on the grey corpus (`wireframes/*.html`, with the numbers), a
+decision already written (`wireframes/docs/conventions.md`, `CLAUDE.md`, `docs/decisions.md`, with
+the line), or a defect a critique caught on two screens or more. Then the short copy goes into the
+"Limits" sub-point of the rule and anti-rule block on the page of every component the rule names,
+with a link back here. A rule that lives only in somebody's head or in a chat does not fire the
+next time.
+
+### A composition
+
+Counted on the grey corpus, never on the colour sample. On three screens or more it becomes a
+pattern, with the same five things one rung up: `design/system/patterns/<name>.css` holding only
+the space between its parts (no colour, no look, no new style; a style it needs is a missing
+component, built first), `design/kit/<name>.html` with its anatomy, rule, anti-rule and screens,
+an entry in PATTERNS in `design/kit/_nav.js`, an `@import` in `index.css` AFTER the components,
+and a row in the pattern register of `inventory.md`. A pattern with three grey screens and none in
+colour is still taken, and said out loud as waiting for Stage 12. On two screens a composition
+stays markup and is listed among the candidates on `patterns.html`.
+
+### A value
+
+`tokens.css`, at its level. A raw value is a primitive and carries its origin comment; a colour
+role is semantic, reads a primitive through `var()`, and arrives with its pair in
+`[data-theme="light"]` and its contrast measured in both themes. A state token arrives in both
+themes in the same edit. Geometry has no semantic level. Nothing changes without "variable, value,
+why".
+
+### Something new on a screen alone
+
+Forbidden. A product screen links `design/system/index.css` and nothing else: no `style=`, no
+`<style>`, no class that exists on that screen only, no contextual override. The screen is where
+the system is used, never where it grows.
 
 ---
 
