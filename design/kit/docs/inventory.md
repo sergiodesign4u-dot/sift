@@ -6,6 +6,9 @@ reads three things from here: the **level** column (order of the CSS split, orde
 stand groups, assembly rounds), the **variants** column (the axis matrix on each component page),
 and the **control without a family** list (the brief for the rollout).*
 
+*Since Stage 09 Step 2 the inventory describes both levels of the system: the components, and at
+the end the patterns built from them, "Stage 09 Step 2: the pattern register".*
+
 *Internal document, English. No em dash anywhere in this file.*
 
 ---
@@ -620,3 +623,21 @@ group of its own level.*
 | 3 | **Public document (shared brief)** | `components/public-doc.css` | `kit/public-doc.html` | none, not interactive | 6.4 |
 | 3 | **Marketing page shell** | `components/marketing-shell.css` | `kit/marketing-shell.html` | none, not interactive | 0.0 |
 | 3 | **Screen shell** | `components/screen-shell.css` | `kit/screen-shell.html` | none of its own. Owns the selection trigger, the notice gutter, the centring of a lone state or dialog | 27 screens. `.app` for a screen, `.appframe` for a stand |
+
+# Stage 09 Step 2: the pattern register
+
+*One row per pattern. A pattern exists in this system when it has: its css in
+`design/system/patterns/`, its `@import` in the patterns group of `index.css` after the organisms,
+its page in `design/kit/`, its entry in `PATTERNS` of `design/kit/_nav.js`, this row, and three
+grey screens named. The count is the grey corpus; the colour pages are the proof (Stage 09 Step 1).
+When to take a pattern and when the components: `design/kit/patterns.html`.*
+
+| Pattern | CSS | Page | Built from | Grey screens (the count) | Colour pages (the proof) |
+|---|---|---|---|---|---|
+| **Grouped list** | `patterns/grouped-list.css` | `kit/grouped-list.html` | Group heading (atom) over each body: a `.list` of Source rows, Saved brief rows, Evidence snippets or Skeleton cards (molecules); a `.src-avail` grid of Source cards (molecule); an inline Empty state (organism); a `.listnote` (one-off) | 3.0, 4.0, 6.0. With their states 8 pages: 3.0, 3.4, 3.5, 4.0, 4.1, 4.0 loading, 6.0, 6.5 | 3 of 3 screens, 8 pages: `sources`, `sources-empty`, `sources-sync-error`, `theme`, `theme-low-signal`, `theme-loading`, `briefs`, `briefs-empty` |
+| **Filtered list** | `patterns/filtered-list.css` | `kit/filtered-list.html` | Toolbar (molecule, with Filter chip, action link, inline Group heading, Button) over the list it filters: Theme card rows (molecule), a Grouped list (pattern) of Evidence snippets, or an `ol.list` of Composer brief rows (molecule) | 2.0, 4.0, 6.1. With their states 6 pages: 2.0, 4.0, 4.1, 4.0 loading, 6.1, 6.2 | 3 of 3 screens, 6 pages: `synthesis`, `theme`, `theme-low-signal`, `theme-loading`, `build-brief`, `build-brief-thin-warning` |
+
+**Candidates**, on two grey screens and waiting for a third, are listed on `kit/patterns.html`,
+section "Candidates": a group heading over an inline empty state (3.0, 6.0), the list and its
+"Load more" foot (2.0, 4.0), a section title over the provenance list (3.6, 5.0), a form that ends
+in the action bar (3.2, 3.3).

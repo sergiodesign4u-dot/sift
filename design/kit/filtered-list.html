@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift design system - Filtered list</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../system/index.css">
+<link rel="stylesheet" href="_page.css">
+<script src="_theme.js"></script>
+</head>
+<!--
+  design/kit/filtered-list.html - a pattern page (Stage 09 Step 2), in the card format of the
+  component pages as far as it applies: Overview (the live pattern, its anatomy with every part
+  linked to its component, the variants, when to use it, the rule and the anti-rule, where it
+  stands), Technical (what the pattern owns, what it is built from, the markup), History.
+
+  The page links ../system/index.css, the SAME entry point a product screen links. The texts are
+  the colour screens' own, which come from voice/docs/microcopy.md.
+
+  No em dash anywhere.
+-->
+<body>
+<div class="kit-shell">
+  <div id="kit-panel"></div>
+  <main class="kit-main">
+
+    <div id="kit-crumbs"></div>
+    <div id="kit-head"></div>
+
+    <div class="kit-tabs" role="tablist" aria-label="Filtered list page">
+      <button class="kit-tab" role="tab" id="tab-overview" aria-controls="overview" aria-selected="true">Overview</button>
+      <button class="kit-tab" role="tab" id="tab-tech" aria-controls="tech" aria-selected="false" tabindex="-1">Technical</button>
+      <button class="kit-tab" role="tab" id="tab-history" aria-controls="history" aria-selected="false" tabindex="-1">History</button>
+    </div>
+
+    <!-- ================================================================ OVERVIEW -->
+    <div class="kit-tabpanel" role="tabpanel" id="overview" aria-labelledby="tab-overview">
+
+      <section class="kit-sec" id="anatomy">
+        <h2 class="kit-h2">Anatomy</h2>
+        <p class="kit-note">The live pattern from <a class="link" href="../synthesis.html">2.0 Synthesis</a>, three of its six ranked themes, one of them low signal. Narrow the window under 820px and the toolbar folds into one Filter button with its count: that is the toolbar's own form, not the pattern's.</p>
+        <div class="scene kit-anat">
+          <div class="filtered-list" data-kit-n="3">
+            <div class="toolbar" data-kit-n="1">
+              <div class="toolbar-full">
+                <button class="chip"><svg class="ic"><use href="#i-source"/></svg> Source: all <span class="chip-count">2</span></button>
+                <button class="chip is-on">Last 30 days <span class="chip-count">2,904</span></button>
+                <button class="chip"><svg class="ic"><use href="#i-signal"/></svg> Confidence: all <span class="chip-count">12</span></button>
+                <button class="link--action">Clear filters</button>
+                <span class="sortnote">Sort: <b>signal rank</b></span>
+              </div>
+              <div class="toolbar-compact">
+                <button class="chip is-on"><svg class="ic"><use href="#i-filter"/></svg> Filter <span class="chip-count">1</span></button>
+                <button class="link--action">Clear</button>
+                <span class="sortnote"><b>signal rank</b></span>
+              </div>
+            </div>
+
+            <ul class="list" data-kit-n="2">
+              <li class="theme">
+                <input type="checkbox" class="check" aria-label="Select theme: Onboarding is confusing">
+                <span class="rank" aria-hidden="true">1</span>
+                <a class="theme-main" href="../theme.html">
+                  <span class="theme-label">Onboarding is confusing</span>
+                  <span class="theme-quote">"I signed up and just stared at an empty dashboard. No idea what to do first."</span>
+                  <span class="theme-prov">CSV, Intercom &middot; latest feedback 2 days ago</span>
+                </a>
+                <span class="conf"><span class="conf-n">n=42</span></span>
+                <a class="theme-drill" href="../theme.html" aria-label="Open theme: Onboarding is confusing">&rsaquo;</a>
+              </li>
+              <li class="theme">
+                <input type="checkbox" class="check" aria-label="Select theme: Slow export on large accounts">
+                <span class="rank" aria-hidden="true">2</span>
+                <a class="theme-main" href="../theme.html">
+                  <span class="theme-label">Slow export on large accounts</span>
+                  <span class="theme-quote">"Exporting our account data takes minutes and sometimes just fails."</span>
+                  <span class="theme-prov">Intercom &middot; latest feedback 5 days ago</span>
+                </a>
+                <span class="conf"><span class="conf-n">n=28</span></span>
+                <a class="theme-drill" href="../theme.html" aria-label="Open theme: Slow export on large accounts">&rsaquo;</a>
+              </li>
+              <li class="theme">
+                <input type="checkbox" class="check" aria-label="Select theme: Wants Salesforce integration">
+                <span class="rank" aria-hidden="true">5</span>
+                <a class="theme-main" href="../theme.html">
+                  <span class="theme-label">Wants Salesforce integration</span>
+                  <span class="theme-quote">"We keep our accounts in Salesforce, so right now I copy things across by hand."</span>
+                  <span class="theme-prov">Intercom only &middot; latest feedback 9 days ago</span>
+                </a>
+                <span class="conf"><span class="conf-n">n=6</span> <span class="badge-low">low signal</span></span>
+                <a class="theme-drill" href="../theme.html" aria-label="Open theme: Wants Salesforce integration">&rsaquo;</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <ol class="kit-legend">
+          <li><span class="kit-legend-n">1</span><span><a href="toolbar.html">Toolbar (filter and sort)</a>, molecule. Its atoms keep their own pages: the <a href="chip.html">Filter chip</a> with its count, "Clear filters" as an <a href="link.html">action link</a>, and the sort note. The padding and the hairline under it are the toolbar's own edge.</span></li>
+          <li><span class="kit-legend-n">2</span><span>The list it filters, <code>.list</code>: here <a href="theme-card.html">Theme card</a> rows, molecule, each with its <a href="confidence.html">Confidence indicator</a>. On 4.0 it is a <a href="grouped-list.html">Grouped list</a> of <a href="snippet.html">Evidence snippets</a>; on 6.1 an <code>ol.list</code> of <a href="composer-row.html">Composer brief rows</a>, because there the order is the output.</span></li>
+          <li><span class="kit-legend-n">3</span><span>The pattern, <code>.filtered-list</code>. It owns one thing: the 6px between the toolbar's hairline and the first line of the list. It makes the two read as one block, the control and what it controls.</span></li>
+        </ol>
+      </section>
+
+      <section class="kit-sec" id="variants">
+        <h2 class="kit-h2">Variants</h2>
+        <p class="kit-note">The toolbar takes two forms in this pattern: the filter of 2.0, above, and the row form, where a heading and the screen's own controls stand in the bar. The composition is the same with both. One under the other, each as it stands on its screen.</p>
+
+        <div class="scene">
+          <div class="scene-label">The row form over a grouped list &middot; 4.0 Theme detail, the first row of each group</div>
+          <div class="filtered-list">
+            <div class="toolbar">
+              <h3 class="group-t group-t--inline">Evidence &middot; 42 items</h3>
+              <div class="toolbar-row">
+                <button class="chip is-on">Group by source</button>
+                <button class="chip">Intercom <span class="chip-count">30</span></button>
+                <button class="chip">CSV <span class="chip-count">12</span></button>
+              </div>
+              <span class="sortnote">Sort: <b>most recent</b></span>
+            </div>
+            <div class="grouped-list">
+              <div class="group-t">Intercom &middot; 30 items</div>
+              <ul class="list">
+                <li>
+                  <a class="snippet" href="../../wireframes/evidence.html">
+                    <div class="snippet-quote">"I signed up and just stared at an empty dashboard. No idea what to do first, or where my data was supposed to come from."</div>
+                    <div class="snippet-meta"><span class="cite">1</span> Intercom &middot; 2 days ago &middot; Customer, mid-market</div>
+                  </a>
+                </li>
+              </ul>
+              <div class="group-t">CSV &middot; 12 items</div>
+              <ul class="list">
+                <li>
+                  <a class="snippet" href="../../wireframes/evidence.html">
+                    <div class="snippet-quote">"The setup skipped right past connecting a source, so I landed on a blank screen with nothing to look at."</div>
+                    <div class="snippet-meta"><span class="cite">2</span> CSV import &middot; 4 days ago &middot; Support ticket</div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="scene">
+          <div class="scene-label">The row form over an ordered list &middot; 6.1 Build brief</div>
+          <div class="filtered-list">
+            <div class="toolbar">
+              <h3 class="group-t group-t--inline">In this brief &middot; 3 themes</h3>
+              <div class="toolbar-row"><button class="btn--ghost">Add themes</button></div>
+              <span class="sortnote">Order = <b>recommended priority</b></span>
+            </div>
+            <ol class="list">
+              <li class="briefrow">
+                <span class="drag" aria-hidden="true"><svg class="ic"><use href="#i-drag"></use></svg></span>
+                <span class="rank">1</span>
+                <span class="briefrow-main">
+                  <span class="briefrow-label">Onboarding is confusing</span>
+                  <span class="briefrow-meta">CSV, Intercom &middot; latest feedback 2 days ago</span>
+                </span>
+                <span class="conf"><span class="conf-n">n=42</span></span>
+                <button class="btn--icon" aria-label="Remove Onboarding is confusing from this brief"><svg class="ic"><use href="#i-close"></use></svg></button>
+              </li>
+              <li class="briefrow">
+                <span class="drag" aria-hidden="true"><svg class="ic"><use href="#i-drag"></use></svg></span>
+                <span class="rank">2</span>
+                <span class="briefrow-main">
+                  <span class="briefrow-label">Slow export on large accounts</span>
+                  <span class="briefrow-meta">Intercom &middot; latest feedback 5 days ago</span>
+                </span>
+                <span class="conf"><span class="conf-n">n=28</span></span>
+                <button class="btn--icon" aria-label="Remove Slow export on large accounts from this brief"><svg class="ic"><use href="#i-close"></use></svg></button>
+              </li>
+              <li class="briefrow">
+                <span class="drag" aria-hidden="true"><svg class="ic"><use href="#i-drag"></use></svg></span>
+                <span class="rank">3</span>
+                <span class="briefrow-main">
+                  <span class="briefrow-label">Confusing billing and invoices</span>
+                  <span class="briefrow-meta">CSV &middot; latest feedback 3 days ago</span>
+                </span>
+                <span class="conf"><span class="conf-n">n=19</span></span>
+                <button class="btn--icon" aria-label="Remove Confusing billing and invoices from this brief"><svg class="ic"><use href="#i-close"></use></svg></button>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="journey">
+        <h2 class="kit-h2">When the person meets it</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Screen</th><th>Where on the path</th><th>What the toolbar does to the list</th></tr></thead><tbody>
+          <tr><td>2.0 Synthesis</td><td>Flow 0, steps P2 and P3: the synthesis is ready and the PM reads the ranked themes, the default landing (<code>ia/docs/flows.md</code>)</td><td>narrows by source, period and confidence, and names the sort, signal rank, so a ranking can be checked</td></tr>
+          <tr><td>4.0 Theme detail</td><td>Flow 0 step P4 and Flow 2, the spot-check</td><td>groups the evidence by source and names the sort, most recent</td></tr>
+          <tr><td>6.1 Build brief</td><td>Flow 4, building the brief before the session</td><td>adds themes and states that the order is the recommended priority: the list is the output</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="when">
+        <h2 class="kit-h2">Rule and anti-rule</h2>
+        <div class="kit-when">
+          <div>
+            <h3>Take the pattern</h3>
+            <p>When a list has a control that belongs to it alone: it narrows the list, groups it, orders it, or adds to it. The toolbar and the list are then one block, and the pattern is what makes them read as one.</p>
+            <p>The list can be anything a list is: theme rows (2.0), a grouped list of snippets (4.0), the ordered rows of a brief (6.1).</p>
+          </div>
+          <div>
+            <h3>Put the components together instead</h3>
+            <ul>
+              <li>There is nothing to filter: on an empty or failed screen the state stands alone and the toolbar goes, and the pattern with it. That is <a href="architecture.html#usage">usage rule R3</a>, and 2.1 and 2.3 follow it.</li>
+              <li>The "Load more" foot (2.0, 4.0) stands after the pattern, outside it. The list and its foot are a candidate on two screens, not part of this pattern.</li>
+              <li>The selection bar is not part of it either: the screen shell shows it only while a theme is ticked, and on 2.0 it stands after the list and its foot, outside the pattern.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="kit-dodont">
+          <div class="kit-dd kit-dd--do">
+            <div class="kit-dd-c" inert>
+              <div class="filtered-list kit-fill">
+                <div class="toolbar"><h3 class="group-t group-t--inline">In this brief &middot; 3 themes</h3><span class="sortnote">Order = <b>recommended priority</b></span></div>
+                <ol class="list"><li class="briefrow"><span class="rank">1</span><span class="briefrow-main"><span class="briefrow-label">Onboarding is confusing</span></span><span class="conf"><span class="conf-n">n=42</span></span></li></ol>
+              </div>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do</div><div class="kit-dd-t">The toolbar and its list in one wrapper</div>
+              <div class="kit-dd-d">6px of air under the hairline, and the bar reads as the control of the list under it.</div></div>
+          </div>
+          <div class="kit-dd kit-dd--dont">
+            <div class="kit-dd-c" inert>
+              <div class="kit-fill">
+                <div class="toolbar"><h3 class="group-t group-t--inline">In this brief &middot; 3 themes</h3><span class="sortnote">Order = <b>recommended priority</b></span></div>
+                <ol class="list"><li class="briefrow"><span class="rank">1</span><span class="briefrow-main"><span class="briefrow-label">Onboarding is confusing</span></span><span class="conf"><span class="conf-n">n=42</span></span></li></ol>
+              </div>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do not</div><div class="kit-dd-t">A toolbar on its own over a list</div>
+              <div class="kit-dd-d">Since Stage 09 the toolbar carries no margin under it. Without the wrapper the first row starts right on the hairline, 6px higher, live, as above.</div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="kit-sec" id="where">
+        <h2 class="kit-h2">Where it stands</h2>
+        <p class="kit-note"><b>3 screens in the grey, the whole product</b>: the threshold, exactly. With their states, 6 grey pages:</p>
+        <div class="kit-where">
+          <a href="../../wireframes/synthesis.html">2.0 Synthesis</a>
+          <a href="../../wireframes/theme.html">4.0 Theme detail</a>
+          <a href="../../wireframes/theme-low-signal.html">4.1 Theme detail, low signal</a>
+          <a href="../../wireframes/theme-loading.html">4.0 Theme detail, loading</a>
+          <a href="../../wireframes/build-brief.html">6.1 Build brief</a>
+          <a href="../../wireframes/build-brief-thin-warning.html">6.2 Build brief, thin-theme warning</a>
+        </div>
+        <p class="kit-note"><b>In colour: 3 of the 3 screens, on 6 pages.</b> Each was moved onto the pattern at Stage 09 Step 1 and shot before and after at 360 and 1440: 0 differing pixels.</p>
+        <div class="kit-where">
+          <a href="../synthesis.html">2.0 Synthesis</a>
+          <a href="../theme.html">4.0 Theme detail</a>
+          <a href="../theme-low-signal.html">4.1 Theme detail, low signal</a>
+          <a href="../theme-loading.html">4.2 Theme detail, loading</a>
+          <a href="../build-brief.html">6.1 Build brief</a>
+          <a href="../build-brief-thin-warning.html">6.2 Build brief, thin-theme warning</a>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ================================================================ TECHNICAL -->
+    <div class="kit-tabpanel" role="tabpanel" id="tech" aria-labelledby="tab-tech">
+
+      <section class="kit-sec" id="owns">
+        <h2 class="kit-h2">What the pattern owns</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Selector</th><th>Declaration</th><th>Where it came from</th></tr></thead><tbody>
+          <tr><td>.filtered-list &gt; .toolbar</td><td><code>margin-bottom: var(--space-2)</code>, 6px</td><td><code>components/toolbar.css</code>, cut at Stage 09 Step 1, not copied. The toolbar's padding and its hairline stayed there: they are the row's own edge, and a pattern carries no colour</td></tr>
+        </tbody></table></div>
+        <p class="kit-note"><b>One declaration, and no new value.</b> A pattern that needs a style of its own is a missing component or a missing variant, and that comes first.</p>
+      </section>
+
+      <section class="kit-sec" id="built">
+        <h2 class="kit-h2">Built from</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Part</th><th>Component</th><th>Level</th><th>File</th></tr></thead><tbody>
+          <tr><td>the control</td><td><a href="toolbar.html">Toolbar (filter and sort)</a>, with <a href="chip.html">Filter chip</a>, <a href="link.html">action link</a>, <a href="group-heading.html">Group heading</a> in its inline form, <a href="button.html">Button</a></td><td>molecule, atoms inside</td><td><code>components/toolbar.css</code> and theirs</td></tr>
+          <tr><td>the list, ranked</td><td><a href="theme-card.html">Theme card</a> with <a href="confidence.html">Confidence indicator</a> and <a href="rank.html">Rank number</a></td><td>molecule</td><td><code>components/theme-card.css</code></td></tr>
+          <tr><td>the list, grouped</td><td><a href="grouped-list.html">Grouped list</a> of <a href="snippet.html">Evidence snippets</a></td><td>pattern</td><td><code>patterns/grouped-list.css</code></td></tr>
+          <tr><td>the list, ordered</td><td><a href="composer-row.html">Composer brief row</a> with <a href="drag.html">Drag handle</a></td><td>molecule</td><td><code>components/composer-row.css</code></td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="markup">
+        <h2 class="kit-h2">Copy this</h2>
+        <div class="scene">
+          <pre class="kit-pre">&lt;div class="filtered-list"&gt;
+  &lt;div class="toolbar"&gt;
+    &lt;div class="toolbar-full"&gt;...chips, Clear filters, the sort note...&lt;/div&gt;
+    &lt;div class="toolbar-compact"&gt;...Filter with its count...&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;ul class="list"&gt;
+    &lt;li class="theme"&gt;...&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="list-foot"&gt;&lt;button class="btn--bare"&gt;Load 6 more themes&lt;/button&gt;&lt;/div&gt;</pre>
+        </div>
+        <p class="kit-note">File: <code class="kit-mono">design/system/patterns/filtered-list.css</code>, imported in the patterns group of <code class="kit-mono">design/system/index.css</code>, after the organisms.</p>
+      </section>
+
+    </div>
+
+    <!-- ================================================================ HISTORY -->
+    <div class="kit-tabpanel" role="tabpanel" id="history" aria-labelledby="tab-history">
+      <section class="kit-sec">
+        <h2 class="kit-h2">Changes, newest first</h2>
+        <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-26</td><td>This page, in the card format of the component pages: anatomy with each part linked, the two toolbar forms, the path, the rule and anti-rule, where it stands in grey and in colour</td><td><code>docs/decisions.md</code>, "Step 2: the patterns showcase"</td></tr>
+          <tr><td>2026-11-25</td><td>The pattern created: <code>patterns/filtered-list.css</code>, the 6px under the toolbar cut into it. 6 colour pages moved onto it, 0 differing pixels at 360 and 1440</td><td><code>docs/decisions.md</code>, "Step 1: patterns and usage rules, in one pass"</td></tr>
+        </tbody></table></div>
+      </section>
+    </div>
+
+    <div id="kit-pager"></div>
+
+  </main>
+</div>
+<svg class="sprite" aria-hidden="true"><defs>
+  <symbol id="i-signal" viewBox="0 0 24 24"><path d="M6 18v-3.5M12 18v-8M18 18v-12.5"/></symbol>
+  <symbol id="i-source" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.66 3.13 3 7 3s7-1.34 7-3V6"/><path d="M5 12v6c0 1.66 3.13 3 7 3s7-1.34 7-3v-6"/></symbol>
+  <symbol id="i-brief" viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h7"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 19c0-3.6 2.9-5.5 6.5-5.5s6.5 1.9 6.5 5.5"/></symbol>
+  <symbol id="i-filter" viewBox="0 0 24 24"><path d="M3 5.5h18l-7 8v5l-4 2v-7z"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M6 3v18"/><path d="M6 4h12l-2.5 4L18 12H6"/></symbol>
+  <symbol id="i-evidence" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-4 4v-4H4z"/><path d="M8.5 10.5h7M8.5 13h4"/></symbol>
+  <!-- added at Step 3 for the components that had never been in colour -->
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 4.5 21 19.5H3z"/><path d="M12 10v4.2M12 17.1v.1"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M15 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h3"/></symbol>
+  <symbol id="i-drag" viewBox="0 0 24 24"><path d="M9 7h.1M15 7h.1M9 12h.1M15 12h.1M9 17h.1M15 17h.1"/></symbol>
+  <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V5"/><path d="m7.5 9.5 4.5-4.5 4.5 4.5"/><path d="M4.5 15v3.5a1.5 1.5 0 0 0 1.5 1.5h12a1.5 1.5 0 0 0 1.5-1.5V15"/></symbol>
+</defs></svg>
+<script src="_nav.js"></script>
+</body>
+</html>

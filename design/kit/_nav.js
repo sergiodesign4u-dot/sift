@@ -22,6 +22,14 @@
   in docs/inventory.md), and `card: true` once its page is in the card format (button.html is
   the template). A component missing here has no page in the panel; that is a bug.
 
+  PATTERNS (Stage 09 Step 2): a fixed composition of the components, kept in
+  design/system/patterns/ and imported after the organisms. They have their own group in the
+  panel, AFTER the components and before Verification, so the panel reads in the order the
+  system is built: foundations, atoms, molecules, organisms, patterns. patterns.html opens the
+  group the way architecture.html opens Foundations. To add a pattern: one entry in PATTERNS
+  with its file, css, title, one sentence of purpose, the components it is built from, its grey
+  screens (the count, three or more) and its colour pages (the proof).
+
   No em dash anywhere in this file.
 */
 
@@ -34,6 +42,19 @@ window.KIT_NAV = {
      Step 9). The pixel proof carries the stage's critique summary and its numbers. */
   verification: [
     { file: 'pixel-proof.html', label: 'Pixel proof and critique' },
+  ],
+  /* The page that opens the Patterns group: when to take a pattern and when the components. */
+  patternsHub: { file: 'patterns.html', label: 'Pattern or components',
+    blurb: 'When a fixed composition is taken whole, when the components are put together by hand, and the candidates waiting for a third screen' },
+  patterns: [
+    { file: 'grouped-list.html', css: 'patterns/grouped-list.css', title: 'Grouped list',
+      purpose: 'A list cut into named groups: a heading that counts its group, then the group, repeated.',
+      built: 'Group heading over a list of rows, a grid of source cards, or an inline empty state',
+      grey: '3.0, 4.0, 6.0', greyN: 3, colourN: 3, pages: 8 },
+    { file: 'filtered-list.html', css: 'patterns/filtered-list.css', title: 'Filtered list',
+      purpose: 'A list and the toolbar that narrows or orders it, as one block.',
+      built: 'Toolbar over a list of theme rows, a grouped list of snippets, or the rows of a brief',
+      grey: '2.0, 4.0, 6.1', greyN: 3, colourN: 3, pages: 6 },
   ],
   foundations: [
     { file: 'architecture.html', label: 'Architecture', blurb: 'Two ladders, three surfaces, where a fix goes, and the usage rules' },
@@ -58,7 +79,7 @@ window.KIT_NAV = {
 
   components: [
     { file: 'button.html', css: 'button.css', title: 'Button', category: 'actions', level: 1, card: true,
-      purpose: 'The control that does something. One filled button per zone, and it is the next move.',
+      purpose: 'The control that does something. One filled button per screen, and it is the next move.',
       uses: '128 in the product', screens: 'every screen', states: 'hover, pressed, focus-visible, disabled' },
     { file: 'link.html', css: 'link.css', title: 'Inline text link', category: 'actions', level: 1, card: true,
       purpose: 'A link travels, a button acts. The family for the 88 anchors that had no declaration.',
@@ -242,12 +263,16 @@ window.KIT_NAV = {
   function usedCats() { return K.categories.filter(function (c) { return inCat(c.id).length; }); }
   function usesLine(c) { return c.uses === c.screens ? esc(c.screens) : esc(c.uses) + ' &middot; ' + esc(c.screens); }
   function comp(file) { for (var i = 0; i < K.components.length; i++) if (K.components[i].file === file) return K.components[i]; return null; }
+  function pat(file) { for (var i = 0; i < K.patterns.length; i++) if (K.patterns[i].file === file) return K.patterns[i]; return null; }
+  function patLine(x) { return x.greyN + ' grey screens, ' + x.colourN + ' in colour &middot; ' + x.pages + ' colour pages'; }
 
   /* Reading order of the whole stand: overview, foundations, then components category by
      category, then the verification group. The pager walks it. */
   function order() {
     var out = K.overview.concat(K.foundations);
     usedCats().forEach(function (c) { inCat(c.id).forEach(function (x) { out.push({ file: x.file, label: x.title }); }); });
+    out.push(K.patternsHub);
+    K.patterns.forEach(function (x) { out.push({ file: x.file, label: x.title }); });
     return out.concat(K.verification);
   }
 
@@ -323,6 +348,12 @@ window.KIT_NAV = {
     h += '<p class="kit-q-none" hidden>Nothing in the system by that name.</p>';
     h += '</div>';
 
+    /* after the organisms, as the patterns are imported after them in index.css */
+    h += '<div class="kit-group"><div class="kit-group-t">Patterns</div>';
+    h += link(K.patternsHub.file, K.patternsHub.label, cur);
+    K.patterns.forEach(function (x) { h += link(x.file, x.title, cur); });
+    h += '</div>';
+
     h += '<div class="kit-group"><div class="kit-group-t">Verification</div>';
     K.verification.forEach(function (p) { h += link(p.file, p.label, cur); });
     h += '</div>';
@@ -386,6 +417,10 @@ window.KIT_NAV = {
     if (c) {
       h += '<span aria-hidden="true">/</span><a href="components.html">Components</a>';
       h += '<span aria-hidden="true">/</span><a href="components.html#' + esc(c.category) + '">' + esc(cat(c.category).label) + '</a>';
+    } else if (pat(here())) {
+      h += '<span aria-hidden="true">/</span><a href="patterns.html">Patterns</a>';
+    } else if (here() === K.patternsHub.file) {
+      h += '<span aria-hidden="true">/</span><span>Patterns</span>';
     } else if (K.foundations.some(function (p) { return p.file === here(); })) {
       h += '<span aria-hidden="true">/</span><span>Foundations</span>';
     }
@@ -397,7 +432,20 @@ window.KIT_NAV = {
   function head() {
     var mount = document.getElementById('kit-head');
     if (!mount) return;
-    var c = comp(here());
+    var c = comp(here()), p = pat(here());
+    if (p) {
+      var g = '<header class="kit-comp-head">';
+      g += '<div class="kit-eyebrow">Pattern &middot; a composition of components</div>';
+      g += '<h1 class="kit-h1">' + esc(p.title) + '</h1>';
+      g += '<p class="kit-purpose">' + esc(p.purpose) + '</p>';
+      g += '<div class="kit-chips">';
+      g += '<span class="kit-chip"><span class="kit-chip-k">Code</span> ' + esc(p.css) + '</span>';
+      g += '<span class="kit-chip">' + patLine(p) + '</span>';
+      g += '<span class="kit-chip kit-chip--ok">Ready</span>';
+      g += '</div></header>';
+      mount.outerHTML = g;
+      return;
+    }
     if (!c) return;
     var h = '<header class="kit-comp-head">';
     h += '<div class="kit-eyebrow">' + esc(cat(c.category).label) + ' &middot; ' + LEVEL[c.level] + '</div>';
@@ -466,7 +514,7 @@ window.KIT_NAV = {
     mount.innerHTML = h;
   }
 
-  /* ---- the hub cards: foundations, then a card per category ---- */
+  /* ---- the hub cards: foundations, a card per category, then the patterns ---- */
   function cards() {
     var mount = document.getElementById('kit-cards');
     if (!mount) return;
@@ -483,6 +531,16 @@ window.KIT_NAV = {
       h += '<a class="kit-card" href="components.html#' + esc(c.id) + '"><span class="kit-card-t">' + esc(c.label) +
            ' <span class="kit-card-n">' + list.length + '</span></span><span class="kit-card-d">' + esc(c.blurb) + '</span>' +
            '<span class="kit-card-list">' + list.map(function (x) { return esc(x.title); }).join(' &middot; ') + '</span></a>';
+    });
+    h += '</div></section>';
+    /* the second level of the system: compositions of the components above */
+    h += '<section class="kit-sec" id="patterns"><h2 class="kit-h2">Patterns</h2><div class="kit-cards">';
+    h += '<a class="kit-card" href="' + esc(K.patternsHub.file) + '"><span class="kit-card-t">' + esc(K.patternsHub.label) + '</span>' +
+         '<span class="kit-card-d">' + esc(K.patternsHub.blurb) + '</span></a>';
+    K.patterns.forEach(function (x) {
+      h += '<a class="kit-card" href="' + esc(x.file) + '"><span class="kit-card-t">' + esc(x.title) + '</span>' +
+           '<span class="kit-card-d">' + esc(x.purpose) + '</span>' +
+           '<span class="kit-card-list">' + patLine(x) + '. Grey: ' + esc(x.grey) + '</span></a>';
     });
     h += '</div></section>';
     mount.innerHTML = h;

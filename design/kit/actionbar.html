@@ -49,7 +49,7 @@
 
       <section class="kit-sec" id="variants">
         <h2 class="kit-h2">Variants and states</h2>
-        <p class="kit-note">Not interactive itself: the bar is a row, and the buttons in it are the atom <a class="link" href="button.html">button</a>, which keeps its own states. Rows are the two content forms. Alignment: the inventory calls the forms right-aligned, but <code class="kit-mono">.actionbar</code> in the flat kit has no <code>justify-content</code>, so a lone button sits at the left edge, as the matrix shows [?]. The grey <code class="kit-mono">wf-actionbar</code> does right-align.</p>
+        <p class="kit-note">Not interactive itself: the bar is a row, and the buttons in it are the atom <a class="link" href="button.html">button</a>, which keeps its own states. Rows are the two content forms. Alignment: the buttons sit at the start, and a lone button at the left edge, as the matrix shows. The grey <code class="kit-mono">wf-actionbar</code> right-aligns and the Stage 07 inventory called the forms right-aligned; the colour layer has drawn the start since Stage 07, and the owner kept it on 2026-11-26, so no screen moves.</p>
         <div class="kit-matrix-wrap">
           <table class="kit-matrix" inert>
             <thead><tr><th>Content form</th><th>Bar</th></tr></thead>
@@ -142,7 +142,7 @@
         <h2 class="kit-h2">Axes, with the rule that chooses</h2>
         <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
           <tr><td>content</td><td><b>actions only</b> / with a note</td><td><b>Add the note when the person needs the reason beside the button.</b> Inventory: right-aligned 3, with a note pushed left 1</td></tr>
-          <tr><td>alignment</td><td>left / right</td><td>[?] Inventory says right-aligned, <code>.actionbar</code> does not align right. See the note under the matrix</td></tr>
+          <tr><td>alignment</td><td>start, not an axis</td><td>The buttons sit at the start. Decided by the owner on 2026-11-26: the colour layer's start, against the grey's right; see the note under the matrix</td></tr>
         </tbody></table></div>
       </section>
 
@@ -184,6 +184,7 @@
       <section class="kit-sec">
         <h2 class="kit-h2">Changes, newest first</h2>
         <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-26</td><td>The alignment is no longer <code>[?]</code>: the owner kept the start, as the colour layer has drawn it since Stage 07, so no screen moves. The backlog row is closed</td><td><code>docs/decisions.md</code>, "Stage 09 Step 2"</td></tr>
           <tr><td>2026-11-26</td><td>The rule block gained its third sub-point, <b>Limits</b>: R2, R3 from the usage rules. The rules live on <code>architecture.html</code>; this page carries the short copy</td><td><code>docs/decisions.md</code>, "Stage 09 Step 1"</td></tr>
           <tr><td>2026-11-21</td><td>Entered the system: <code>components/actionbar.css</code>, on semantic roles, and this page in the card format</td><td><code>docs/decisions.md</code>, "The molecules entered the system"</td></tr>
           <tr><td>2026-08-18</td><td>At 360 the note takes its own line and the buttons share the next. Layout on the bar's own children, not an undeclared variant</td><td>commit <code>2ee2c3b</code>, <code>design/kit/docs/inventory.md</code>, "Step 3 close-out: what the kit did with this table"</td></tr>

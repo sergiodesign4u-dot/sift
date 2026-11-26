@@ -1,8 +1,8 @@
 # Backlog - Sift design system
 
-*Stage 08 Steps 6, 7 and 9, and Stage 09 Step 1. What the reconciliation of the system with the product, the theme stress
+*Stage 08 Steps 6, 7 and 9, and Stage 09 Steps 1 and 2. What the reconciliation of the system with the product, the theme stress
 test, and the Step 9 critique and dry run over the still-grey screens, and the Stage 09 usage rules decided NOT to fill in now, with the reason and the stage that closes it. One row per item, in the format the stage asks
-for: what is missing, where it shows, why it is deferred, who closes it. Closed by Stage 09 Step 1 and removed: the selection trigger (narrowed to `.theme .check:checked`) and the warning band on a raised surface (usage rule R5); both are in `docs/decisions.md`. Shown on
+for: what is missing, where it shows, why it is deferred, who closes it. Closed by Stage 09 Step 1 and removed: the selection trigger (narrowed to `.theme .check:checked`) and the warning band on a raised surface (usage rule R5); both are in `docs/decisions.md`. Closed by the owner on 2026-11-26 and removed: the avatar stays 28px, and the action bar keeps its alignment at the start; both in `docs/decisions.md`, Stage 09 Step 2. Shown on
 `design/kit/overview.html`, section "Backlog".*
 
 *Internal document, English. No em dash anywhere in this file.*
@@ -18,9 +18,7 @@ for: what is missing, where it shows, why it is deferred, who closes it. Closed 
 | The breakpoint: 600 or 820 | the app header, the bottom tabs, the toolbar, the account shell | The grey contract switches at a 600px CANVAS (a container query on the stand); the colour layer at an 820px VIEWPORT. Both are written down, neither is wrong for its layer, and naming the breakpoints by what changes is that stage's first step | Stage 10, Responsive |
 | 3.6 is not a dialog | 3.6 Source manage | The inventory lists the dialog as standing on 6.3 and 3.6; the grey 3.6 draws its confirmation as a block on the page | Stage 12 decides the form; the inventory row is corrected then |
 | "Primary" and "Sections" | the `aria-label` of the app header's nav and the bottom tabs: "Primary" on the four 2.0 screens and in the grey, "Sections" on the other 16 colour screens | Two names for one navigation; an interface string, and those belong to `voice/docs/microcopy.md` | Stage 12, through microcopy |
-| The avatar's size: 26 or 28px | the app bar, 27 screens | The grey draws 26px (`wireframes/_wf.css:146`) and the inventory says 26; `kit.css:93` and `avatar.css` draw 28px. A value, so it changes only by a decision, and the colour layer has carried 28 since Stage 07 | Stage 09, with the owner |
 | `.legal-crumb` against `.breadcrumb` | 9.0, 9.1, 9.2 (grey) | Two classes for one job; the legal one is grey only | Stage 12, when 9.x is painted |
-| The action bar has no `justify-content` | 3.2, 3.3, 3.6, 6.1, 7.3 (where "Log out" stands beside "Save changes") | Measured identical to `kit.css`; whether the buttons should sit at the end is a design question, not a migration | Stage 09 |
 | Where the phase strip stands on a screen | under the app bar on 2.1, 2.2, 6.1 and 6.3, under the breadcrumb on 3.2 (colour) | Stage 09 Step 1: usage rule R9 holds the count (one per screen); the placement differs from screen to screen and no rule fixes it yet | Stage 12, before the next screen with a phase strip is painted |
 | The rename map rows for the grey | 31 + 23 screens in `wireframes/` | `wireframes/` is never edited after Stage 05; the map is the input of the rollout. Step 6 added one row (`.acct-card-*` to `.cardrow-*`) | Stage 12 |
 | The plan summary: plan name (`acct-plan-name`) and the account row's description zone used as a bare paragraph | 7.1 Plan and limits (`wireframes/account-plan.html:59-60,96`) | Step 9 dry run: no component, no inventory row; never put to the component or one-off question | Stage 12, before 7.1 is painted |

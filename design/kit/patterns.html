@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift design system - Patterns</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../system/index.css">
+<link rel="stylesheet" href="_page.css">
+<script src="_theme.js"></script>
+</head>
+<!--
+  design/kit/patterns.html - the page that opens the Patterns group (Stage 09 Step 2), as
+  architecture.html opens Foundations.
+
+  Its main content is the choice: when a fixed composition is taken whole, and when the
+  components are put together by hand, told with the product's own screens. Then the condition a
+  composition must meet to become a pattern, the patterns as cards with a live miniature and two
+  numbers (grey screens, and how many of them are in colour), and at the bottom the candidates
+  that wait for a third screen, from Stage 09 Step 1.
+
+  The miniatures link ../system/index.css like every page of the stand: they are the patterns.
+  No em dash anywhere.
+-->
+<body>
+<div class="kit-shell">
+  <div id="kit-panel"></div>
+  <main class="kit-main">
+
+    <div id="kit-crumbs"></div>
+
+    <div>
+      <div class="kit-eyebrow">Patterns &middot; the second level of the system</div>
+      <h1 class="kit-h1">Pattern or components</h1>
+      <p class="kit-lead">A pattern is a composition that has settled: the same components, in the
+        same order, on three screens or more. It is taken whole, with its wrapper. Everything else
+        is put together on the screen from the components, and that is not a lesser way to build:
+        most of the product is built like that.</p>
+      <p class="kit-lead">A pattern carries no look of its own. It holds the space between its
+        parts and nothing else; the look stays with the components it is made of.</p>
+    </div>
+
+    <section class="kit-sec" id="choose">
+      <h2 class="kit-h2">Take the pattern, or the components</h2>
+      <p class="kit-note"><b>Take the pattern when the screen needs exactly that composition, whole.</b> Put the components together when the composition is one-off, or when it comes in another order. The product's own screens, both ways:</p>
+      <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Screen</th><th>What it needs</th><th>Take</th><th>Because</th></tr></thead><tbody>
+        <tr><td>3.0 Sources</td><td>connected sources and sources to connect, in one list</td><td><a href="grouped-list.html">Grouped list</a></td><td>two kinds of thing, each named and counted: "Connected &middot; 2", "Available to connect"</td></tr>
+        <tr><td>6.5 Briefs, none yet</td><td>one group, and it is empty</td><td><a href="grouped-list.html">Grouped list</a>, the empty body</td><td>the group is shown with its zero, so the gap is visible rather than assumed</td></tr>
+        <tr><td>2.0 Synthesis</td><td>the ranked themes, narrowed by source, period and confidence</td><td><a href="filtered-list.html">Filtered list</a></td><td>the toolbar belongs to this list alone, so the two are one block</td></tr>
+        <tr><td>4.0 Theme detail</td><td>the evidence, grouped by source and sorted by date</td><td><a href="filtered-list.html">Filtered list</a> holding a <a href="grouped-list.html">Grouped list</a></td><td>patterns nest: the outer one owns the space under the toolbar, the inner one the space before each heading</td></tr>
+        <tr><td>3.2 Import a CSV</td><td>"Map columns" over the mapping block</td><td>components: <a href="group-heading.html"><code>.group-t--section</code></a></td><td>the heading stands over a block, not over a list of groups</td></tr>
+        <tr><td>7.0 Account</td><td>three links to the account pages</td><td>components: a <code>.list</code> of <a href="cardrow.html"><code>.cardrow</code></a></td><td>one kind of thing, nothing to name and nothing to narrow</td></tr>
+        <tr><td>2.1 and 2.3, empty and error</td><td>the synthesis has nothing to show, or failed</td><td>components: the <a href="state.html">state</a> alone</td><td>there is nothing to filter, so the toolbar goes and the pattern with it (<a href="architecture.html#usage">usage rule R3</a>)</td></tr>
+        <tr><td>2.0 and 4.0, the foot</td><td>"Load 6 more themes" under the list</td><td>components: <code>.list-foot</code>, after the pattern</td><td>the list and its foot stand on two screens: a candidate, below, and not a part of the Filtered list</td></tr>
+      </tbody></table></div>
+
+      <h3 class="kit-h3">Three questions, in this order</h3>
+      <ol class="kit-legend">
+        <li><span class="kit-legend-n">1</span><span><b>Does a pattern below hold this exact composition?</b> Take it whole: the wrapper and the parts, as its page shows them. Do not rebuild its spacing on the screen.</span></li>
+        <li><span class="kit-legend-n">2</span><span><b>The composition is right, but a part needs a look the system does not have?</b> Then a component or a variant is missing, not a pattern. Build it first, with the five things a new component is, then use the pattern.</span></li>
+        <li><span class="kit-legend-n">3</span><span><b>Neither?</b> Put the components together on the screen. If the same composition turns up on a third grey screen, it is a candidate: say so in the table below, do not make the pattern quietly.</span></li>
+      </ol>
+    </section>
+
+    <section class="kit-sec" id="exists">
+      <h2 class="kit-h2">When a composition becomes a pattern</h2>
+      <div class="kit-when">
+        <div>
+          <h3>Three screens, named</h3>
+          <p>A composition is a pattern from <b>three screens</b>, and the three are named on its page. Two show that the composition is possible; three show that it has settled. A composition on two screens stays markup and waits.</p>
+          <p>The screens are counted on the grey, <code>wireframes/</code>, which is the whole product: 37 pages, 25 screens once a state page counts with its screen. The colour pages are the proof that the pattern holds, never the count: three of five colour screens is "almost everywhere" in a sample, not a pattern.</p>
+        </div>
+        <div>
+          <h3>No style of its own</h3>
+          <p>A pattern is built from components and tokens that already exist. It holds the space between its parts, and that space is cut out of the component that carried it, not copied. It never holds a colour.</p>
+          <p>A pattern that stands on three grey screens and on no colour screen is still made, because the rollout will need it, and its page says so out loud. Today both patterns stand on all three of their screens in colour.</p>
+        </div>
+      </div>
+      <p class="kit-note">In the code the patterns live in <code class="kit-mono">design/system/patterns/</code> and are imported after the organisms in <code class="kit-mono">index.css</code>; in this panel their group stands after the components. Both read in the order the system is built.</p>
+    </section>
+
+    <section class="kit-sec" id="list">
+      <h2 class="kit-h2">The patterns &middot; 2</h2>
+      <div class="kit-pcards">
+        <article class="kit-pcard">
+          <div class="kit-thumb" inert aria-hidden="true"><div class="kit-thumb-in">
+            <div class="grouped-list">
+              <div class="group-t">Shared &middot; 1</div>
+              <ul class="list"><li class="brief-row"><div class="brief-main"><span class="brief-title">Q3 roadmap: what customers need most</span><div class="brief-meta">3 themes &middot; 89 feedback items behind them &middot; link is live</div></div><span class="tag">Shared</span></li></ul>
+              <div class="group-t">Drafts &middot; 1</div>
+              <ul class="list"><li class="brief-row"><div class="brief-main"><span class="brief-title">Onboarding deep-dive</span><div class="brief-meta">1 theme &middot; 42 feedback items behind it &middot; no link yet</div></div><span class="tag">Draft</span></li></ul>
+            </div>
+          </div></div>
+          <div class="kit-pcard-b">
+            <span class="kit-card-t"><a href="grouped-list.html">Grouped list</a></span>
+            <span class="kit-card-d">A list cut into named groups: a heading that counts its group, then the group, repeated.</span>
+            <span class="kit-card-list">Built from: <a class="link" href="group-heading.html">Group heading</a> over a list of rows, a grid of <a class="link" href="source-card.html">source cards</a>, or an inline <a class="link" href="state.html">empty state</a></span>
+            <div class="kit-nums"><span class="kit-chip">3 grey screens: 3.0, 4.0, 6.0</span><span class="kit-chip">3 in colour, 8 pages</span></div>
+          </div>
+        </article>
+        <article class="kit-pcard">
+          <div class="kit-thumb" inert aria-hidden="true"><div class="kit-thumb-in">
+            <div class="filtered-list">
+              <div class="toolbar">
+                <div class="toolbar-full">
+                  <button class="chip"><svg class="ic"><use href="#i-source"/></svg> Source: all <span class="chip-count">2</span></button>
+                  <button class="chip is-on">Last 30 days <span class="chip-count">2,904</span></button>
+                  <span class="sortnote">Sort: <b>signal rank</b></span>
+                </div>
+                <div class="toolbar-compact">
+                  <button class="chip is-on"><svg class="ic"><use href="#i-filter"/></svg> Filter <span class="chip-count">1</span></button>
+                  <span class="sortnote"><b>signal rank</b></span>
+                </div>
+              </div>
+              <ul class="list">
+                <li class="theme"><input type="checkbox" class="check" aria-label="Select theme"><span class="rank">1</span><span class="theme-main"><span class="theme-label">Onboarding is confusing</span><span class="theme-prov">CSV, Intercom &middot; latest feedback 2 days ago</span></span><span class="conf"><span class="conf-n">n=42</span></span></li>
+                <li class="theme"><input type="checkbox" class="check" aria-label="Select theme"><span class="rank">2</span><span class="theme-main"><span class="theme-label">Slow export on large accounts</span><span class="theme-prov">Intercom &middot; latest feedback 5 days ago</span></span><span class="conf"><span class="conf-n">n=28</span></span></li>
+              </ul>
+            </div>
+          </div></div>
+          <div class="kit-pcard-b">
+            <span class="kit-card-t"><a href="filtered-list.html">Filtered list</a></span>
+            <span class="kit-card-d">A list and the toolbar that narrows or orders it, as one block.</span>
+            <span class="kit-card-list">Built from: <a class="link" href="toolbar.html">Toolbar</a> over a list of <a class="link" href="theme-card.html">theme rows</a>, a <a class="link" href="grouped-list.html">grouped list</a> of snippets, or the rows of a brief</span>
+            <div class="kit-nums"><span class="kit-chip">3 grey screens: 2.0, 4.0, 6.1</span><span class="kit-chip">3 in colour, 6 pages</span></div>
+          </div>
+        </article>
+      </div>
+      <p class="kit-note">Two numbers on each card, not one: the grey screens are the count that made the pattern, and the second number grows at Stage 12, when the rollout paints the rest of the product.</p>
+    </section>
+
+    <section class="kit-sec" id="candidates">
+      <h2 class="kit-h2">Candidates: on two screens, waiting for a third</h2>
+      <p class="kit-note">Found by the same count at Stage 09 Step 1, over all 37 grey pages. Not patterns, and not lost: each stays markup until a third screen draws it, and the rollout is where a third would appear. Whoever counts next starts from this list instead of from nothing.</p>
+      <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Composition</th><th>Grey screens</th><th>In colour</th><th>What it lacks</th></tr></thead><tbody>
+        <tr><td>Group heading over an inline empty state</td><td>3.0 (as 3.4), 6.0 (as 6.5)</td><td><a href="../sources-empty.html">sources-empty</a>, <a href="../briefs-empty.html">briefs-empty</a></td><td>a third screen with an empty named group. Until then it is a body of the <a href="grouped-list.html">Grouped list</a>, not a pattern of its own</td></tr>
+        <tr><td>The list and its foot, "Load more"</td><td>2.0, 4.0</td><td><a href="../synthesis.html">synthesis</a>, <a href="../theme.html">theme</a></td><td>a third long list that pages</td></tr>
+        <tr><td>A section title over the provenance list</td><td>3.6, 5.0</td><td>none, grey only</td><td>a third screen that says where an item came from, and a colour copy of any of them</td></tr>
+        <tr><td>A form that ends in the action bar</td><td>3.2, 3.3</td><td><a href="../connect-csv.html">connect-csv</a></td><td>a third screen where a form closes on the <a href="actionbar.html">action bar</a></td></tr>
+      </tbody></table></div>
+
+      <h3 class="kit-h3">Looked at, and not a pattern</h3>
+      <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>What</th><th>Count</th><th>Why not</th></tr></thead><tbody>
+        <tr><td>Sub-page head</td><td>5 screens: 3.2, 3.3, 3.6, 4.0, 5.0</td><td>the breadcrumb strip and a title block under it: a slot of the screen shell. A pattern file would hold nothing</td></tr>
+        <tr><td>Twelve repeats</td><td>3 screens or more each</td><td>the inside of one component (app header, bottom tabs, empty state, screen head, phase strip and seven more). Repetition inside a component is what a component is for</td></tr>
+        <tr><td>The phase strip's place</td><td>4 screens, 3 placements</td><td>not stable, so not a pattern. <a href="architecture.html#usage">Usage rule R9</a> holds its count; its place is a backlog row</td></tr>
+      </tbody></table></div>
+    </section>
+
+    <div id="kit-pager"></div>
+
+  </main>
+</div>
+<svg class="sprite" aria-hidden="true"><defs>
+  <symbol id="i-signal" viewBox="0 0 24 24"><path d="M6 18v-3.5M12 18v-8M18 18v-12.5"/></symbol>
+  <symbol id="i-source" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.66 3.13 3 7 3s7-1.34 7-3V6"/><path d="M5 12v6c0 1.66 3.13 3 7 3s7-1.34 7-3v-6"/></symbol>
+  <symbol id="i-brief" viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h7"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 19c0-3.6 2.9-5.5 6.5-5.5s6.5 1.9 6.5 5.5"/></symbol>
+  <symbol id="i-filter" viewBox="0 0 24 24"><path d="M3 5.5h18l-7 8v5l-4 2v-7z"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M6 3v18"/><path d="M6 4h12l-2.5 4L18 12H6"/></symbol>
+  <symbol id="i-evidence" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-4 4v-4H4z"/><path d="M8.5 10.5h7M8.5 13h4"/></symbol>
+  <!-- added at Step 3 for the components that had never been in colour -->
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 4.5 21 19.5H3z"/><path d="M12 10v4.2M12 17.1v.1"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M15 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h3"/></symbol>
+  <symbol id="i-drag" viewBox="0 0 24 24"><path d="M9 7h.1M15 7h.1M9 12h.1M15 12h.1M9 17h.1M15 17h.1"/></symbol>
+  <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V5"/><path d="m7.5 9.5 4.5-4.5 4.5 4.5"/><path d="M4.5 15v3.5a1.5 1.5 0 0 0 1.5 1.5h12a1.5 1.5 0 0 0 1.5-1.5V15"/></symbol>
+</defs></svg>
+<script src="_nav.js"></script>
+</body>
+</html>

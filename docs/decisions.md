@@ -1000,3 +1000,41 @@ screen (two fills on 2.0) backs R1. Stage 06 has no critique log.
 R5), one added (where the phase strip stands). Still owed to Stage 09 and the owner: the avatar,
 26 or 28px, and the action bar's alignment, both values; the 44px rule for a footer link waits for
 a footer that has links.
+
+## Step 2: the patterns showcase (2026-11-26)
+
+The patterns got their visible place on the stand, in the format of the component pages as far as
+it applies. `design/kit/patterns.html` opens the group the way `architecture.html` opens
+Foundations, and its main content is the choice, told with the product's screens: take the pattern
+when the screen needs exactly that composition, whole; put the components together when the
+composition is one-off or comes in another order (3.2 "Map columns", 7.0 Account, the empty and
+error screens 2.1 and 2.3 under R3, the "Load more" foot). Then the three-screen condition, a card
+per pattern with a live miniature and two numbers (grey screens; how many in colour), the four
+candidates from Step 1 and what each lacks, and the three things looked at and not taken.
+`grouped-list.html` and `filtered-list.html` carry the anatomy as a live pattern with numbered
+parts linked to their component pages, the variants (four bodies; the two toolbar forms), the place
+on the path from `ia/docs/flows.md`, the rule and anti-rule with a live do and do-not, and where
+each stands: 3 grey screens by name, 3 of 3 in colour on 8 and 6 pages.
+
+| Decision | Why | Rejected |
+|---|---|---|
+| The Patterns group stands after the components and before Verification in the panel; the pager walks it in that order | the panel reads in the order the system is built, as `index.css` imports it | a category among the components: a pattern is a level above them, not a purpose |
+| The do-not examples are live: a bare heading over a list, a toolbar on its own over a list | since Step 1 the space lives in the pattern, so leaving the wrapper out is the real failure, and the stand can show it with the system's own CSS | a described do-not with no example |
+| The anatomy marks parts with an outline and an absolute badge, stand-only, in `_page.css` | neither takes space, so the pattern lays out as on its screen; no product component draws `::before` on these parts | wrapping each part in a labelled box, which would break the pattern's direct-child selectors |
+| The variants stand one under the other, not side by side | each body needs the width of a list; a theme row squeezed into a third of the page is not how it stands anywhere | a grid of narrow tiles |
+| The button's purpose line in `_nav.js` now says "per screen" | Step 1 changed the button page from "per zone" and left this line behind; one source for the head, the table and the page | |
+
+**Inventory:** `design/kit/docs/inventory.md` gained "Stage 09 Step 2: the pattern register", two
+rows, so it describes both levels of the system. The hub `overview.html` has a Patterns card group
+and a stat.
+
+**The owner's two values, closed the same day.** The avatar stays 28px: the colour layer has carried
+28 since Stage 07, so no screen moves; the grey keeps its 26, as the grey is never edited. The action
+bar keeps its alignment at the start: the grey right-aligns and the Stage 07 inventory said right,
+but the colour layer has drawn the start since Stage 07, and keeping it moves no screen. Both
+backlog rows are removed (32 rows now); `avatar.html` and `actionbar.html` carry a history row, and
+the `[?]` on the action bar's alignment is gone.
+
+Checked: the three new pages and eight touched ones at 360 and 1440 in both themes, 44 renders, no
+horizontal scroll, no console error, no dead local link. `design/system/` is untouched, so no
+product screen can move; no product screen loads the stand's files.
