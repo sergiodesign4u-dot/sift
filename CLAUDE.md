@@ -156,7 +156,7 @@ page, a named section registered in that page's `NAV_SECTIONS`, or a satellite p
 ## Contributing to the system
 
 New appears in `design/system/` FIRST and on a screen second, never the other way round; something
-new on a screen with none of the four below is forbidden, and what the system lacks is a row in
+new on a screen with none of the five below is forbidden, and what the system lacks is a row in
 `design/kit/docs/backlog.md`. When the owner says "keep" («залишаємо»):
 - about a **value**: the token of its level in `design/system/tokens.css`, said as "variable, value,
   why", in both themes if it is a role or a state; it reaches every screen by itself.
@@ -165,5 +165,7 @@ new on a screen with none of the four below is forbidden, and what the system la
   group of `index.css`, never at the end.
 - about a **composition**: `design/system/patterns/<name>.css` and its pattern page, only from three
   grey screens, with no style of its own, imported after the components.
+- about a **block on one screen**: `design/system/one-off.css`, no page; a second occurrence makes it
+  a component.
 A new usage rule is a row in "Usage rules" with its source plus a "Limits" line on each page it
 names. Addresses and details: `design/kit/docs/architecture.md`, "Contributing to the system".

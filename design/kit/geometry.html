@@ -47,6 +47,12 @@
       <div class="geo"><div class="geo-box" style="width:96px;height:66px;border-radius:var(--radius-lg)"></div><div class="geo-cap">--radius-lg<br>12px<br>a sheet: frame, dialog, auth card</div></div>
       <div class="geo"><div class="geo-box" style="width:96px;height:66px;border-radius:var(--radius-pill)"></div><div class="geo-cap">--radius-pill<br>50%<br>avatar, numbered circle</div></div>
     </div></section>
+    <section class="kit-sec" id="ring"><h2 class="kit-h2">The keyboard ring</h2>
+    <p class="kit-lead">Three numbers, the same on every focusable control, drawn by <code class="kit-mono">:focus-visible</code> in <code class="kit-mono">base.css</code> in the colour <code class="kit-mono">--line-focus</code>. They were literals in a state selector until Stage 09 Step 6; the values did not change.</p>
+    <div class="geo-row">
+      <div class="geo"><div class="geo-box" style="width:96px;height:40px;border-radius:var(--radius-md);outline:var(--ring-width) solid var(--line-focus);outline-offset:var(--ring-offset)"></div><div class="geo-cap">--ring-width 2px<br>--ring-offset 2px<br>every control</div></div>
+      <div class="geo"><div class="geo-box" style="width:96px;height:40px;border-radius:0;outline:var(--ring-width) solid var(--line-focus);outline-offset:var(--ring-offset-wide)"></div><div class="geo-cap">--ring-offset-wide<br>4px<br>the title input only</div></div>
+    </div></section>
     <section class="kit-sec" id="size"><h2 class="kit-h2">Targets</h2>
     <p class="kit-lead">44px is the floor for anything a thumb aims at, and it has exactly three named exceptions, all of them in <code class="kit-mono">wireframes/docs/conventions.md</code>: the checkbox at the 24px AA floor, because a 44px checkbox would double the height of every ranked row; an inline link inside running text, exempt for the reason WCAG exempts it; and the citation chip, which is the same case.</p>
     <div class="geo-row">

@@ -110,7 +110,7 @@
         <div class="kit-when">
           <div>
             <h3>When</h3>
-            <p>A connected source on 3.0, 3.5 and 3.6: what it is, how much it holds, when it last arrived, whether PII is scrubbed, and the one way to manage it.</p>
+            <p>A connected source on 3.0 and 3.5: what it is, how much it holds, when it last arrived, whether PII is scrubbed, and the one way to manage it.</p>
             <p>The alert line under a failed row explains the state in words and offers the retry, because a tag alone says something is wrong and nothing about what to do. The voice rule is that every state names the next move.</p>
           </div>
           <div>
@@ -173,7 +173,7 @@
 
       <section class="kit-sec" id="where">
         <h2 class="kit-h2">Where it stands</h2>
-        <p class="kit-note">3.0 Sources, 3.5 Source: sync error and 3.6 Source: manage, per the inventory. The two already in colour:</p>
+        <p class="kit-note">3.0 Sources and 3.5 Source: sync error, per the inventory. 3.6 Source: manage shows its one source as a provenance list, not as a row. The two already in colour:</p>
         <div class="kit-where">
           <a href="../sources.html">3.0 Sources</a>
           <a href="../sources-sync-error.html">3.5 Source: sync error</a>
@@ -256,6 +256,7 @@
       <section class="kit-sec">
         <h2 class="kit-h2">Changes, newest first</h2>
         <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-26</td><td>Where it stands corrected: 3.6 draws no source row on the grey, it lists its source as a provenance list. Inventory recounted: 4 rows, 3 healthy and 1 failed</td><td><code>docs/decisions.md</code>, "Stage 09 Step 6"</td></tr>
           <tr><td>2026-11-21</td><td>The alert line reads the new solid role <code>--line-warning-strong</code>, not the 32 percent edge, as <code>kit.css</code> drew it. <code>.list</code> now lives in <code>base.css</code></td><td><code>docs/decisions.md</code>, "Step 6: the system reconciled with the product"</td></tr>
           <tr><td>2026-11-21</td><td>Entered the system: <code>components/source-row.css</code>, on semantic roles, and this page in the card format</td><td><code>docs/decisions.md</code>, "The molecules entered the system"</td></tr>
           <tr><td>2026-08-18</td><td>Declared in kit.css from the colour layer, with the failed edition and the row-level alert line. <code>.src-manage</code> was folded into <code>.btn--ghost</code> and <code>.wf-rowalert</code> became <code>.rowalert</code></td><td>commit <code>d461e12</code>; <code>design/kit/docs/inventory.md</code>, the fold tables</td></tr>

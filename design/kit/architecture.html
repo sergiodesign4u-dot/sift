@@ -86,12 +86,13 @@
     </div>
     </section>
     <section class="kit-sec" id="contributing"><h2 class="kit-h2">Contributing to the system</h2>
-    <p class="kit-lead"><b>Anything new appears in <code class="kit-mono">design/system/</code> first, and on a screen second. Never the other way round.</b> Five kinds of new, each with its addresses. A thing with one of its addresses missing is not ready, and a screen does not use it yet (Stage 09 Step 4).</p>
+    <p class="kit-lead"><b>Anything new appears in <code class="kit-mono">design/system/</code> first, and on a screen second. Never the other way round.</b> Six kinds of new, each with its addresses. A thing with one of its addresses missing is not ready, and a screen does not use it yet (Stage 09 Step 4).</p>
     <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>What is new</th><th>Where it goes, in this order</th><th>Ready when</th></tr></thead><tbody>
       <tr><td>A component</td><td>the five things below</td><td>all five exist, and its states stand in both themes</td></tr>
       <tr><td>A usage rule</td><td>a row in <a href="#usage">the usage rules</a> on this page, then a "Limits" line on the page of every component it names</td><td>"Where it was taken from" is filled: counted on the grey screens, decided in a named file, or caught by a critique on two screens or more</td></tr>
       <tr><td>A composition</td><td>three grey screens first; then the pattern's five things</td><td>the colour screens that carry it moved onto it with a pixel proof; on two screens it stays markup, a row in the candidates on <a href="patterns.html#candidates">patterns.html</a></td></tr>
       <tr><td>A value</td><td><code>tokens.css</code>, at its level</td><td>said out loud as "variable, value, why"; a role and a state token arrive with their light pair</td></tr>
+      <tr><td>A block that stands on one screen</td><td><code>design/system/one-off.css</code>, its own group after the organisms, and a row in <a href="overview.html#one-off">One-off blocks</a>; no page, no registry entry, no inventory row</td><td>the owner said "keep"; a second occurrence moves it to <code>components/</code> with the five things</td></tr>
       <tr><td>Only on a screen</td><td><b>nowhere: forbidden</b></td><td>never. What the system lacks is a row in <code>backlog.md</code>, and the screen waits or ships without it</td></tr>
     </tbody></table></div>
 
@@ -114,8 +115,11 @@
     <h3 class="kit-h3">A value</h3>
     <p class="kit-note"><code class="kit-mono">tokens.css</code>, at its level. A raw value is a primitive and carries its origin comment; a colour role is semantic, reads a primitive through <code class="kit-mono">var()</code>, and arrives with its pair in <code class="kit-mono">[data-theme="light"]</code> and its contrast measured in both themes. A state token arrives in both themes in the same edit. Geometry has no semantic level. Nothing changes without "variable, value, why".</p>
 
+    <h3 class="kit-h3">A block on one screen</h3>
+    <p class="kit-note">A block that occurs on a single screen (a screen in two states counts as one) is not a component: by the inventory's threshold it gets no page, no state matrix and no catalog entry. It still lives in the system, in <code class="kit-mono">design/system/one-off.css</code>, because a screen links one stylesheet and nothing else; that file is imported in its own group after the organisms. It enters on the owner's "keep", like anything else, and is listed in <a href="overview.html#one-off">One-off blocks</a>. A second occurrence turns it into a component: it leaves <code class="kit-mono">one-off.css</code> for <code class="kit-mono">components/</code> with the five things, and that is said out loud. Added at Stage 09 Step 6: the reader who built 3.6 from this page found no address for its Disconnect confirm, which stands on one screen.</p>
+
     <h3 class="kit-h3">Something new on a screen alone</h3>
-    <p class="kit-note">Forbidden. A product screen links <code class="kit-mono">design/system/index.css</code> and nothing else: no <code class="kit-mono">style=</code>, no <code class="kit-mono">&lt;style&gt;</code>, no class that exists on that screen only, no contextual override. The screen is where the system is used, never where it grows.</p>
+    <p class="kit-note">Forbidden. A product screen links <code class="kit-mono">design/system/index.css</code> and nothing else: no <code class="kit-mono">style=</code>, no <code class="kit-mono">&lt;style&gt;</code>, no class that is not in the system, no contextual override. The screen is where the system is used, never where it grows.</p>
     </section>
     <section class="kit-sec" id="theme"><h2 class="kit-h2">How the theme is built</h2>
     <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Rule</th><th>Why</th></tr></thead><tbody>

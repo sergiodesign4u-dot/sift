@@ -130,7 +130,7 @@ stops being true.
 ## Contributing to the system
 
 *Stage 09 Step 4. One rule: anything new appears in `design/system/` FIRST, and on a screen second.
-Never the other way round. Five kinds of new, each with its addresses. A thing with one of its
+Never the other way round. Six kinds of new, each with its addresses. A thing with one of its
 addresses missing is not ready, and a screen does not use it yet.*
 
 | What is new | Where it goes, in this order | Ready when |
@@ -139,7 +139,8 @@ addresses missing is not ready, and a screen does not use it yet.*
 | A usage rule | a row in "Usage rules" on this page, then a "Limits" line on the page of every component it names | "Where it was taken from" is filled: counted on the grey screens, decided in a named file, or caught by a critique on two screens or more |
 | A composition | three grey screens first; then the pattern's five things | the colour screens that carry it moved onto it with a pixel proof; on two screens it stays markup, a row in the candidates on `patterns.html` |
 | A value | `tokens.css`, at its level | said out loud as "variable, value, why"; a role and a state token arrive with their light pair |
-| Something on a screen with none of the four above | **nowhere: forbidden** | never. What the system lacks is a row in `backlog.md`, and the screen waits or ships without it |
+| A block that stands on one screen | `design/system/one-off.css`, its own group after the organisms, and a row in "One-off blocks" on `overview.html`; no page, no registry entry, no inventory row | the owner said "keep"; a second occurrence moves it to `components/` with the five things |
+| Something on a screen with none of the five above | **nowhere: forbidden** | never. What the system lacks is a row in `backlog.md`, and the screen waits or ships without it |
 
 ### A component: five things, and the last two are the ones that get forgotten
 
@@ -187,10 +188,21 @@ role is semantic, reads a primitive through `var()`, and arrives with its pair i
 themes in the same edit. Geometry has no semantic level. Nothing changes without "variable, value,
 why".
 
+### A block on one screen
+
+A block that occurs on a single screen (a screen in two states counts as one) is not a component:
+by the inventory's threshold it gets no page, no state matrix and no catalog entry. It still lives
+in the system, in `design/system/one-off.css`, because a screen links one stylesheet and nothing
+else; that file is imported in its own group after the organisms. It enters on the owner's "keep",
+like anything else, and is listed in "One-off blocks" on `overview.html`. A second occurrence turns
+it into a component: it leaves `one-off.css` for `components/` with the five things, and that is
+said out loud. Added at Stage 09 Step 6: the reader who built 3.6 from this page found no address
+for its Disconnect confirm, which stands on one screen.
+
 ### Something new on a screen alone
 
 Forbidden. A product screen links `design/system/index.css` and nothing else: no `style=`, no
-`<style>`, no class that exists on that screen only, no contextual override. The screen is where
+`<style>`, no class that is not in the system, no contextual override. The screen is where
 the system is used, never where it grows.
 
 ---

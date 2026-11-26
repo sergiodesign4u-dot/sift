@@ -30,8 +30,14 @@
    two frozen Stage 07 stands moved into kit.html's own <style> when kit.css was deleted at Step 8. ---- */
 :root {
   --pf-bg:#0c0c0e; --pf-bg-3:#17171c; --pf-border-light:#1e1e28;
-  --pf-text:#e8e8ec; --pf-text-3:#66667a; --pf-accent:#7c6af7; --pf-accent-glow:rgba(124,106,247,0.12);
+  --pf-text:#e8e8ec; --pf-text-3:#9696aa; --pf-text-4:#7e7e92; --pf-accent:#7c6af7; --pf-accent-ink:#8474f8; --pf-accent-glow:rgba(124,106,247,0.12);
 }
+/* Stage 09 Step 6: --pf-text-3 was #66667a, 3.49 on --pf-bg and 3.19 on --pf-bg-3, under the 4.5
+   a 10 to 13px label owes; now 6.74 and 6.16. A screen still grey was --pf-text-3 at 0.55 opacity,
+   1.9; it takes --pf-text-4 instead, 4.92 and 4.50, one step dimmer than a screen in colour and
+   never under the floor. --pf-accent-ink is the accent as text on --pf-bg-3 (the flow id on the
+   hub was 4.48; now 4.96); the accent itself stays for lines and rings. The chrome stays dark in both themes: the theme switch belongs to the
+   product screen, so design/_nav.js applies it only where the panel is. */
 
 .ds-shell { display: flex; align-items: flex-start; min-height: 100vh; }
 
@@ -68,7 +74,7 @@ a.ds-link:hover { color: var(--pf-text); background: var(--pf-bg-3); }
 .ds-link.is-current { color: var(--pf-text); background: var(--pf-bg-3); border-left-color: var(--pf-accent); font-weight: 500; }
 /* A screen still in grey is reachable, and it says so. It is not disabled: the grey original
    is a real page and the point of the coverage map is that the product is not all colour yet. */
-.ds-link.is-grey { color: var(--pf-text-3); opacity: 0.55; }
+.ds-link.is-grey { color: var(--pf-text-4); }
 .ds-node { font-family: var(--font-mono); font-size: 10px; color: var(--pf-text-3); min-width: 26px; flex: none; }
 .ds-states { list-style: none; margin: 1px 0 6px; padding: 0; }
 .ds-state { display: block; font-size: 11.5px; color: var(--pf-text-3); text-decoration: none; padding: 4px 8px 4px 36px; border-radius: 4px; border-left: 2px solid transparent; }
@@ -123,7 +129,7 @@ a.ds-link:hover { color: var(--pf-text); background: var(--pf-bg-3); }
 
 .ov-flow { border: 1px solid var(--pf-border-light); border-radius: 10px; padding: 14px 16px; margin-bottom: 12px; background: var(--pf-bg-3); }
 .ov-flow-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
-.ov-flow-id { font-family: var(--font-mono); font-size: 11px; color: var(--pf-accent); white-space: nowrap; }
+.ov-flow-id { font-family: var(--font-mono); font-size: 11px; color: var(--pf-accent-ink); white-space: nowrap; }
 .ov-flow-label { font-size: 13px; color: var(--pf-text-3); }
 .ov-flow-screens { list-style: none; display: flex; flex-direction: column; gap: 6px; margin: 0; padding: 0; }
 .ov-fscreen { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 7px 0; border-top: 1px solid var(--pf-border-light); }

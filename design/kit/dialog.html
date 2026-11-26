@@ -59,7 +59,7 @@
             </tbody>
           </table>
         </div>
-        <p class="kit-note">[?] The second content form in the inventory, "confirm with a destructive action held apart (3.6)", has no dialog in any screen. The grey 3.6 screen (sources-manage) draws its Disconnect confirm as an inline <code class="kit-mono">.src-confirm</code> panel, a one-off, with Cancel and a filled button and no <code class="kit-mono">.u-apart</code>. The destructive action held apart is real in 6.3: "Disable link" carries <code class="kit-mono">.u-apart</code>, so it is pushed to the left edge and never sits beside the primary one.</p>
+        <p class="kit-note">[?] Until Stage 09 Step 6 the inventory gave the dialog a second content form on 3.6; there is no dialog on 3.6. The grey 3.6 screen (sources-manage) draws its Disconnect confirm as an inline <code class="kit-mono">.src-confirm</code> panel, a one-off, with Cancel and a filled button and no <code class="kit-mono">.u-apart</code>. The destructive action held apart is real in 6.3: "Disable link" carries <code class="kit-mono">.u-apart</code>, so it is pushed to the left edge and never sits beside the primary one. Whether 3.6 keeps its inline confirm or takes a dialog is backlog row <a href="why.html#backlog-08">B-08</a>, and whether its destructive button is filled is <a href="why.html#backlog-s6">S6-2</a>, both Stage 12.</p>
       </section>
 
       <section class="kit-sec" id="props">
@@ -122,7 +122,7 @@
 
       <section class="kit-sec" id="where">
         <h2 class="kit-h2">Where it stands</h2>
-        <p class="kit-note">Two screens in the inventory: 6.3 Share link with its generating state, and 3.6 in grey, which carries a confirm that is not a <code>.dialog</code> [?].</p>
+        <p class="kit-note">One screen: 6.3 Share link with its generating state. The grey 3.6 carries a confirm that is not a <code>.dialog</code>; which form it takes is <a href="why.html#backlog-08">B-08</a>.</p>
         <div class="kit-where">
           <a href="../share-link.html">6.3 Share link</a>
           <a href="../share-link-loading.html">6.3 Generating</a>
@@ -198,6 +198,7 @@
       <section class="kit-sec">
         <h2 class="kit-h2">Changes, newest first</h2>
         <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-26</td><td>The 3.6 content form removed from the inventory row: the grey 3.6 draws its confirm inline. The open question now links to its backlog rows, B-08 and S6-2</td><td><code>docs/decisions.md</code>, "Stage 09 Step 6"</td></tr>
           <tr><td>2026-11-26</td><td>The rule block gained its third sub-point, <b>Limits</b>: R1, R5 from the usage rules. The rules live on <code>architecture.html</code>; this page carries the short copy</td><td><code>docs/decisions.md</code>, "Stage 09 Step 1"</td></tr>
           <tr><td>2026-11-21</td><td>Entered the system: <code>components/dialog.css</code>, on semantic roles, and this page in the card format</td><td><code>docs/decisions.md</code>, "The organisms entered the system"</td></tr>
           <tr><td>2026-08-18</td><td>Declared in the flat kit with the rule that a destructive action is held apart by <code>.u-apart</code></td><td>commit <code>d461e12</code></td></tr>

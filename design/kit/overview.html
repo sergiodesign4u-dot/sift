@@ -73,6 +73,66 @@
     </tbody></table></div>
   </section>
 
+  <section class="kit-sec" id="inventory">
+    <h2 class="kit-h2">Inventory</h2>
+    <p class="kit-note">The system's register, read from <code class="kit-mono">design/kit/docs/inventory.md</code>: 51 components by level, each with the states it has and the screens it stands on, then the 2 patterns one rung up. 21 components are not interactive and have no states of their own; the other 30 carry theirs in both themes. Built at Stage 09 Step 6, so that the md has its place in the browser; the full census of the grey layer, with every variant and occurrence, stays in the file.</p>
+    <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Level</th><th>Name</th><th>States</th><th>Where it stands</th></tr></thead><tbody>
+        <tr><td>1</td><td><a href="button.html">Button</a></td><td>hover, active, focus-visible, disabled</td><td>every screen. 67 filled, 33 outlined, 4 bare, 13 icon-only, 11 large</td></tr>
+        <tr><td>1</td><td><a href="input.html">Input</a></td><td>hover, focus-visible, error, disabled. No active: a field has no pressed state</td><td>8 screens, 18 fields</td></tr>
+        <tr><td>1</td><td><a href="checkbox.html">Checkbox</a></td><td>hover, checked, focus-visible, disabled</td><td>2.0, 7.2. 11</td></tr>
+        <tr><td>1</td><td><a href="field-label.html">Field label</a></td><td>none, not interactive</td><td>6 screens. 14</td></tr>
+        <tr><td>1</td><td><a href="chip.html">Filter chip</a></td><td>hover, on, focus-visible, disabled</td><td>5 screens. 12</td></tr>
+        <tr><td>1</td><td><a href="confidence.html">Confidence indicator</a></td><td>none, not interactive</td><td>9 screens. 24</td></tr>
+        <tr><td>1</td><td><a href="citation.html">Citation marker</a></td><td>hover and focus on the linked form; the static index has none</td><td>5 screens. 25 static, 6 linked</td></tr>
+        <tr><td>1</td><td><a href="tag.html">Status tag</a></td><td>none, not interactive</td><td>5 screens: 3.0, 3.5, 6.0, 6.1, 6.2 (corrected at Stage 09 Step 6; 3.4 and 3.6 carry none). 8</td></tr>
+        <tr><td>1</td><td><a href="rank.html">Rank number</a></td><td>none, not interactive</td><td>4 screens. 16</td></tr>
+        <tr><td>1</td><td><a href="avatar.html">Avatar</a></td><td>focus-visible. Hover deliberately empty</td><td>28 screens</td></tr>
+        <tr><td>1</td><td><a href="iconslot.html">Icon slot</a></td><td>none, not interactive</td><td>34 screens</td></tr>
+        <tr><td>1</td><td><a href="scope.html">Scope line</a></td><td>none. Four CONTENT states, written in words</td><td>13 screens</td></tr>
+        <tr><td>1</td><td><a href="skeleton.html">Skeleton bar</a></td><td>the shimmer, and it stops under prefers-reduced-motion</td><td>2.2, 4.2</td></tr>
+        <tr><td>1</td><td><a href="link.html">Inline text link</a></td><td>hover, focus-visible. Visited and disabled named as absent, with reasons</td><td>18 screens. 88</td></tr>
+        <tr><td>1</td><td><a href="drag.html">Drag handle</a></td><td>the cursor only. Keyboard reordering named as a real gap</td><td>6.1, 6.2. 7</td></tr>
+        <tr><td>1</td><td><a href="cardrow.html">List row link</a></td><td>hover, focus-visible</td><td>7.0. 3</td></tr>
+        <tr><td>1</td><td><a href="group-heading.html">Group heading</a></td><td>none, not interactive</td><td>12 screens. 29</td></tr>
+        <tr><td>2</td><td><a href="theme-card.html">Theme card (ranked row)</a></td><td>hover, selected (<code>.check:checked</code>), focus-visible on the links inside. Low signal is a content variant, the clamped quote is the 360 form</td><td>2.0. 6 rows, declared exception</td></tr>
+        <tr><td>2</td><td><a href="provlist.html">Provenance list</a></td><td>none, not interactive; its links keep their own</td><td>5.0, 5.1, 3.6 (grey only). 3. Built at Step 6 from the grey anatomy</td></tr>
+        <tr><td>2</td><td><a href="snippet.html">Evidence snippet</a></td><td>hover, focus-visible. Redacted is a <code>.redacted</code> mark in the meta line</td><td>4.0, 4.1. 12</td></tr>
+        <tr><td>2</td><td><a href="rawitem.html">Raw item</a></td><td>none, not interactive; its links and citation index keep their own</td><td>5.0, 5.1. 2. Added at Stage 09 Step 5 from backlog row S5-1: the first component the system grew by its own contribution rule</td></tr>
+        <tr><td>2</td><td><a href="source-row.html">Source row</a></td><td>hover on the row; focus-visible on its buttons. Failed carries <code>.rowalert</code></td><td>3.0, 3.5. Healthy 3, failed 1 (recounted at Stage 09 Step 6: 3.6 draws no source row)</td></tr>
+        <tr><td>2</td><td><a href="source-card.html">Source card (available)</a></td><td>none, not interactive; its button keeps its own</td><td>3.0, 3.4, 3.5. Connectable 6, not yet available 3</td></tr>
+        <tr><td>2</td><td><a href="brief-row.html">Saved brief row</a></td><td>row hover, title hover, focus-visible on the title</td><td>6.0. Shared 2, draft 1</td></tr>
+        <tr><td>2</td><td><a href="composer-row.html">Composer brief row</a></td><td>none of its own; the remove button keeps its focus. Dragging <code>[?]</code></td><td>6.1, 6.2</td></tr>
+        <tr><td>2</td><td><a href="account-row.html">Account row</a></td><td>checked, which is the checkbox's own</td><td>7.1, 7.2</td></tr>
+        <tr><td>2</td><td><a href="field.html">Form field</a></td><td>the error line. Hover and focus are the input's</td><td>1.0, 1.1, 1.2, 3.2, 6.1</td></tr>
+        <tr><td>2</td><td><a href="notice.html">Notice band</a></td><td>none, not interactive. Three tones</td><td>7 screens. Information 5, warning 1, error 1</td></tr>
+        <tr><td>2</td><td><a href="screen-head.html">Screen head</a></td><td>none. The action hides while the selection bar is up: a shell rule, round 3</td><td>15 screens</td></tr>
+        <tr><td>2</td><td><a href="toolbar.html">Toolbar (filter and sort)</a></td><td>none of its own, the chips keep theirs. Full above 820, compact below</td><td>2.0, 3.0, 4.0, 5.0, 6.0, 6.1</td></tr>
+        <tr><td>2</td><td><a href="selbar.html">Selection bar</a></td><td>none of its own. Hidden or present is the shell's trigger, round 3</td><td>2.0, 6.1, 6.2</td></tr>
+        <tr><td>2</td><td><a href="actionbar.html">Action bar</a></td><td>none, not interactive</td><td>3.2, 3.3, 3.6, 6.1</td></tr>
+        <tr><td>2</td><td><a href="phase-strip.html">Phase strip</a></td><td>per step: upcoming, current, done. Not interactive</td><td>2.1, 2.2, 3.2, 3.3, 6.1, 6.2</td></tr>
+        <tr><td>2</td><td><a href="breadcrumb.html">Breadcrumb</a></td><td>hover, focus-visible</td><td>9 screens</td></tr>
+        <tr><td>2</td><td><a href="skeleton-card.html">Skeleton card</a></td><td>none, not interactive. The shimmer is the bar atom's</td><td>2.2, 4.2, and 6.3 measured</td></tr>
+        <tr><td>2</td><td><a href="legal-toc.html">Legal TOC</a></td><td>hover, focus-visible</td><td>9.0, 9.1, 9.2 (grey only)</td></tr>
+        <tr><td>2</td><td><a href="auth-card.html">Auth card</a></td><td>none, not interactive. Three content forms</td><td>1.0, 1.1, 1.2 (grey only)</td></tr>
+        <tr><td>2</td><td><a href="tier-card.html">Marketing tier card</a></td><td>none, not interactive</td><td>0.0. 4 tiers, measured; the Level 2 table now says four (Step 6)</td></tr>
+        <tr><td>2</td><td><a href="step-card.html">Marketing step card</a></td><td>none, not interactive</td><td>0.0. 3 measured</td></tr>
+        <tr><td>3</td><td><a href="app-header.html">App header</a></td><td>per tab: rest, hover, current (<code>.active</code>), focus-visible. Tabs hidden at 820 and below</td><td>27 screens. Canonical global 0.1</td></tr>
+        <tr><td>3</td><td><a href="bottom-tabs.html">Bottom tabs</a></td><td>per tab: rest, current (<code>.active</code>), focus-visible. Drawn at 820 and below only</td><td>27 screens. Canonical global 0.1</td></tr>
+        <tr><td>3</td><td><a href="app-footer.html">App footer</a></td><td>none, not interactive</td><td>27 screens. Canonical global 0.2</td></tr>
+        <tr><td>3</td><td><a href="public-bar.html">Public bar</a></td><td>none, not interactive</td><td>10 screens</td></tr>
+        <tr><td>3</td><td><a href="state.html">Empty / error state block</a></td><td>none, not interactive; its exits keep the button's</td><td>8 screens. Centred 6, inline 2</td></tr>
+        <tr><td>3</td><td><a href="form.html">Form</a></td><td>none of its own; the error is the field's line. Submitting <code>[?]</code></td><td>9 screens, all grey</td></tr>
+        <tr><td>3</td><td><a href="dialog.html">Dialog</a></td><td>none, not interactive. Generating is the 6.3 loading form</td><td>6.3 (3.6's confirm is inline: backlog B-08)</td></tr>
+        <tr><td>3</td><td><a href="legal-doc.html">Legal document</a></td><td>crumb and related links: hover, focus-visible</td><td>9.0, 9.1, 9.2 (grey only)</td></tr>
+        <tr><td>3</td><td><a href="account-shell.html">Account shell</a></td><td>per nav item: hover, current, focus-visible</td><td>7.0, 7.1, 7.2, 7.3</td></tr>
+        <tr><td>3</td><td><a href="public-doc.html">Public document (shared brief)</a></td><td>none, not interactive</td><td>6.4</td></tr>
+        <tr><td>3</td><td><a href="marketing-shell.html">Marketing page shell</a></td><td>none, not interactive</td><td>0.0</td></tr>
+        <tr><td>3</td><td><a href="screen-shell.html">Screen shell</a></td><td>none of its own. Owns the selection trigger, the notice gutter, the centring of a lone state or dialog</td><td>27 screens. <code>.app</code> for a screen, <code>.appframe</code> for a stand</td></tr>
+        <tr><td>pattern</td><td><a href="grouped-list.html">Grouped list</a></td><td>none of its own: its parts keep theirs</td><td>grey 3.0, 4.0, 6.0. With their states 8 pages: 3.0, 3.4, 3.5, 4.0, 4.1, 4.0 loading, 6.0, 6.5; colour 3 of 3 screens, 8 pages: <code>sources</code>, <code>sources-empty</code>, <code>sources-sync-error</code>, <code>theme</code>, <code>theme-low-signal</code>, <code>theme-loading</code>, <code>briefs</code>, <code>briefs-empty</code></td></tr>
+        <tr><td>pattern</td><td><a href="filtered-list.html">Filtered list</a></td><td>none of its own: its parts keep theirs</td><td>grey 2.0, 4.0, 6.1. With their states 6 pages: 2.0, 4.0, 4.1, 4.0 loading, 6.1, 6.2; colour 3 of 3 screens, 6 pages: <code>synthesis</code>, <code>theme</code>, <code>theme-low-signal</code>, <code>theme-loading</code>, <code>build-brief</code>, <code>build-brief-thin-warning</code></td></tr>
+    </tbody></table></div>
+  </section>
+
   <section class="kit-sec" id="one-off">
     <h2 class="kit-h2">One-off blocks</h2>
     <p class="kit-note">Blocks that stand on one screen. They are not components, so they have no page; they live in <code class="kit-mono">design/system/one-off.css</code>, imported after the organisms, because a screen links one stylesheet and nothing else. A second occurrence makes a block a component.</p>
@@ -92,25 +152,7 @@
 
   <section class="kit-sec" id="backlog">
     <h2 class="kit-h2">Backlog</h2>
-    <p class="kit-note">What Steps 6, 7 and 9, and Stage 09 Step 1, decided not to fill in now, and who closes it: 32 rows. Stage 09 Step 1 closed two: the selection trigger and the warning band on a raised surface, now <a href="architecture.html#usage">usage rule R5</a>. The owner closed two more on 2026-11-26: the avatar stays 28px, and the action bar keeps its alignment at the start. Source, with where each shows: <code class="kit-mono">design/kit/docs/backlog.md</code>.</p>
-    <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>What</th><th>Why it waits</th><th>Closes</th></tr></thead><tbody>
-      <tr><td>The provenance list in colour (5.0, 5.1, 3.6)</td><td>The component exists; painting the screens is the rollout</td><td>Stage 12</td></tr>
-      <tr><td>The label/value gap and the link class in the provenance list</td><td>The grey draws neither; nothing to copy</td><td>Stage 12</td></tr>
-      <tr><td><code>.notice--error</code> on 3.4, <code>.field-err</code> on 1.0 and 1.2</td><td>The grey names the states and does not draw them with a tone</td><td>Stage 12</td></tr>
-      <tr><td>Whether <code>.redacted</code> is used</td><td>5.1 shows the redacted case as a notice, not as a mark</td><td>Stage 12</td></tr>
-      <tr><td>The breakpoint: 600 or 820</td><td>The grey switches at a 600px canvas, the colour layer at an 820px viewport</td><td>Stage 10</td></tr>
-      <tr><td>3.6 is not a dialog</td><td>The grey draws its confirmation on the page</td><td>Stage 12</td></tr>
-      <tr><td>"Primary" and "Sections"</td><td>Two labels for one navigation; a string for microcopy</td><td>Stage 12</td></tr>
-      <tr><td><code>.legal-crumb</code> against <code>.breadcrumb</code></td><td>Two classes for one job, grey only</td><td>Stage 12</td></tr>
-      <tr><td>Where the phase strip stands on a screen</td><td>Usage rule R9 holds the count; the placement differs from screen to screen</td><td>Stage 12</td></tr>
-      <tr><td>The rename map over <code>wireframes/</code></td><td>The grey is never edited; the map is the rollout's input</td><td>Stage 12</td></tr>
-      <tr><td>7.1 Plan and limits: the plan summary, the limits list, the meter and its near-limit and over-limit forms, the panel action row</td><td>The dry run: 7.1 cannot be painted from the system today</td><td>Stage 12</td></tr>
-      <tr><td>1.0 Auth: a title form for the card, a form-level message, the error strings</td><td>The dry run; a copied 1.0 would have no h1</td><td>Stage 12</td></tr>
-      <tr><td>9.x Legal: the document title size, a footer with links, the missing strings</td><td>The dry run; a value, so a decision</td><td>Stage 12; the footer link target rule at Stage 09</td></tr>
-      <tr><td>The 10px micro step, line measure past 80 characters, single-word last lines, a sticky legal contents rail</td><td><code>/impeccable audit</code> and IA; container and fluid type questions</td><td>Stage 10</td></tr>
-      <tr><td>404, 500, maintenance on <code>.state</code>; "Sign out" or "Log out"; the format of <code>microcopy.md</code></td><td>Grey only, or a string, or a rule against a file</td><td>Stage 12</td></tr>
-      <tr><td>The theme card on a second screen; SOC 2 in year 1 or year 2</td><td>Owner decisions; the SOC 2 year has no source in research</td><td>the owner</td></tr>
-    </tbody></table></div>
+    <p class="kit-note">What the system still lacks lives in one file, <code class="kit-mono">design/kit/docs/backlog.md</code>, and is shown in full in one place: <a href="why.html#backlog">the system guide, System backlog</a>. 40 rows, each with an ID, a level and a priority: 32 carried over from Stage 08 and Stage 09 Steps 1 and 2, six found by the first screen built from the system (three of them closed), and two found by the reader at Stage 09 Step 6. It moved there at Stage 09 Step 6, so that a new row has one address.</p>
   </section>
 
   <footer class="kit-foot">

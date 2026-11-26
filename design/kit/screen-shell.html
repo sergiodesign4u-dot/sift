@@ -215,6 +215,7 @@
         <p class="kit-note">Five zones top to bottom. Three are organisms with their own pages, one is a molecule placed by the shell, and the main region is the shell's own.</p>
         <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
           <tr><td>header</td><td><code>.appbar</code> or <code>.public-bar</code></td><td>Organisms with their own files. 52px, the first child</td></tr>
+          <tr><td>breadcrumb, optional</td><td><code>.breadcrumb</code> as a direct child, right after the header</td><td>The molecule. On a screen below a section (4.0, 4.1, 3.2, 5.0, 5.1); it brings the 22px gutter itself, 16px at 820 and below</td></tr>
           <tr><td>notice, optional</td><td><code>.notice</code> as a direct child</td><td>The molecule, given the 22px gutter by this file, 16px at 820 and below</td></tr>
           <tr><td>main</td><td><code>.appmain</code></td><td>Takes the free height (<code>flex: 1</code>), 20px by 22px padding. Centres a lone state block or dialog</td></tr>
           <tr><td>footer</td><td><code>.appfoot</code> or <code>.pubfoot</code></td><td>Organisms with their own files</td></tr>
@@ -274,6 +275,7 @@
       <section class="kit-sec">
         <h2 class="kit-h2">Changes, newest first</h2>
         <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-26</td><td>The breadcrumb slot named in the anatomy: a direct child of <code>.app</code>, right after the header. The reader at Step 6 could only infer it from the padding</td><td><code>docs/decisions.md</code>, "Stage 09 Step 6"</td></tr>
           <tr><td>2026-11-21</td><td><code>.appframe</code>, the stand edition, and its two twins (the selection trigger and the notice gutter) moved from <code>screen-shell.css</code> to <code>design/kit/_page.css</code>: it wears no product screen, and a stand style in a component file is a defect. Values unchanged</td><td><code>docs/decisions.md</code>, "Step 6: the system reconciled with the product"</td></tr>
           <tr><td>2026-11-21</td><td>Entered the system: <code>components/screen-shell.css</code>, on semantic roles, and this page in the card format. It took every rule that ties a molecule to the shell, which the molecule round left out: the selection trigger, the notice in the frame, the centring of a lone state or dialog</td><td><code>docs/decisions.md</code>, "The organisms entered the system"</td></tr>
           <tr><td>2026-08-18</td><td>Stage 07 Step 5: <code>.app</code> entered the kit as the screen shell, with the selection trigger, the notice gutter and the centring of a lone state written on it. <code>.appframe</code> was kept and labelled the stand edition of the same organism</td><td>commit <code>f2b20b8</code>; <code>docs/decisions.md</code>, "The colour stage got its own two-part navigation, and its screens stopped being exhibits"</td></tr>

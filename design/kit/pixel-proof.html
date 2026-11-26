@@ -30,7 +30,7 @@
 <div class="kit-shell">
   <div id="kit-panel"></div>
   <main class="kit-main">
-    <div class="kit-eyebrow">Stage 08 &middot; Steps 8 and 9 &middot; Verification</div>
+    <div class="kit-eyebrow">Stage 08 &middot; Steps 8 and 9 &middot; Stage 09 &middot; Verification</div>
     <h1 class="kit-h1">Pixel proof and critique</h1>
     <p class="kit-lead">Every colour screen moved from <code class="kit-mono">kit.css</code> to <code class="kit-mono">design/system/index.css</code>, and <code class="kit-mono">kit.css</code> is deleted. The question this page answers: does the product look the way it did, except where a change was decided out loud? Zero difference is not expected. This stage changed the look on purpose, and every change is a named line in <code class="kit-mono">docs/tokens-audit.md</code>. So the proof is that <b>every differing pixel is explained by one of those lines</b>, and that no line claims a change the product does not show.</p>
     <div class="kit-stats">
@@ -269,6 +269,66 @@
 
     <section class="kit-sec" id="contract"><h2 class="kit-h2">The stage contract</h2>
     <p class="kit-lead">A third instrument, apart from the defect table: every line of the stage's input and output, its gates and its "done when", answered done, not done or skipped on purpose, with where. 33 rows: 29 done, 3 done with a deviation decided earlier in the stage (the panel groups by purpose, the card format of the component pages, the inventory as the "All components" page), and 1 not done until this step: this page sat under "Overview" instead of its own "Verification" group. The table is in <code class="kit-mono">docs/critique.md</code>.</p>
+    </section>
+
+    <section class="kit-sec" id="s09"><h2 class="kit-h2">Stage 09: the patterns, and the system's own critique</h2>
+    <p class="kit-lead">Stage 09 made no new look. It took two compositions that stood on three grey screens each, moved the colour pages that carry them onto two pattern files, and proved that nothing moved. Then it let the system be read by people who had not built it. The sections below are its proof, kept on the page where the Stage 08 proof already stands.</p>
+    </section>
+
+    <section class="kit-sec" id="s09-pairs"><h2 class="kit-h2">Before and after, the pages moved onto patterns</h2>
+    <p class="kit-lead">11 colour pages moved onto <a href="grouped-list.html">the grouped list</a> (8) and <a href="filtered-list.html">the filtered list</a> (6), three of them onto both. 22 pairs, 44 frames of the product frame at 360 and 1440, fonts cached so that two identical runs give 0 px. Every pair was 0 px at Step 1, and at Step 6 the same pages, shot again after Steps 2 to 6, are still 0 px against the Step 1 frames. None is left unchecked. No pattern waits with three grey screens and none in colour: both have colour pages.</p>
+    <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Page</th><th>Pattern</th><th>360</th><th>1440</th><th>Step 1</th><th>Step 6, again</th></tr></thead><tbody>
+      <tr><td><a href="../synthesis.html">2.0 Synthesis</a></td><td>Filtered list</td><td><a href="screens/patterns/synthesis-360-before.png">before</a> &middot; <a href="screens/patterns/synthesis-360-after.png">after</a></td><td><a href="screens/patterns/synthesis-1440-before.png">before</a> &middot; <a href="screens/patterns/synthesis-1440-after.png">after</a></td><td>0 px</td><td>0 px</td></tr>
+      <tr><td><a href="../theme.html">4.0 Theme detail</a></td><td>Grouped list, Filtered list</td><td><a href="screens/patterns/theme-360-before.png">before</a> &middot; <a href="screens/patterns/theme-360-after.png">after</a></td><td><a href="screens/patterns/theme-1440-before.png">before</a> &middot; <a href="screens/patterns/theme-1440-after.png">after</a></td><td>0 px</td><td>0 px</td></tr>
+      <tr><td><a href="../theme-loading.html">4.0 Theme detail, loading</a></td><td>Grouped list, Filtered list</td><td><a href="screens/patterns/theme-loading-360-before.png">before</a> &middot; <a href="screens/patterns/theme-loading-360-after.png">after</a></td><td><a href="screens/patterns/theme-loading-1440-before.png">before</a> &middot; <a href="screens/patterns/theme-loading-1440-after.png">after</a></td><td>0 px</td><td>0 px</td></tr>
+      <tr><td><a href="../theme-low-signal.html">4.1 Theme detail, low signal</a></td><td>Grouped list, Filtered list</td><td><a href="screens/patterns/theme-low-signal-360-before.png">before</a> &middot; <a href="screens/patterns/theme-low-signal-360-after.png">after</a></td><td><a href="screens/patterns/theme-low-signal-1440-before.png">before</a> &middot; <a href="screens/patterns/theme-low-signal-1440-after.png">after</a></td><td>0 px</td><td>0 px</td></tr>
+      <tr><td><a href="../sources.html">3.0 Sources</a></td><td>Grouped list</td><td><a href="screens/patterns/sources-360-before.png">before</a> &middot; <a href="screens/patterns/sources-360-after.png">after</a></td><td><a href="screens/patterns/sources-1440-before.png">before</a> &middot; <a href="screens/patterns/sources-1440-after.png">after</a></td><td>0 px</td><td>0 px</td></tr>
+      <tr><td><a href="../sources-empty.html">3.4 Sources, none connected</a></td><td>Grouped list</td><td><a href="screens/patterns/sources-empty-360-before.png">before</a> &middot; <a href="screens/patterns/sources-empty-360-after.png">after</a></td><td><a href="screens/patterns/sources-empty-1440-before.png">before</a> &middot; <a href="screens/patterns/sources-empty-1440-after.png">after</a></td><td>0 px</td><td>0 px</td></tr>
+      <tr><td><a href="../sources-sync-error.html">3.5 Source: sync error</a></td><td>Grouped list</td><td><a href="screens/patterns/sources-sync-error-360-before.png">before</a> &middot; <a href="screens/patterns/sources-sync-error-360-after.png">after</a></td><td><a href="screens/patterns/sources-sync-error-1440-before.png">before</a> &middot; <a href="screens/patterns/sources-sync-error-1440-after.png">after</a></td><td>0 px</td><td>0 px</td></tr>
+      <tr><td><a href="../briefs.html">6.0 Briefs</a></td><td>Grouped list</td><td><a href="screens/patterns/briefs-360-before.png">before</a> &middot; <a href="screens/patterns/briefs-360-after.png">after</a></td><td><a href="screens/patterns/briefs-1440-before.png">before</a> &middot; <a href="screens/patterns/briefs-1440-after.png">after</a></td><td>0 px</td><td>0 px</td></tr>
+      <tr><td><a href="../briefs-empty.html">6.0 Briefs, empty</a></td><td>Grouped list</td><td><a href="screens/patterns/briefs-empty-360-before.png">before</a> &middot; <a href="screens/patterns/briefs-empty-360-after.png">after</a></td><td><a href="screens/patterns/briefs-empty-1440-before.png">before</a> &middot; <a href="screens/patterns/briefs-empty-1440-after.png">after</a></td><td>0 px</td><td>0 px</td></tr>
+      <tr><td><a href="../build-brief.html">6.1 Build brief</a></td><td>Filtered list</td><td><a href="screens/patterns/build-brief-360-before.png">before</a> &middot; <a href="screens/patterns/build-brief-360-after.png">after</a></td><td><a href="screens/patterns/build-brief-1440-before.png">before</a> &middot; <a href="screens/patterns/build-brief-1440-after.png">after</a></td><td>0 px</td><td>0 px</td></tr>
+      <tr><td><a href="../build-brief-thin-warning.html">6.2 Brief: thin-theme warning</a></td><td>Filtered list</td><td><a href="screens/patterns/build-brief-thin-warning-360-before.png">before</a> &middot; <a href="screens/patterns/build-brief-thin-warning-360-after.png">after</a></td><td><a href="screens/patterns/build-brief-thin-warning-1440-before.png">before</a> &middot; <a href="screens/patterns/build-brief-thin-warning-1440-after.png">after</a></td><td>0 px</td><td>0 px</td></tr>
+    </tbody></table></div>
+    <p class="kit-note">Frames: <code class="kit-mono">design/kit/screens/patterns/</code>. The four <code class="kit-mono">share-link-r1</code> frames there are not a pattern move: they are the 6.3 button fix of Step 1, which changed the button and nothing else on the page.</p>
+    </section>
+
+    <section class="kit-sec" id="s09-critique"><h2 class="kit-h2">Critique by class, Stage 09 Step 6</h2>
+    <p class="kit-lead">Four sets, collected apart and merged after all four were in: Codex reading the source read-only, a reader with a clean context building 3.6 Source: manage from the system's pages alone, Claude's three browser classes, and <code class="kit-mono">/impeccable audit</code> on what the stage added. Every row was checked in the current file before anything was fixed; a second Codex pass over the 23 changed files found nothing.</p>
+    <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Class</th><th>Found</th><th>Who found it</th><th>Fixed</th><th>Withdrawn on verification</th><th>Deferred</th></tr></thead><tbody>
+      <tr><td>Could not understand, understood wrongly</td><td>6</td><td>reader</td><td>6: a sixth kind of contribution, a block on one screen in <code>one-off.css</code>, written in all five places of the rule; the backlog in one place with IDs; two <code>[?]</code> linked to their rows; the breadcrumb's slot in the shell; when to take each screen head; the scope line's "when"</td><td>0</td><td>0</td></tr>
+      <tr><td>Documentation lies</td><td>3</td><td>reader (1), Codex (2)</td><td>2: the inventory and three pages said the grey 3.6 carries a status tag, a source row and a dialog, and it carries none; the inventory's totals said 50</td><td>1: a dated Stage 08 log line, true when written</td><td>0</td></tr>
+      <tr><td>Declared list with no idle check</td><td>1</td><td>reader</td><td>1: 32 backlog rows had no level and no priority</td><td>0</td><td>0</td></tr>
+      <tr><td>A gap in the system</td><td>2</td><td>reader</td><td>0</td><td>0</td><td>2: <a href="why.html#backlog-s6">S6-1</a>, a note under a section heading; S6-2, a destructive action that is itself the confirm. Stage 12</td></tr>
+      <tr><td>State as a value</td><td>1</td><td>Codex</td><td>1: the focus ring's three numbers became <code>--ring-width</code>, <code>--ring-offset</code>, <code>--ring-offset-wide</code>, values unchanged</td><td>0</td><td>0</td></tr>
+      <tr><td>Token without a page</td><td>1</td><td>Codex</td><td>0</td><td>1: <code>--opacity-disabled</code> is not a colour and is shown on the button and architecture pages</td><td>0</td></tr>
+      <tr><td>Contrast in the prototype chrome</td><td>4</td><td>impeccable (1), impeccable and Claude (1), Claude on the re-check (2)</td><td>3: the panel's grey from 3.49 to 6.74, a screen still grey from 1.9 to 4.92; the hub kept dark in both themes; the hub's flow id from 4.48 to 4.96</td><td>0</td><td>1: the roadmap sidebar's top links, 3.49, in the root <code>/_nav.css</code>, outside this stage: to the owner</td></tr>
+      <tr><td>Line measure, the 10px step</td><td>2</td><td>impeccable</td><td>0</td><td>0</td><td>2: the raw item's quote on 5.0 joins <a href="why.html#backlog-08">B-25</a>; the stand's 10px labels are B-24. Stage 10</td></tr>
+      <tr><td>A decision owned elsewhere</td><td>4</td><td>impeccable (2), reader (2)</td><td>0</td><td>4: the brand face; the 28px avatar and inline links; the states of 3.6 live in IA; "Cancel" lives in microcopy</td><td>0</td></tr>
+      <tr><td>Desync, a screen against its page</td><td>4 of 157 forms</td><td>Claude</td><td>0</td><td>4: the first instance only; visually hidden; two inherit the prose size</td><td>0</td></tr>
+      <tr><td>A state that moves the layout</td><td>0 of 1016 controls, and the home</td><td>Claude</td><td colspan="3">checked, empty</td></tr>
+      <tr><td>Anatomy labels without a class</td><td>0 of 53 pages</td><td>Claude</td><td colspan="3">checked, empty: six rows name the text node, which has no class</td></tr>
+      <tr><td>State without a pair, and 15 more file classes</td><td>0</td><td>Codex, both passes</td><td colspan="3">checked, empty: 29 tokens against 29, the focus ring 5.52 to 9.13</td></tr>
+    </tbody></table></div>
+    <p class="kit-note"><b>What the "who found it" column says.</b> 28 found: 13 fixed, 10 withdrawn with a reason, 5 deferred with an address. The reader found the two P1 rows, and neither is the kind a source reader or a detector finds: the contribution rule had no address for a block that stands on one screen, and the inventory described a grey screen that draws none of what it said. Codex read the files clean twice and caught the literals in a state selector. The reader had 12 open questions, so the run was not a formality; 25 of its 27 decisions were the intended ones, and both that were not came from the missing address.</p>
+    </section>
+
+    <section class="kit-sec" id="s09-theme"><h2 class="kit-h2">Holes in the theme pair</h2>
+    <p class="kit-lead"><b>Inside the system, none.</b> Codex compared every role and state token of <code class="kit-mono">:root</code> with <code class="kit-mono">[data-theme="light"]</code> in both passes, 29 against 29, and the focus ring holds 5.52 to 9.13 in both themes. The pair has been written from the first line since Stage 08, and the last hole it had, the avatar edge under 3:1, was closed at Stage 08 Step 7. <b>One hole outside it:</b> the hub of the product, chrome on <code class="kit-mono">--pf-*</code>, took a stored light choice from the screens and drew dark chrome text on a light page, 1.22:1 on its section titles. The theme switch now applies only where the screen panel is, and the chrome stays dark in both themes.</p>
+    </section>
+
+    <section class="kit-sec" id="s09-numbers"><h2 class="kit-h2">Stage 09 in numbers</h2>
+    <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>What</th><th>Count</th></tr></thead><tbody>
+      <tr><td>Components, with states in both themes</td><td>30 of 51</td></tr>
+      <tr><td>Components that are not interactive, and so have no states</td><td>21 of 51</td></tr>
+      <tr><td>Components the stage added, through its own contribution rule</td><td>1, <a href="rawitem.html">the raw item</a></td></tr>
+      <tr><td>Patterns, each on three grey screens</td><td>2, on 11 colour pages</td></tr>
+      <tr><td>Candidates waiting for a third screen</td><td>4, on <a href="patterns.html#candidates">patterns.html</a></td></tr>
+      <tr><td>Usage rules, each with its source</td><td>9, R1 to R9; two widened by the first screen built from the system</td></tr>
+      <tr><td>Rows in the backlog</td><td>40: 32 carried over, 6 from Step 5 (3 closed by the owner), 2 from Step 6. 37 open</td></tr>
+      <tr><td>Product screens in colour</td><td>24, two more than at the close of Stage 08: 5.0 and its state 5.1</td></tr>
+    </tbody></table></div>
+    <p class="kit-note">The stage's contract, every line of its inputs, gates and "done when" answered apart from this table: <code class="kit-mono">design/kit/docs/critique.md</code>, "Stage 09".</p>
     </section>
 
     <footer class="kit-foot">

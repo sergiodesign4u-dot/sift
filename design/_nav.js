@@ -268,6 +268,10 @@ window.DESIGN_FLOWS = [
     }
   }
   function themeSwitch() {
+    /* Only a screen carries the switch. The hub is chrome on --pf-* and stays dark in both themes
+       (Stage 09 Step 6: a stored light choice turned the hub's page light under dark chrome text,
+       1.22:1 on its section titles). */
+    if (!document.getElementById('ds-panel')) return;
     var bs = document.querySelectorAll('.ds-theme');
     for (var i = 0; i < bs.length; i++) bs[i].addEventListener('click', function () {
       var next = storedTheme() === 'light' ? 'dark' : 'light';

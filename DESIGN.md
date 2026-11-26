@@ -590,6 +590,9 @@ is `--type-*` and not `--text-*`, because `--text-` means ink and nothing else.
 | `--radius-md` | 6px | matched to character. Anything a hand acts on |
 | `--radius-lg` | 12px | matched to character. A sheet: the frame, the dialog, the auth card |
 | `--radius-pill` | 50% | the avatar and the numbered circle |
+| `--ring-width` | 2px | the keyboard ring's stroke, in `--line-focus` (Stage 09 Step 6: a literal until then) |
+| `--ring-offset` | 2px | the gap between a control and its ring |
+| `--ring-offset-wide` | 4px | the title input only, so the ring clears its dashed underline |
 | `--space-1` | 4px | not stated |
 | `--space-2` | 6px | not stated |
 | `--space-3` | 8px | not stated |
@@ -734,7 +737,7 @@ language, does not enter the component kit, and is excluded from this document o
 
 The system grows in one direction only: anything new appears in `design/system/` first and on a
 screen second, never the other way round. A screen is where the language is used, not where it
-grows, so a screen carries no style of its own. There are four ways in, and each has its address:
+grows, so a screen carries no style of its own. There are five ways in, and each has its address:
 
 - **A value** goes into `design/system/tokens.css` at its level: a raw value as a primitive with
   its origin, a colour as a semantic role with its light pair and its contrast measured in both
@@ -747,11 +750,13 @@ grows, so a screen carries no style of its own. There are four ways in, and each
 - **A composition** becomes a pattern only when three grey screens already stand that way. It goes
   into `design/system/patterns/`, holds the space between its parts and nothing else, and is
   imported after the components. On two screens it stays markup and waits as a candidate.
+- **A block on one screen** is not a component: it goes into `design/system/one-off.css` with no
+  page, and a second occurrence makes it a component with the five things.
 - **A usage rule** (how many of a component, next to what, where never) is written once in
   `design/kit/docs/architecture.md`, with where it was taken from, and copied short onto the page
   of each component it names.
 
-Anything a screen needs that none of the four covers is not drawn in by hand: it is a row in
+Anything a screen needs that none of the five covers is not drawn in by hand: it is a row in
 `design/kit/docs/backlog.md`, with its level and its priority. The addresses in full:
 `design/kit/docs/architecture.md`, "Contributing to the system".
 

@@ -1160,3 +1160,33 @@ provenance list's prose form now carries the confidence atom after the theme lin
 style; its page gained the Limits sub-point (R7); the two provenance lines in `microcopy.md` carry
 "n=42"; the rule changed in `architecture.md`, `architecture.html`, the Limits of
 `confidence.html` and `theme-card.html`, and the guide's one-line list. S5-4 to S5-6 stay open.
+
+## Step 6: verification and the close of Stage 09 (2026-11-26)
+
+Four independent sets (Codex read-only; a clean-context reader building 3.6 Source: manage from the
+system's pages alone; Claude in the browser on desync, layout-moving states and anatomy labels;
+`/impeccable audit`), merged after all four were in, every row checked in the current file. The
+owner answered "as you recommend". 28 found, 13 fixed, 10 withdrawn on verification, 5 deferred.
+The defect table and the contract checklist: `design/kit/docs/critique.md`, "Stage 09"; the proof:
+`design/kit/pixel-proof.html#s09`.
+
+| Decision | Why | Rejected |
+|---|---|---|
+| A sixth kind of contribution: a block on one screen goes to `design/system/one-off.css`, no page; a second occurrence makes it a component. Written in `architecture.md` and `.html`, `why.html#grow`, `CLAUDE.md`, `design/system/CLAUDE.md`, `DESIGN.md` | The reader found no address for 3.6's Disconnect confirm and would have shipped it with no box. `one-off.css` existed since Stage 08 Step 6, and the Step 4 rule forgot it | leaving the rule at five kinds and sending one-screen blocks to the backlog: the system already had their home |
+| The backlog in one place: all of `backlog.md` on `why.html#backlog`, with IDs (B-01 to B-32, S5-, S6-), a level and a priority on every row; `overview.html#backlog` is one line and a link | Two displays, and the reader could not tell where a new row goes. The stage asks for level and priority on every row | keeping the 32 older rows on the overview |
+| The inventory shown on `overview.html#inventory`, read from the register: 51 components with their states and screens, then the 2 patterns | `inventory.md` had no section in the browser, which the contract checklist caught | a second catalog: `components.html` stays the catalog by purpose |
+| The grey 3.6 recounted: no status tag, no source row, no dialog. The inventory rows, the register and three pages corrected | The census of Stage 07 described what the grey does not draw | leaving the census as a record: it is a record of what the grey draws, and it was wrong about it |
+| The focus ring's numbers became geometry primitives, `--ring-width` 2px, `--ring-offset` 2px, `--ring-offset-wide` 4px | Literals in a state selector, which the system forbids; values unchanged, the ring computes as before | a semantic level for them: geometry has none |
+| The prototype chrome: `--pf-text-3` from #66667a to #9696aa (3.49 to 6.74), a still-grey screen in the panel on `--pf-text-4` #7e7e92 (4.92) instead of 0.55 opacity (1.9), `--pf-accent-ink` #8474f8 for the hub's flow id (4.96). The theme switch applies only where the screen panel is: the hub stays dark | The detector and the re-check measured them; the hub took a stored light choice under dark chrome text, 1.22 | a light pair for the chrome: it is portfolio furniture, and the panel already stayed dark in both themes |
+| Two new backlog rows: S6-1 (a note under a section heading), S6-2 (a destructive action that is the confirm); the 5.0 quote's measure named in B-25 | Gaps in the system, not in its pages; Stage 12 paints 3.6, Stage 10 owns the measure | drawing them now: the stage tests completeness, it does not fill it |
+| The roadmap sidebar's top links on the hub, 3.49, left to the owner | `/_nav.css` belongs to the root roadmap, not to this stage | editing a file another stage owns |
+
+**What Stage 09 leaves.** Patterns taken: Grouped list (3.0, 4.0, 6.0) and Filtered list (2.0, 4.0,
+6.1). Rejected as patterns, with the reason on `patterns.html`: the sub-page head (a slot of the
+screen shell, a file would hold nothing), twelve repeats inside one component, and the phase strip's
+place (three placements on four screens, not stable; R9 holds its count). Waiting for a third
+screen: a group heading over an inline empty state (3.0, 6.0), the list and its "Load more" foot
+(2.0, 4.0), a section title over the provenance list (3.6, 5.0), a form that ends in the action bar
+(3.2, 3.3). No component level of tokens was made: two levels hold, and nothing at Stage 09 needed a
+third, since the one component the stage added, the raw item, reads existing roles only. The
+roadmap group Design System keeps `wip` (2/4); Stage 11 closes it.

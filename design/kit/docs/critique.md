@@ -3,7 +3,7 @@
 *The stage critique of the design system, one section per stage, newest last. Stage 07's critique
 predates this file and stays where it was shown: `design/overview.html`, section "Critique, and what
 it changed". This file starts at Stage 08. Shown on `design/kit/pixel-proof.html`, sections
-"Critique by class" and "The stage contract".*
+"Critique by class" and "The stage contract", and for Stage 09 "Critique by class, Stage 09 Step 6".*
 
 *Internal document, English. No em dash anywhere in this file.*
 
@@ -186,3 +186,118 @@ above read what exists, so a step that never happened is invisible to them.*
 this step. Three rows are "done with a stated deviation", each decided earlier in the stage and
 recorded in `docs/decisions.md`. What was compared: each line of the pack's "Input and output", its
 gates and its "Done when", against a file, a commit or a measurement named in the right column.
+
+---
+
+## Stage 09, Step 6: the system read by people who did not build it
+
+### How it was collected
+
+Four sets, collected apart and merged only after all four were in (2026-11-26):
+
+- **Codex**, `codex exec -s read-only`, the whole taxonomy of the pack minus the three browser
+  classes, over `design/system/`, `design/kit/`, `design/*.html` and `design/kit/docs/`. It changed
+  no file (`git status` clean after the run).
+- **The reader**, a subagent with a clean context, told to build 3.6 Source: manage from
+  `why.html`, `patterns.html`, the component pages and the usage rules alone, and forbidden
+  `docs/decisions.md`, this file, `pixel-proof.html` and any session log. It returned 12 "could not
+  understand" and 27 "understood as".
+- **Claude**, three classes in the browser: desync between a screen and its kit page (157 forms
+  compared by computed style), a state that moves the layout (1016 controls hovered and pressed on
+  23 screens and 7 kit pages in both themes, then the home 0.0), anatomy labels (53 pages).
+- **`/impeccable audit`** with the detector on 5.0, 5.1, `why.html` and `rawitem.html`: 18 of 20.
+
+The owner answered "as you recommend" (2026-11-26), which took the proposed priority of every row.
+
+### The defect table
+
+| # | Class | File, element | What was wrong | Who found it | Verdict |
+|---|---|---|---|---|---|
+| D1 | Could not understand, understood wrongly | `architecture.md` "Contributing", `why.html#grow`, `CLAUDE.md`, `design/system/CLAUDE.md`, `DESIGN.md` | The contribution rule of Step 4 had no address for a block that stands on one screen (`one-off.css`); the reader would have shipped 3.6's confirm with no box | reader | **fixed**: a sixth kind, in all five places |
+| D2 | Documentation lies | `inventory.md` (census rows and register), `tag.html`, `source-row.html`, `dialog.html` | The grey 3.6 was said to carry a status tag, a source row and a dialog; it carries none | reader | **fixed**: recounted on the grey, rows and pages corrected, history rows |
+| D3 | Documentation lies | `inventory.md`, "Totals" | 50 components, 19/20/11; the live count is 51, 17/22/12 | Codex | **fixed** |
+| D4 | Could not understand | `why.html#backlog`, `overview.html#backlog` | The backlog was shown in two places, and a new row had no address or ID | reader | **fixed**: the whole file on `why.html`, the overview links there |
+| D5 | Declared list with no idle check | `backlog.md` | 32 rows without a level or a priority | reader | **fixed**: IDs B-01 to B-32, level and priority on every row |
+| D6 | Could not understand | `dialog.html`, `provlist.html` | Two `[?]` with no route to where they close | reader | **fixed**: linked to B-08, S6-2, B-02 |
+| D7 | A gap in the system | 3.6, `.src-note` | No component for a note under a section heading | reader | **backlog**: S6-1, Stage 12 |
+| D8 | A gap in the system | `button.html`, `dialog.html` | No rule for a destructive action that is itself the confirm | reader | **backlog**: S6-2, Stage 12 |
+| D9 | Could not understand | `screen-shell.html`, `breadcrumb.html` | No breadcrumb slot in the shell's anatomy | reader | **fixed**: the slot and a placement line; 5.0 and 5.1 linked |
+| D10 | Could not understand | `screen-head.html` | No rule for `.main-head` against `.screenhead` | reader | **fixed**: "Which form", counted on 19 colour screens |
+| D11 | Understood with doubt | `scope.html` | "Counts anything" was wider than the use | reader | **fixed**: "a list" |
+| D12 | State as a value | `input.css:62`, `base.css:44` | Literals in `:focus-visible` | Codex | **fixed**: `--ring-width`, `--ring-offset`, `--ring-offset-wide`, on `geometry.html` and in `DESIGN.md`; values unchanged |
+| D13 | Line measure | `rawitem.css` on 5.0 | About 108 characters a line at 1440 | impeccable | **backlog**: named in B-25, Stage 10 |
+| D14 | Contrast, prototype chrome | `design/_panel.css` | The panel's grey 3.49, a still-grey screen 1.9 | impeccable | **fixed**: 6.74 and 4.92 |
+| D15 | Contrast, prototype chrome | `design/overview.html`, `_panel.css` | The hub in the light theme, 1.22 | Claude, impeccable | **fixed**: the switch applies only where the screen panel is; the chrome stays dark |
+| D15a | Contrast, prototype chrome | `_panel.css`, `.ov-flow-id` | 4.48, found by the re-check after D14 | Claude | **fixed**: `--pf-accent-ink`, 4.96 |
+| D15b | Contrast, outside the stage | `/_nav.css`, the roadmap's top links on the hub | 3.49 | Claude | **owner**: the root sidebar is another stage's file |
+| D16 | The 10px step, line measure on the stand | the kit's panel and notes | Detector: 175 + 10 + 11 hits | impeccable | **backlog**: B-24, B-25, Stage 10 |
+| W1 | Documentation lies | `critique.md:162` | "50 of 50" | Codex | **withdrawn on verification**: a dated Stage 08 log line |
+| W2 | Token without a page | `color.html` | `--opacity-disabled` missing | Codex | **withdrawn on verification**: not a colour; on `button.html` and `architecture.html` |
+| W3 | Detector | `body` | Inter overused | impeccable | **withdrawn on verification**: brand decision |
+| W4 | Touch targets | 5.0, 5.1 | Avatar 28px, inline links 15px | impeccable | **withdrawn on verification**: owner kept 28px; WCAG 2.5.8 inline exception |
+| W5 | Could not understand | 3.6 states | Not in the system | reader | **withdrawn on verification**: states belong to the IA node spec |
+| W6 | Could not understand | "Cancel" | Not verb plus object | reader | **withdrawn on verification**: `microcopy.md:218` owns it |
+| W7 | Desync | `.step-n`, `.vh`, `.cited`, `.citechip` | 4 of 157 forms differ | Claude | **withdrawn on verification**: first instance only; visually hidden; inherited size |
+
+### The second pass, after the fixes
+
+Codex, read-only, over the 23 changed files and what they reference: 0 findings in every class.
+Claude: 14 changed kit pages at 360 and 1440 in both themes, 56 renders, no overflow, no page
+error; the only flag is the disabled textarea specimen on `input.html`, exempt as an inactive
+control. The panel on all 24 screens in both themes at both widths: no text under 4.5. The hub:
+no text under 4.5 except D15b. The 11 pages moved onto patterns at Step 1, shot again: 22 pairs,
+0 px against the Step 1 frames. The focus ring computes 2px / 2px, and 4px on the title input, as
+before the tokens.
+
+A third Codex pass, over the living documents written after the fixes (the inventory section,
+the Stage 09 sections of `pixel-proof.html`, this section, `docs/decisions.md`, `README.md`): every
+number matched its source, every link resolved. One finding: `README.md` said "one file per
+component (50)" in the repository map, fixed to 51; the same number in the Tokens + Components
+status row was withdrawn on verification, a dated row true at the close of Stage 08.
+
+### The stage contract, as a checklist
+
+*The third instrument, a separate table: it checks steps and gates, not artifacts.*
+
+| Contract line | Answer | Where it is, or why not |
+|---|---|---|
+| Input: the root `/_nav.js`, the Design System group with four children and `wip` | done | entry gate of Step 1; `wip` on the group untouched |
+| Input: the grey corpus counts, the colour sample proves | done | Step 1, `docs/decisions.md`; both numbers named apart |
+| Input: `census.md`, its difference from the own count named | done | `docs/decisions.md`, Step 1, "Sources, checked" |
+| Input: `inventory.md`, `design/system/`, the component pages | done | read at Step 1; nothing moved, one sub-point added per page |
+| Input: `conventions.md`, "exactly one primary action" taken over | done | usage rule R1 |
+| Input: the critique logs of 04 to 08 as a source of rules | done | the source column of R1 to R9 |
+| Input: `references.md` and `concept.md` | done | `why.html#why`, the plate, the references and the refused |
+| Input: `backlog.md`, `DESIGN.md`, `microcopy.md`, `screens.md` | done | Steps 4, 5 and 6 |
+| Input: `sitemap.md`, `blocks.md`, `flows.md` for a reserve branch | skipped on purpose | Step 5 took the regular branch: 5.0 had a grey original |
+| Gate: one step, show, wait | done | Steps 1 to 6, each shown and answered |
+| Gate: a pattern from three grey screens, no style of its own, imported after the components | done | two patterns; Codex found no own style and no order fault, both passes |
+| Gate: a pattern with three grey and no colour, said out loud | done | none such: both have colour pages |
+| Gate: prohibitions in the same pass, each with its source, in two visible places | done | R1 to R9, `architecture.html#usage`, Limits on every named page |
+| Gate: new in the system first | done | the raw item entered as five things before 5.0 used it (S5-1, owner) |
+| Gate: the self-sufficiency test on the next real page | done | 5.0 and 5.1 |
+| Gate: what is missing is named, not drawn | done | 6 rows at Step 5, 2 at Step 6 |
+| Gate: prohibitions checked by name on the first screen | done | `docs/decisions.md`, Step 5, R1 to R9 |
+| Gate: IA touched only on a reserve branch | skipped on purpose | regular branch |
+| Gate: both themes accepted | done | every step, both themes; this pass 0 of 29 tokens without a pair |
+| Done when: Limits sub-points, the five blocks untouched | done | Step 1 |
+| Done when: `patterns/` holds only patterns with three screens; candidates listed | done | 2 patterns, 4 candidates on `patterns.html` |
+| Done when: every pattern used, 0 px pairs in two viewports | done | `pixel-proof.html#s09-pairs`, again at Step 6 |
+| Done when: `patterns.html` and a page per pattern | done | Step 2 |
+| Done when: `why.html` with four doors, lineage, growth, backlog | done | Step 3; the backlog in full since Step 6 |
+| Done when: the contribution rule in four places | done | Step 4, completed at Step 6 with the one-screen kind (D1) |
+| Done when: the next page built purely, critique passed, tab walk, 360, both themes | done | Step 5 |
+| Done when: `backlog.md` with level and priority on every row | done | Step 6 (D5); before it, 32 rows had neither |
+| Done when: every md visible | done | `architecture.md` on `architecture.html`; `inventory.md` on `overview.html#inventory`, built at Step 6 (it had no section before); `backlog.md` on `why.html#backlog` |
+| Done when: the Stage 09 section on `pixel-proof.html` | done | `#s09` to `#s09-numbers` |
+| Done when: `/impeccable audit` passed, verified, second pass | done | above |
+| Done when: no moves, no `design-system/`, no `git mv` | done | no folder; no rename in `git log c8e001f..HEAD` |
+| Done when: `wireframes/` unchanged | done | 0 files changed since `c8e001f` |
+| Done when: README Design System = Done with a section, route in two or three clicks | done | README; root index, then "System guide" (1), then any component in the kit panel (2) |
+| Done when: the closing ritual | **not done** | the table of what to add and remove in `CLAUDE.md` is shown to the owner and waits for "go" |
+| Done when: the contract as a checklist | done | this table |
+
+Two rows are "skipped on purpose" and one is "not done". The inventory's visible section and the
+backlog's level and priority were missing until this step found them, so this table is not green by
+default.
+

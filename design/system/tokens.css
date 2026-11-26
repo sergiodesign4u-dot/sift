@@ -134,6 +134,12 @@
   --radius-lg: 12px;   /* matched to character. A sheet: the frame, the dialog, the auth card */
   --radius-pill: 50%;  /* the avatar and the numbered circle */
 
+  /* The keyboard ring (base.css). Stage 09 Step 6: the three numbers were literals in a state
+     selector, which the system forbids; the values did not change. */
+  --ring-width: 2px;        /* the stroke of the ring, every focusable control */
+  --ring-offset: 2px;       /* the gap between the control and its ring */
+  --ring-offset-wide: 4px;  /* the title input only: its dashed underline sits on the baseline, and a 2px gap would draw the ring on top of it */
+
   --space-1: 4px;
   --space-2: 6px;
   --space-3: 8px;

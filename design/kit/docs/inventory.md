@@ -72,7 +72,7 @@ controls in this product.
 | **Confidence indicator** | 1 | **Content:** count only 6 occ · count plus low-signal badge 3 occ. Canonical, owner 2.0. Not colour-only: the count and the badge word carry the meaning | 9 screens (2.0, 4.0, 4.1, 6.1, 6.2, 6.4, 0.0) | strong, low signal | No |
 | **Low-signal badge** | 1 | one form, uppercase micro tag | 4.1, 6.2, 6.4 | present or absent | No |
 | **Citation marker** | 1 | **Behaviour:** static index 6 occ (`wf-cite`, inside the public document) · linked chip 6 occ (`wf-citechip`, resolves into the evidence list on 4.0) | 4.0, 4.1, 5.0, 5.1, 6.4 | rest, hover (linked only) | No |
-| **Status tag** | 1 | **Merged from three classes with identical anatomy** (`src-status`, `brief-status`, `wf-draft`): a micro uppercase outlined tag carrying one word of state. **Value:** source status 6 occ · brief status 3 occ · draft marker 2 occ. **Emphasis:** normal · alert 1 occ (`is-alert`, dashed border, so a failed source cannot read as a healthy one) | 3.0, 3.4, 3.5, 3.6, 6.0, 6.1, 6.2 | normal, alert | No |
+| **Status tag** | 1 | **Merged from three classes with identical anatomy** (`src-status`, `brief-status`, `wf-draft`): a micro uppercase outlined tag carrying one word of state. **Value:** source status 4 occ · brief status 2 occ · draft marker 2 occ (recounted on the grey at Stage 09 Step 6). **Emphasis:** normal · alert 1 occ (`is-alert`, dashed border, so a failed source cannot read as a healthy one) | 3.0, 3.5, 6.0, 6.1, 6.2 | normal, alert | No |
 | **Rank number** | 1 | one form, tabular numerals | 2.0, 6.1, 6.2, 6.4 | rest | No |
 | **Avatar** | 1 | **Size:** 26px in the app bar 27 occ · 40px on the account identity block 1 occ. The small one reads at 26px and is hit at 44px through a transparent `::after` overlay | 27 screens plus 7.0 | rest | **No, by decision** |
 | **Icon slot** | 1 | **Size / shape:** 40px rounded square in a state block 8 occ (`wf-state-ic`) · 34px source row 2 occ (`src-ic`) · 28px source card 3 occ (`src-card-ic`) · 20px bottom tab 27 occ (`.ico`) · 17px numbered circle in a phase strip 6 occ (`wf-step-n`) · 26px numbered circle on the home steps 4 occ (`mk-step-n`) | 34 screens | rest, current (numbered circle only) | No |
@@ -99,7 +99,7 @@ controls in this product.
 |---|:--:|---|---|---|:--:|
 | **Theme card (ranked row)** | 2 | one form. Zones in reading order: checkbox, rank, label, representative quote, provenance, confidence, drill. At 360 it becomes a grid and the confidence pill takes its own row; reading order is unchanged. **Declared exception, see Findings 1:** it stands on one screen, and it enters the kit anyway | 2.0 | rest, hover, selected, low-signal, clamped quote (360) | No |
 | **Evidence snippet** | 2 | **Content:** quote plus meta 12 occ · quote plus meta plus citation index. Canonical, owner 4.0 | 4.0, 4.1 | rest, hover, redacted (5.1) | No |
-| **Source row** | 2 | **Emphasis:** healthy 5 occ · failed 1 occ (alert status, dashed, plus a row-level alert line and its own retry). **Content:** with stats 6 occ · with row actions 1 occ | 3.0, 3.5, 3.6 | connected, syncing, failed | No |
+| **Source row** | 2 | **Emphasis:** healthy 3 occ · failed 1 occ (alert status, dashed, plus a row-level alert line and its own retry). **Content:** with stats 4 occ · with row actions 2 occ (recounted on the grey at Stage 09 Step 6; 3.6 draws no source row) | 3.0, 3.5 | connected, syncing, failed | No |
 | **Source card (available)** | 2 | **State:** connectable 6 occ · not yet available 3 occ (`src-card-note` says so rather than hiding it) | 3.0, 3.4, 3.5 | available, unavailable | No |
 | **Saved brief row** | 2 | **Value:** shared 2 occ · draft 1 occ. Zones: title, meta, status, actions. A managed object, deliberately not a variant of the composer row | 6.0 | shared, draft | No |
 | **Composer brief row** | 2 | one form. Zones: drag handle, label, meta, remove. Different zones from the theme card and from the saved row, so a third component and not a variant | 6.1, 6.2 | rest, hover, dragging `[?]` | No |
@@ -140,7 +140,7 @@ come first, then the ones that do. That order is the `@import` order Stage 08 in
 | **Public bar** | 3 | **Content:** brand plus read-only tag 1 occ · brand plus product links 9 occ (marketing and legal) | 10 screens | rest | No |
 | **Empty / error state block** | 3 | **Placement:** takes the canvas, centred 6 occ (`wf-state`) · sits inline as an empty first group in a populated list, left aligned 2 occ (`wf-state--inline`, screens 3.4 and 6.5). **Content:** always icon, title, one explanation, and at least one exit | 8 screens | empty, error, first run | No |
 | **Form** | 3 | **Purpose:** auth 3 occ · connect 2 occ · settings 2 occ · composer 2 occ | 9 screens | rest, submitting `[?]`, error | No |
-| **Dialog** | 3 | **Content:** link row plus actions 1 occ (6.3) · confirm with a destructive action held apart 1 occ (`wf-action-apart`, 3.6) | 6.3, 3.6 | rest, generating (6.3 loading) | No |
+| **Dialog** | 3 | **Content:** link row plus actions 1 occ (6.3) · the destructive action held apart 1 occ (`wf-action-apart`, 6.3). 3.6 draws its Disconnect confirm inline (`.src-confirm`), not as a dialog (corrected at Stage 09 Step 6) | 6.3 | rest, generating (6.3 loading) | No |
 | **Legal document** | 3 | one form: crumb, H1, meta, TOC, prose, related | 9.0, 9.1, 9.2 | rest | No |
 | **Account shell** | 3 | one form: side nav plus panel; the nav collapses above the panel below 600px | 7.0, 7.1, 7.2, 7.3 | per nav item: rest, current | No |
 | **Public document (shared brief)** | 3 | one form: eyebrow, H1, lede, meta, key takeaways, rationale, themes, citations, sources, method | 6.4 | rest | No |
@@ -163,7 +163,7 @@ Single occurrence, no form-control exception, no canonical status.
 | File drop zone (`src-drop`) | 3.2 | One screen |
 | CSV review summary (`src-review`) | 3.2 | One screen |
 | OAuth scope list (`src-scopes`) | 3.3 | One screen |
-| Disconnect confirm body (`src-confirm`) | 3.6 | One screen. The dialog around it IS a component; this is its content |
+| Disconnect confirm body (`src-confirm`) | 3.6 | One screen, drawn inline on the page, not inside a dialog (corrected at Stage 09 Step 6). Whether it stays inline or becomes a dialog's content is backlog row B-08 |
 | Link row (`wf-linkrow`) | 6.3 | One screen. Input plus copy button, and it is the only place a value is copied |
 | Reason line (`wf-reason`) | 4.0 | One screen. Explains why items cluster |
 | Raw quote (`wf-raw-quote`) | 5.0 | One screen. The expanded verbatim at document scale |
@@ -260,7 +260,10 @@ rows for being in two levels at once.
 
 ## Totals
 
-- **50 components** enter the kit: 19 atoms, 20 molecules, 11 organisms.
+- **50 components** entered the kit at Stage 07: 19 atoms, 20 molecules, 11 organisms. **Live count
+  since Stage 09 Step 5: 51** (17 atoms, 22 molecules, 12 organisms), after the levels were
+  reassigned at Stage 08 and the raw item joined; `design/kit/_nav.js` and `components.html` carry
+  the same number. Corrected at Stage 09 Step 6.
 - **13 blocks** stay in One-off.
 - **6 form-control primitives** are in by the stated exception rather than by the threshold: text
   input, textarea, select, checkbox, field label, form. Radio and toggle do not exist in this
@@ -580,7 +583,7 @@ group of its own level.*
 | 1 | **Filter chip** | `components/chip.css` | `kit/chip.html` | hover, on, focus-visible, disabled | 5 screens. 12 |
 | 1 | **Confidence indicator** | `components/confidence.css` | `kit/confidence.html` | none, not interactive | 9 screens. 24 |
 | 1 | **Citation marker** | `components/citation.css` | `kit/citation.html` | hover and focus on the linked form; the static index has none | 5 screens. 25 static, 6 linked |
-| 1 | **Status tag** | `components/tag.css` | `kit/tag.html` | none, not interactive | 7 screens. 8 |
+| 1 | **Status tag** | `components/tag.css` | `kit/tag.html` | none, not interactive | 5 screens: 3.0, 3.5, 6.0, 6.1, 6.2 (corrected at Stage 09 Step 6; 3.4 and 3.6 carry none). 8 |
 | 1 | **Rank number** | `components/rank.css` | `kit/rank.html` | none, not interactive | 4 screens. 16 |
 | 1 | **Avatar** | `components/avatar.css` | `kit/avatar.html` | focus-visible. Hover deliberately empty | 28 screens |
 | 1 | **Icon slot** | `components/iconslot.css` | `kit/iconslot.html` | none, not interactive | 34 screens |
@@ -594,7 +597,7 @@ group of its own level.*
 | 2 | **Provenance list** | `components/provlist.css` | `kit/provlist.html` | none, not interactive; its links keep their own | 5.0, 5.1, 3.6 (grey only). 3. Built at Step 6 from the grey anatomy |
 | 2 | **Evidence snippet** | `components/snippet.css` | `kit/snippet.html` | hover, focus-visible. Redacted is a `.redacted` mark in the meta line | 4.0, 4.1. 12 |
 | 2 | **Raw item** | `components/rawitem.css` | `kit/rawitem.html` | none, not interactive; its links and citation index keep their own | 5.0, 5.1. 2. Added at Stage 09 Step 5 from backlog row S5-1: the first component the system grew by its own contribution rule |
-| 2 | **Source row** | `components/source-row.css` | `kit/source-row.html` | hover on the row; focus-visible on its buttons. Failed carries `.rowalert` | 3.0, 3.5, 3.6. Healthy 5, failed 1 |
+| 2 | **Source row** | `components/source-row.css` | `kit/source-row.html` | hover on the row; focus-visible on its buttons. Failed carries `.rowalert` | 3.0, 3.5. Healthy 3, failed 1 (recounted at Stage 09 Step 6: 3.6 draws no source row) |
 | 2 | **Source card (available)** | `components/source-card.css` | `kit/source-card.html` | none, not interactive; its button keeps its own | 3.0, 3.4, 3.5. Connectable 6, not yet available 3 |
 | 2 | **Saved brief row** | `components/brief-row.css` | `kit/brief-row.html` | row hover, title hover, focus-visible on the title | 6.0. Shared 2, draft 1 |
 | 2 | **Composer brief row** | `components/composer-row.css` | `kit/composer-row.html` | none of its own; the remove button keeps its focus. Dragging `[?]` | 6.1, 6.2 |
@@ -618,7 +621,7 @@ group of its own level.*
 | 3 | **Public bar** | `components/public-bar.css` | `kit/public-bar.html` | none, not interactive | 10 screens |
 | 3 | **Empty / error state block** | `components/state.css` | `kit/state.html` | none, not interactive; its exits keep the button's | 8 screens. Centred 6, inline 2 |
 | 3 | **Form** | `components/form.css` | `kit/form.html` | none of its own; the error is the field's line. Submitting `[?]` | 9 screens, all grey |
-| 3 | **Dialog** | `components/dialog.css` | `kit/dialog.html` | none, not interactive. Generating is the 6.3 loading form | 6.3, 3.6 |
+| 3 | **Dialog** | `components/dialog.css` | `kit/dialog.html` | none, not interactive. Generating is the 6.3 loading form | 6.3 (3.6's confirm is inline: backlog B-08) |
 | 3 | **Legal document** | `components/legal-doc.css` | `kit/legal-doc.html` | crumb and related links: hover, focus-visible | 9.0, 9.1, 9.2 (grey only) |
 | 3 | **Account shell** | `components/account-shell.css` | `kit/account-shell.html` | per nav item: hover, current, focus-visible | 7.0, 7.1, 7.2, 7.3 |
 | 3 | **Public document (shared brief)** | `components/public-doc.css` | `kit/public-doc.html` | none, not interactive | 6.4 |
