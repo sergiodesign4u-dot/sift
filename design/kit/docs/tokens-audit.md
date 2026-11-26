@@ -304,3 +304,35 @@ not. S9a shows on 3.2 and the four 4.0 and 4.1 pages (283 to 618 pixels, rows 68
 2.1, 2.2, 3.2, 6.1, 6.2 and 6.3 (22 or 23 pixels each, the two separators). S9d shows on 6.1 and
 6.2 (4,015 pixels with S9b). Every other page: 0. S9c has no frame by construction. The light
 illustrations on the pixel proof were re-taken for the same reason.
+
+### Stage 10 Step 2: the scale in rem, three steps fluid, and the width tokens
+
+*A deliberate change of values, one rule for the whole pipeline: a value never changes silently.
+The asymmetric promise of Stage 10: at 360 the product moves by 0 pixels, and on a wider screen
+every difference is explained by a row here or in `design/kit/docs/responsive.md`.*
+
+| Variable or class | Was | Now | Why |
+|---|---|---|---|
+| `--type-3xl` | `36px`, and `.mk-h1` switched to `27px` below 820 | `clamp(1.6875rem, 1.3897rem + 1.3235vw, 2.25rem)`, 27 to 36px | a font size never switches at a point: the jump happens while somebody drags the window. Low end = what 360 showed |
+| `--type-2xl` | `29px`, and `.pub-h1` switched to `24px` below 820 | `clamp(1.5rem, 1.3345rem + 0.7352vw, 1.8125rem)`, 24 to 29px | the same |
+| `--type-xl` | `22px` | `clamp(1.375rem, 1.3088rem + 0.2941vw, 1.5rem)`, 22 to 24px | a screen H1 at 22px on a 1440 window reads small against a page that grew; two pixels only, because an instrument's headline is calm. Readers: `.h1`, `.mk-h2`, the title input, `.tier-price` |
+| `--type-lead` | new; `.mk-lead` was `16px`, and `14.5px` below 820 | `clamp(0.90625rem, 0.8566rem + 0.2205vw, 1rem)` | the switch removed; read once, 0.0 |
+| `--type-legal` | new; `.legal-prose` was `14.5px`, and `--type-base` below 820 | `clamp(0.875rem, 0.8584rem + 0.0735vw, 0.90625rem)` | the switch removed; read once, 9.x (grey only, no colour frame) |
+| `--type-lg` to `--type-3xs` | px | the same values in rem (17px = 1.0625rem and so on) | rem follows the reader's own font size; at the default 16px nothing moves |
+| `--bp-shell-wide` | none; 820px literal in 17 rules | `37.5rem` | the register of the one breakpoint. Read by the shell at Step 3 |
+| `--container-page` | none | `65rem` | the page frame. Read at Step 3 |
+| `--container-text` | none (`--measure-prose` 92ch held 98 to 122 characters) | `52ch`, 70 characters a line measured | the measure of continuous text. Read at Step 4, where `--measure-prose` retires |
+| `--gutter-page` | none; 16, 18 and 22px at 360 | `clamp(1rem, 0.8014rem + 0.8823vw, 1.375rem)` | proposed one left edge; the owner decides at the Step 2 review |
+| `--grid-col-min`, `--grid-gap` | none | `15rem`, `var(--space-4)` | the grid, from the source card grid. Read at Step 4 |
+
+All the clamps grow from 22.5rem (360px) to 65rem (1040px), the page container: the type grows
+while the page grows. Each middle term carries a rem addend (WCAG 1.4.4). Two `@media` rules went
+with the switches (legal-doc.css, marketing-shell.css); public-doc.css lost one declaration.
+17 width queries in the product became 15.
+
+**Held against the product.** 24 colour screens at 360, 1024 and 1440 against commit `4536c96`:
+at 360, 24 of 24 frames differ by 0 pixels, and the computed sizes equal Stage 08 exactly. At 1024
+and 1440, every changed frame starts changing at the glyphs of its H1 (the screen H1 at 23.95 and
+24px instead of 22, the frame 3px taller); 0.0 changes in its first line, lead and section titles;
+6.4 changes at 1024 only (28.88px instead of 29) and is 0 at 1440; 6.3 and its loading state are 0
+at both, because a dialog title reads `--type-lg`, which stays fixed. 29 of 72 frames: 0.

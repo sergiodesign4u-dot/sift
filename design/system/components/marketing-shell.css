@@ -1,5 +1,5 @@
 /* design/system/components/marketing-shell.css - level 3, organism (shell).
-   Reads: --text-primary, --text-secondary, --line-hairline, --font-mono, --type-3xl, --type-xl, --type-2xs, --type-sm, --weight-strong, --tracking-head, --leading-body, --space-*
+   Reads: --text-primary, --text-secondary, --line-hairline, --font-mono, --type-3xl, --type-lead, --type-xl, --type-2xs, --type-sm, --weight-strong, --tracking-head, --leading-body, --space-*
    Page:  design/kit/marketing-shell.html
    Stands on: 0.0 Home (design/index.html). One screen.
 
@@ -10,12 +10,14 @@
    prose at 720px, a landing page carries rows of cards. It modifies .public-main, which belongs to
    the public document organism.
    NOT in this file, by decision (Step 6 one-offs): .mk-trust*, .mk-footer*, .mk-foot-*.
+   The first line and the lead GROW with the page (--type-3xl, --type-lead, fluid since Stage 10
+   Step 2); until then they switched to 27px and 14.5px at 820, which the system forbids.
    No em dash anywhere in this file.
 */
 
 .mk-hero { padding: 30px 0 var(--space-12); border-bottom: 1px solid var(--line-hairline); }
 .mk-h1 { font-size: var(--type-3xl); line-height: 1.15; font-weight: var(--weight-strong); letter-spacing: -0.025em; color: var(--text-primary); max-width: 20ch; }
-.mk-lead { font-size: 16px; line-height: 1.65; color: var(--text-secondary); margin-top: var(--space-7); max-width: 58ch; }
+.mk-lead { font-size: var(--type-lead); line-height: 1.65; color: var(--text-secondary); margin-top: var(--space-7); max-width: 58ch; }
 .mk-cta { display: flex; gap: var(--space-4); flex-wrap: wrap; margin-top: var(--space-10); }
 .mk-note { font-family: var(--font-mono); font-size: var(--type-2xs); color: var(--text-secondary); margin-top: var(--space-6); }
 .mk-section { padding: var(--space-12) 0; border-bottom: 1px solid var(--line-hairline); }
@@ -23,8 +25,3 @@
 .mk-section-sub { font-size: var(--type-sm); color: var(--text-secondary); margin-top: 7px; max-width: 60ch; line-height: var(--leading-body); }
 .mk-grid { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-5); margin-top: 20px; }
 .public-main--wide { max-width: 1040px; }
-
-@media (max-width: 820px) {
-  .mk-h1 { font-size: 27px; }
-  .mk-lead { font-size: 14.5px; }
-}

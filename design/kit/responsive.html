@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift design system - Responsive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../system/index.css">
+<link rel="stylesheet" href="_page.css">
+<script src="_theme.js"></script>
+<script>
+  /* the sections of this page, listed under its link in the stand panel (design/kit/_nav.js) */
+  window.KIT_SECTIONS = [
+    { id: 'ways',     label: 'Three ways' },
+    { id: 'points',   label: 'The breakpoint' },
+    { id: 'measure',  label: 'Container and measure' },
+    { id: 'gutter',   label: 'The gutter: your call' },
+    { id: 'grid',     label: 'Grid' },
+    { id: 'type',     label: 'Fluid type' },
+    { id: 'shell',    label: 'Shell' },
+    { id: 'comps',    label: 'Component behaviour' },
+    { id: 'patterns', label: 'Pattern behaviour' },
+    { id: 'new',      label: 'New behaviour' },
+    { id: 'census',   label: 'Census and audit' },
+  ];
+</script>
+<style>
+  /* Demo chrome of this stand page only (as kit.html and shell.html carry theirs). The product
+     never sees it. The one media query below is the register's literal, shown working. */
+  .rs-drag { resize: horizontal; overflow: auto; min-width: 180px; max-width: 100%; width: 100%; padding: 14px; border: 1px dashed var(--line-control); border-radius: var(--radius-md); }
+  .rs-cap { font-family: var(--font-mono); font-size: var(--type-2xs); color: var(--text-secondary); margin-top: 8px; }
+  .rs-cap b { color: var(--text-primary); font-weight: var(--weight-medium); }
+  .rs-wrap { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+  .rs-pill { padding: 6px 10px; border: 1px solid var(--line-hairline); border-radius: var(--radius-md); background: var(--bg-surface); font-size: var(--type-xs); }
+  .rs-measure { max-width: var(--container-text); }
+  .rs-text { font-size: var(--type-base); line-height: var(--leading-body); color: var(--text-secondary); }
+  .rs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(var(--grid-col-min), 1fr)); gap: var(--grid-gap); }
+  .rs-cell { min-height: 76px; border: 1px solid var(--line-hairline); border-radius: var(--radius-md); background: var(--bg-surface); padding: 10px 12px; font-size: var(--type-xs); color: var(--text-secondary); }
+  .rs-cell b { display: block; color: var(--text-primary); font-size: var(--type-sm); font-weight: var(--weight-medium); margin-bottom: 4px; }
+  .rs-swap { display: flex; gap: 10px; align-items: center; font-size: var(--type-sm); }
+  .rs-swap .rs-wide { display: none; }
+  @media (min-width: 37.5rem) { .rs-swap .rs-wide { display: inline; } .rs-swap .rs-narrow { display: none; } }
+  .rs-spec { display: grid; grid-template-columns: minmax(0, 15rem) minmax(0, 1fr); gap: 18px; padding: 16px 0; border-bottom: 1px solid var(--line-hairline); align-items: baseline; }
+  .rs-spec:last-child { border-bottom: 0; }
+  .rs-spec .rs-cap { margin: 0; line-height: 1.6; }
+  .rs-gut { border: 1px solid var(--line-hairline); border-radius: var(--radius-md); overflow: hidden; background: var(--bg-page); }
+  .rs-gut div { border-bottom: 1px solid var(--line-hairline); padding-top: 7px; padding-bottom: 7px; font-size: var(--type-xs); color: var(--text-primary); }
+  .rs-gut div:last-child { border-bottom: 0; }
+  .rs-opts { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 18px; margin-top: 14px; }
+  .rs-h4 { font-size: var(--type-md); margin-top: 26px; }
+  .rs-ol { margin: 10px 0 0 20px; font-size: var(--type-xs); color: var(--text-secondary); line-height: var(--leading-loose); max-width: 78ch; }
+  .rs-ol b { color: var(--text-primary); font-weight: var(--weight-medium); }
+  .rs-stub { font-size: var(--type-sm); color: var(--text-secondary); padding: 14px 16px; border: 1px dashed var(--line-hairline); border-radius: var(--radius-md); margin-top: 12px; }
+  @media (max-width: 600px) { .rs-spec { grid-template-columns: minmax(0, 1fr); gap: 6px; } }
+</style>
+</head>
+<!--
+  design/kit/responsive.html - the foundations of width, Stage 10 Step 2.
+
+  In the project roadmap it is the child "Responsive" of the Design System group (/_nav.js). The
+  roadmap item is a DOOR into the stand, not a second sidebar: this page carries the stand panel
+  like every other page here, in Foundations right after Geometry, because width is geometry.
+  No <aside id="sidebar"> and no root /_nav.js on it.
+
+  Every example is live: it is drawn by the same design/system/index.css as the product, and the
+  draggable boxes and the window edge are the test. The visible place of design/kit/docs/responsive.md.
+  The stand's own media query at 600px below is chrome (the specimen rows fold); it is not product.
+
+  No em dash anywhere.
+-->
+<body>
+<div class="kit-shell">
+  <div id="kit-panel"></div>
+  <main class="kit-main">
+    <div class="kit-eyebrow">Stage 10 &middot; Foundations</div>
+    <h1 class="kit-h1">Responsive</h1>
+    <p class="kit-lead">There is no mobile, tablet and desktop version of Sift. There is one layout that breathes, with <b>one</b> named change, and it has to look intended at 412, 900 and 1440 although nobody drew those widths. Drag the window edge, and the dashed boxes by their corner: every example here is the system itself, not a picture of it.</p>
+    <p class="kit-note">Window now: <b id="rs-vw">?</b> px, which is <b id="rs-rem">?</b> rem at this font size.</p>
+
+    <section class="kit-sec" id="ways"><h2 class="kit-h2">Three ways, the breakpoint last</h2>
+    <p class="kit-lead">Read top down, and take the first that works. A breakpoint only where the fluid physically cannot do the job, and then with an audit row that says why. "It is easier to write" is not a reason.</p>
+    <div class="rs-opts">
+      <div class="scene"><div class="scene-label">1. Fluid: nothing switches</div>
+        <div class="rs-drag"><div class="rs-wrap"><span class="rs-pill">CSV</span><span class="rs-pill">Intercom</span><span class="rs-pill">n=42</span><span class="rs-pill">Low signal</span><span class="rs-pill">Last 30 days</span></div></div>
+        <p class="rs-cap"><b>flex-wrap</b>, <b>clamp()</b>, <b>auto-fit</b>. Drag the corner: the row folds where it has to, at a width nobody chose.</p></div>
+      <div class="scene"><div class="scene-label">2. Container: it stops, it does not switch</div>
+        <p class="rs-text rs-measure">New users cannot tell what to do first, and the empty first-run screen is the most cited single point of friction.</p>
+        <p class="rs-cap"><b>max-width</b> in rem, a measure in <b>ch</b>, and <b>@container</b> when a component must answer its place.</p></div>
+      <div class="scene"><div class="scene-label">3. Breakpoint: the last resort</div>
+        <div class="rs-swap"><span class="rs-narrow">Below 37.5rem: the <b>bottom tabs</b> carry the sections</span><span class="rs-wide">From 37.5rem: the <b>header</b> carries the sections</span></div>
+        <p class="rs-cap">A navigation carrier is drawn or it is not: there is no half of a tab bar. That is the one thing here the fluid cannot do. Narrow the window past 600px to see it flip.</p></div>
+    </div>
+    <p class="kit-note"><b>A media query asks about the screen, a container query about the place.</b> A card does not know whether it stands in a single column or in a grid of three, and <code class="kit-mono">@media</code> gives it the wrong answer: a wide screen has narrow columns too. The shell measures the viewport; a component measures its container, and whoever <b>places</b> the component declares the <code class="kit-mono">container-type</code>. <b>A screen file never carries <code class="kit-mono">@media</code>.</b></p>
+    </section>
+
+    <section class="kit-sec" id="points"><h2 class="kit-h2">The breakpoint: one, not two</h2>
+    <p class="kit-lead">The audit of all 37 screens found one change of behaviour, the shell swap, and no screen of new behaviour. So there is <b>one</b> point, said out loud: two is a ceiling, not a quota. Its name says what changes, not which device is in someone's hand, so the reason travels with the name.</p>
+    <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Token</th><th>Value</th><th>What changes there</th><th>Why there</th><th>Applied</th></tr></thead><tbody>
+      <tr><td><code class="kit-mono">--bp-shell-wide</code></td><td><b>37.5rem</b><br>600px at the default font size</td><td>The header takes the three sections; below it the bottom tabs carry them</td><td>Audit row "shell", every signed-in screen. The header row of brand, three tabs and avatar measures <b>24.1rem</b> (385px), so at 360 it does not fit. 37.5rem is the smallest width of the census above that, and it is the grey contract's 600 (backlog B-07)</td><td>Step 3</td></tr>
+    </tbody></table></div>
+    <p class="kit-note"><b>The census number it replaces is 820px</b>, the colour layer's viewport query since Stage 07, on 15 rules that are not the shell's business: gutters, components and font sizes. The other choice for this review is <code class="kit-mono">51.25rem</code> (820px), which changes nothing on screen; 37.5rem gives the header tabs to windows from 600 to 820 that show the phone bar today.</p>
+    <p class="kit-note"><b>Why the number is written twice, and why that is not two sources of truth.</b> A media query is evaluated before the cascade of custom properties, so <code class="kit-mono">@media (min-width: var(--bp-shell-wide))</code> never matches, and raises no error. The query therefore carries <code class="kit-mono">37.5rem</code> as a literal. The token is the register, the literal is its application, and every <code class="kit-mono">@media</code> of the product must give exactly the number in the register: Step 6 checks that by grep. <b>rem</b> in a media query is the reader's default font size, so a reader with a larger font gets the phone layout on a wider window, which is the point: the line still holds the same text.</p>
+    </section>
+
+    <section class="kit-sec" id="measure"><h2 class="kit-h2">Container and measure</h2>
+    <p class="kit-lead">Two limits, and a limit is not a breakpoint: it never switches, it stops. The page frame stops at <code class="kit-mono">--container-page</code>, <b>65rem</b> (1040px), the one page container the product already had on its marketing page. Continuous text stops at <code class="kit-mono">--container-text</code>, <b>52ch</b>.</p>
+    <p class="kit-note"><b>52ch, not 70ch.</b> The <code class="kit-mono">ch</code> unit is the width of a zero, and in Inter a zero is wider than the average letter: 1ch holds about 1.35 characters. Measured on real product text at 14px, 52ch holds 67 to 73 characters a line, mean 70, inside the 65 to 75 that backlog S5-1 asked for. 70ch would hold 93; today's <code class="kit-mono">--measure-prose</code>, 92ch, held 98 to 122. It retires at Step 4, when its three readers move here.</p>
+    <div class="scene"><div class="scene-label">the same paragraph, with the measure and without it. Widen the window</div>
+      <p class="rs-text rs-measure">New users cannot tell what to do first, and the empty first-run screen is the most cited single point of friction. A second group describes the same problem from the import side: setup does not make it clear that feedback has to be brought in before anything appears, and several people closed the tab before their first theme was ready.</p>
+      <p class="rs-cap" style="margin-bottom:18px"><b>--container-text 52ch</b>: the eye finds the start of the next line</p>
+      <p class="rs-text">New users cannot tell what to do first, and the empty first-run screen is the most cited single point of friction. A second group describes the same problem from the import side: setup does not make it clear that feedback has to be brought in before anything appears, and several people closed the tab before their first theme was ready.</p>
+      <p class="rs-cap"><b>no measure</b>: the line runs the width of whatever holds it, the way 4.1 runs to 122 characters at 1440 today</p>
+    </div>
+    <p class="kit-note">Where they are read: the page frame by the shell at Step 3, the measure by the components at Step 4. Not in <code class="kit-mono">base.css</code> as a rule on a bare element, which the pack suggests, and here is why, measured: the page frame has to hold the header, the breadcrumb, the page and the footer to one edge, and a rule on bare <code class="kit-mono">main</code> would centre the page under a header that stays at the window edge (and would reach every <code class="kit-mono">main</code> of this stand). A rule on bare <code class="kit-mono">p</code> would shrink the four notice bands, which are paragraphs with a ground of their own.</p>
+    </section>
+
+    <section class="kit-sec" id="gutter"><h2 class="kit-h2">The gutter: your call</h2>
+    <p class="kit-lead">At 360 the screen has three left edges. On 5.0 the brand starts at 18px, the breadcrumb at 16px, the page and its H1 at 22px. Above 820 two of them agree at 22. The gutter is three values that disagree on the one width where the pixel promise is zero. Two ways out, and only you can take the second, because it moves 360.</p>
+    <div class="rs-opts">
+      <div class="scene"><div class="scene-label">A. Keep the drift: 360 moves by 0 pixels</div>
+        <div class="rs-gut"><div style="padding-left:18px">Sift, the brand, 18px</div><div style="padding-left:16px">Synthesis &rsaquo; Onboarding, the breadcrumb, 16px</div><div style="padding-left:22px">Evidence, the H1, 22px</div></div>
+        <p class="rs-cap">Three tokens reproduce today's three values. The promise holds to the letter, and the defect is written into the system.</p></div>
+      <div class="scene"><div class="scene-label">B. One fluid gutter: recommended</div>
+        <div class="rs-gut"><div style="padding-left:var(--gutter-page)">Sift, the brand</div><div style="padding-left:var(--gutter-page)">Synthesis &rsaquo; Onboarding, the breadcrumb</div><div style="padding-left:var(--gutter-page)">Evidence, the H1</div></div>
+        <p class="rs-cap"><b>--gutter-page</b>: 16px at 360, growing to 22px at 1040. One edge at every width. At 360 the page moves 6px left and the brand 2px: a named change, one row in the audit, explained in the pixel proof.</p></div>
+    </div>
+    </section>
+
+    <section class="kit-sec" id="grid"><h2 class="kit-h2">Grid</h2>
+    <p class="kit-lead"><b>The number of columns is not a token.</b> <code class="kit-mono">repeat(auto-fit, minmax(var(--grid-col-min), 1fr))</code> counts them, so the grid is right at widths nobody planned. Nothing switches, so there is no <code class="kit-mono">--col-count-tablet</code> to keep in step with anything.</p>
+    <div class="scene"><div class="scene-label">drag the corner. Columns now: <b id="rs-cols">?</b></div>
+      <div class="rs-drag"><div class="rs-grid" id="rs-grid">
+        <div class="rs-cell"><b>Intercom</b>Connected, synced 9 days ago</div>
+        <div class="rs-cell"><b>feedback-q3.csv</b>2,904 rows imported</div>
+        <div class="rs-cell"><b>sales-calls.csv</b>Mapping needed</div>
+        <div class="rs-cell"><b>Zendesk</b>Later, on the same connection</div>
+      </div></div>
+      <p class="rs-cap"><b>--grid-col-min 15rem</b> (240px, the source card, 3.0) &middot; <b>--grid-gap</b> 10px. Read from Step 4.</p></div>
+    </section>
+
+    <section class="kit-sec" id="type"><h2 class="kit-h2">Fluid type</h2>
+    <p class="kit-lead">The three heading steps grow with the page instead of jumping at a point: from 22.5rem (360px), where they are exactly the Stage 08 scale, to 65rem (1040px), where the page stops and so do they. Drag the window edge and watch the numbers. Body sizes stay fixed: a body line is made readable by the measure, not by the size.</p>
+    <div class="scene">
+      <div class="rs-spec"><p class="rs-cap"><b>--type-3xl</b> 27 to 36px<br>marketing first line<br>now <b data-fs="m1">?</b></p><div id="m1" style="font-size:var(--type-3xl);font-weight:var(--weight-strong);letter-spacing:var(--tracking-display);line-height:var(--leading-tight);color:var(--text-primary)">Turn scattered customer feedback into decisions you can defend.</div></div>
+      <div class="rs-spec"><p class="rs-cap"><b>--type-2xl</b> 24 to 29px<br>public document H1<br>now <b data-fs="m2">?</b></p><div id="m2" style="font-size:var(--type-2xl);font-weight:var(--weight-strong);letter-spacing:var(--tracking-display);line-height:var(--leading-tight);color:var(--text-primary)">Q3 roadmap: what customers need most</div></div>
+      <div class="rs-spec"><p class="rs-cap"><b>--type-xl</b> 22 to 24px<br>screen H1<br>now <b data-fs="m3">?</b></p><div id="m3" style="font-size:var(--type-xl);font-weight:var(--weight-strong);letter-spacing:var(--tracking-head);line-height:var(--leading-tight);color:var(--text-primary)">Synthesis</div></div>
+      <div class="rs-spec"><p class="rs-cap"><b>--type-lead</b> 14.5 to 16px<br>marketing lead<br>now <b data-fs="m4">?</b></p><div id="m4" style="font-size:var(--type-lead);line-height:1.65;color:var(--text-secondary)">Sift clusters feedback into ranked themes, and every theme opens onto the quotes behind it.</div></div>
+      <div class="rs-spec"><p class="rs-cap"><b>--type-legal</b> 14 to 14.5px<br>legal prose<br>now <b data-fs="m5">?</b></p><div id="m5" style="font-size:var(--type-legal);line-height:var(--leading-loose);color:var(--text-secondary)">Customer feedback carries personal data, so it is scrubbed by default on the way in.</div></div>
+    </div>
+    <p class="kit-note"><b>Three rules, each checked.</b> Both ends of every <code class="kit-mono">clamp()</code> are in rem. The middle term carries a rem addend (<code class="kit-mono">1.3088rem + 0.2941vw</code>), never a bare <code class="kit-mono">vw</code>: a bare vw ignores the reader's font size and zoom, which fails WCAG 1.4.4. The low end is what renders at 360 today: measured, the computed sizes at 360 equal Stage 08 exactly, and 24 of 24 screens at 360 differ by 0 pixels.</p>
+    <p class="kit-note"><b>A font size never switches at a breakpoint.</b> A switch is a jump at the moment somebody drags the window, and between two points it leaves widths where the size is either too big or too small. Four sizes switched at 820 until this step (the marketing H1 and lead, the public document H1, the legal prose); all four now read a fluid token, and two of those <code class="kit-mono">@media</code> rules are gone. Every change of value is a row in <code class="kit-mono">design/kit/docs/tokens-audit.md</code>; the scale itself is on <a href="typography.html">Typography</a>.</p>
+    </section>
+
+    <section class="kit-sec" id="shell"><h2 class="kit-h2">Shell</h2>
+    <p class="rs-stub">Filled at Step 3: the fork A, B or C from the navigation model of Stage 03a, the page frame on <code class="kit-mono">--container-page</code>, and the one breakpoint applied.</p></section>
+    <section class="kit-sec" id="comps"><h2 class="kit-h2">Component behaviour</h2>
+    <p class="rs-stub">Filled at Step 4: the seven components that rearrange at 820 today move to <code class="kit-mono">@container</code>, each with its local threshold listed here.</p></section>
+    <section class="kit-sec" id="patterns"><h2 class="kit-h2">Pattern behaviour</h2>
+    <p class="rs-stub">Filled at Step 4: Grouped list and Filtered list, and the <code class="kit-mono">container-type</code> each declares for what it places.</p></section>
+    <section class="kit-sec" id="new"><h2 class="kit-h2">New behaviour</h2>
+    <p class="kit-lead">The audit found none. The strongest candidate, the theme 4.0 and its evidence 5.0 side by side, was weighed and not taken: the IA writes 4.0 as one dense column (<code class="kit-mono">ia/docs/pages/theme.md:88</code>), and the barrier it would lift is already lifted on the phone by the inline quote. Decided at Step 1. Step 5 runs in its short form.</p></section>
+
+    <section class="kit-sec" id="census"><h2 class="kit-h2">Census and audit</h2>
+    <p class="kit-lead">The three tables of Step 1, as written to <code class="kit-mono">design/kit/docs/responsive.md</code>: what adapted before this stage, what every screen should get from a wider window, and who does the adapting. The census carries a status column: what has moved, and what waits for which step. Line numbers are as of commit <code class="kit-mono">4536c96</code>.</p>
+<h3 class="kit-h3">Part A. Census: what adapts today, and how</h3>
+<h4 class="kit-h3 rs-h4">Home: <code>design/system/</code>, the 17 width queries</h4>
+<p class="kit-lead">Everything sits on one number, 820, which <b>a viewport</b> measures. Of 17 rules, only 2 are what a viewport point is for (the shell swap). The other 15 split three ways: a gutter that changes from 22 to 16 (it belongs in a fluid token), a <code>font-size</code> switched at the point (forbidden by the stage: it belongs in <code>clamp()</code>), and a component rearranging itself (it belongs in <code>@container</code>, because the component measures its place, not the screen).</p>
+<div class="tbl-wrap"><table class="kit-tbl">
+<thead><tr><th>file:line</th><th>what it does below 820</th><th>way</th><th>where it must live</th><th>verdict</th><th>status after Step 2</th></tr></thead><tbody>
+<tr><td>app-header.css:44</td><td>hides the text tabs</td><td>point</td><td>shell, <code>@media</code> (legal here)</td><td>stays, the number goes into the register</td><td>waits: Step 3, the shell</td></tr>
+<tr><td>bottom-tabs.css:33</td><td>draws the bottom tabs, sticky</td><td>point</td><td>shell, <code>@media</code></td><td>stays, same</td><td>waits: Step 3, the shell</td></tr>
+<tr><td>screen-shell.css:48</td><td>a notice in the frame: gutter 22 to 16</td><td>point used as a gutter</td><td>a fluid gutter token</td><td>moves into a token</td><td>waits: Step 4</td></tr>
+<tr><td>breadcrumb.css:23</td><td>gutter 22 to 16</td><td>point used as a gutter</td><td>a fluid gutter token</td><td>moves into a token</td><td>waits: Step 4</td></tr>
+<tr><td>patterns/grouped-list.css:26</td><td>group heading padding, gutter 16</td><td>point used as a gutter</td><td>a fluid gutter token</td><td>moves into a token</td><td>waits: Step 4</td></tr>
+<tr><td>selbar.css:29</td><td>gutter 16; buttons take equal width</td><td>point</td><td>gutter token + <code>@container</code></td><td>moves</td><td>waits: Step 4</td></tr>
+<tr><td>actionbar.css:19</td><td>wraps; the note takes its own row; buttons equal width</td><td>point</td><td><code>@container</code></td><td>moves</td><td>waits: Step 4</td></tr>
+<tr><td>brief-row.css:33</td><td>the actions take their own row</td><td>point</td><td><code>@container</code></td><td>moves</td><td>waits: Step 4</td></tr>
+<tr><td>source-row.css:45</td><td>stats and actions take their own rows</td><td>point</td><td><code>@container</code></td><td>moves</td><td>waits: Step 4</td></tr>
+<tr><td>screen-head.css:42</td><td>the head action goes full width</td><td>point</td><td><code>@container</code></td><td>moves</td><td>waits: Step 4</td></tr>
+<tr><td>theme-card.css:46</td><td>the card becomes a grid, confidence on its own row, the quote clamps to 2 lines</td><td>point</td><td><code>@container</code></td><td>moves</td><td>waits: Step 4</td></tr>
+<tr><td>toolbar.css:35</td><td>full filter row swaps to the compact button</td><td>point</td><td><code>@container</code></td><td>moves</td><td>waits: Step 4</td></tr>
+<tr><td>account-shell.css:32</td><td>(at 821 and up) the section list becomes a rail beside the content</td><td>point</td><td>fluid: <code>flex-wrap</code> with a minimum width, no point at all</td><td>moves into fluid</td><td>waits: Step 4</td></tr>
+<tr><td>legal-doc.css:28</td><td><code>font-size</code> of the prose 15 to 14</td><td>point on type</td><td><code>clamp()</code> in the type scale</td><td>moves into the scale</td><td>moved, Step 2: --type-legal; the rule is gone</td></tr>
+<tr><td>marketing-shell.css:27</td><td><code>font-size</code> h1 36 to 27, lead to 14.5</td><td>point on type</td><td><code>clamp()</code></td><td>moves into the scale</td><td>moved, Step 2: --type-3xl and --type-lead; the rule is gone</td></tr>
+<tr><td>public-doc.css:65</td><td>gutter 16; <code>font-size</code> h1 29 to 24; the confidence loses its margin</td><td>point</td><td>gutter token + <code>clamp()</code> + <code>@container</code></td><td>moves</td><td>font size moved, Step 2 (--type-2xl); the rest waits: Step 4</td></tr>
+<tr><td>one-off.css:112</td><td>footer and list-note gutters; the CSV map goes from 4 columns to 2</td><td>point</td><td>gutter token + <code>@container</code> declared by the map</td><td>moves</td><td>waits: Step 4</td></tr>
+</tbody></table></div>
+
+<h4 class="kit-h3 rs-h4">Home: the fluid and the container, already there</h4>
+<div class="tbl-wrap"><table class="kit-tbl">
+<thead><tr><th>what</th><th>where</th><th>way</th><th>verdict</th></tr></thead><tbody>
+<tr><td>auto-fit / auto-fill grids</td><td>marketing tiers <code>minmax(220px)</code>, trust list <code>minmax(230px)</code> (one-off), source cards <code>minmax(240px)</code></td><td>fluid</td><td>three numbers for one idea: one token, <code>--grid-col-min</code>, in rem</td></tr>
+<tr><td><code>flex-wrap: wrap</code></td><td>22 places (phase strip, legal TOC, toolbar, raw item meta and others)</td><td>fluid</td><td>stays</td></tr>
+<tr><td>box widths in px</td><td>auth card 400, state 440, dialog 460, public doc 720, marketing 1040, account rail 208</td><td>container</td><td>stay as containers, move to rem</td></tr>
+<tr><td>line measures in ch</td><td>marketing 20, 58, 60; footer tag 30; state 60; screen head sub 70; theme quote 78; summary and reason 88 (one-off); <code>--measure-prose</code> 92 (raw item, scope, snippet)</td><td>container</td><td>9 values for one question; the stage gives one or two</td></tr>
+<tr><td>no page container</td><td><code>.appmain</code> has none: <code>main</code> is 772, 1188, 1668 px at 1024, 1440, 1920</td><td>missing</td><td>the page container is the stage's first container</td></tr>
+<tr><td>the type scale</td><td>10 fixed steps in px, 10 to 36; 0 <code>clamp()</code></td><td>none</td><td>goes fluid at Step 2, lower end equal to today</td></tr>
+<tr><td>skeleton widths</td><td>52%, 30%, 64%</td><td>fluid</td><td>stays</td></tr>
+</tbody></table></div>
+
+<h4 class="kit-h3 rs-h4">Away from home</h4>
+<div class="tbl-wrap"><table class="kit-tbl">
+<thead><tr><th>corpus</th><th>what is there</th><th>verdict</th></tr></thead><tbody>
+<tr><td><code>design/*.html</code>, foreign ground</td><td>0 width rules, 0 <code>@media</code>, 0 style. The rule "a screen uses only <code>index.css</code>" already cleared this corpus at Stage 08</td><td>nothing to move out</td></tr>
+<tr><td>stand: <code>_panel.css</code>, <code>kit/_page.css</code>, <code>kit/*.html</code>, root <code>_nav.css</code></td><td>12 queries: 900 (panel folds, 3), 820 (stand paddings, 5), 1100 and 1099 (the roadmap sidebar offset, 4); plus 16 auto-fit grids and 24 ch measures of the stand's own</td><td>stays in the stand, outside the product rules</td></tr>
+<tr><td>frozen: <code>wireframes/_wf.css</code></td><td>the canvas declares <code>container-type</code>; 10 <code>@container</code> at 600 and 599 (tabs, filter, paddings, theme card, brief row, account rail); <code>@media</code> 900 (panel), 640 (an <b>empty</b> rule), 1100 (roadmap)</td><td>read-only witness, not touched</td></tr>
+</tbody></table></div>
+
+<h4 class="kit-h3 rs-h4">Five findings from measuring the colour screens now</h4>
+<ol class="rs-ol">
+<li><b>The wide screen is the phone layout, stretched.</b> No overflow at any of the 4 widths on any of the 24 screens, but <code>main</code> runs the full canvas. Longest lines at 1440: 122 characters (warning band, 4.1), 111 (warning band, 6.2), 98 (raw item quote, 5.0), 92 (6.4 rationale), 89 (theme summary, 4.0). Backlog B-25 already named it.</li>
+<li><b>Exactly one navigation carrier everywhere it should be one.</b> 22 signed-in screens: the bottom tabs at 360, the header tabs at 1024 and up, never both. 0.0 and 6.4 carry none: the public bar has no app destinations, and the navigation model says so (guest: "Primary destinations: none").</li>
+<li><b>The stand lies between 901 and 1072.</b> The panel takes 252px from the canvas only above 900, and the product queries read the viewport. At a 901 viewport the screen gets 649px and still shows the wide shell; in the real product a 649px window shows the narrow one. Step 3 and the Step 6 sweep have to measure the canvas, not the window.</li>
+<li><b>Three left edges at 360.</b> On 5.0 the breadcrumb starts at 16px, the h1 at 22px, the brand at 18px. Above 820 the first two agree at 22. The gutter is two values that disagree on the one width where the pixel promise is zero. Step 2 brings both options openly: a named change at 360, or the drift kept.</li>
+<li><b>Four <code>font-size</code> values switch at the point</b> (marketing h1 and lead, public brief h1, legal prose). The stage forbids that; <code>clamp()</code> takes them over.</li>
+</ol>
+
+<h3 class="kit-h3">Part B. Width audit: all 37 screens of the product</h3>
+<p class="kit-lead">Corpus: <code>wireframes/*.html</code> with <code>screens.md</code>, read beside <code>jtbd.md</code> and <code>cjm-as-is.md</code>. A source this pack did not name turned out to be decisive: <b>every IA page spec carries an "Adaptive" section with a "Desktop" line</b> (<code>ia/docs/pages/*.md</code>). It is an upstream decision, so the audit follows it and does not re-decide it.</p>
+<div class="tbl-wrap"><table class="kit-tbl">
+<thead><tr><th>screen</th><th>what the person does here</th><th>category</th><th>how</th><th>source</th></tr></thead><tbody>
+<tr><td>0.0 Home</td><td>decides whether Sift is worth a try</td><td>wider: grid</td><td>hero in two columns, steps 3 up, trust strip: auto-fit; marketing container</td><td>home.md:51</td></tr>
+<tr><td>1.0 Log in</td><td>gets in</td><td>same</td><td>the card keeps its width (container)</td><td>auth.md:41 "a form does not need width"</td></tr>
+<tr><td>1.0 Sign up</td><td>creates a workspace</td><td>same</td><td>same card; the value copy stays inside it (IA: "optional ... beside")</td><td>auth.md:41</td></tr>
+<tr><td>1.0 Reset</td><td>recovers the password</td><td>same</td><td>same card</td><td>auth.md:41</td></tr>
+<tr><td>2.0 Synthesis</td><td>reads the ranked themes (J2, J3)</td><td>wider: air</td><td>page container; the cards stay one column; filter row inline</td><td>synthesis.md:84 "not a grid: the eye compares ranks down one axis"</td></tr>
+<tr><td>2.1 Synthesis empty</td><td>learns there is no signal yet</td><td>same</td><td>the state block keeps its width</td><td>state.css</td></tr>
+<tr><td>2.2 Synthesis loading</td><td>waits for the synthesis</td><td>wider: air</td><td>follows 2.0: same container</td><td>a state of 2.0</td></tr>
+<tr><td>2.3 Synthesis error</td><td>learns what failed and the next move</td><td>same</td><td>state block</td><td>state.css</td></tr>
+<tr><td>3.0 Sources</td><td>sees what is connected, adds a source (Flow 1)</td><td>wider: grid</td><td>rows table-like; the available cards in an auto-fill grid</td><td>sources.md:70</td></tr>
+<tr><td>3.2 Import a CSV</td><td>maps columns to fields</td><td>wider: grid</td><td>the four-column map; two columns when narrow (component, <code>@container</code>)</td><td>sources.md:70</td></tr>
+<tr><td>3.3 Connect Intercom</td><td>authorises Intercom</td><td>same</td><td>a short form and an action bar; form measure</td><td>sources.md (no desktop note for 3.3)</td></tr>
+<tr><td>3.4 Sources empty</td><td>connects the first source</td><td>wider: grid</td><td>available cards in the grid</td><td>sources.md:70</td></tr>
+<tr><td>3.5 Sync error</td><td>sees a failed source and fixes it</td><td>wider: grid</td><td>as 3.0</td><td>sources.md:70</td></tr>
+<tr><td>3.6 Manage a source</td><td>changes one source's settings</td><td>wider: air</td><td>page container, provenance list, action bar</td><td>sources.md (no desktop note for 3.6)</td></tr>
+<tr><td>4.0 Theme</td><td>checks the evidence behind a theme (J3, E1)</td><td>wider: air</td><td>page container; one dense column of snippets; Add to brief in the head</td><td>theme.md:88 "a single dense column of snippets"</td></tr>
+<tr><td>4.1 Theme low signal</td><td>sees that the evidence is thin</td><td>wider: air</td><td>as 4.0; the warning band gets the measure (122 characters now)</td><td>theme.md:88</td></tr>
+<tr><td>4.2 Theme loading</td><td>waits</td><td>wider: air</td><td>as 4.0</td><td>a state of 4.0</td></tr>
+<tr><td>4.0 Theme error</td><td>learns what failed</td><td>same</td><td>state block</td><td>state.css</td></tr>
+<tr><td>5.0 Evidence</td><td>reads the raw quote, the end of the chain (J3, E2)</td><td>wider: air</td><td>a readable column for the quote; provenance below</td><td>evidence.md:44 "a side panel or below"; below is taken, see question 2</td></tr>
+<tr><td>5.1 Evidence redacted</td><td>learns why the item cannot be shown</td><td>wider: air</td><td>the notice gets the measure (100 characters at 1920 now)</td><td>evidence.md:44</td></tr>
+<tr><td>6.0 Briefs</td><td>finds a saved brief</td><td>wider: air</td><td>page container, grouped list</td><td>briefs.md (no desktop note for 6.0)</td></tr>
+<tr><td>6.1 Build a brief</td><td>picks themes and orders them (S1, J4)</td><td>wider: grid</td><td>selection beside the priority panel; fluid wrap, no point</td><td>briefs.md:93 "selection plus a priority panel"</td></tr>
+<tr><td>6.2 Build, thin warning</td><td>as 6.1, warned about a thin theme</td><td>wider: grid</td><td>as 6.1</td><td>briefs.md:93</td></tr>
+<tr><td>6.3 Share link</td><td>copies the public link</td><td>same</td><td>the dialog keeps its width</td><td>dialog.css</td></tr>
+<tr><td>6.3 Share link loading</td><td>waits for the link</td><td>same</td><td>dialog</td><td>dialog.css</td></tr>
+<tr><td>6.4 Shared brief</td><td>a stakeholder reads the call and its evidence (S1, E2)</td><td>wider: air</td><td>one centred readable column (already 720px)</td><td>briefs.md:93 "a centered readable column"</td></tr>
+<tr><td>6.5 Briefs empty</td><td>learns there is no brief yet</td><td>same</td><td>state block</td><td>state.css</td></tr>
+<tr><td>7.0 Account</td><td>finds an account section</td><td>wider: grid</td><td>the section list as a left rail; fluid wrap replaces the 821 query</td><td>account.md:53 "a left rail beside the content"</td></tr>
+<tr><td>7.0 Profile</td><td>edits the profile</td><td>wider: grid</td><td>as 7.0</td><td>account.md:53</td></tr>
+<tr><td>7.0 Data and privacy</td><td>sees and sets PII scrubbing (compliance, day one)</td><td>wider: grid</td><td>as 7.0</td><td>account.md:53</td></tr>
+<tr><td>7.0 Plan and limits</td><td>sees the plan and the seat meter</td><td>wider: grid</td><td>as 7.0</td><td>account.md:53</td></tr>
+<tr><td>8.0 Not found</td><td>gets back to safety</td><td>same</td><td>state block, centred</td><td>system.md:53 "center their content"</td></tr>
+<tr><td>8.1 Server error</td><td>gets back to safety</td><td>same</td><td>state block</td><td>system.md:53</td></tr>
+<tr><td>8.2 Maintenance</td><td>learns when to come back</td><td>same</td><td>state block</td><td>system.md:53</td></tr>
+<tr><td>9.0 Privacy</td><td>reads the policy (indexed, SEO)</td><td>wider: grid</td><td>the contents as a sticky left rail beside a readable column</td><td>legal.md:50; backlog B-27</td></tr>
+<tr><td>9.1 Terms</td><td>reads the terms</td><td>wider: grid</td><td>as 9.0</td><td>legal.md:50</td></tr>
+<tr><td>9.2 Security and GDPR</td><td>reads the security page</td><td>wider: grid</td><td>as 9.0</td><td>legal.md:50</td></tr>
+</tbody></table></div>
+<p class="kit-lead"><b>The tally: same 13, wider 24 (grid 14, air 10), new behaviour 0.</b> "Grid" here means two blocks that already exist standing side by side (a rail, a panel, cards); it needs no new state, so it is wider, not new.</p>
+
+<h4 class="kit-h3 rs-h4">New behaviour: the candidates, and why none is taken</h4>
+<div class="tbl-wrap"><table class="kit-tbl">
+<thead><tr><th>candidate</th><th>for it</th><th>against it</th><th>verdict</th></tr></thead><tbody>
+<tr><td>4.0 Theme with 5.0 Evidence beside it (split view)</td><td>a pair of the main flow, Flow 0 steps 2 to 3, with a loop (discard a theme, go back). Barrier, Phase 4: PMs "still need to go back to the source material to really trust the insight" (cjm-as-is.md:179)</td><td>the IA decided the desktop form: "a single dense column of snippets" (theme.md:88). The barrier is already met on the phone: the snippet IS the verbatim quote with its citation, and the raw item is one tap away. A split adds a "nothing selected" state, focus management and history, against "one decision at a time"</td><td>not taken; it would be an IA change, which is yours to make, not a layout decision</td></tr>
+<tr><td>2.0 Synthesis with 4.0 beside it</td><td>a pair of the main flow</td><td>synthesis.md:84 keeps one column on purpose: ranks compared down one axis. Taken together with the row above it would be three panes, a dashboard</td><td>not taken</td></tr>
+<tr><td>3.0 Sources with 3.6 beside it</td><td>a list and its detail</td><td>not the main flow; managing a source is a rare setup task, not repeated comparison</td><td>not taken</td></tr>
+<tr><td>6.0 Briefs with 6.4 beside it</td><td>a list and its detail</td><td>not the main flow; a brief is opened, not compared</td><td>not taken</td></tr>
+</tbody></table></div>
+<p class="kit-lead">What this means for Step 2, said now and decided at Step 2: the audit names <b>one</b> change of behaviour that a viewport causes, the shell swap (header tabs and bottom tabs). Everything else is fluid, a container, or a component measuring its place. Two points are a ceiling, not a quota, so the honest expectation is <b>one point</b>, spoken aloud. Step 5 is then the short form.</p>
+
+<h3 class="kit-h3">Part C. Component register: all 51 components, 2 patterns, the one-off file</h3>
+<p class="kit-lead">Corpus: <code>inventory.md</code> and the 51 files. The category is the widest among the screens the component stands on. "Does not adapt" is a verdict with its reason, not a missing row.</p>
+<div class="tbl-wrap"><table class="kit-tbl">
+<thead><tr><th>level</th><th>component</th><th>stands on</th><th>widest</th><th>verdict</th></tr></thead><tbody>
+<tr><td>atom</td><td>button</td><td>every screen</td><td>grid</td><td>does not adapt: width is the placer's decision (<code>.u-full</code>, action bar, screen head)</td></tr>
+<tr><td>atom</td><td>input</td><td>8 screens</td><td>grid</td><td>does not adapt: it fills its field; the form gives the measure</td></tr>
+<tr><td>atom</td><td>checkbox</td><td>2.0, 7.2</td><td>grid</td><td>does not adapt: a fixed target</td></tr>
+<tr><td>atom</td><td>field label</td><td>6 screens</td><td>grid</td><td>does not adapt</td></tr>
+<tr><td>atom</td><td>filter chip</td><td>5 screens</td><td>grid</td><td>does not adapt: the toolbar wraps the chips</td></tr>
+<tr><td>atom</td><td>confidence</td><td>9 screens</td><td>grid</td><td>does not adapt: its place is set by the theme card</td></tr>
+<tr><td>atom</td><td>citation</td><td>5 screens</td><td>air</td><td>does not adapt: an inline mark</td></tr>
+<tr><td>atom</td><td>status tag</td><td>3.0, 3.5, 6.0, 6.1, 6.2</td><td>grid</td><td>does not adapt</td></tr>
+<tr><td>atom</td><td>rank</td><td>2.0, 6.1</td><td>grid</td><td>does not adapt</td></tr>
+<tr><td>atom</td><td>avatar</td><td>28 screens</td><td>grid</td><td>does not adapt</td></tr>
+<tr><td>atom</td><td>icon slot</td><td>34 screens</td><td>grid</td><td>does not adapt</td></tr>
+<tr><td>atom</td><td>scope line</td><td>13 screens</td><td>air</td><td><b>container</b>: reads <code>--measure-prose</code> already</td></tr>
+<tr><td>atom</td><td>skeleton bar</td><td>2.2, 4.2</td><td>air</td><td><b>fluid</b>, already (percent widths)</td></tr>
+<tr><td>atom</td><td>inline link</td><td>18 screens</td><td>grid</td><td>does not adapt</td></tr>
+<tr><td>atom</td><td>drag handle</td><td>6.1, 6.2</td><td>grid</td><td>does not adapt</td></tr>
+<tr><td>atom</td><td>list row link</td><td>7.0</td><td>grid</td><td>does not adapt: it fills the rail or the column it stands in</td></tr>
+<tr><td>atom</td><td>group heading</td><td>12 screens</td><td>grid</td><td><b>fluid</b>: its gutter (set by grouped-list) goes to the gutter token</td></tr>
+<tr><td>molecule</td><td>theme card</td><td>2.0, 6.1, 6.4</td><td>grid</td><td><b>point to container</b>: the reflow and the 2-line quote move to <code>@container</code></td></tr>
+<tr><td>molecule</td><td>evidence snippet</td><td>4.0, 4.1, 6.4</td><td>air</td><td><b>container</b>: measure, already on <code>--measure-prose</code></td></tr>
+<tr><td>molecule</td><td>raw item</td><td>5.0, 5.1</td><td>air</td><td><b>container</b>: measure 92ch, where S5-1 asked 65 to 75 (B-25)</td></tr>
+<tr><td>molecule</td><td>provenance list</td><td>5.0, 5.1</td><td>air</td><td>does not adapt: short lines, below the quote</td></tr>
+<tr><td>molecule</td><td>source row</td><td>3.0, 3.5</td><td>grid</td><td><b>point to container</b></td></tr>
+<tr><td>molecule</td><td>source card</td><td>3.0, 3.4, 3.5</td><td>grid</td><td><b>fluid</b>: auto-fill, the minimum goes to <code>--grid-col-min</code></td></tr>
+<tr><td>molecule</td><td>saved brief row</td><td>6.0</td><td>air</td><td><b>point to container</b></td></tr>
+<tr><td>molecule</td><td>composer row</td><td>6.1, 6.2</td><td>grid</td><td>does not adapt: one line with a handle and a remove, fits at 360</td></tr>
+<tr><td>molecule</td><td>account row</td><td>7.1, 7.2</td><td>grid</td><td>does not adapt</td></tr>
+<tr><td>molecule</td><td>form field</td><td>1.0, 3.2, 6.1</td><td>grid</td><td>does not adapt: the form gives the width</td></tr>
+<tr><td>molecule</td><td>notice band</td><td>7 screens</td><td>air</td><td><b>container</b>: it has no measure today, and gives the longest lines (122 at 1440)</td></tr>
+<tr><td>molecule</td><td>screen head</td><td>15 screens</td><td>grid</td><td><b>point to container</b>: the full-width action</td></tr>
+<tr><td>molecule</td><td>toolbar</td><td>6 screens</td><td>grid</td><td><b>point to container</b>: full row or compact</td></tr>
+<tr><td>molecule</td><td>selection bar</td><td>2.0, 6.1, 6.2</td><td>grid</td><td><b>point to container</b> + gutter token</td></tr>
+<tr><td>molecule</td><td>action bar</td><td>3.2, 3.3, 3.6, 5.0, 6.1</td><td>grid</td><td><b>point to container</b></td></tr>
+<tr><td>molecule</td><td>phase strip</td><td>6 screens</td><td>grid</td><td><b>fluid</b>, already (wrap)</td></tr>
+<tr><td>molecule</td><td>breadcrumb</td><td>9 screens</td><td>air</td><td><b>fluid</b>: gutter token; its narrow form (S5-5) is a variant, see the backlog below</td></tr>
+<tr><td>molecule</td><td>skeleton card</td><td>2.2, 4.2, 6.3</td><td>air</td><td>does not adapt: the column it stands in gives the width</td></tr>
+<tr><td>molecule</td><td>legal TOC</td><td>9.x</td><td>grid</td><td><b>fluid</b>: wraps; becomes the rail through the legal document</td></tr>
+<tr><td>molecule</td><td>auth card</td><td>1.0 (3)</td><td>same</td><td><b>container</b>, already (400px, to rem)</td></tr>
+<tr><td>molecule</td><td>tier card</td><td>0.0</td><td>grid</td><td><b>fluid</b>: the marketing grid places it</td></tr>
+<tr><td>molecule</td><td>step card</td><td>0.0</td><td>grid</td><td><b>fluid</b>: the marketing grid places it</td></tr>
+<tr><td>organism</td><td>app header</td><td>27 screens</td><td>grid</td><td><b>point</b>: the shell swap, viewport <code>@media</code>, Step 3</td></tr>
+<tr><td>organism</td><td>bottom tabs</td><td>27 screens</td><td>grid</td><td><b>point</b>: the same swap</td></tr>
+<tr><td>organism</td><td>app footer</td><td>27 screens</td><td>grid</td><td>does not adapt: one wrapping line; its gutter follows the token</td></tr>
+<tr><td>organism</td><td>public bar</td><td>10 screens</td><td>grid</td><td>does not adapt: no destinations to swap; gutter follows the token</td></tr>
+<tr><td>organism</td><td>state block</td><td>8 screens</td><td>same</td><td><b>container</b>, already (440px and 60ch, to rem)</td></tr>
+<tr><td>organism</td><td>form</td><td>9 screens, grey</td><td>grid</td><td><b>container</b>: it has no measure today, and on 3.2 and 7.x its fields would run the full column</td></tr>
+<tr><td>organism</td><td>dialog</td><td>6.3</td><td>same</td><td><b>container</b>, already (460px, to rem)</td></tr>
+<tr><td>organism</td><td>legal document</td><td>9.x</td><td>grid</td><td><b>fluid</b>: the sticky rail by wrap; the prose size by <code>clamp()</code>, not the point</td></tr>
+<tr><td>organism</td><td>account shell</td><td>7.x</td><td>grid</td><td><b>fluid</b>: the rail by wrap, the 821 query goes</td></tr>
+<tr><td>organism</td><td>public document</td><td>6.4</td><td>air</td><td><b>container</b> (720px) + <code>clamp()</code> for the h1</td></tr>
+<tr><td>organism</td><td>marketing shell</td><td>0.0</td><td>grid</td><td><b>container + fluid</b>: 1040px, auto-fit, <code>clamp()</code> for h1 and lead</td></tr>
+<tr><td>organism</td><td>screen shell</td><td>27 screens</td><td>grid</td><td><b>point + container</b>: the page container it lacks, Step 3</td></tr>
+<tr><td>pattern</td><td>filtered list</td><td>2.0, 4.0, 6.1</td><td>grid</td><td><b>container</b>: it places the toolbar, so it declares <code>container-type</code></td></tr>
+<tr><td>pattern</td><td>grouped list</td><td>3.0, 4.0, 6.0</td><td>grid</td><td><b>fluid</b>: its 820 rule is a gutter; it declares <code>container-type</code> for the rows it places</td></tr>
+<tr><td>one-off</td><td><code>one-off.css</code></td><td>0.0, 3.2, 4.0, 4.1</td><td>grid</td><td>gutter token; the CSV map to <code>@container</code>; summary and reason measures</td></tr>
+</tbody></table></div>
+<p class="kit-lead"><b>The tally.</b> Atoms 17: 3 adapt, 14 do not. Molecules 22: 17 adapt (7 of them move from the point to <code>@container</code>), 5 do not. Organisms 12: 10 adapt, 2 do not. Patterns 2: both adapt. <b>53 rows, 0 missing</b>: every file in <code>components/</code> and <code>patterns/</code> has a verdict.</p>
+
+<h3 class="kit-h3">What the backlog already hands this stage</h3>
+<div class="tbl-wrap"><table class="kit-tbl">
+<thead><tr><th>row</th><th>what</th><th>where it lands</th></tr></thead><tbody>
+<tr><td>B-07</td><td>the breakpoint: 600 on the grey canvas, 820 on the colour viewport</td><td>Step 2: the register. Part A answers it: one point, named by the change</td></tr>
+<tr><td>B-25</td><td>line measure past 80 characters at 1440</td><td>Step 2: the measure token; Step 4: notice, raw item, summary</td></tr>
+<tr><td>B-26</td><td>one word alone on the last line</td><td>Step 2 or 4: <code>text-wrap: pretty</code> as a base rule, low</td></tr>
+<tr><td>B-27</td><td>a sticky contents rail on 9.x</td><td>Step 4, legal document (audit rows 9.0 to 9.2)</td></tr>
+<tr><td>S5-5</td><td>the breadcrumb's narrow form, a back chevron plus the theme name</td><td>Step 4, as a breadcrumb variant through <code>@container</code></td></tr>
+</tbody></table></div>
+
+    </section>
+
+    <footer class="kit-foot">
+      <span>Design system &middot; foundations</span>
+      <a href="overview.html">The whole system</a>
+      <a href="../overview.html">The product</a>
+      <a href="../../index.html">Project roadmap</a>
+    </footer>
+  </main>
+</div>
+<script src="_nav.js"></script>
+<script>
+  /* live readouts: the window in px and rem, the computed size of each specimen, the grid's columns */
+  (function () {
+    function upd() {
+      var w = document.documentElement.clientWidth, r = parseFloat(getComputedStyle(document.documentElement).fontSize);
+      document.getElementById('rs-vw').textContent = w;
+      document.getElementById('rs-rem').textContent = (w / r).toFixed(1);
+      var f = document.querySelectorAll('[data-fs]');
+      for (var i = 0; i < f.length; i++) f[i].textContent = parseFloat(getComputedStyle(document.getElementById(f[i].getAttribute('data-fs'))).fontSize).toFixed(1) + 'px';
+      var g = document.getElementById('rs-grid');
+      document.getElementById('rs-cols').textContent = getComputedStyle(g).gridTemplateColumns.split(' ').length;
+    }
+    window.addEventListener('resize', upd);
+    if (window.ResizeObserver) new ResizeObserver(upd).observe(document.getElementById('rs-grid'));
+    upd();
+  })();
+</script>
+</body>
+</html>

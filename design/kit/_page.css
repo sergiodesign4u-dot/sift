@@ -108,6 +108,7 @@ a.kit-link:hover { color: var(--text-primary); background: var(--bg-raised); }
 .kit-mini--geometry { background: var(--bg-raised); border-radius: var(--radius-lg); }
 .kit-mini--icons { background: var(--bg-raised); }
 .kit-mini--architecture { background: repeating-linear-gradient(90deg, var(--bg-raised) 0 22px, transparent 22px 26px); }
+.kit-mini--responsive { background: linear-gradient(90deg, var(--bg-raised) 0 34%, transparent 34% 38%, var(--bg-raised) 38% 64%, transparent 64% 68%, var(--bg-raised) 68% 100%); }   /* Stage 10: one row at three widths */
 
 /* ---------- token tiles (colour page) ---------- */
 .tok-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 10px; margin-top: 16px; }

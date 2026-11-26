@@ -103,16 +103,27 @@
   --font-ui:   "Inter",-apple-system,BlinkMacSystemFont,system-ui,sans-serif;  /* taste. Vercel / Geist, Linear; A5 */
   --font-mono: "IBM Plex Mono",ui-monospace,Menlo,monospace;                   /* attribute A2. The count is the trust surface; A4 */
 
-  --type-3xl: 36px;    /* the marketing first line, 0.0 only */
-  --type-2xl: 29px;    /* display: the public document H1 */
-  --type-xl:  22px;    /* headline: a screen H1 */
-  --type-lg:  17px;    /* title: a dialog, a section of a document */
-  --type-md:  15px;    /* reading size on a document */
-  --type-base:14px;    /* body */
-  --type-sm:  13.5px;  /* every control label */
-  --type-xs:  12.5px;  /* secondary line, metadata */
-  --type-2xs: 11px;    /* mono provenance, the badge */
-  --type-3xs: 10px;    /* the micro uppercase label */
+  /* Stage 10 Step 2: the scale is in rem, so it follows the reader's own font size, and the
+     three heading steps are FLUID. Each clamp() has both ends in rem, and its middle term carries
+     a rem addend, never a bare vw: a bare vw ignores zoom and the reader's font size (WCAG 1.4.4).
+     The LOW end is what renders at 360 today, so 360 does not move by one pixel; the curve then
+     grows from 22.5rem (360px) to 65rem (1040px, --container-page): the type grows while the
+     page grows, and stops where the page stops. A font size never switches at a breakpoint.
+     Every change of value is a row in design/kit/docs/tokens-audit.md, Stage 10 Step 2.
+     The other seven steps stay fixed: body text is made readable by the MEASURE, not the size. */
+  --type-3xl: clamp(1.6875rem, 1.3897rem + 1.3235vw, 2.25rem);   /* 27 to 36px. The marketing first line, 0.0 only. Was 36px with a 27px switch at 820 */
+  --type-2xl: clamp(1.5rem, 1.3345rem + 0.7352vw, 1.8125rem);    /* 24 to 29px. Display: the public document H1. Was 29px with a 24px switch at 820 */
+  --type-xl:  clamp(1.375rem, 1.3088rem + 0.2941vw, 1.5rem);     /* 22 to 24px. Headline: a screen H1. Was 22px. Grows by two pixels only: an instrument's headline is calm */
+  --type-lg:  1.0625rem;  /* 17px. Title: a dialog, a section of a document */
+  --type-md:  0.9375rem;  /* 15px. Reading size on a document */
+  --type-base:0.875rem;   /* 14px. Body */
+  --type-sm:  0.84375rem; /* 13.5px. Every control label */
+  --type-xs:  0.78125rem; /* 12.5px. Secondary line, metadata */
+  --type-2xs: 0.6875rem;  /* 11px. Mono provenance, the badge */
+  --type-3xs: 0.625rem;   /* 10px. The micro uppercase label */
+  /* Two reading sizes that SWITCHED at 820 until Stage 10 and now grow instead, each read once */
+  --type-lead:  clamp(0.90625rem, 0.8566rem + 0.2205vw, 1rem);     /* 14.5 to 16px. The marketing lead, 0.0 only */
+  --type-legal: clamp(0.875rem, 0.8584rem + 0.0735vw, 0.90625rem); /* 14 to 14.5px. Legal prose, 9.x only */
 
   --weight-regular: 400;
   --weight-medium:  500;
@@ -155,7 +166,40 @@
   --size-target: 44px;   /* the target floor. Three named exceptions, all in conventions.md */
   --size-check:  24px;   /* the checkbox, at the AA floor by a named exception */
   --size-bar:    52px;   /* the app bar and the public bar */
-  --measure-prose: 92ch; /* the longest line the product allows anywhere */
+  --measure-prose: 92ch; /* the longest line the product allows anywhere. Retires at Stage 10 Step 4: its three readers move onto --container-text */
+
+  /* --- width. Stage 10 Step 2. Geometry, so these have NO theme pair: a width does not change
+         with the theme. Source: design/kit/docs/responsive.md (census, audit, register).
+         The ladder is read top down: fluid first, then the container, then a breakpoint, and a
+         breakpoint only where the fluid physically cannot do the job.
+
+     THE BREAKPOINT REGISTER. A media query is evaluated before the cascade of custom properties,
+     so a query on var(--bp-shell-wide) never matches, and silently. The query therefore carries
+     this same number as a literal, and no other number may appear in an @media of the product.
+     The token is the register; the literal is its application, not a second source of truth.
+     ONE point, not two: the audit found a single change of behaviour (the shell swap) and no
+     screen of new behaviour. Two is a ceiling, not a quota. --- */
+  --bp-shell-wide: 37.5rem;  /* 600px at the default font size. The header takes the three sections from here,
+                                and below it the bottom tabs carry them. Audit row "shell" (every signed-in
+                                screen). The header row of brand, three tabs and avatar measures 24.1rem (385px),
+                                so at 360 it physically does not fit; 37.5rem is the smallest width of the census
+                                above that, and it is the grey contract's 600 (backlog B-07). Applied at Step 3 */
+
+  /* Containers: a limit, not a breakpoint. They never switch, they stop. */
+  --container-page: 65rem;   /* 1040px. The widest the page frame grows. The one page container the product
+                                already had (the marketing page, 1040px), now the frame of every page.
+                                Read by the shell, Step 3 */
+  --container-text: 52ch;    /* the measure of continuous text. In Inter 1ch is about 1.35 characters: 52ch holds
+                                70 characters a line on real product text, measured at Step 2, inside the 65 to 75
+                                that backlog S5-1 asked for. 92ch held 98 to 122. Read from Step 4 */
+  --gutter-page: clamp(1rem, 0.8014rem + 0.8823vw, 1.375rem);  /* 16 to 22px, one left edge for the brand, the
+                                breadcrumb and the page. Proposed at Step 2, the owner decides: today three edges
+                                drift at 360 (16, 18, 22). Read from Step 4 */
+
+  /* The grid. The NUMBER OF COLUMNS IS NOT A TOKEN: repeat(auto-fit, minmax(var(--grid-col-min), 1fr))
+     counts them, so the grid works at widths nobody planned. */
+  --grid-col-min: 15rem;            /* 240px. The source card, the product's own grid (3.0) */
+  --grid-gap: var(--space-4);       /* 10px. The same grid's gap */
 
   --ease: cubic-bezier(0.22,1,0.36,1);   /* technical decision. Ease out, restrained */
   --shadow-dark:  0 2px 4px var(--black-a40);   /* the one depth, on a dark ground */

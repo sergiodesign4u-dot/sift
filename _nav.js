@@ -63,7 +63,7 @@ window.NAV = [
   { id: 'design-system', label: 'Design System', group: true, wip: true, pages: [
     { label: 'Tokens + Components', page: 'design/kit/overview.html', done: true },
     { label: 'System guide',        page: 'design/kit/why.html', done: true },
-    { label: 'Responsive',          page: null, done: false },
+    { label: 'Responsive',          page: 'design/kit/responsive.html', done: true },
     { label: 'Animation',           page: null, done: false } ] },
 
   { id: 'rollout', label: 'Rollout',             pages: [ { label: 'Rollout',             page: null, done: false } ] },
