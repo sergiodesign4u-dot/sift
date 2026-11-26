@@ -22,6 +22,10 @@
   in docs/inventory.md), and `card: true` once its page is in the card format (button.html is
   the template). A component missing here has no page in the panel; that is a bug.
 
+  PAGE SECTIONS (Stage 09 Step 3): a page may declare window.KIT_SECTIONS = [{ id, label }], and
+  the panel lists them under the current link, as the roadmap does with NAV_SECTIONS. Its own
+  name, because this file owns KIT_* only. A section in the list is a section somebody can find.
+
   PATTERNS (Stage 09 Step 2): a fixed composition of the components, kept in
   design/system/patterns/ and imported after the organisms. They have their own group in the
   panel, AFTER the components and before Verification, so the panel reads in the order the
@@ -36,6 +40,9 @@
 window.KIT_NAV = {
   overview: [
     { file: 'overview.html',   label: 'System overview' },
+    /* Stage 09 Step 3: the guide for a person who did not build the system. It is also the
+       door the roadmap registers as the child "System guide" of the Design System group. */
+    { file: 'why.html',        label: 'System guide' },
     { file: 'components.html', label: 'All components' },
   ],
   /* The evidence ABOUT the system, not part of it: its own group, last in the panel (Stage 08
@@ -302,9 +309,17 @@ window.KIT_NAV = {
      every category that still has a match. */
   function link(file, label, cur, extra) {
     var isCur = file === cur;
-    return '<a class="kit-link' + (isCur ? ' is-current' : '') + '" href="' + esc(file) + '"' +
+    var h = '<a class="kit-link' + (isCur ? ' is-current' : '') + '" href="' + esc(file) + '"' +
       (isCur ? ' aria-current="page"' : '') + ' data-kit-q="' + esc(label.toLowerCase()) + '">' +
       '<span>' + esc(label) + '</span>' + (extra || '') + '</a>';
+    /* the sections of the page you stand on, if it declares them */
+    var secs = window.KIT_SECTIONS;
+    if (isCur && secs && secs.length) {
+      h += '<div class="kit-subs">';
+      secs.forEach(function (s) { h += '<a class="kit-sub" href="#' + esc(s.id) + '">' + esc(s.label) + '</a>'; });
+      h += '</div>';
+    }
+    return h;
   }
 
   function panel() {

@@ -328,3 +328,31 @@ table.kit-matrix { width: 100%; min-width: 620px; border-collapse: collapse; }
 .kit-pcard-b .kit-card-t a { color: var(--text-primary); }
 .kit-nums { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
 .kit-fill { width: 100%; }   /* a specimen that must take the whole width of its do or do-not tile */
+
+/* ---- Stage 09 Step 3: why.html, the system guide ---- */
+/* the sections of the current page, under its link in the panel (window.KIT_SECTIONS) */
+.kit-subs { display: flex; flex-direction: column; margin: 2px 0 6px 10px; padding-left: 8px; border-left: 1px solid var(--line-hairline); }
+.kit-sub { display: flex; align-items: center; min-height: 32px; padding: 2px 8px; font-size: var(--type-2xs); color: var(--text-secondary); text-decoration: none; border-radius: var(--radius-sm); }
+.kit-sub:hover { color: var(--text-primary); background: var(--bg-raised); }
+/* the chosen brand plate, and the plates kept on record */
+.kit-plate { margin: 18px 0 0; }
+.kit-plate img { display: block; width: 100%; height: auto; border: 1px solid var(--line-hairline); border-radius: var(--radius-lg); }
+.kit-plate figcaption { font-size: var(--type-xs); color: var(--text-secondary); line-height: var(--leading-loose); max-width: 78ch; margin-top: 10px; }
+.kit-plate figcaption b { color: var(--text-primary); font-weight: var(--weight-medium); }
+/* the line a value travels: five links, left to right, top to bottom on a phone */
+.kit-chain { list-style: none; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 18px; margin-top: 18px; }
+.kit-chain li { position: relative; padding: 12px 14px; background: var(--bg-surface); border: 1px solid var(--line-hairline); border-radius: var(--radius-md); font-size: var(--type-xs); color: var(--text-secondary); line-height: var(--leading-body); min-width: 0; }
+.kit-chain li b { display: block; color: var(--text-primary); font-weight: var(--weight-medium); margin-bottom: 4px; overflow-wrap: anywhere; }
+.kit-chain li span { display: block; font-family: var(--font-mono); font-size: var(--type-3xs); letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 6px; }   /* not the stand accent: on a card it reads 4.39 dark */
+.kit-chain li + li::before { content: "\2192"; position: absolute; left: -9px; top: 50%; transform: translate(-50%, -50%); color: var(--text-secondary); font-size: var(--type-xs); }
+@media (max-width: 900px) {
+  .kit-chain { grid-template-columns: 1fr; }
+  .kit-chain li + li::before { content: "\2193"; left: 24px; top: -9px; }
+}
+/* the four entries: numbered, the fourth one set apart by its own heading, not by a colour */
+.kit-card-k { font-family: var(--font-mono); font-size: var(--type-3xs); letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-secondary); }   /* on a card the stand accent reads 4.39 dark, under 4.5 */
+.kit-rules { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 0; max-width: 78ch; }
+.kit-rules li { display: grid; grid-template-columns: 34px 1fr; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--line-hairline); font-size: var(--type-xs); color: var(--text-secondary); line-height: var(--leading-body); }
+.kit-rules li:last-child { border-bottom: none; }
+.kit-rules li b { font-family: var(--font-mono); font-size: var(--type-3xs); color: var(--text-primary); font-weight: var(--weight-medium); padding-top: 2px; }
+.kit-rules code { font-family: var(--font-mono); font-size: var(--type-3xs); color: var(--text-primary); }

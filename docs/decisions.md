@@ -1038,3 +1038,36 @@ the `[?]` on the action bar's alignment is gone.
 Checked: the three new pages and eight touched ones at 360 and 1440 in both themes, 44 renders, no
 horizontal scroll, no console error, no dead local link. `design/system/` is untouched, so no
 product screen can move; no product screen loads the stand's files.
+
+## Step 3: the system guide (2026-11-26)
+
+`design/kit/why.html`, for a person who did not build the system. Five sections: why the system
+looks like this (the five attributes of `design/concept/docs/concept.md` as "attribute, what it
+means in the system, where you see it", the chosen plate B with A and C kept on record, the whole
+table of `design/concept/docs/references.md` with what was taken and what was left, and the four
+refusals); where the values come from (plate pixel, `DESIGN-artifacts.md`, `design/_theme.css`,
+`design/kit/kit.css`, `tokens.css`, with `--cyan-400` followed the whole way); how to use it (four
+doors, the fourth, "what must I not do", its own door with the nine rules in one line each, plus the
+order of choice); how to grow it (new goes into the system first, by what is new); and the system
+backlog section, which Step 5 fills.
+
+| Decision | Why | Rejected |
+|---|---|---|
+| The page stands in the stand panel as the second item of its first group, after the System overview, labelled "System guide"; the roadmap child "System guide" points at it with `done: true`, the group keeps `wip` | the roadmap item is the door into the stand; one page, one entry in each registry, so the panel never lists it twice | a second sidebar on the page, or a cross-link entry at the foot of the panel |
+| The page's sections are declared as `window.KIT_SECTIONS` and the stand panel lists them under the current link | the stage asks for every section to be registered, and the stand renderer owns `KIT_*` only; `NAV_SECTIONS` belongs to the roadmap renderer, which this page does not load | `NAV_SECTIONS` on a page with no roadmap renderer, where it would do nothing |
+| The backlog section points at `overview.html#backlog` for the 32 rows already there, and is filled at Step 5 | one md, one table; copying 32 rows here would be the same table in two editions | moving the table off the hub, which nobody asked for |
+| The step labels in the lineage chain and the door numbers are in the secondary ink, not the stand accent | the stand accent on a card measured 4.39 in the dark theme, under 4.5; measured on the render, not read off the colour | |
+
+**Found while writing, not fixed here.** `DESIGN.md`, Elevation and Depth, says the one shadow sits
+on the app frame only. In the system it is one role, `--shadow-sheet`, read by one component, the
+dialog; the frame that also carries it, `.appframe`, is stand chrome (`tokens.css`, the DEPTH
+comment). The guide states the system's fact. `DESIGN.md` is edited at Step 4, and the line is
+corrected there.
+
+**`references.md`** had no reader after Stage 06; every row of its synthesis table is now on the
+guide, with the page where it stands in the system.
+
+Checked: `why.html` and seven neighbours at 360 and 1440 in both themes, 32 renders, no horizontal
+scroll, no console error, no dead local link (the category anchors of `components.html` are written
+by the stand script and exist after render), every text element on the guide at 4.5 or above with
+opacity multiplied. The roadmap shows the Design System group at 2/4, still Next.

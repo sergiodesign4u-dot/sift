@@ -62,7 +62,7 @@ window.NAV = [
      page yet stays visible as a dimmed line, never hidden. */
   { id: 'design-system', label: 'Design System', group: true, wip: true, pages: [
     { label: 'Tokens + Components', page: 'design/kit/overview.html', done: true },
-    { label: 'System guide',        page: null, done: false },
+    { label: 'System guide',        page: 'design/kit/why.html', done: true },
     { label: 'Responsive',          page: null, done: false },
     { label: 'Animation',           page: null, done: false } ] },
 

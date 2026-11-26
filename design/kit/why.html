@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift design system - System guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../system/index.css">
+<link rel="stylesheet" href="_page.css">
+<script src="_theme.js"></script>
+<script>
+  /* the sections of this page, listed under its link in the stand panel (design/kit/_nav.js) */
+  window.KIT_SECTIONS = [
+    { id: 'why',     label: 'Why the system looks like this' },
+    { id: 'lineage', label: 'Where the values come from' },
+    { id: 'use',     label: 'How to use it' },
+    { id: 'grow',    label: 'How to grow it' },
+    { id: 'backlog', label: 'System backlog' },
+  ];
+</script>
+</head>
+<!--
+  design/kit/why.html - the system guide (Stage 09 Step 3). The page for a person who did not
+  build the system: why it looks like this, how to use it, how to grow it.
+
+  In the project roadmap it is the child "System guide" of the Design System group (/_nav.js).
+  The roadmap item is a DOOR into the stand, not a second sidebar: this page carries the stand
+  panel like every other page here, as the second item of its first group, right after the
+  System overview. No <aside id="sidebar"> and no root /_nav.js on it.
+
+  Sources: design/concept/docs/references.md and concept.md (Designer's taste, Attributes, Brand,
+  Layout), DESIGN.md, design/kit/docs/architecture.md, design/system/tokens.css. This stage is the
+  only reader of references.md after Stage 06; every row of its table is on this page.
+
+  No em dash anywhere.
+-->
+<body>
+<div class="kit-shell">
+  <div id="kit-panel"></div>
+  <main class="kit-main">
+
+    <div id="kit-crumbs"></div>
+
+    <div>
+      <div class="kit-eyebrow">System guide &middot; for a person who did not build it</div>
+      <h1 class="kit-h1">Why the system is the way it is</h1>
+      <p class="kit-lead">Sift is read at 9pm in a dim room by a product manager who has forty
+        minutes and a month of customer feedback. The screen is the only light in that scene, so
+        the interface recedes and the signal stands out. That is why the system is dark: not
+        because dark is current, but because that one scene fixes the product.</p>
+      <p class="kit-lead">The second reason is the product's only claim: every conclusion can be
+        traced back to the customer voices behind it. So the system is built to show evidence,
+        not to assert authority. Every rule below comes from one of those two reasons, and each
+        one says where it was written down first.</p>
+    </div>
+
+    <section class="kit-sec" id="why">
+      <h2 class="kit-h2">Why the system looks like this</h2>
+      <p class="kit-note">Five attributes, each a pair of opposites, each derived from a line of
+        the research rather than from taste alone (<code class="kit-mono">design/concept/docs/concept.md</code>,
+        Attributes). This is what each one became in the code, and where you can see it.</p>
+      <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Attribute</th><th>What it means in the system</th><th>Where you see it</th></tr></thead><tbody>
+        <tr><td>A1 Quiet, not loud</td><td><b>One accent, cyan <code>#33C4CC</code>, and it is almost never on screen.</b> It fills the one filled button a screen may have (<code>--bg-action</code>), marks the selected row, the focus ring and the active tab, and nothing else. Depth is tone, not shadow: the page, the surface and the raised step, each one with a 1px hairline. There is one shadow role in the system and only the dialog reads it; nothing is separated by it. Three type weights, 400, 500 and 590, and no fourth</td><td><a href="button.html">Button</a>, <a href="color.html#semantic">Colour, the roles</a>, <a href="architecture.html#usage">usage rule R1</a></td></tr>
+        <tr><td>A2 Evidence on the surface, not hidden</td><td><b>The count sits inside the claim.</b> Every theme carries <code>n=X</code> in IBM Plex Mono, the face kept for anything a reader might check. A representative customer quote stands on the theme row, so the evidence reaches the eye before the click; a numbered citation leads to the source</td><td><a href="confidence.html">Confidence indicator</a>, <a href="theme-card.html">Theme card</a>, <a href="citation.html">Citation</a>, <a href="typography.html#faces">Typography, two faces</a></td></tr>
+        <tr><td>A3 Honest about thin, not uniformly confident</td><td><b>"low signal" is a fact, not an alarm.</b> A small amber tag beside the count, at a tenth of a fill and a third of a border. Amber means low signal and nothing else; red means a failure that blocks, and nothing else. The synthesis error is drawn in neutrals, because its own text says the sources are still connected and nothing was lost: painting it red would overstate it</td><td><a href="confidence.html">Confidence indicator</a>, <a href="notice.html">Notice band</a>, <a href="state.html">Empty and error state</a></td></tr>
+        <tr><td>A4 Ranked clarity, not a raw dump</td><td><b>The synthesis is a ranked list, and the raw material is one drill away.</b> Each row carries its rank number in mono, its count and its provenance. The volume bar the concept first promised was dropped: rank and count already say the volume twice, and a third encoding is decoration. The scope line states the denominator on every screen, even when it is zero</td><td><a href="rank.html">Rank</a>, <a href="scope.html">Scope line</a>, <a href="filtered-list.html">Filtered list</a></td></tr>
+        <tr><td>A5 The customer's plain words, not product marketing</td><td><b>A theme is set as a sentence, not as a headline.</b> Sentence case, never uppercase, never inside a coloured chip. The quote under it is quieter still, in the secondary ink behind a leading hairline. Type carries the meaning, not chrome</td><td><a href="theme-card.html">Theme card</a>, <a href="snippet.html">Evidence snippet</a>, <a href="typography.html#scale">Typography, the scale</a></td></tr>
+      </tbody></table></div>
+
+      <h3 class="kit-h3">The plate it was chosen from</h3>
+      <p class="kit-note">Three brand plates were generated at Stage 06 and one was chosen. Every
+        colour value in the system goes back to a pixel of it, or to a decision written beside it.</p>
+      <figure class="kit-plate">
+        <img src="../concept/assets/brand-plate-b.png" alt="Brand plate B, Command center: the chosen toolkit spread, with the mark, the dark layered palette, the type pairing and the UI tone" loading="lazy" width="5056" height="3392">
+        <figcaption><b>Chosen: Plate B, Command center.</b> The most product-native of the three, and the
+          etalon screen, 2.0 Synthesis, is exactly this dense dark surface. Two corrections were made on
+          the way in: the mark was flattened to one colour, because a gradient would be a second accent,
+          and cyan was fixed as the only accent. <b>Kept on record, not chosen:</b> A, Analyst's desk,
+          light and warmer, with a serif for theme statements; C, Evidence ledger, the most ownable and
+          the coldest. All three are on <a href="../concept/concept.html#brand">the concept stand</a>.</figcaption>
+      </figure>
+
+      <h3 class="kit-h3">What was taken, from where, and what was left</h3>
+      <p class="kit-note">One base, three borrowed techniques, one structural analog, and no
+        reference copied whole (<code class="kit-mono">design/concept/docs/references.md</code>). Each
+        technique answers a named worry of the person the product is for.</p>
+      <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Source</th><th>What was taken</th><th>The worry it answers</th><th>In the system</th><th>Left behind on purpose</th></tr></thead><tbody>
+        <tr><td>Linear, the base</td><td>Layered neutral surfaces, one restricted accent, weight from hierarchy and compact spacing</td><td>The PM is not a data analyst and works in 10 to 15 minute sessions: noise is friction</td><td><a href="color.html#primitive">Colour</a>, <a href="geometry.html#radius">Geometry</a>, <a href="button.html">Button</a></td><td>Linear's lime, and its dark-only stance: the system keeps a light pair for every role</td></tr>
+        <tr><td>Parallel, Perplexity</td><td>A count badge inside the claim, not a footnote</td><td>A confident answer with no visible reasoning loses the PM's trust</td><td><a href="confidence.html">Confidence indicator</a>, <a href="citation.html">Citation</a></td><td>The side citation panel: deferred as LATER, because the quote on the row already brings the evidence before the click</td></tr>
+        <tr><td>Mercury, Amplitude</td><td>Ranked rows, summary first, click to drill</td><td>The synthesis is the value; the drill-down is the trust mechanism</td><td><a href="rank.html">Rank</a>, <a href="theme-card.html">Theme card</a></td><td>The inline volume bar: a third encoding of one number</td></tr>
+        <tr><td>shadcn/ui</td><td>A tiny semantic mark on a monochrome field</td><td>A theme marked thin is trusted more than the same theme dressed as strong</td><td><a href="confidence.html">Confidence indicator</a>, the low-signal tag</td><td>Nothing; it is taken as it is</td></tr>
+        <tr><td>Fibery, structure only</td><td>Feedback rows that expand to their evidence</td><td>Confirms that a theme card plus a ranking is a worked pattern, not an invention</td><td>The information architecture, not a page here</td><td>Its visual style, all of it</td></tr>
+      </tbody></table></div>
+
+      <h3 class="kit-h3">Refused, and why</h3>
+      <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>What</th><th>Seen in</th><th>Why not</th></tr></thead><tbody>
+        <tr><td>Warm cozy AI</td><td>Steep: cream, terracotta, blush gradients</td><td>The guessable first answer to "calm" in this category; it reads soft and consumer, not like an analyst's tool</td></tr>
+        <tr><td>Theatrical BI</td><td>Mode: neon chartreuse on forest green</td><td>Loud. The voice rule is "calm, not loud", and the design principle puts focus on hierarchy, not colour</td></tr>
+        <tr><td>Generic corporate SaaS</td><td>default blue, stock gradients, drop shadows, hero illustrations</td><td>Anonymous, and anonymity reads as untrustworthy for a tool whose whole job is trust</td></tr>
+        <tr><td>The split evidence pane</td><td>Layout direction 3, chosen at Stage 06</td><td>Deferred, not refused: it is a change of structure, and structure belongs to IA and the wireframes, never to a colour copy</td></tr>
+      </tbody></table></div>
+    </section>
+
+    <section class="kit-sec" id="lineage">
+      <h2 class="kit-h2">Where the values come from</h2>
+      <p class="kit-lead">No value here is taken from thin air. Each one travelled the same line from a
+        pixel somebody chose to the token a component reads, and the comment beside it in
+        <code class="kit-mono">tokens.css</code> still says where it started.</p>
+      <ol class="kit-chain">
+        <li><span>Stage 06</span><b>A pixel of plate B</b><code class="kit-mono">brand-plate-b.png</code></li>
+        <li><span>Stage 06</span><b>DESIGN-artifacts.md</b>the palette with its roles, each signed with an attribute</li>
+        <li><span>Stage 06</span><b>design/_theme.css</b>the first two colour screens; folded into the kit at Stage 07</li>
+        <li><span>Stage 07</span><b>design/kit/kit.css</b>the flat kit; split into the system and deleted at Stage 08</li>
+        <li><span>Stage 08</span><b>design/system/tokens.css</b>two levels: primitives, then roles with a light pair</li>
+      </ol>
+      <p class="kit-note">One value, the whole way: <code class="kit-mono">--cyan-400: #33C4CC; /* plate B pixel. The one accent. Was --cyan */</code>,
+        read by the role <code class="kit-mono">--bg-action</code>, read by <code class="kit-mono">.btn</code>.
+        A value with no origin is marked <code class="kit-mono">[?]</code>, never guessed. Every primitive and
+        every role, with its origin and its measured contrast in both themes: <a href="color.html">Colour</a>.</p>
+    </section>
+
+    <section class="kit-sec" id="use">
+      <h2 class="kit-h2">How to use it</h2>
+      <p class="kit-note">Four questions, four doors. The fourth is its own door on purpose: a person
+        building a screen for the first time looks for permission, and finds the prohibition only
+        after doing it their own way.</p>
+      <div class="kit-cards">
+        <a class="kit-card" href="overview.html"><span class="kit-card-k">1</span><span class="kit-card-t">Which component do I take?</span><span class="kit-card-d">The overview, by purpose: what filters a list, what shows a count, what stands while it waits. Every component has a page with its anatomy, variants, states and markup.</span></a>
+        <a class="kit-card" href="patterns.html"><span class="kit-card-k">2</span><span class="kit-card-t">Which composition already exists?</span><span class="kit-card-d">Two patterns, each settled on three screens: the Grouped list and the Filtered list. When to take one whole, and when to put the components together yourself.</span></a>
+        <a class="kit-card" href="architecture.html"><span class="kit-card-k">3</span><span class="kit-card-t">What are the rules?</span><span class="kit-card-d">Where a value comes from, what contains what, how a role is named, how the theme is built, where a fix goes.</span></a>
+        <a class="kit-card" href="architecture.html#usage"><span class="kit-card-k">4</span><span class="kit-card-t">What must I not do?</span><span class="kit-card-d">The nine usage rules: how many of a component a screen may hold, what never stands next to what, what never appears where.</span></a>
+      </div>
+
+      <h3 class="kit-h3">The fourth door, in one line each</h3>
+      <ul class="kit-rules">
+        <li><b>R1</b><span>At most one filled <code>.btn</code> on a screen; every other action is <code>.btn--ghost</code></span></li>
+        <li><b>R2</b><span>One bottom bar: <code>.selbar</code> and <code>.actionbar</code> never on the same screen</span></li>
+        <li><b>R3</b><span>An empty or failed screen (<code>.state</code>) has no toolbar, selection bar or action bar</span></li>
+        <li><b>R4</b><span>At most one <code>.notice</code> on a screen</span></li>
+        <li><b>R5</b><span>A warning or error band never sits on a raised surface such as a dialog</span></li>
+        <li><b>R6</b><span>Exactly one <code>h1</code>, and it names the screen</span></li>
+        <li><b>R7</b><span>A theme never shows without its confidence, <code>.conf</code></span></li>
+        <li><b>R8</b><span>The app header and the bottom tabs inside the app only, the public bar on the public pages only</span></li>
+        <li><b>R9</b><span>At most one phase strip, <code>.steps</code>, on a screen</span></li>
+      </ul>
+      <p class="kit-note">Each rule with where it was taken from, and how to check it at a glance:
+        <a href="architecture.html#usage">Architecture, the usage rules</a>. A screen that breaks one
+        is fixed on the screen, never in the system.</p>
+
+      <h3 class="kit-h3">The order of choice</h3>
+      <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Step</th><th>Ask</th><th>If yes</th><th>If no</th></tr></thead><tbody>
+        <tr><td>1</td><td>Is there a pattern for exactly this composition?</td><td>Take it whole, with its wrapper</td><td>Go to 2</td></tr>
+        <tr><td>2</td><td>Do the components cover every part?</td><td>Put them together on the screen; that is how most of the product is built</td><td>Go to 3</td></tr>
+        <tr><td>3</td><td>A part is missing</td><td colspan="2">That is an order for the system, not an exception for the screen. It goes to the backlog, below, and the screen waits for it or ships without it</td></tr>
+      </tbody></table></div>
+    </section>
+
+    <section class="kit-sec" id="grow">
+      <h2 class="kit-h2">How to grow it</h2>
+      <p class="kit-lead"><b>New goes into the system first, and onto the screen second.</b> Never the
+        other way round.</p>
+      <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>What is new</th><th>Where it goes first</th><th>The condition</th></tr></thead><tbody>
+        <tr><td>A value</td><td><code>design/system/tokens.css</code>, at its level</td><td>Said out loud as "variable, value, why"; a colour role arrives with its light pair</td></tr>
+        <tr><td>A component</td><td><code>design/system/components/</code></td><td>Five things before its first use: the css, its page, its registry entry, its inventory row, its import in its level group</td></tr>
+        <tr><td>A composition</td><td><code>design/system/patterns/</code></td><td>Three grey screens that already stand that way, and no style of its own</td></tr>
+        <tr><td>A fix</td><td>the component, then every screen it stands on</td><td>A fix on one screen is a desync; an override like <code>.foo .btn { }</code> is an undeclared variant</td></tr>
+      </tbody></table></div>
+      <p class="kit-note">The five things, in order, and why the last two are the ones that get
+        forgotten: <a href="architecture.html#adding">Architecture, adding a component</a>. Where a
+        fix lands: <a href="architecture.html#fixes">Architecture, where a fix goes</a>.</p>
+    </section>
+
+    <section class="kit-sec" id="backlog">
+      <h2 class="kit-h2">System backlog</h2>
+      <p class="kit-note"><b>What the system is still missing, said out loud rather than drawn in on a
+        screen.</b> This section is filled at Stage 09 Step 5, when the next real page of the product
+        is built from the system alone: every component, state, token or string it could not find
+        becomes a row here, with its level and its priority.</p>
+      <p class="kit-note">Until then the backlog carried over from Stage 08 and the first two steps of
+        Stage 09, 32 rows with who closes each, is on <a href="overview.html#backlog">the overview</a>.
+        Source: <code class="kit-mono">design/kit/docs/backlog.md</code>.</p>
+    </section>
+
+    <div id="kit-pager"></div>
+
+  </main>
+</div>
+<script src="_nav.js"></script>
+</body>
+</html>
