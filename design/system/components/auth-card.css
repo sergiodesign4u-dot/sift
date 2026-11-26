@@ -9,10 +9,13 @@
    share it); the sent confirmation is a quiet inset, so it takes --radius-md and the page ground.
    The fields, the buttons and the "or" divider's neighbours are atoms (.field-label, .input, .btn)
    and are not declared here.
+   BEHAVIOUR AT WIDTH (Stage 10 Step 4, round 2): a CONTAINER, already. The sheet stops at 25rem
+   (400px at the default font size; a px literal until Stage 10): a form does not need width
+   (ia/docs/pages/auth.md:41). No query.
    No em dash anywhere in this file.
 */
 
-.auth-wrap { max-width: 400px; margin: 34px auto; }
+.auth-wrap { max-width: 25rem; margin: 34px auto; }
 .auth-card { background: var(--bg-surface); border: 1px solid var(--line-hairline); border-radius: var(--radius-lg); padding: var(--space-10); }
 .auth-card + .auth-card { margin-top: var(--space-7); }
 .auth-h2 { font-size: var(--type-lg); font-weight: var(--weight-strong); letter-spacing: var(--tracking-title); color: var(--text-primary); margin-bottom: 5px; }

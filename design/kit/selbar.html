@@ -84,7 +84,7 @@
           <tr><td>Bar</td><td>own class</td><td><code>.selbar</code></td><td>hidden: display:none</td></tr>
           <tr><td>Trigger</td><td>variant</td><td>on selection, no class, shown by the shell &middot; always present <code>.selbar--static</code></td><td>on selection</td></tr>
           <tr><td>Note</td><td>zone</td><td><code>.selbar-note</code>, first: the count, pushed left by <code>margin-right: auto</code></td><td>required</td></tr>
-          <tr><td>Actions</td><td>atoms</td><td><code>.btn--ghost</code> then one <code>.btn</code>, last. On the static form they are anchors, and at 360 each anchor grows to share the line</td><td>one filled action</td></tr>
+          <tr><td>Actions</td><td>atoms</td><td><code>.btn--ghost</code> then one <code>.btn</code>, last. On the static form they are anchors, and in a frame under 42rem each anchor grows to share the line</td><td>one filled action</td></tr>
           <tr><td>State</td><td>none</td><td>not interactive; hidden or present belongs to the shell's trigger</td><td>none</td></tr>
         </tbody></table></div>
       </section>
@@ -158,6 +158,22 @@
           <tr><td>the note</td><td><code>.selbar-note</code></td><td>Secondary ink. What is selected and what stands behind it, in numbers</td></tr>
           <tr><td>the actions</td><td><code>.btn--ghost</code>, <code>.btn</code></td><td>The button atom. One filled action, and it is the next move</td></tr>
         </tbody></table></div>
+        <h3 class="kit-h3">Behaviour at width</h3>
+        <p class="kit-note"><b>A container query, threshold 42rem</b> (672px) of the frame. Below it the static bar's buttons share their line. The measured reason: the note and the buttons hold one line from about 650px of frame and wrap under it. The place is the frame, not the column: the static bar stands in <code class="kit-mono">.app</code>, which <code class="kit-mono">screen-shell.css</code> declares a container, and on this stand the box stands for it. Its side gutter is now <code class="kit-mono">--gutter-page</code>, 16px at a 360 window growing to 22px at 1040 and up; it used to switch from 22 to 16 at 820. Until Stage 10 both were a viewport query at 820. The same bar, live, in two frames:</p>
+        <div class="kit-widths">
+          <div class="kit-width kit-width--narrow"><div class="kit-width-cap">a 260px place: the narrow form</div><div class="selbar selbar--static">
+              <span class="selbar-note">3 themes, 89 feedback items behind them</span>
+              <a class="btn--ghost" href="#">Save draft</a>
+              <a class="btn--ghost" href="#">Preview</a>
+              <a class="btn" href="#">Generate share link</a>
+            </div></div>
+          <div class="kit-width kit-width--full"><div class="kit-width-cap">the rest of this column: the wide form</div><div class="selbar selbar--static">
+              <span class="selbar-note">3 themes, 89 feedback items behind them</span>
+              <a class="btn--ghost" href="#">Save draft</a>
+              <a class="btn--ghost" href="#">Preview</a>
+              <a class="btn" href="#">Generate share link</a>
+            </div></div>
+        </div>
       </section>
 
       <section class="kit-sec" id="axes">
@@ -175,7 +191,7 @@
           <tr><td><code>--bg-surface</code></td><td><code>--grey-900</code> dark, <code>--grey-025</code> light</td><td>the ground of the static form</td></tr>
           <tr><td><code>--text-secondary</code></td><td><code>--grey-400</code> dark, <code>--grey-550</code> light</td><td>the note</td></tr>
           <tr><td><code>--type-xs</code></td><td>tokens.css</td><td>the note</td></tr>
-          <tr><td><code>--space-3</code>, <code>--space-4</code>, <code>--space-5</code>, <code>--space-6</code>, <code>--space-7</code>, <code>--space-9</code></td><td>tokens.css</td><td>the gap and the padding of both forms, and the narrower padding at 360</td></tr>
+          <tr><td><code>--space-3</code>, <code>--space-4</code>, <code>--space-5</code>, <code>--space-6</code>, <code>--gutter-page</code></td><td>tokens.css</td><td>the gap and the padding of both forms; the static bar's side gutter is <code>--gutter-page</code>, 16px at a 360 window growing to 22px at 1040 and up</td></tr>
         </tbody></table></div>
         <p class="kit-note">Every value in selbar.css lands on a primitive; nothing is kept off the scale.</p>
       </section>
@@ -212,6 +228,7 @@
       <section class="kit-sec">
         <h2 class="kit-h2">Changes, newest first</h2>
         <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-26</td><td>Stage 10 Step 4, round 2: the selection bar measures its frame. The 820 viewport query became a container query at 42rem (672px) of the frame: below it the static bar's buttons share their line. Its side gutter is now <code>--gutter-page</code>. Drawn live on this page</td><td><code>design/kit/docs/responsive.md</code></td></tr>
           <tr><td>2026-11-26</td><td>The rule block gained its third sub-point, <b>Limits</b>: R1, R2, R3 from the usage rules. The rules live on <code>architecture.html</code>; this page carries the short copy</td><td><code>docs/decisions.md</code>, "Stage 09 Step 1"</td></tr>
           <tr><td>2026-11-21</td><td>Entered the system: <code>components/selbar.css</code>, on semantic roles, and this page in the card format. The trigger rules stayed with the shell</td><td><code>docs/decisions.md</code>, "The molecules entered the system"</td></tr>
           <tr><td>2026-08-18</td><td><code>.selbar--static</code> arrived for the composer, with its 360 rules: the artifact IS the selection</td><td>commit <code>41ae8c4</code></td></tr>

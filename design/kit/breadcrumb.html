@@ -151,6 +151,12 @@
 <tr><td>the current page</td><td><code>span</code></td><td>Secondary ink, carries <code>aria-current="page"</code>. Until Stage 08 Step 9 it was at 70 percent opacity, 3.44 dark and 3.13 light, under the 4.5 ink floor</td></tr>
         </tbody></table></div>
         <p class="kit-note">The bar carries no vertical padding of its own: the link inside it is the target and it is 44px. Found by measuring, where the link read 15px against a floor of 44 (kit.css comment).</p>
+        <h3 class="kit-h3">Behaviour at width</h3>
+        <p class="kit-note"><b>Fluid, no threshold</b> (Stage 10 Step 4). The side gutter is <code class="kit-mono">--gutter-page</code> plus the frame inset: 16px at a 360 window growing to 22px at 1040 and up. Until Stage 10 it was 22 switching to 16 at an 820 viewport, and that media query is gone; 360 keeps its 16. The gutter follows the window, so both boxes below carry the same one; the trail does not switch. The same trail, live, in two places:</p>
+        <div class="kit-widths">
+          <div class="kit-width kit-width--narrow"><div class="kit-width-cap">a 260px place: the narrow form</div><nav class="breadcrumb" aria-label="Breadcrumb"><a href="#">Synthesis</a> &rsaquo; <span aria-current="page">Onboarding is confusing</span></nav></div>
+          <div class="kit-width kit-width--wide"><div class="kit-width-cap">the rest of this column: the wide form</div><nav class="breadcrumb" aria-label="Breadcrumb"><a href="#">Synthesis</a> &rsaquo; <span aria-current="page">Onboarding is confusing</span></nav></div>
+        </div>
       </section>
 
       <section class="kit-sec" id="axes">
@@ -168,7 +174,7 @@
 <tr><td><code>--text-primary</code></td><td>tokens.css</td><td>the hover</td></tr>
 <tr><td><code>--line-hairline</code></td><td><code>--grey-800</code> dark</td><td>the rule under the bar</td></tr>
 <tr><td><code>--size-target</code></td><td>tokens.css</td><td>the 44px link</td></tr>
-<tr><td><code>--space-2</code>, <code>--space-7</code>, <code>--space-9</code></td><td>tokens.css</td><td>6px between items, 16px side padding at 820 and below, 22px above</td></tr>
+<tr><td><code>--space-2</code></td><td>tokens.css</td><td>6px between items</td></tr>
         </tbody></table></div>
         <p class="kit-note">Kept as a literal because no exact step exists: <code class="kit-mono">12px</code> for the type size.</p>
       </section>
@@ -193,6 +199,7 @@
       <section class="kit-sec">
         <h2 class="kit-h2">Changes, newest first</h2>
         <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-26</td><td>Stage 10 Step 4, round 2: the breadcrumb gutter is fluid. The 22 to 16 switch at an 820 viewport is replaced by <code>--gutter-page</code>, 16px at 360 growing to 22px at 1040 and up. The media query is gone</td><td><code>design/kit/docs/responsive.md</code></td></tr>
           <tr><td>2026-11-26</td><td>Placement written down: right after the header, in the shell's breadcrumb slot. 5.0 and 5.1 linked, in colour since Stage 09 Step 5</td><td><code>docs/decisions.md</code>, "Stage 09 Step 6"</td></tr>
           <tr><td>2026-11-21</td><td>Entered the system: <code>components/breadcrumb.css</code>, on semantic roles, and this page in the card format</td><td><code>docs/decisions.md</code>, "The molecules entered the system"</td></tr>
           <tr><td>2026-08-19</td><td>The 44px link line was touched again in the critique round [?: the diff was not read for what changed]</td><td>commit <code>0980e88</code></td></tr>

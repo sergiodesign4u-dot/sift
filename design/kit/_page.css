@@ -84,7 +84,7 @@ a.kit-link:hover { color: var(--text-primary); background: var(--bg-raised); }
 .kit-lead { font-size: var(--type-base); line-height: var(--leading-loose); color: var(--text-secondary); max-width: 78ch; }
 .kit-lead + .kit-lead { margin-top: 10px; }
 .kit-h2 { font-family: var(--font-mono); font-size: var(--type-xs); font-weight: var(--weight-medium); letter-spacing: 0.1em; text-transform: uppercase; color: var(--kit-accent); padding-bottom: 10px; border-bottom: 1px solid var(--line-hairline); }
-.kit-sec { margin-top: 52px; scroll-margin-top: 24px; }
+.kit-sec { margin-top: 52px; scroll-margin-top: 24px; container-type: inline-size; }   /* Stage 10: a demo answers the section's width, as a component answers its place in the product */
 .kit-sec > .kit-lead { margin-top: 14px; }
 .kit-h3 { font-size: var(--type-lg); font-weight: var(--weight-strong); letter-spacing: var(--tracking-title); margin: 34px 0 6px; }
 .kit-note { font-size: var(--type-xs); color: var(--text-secondary); line-height: var(--leading-loose); max-width: 78ch; margin-top: 10px; }
@@ -115,6 +115,7 @@ a.kit-link:hover { color: var(--text-primary); background: var(--bg-raised); }
 .kit-width { container-type: inline-size; min-width: 0; padding: 12px; border: 1px dashed var(--line-control); border-radius: var(--radius-md); }
 .kit-width--narrow { flex: 0 1 260px; }
 .kit-width--wide { flex: 1 1 420px; }
+.kit-width--full { flex: 1 1 100%; }   /* its own row: for a component whose wide form needs more than the 420px basis (toolbar 624px, selection bar 672px) */
 .kit-width-cap { font-family: var(--font-mono); font-size: var(--type-2xs); color: var(--text-secondary); margin-bottom: 8px; }
 .kit-mini--responsive { background: linear-gradient(90deg, var(--bg-raised) 0 34%, transparent 34% 38%, var(--bg-raised) 38% 64%, transparent 64% 68%, var(--bg-raised) 68% 100%); }   /* Stage 10: one row at three widths */
 
@@ -304,7 +305,7 @@ table.kit-matrix { width: 100%; min-width: 620px; border-collapse: collapse; }
    component file is a defect by the stage rule. Values unchanged, byte for byte; the twins of the
    shell's own selection trigger and notice gutter come with it. The trigger was narrowed to
    `.theme .check:checked` at Stage 09 Step 1, in both places at once. ---- */
-.appframe { border: 1px solid var(--line-hairline); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sheet); background: var(--bg-page); display: flex; flex-direction: column; min-height: 560px; }
+.appframe { border: 1px solid var(--line-hairline); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sheet); background: var(--bg-page); display: flex; flex-direction: column; min-height: 560px; container-type: inline-size; }   /* the stand's frame is a place, as .app is */
 .appframe:has(.theme .check:checked) .selbar { display: flex; }
 .appframe:has(.theme .check:checked) .head-action { display: none; }
 .appframe > .notice { margin: var(--space-6) var(--space-9); }

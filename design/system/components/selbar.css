@@ -1,6 +1,6 @@
 /* design/system/components/selbar.css - level 2, molecule.
    Reads: --line-hairline, --bg-surface, --text-secondary, --type-xs, --space-3, --space-4,
-          --space-5, --space-6, --space-7, --space-9
+          --space-5, --space-6, --gutter-page
    Page:  design/kit/selbar.html
    Stands on: 2.0 on selection; 6.1 and 6.2 always present. Not interactive itself: its buttons
    are the button atom and keep their own states.
@@ -16,6 +16,12 @@
    the screen shell, .app:has(.theme .check:checked) .selbar, which also hides the head action. That rule
    couples the bar to the shell organism and moves with the shell, not with the bar.
 
+   BEHAVIOUR AT WIDTH (Stage 10 Step 4, round 2). The static bar stands in the FRAME, not in the
+   page column, so its place is the frame (.app, which screen-shell.css declares a container). Its
+   note and buttons hold one line from about 650px of frame and wrap under it (measured on 6.1), so
+   below a 42rem frame the buttons share their line. Its side gutter is --gutter-page, 16px at 360
+   growing to 22px, where it switched from 22 to 16 at an 820 viewport (the owner's option A at
+   Step 2). Until Stage 10 both were a viewport query at 820.
    At 360 the static bar's note and its buttons would squeeze into narrow columns and every one of
    them would wrap; the buttons share the line. This is LAYOUT on the bar's own children, not an
    undeclared variant of the button: no size, colour or weight is touched.
@@ -23,10 +29,10 @@
 */
 
 .selbar { display: none; align-items: center; gap: var(--space-4); flex-wrap: wrap; padding: var(--space-5) var(--space-3) 0; }
-.selbar--static { display: flex; padding: var(--space-6) calc(var(--frame-inset, 0px) + var(--space-9)); border-top: 1px solid var(--line-hairline); background: var(--bg-surface); }
+.selbar--static { display: flex; padding: var(--space-6) calc(var(--frame-inset, 0px) + var(--gutter-page)); border-top: 1px solid var(--line-hairline); background: var(--bg-surface); }
 .selbar-note { font-size: var(--type-xs); color: var(--text-secondary); margin-right: auto; }
 
-@media (max-width: 820px) {
-  .selbar--static { padding: var(--space-6) var(--space-7); }
+/* threshold 42rem of the frame: below it the static bar's buttons share their line */
+@container (width < 42rem) {
   .selbar--static > a { flex: 1; }
 }

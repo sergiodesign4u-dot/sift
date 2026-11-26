@@ -157,8 +157,44 @@
           <tr><td>name</td><td><code>.src-card-name</code></td><td>13.5px, medium weight, primary ink</td></tr>
           <tr><td>description</td><td><code>.src-card-d</code></td><td>Secondary ink, takes the free height so the last zone lines up across cards</td></tr>
           <tr><td>last zone</td><td><code>.btn--ghost</code> or <code>.src-card-note</code></td><td>The action when connectable; the reason in mono when not</td></tr>
-          <tr><td>the grid</td><td><code>.src-avail</code></td><td>Auto-fill, 240px minimum, 10px gap</td></tr>
+          <tr><td>the grid</td><td><code>.src-avail</code></td><td>Auto-fill, <code>--grid-col-min</code> (15rem, 240px) minimum, <code>--grid-gap</code> (10px) gap</td></tr>
         </tbody></table></div>
+        <h3 class="kit-h3">Behaviour at width</h3>
+        <p class="kit-note"><b>Fluid, no threshold</b> (Stage 10 Step 4). <code class="kit-mono">.src-avail</code> counts its own columns with <code class="kit-mono">auto-fill</code> from <code class="kit-mono">--grid-col-min</code>, 15rem (240px), the literal it carried until Stage 10, and a gap of <code class="kit-mono">--grid-gap</code> (10px). The number of columns is never a token. In a narrow place the grid falls to one column on its own. The minimum is <code class="kit-mono">min(--grid-col-min, 100%)</code>, so in a place narrower than 15rem, like the 260px box here or a phone with a large reader font, the one column fills the place instead of spilling past it. The same grid, live, in two places:</p>
+        <div class="kit-widths">
+          <div class="kit-width kit-width--narrow"><div class="kit-width-cap">a 260px place: the narrow form</div><div class="src-avail"><div class="src-card">
+              <span class="iconslot iconslot--card" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24"><use href="#i-upload"></use></svg></span>
+              <span class="src-card-name">CSV or spreadsheet</span>
+              <span class="src-card-d">Sift reads the feedback text, its date and its channel. You choose which columns are read.</span>
+              <a class="btn--ghost" href="#">Import a file</a>
+            </div><div class="src-card">
+              <span class="iconslot iconslot--card" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24"><use href="#i-source"></use></svg></span>
+              <span class="src-card-name">Intercom</span>
+              <span class="src-card-d">Sift reads conversations, not contacts. New conversations arrive on their own once connected.</span>
+              <a class="btn--ghost" href="#">Connect</a>
+            </div><div class="src-card">
+              <span class="iconslot iconslot--card" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24"><use href="#i-source"></use></svg></span>
+              <span class="src-card-name">Zendesk</span>
+              <span class="src-card-d">Reads tickets and their replies once connected.</span>
+              <a class="btn--ghost" href="#">Connect</a>
+            </div></div></div>
+          <div class="kit-width kit-width--wide"><div class="kit-width-cap">the rest of this column: the wide form</div><div class="src-avail"><div class="src-card">
+              <span class="iconslot iconslot--card" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24"><use href="#i-upload"></use></svg></span>
+              <span class="src-card-name">CSV or spreadsheet</span>
+              <span class="src-card-d">Sift reads the feedback text, its date and its channel. You choose which columns are read.</span>
+              <a class="btn--ghost" href="#">Import a file</a>
+            </div><div class="src-card">
+              <span class="iconslot iconslot--card" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24"><use href="#i-source"></use></svg></span>
+              <span class="src-card-name">Intercom</span>
+              <span class="src-card-d">Sift reads conversations, not contacts. New conversations arrive on their own once connected.</span>
+              <a class="btn--ghost" href="#">Connect</a>
+            </div><div class="src-card">
+              <span class="iconslot iconslot--card" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24"><use href="#i-source"></use></svg></span>
+              <span class="src-card-name">Zendesk</span>
+              <span class="src-card-d">Reads tickets and their replies once connected.</span>
+              <a class="btn--ghost" href="#">Connect</a>
+            </div></div></div>
+        </div>
       </section>
 
       <section class="kit-sec" id="axes">
@@ -176,7 +212,8 @@
           <tr><td><code>--radius-md</code></td><td>tokens.css, 6px</td><td>the card corner</td></tr>
           <tr><td><code>--text-primary</code>, <code>--text-secondary</code></td><td>tokens.css</td><td>name, then description and note</td></tr>
           <tr><td><code>--font-mono</code>, <code>--type-sm</code>, <code>--type-xs</code>, <code>--type-2xs</code>, <code>--weight-medium</code></td><td>tokens.css</td><td>type</td></tr>
-          <tr><td><code>--space-2</code>, <code>-3</code>, <code>-4</code>, <code>-7</code></td><td>tokens.css</td><td>the grid gap and padding. Off-scale literals kept: 9px gap, 15px padding, 1.55 line height, 240px minimum</td></tr>
+          <tr><td><code>--space-2</code>, <code>-3</code>, <code>-4</code>, <code>-7</code></td><td>tokens.css</td><td>the grid padding. Off-scale literals kept: 9px gap, 15px padding, 1.55 line height</td></tr>
+          <tr><td><code>--grid-col-min</code>, <code>--grid-gap</code></td><td>tokens.css, 15rem and <code>--space-4</code></td><td>the grid's minimum column and its gap</td></tr>
         </tbody></table></div>
       </section>
 
@@ -197,7 +234,7 @@
   &lt;/div&gt;
 &lt;/div&gt;</pre>
         </div>
-        <p class="kit-note">File: <code class="kit-mono">design/system/components/source-card.css</code>, in the molecules group of <code class="kit-mono">design/system/index.css</code>. There is no 360 rule: the grid is <code class="kit-mono">auto-fill</code> and collapses to one column on its own.</p>
+        <p class="kit-note">File: <code class="kit-mono">design/system/components/source-card.css</code>, in the molecules group of <code class="kit-mono">design/system/index.css</code>. There is no width rule: the grid is <code class="kit-mono">auto-fill</code> from <code class="kit-mono">--grid-col-min</code> and collapses to one column on its own.</p>
       </section>
     </div>
 
@@ -206,6 +243,7 @@
       <section class="kit-sec">
         <h2 class="kit-h2">Changes, newest first</h2>
         <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-26</td><td>Stage 10 Step 4, round 2: the source card grid reads <code>--grid-col-min</code> (15rem, 240px) and <code>--grid-gap</code> in place of the literals. Fluid, no query. Drawn live on this page</td><td><code>design/kit/docs/responsive.md</code></td></tr>
           <tr><td>2026-11-21</td><td>Entered the system: <code>components/source-card.css</code>, on semantic roles, and this page in the card format</td><td><code>docs/decisions.md</code>, "The molecules entered the system"</td></tr>
           <tr><td>2026-08-18</td><td>Declared in kit.css with the available-source card. The icon became <code>.iconslot--card</code> (was <code>.src-card-ic</code>)</td><td>commit <code>d461e12</code>; <code>design/kit/docs/inventory.md</code>, the fold tables</td></tr>
         </tbody></table></div>

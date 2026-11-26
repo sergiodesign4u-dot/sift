@@ -23,6 +23,13 @@
    .main-head, .h1 and .sub are the plain head of a screen that has no border under it and no
    action (3.2, 7.0). .summary is the synthesis paragraph, a different block: one-off.css
    since Step 6.
+   BEHAVIOUR AT WIDTH (Stage 10 Step 4, round 2): it measures its PLACE. Beside the action, the
+   title of a detail head breaks in two under 395px of place (measured on 4.0, "Onboarding is
+   confusing" beside Add to brief), so below a 26rem place the action takes the full width under
+   the text. The placer declares the container (the page column, screen-shell.css). Until Stage
+   10 this was a viewport query at 820.
+   The sub keeps its 70ch: one sentence, not continuous text; at 52ch the 2.0 sub broke into two
+   lines with two words left alone (measured).
    No em dash anywhere in this file.
 */
 
@@ -37,9 +44,10 @@
 .h1 { font-size: var(--type-xl); font-weight: var(--weight-strong); letter-spacing: var(--tracking-head); }
 .sub { color: var(--text-secondary); font-size: var(--type-sm); margin-top: var(--space-1); max-width: 70ch; }
 
-/* At 360 the one action takes the full width, and the meta row tightens its gap. The same rule the
-   whole kit follows: a row becomes a stack only where it would otherwise cut a value in half. */
-@media (max-width: 820px) {
+/* threshold 26rem: below it the one action takes the full width and the meta row tightens its gap.
+   The same rule the whole kit follows: a row becomes a stack only where it would otherwise cut a
+   value in half. */
+@container (width < 26rem) {
   .head-action { width: 100%; justify-content: center; }
   .head-meta { gap: var(--space-4); }
 }

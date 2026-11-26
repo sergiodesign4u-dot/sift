@@ -56,17 +56,17 @@
             <span class="sortnote"><b>signal rank</b></span>
           </div>
         </div>
-        <p class="kit-hero-note">Live. Narrow the browser to 820 and below: one Filter button</p>
+        <p class="kit-hero-note">Live. The Filter button form is drawn under Technical, Behaviour at width</p>
       </div>
 
       <section class="kit-sec" id="variants">
         <h2 class="kit-h2">Variants and states</h2>
-        <p class="kit-note">The axis is the viewport. The full row stands above 820px and a single Filter button replaces it at 820px and below; the switch is the media rule in <code class="kit-mono">toolbar.css</code>, so narrow the browser to see the other form. The facet chip is the atom <a href="chip.html">Filter chip</a>, with its own hover, on and focus states on its page. The toolbar itself has no states: what changes with a filter is its content, the active chip and the Clear link.</p>
+        <p class="kit-note">The axis is the place. The full row stands from a 39rem place and a single Filter button replaces it below that; the switch is the container query in <code class="kit-mono">toolbar.css</code>, and the narrow form is drawn in the matrix below. The facet chip is the atom <a href="chip.html">Filter chip</a>, with its own hover, on and focus states on its page. The toolbar itself has no states: what changes with a filter is its content, the active chip and the Clear link.</p>
         <div class="kit-matrix-wrap">
           <table class="kit-matrix" inert>
-            <thead><tr><th>Form</th><th>Viewport</th><th>Toolbar</th></tr></thead>
+            <thead><tr><th>Form</th><th>Place</th><th>Toolbar</th></tr></thead>
             <tbody>
-              <tr><th rowspan="2">Toolbar<code>.toolbar</code></th><td class="kit-st">Full row, above 820</td><td><div class="toolbar">
+              <tr><th rowspan="2">Toolbar<code>.toolbar</code></th><td class="kit-st">Full row, 39rem and wider</td><td><div class="toolbar">
   <div class="toolbar-full">
     <button class="chip"><svg class="ic" viewBox="0 0 24 24"><use href="#i-source"></use></svg> Source: all <span class="chip-count">2</span></button>
     <button class="chip is-on">Last 30 days <span class="chip-count">2,904</span></button>
@@ -75,7 +75,20 @@
     <span class="sortnote">Sort: <b>signal rank</b></span>
   </div>
 </div></td></tr>
-              <tr><td class="kit-st">Compact, 820 and below</td><td><p class="kit-cell-none">Not drawn here. It is a viewport rule, not a state: the page itself is wider than 820 and the rule cannot be forced in a cell without a class the product does not carry. See Other forms for the markup, and narrow the browser to see it live.</p></td></tr>
+              <tr><td class="kit-st">Compact, under 39rem</td><td><div class="kit-widths"><div class="kit-width kit-width--narrow"><div class="toolbar">
+  <div class="toolbar-full">
+    <button class="chip"><svg class="ic" viewBox="0 0 24 24"><use href="#i-source"></use></svg> Source: all <span class="chip-count">2</span></button>
+    <button class="chip is-on">Last 30 days <span class="chip-count">2,904</span></button>
+    <button class="chip"><svg class="ic" viewBox="0 0 24 24"><use href="#i-signal"></use></svg> Confidence: all <span class="chip-count">12</span></button>
+    <button class="link--action">Clear filters</button>
+    <span class="sortnote">Sort: <b>signal rank</b></span>
+  </div>
+  <div class="toolbar-compact">
+    <button class="chip is-on"><svg class="ic" viewBox="0 0 24 24"><use href="#i-filter"></use></svg> Filter <span class="chip-count">1</span></button>
+    <button class="link--action">Clear</button>
+    <span class="sortnote"><b>signal rank</b></span>
+  </div>
+</div></div></div></td></tr>
             </tbody>
           </table>
         </div>
@@ -83,14 +96,14 @@
 
       <section class="kit-sec" id="forms">
         <h2 class="kit-h2">Other forms</h2>
-        <p class="kit-note">The compact form is the same block that sits beside <code class="kit-mono">.toolbar-full</code> on 2.0. It is hidden above 820px, so it is shown here as markup. The two tiles after it are the toolbar as it stands inside lists on 4.0 and 6.1.</p>
+        <p class="kit-note">The compact form is the same block that sits beside <code class="kit-mono">.toolbar-full</code> on 2.0. It is hidden in a place of 39rem and wider, so it is shown here as markup; it is drawn live in the matrix above and under Behaviour at width. The two tiles after it are the toolbar as it stands inside lists on 4.0 and 6.1.</p>
         <div class="kit-forms">
           <div><div class="kit-form-c"><pre class="kit-pre">&lt;div class="toolbar-compact"&gt;
   &lt;button class="chip is-on"&gt;Filter &lt;span class="chip-count"&gt;1&lt;/span&gt;&lt;/button&gt;
   &lt;button class="link--action"&gt;Clear&lt;/button&gt;
   &lt;span class="sortnote"&gt;&lt;b&gt;signal rank&lt;/b&gt;&lt;/span&gt;
 &lt;/div&gt;</pre></div>
-            <div class="kit-form-t">Compact, 820 and below</div>
+            <div class="kit-form-t">Compact, under 39rem</div>
             <div class="kit-form-d">2.0 Synthesis. A single Filter button carrying the active count, instead of the facet chips.</div></div>
           <div><div class="kit-form-c"><div class="toolbar">
   <h2 class="group-t group-t--inline">Evidence &middot; 42 items</h2>
@@ -109,7 +122,7 @@
   <span class="sortnote">Order = <b>recommended priority</b></span>
 </div></div>
             <div class="kit-form-t">One action and an order note</div>
-            <div class="kit-form-d">6.1 Build brief. Here <code>.sortnote</code> says what the order means. "Add themes" opens a picker, so it is an action and wears <code>.btn--ghost</code>, not a chip (a chip only filters the view; changed at Step 9). It sits in the row form <code>.toolbar-row</code>, so it stays at 820 and below. Until Step 6 it wore <code>.toolbar-full</code> and vanished on a phone.</div></div>
+            <div class="kit-form-d">6.1 Build brief. Here <code>.sortnote</code> says what the order means. "Add themes" opens a picker, so it is an action and wears <code>.btn--ghost</code>, not a chip (a chip only filters the view; changed at Step 9). It sits in the row form <code>.toolbar-row</code>, so it stays in a narrow place. Until Step 6 it wore <code>.toolbar-full</code> and vanished on a phone.</div></div>
         </div>
       </section>
 
@@ -119,11 +132,11 @@
           <tr><td>Bar</td><td>own class</td><td><code>.toolbar</code>, a wrapping flex row with a rule under it</td><td>none: the class is required</td></tr>
           <tr><td>Full row</td><td>zone</td><td><code>.toolbar-full</code>, takes the free width. Holds the chips, the Clear link and the sort note</td><td>required</td></tr>
           <tr><td>Row (no compact twin)</td><td>zone</td><td><code>.toolbar-row</code>, the box of the full row without the hiding. For the screen's own controls rather than the filter: the evidence chips on 4.0 and 4.1, the "Add themes" ghost button on 6.1 and 6.2</td><td>absent</td></tr>
-          <tr><td>Compact row</td><td>zone</td><td><code>.toolbar-compact</code>, hidden above 820, a flex row at 820 and below</td><td>present on the filter toolbar</td></tr>
+          <tr><td>Compact row</td><td>zone</td><td><code>.toolbar-compact</code>, hidden from a 39rem place, a flex row below it</td><td>present on the filter toolbar</td></tr>
           <tr><td>Facet</td><td>atom</td><td><code>.chip</code> and <code>.chip-count</code>, see the chip page</td><td>n/a</td></tr>
           <tr><td>Clear</td><td>atom</td><td><code>.link--action</code>, shown once a filter is active</td><td>absent at rest</td></tr>
           <tr><td>Sort note</td><td>zone</td><td><code>.sortnote</code>, pushed to the right edge; its <code>b</code> is the current value in primary ink</td><td>absent</td></tr>
-          <tr><td>Viewport</td><td>axis</td><td>full row (above 820) &middot; compact (820 and below)</td><td>full row</td></tr>
+          <tr><td>Place</td><td>axis</td><td>full row (39rem and wider) &middot; compact (under 39rem)</td><td>full row</td></tr>
           <tr><td>State</td><td>variant</td><td>at rest &middot; filtered (the Clear link appears)</td><td>at rest</td></tr>
         </tbody></table></div>
       </section>
@@ -200,21 +213,53 @@
         <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
 <tr><td>the bar</td><td><code>.toolbar</code></td><td>Wrapping flex row, 8px gap, 14px below, a hairline rule. The 6px from the rule to the list below belongs to the <b>Filtered list</b> pattern since Stage 09, not to the bar</td></tr>
 <tr><td>the heading</td><td><code>.group-t--inline</code></td><td>Optional. Inside the toolbar the heading adds no rhythm of its own</td></tr>
-<tr><td>the full row</td><td><code>.toolbar-full</code></td><td>Above 820. Takes the free width</td></tr>
+<tr><td>the full row</td><td><code>.toolbar-full</code></td><td>From a 39rem place. Takes the free width</td></tr>
 <tr><td>the facets</td><td><code>.chip</code></td><td>Atom. The active one is marked by tone</td></tr>
 <tr><td>the clear link</td><td><code>.link--action</code></td><td>Atom. Appears with an active filter</td></tr>
 <tr><td>the sort note</td><td><code>.sortnote</code></td><td>Right edge, secondary ink, the value in primary ink</td></tr>
-<tr><td>the compact row</td><td><code>.toolbar-compact</code></td><td>820 and below. One Filter button with the count</td></tr>
+<tr><td>the compact row</td><td><code>.toolbar-compact</code></td><td>Under a 39rem place. One Filter button with the count</td></tr>
         </tbody></table></div>
+        <h3 class="kit-h3">Behaviour at width</h3>
+        <p class="kit-note"><b>A container query, threshold 39rem</b> (624px). Below it <code class="kit-mono">.toolbar-full</code> hides and <code class="kit-mono">.toolbar-compact</code>, one Filter button with the count, shows; <code class="kit-mono">.toolbar-row</code> stays at every width. The measured reason: the full row holds one line from 600px of place and wraps under it. The place is declared by its placer, the page column <code class="kit-mono">.appmain</code> declares it, in <code class="kit-mono">screen-shell.css</code>. Until Stage 10 this was a viewport query at 820. The same toolbar, live, in two places:</p>
+        <div class="kit-widths">
+          <div class="kit-width kit-width--narrow"><div class="kit-width-cap">a 260px place: the narrow form</div><div class="toolbar">
+              <div class="toolbar-full">
+                <button class="chip"><svg class="ic" viewBox="0 0 24 24"><use href="#i-source"></use></svg> Source: all <span class="chip-count">2</span></button>
+                <button class="chip is-on">Last 30 days <span class="chip-count">2,904</span></button>
+                <button class="chip"><svg class="ic" viewBox="0 0 24 24"><use href="#i-signal"></use></svg> Confidence: all <span class="chip-count">12</span></button>
+                <button class="link--action">Clear filters</button>
+                <span class="sortnote">Sort: <b>signal rank</b></span>
+              </div>
+              <div class="toolbar-compact">
+                <button class="chip is-on"><svg class="ic" viewBox="0 0 24 24"><use href="#i-filter"></use></svg> Filter <span class="chip-count">1</span></button>
+                <button class="link--action">Clear</button>
+                <span class="sortnote"><b>signal rank</b></span>
+              </div>
+            </div></div>
+          <div class="kit-width kit-width--full"><div class="kit-width-cap">the rest of this column: the wide form</div><div class="toolbar">
+              <div class="toolbar-full">
+                <button class="chip"><svg class="ic" viewBox="0 0 24 24"><use href="#i-source"></use></svg> Source: all <span class="chip-count">2</span></button>
+                <button class="chip is-on">Last 30 days <span class="chip-count">2,904</span></button>
+                <button class="chip"><svg class="ic" viewBox="0 0 24 24"><use href="#i-signal"></use></svg> Confidence: all <span class="chip-count">12</span></button>
+                <button class="link--action">Clear filters</button>
+                <span class="sortnote">Sort: <b>signal rank</b></span>
+              </div>
+              <div class="toolbar-compact">
+                <button class="chip is-on"><svg class="ic" viewBox="0 0 24 24"><use href="#i-filter"></use></svg> Filter <span class="chip-count">1</span></button>
+                <button class="link--action">Clear</button>
+                <span class="sortnote"><b>signal rank</b></span>
+              </div>
+            </div></div>
+        </div>
       </section>
 
       <section class="kit-sec" id="axes">
         <h2 class="kit-h2">Axes, with the rule that chooses</h2>
         <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
-<tr><td>viewport</td><td>full row 6 &middot; compact below 820</td><td><b>The viewport chooses, and a row is never cut in half.</b> At 360 three facet chips would cut every label, so they fold into one Filter button that carries the count</td></tr>
+<tr><td>place</td><td>full row 6 &middot; compact under 39rem</td><td><b>The place chooses, and a row is never cut in half.</b> Under 600px of place three facet chips wrap into a wall of controls above the list, so they fold into one Filter button that carries the count</td></tr>
 <tr><td>state</td><td>at rest &middot; filtered</td><td>The Clear link appears when a filter is on</td></tr>
         </tbody></table></div>
-        <p class="kit-note">The inventory register says the canvas switch is at 600px; kit.css switches at 820px, and so does this file [?].</p>
+        <p class="kit-note">The inventory register says the canvas switch is at 600px. Until Stage 10 kit.css switched at 820px of viewport; it now switches at 39rem (624px) of place, which the measure on 2.0 gives (the full row holds one line from 600px).</p>
       </section>
 
       <section class="kit-sec" id="tokens">
@@ -259,6 +304,7 @@
       <section class="kit-sec">
         <h2 class="kit-h2">Changes, newest first</h2>
         <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-26</td><td>Stage 10 Step 4, round 2: the toolbar measures its place. The 820 viewport query became a container query at 39rem (624px): below it the full row hides and one Filter button with the count shows. The compact form is now drawn in the matrix and live under Behaviour at width</td><td><code>design/kit/docs/responsive.md</code></td></tr>
           <tr><td>2026-11-26</td><td>The rule block gained its third sub-point, <b>Limits</b>: R3 from the usage rules. The rules live on <code>architecture.html</code>; this page carries the short copy</td><td><code>docs/decisions.md</code>, "Stage 09 Step 1"</td></tr>
           <tr><td>2026-11-25</td><td>The 6px of margin under the rule left <code>components/toolbar.css</code> for the <b>Filtered list</b> pattern, <code>design/system/patterns/filtered-list.css</code>: it is the distance from the filter row to the list it filters, a composition. Cut, not copied; the padding and the hairline stayed. The examples on this page show the bar alone, so each is 6px shorter than before; on the 22 colour screens the difference is 0 pixels</td><td><code>docs/decisions.md</code>, "Stage 09 Step 1: patterns"</td></tr>
           <tr><td>2026-11-21</td><td>Step 6: the row form <code>.toolbar-row</code> was added. On 4.0, 4.1, 6.1 and 6.2 the evidence chips sat in <code>.toolbar-full</code>, which hides below 820 with no compact twin, so the controls vanished at 360; the grey draws them at every width</td><td><code>docs/decisions.md</code>, "Step 6: the system reconciled with the product"</td></tr>

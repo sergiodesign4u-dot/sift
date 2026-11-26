@@ -336,3 +336,24 @@ and 1440, every changed frame starts changing at the glyphs of its H1 (the scree
 24px instead of 22, the frame 3px taller); 0.0 changes in its first line, lead and section titles;
 6.4 changes at 1024 only (28.88px instead of 29) and is 0 at 1440; 6.3 and its loading state are 0
 at both, because a dialog title reads `--type-lg`, which stays fixed. 29 of 72 frames: 0.
+
+### Stage 10 Step 4, rounds 1 and 2: the width tokens find their readers
+
+*Each row is a value a class reads that changed. The container thresholds are not tokens: they are
+local to their component and listed in `design/kit/docs/responsive.md`, "Container thresholds".*
+
+| Variable or class | Was | Now | Why |
+|---|---|---|---|
+| `--measure-prose` | `92ch` | **deleted** | its three readers moved onto `--container-text`: the scope line (round 1), the snippet and the raw item (round 2). 92ch held 98 to 122 characters a line |
+| `.scope` max-width | `var(--measure-prose)` | `var(--container-text)` | round 1, atoms |
+| `.snippet-quote`, `.rawitem-quote` max-width | `var(--measure-prose)` | `var(--container-text)` | round 2. The raw item's quote held about 108 characters at 1440, where S5-1 asked 65 to 75 |
+| `.notice` max-width | none | `var(--container-text)` | round 2. The band had no measure; the warning on 4.1 ran 122 characters a line (B-25). At 360 the place is narrower than the measure, so nothing moves there |
+| `.breadcrumb`, `.selbar--static` side gutter | `--space-9` (22), `--space-7` (16) below an 820 viewport | `--gutter-page` (16 to 22) | round 2, the owner's option A at Step 2 |
+| `.src-avail` columns and gap | `minmax(240px, 1fr)`, `--space-4` | `minmax(var(--grid-col-min), 1fr)`, `var(--grid-gap)` | round 2: the grid tokens get their reader; the same 240 and 10px |
+| `.auth-wrap` max-width | `400px` | `25rem` | round 2: a container in rem follows the reader's font size; 400px at the default |
+| `.theme-quote` 78ch, `.sub` 70ch | kept | kept | tried at `--container-text` and withdrawn on measurement: each is ONE sentence of one or two lines, and at 52ch the 2.0 sub and quote broke into two lines with one or two words left alone. The measure is for continuous text |
+
+**Held against the round before.** At 360, 24 of 24 frames differ by 0 pixels. At 1024 and 1440 the
+changed frames are only those the rows above name: the snippet's and the raw item's quote (4.0,
+4.1, 5.0), the notice (3.2, 3.5, 4.1, 5.1, 6.2), and at 1024 only the breadcrumb and the static bar,
+whose gutter reads 21.86px there instead of 22 (the clamp reaches 22 at a 1040 window).

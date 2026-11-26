@@ -166,7 +166,6 @@
   --size-target: 44px;   /* the target floor. Three named exceptions, all in conventions.md */
   --size-check:  24px;   /* the checkbox, at the AA floor by a named exception */
   --size-bar:    52px;   /* the app bar and the public bar */
-  --measure-prose: 92ch; /* the longest line the product allows anywhere. Retires at Stage 10 Step 4: its three readers move onto --container-text */
 
   /* --- width. Stage 10 Step 2. Geometry, so these have NO theme pair: a width does not change
          with the theme. Source: design/kit/docs/responsive.md (census, audit, register).
@@ -191,18 +190,19 @@
                                 Read by the shell, Step 3 */
   --container-text: 52ch;    /* the measure of continuous text. In Inter 1ch is about 1.35 characters: 52ch holds
                                 70 characters a line on real product text, measured at Step 2, inside the 65 to 75
-                                that backlog S5-1 asked for. 92ch held 98 to 122. Read from Step 4 */
+                                that backlog S5-1 asked for. 92ch held 98 to 122. Read by the scope line, the snippet, the raw
+                                item and the notice (Step 4); it replaced --measure-prose, deleted there */
   --gutter-page: clamp(1rem, 0.8014rem + 0.8823vw, 1.375rem);  /* 16 to 22px. The gutter of the rules that
                                 switched from 22 to 16 at 820 (breadcrumb, notice in the frame, group heading,
                                 selection bar, footers): it now grows instead. Owner's decision at the Step 2
                                 review, option A: 360 keeps its three edges (brand 18, breadcrumb 16, page 22),
                                 so 360 moves by 0 pixels; the page and the brand keep --space-9 and --space-8.
-                                Read from Step 4 */
+                                Read by the breadcrumb and the static selection bar (Step 4, round 2) */
 
   /* The grid. The NUMBER OF COLUMNS IS NOT A TOKEN: repeat(auto-fit, minmax(var(--grid-col-min), 1fr))
      counts them, so the grid works at widths nobody planned. */
-  --grid-col-min: 15rem;            /* 240px. The source card, the product's own grid (3.0) */
-  --grid-gap: var(--space-4);       /* 10px. The same grid's gap */
+  --grid-col-min: 15rem;            /* 240px. The source card, the product's own grid (3.0). Read by .src-avail */
+  --grid-gap: var(--space-4);       /* 10px. The same grid's gap. Read by .src-avail */
 
   /* The one stacking level. Stage 10 Step 3: the header is sticky from --bp-shell-wide on (the IA's
      "Scrolled: navigation is sticky and persists", navigation.md:35), and it comes FIRST in the

@@ -1,7 +1,7 @@
 /* design/system/components/notice.css - level 2, molecule.
    Reads: --text-secondary, --text-primary, --bg-surface, --bg-warning, --bg-danger,
           --line-hairline, --line-control, --line-warning-strong, --line-danger, --radius-md,
-          --space-5, --space-6, --type-xs, --leading-body, --weight-medium
+          --space-5, --space-6, --type-xs, --leading-body, --weight-medium, --container-text
    Page:  design/kit/notice.html
    Stands on: 3.5, 4.1, 6.2, 3.2, 7.3, 5.1, 2.3. 7 occurrences: information 5, warning 1, error 1.
 
@@ -12,6 +12,10 @@
    NOT HERE: `.appframe > .notice` and `.app > .notice` (a notice in the screen frame rather than
    inside a padded main brings the gutter with it, 22px and 16px at 360). That rule couples the
    notice to the screen shell, which is an organism and comes in round 3.
+   BEHAVIOUR AT WIDTH (Stage 10 Step 4, round 2): a CONTAINER. The band stops at --container-text
+   (52ch of its own 12.5px face) and its text wraps inside; it had no measure, and at a 1440
+   window the warning on 4.1 ran 122 characters a line (B-25). Below the measure, as at 360, the
+   band fills its place exactly as before. No query.
    No em dash anywhere in this file.
 */
 
@@ -21,6 +25,7 @@
   border: 1px solid var(--line-hairline); border-left: 2px solid var(--line-control);
   border-radius: var(--radius-md);
   padding: var(--space-5) var(--space-6); margin: var(--space-6) 0;
+  max-width: var(--container-text);
 }
 .notice b { color: var(--text-primary); font-weight: var(--weight-medium); }
 /* The two bands are built the same way and as kit.css drew them: a solid rule in the signal hue

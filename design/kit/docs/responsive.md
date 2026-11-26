@@ -46,10 +46,10 @@ The census number it replaces: 820px, the colour layer's viewport query since St
 | Token | Value | What | Origin | Read from |
 |---|---|---|---|---|
 | `--container-page` | `65rem` (1040px) | the widest the page frame grows; it stops, it does not switch | the one page container the product had, the marketing page | Step 3, the shell |
-| `--container-text` | `52ch` | the measure of continuous text | measured at Step 2: in Inter 1ch is about 1.35 characters, 52ch holds 70 characters a line on real product text (67 to 73), inside the 65 to 75 of S5-1; 92ch held 98 to 122 | Step 4; `--measure-prose` (92ch) retires there |
-| `--gutter-page` | `clamp(1rem, 0.8014rem + 0.8823vw, 1.375rem)` (16 to 22px) | the gutter of the rules that switched from 22 to 16 at 820; it grows instead | owner's decision at Step 2, option A: 360 keeps its three edges (brand 18, breadcrumb 16, page 22), 0 pixels move; the page and the brand keep their fixed gutters | Step 4, by the owner's decision |
-| `--grid-col-min` | `15rem` (240px) | the narrowest a card gets in a grid | the source card grid, 3.0 | Step 4 |
-| `--grid-gap` | `var(--space-4)` (10px) | the gap of that grid | the same grid | Step 4 |
+| `--container-text` | `52ch` | the measure of continuous text | measured at Step 2: in Inter 1ch is about 1.35 characters, 52ch holds 70 characters a line on real product text (67 to 73), inside the 65 to 75 of S5-1; 92ch held 98 to 122 | round 1: the scope line; round 2: the snippet, the raw item, the notice; `--measure-prose` deleted |
+| `--gutter-page` | `clamp(1rem, 0.8014rem + 0.8823vw, 1.375rem)` (16 to 22px) | the gutter of the rules that switched from 22 to 16 at 820; it grows instead | owner's decision at Step 2, option A: 360 keeps its three edges (brand 18, breadcrumb 16, page 22), 0 pixels move; the page and the brand keep their fixed gutters | round 2: the breadcrumb, the static selection bar; the notice in the frame and the footers in round 3 |
+| `--grid-col-min` | `15rem` (240px) | the narrowest a card gets in a grid | the source card grid, 3.0 | round 2: `.src-avail` |
+| `--grid-gap` | `var(--space-4)` (10px) | the gap of that grid | the same grid | round 2: `.src-avail` |
 
 The number of columns is NOT a token: `repeat(auto-fit, minmax(var(--grid-col-min), 1fr))` counts
 them. None of these has a theme pair: a width does not change with the theme.
@@ -75,8 +75,29 @@ at 360 differ from the commit before by 0 pixels.
 
 ## Container thresholds (local, not tokens)
 
-None after round 1. A container threshold belongs to its component and is not a token, but it is
-listed here, so that the check can tell it from a device breakpoint.
+A container threshold belongs to its component and is not a token, but it is listed here, so that
+the check can tell it from a device breakpoint. Each one is the width of the component's PLACE
+where its wide form breaks, measured, plus at least 1rem of margin, rounded up to a whole rem. Every
+one sits above the 316px a 360 window gives the page column, so 360 keeps its narrow forms and
+moves by 0 pixels.
+
+| Component | File | Query | Place it reads | Below it | Measured break of the wide form |
+|---|---|---|---|---|---|
+| theme card | `theme-card.css` | `@container (width < 29rem)` | the page column | the confidence takes its own row under the body; the quote clamps to 2 lines | the label breaks in two under 435px; the label and quote get less room than the narrow form gives at 360 under 457px |
+| source row | `source-row.css` | `@container (width < 36rem)` | the page column | the stats and the actions each take a full row; the buttons share theirs | the row wraps under 550px |
+| saved brief row | `brief-row.css` | `@container (width < 28rem)` | the page column | the actions take their own row; the buttons share it | the title breaks in two under 430px |
+| screen head | `screen-head.css` | `@container (width < 26rem)` | the page column | the one action takes the full width; the meta row tightens | a detail title breaks in two under 395px |
+| toolbar | `toolbar.css` | `@container (width < 39rem)` | the page column | one compact Filter button replaces the full row | the full row wraps under 600px |
+| action bar | `actionbar.css` | `@container (width < 29rem)` | the page column | the note takes its own line; the buttons share the next | the note breaks in two under 450px |
+| selection bar, static | `selbar.css` | `@container (width < 42rem)` | the frame | the buttons share their line | note and buttons wrap under about 650px of frame |
+
+**Who declares the place.** The shell places them, so `screen-shell.css` declares both of its
+places: `.appmain` (the page column) and `.app` (the frame, for the static selection bar, which
+stands outside the column). `container-type: inline-size` only: their widths come from the
+canvas, never from their content. On the stand, `.kit-sec`, `.appframe` and `.kit-width` declare
+it (`design/kit/_page.css`), so a specimen answers its own box. Measured at round 2: each of the
+seven switches at exactly its threshold, at a 1600 window with the frame narrowed one pixel at a
+time, so each answers its place and not the window.
 
 ## The shell
 
@@ -128,6 +149,51 @@ No container threshold among the atoms. Held against Step 3: 360 at 0 pixels on 
 at 1024 and 1440 exactly the 13 screens with a scope line changed (26 frames), each from the scope
 line down; every other screen 0.
 
+### Round 2, molecules: N 22 = M 17 + K 5
+
+| Molecule | Verdict | Done |
+|---|---|---|
+| theme card | container query | 820 viewport to `@container (width < 29rem)`, `theme-card.css`. The quote keeps 78ch (below) |
+| source row | container query | 820 viewport to `@container (width < 36rem)`, `source-row.css` |
+| saved brief row | container query | 820 viewport to `@container (width < 28rem)`, `brief-row.css` |
+| screen head | container query | 820 viewport to `@container (width < 26rem)`, `screen-head.css`. The sub keeps 70ch (below) |
+| toolbar | container query | 820 viewport to `@container (width < 39rem)`, `toolbar.css` |
+| action bar | container query | 820 viewport to `@container (width < 29rem)`, `actionbar.css` |
+| selection bar | container query on the frame, plus the gutter token | 820 viewport to `@container (width < 42rem)` read on `.app`; the static bar's gutter to `--gutter-page`, `selbar.css` |
+| evidence snippet | container (measure) | `--measure-prose` (92ch) to `--container-text` (52ch), `snippet.css` |
+| raw item | container (measure) | the same, `rawitem.css`. `--measure-prose` has no reader left and is deleted from `tokens.css` |
+| notice band | container (measure) | `max-width: var(--container-text)`, `notice.css`; it had none |
+| breadcrumb | fluid (gutter token) | 22 switching to 16 at 820 becomes `--gutter-page`, `breadcrumb.css`; its `@media` is gone. Its narrow form S5-5 is not built: see below |
+| source card | fluid (grid) | `.src-avail` reads `--grid-col-min` and `--grid-gap` (the same 240 and 10px), `source-card.css` |
+| auth card | container, already | `400px` to `25rem`, `auth-card.css` |
+| phase strip | fluid, already | none: it wraps |
+| legal TOC | fluid, already | none: it wraps; the sticky rail of 9.x (B-27) comes with the legal document, round 3 |
+| tier card, step card | through their placer | none here: the marketing grid places them (marketing shell, round 3) |
+| provenance list, composer row, account row, form field, skeleton card | does not adapt | reasons in the inventory's Width column |
+
+**Two measures kept, withdrawn on verification.** The census asked whether the nine `ch` measures
+are one question. The theme quote (78ch) and the screen head's sub (70ch) were moved onto
+`--container-text` and measured: at 52ch the 2.0 sub and the quotes broke into two lines with one
+or two words left alone. Each is one sentence of one or two lines, not continuous text, so each
+keeps its own measure. The other measures (summary and reason, state, marketing, footer) are
+organisms, round 3.
+
+**Not built, the owner's decision: S5-5**, the breadcrumb's narrow form (a back chevron plus the
+theme name, `ia/docs/pages/evidence.md:37`). It is a new look at 360 and would move the 360 pixels
+the stage promises not to move. Two ways: a threshold under the 360 frame (only windows narrower
+than 360 get it), or the variant at 360 with the zero promise broken on the screens with a
+breadcrumb, said aloud. **B-26** (`text-wrap: pretty`) likewise changes line breaks at 360 and is
+not taken silently.
+
+Held against round 1: 360 at 0 pixels on 24 of 24 screens. At 1024 and 1440, 31 of 48 frames 0;
+the 17 that changed, each with its row: the quote of the snippet (4.0, 4.1) and the raw item
+(5.0); the notice (3.2, 3.5, 4.1, 5.1, 6.2); at 1024 only, the breadcrumb (3.2, 4.0 and its
+states, 5.0, 5.1) and the static bar (6.1), whose gutter is 21.86px at a 1024 window and 22 from
+1040.
+2.0, 3.0, 6.0, the accounts and the rest are 0 at every width: the wide forms of the seven queried
+molecules are unchanged. Width sweep: 15 screens, 50 widths from 320 to 1600 (10px steps between 570
+and 760), 750 frames, 0 overflow, one navigation carrier, the header sticky from 600.
+
 ## New behaviour
 
 The audit found none (decided at Step 1). Step 5 runs in its short form.
@@ -158,20 +224,20 @@ Empty until Step 6.
 
 Everything sits on one number, 820, which **a viewport** measures. Of 17 rules, only 2 are what a viewport point is for (the shell swap). The other 15 split three ways: a gutter that changes from 22 to 16 (it belongs in a fluid token), a `font-size` switched at the point (forbidden by the stage: it belongs in `clamp()`), and a component rearranging itself (it belongs in `@container`, because the component measures its place, not the screen).
 
-| file:line | what it does below 820 | way | where it must live | verdict | status after Step 2 |
+| file:line | what it does below 820 | way | where it must live | verdict | status |
 |---|---|---|---|---|---|
 | app-header.css:44 | hides the text tabs | point | shell, `@media` (legal here) | stays, the number goes into the register | moved, Step 3: `min-width: 37.5rem`, mobile first |
 | bottom-tabs.css:33 | draws the bottom tabs, sticky | point | shell, `@media` | stays, same | moved, Step 3: `min-width: 37.5rem`, mobile first |
 | screen-shell.css:48 | a notice in the frame: gutter 22 to 16 | point used as a gutter | a fluid gutter token | moves into a token | waits: Step 4 |
-| breadcrumb.css:23 | gutter 22 to 16 | point used as a gutter | a fluid gutter token | moves into a token | waits: Step 4 |
+| breadcrumb.css:23 | gutter 22 to 16 | point used as a gutter | a fluid gutter token | moves into a token | moved, round 2: `--gutter-page`, the rule is gone |
 | patterns/grouped-list.css:26 | group heading padding, gutter 16 | point used as a gutter | a fluid gutter token | moves into a token | waits: Step 4 |
-| selbar.css:29 | gutter 16; buttons take equal width | point | gutter token + `@container` | moves | waits: Step 4 |
-| actionbar.css:19 | wraps; the note takes its own row; buttons equal width | point | `@container` | moves | waits: Step 4 |
-| brief-row.css:33 | the actions take their own row | point | `@container` | moves | waits: Step 4 |
-| source-row.css:45 | stats and actions take their own rows | point | `@container` | moves | waits: Step 4 |
-| screen-head.css:42 | the head action goes full width | point | `@container` | moves | waits: Step 4 |
-| theme-card.css:46 | the card becomes a grid, confidence on its own row, the quote clamps to 2 lines | point | `@container` | moves | waits: Step 4 |
-| toolbar.css:35 | full filter row swaps to the compact button | point | `@container` | moves | waits: Step 4 |
+| selbar.css:29 | gutter 16; buttons take equal width | point | gutter token + `@container` | moves | moved, round 2: `--gutter-page` and `@container (width < 42rem)` on the frame |
+| actionbar.css:19 | wraps; the note takes its own row; buttons equal width | point | `@container` | moves | moved, round 2: `@container (width < 29rem)` |
+| brief-row.css:33 | the actions take their own row | point | `@container` | moves | moved, round 2: `@container (width < 28rem)` |
+| source-row.css:45 | stats and actions take their own rows | point | `@container` | moves | moved, round 2: `@container (width < 36rem)` |
+| screen-head.css:42 | the head action goes full width | point | `@container` | moves | moved, round 2: `@container (width < 26rem)` |
+| theme-card.css:46 | the card becomes a grid, confidence on its own row, the quote clamps to 2 lines | point | `@container` | moves | moved, round 2: `@container (width < 29rem)` |
+| toolbar.css:35 | full filter row swaps to the compact button | point | `@container` | moves | moved, round 2: `@container (width < 39rem)` |
 | account-shell.css:32 | (at 821 and up) the section list becomes a rail beside the content | point | fluid: `flex-wrap` with a minimum width, no point at all | moves into fluid | waits: Step 4 |
 | legal-doc.css:28 | `font-size` of the prose 15 to 14 | point on type | `clamp()` in the type scale | moves into the scale | moved, Step 2: --type-legal; the rule is gone |
 | marketing-shell.css:27 | `font-size` h1 36 to 27, lead to 14.5 | point on type | `clamp()` | moves into the scale | moved, Step 2: --type-3xl and --type-lead; the rule is gone |

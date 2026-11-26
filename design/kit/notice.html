@@ -159,6 +159,12 @@
           <tr><td>the ground</td><td><code>background</code></td><td>Surface for information, the warning wash, the danger wash</td></tr>
           <tr><td>the emphasis</td><td><code>b</code> inside</td><td>Optional. Primary ink, medium weight</td></tr>
         </tbody></table></div>
+        <h3 class="kit-h3">Behaviour at width</h3>
+        <p class="kit-note"><b>A container, no threshold</b> (Stage 10 Step 4). The band stops at <code class="kit-mono">--container-text</code>, 52ch of its own face, and its text wraps inside. It had no measure: at a 1440 window the warning on 4.1 ran 122 characters a line. Below the measure the band fills its place exactly as before. The place is declared by its placer, the page column <code class="kit-mono">.appmain</code> declares it, in <code class="kit-mono">screen-shell.css</code>. The same notice, live, in two places:</p>
+        <div class="kit-widths">
+          <div class="kit-width kit-width--narrow"><div class="kit-width-cap">a 260px place: the narrow form</div><p class="notice notice--warn">Thin evidence. Six mentions is a weak signal, not a confirmed pattern, so treat this as a lead to watch rather than a decision. All six arrived through Intercom, which means this is one channel's view of the problem. What would change it is more of the same over time, and the count above is the thing to watch. Every item is open below, exactly as on a strong theme.</p></div>
+          <div class="kit-width kit-width--wide"><div class="kit-width-cap">the rest of this column: the wide form</div><p class="notice notice--warn">Thin evidence. Six mentions is a weak signal, not a confirmed pattern, so treat this as a lead to watch rather than a decision. All six arrived through Intercom, which means this is one channel's view of the problem. What would change it is more of the same over time, and the count above is the thing to watch. Every item is open below, exactly as on a strong theme.</p></div>
+        </div>
       </section>
 
       <section class="kit-sec" id="axes">
@@ -207,6 +213,7 @@
       <section class="kit-sec">
         <h2 class="kit-h2">Changes, newest first</h2>
         <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-26</td><td>Stage 10 Step 4, round 2: the notice gained <code>max-width: var(--container-text)</code> (52ch). It had no measure, and the warning on 4.1 ran 122 characters a line at 1440. No query. Drawn live on this page</td><td><code>design/kit/docs/responsive.md</code></td></tr>
           <tr><td>2026-11-26</td><td>The rule block gained its third sub-point, <b>Limits</b>: R4, R5 from the usage rules. The rules live on <code>architecture.html</code>; this page carries the short copy</td><td><code>docs/decisions.md</code>, "Stage 09 Step 1"</td></tr>
           <tr><td>2026-11-21</td><td>The warning rule reads the new solid role <code>--line-warning-strong</code> and the error rule is solid <code>--line-danger</code>, as <code>kit.css</code> drew both. The 32 percent edge stays for the alert tag, not for a band</td><td><code>docs/decisions.md</code>, "Step 6: the system reconciled with the product"</td></tr>
           <tr><td>2026-11-21</td><td>Entered the system: <code>components/notice.css</code>, on semantic roles, and this page in the card format</td><td><code>docs/decisions.md</code>, "The molecules entered the system"</td></tr>

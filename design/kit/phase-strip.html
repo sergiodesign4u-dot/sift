@@ -186,6 +186,24 @@
 <tr><td>the done mark</td><td><code>.step-n .ic</code></td><td>A finished phase carries a mark rather than its number: once the step is behind you the position stops being the useful fact</td></tr>
 <tr><td>the separator</td><td><code>.step-sep</code></td><td>Secondary ink at 70 percent</td></tr>
         </tbody></table></div>
+        <h3 class="kit-h3">Behaviour at width</h3>
+        <p class="kit-note"><b>Fluid, no threshold</b> (Stage 10 Step 4). The strip is a flex row that wraps (<code class="kit-mono">flex-wrap: wrap</code>), so in a narrow place the phases run on to a second line and nothing is cut. No query, and the CSS did not change in Stage 10; it was already fluid. The same strip, live, in two places:</p>
+        <div class="kit-widths">
+          <div class="kit-width kit-width--narrow"><div class="kit-width-cap">a 260px place: the narrow form</div><nav class="steps" aria-label="Import steps">
+              <span class="step is-done"><span class="step-n"><svg class="ic" viewBox="0 0 24 24"><use href="#i-check"></use></svg></span> Upload</span>
+              <span class="step-sep" aria-hidden="true">&rsaquo;</span>
+              <span class="step is-current"><span class="step-n">2</span> Map columns</span>
+              <span class="step-sep" aria-hidden="true">&rsaquo;</span>
+              <span class="step"><span class="step-n">3</span> Review and import</span>
+            </nav></div>
+          <div class="kit-width kit-width--wide"><div class="kit-width-cap">the rest of this column: the wide form</div><nav class="steps" aria-label="Import steps">
+              <span class="step is-done"><span class="step-n"><svg class="ic" viewBox="0 0 24 24"><use href="#i-check"></use></svg></span> Upload</span>
+              <span class="step-sep" aria-hidden="true">&rsaquo;</span>
+              <span class="step is-current"><span class="step-n">2</span> Map columns</span>
+              <span class="step-sep" aria-hidden="true">&rsaquo;</span>
+              <span class="step"><span class="step-n">3</span> Review and import</span>
+            </nav></div>
+        </div>
       </section>
 
       <section class="kit-sec" id="axes">
@@ -234,6 +252,7 @@
       <section class="kit-sec">
         <h2 class="kit-h2">Changes, newest first</h2>
         <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-26</td><td>Stage 10 Step 4, round 2: the phase strip was checked against its place and is fluid by its flex-wrap. The CSS did not change. Drawn live on this page</td><td><code>design/kit/docs/responsive.md</code></td></tr>
           <tr><td>2026-11-26</td><td>The rule block gained its third sub-point, <b>Limits</b>: R9 from the usage rules. The rules live on <code>architecture.html</code>; this page carries the short copy</td><td><code>docs/decisions.md</code>, "Stage 09 Step 1"</td></tr>
           <tr><td>2026-11-21</td><td>The component token <code>--step-current-line</code> is accepted, no longer pending</td><td><code>docs/decisions.md</code>, "Step 6: the system reconciled with the product"</td></tr>
           <tr><td>2026-11-21</td><td>Entered the system: <code>components/phase-strip.css</code>, on semantic roles. The ring of the current phase reads the component token <code>--step-current-line</code>. This page in the card format</td><td><code>docs/decisions.md</code>, "The molecules entered the system"</td></tr>

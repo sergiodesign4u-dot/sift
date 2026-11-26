@@ -12,8 +12,12 @@
    filtered-list.css (cut, not copied). The padding and the hairline stay: they are the row's own
    edge, and a pattern carries no colour.
 
-   The filter and sort row. Two forms by VIEWPORT: the full row (chips, clear, sort note) above
-   820, and below it one compact Filter button that carries the active count. The facet chip is
+   The filter and sort row. Two forms by PLACE (Stage 10 Step 4, round 2; a viewport query at 820
+   until then): the full row (chips, clear, sort note) from a 39rem place, and below it one compact
+   Filter button that carries the active count. Measured on 2.0: the full row holds one line from
+   600px of place and wraps under it, and a filter that takes two or three lines above the list it
+   filters is a wall of controls. The placer declares the container (the page column,
+   screen-shell.css). The facet chip is
    the atom chip, and its active state is marked by tone, not by hue; that decision lives in
    chip.css and is not repeated here.
    No em dash anywhere in this file.
@@ -28,11 +32,12 @@
 /* The row form: a few chips that are the screen's own evidence controls rather than the filter
    (Group by source on 4.0 and 4.1, Add themes on 6.1 and 6.2). It has no compact twin, so it stays
    at every width and wraps, as the grey draws it (wf-evi-controls on wireframes/theme.html:81).
-   Added at Stage 08 Step 6: these screens wore .toolbar-full, which hides below 820, and the
+   Added at Stage 08 Step 6: these screens wore .toolbar-full, which hid below 820, and the
    controls simply vanished on a phone. Same box as .toolbar-full, minus the hiding. */
 .toolbar-row { display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; flex: 1; }
 
-@media (max-width: 820px) {
+/* threshold 39rem: below it the full row gives way to the compact Filter button */
+@container (width < 39rem) {
   .toolbar-full { display: none; }
   .toolbar-compact { display: flex; align-items: center; gap: var(--space-3); margin-left: 0; }
 }

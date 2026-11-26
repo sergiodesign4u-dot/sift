@@ -1,5 +1,5 @@
 /* design/system/components/breadcrumb.css - level 2, molecule.
-   Reads: --line-hairline, --text-primary, --text-secondary, --size-target, --space-2, --space-7, --space-9
+   Reads: --line-hairline, --text-primary, --text-secondary, --size-target, --space-2, --gutter-page
    Page:  design/kit/breadcrumb.html
    Stands on: 9 screens (inventory); in colour 3.2 and the four 4.0 states. The links inside are plain
    anchors styled by this file, not the atom .link.
@@ -12,14 +12,13 @@
    it is told apart by being plain text after the last separator, not by a fainter colour. Until
    Stage 08 Step 9 it carried opacity 0.7, which put it at 3.44 in dark and 3.13 in light, under
    the 4.5 ink floor; every walk before then read the colour and never multiplied the opacity.
+   BEHAVIOUR AT WIDTH (Stage 10 Step 4, round 2): FLUID. Its side gutter is --gutter-page, 16px at
+   a 360 window growing to 22px at 1040 and up; until Stage 10 it switched from 22 to 16 at an 820
+   viewport. 360 keeps its 16 (the owner's option A at Step 2), so nothing moves there.
    No em dash anywhere in this file.
 */
 
-.breadcrumb { display: flex; align-items: center; gap: var(--space-2); font-size: 12px; color: var(--text-secondary); padding: 0 calc(var(--frame-inset, 0px) + var(--space-9)); border-bottom: 1px solid var(--line-hairline); }
+.breadcrumb { display: flex; align-items: center; gap: var(--space-2); font-size: 12px; color: var(--text-secondary); padding: 0 calc(var(--frame-inset, 0px) + var(--gutter-page)); border-bottom: 1px solid var(--line-hairline); }
 .breadcrumb a { display: inline-flex; align-items: center; min-height: var(--size-target); color: var(--text-secondary); text-decoration: none; }
 .breadcrumb a:hover { color: var(--text-primary); }
 .breadcrumb span { color: var(--text-secondary); }
-
-@media (max-width: 820px) {
-  .breadcrumb { padding: 0 var(--space-7); }
-}

@@ -1,6 +1,6 @@
 /* design/system/components/source-card.css - level 2, molecule.
    Reads: --line-hairline, --bg-surface, --text-primary, --text-secondary, --radius-md,
-          --font-mono, --weight-medium, --type-sm, --type-xs, --type-2xs, --space-*
+          --font-mono, --weight-medium, --type-sm, --type-xs, --type-2xs, --space-*, --grid-col-min, --grid-gap
    Page:  design/kit/source-card.html
    Stands on: 3.0, 3.4, 3.5. Connectable 6 occurrences, not yet available 3.
    Contains: the icon slot (.iconslot--card) and the outlined button (.btn--ghost).
@@ -12,12 +12,18 @@
    .src-avail is the grid that holds the cards. The card itself is not interactive: its button is
    the atom, and it carries its own states.
 
+   BEHAVIOUR AT WIDTH (Stage 10 Step 4, round 2): FLUID. .src-avail counts its own columns with
+   auto-fill from --grid-col-min (15rem, 240px), the literal it carried until Stage 10, and a gap of
+   --grid-gap (10px, the same --space-4 as before); the number
+   of columns is never a token. The minimum is min(--grid-col-min, 100%): in a place narrower than
+   15rem (a 260px stand box, or a phone with a large reader font) one column fills the place instead
+   of spilling past it. No query.
    No em dash anywhere in this file.
 */
 
 .src-avail {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: var(--space-4); padding: var(--space-2) var(--space-3) var(--space-7);
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(min(var(--grid-col-min), 100%), 1fr));
+  gap: var(--grid-gap); padding: var(--space-2) var(--space-3) var(--space-7);
 }
 .src-card {
   display: flex; flex-direction: column; gap: 9px;

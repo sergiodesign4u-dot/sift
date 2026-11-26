@@ -218,9 +218,31 @@
 <tr><td>the title</td><td><code>.h1</code></td><td>22px, the strong weight, the head tracking</td></tr>
 <tr><td>the line</td><td><code>.sub</code></td><td>Secondary ink, 13.5px, capped at 70ch</td></tr>
 <tr><td>the meta row</td><td><code>.head-meta</code></td><td>Detail heads only. Confidence, recency, rank</td></tr>
-<tr><td>the action</td><td><code>.head-action</code></td><td>Does not grow. At 820 and below it takes the full width and centres its label</td></tr>
+<tr><td>the action</td><td><code>.head-action</code></td><td>Does not grow. In a place under 26rem it takes the full width and centres its label</td></tr>
 <tr><td>the denominator</td><td><code>.scope</code> (atom)</td><td>Under the row, inside the head</td></tr>
         </tbody></table></div>
+        <h3 class="kit-h3">Behaviour at width</h3>
+        <p class="kit-note"><b>A container query, threshold 26rem</b> (416px). Below it the one head action takes the full width and the meta row tightens its gap. The measured reason: beside the action a detail title breaks in two under 395px of place. The place is declared by its placer, the page column <code class="kit-mono">.appmain</code> declares it, in <code class="kit-mono">screen-shell.css</code>. Until Stage 10 this was a viewport query at 820. The sub keeps its 70ch. The same head, live, in two places:</p>
+        <div class="kit-widths">
+          <div class="kit-width kit-width--narrow"><div class="kit-width-cap">a 260px place: the narrow form</div><header class="screenhead">
+              <div class="screenhead-row">
+                <div class="head-text">
+                  <h1 class="h1">Onboarding is confusing</h1>
+                  <div class="head-meta"><span class="conf"><span class="conf-n">n=42</span></span><span>latest feedback 2 days ago</span><span>rank 1 of 12 by signal</span></div>
+                </div>
+                <div class="head-action"><a class="btn" href="#">Add to brief</a></div>
+              </div>
+            </header></div>
+          <div class="kit-width kit-width--wide"><div class="kit-width-cap">the rest of this column: the wide form</div><header class="screenhead">
+              <div class="screenhead-row">
+                <div class="head-text">
+                  <h1 class="h1">Onboarding is confusing</h1>
+                  <div class="head-meta"><span class="conf"><span class="conf-n">n=42</span></span><span>latest feedback 2 days ago</span><span>rank 1 of 12 by signal</span></div>
+                </div>
+                <div class="head-action"><a class="btn" href="#">Add to brief</a></div>
+              </div>
+            </header></div>
+        </div>
       </section>
 
       <section class="kit-sec" id="axes">
@@ -239,7 +261,7 @@
 <tr><td><code>--text-secondary</code></td><td>tokens.css</td><td>the sub and the meta row</td></tr>
 <tr><td><code>--type-xl</code>, <code>--weight-strong</code>, <code>--tracking-head</code></td><td>tokens.css</td><td>the H1: 22px</td></tr>
 <tr><td><code>--type-sm</code>, <code>--type-xs</code></td><td>tokens.css</td><td>the sub (13.5px) and the meta row (12.5px)</td></tr>
-<tr><td><code>--space-1</code>, <code>--space-4</code>, <code>--space-6</code>, <code>--space-7</code></td><td>tokens.css</td><td>4px above the sub, 10px meta gap at 820, 14px and 16px for the padding and the row gap</td></tr>
+<tr><td><code>--space-1</code>, <code>--space-4</code>, <code>--space-6</code>, <code>--space-7</code></td><td>tokens.css</td><td>4px above the sub, a 10px meta gap in a place under 26rem, 14px and 16px for the padding and the row gap</td></tr>
         </tbody></table></div>
         <p class="kit-note">Kept as literals because no exact step exists: <code class="kit-mono">9px</code> above the meta row, <code class="kit-mono">70ch</code> on the sub.</p>
       </section>
@@ -273,6 +295,7 @@
       <section class="kit-sec">
         <h2 class="kit-h2">Changes, newest first</h2>
         <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-26</td><td>Stage 10 Step 4, round 2: the screen head measures its place. The 820 viewport query became a container query at 26rem (416px): below it the head action takes the full width and the meta row tightens its gap. Drawn live on this page</td><td><code>design/kit/docs/responsive.md</code></td></tr>
           <tr><td>2026-11-26</td><td>"Which form" written under When: the bordered head where it carries a scope line or an action or opens a working surface, the plain head where it only names the page. Counted on 19 colour screens; the reader at Step 6 found no rule</td><td><code>docs/decisions.md</code>, "Stage 09 Step 6"</td></tr>
           <tr><td>2026-11-26</td><td>Limits, R6: the exception now names 5.1, the redacted item, beside 8.0 to 8.2. The first screen built from the system met a page whose whole content is the state, and the rule was too narrow for it</td><td><code>docs/decisions.md</code>, "Stage 09 Step 5"</td></tr>
           <tr><td>2026-11-26</td><td>The rule block gained its third sub-point, <b>Limits</b>: R1, R6 from the usage rules. The rules live on <code>architecture.html</code>; this page carries the short copy</td><td><code>docs/decisions.md</code>, "Stage 09 Step 1"</td></tr>

@@ -159,11 +159,23 @@
         <p class="kit-note">Quote then meta, in that order. The words come first because they are the evidence; everything the product knows about them comes after and recedes.</p>
         <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
           <tr><td>the snippet</td><td><code>a.snippet</code></td><td>The anchor itself. The whole strip is the target, with a rule underneath that belongs to the snippet</td></tr>
-          <tr><td>the quote</td><td><code>.snippet-quote</code></td><td>Reading size, primary ink, 1.65 line height, the prose measure at most</td></tr>
+          <tr><td>the quote</td><td><code>.snippet-quote</code></td><td>Reading size, primary ink, 1.65 line height, the text measure (<code>--container-text</code>, 52ch) at most</td></tr>
           <tr><td>the meta line</td><td><code>.snippet-meta</code></td><td>Mono, secondary ink, a wrapping flex row: index, channel, date, who</td></tr>
           <tr><td>the index</td><td><code>.cite</code></td><td>The citation atom, first in the meta line</td></tr>
           <tr><td>the redaction</td><td><code>.redacted</code></td><td>The meta line's face, size and ink, on a raised surface. Its appearance was taken from that nearest relative</td></tr>
         </tbody></table></div>
+        <h3 class="kit-h3">Behaviour at width</h3>
+        <p class="kit-note"><b>A container, no threshold</b> (Stage 10 Step 4). The quote stops at <code class="kit-mono">--container-text</code>, 52ch, about 70 characters, and wraps. Until Stage 10 it read <code class="kit-mono">--measure-prose</code>, 92ch. Nothing switches: in a narrow place the quote simply wraps earlier. The measured reason is the line length the eye can track. The place is declared by its placer, the page column <code class="kit-mono">.appmain</code> declares it, in <code class="kit-mono">screen-shell.css</code>. The same snippet, live, in two places:</p>
+        <div class="kit-widths">
+          <div class="kit-width kit-width--narrow"><div class="kit-width-cap">a 260px place: the narrow form</div><a class="snippet" href="#">
+              <div class="snippet-quote">"I signed up and just stared at an empty dashboard. No idea what to do first, or where my data was supposed to come from."</div>
+              <div class="snippet-meta"><span class="cite">1</span> Intercom &middot; 2 days ago &middot; Customer, mid-market</div>
+            </a></div>
+          <div class="kit-width kit-width--wide"><div class="kit-width-cap">the rest of this column: the wide form</div><a class="snippet" href="#">
+              <div class="snippet-quote">"I signed up and just stared at an empty dashboard. No idea what to do first, or where my data was supposed to come from."</div>
+              <div class="snippet-meta"><span class="cite">1</span> Intercom &middot; 2 days ago &middot; Customer, mid-market</div>
+            </a></div>
+        </div>
       </section>
 
       <section class="kit-sec" id="axes">
@@ -182,7 +194,7 @@
           <tr><td><code>--text-primary</code></td><td><code>--grey-050</code> dark, <code>--grey-950</code> light</td><td>the quote</td></tr>
           <tr><td><code>--text-secondary</code></td><td><code>--grey-400</code> dark, <code>--grey-550</code> light</td><td>the meta line and the redaction</td></tr>
           <tr><td><code>--bg-raised</code></td><td><code>--grey-850</code> dark, <code>--grey-075</code> light</td><td>the ground of the redaction mark</td></tr>
-          <tr><td><code>--font-mono</code>, <code>--type-sm</code>, <code>--type-2xs</code>, <code>--measure-prose</code></td><td>tokens.css</td><td>the meta face, the quote and meta sizes, the 92ch measure</td></tr>
+          <tr><td><code>--font-mono</code>, <code>--type-sm</code>, <code>--type-2xs</code>, <code>--container-text</code></td><td>tokens.css</td><td>the meta face, the quote and meta sizes, the 52ch text measure</td></tr>
           <tr><td><code>--space-3</code>, <code>--space-4</code>, <code>--radius-sm</code>, <code>--ease</code></td><td>tokens.css</td><td>side padding and the meta margin, the meta gap, the mark's corner, the transition</td></tr>
         </tbody></table></div>
         <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>State</th><th>Token</th><th>What moves</th></tr></thead><tbody>
@@ -215,6 +227,7 @@
       <section class="kit-sec">
         <h2 class="kit-h2">Changes, newest first</h2>
         <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-26</td><td>Stage 10 Step 4, round 2: the snippet quote reads <code>--container-text</code> (52ch, about 70 characters) instead of <code>--measure-prose</code> (92ch), which is deleted. No query. Drawn live on this page</td><td><code>design/kit/docs/responsive.md</code></td></tr>
           <tr><td>2026-11-21</td><td>Entered the system: <code>components/snippet.css</code>, on semantic roles, and this page in the card format</td><td><code>docs/decisions.md</code>, "The molecules entered the system"</td></tr>
           <tr><td>2026-08-18</td><td>Declared in the flat kit <code>design/kit/kit.css</code> at Stage 07 Step 3, with <code>.redacted</code>. The redacted form was accepted with its appearance taken from the mono meta line of the same snippet</td><td>commit <code>d461e12</code>; <code>design/kit/docs/inventory.md</code>, "Control without a form: every row closed"</td></tr>
         </tbody></table></div>

@@ -70,7 +70,7 @@
             <a class="theme-drill" href="#" aria-label="Open theme: Wants Salesforce integration">&rsaquo;</a>
           </li>
         </ul>
-        <p class="kit-hero-note">Live. Hover a row, tick a box, narrow the window below 820px</p>
+        <p class="kit-hero-note">Live. Hover a row, tick a box. The narrow form is drawn under Technical, Behaviour at width</p>
       </div>
       <p class="kit-note">The ranked row of 2.0 and the signature row of the product. It stands on one screen and is in the system anyway, as a declared exception: it owns the canonical confidence layout.</p>
 
@@ -105,7 +105,7 @@
 
       <section class="kit-sec" id="forms">
         <h2 class="kit-h2">Other forms</h2>
-        <p class="kit-note"><b>The 360 form, clamped quote.</b> Below 820px the row becomes a grid with named areas: checkbox, rank, body and drill on the first line, the confidence indicator on its own line under the body, and the quote clamped to two lines. Reading order is unchanged. It is a media query, so it cannot be forced inside this page: narrow the window and the specimen at the top of the page rearranges itself, or open <a href="../synthesis.html">2.0 Synthesis</a> at 360.</p>
+        <p class="kit-note"><b>The 360 form, clamped quote.</b> Below a 29rem place the row becomes a grid with named areas: checkbox, rank, body and drill on the first line, the confidence indicator on its own line under the body, and the quote clamped to two lines. Reading order is unchanged. It is a container query, so a narrow box forces it: the live pair is under Technical, Behaviour at width, and <a href="../synthesis.html">2.0 Synthesis</a> shows it in the product at 360.</p>
       </section>
 
       <section class="kit-sec" id="props">
@@ -187,11 +187,17 @@
           <tr><td>checkbox</td><td><code>input.check</code></td><td>The atom, 24px by a named exception: a 44px box would double the height of every ranked row</td></tr>
           <tr><td>rank</td><td><code>.rank</code></td><td>The atom. Mono and quiet: rank is structure, not an action, so it never takes the accent</td></tr>
           <tr><td>label</td><td><code>.theme-label</code> inside <code>a.theme-main</code></td><td>The theme in the customer's language, primary ink, medium weight</td></tr>
-          <tr><td>representative quote</td><td><code>.theme-quote</code></td><td>Recessed, behind a hairline rather than in a card. 78ch at most; two lines at 360</td></tr>
+          <tr><td>representative quote</td><td><code>.theme-quote</code></td><td>Recessed, behind a hairline rather than in a card. 78ch at most; two lines in a place under 29rem</td></tr>
           <tr><td>provenance</td><td><code>.theme-prov</code></td><td>Mono. Which sources fed it, plus the latest feedback date</td></tr>
-          <tr><td>confidence</td><td><code>.conf</code></td><td>The atom: <code>n=X</code>, plus the low-signal badge. Its own line at 360</td></tr>
+          <tr><td>confidence</td><td><code>.conf</code></td><td>The atom: <code>n=X</code>, plus the low-signal badge. Its own line in a place under 29rem</td></tr>
           <tr><td>drill</td><td><code>a.theme-drill</code></td><td>The 44px target, a glyph in secondary ink that steps to primary on the row's hover</td></tr>
         </tbody></table></div>
+        <h3 class="kit-h3">Behaviour at width</h3>
+        <p class="kit-note"><b>A container query, threshold 29rem</b> (464px). Below it the confidence pill moves under the body and the quote clamps to two lines; the checkbox, rank, body and drill stay on the first line, and the quote keeps its 78ch. The measured reason: beside the pill the theme label breaks in two under 435px of place. The place is declared by its placer, the page column <code class="kit-mono">.appmain</code> declares it, in <code class="kit-mono">screen-shell.css</code>; on this stand the section and the box declare it. Until Stage 10 this was a viewport query at 820. The same row, live, in two places:</p>
+        <div class="kit-widths">
+          <div class="kit-width kit-width--narrow"><div class="kit-width-cap">a 260px place: the narrow form</div><ul class="list"><li class="theme"><input type="checkbox" class="check" aria-label="Select theme: Onboarding is confusing"><span class="rank" aria-hidden="true">1</span><a class="theme-main" href="#"><span class="theme-label">Onboarding is confusing</span><span class="theme-quote">"I signed up and just stared at an empty dashboard. No idea what to do first."</span><span class="theme-prov">CSV, Intercom &middot; latest feedback 2 days ago</span></a><span class="conf"><span class="conf-n">n=42</span></span><a class="theme-drill" href="#" aria-label="Open theme: Onboarding is confusing">&rsaquo;</a></li></ul></div>
+          <div class="kit-width kit-width--wide"><div class="kit-width-cap">the rest of this column: the wide form</div><ul class="list"><li class="theme"><input type="checkbox" class="check" aria-label="Select theme: Onboarding is confusing"><span class="rank" aria-hidden="true">1</span><a class="theme-main" href="#"><span class="theme-label">Onboarding is confusing</span><span class="theme-quote">"I signed up and just stared at an empty dashboard. No idea what to do first."</span><span class="theme-prov">CSV, Intercom &middot; latest feedback 2 days ago</span></a><span class="conf"><span class="conf-n">n=42</span></span><a class="theme-drill" href="#" aria-label="Open theme: Onboarding is confusing">&rsaquo;</a></li></ul></div>
+        </div>
       </section>
 
       <section class="kit-sec" id="axes">
@@ -199,7 +205,7 @@
         <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
           <tr><td>confidence</td><td>strong 4 &middot; low signal 2, on 2.0</td><td>Chosen by the data, not by the designer: the badge appears when the theme is thin. The threshold value is a v2 question and is <code>[?]</code> in IA</td></tr>
           <tr><td>selected</td><td>a state, not an axis</td><td><b>The accent marks the selected row</b>, and only that row (A1)</td></tr>
-          <tr><td>viewport</td><td>row above 820px &middot; grid with the confidence on its own line below</td><td>A row becomes a stack only where the row would otherwise cut a value in half. At 360 the pill squeezed the label to three lines</td></tr>
+          <tr><td>place</td><td>row from a 29rem place &middot; grid with the confidence on its own line below</td><td>A row becomes a stack only where the row would otherwise cut a value in half. Beside the pill the label breaks in two under 435px of place</td></tr>
         </tbody></table></div>
         <p class="kit-note">The counts are read from <code class="kit-mono">design/synthesis.html</code>: six rows, two of them with the badge. The inventory gives the component one form and five states and no occurrence count.</p>
       </section>
@@ -252,6 +258,7 @@
       <section class="kit-sec">
         <h2 class="kit-h2">Changes, newest first</h2>
         <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-26</td><td>Stage 10 Step 4, round 2: the theme card measures its place, not the window. The 820 viewport query became a container query at 29rem (464px): below it the pill goes under the body and the quote clamps to two lines. The quote keeps 78ch. Drawn live on this page</td><td><code>design/kit/docs/responsive.md</code></td></tr>
           <tr><td>2026-11-26</td><td>Limits, R7: widened by the owner to every provenance line that names a theme, after the first screen built from the system named one on 5.0 without its count</td><td><code>docs/decisions.md</code>, "Stage 09 Step 5"</td></tr>
           <tr><td>2026-11-26</td><td>The rule block gained its third sub-point, <b>Limits</b>: R7 from the usage rules. The rules live on <code>architecture.html</code>; this page carries the short copy</td><td><code>docs/decisions.md</code>, "Stage 09 Step 1"</td></tr>
           <tr><td>2026-11-21</td><td>Entered the system: <code>components/theme-card.css</code>, on semantic roles, and this page in the card format. The selected strip reads <code>--bg-action</code></td><td><code>docs/decisions.md</code>, "The molecules entered the system"</td></tr>

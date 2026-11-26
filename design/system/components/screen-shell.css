@@ -35,13 +35,19 @@
    any window up to 1040px and 360 does not move. The header, the breadcrumb, the page, a notice
    in the frame, the static selection bar and the footer add it to their own gutter. A limit,
    not a breakpoint: it stops, it never switches.
+   THE PLACER DECLARES THE PLACE (Stage 10 Step 4, round 2). A component measures its place
+   through @container, and a query with no container above it never matches and raises no
+   error. So the shell, which places them, declares both of its places: .appmain is the page
+   column (the theme card, source row, brief row, screen head, toolbar and action bar read it),
+   and .app is the frame (the static selection bar, which stands outside the column, reads it).
+   Inline size only: their widths come from the canvas, never from their content.
    No em dash anywhere in this file.
 */
 
-.appmain { flex: 1; padding: 20px calc(var(--frame-inset, 0px) + var(--space-9)); }
+.appmain { flex: 1; padding: 20px calc(var(--frame-inset, 0px) + var(--space-9)); container-type: inline-size; }
 
 /* the screen edition: a screen that is the page */
-.app { --frame-inset: max(0px, (100% - var(--container-page)) / 2); display: flex; flex-direction: column; min-height: 100vh; background: var(--bg-page); color: var(--text-primary); }
+.app { --frame-inset: max(0px, (100% - var(--container-page)) / 2); container-type: inline-size; display: flex; flex-direction: column; min-height: 100vh; background: var(--bg-page); color: var(--text-primary); }
 .app > .appmain { flex: 1; }
 .app > .notice { margin: var(--space-6) calc(var(--frame-inset) + var(--space-9)); }
 .app:has(.theme .check:checked) .selbar { display: flex; }

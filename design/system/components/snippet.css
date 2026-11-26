@@ -1,6 +1,6 @@
 /* design/system/components/snippet.css - level 2, molecule.
    Reads: --line-hairline, --bg-hover, --bg-raised, --text-primary, --text-secondary, --font-mono,
-          --type-sm, --type-2xs, --space-3, --space-4, --measure-prose, --radius-sm, --ease
+          --type-sm, --type-2xs, --space-3, --space-4, --container-text, --radius-sm, --ease
    Page:  design/kit/snippet.html
    Stands on: 4.0 Theme detail and 4.1 low signal, 12 snippets. Canonical, owner 4.0.
    Contains: .cite, the static citation index, an atom in components/citation.css.
@@ -13,12 +13,14 @@
    Redacted: PII is scrubbed by default and the product says so where it happened, rather than
    silently showing a gap. .redacted takes its appearance from its nearest relative, the mono
    meta line of the same snippet, on the raised surface.
+   BEHAVIOUR AT WIDTH (Stage 10 Step 4, round 2): a CONTAINER. The quote stops at --container-text
+   (52ch, about 70 characters) and wraps; until Stage 10 it read --measure-prose, 92ch. No query.
    No em dash anywhere in this file.
 */
 
 .snippet { display: block; padding: 15px var(--space-3); border-bottom: 1px solid var(--line-hairline); text-decoration: none; color: inherit; transition: background .12s var(--ease); }
 .snippet:hover { background: var(--bg-hover); }
-.snippet-quote { font-size: var(--type-sm); color: var(--text-primary); line-height: 1.65; max-width: var(--measure-prose); }
+.snippet-quote { font-size: var(--type-sm); color: var(--text-primary); line-height: 1.65; max-width: var(--container-text); }
 .snippet-meta { display: flex; gap: var(--space-4); flex-wrap: wrap; align-items: center; font-family: var(--font-mono); font-size: var(--type-2xs); color: var(--text-secondary); margin-top: var(--space-3); }
 
 .redacted { font-family: var(--font-mono); font-size: var(--type-2xs); color: var(--text-secondary); background: var(--bg-raised); border-radius: var(--radius-sm); padding: 0 5px; }

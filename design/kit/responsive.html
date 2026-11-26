@@ -141,7 +141,7 @@
         <div class="rs-cell"><b>sales-calls.csv</b>Mapping needed</div>
         <div class="rs-cell"><b>Zendesk</b>Later, on the same connection</div>
       </div></div>
-      <p class="rs-cap"><b>--grid-col-min 15rem</b> (240px, the source card, 3.0) &middot; <b>--grid-gap</b> 10px. Read from Step 4.</p></div>
+      <p class="rs-cap"><b>--grid-col-min 15rem</b> (240px, the source card, 3.0) &middot; <b>--grid-gap</b> 10px. Read by <code>.src-avail</code> since Step 4, round 2.</p></div>
     </section>
 
     <section class="kit-sec" id="type"><h2 class="kit-h2">Fluid type</h2>
@@ -201,7 +201,47 @@
       <tr><td>group heading</td><td>12 screens</td><td><b>through its placer</b></td><td>its 820 rule lives in <code>patterns/grouped-list.css</code> and is the rows' inner padding, not the page gutter: it moves with the pattern, round 4. Verdict of Step 1 ("gutter token") revised on verification</td></tr>
     </tbody></table></div>
     <p class="kit-note">One CSS change in the round: <code class="kit-mono">scope.css</code> reads <code class="kit-mono">--container-text</code>. No atom needs a container threshold: the atoms that could break do so as text, and text wraps. Held against Step 3: at 360, 24 of 24 screens at 0 pixels; at 1024 and 1440 exactly the 13 colour screens that carry a scope line changed, 26 frames (2.0 and its three states, 3.0 and its two, 4.0 and its three, 6.0 and its empty state), each from the scope line down, as the line now wraps at about 70 characters; every other screen 0. The pair, 2.0 Synthesis: <a href="screens/s10/r1-synthesis-360-before.png">360 before</a> and <a href="screens/s10/r1-synthesis-360-after.png">after</a> (identical files), <a href="screens/s10/r1-synthesis-1440-before.png">1440 before</a> and <a href="screens/s10/r1-synthesis-1440-after.png">after</a>.</p>
-    <p class="rs-stub">Round 2, molecules; round 3, organisms: next.</p></section>
+    <h3 class="kit-h3">Round 2, molecules: N 22 = M 17 + K 5</h3>
+    <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Molecule</th><th>Stands on</th><th>Verdict</th><th>What was done</th></tr></thead><tbody>
+      <tr><td>theme card</td><td>2.0</td><td><b>container query</b></td><td>the 820 viewport query became <code>@container (width &lt; 29rem)</code>: below it the confidence moves under the body and the quote clamps to two lines. The quote keeps 78ch. <a href="theme-card.html">Page</a></td></tr>
+      <tr><td>source row</td><td>3.0, 3.5</td><td><b>container query</b></td><td><code>@container (width &lt; 36rem)</code>: stats and actions each take a full row. <a href="source-row.html">Page</a></td></tr>
+      <tr><td>saved brief row</td><td>6.0</td><td><b>container query</b></td><td><code>@container (width &lt; 28rem)</code>: the actions take their own row. <a href="brief-row.html">Page</a></td></tr>
+      <tr><td>screen head</td><td>15 screens</td><td><b>container query</b></td><td><code>@container (width &lt; 26rem)</code>: the one action goes full width. The sub keeps 70ch. <a href="screen-head.html">Page</a></td></tr>
+      <tr><td>toolbar</td><td>2.0, 4.0, 4.1, 6.1, 6.2</td><td><b>container query</b></td><td><code>@container (width &lt; 39rem)</code>: one compact Filter button replaces the full row. <a href="toolbar.html">Page</a></td></tr>
+      <tr><td>action bar</td><td>3.2, 5.0, 5.1, 7.2</td><td><b>container query</b></td><td><code>@container (width &lt; 29rem)</code>: the note takes its own line, the buttons share the next. <a href="actionbar.html">Page</a></td></tr>
+      <tr><td>selection bar</td><td>2.0, 6.1, 6.2</td><td><b>container query on the frame</b> + gutter token</td><td><code>@container (width &lt; 42rem)</code> read on <code>.app</code>, because the static bar stands outside the column: the buttons share their line. Gutter <code>--gutter-page</code>. <a href="selbar.html">Page</a></td></tr>
+      <tr><td>evidence snippet</td><td>4.0, 4.1</td><td><b>container</b></td><td>the quote stops at <code>--container-text</code>, 52ch; was 92ch. <a href="snippet.html">Page</a></td></tr>
+      <tr><td>raw item</td><td>5.0, 5.1</td><td><b>container</b></td><td>the same; with it <code>--measure-prose</code> lost its last reader and is deleted. <a href="rawitem.html">Page</a></td></tr>
+      <tr><td>notice band</td><td>7 screens</td><td><b>container</b></td><td>the band stops at <code>--container-text</code>; it had no measure and ran 122 characters a line on 4.1. <a href="notice.html">Page</a></td></tr>
+      <tr><td>breadcrumb</td><td>9 screens</td><td><b>fluid</b></td><td>gutter <code>--gutter-page</code>, its 820 rule gone. Its narrow form S5-5: below. <a href="breadcrumb.html">Page</a></td></tr>
+      <tr><td>source card</td><td>3.0, 3.4, 3.5</td><td><b>fluid</b></td><td>the grid reads <code>--grid-col-min</code> and <code>--grid-gap</code>, the same 240 and 10px. <a href="source-card.html">Page</a></td></tr>
+      <tr><td>auth card</td><td>1.0 (grey)</td><td><b>container</b>, already</td><td>400px became 25rem. <a href="auth-card.html">Page</a></td></tr>
+      <tr><td>phase strip</td><td>6 screens</td><td><b>fluid</b>, already</td><td>it wraps; nothing changed. <a href="phase-strip.html">Page</a></td></tr>
+      <tr><td>legal TOC</td><td>9.x (grey)</td><td><b>fluid</b>, already</td><td>it wraps; the sticky rail comes with the legal document, round 3. <a href="legal-toc.html">Page</a></td></tr>
+      <tr><td>tier card, step card</td><td>0.0</td><td><b>through their placer</b></td><td>the marketing grid places them: round 3</td></tr>
+      <tr><td>provenance list</td><td>5.0, 5.1</td><td>does not adapt</td><td>short lines, one fact each, below the quote</td></tr>
+      <tr><td>composer row</td><td>6.1, 6.2</td><td>does not adapt</td><td>one line with a handle and a remove, fits at 360</td></tr>
+      <tr><td>account row</td><td>7.1, 7.2</td><td>does not adapt</td><td>a title and a sentence that wraps in its column</td></tr>
+      <tr><td>form field</td><td>5 screens</td><td>does not adapt</td><td>the form gives the width</td></tr>
+      <tr><td>skeleton card</td><td>2.2, 4.2, 6.3</td><td>does not adapt</td><td>the column it stands in gives the width</td></tr>
+    </tbody></table></div>
+    <h3 class="kit-h3">Container thresholds</h3>
+    <p class="kit-note">Local, not tokens, and listed so the check can tell them from a device breakpoint. Each is the width of the PLACE where the wide form breaks, measured, plus at least 1rem, rounded up to a whole rem. All sit above the 316px a 360 window gives the column, so 360 keeps its narrow forms. The shell places them, so <code class="kit-mono">screen-shell.css</code> declares both places: <code class="kit-mono">.appmain</code>, the column, and <code class="kit-mono">.app</code>, the frame.</p>
+    <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Component</th><th>Query</th><th>Place</th><th>Wide form breaks</th><th>Switches, measured</th></tr></thead><tbody>
+      <tr><td>screen head</td><td><code>width &lt; 26rem</code></td><td>column</td><td>title in two under 395px</td><td>415 narrow, 416 wide</td></tr>
+      <tr><td>saved brief row</td><td><code>width &lt; 28rem</code></td><td>column</td><td>title in two under 430px</td><td>447 narrow, 448 wide</td></tr>
+      <tr><td>theme card</td><td><code>width &lt; 29rem</code></td><td>column</td><td>label in two under 435px</td><td>463 narrow, 464 wide</td></tr>
+      <tr><td>action bar</td><td><code>width &lt; 29rem</code></td><td>column</td><td>note in two under 450px</td><td>463 narrow, 464 wide</td></tr>
+      <tr><td>source row</td><td><code>width &lt; 36rem</code></td><td>column</td><td>row wraps under 550px</td><td>575 narrow, 576 wide</td></tr>
+      <tr><td>toolbar</td><td><code>width &lt; 39rem</code></td><td>column</td><td>full row wraps under 600px</td><td>623 narrow, 624 wide</td></tr>
+      <tr><td>selection bar, static</td><td><code>width &lt; 42rem</code></td><td>frame</td><td>wraps under about 650px</td><td>671 narrow, 672 wide</td></tr>
+    </tbody></table></div>
+    <p class="kit-note"><b>Measured at a 1600 window</b>, with the frame narrowed one pixel at a time: each of the seven switches at exactly its threshold, so each answers its place and not the window. A query with no container above it never matches and raises no error; at 360, 24 of 24 screens at 0 pixels against round 1 is the proof that every one finds its container.</p>
+    <p class="kit-note"><b>Two measures kept, withdrawn on verification.</b> The theme quote (78ch) and the screen head's sub (70ch) were moved onto <code class="kit-mono">--container-text</code> and measured: at 52ch the 2.0 sub and the quotes broke into two lines with one or two words left alone. Each is one sentence, not continuous text, so each keeps its own measure.</p>
+    <p class="kit-note"><b>Held against round 1.</b> At 360, 24 of 24 screens at 0 pixels. At 1024 and 1440, 31 of 48 frames 0; the 17 that changed are only what the rows above name: the quote of the snippet (4.0, 4.1) and of the raw item (5.0), the notice (3.2, 3.5, 4.1, 5.1, 6.2), and at 1024 only the breadcrumb and the static bar, whose gutter reads 21.86px at a 1024 window and 22 from 1040. 2.0, 3.0, 6.0 and the account screens are 0: the wide forms did not change. <b>Between the point and the old 820</b> the screens do change, on purpose: at a 640 window the column is 596px, so the theme card, the source row, the brief row and the screen head take their wide forms, where the 820 viewport query gave them the phone forms; the toolbar stays compact (under 624) and the static bar keeps shared buttons (frame under 672). Width sweep: 15 screens, 50 widths, 750 frames, 0 overflow, one navigation carrier, the header sticky from 600.</p>
+    <p class="kit-note">The pairs. 4.0 Theme: <a href="screens/s10/r2-theme-360-before.png">360 before</a> and <a href="screens/s10/r2-theme-360-after.png">after</a> (identical files), <a href="screens/s10/r2-theme-1440-before.png">1440 before</a> and <a href="screens/s10/r2-theme-1440-after.png">after</a> (the snippet measure). 4.1 low signal: <a href="screens/s10/r2-theme-low-signal-1440-before.png">1440 before</a> and <a href="screens/s10/r2-theme-low-signal-1440-after.png">after</a> (the notice). At a 640 window, the place and not the window: 2.0 <a href="screens/s10/r2-synthesis-640-before.png">before</a> and <a href="screens/s10/r2-synthesis-640-after.png">after</a>, 3.0 <a href="screens/s10/r2-sources-640-before.png">before</a> and <a href="screens/s10/r2-sources-640-after.png">after</a>.</p>
+    <p class="kit-note"><b>Not built, the owner's decision.</b> S5-5, the breadcrumb's narrow form (a back chevron plus the theme name, <code class="kit-mono">ia/docs/pages/evidence.md:37</code>), is a new look at 360 and would move the pixels the stage promises not to move. B-26 (<code class="kit-mono">text-wrap: pretty</code>) changes line breaks at 360 the same way. Neither is taken silently.</p>
+    <p class="rs-stub">Round 3, organisms; round 4, patterns: next.</p></section>
     <section class="kit-sec" id="patterns"><h2 class="kit-h2">Pattern behaviour</h2>
     <p class="rs-stub">Filled at Step 4: Grouped list and Filtered list, and the <code class="kit-mono">container-type</code> each declares for what it places.</p></section>
     <section class="kit-sec" id="new"><h2 class="kit-h2">New behaviour</h2>

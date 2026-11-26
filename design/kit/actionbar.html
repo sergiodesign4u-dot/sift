@@ -67,7 +67,7 @@
           <tr><td>Bar</td><td>own class</td><td><code>.actionbar</code> on a <code>div</code>: a row, 10px between its children, 18px above</td><td>none: the class is required</td></tr>
           <tr><td>Actions</td><td>zone</td><td>atom <code>.btn</code> or <code>.btn--ghost</code>, as <code>a</code> or <code>button</code>, in reading order</td><td>required</td></tr>
           <tr><td>Note</td><td>zone</td><td><code>.actionbar-note</code>, a <code>span</code> first in the row, secondary ink, pushed to the left edge</td><td>absent</td></tr>
-          <tr><td>360</td><td>layout</td><td>the note takes its own line and the actions share the next</td><td>n/a</td></tr>
+          <tr><td>Under 29rem of place</td><td>layout</td><td>the note takes its own line and the actions share the next</td><td>n/a</td></tr>
           <tr><td>State</td><td>none</td><td>the bar has none; the buttons keep theirs</td><td>n/a</td></tr>
         </tbody></table></div>
       </section>
@@ -134,8 +134,22 @@
         <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
           <tr><td>the bar</td><td><code>.actionbar</code></td><td>A flex row, centred on the cross axis, 18px above it</td></tr>
           <tr><td>the note</td><td><code>.actionbar-note</code></td><td>Optional. First in the row, secondary ink. Its auto right margin pushes the actions to the right edge</td></tr>
-          <tr><td>the actions</td><td>atom <code>.btn</code>, <code>.btn--ghost</code></td><td>Keep their own states. At 360 they share a line equally</td></tr>
+          <tr><td>the actions</td><td>atom <code>.btn</code>, <code>.btn--ghost</code></td><td>Keep their own states. In a place under 29rem they share a line equally</td></tr>
         </tbody></table></div>
+        <h3 class="kit-h3">Behaviour at width</h3>
+        <p class="kit-note"><b>A container query, threshold 29rem</b> (464px). Below it the bar wraps, the note takes its own line and the buttons share the next. The measured reason: beside two buttons the note breaks in two under 450px of place. The place is declared by its placer, the page column <code class="kit-mono">.appmain</code> declares it, in <code class="kit-mono">screen-shell.css</code>. Until Stage 10 this was a viewport query at 820. The same bar, live, in two places:</p>
+        <div class="kit-widths">
+          <div class="kit-width kit-width--narrow"><div class="kit-width-cap">a 260px place: the narrow form</div><div class="actionbar">
+              <span class="actionbar-note">1 column still needs a field</span>
+              <a class="btn--ghost" href="#">Back to sources</a>
+              <a class="btn" href="#">Import 840 items</a>
+            </div></div>
+          <div class="kit-width kit-width--wide"><div class="kit-width-cap">the rest of this column: the wide form</div><div class="actionbar">
+              <span class="actionbar-note">1 column still needs a field</span>
+              <a class="btn--ghost" href="#">Back to sources</a>
+              <a class="btn" href="#">Import 840 items</a>
+            </div></div>
+        </div>
       </section>
 
       <section class="kit-sec" id="axes">
@@ -153,7 +167,7 @@
           <tr><td><code>--type-xs</code></td><td>tokens.css</td><td>the note, 12.5px</td></tr>
           <tr><td><code>--space-4</code></td><td>tokens.css</td><td>the 10px between the children</td></tr>
           <tr><td><code>--space-8</code></td><td>tokens.css</td><td>the 18px above the bar</td></tr>
-          <tr><td><code>2px</code></td><td>literal</td><td>the margin under the note at 360. It has no step on the space scale</td></tr>
+          <tr><td><code>2px</code></td><td>literal</td><td>the margin under the note in a narrow place. It has no step on the space scale</td></tr>
         </tbody></table></div>
         <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>State</th><th>Token</th><th>What moves</th></tr></thead><tbody>
           <tr><td>hover, focus, active, disabled</td><td><b>absent</b></td><td>The bar is not interactive. The buttons carry their own</td></tr>
@@ -174,7 +188,7 @@
   &lt;a class="btn" href="synthesis-loading.html"&gt;Import 840 items&lt;/a&gt;
 &lt;/div&gt;</pre>
         </div>
-        <p class="kit-note">File: <code class="kit-mono">design/system/components/actionbar.css</code>, with the 360 rule inside it.</p>
+        <p class="kit-note">File: <code class="kit-mono">design/system/components/actionbar.css</code>, with its container query inside it.</p>
       </section>
 
     </div>
@@ -184,6 +198,7 @@
       <section class="kit-sec">
         <h2 class="kit-h2">Changes, newest first</h2>
         <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-26</td><td>Stage 10 Step 4, round 2: the action bar measures its place. The 820 viewport query became a container query at 29rem (464px): below it the bar wraps, the note takes its own line and the buttons share the next. Drawn live on this page</td><td><code>design/kit/docs/responsive.md</code></td></tr>
           <tr><td>2026-11-26</td><td>The alignment is no longer <code>[?]</code>: the owner kept the start, as the colour layer has drawn it since Stage 07, so no screen moves. The backlog row is closed</td><td><code>docs/decisions.md</code>, "Stage 09 Step 2"</td></tr>
           <tr><td>2026-11-26</td><td>The rule block gained its third sub-point, <b>Limits</b>: R2, R3 from the usage rules. The rules live on <code>architecture.html</code>; this page carries the short copy</td><td><code>docs/decisions.md</code>, "Stage 09 Step 1"</td></tr>
           <tr><td>2026-11-21</td><td>Entered the system: <code>components/actionbar.css</code>, on semantic roles, and this page in the card format</td><td><code>docs/decisions.md</code>, "The molecules entered the system"</td></tr>
