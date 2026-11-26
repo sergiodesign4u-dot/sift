@@ -255,6 +255,8 @@ problem: the value line and the product one-liner change from screen to screen. 
 | Evidence | Provenance | Author: redacted (PII scrubbed by default) · segment: mid-market | list `[DIV-6]` |
 | Evidence | Provenance | Supports theme: Onboarding is confusing · citation 1 | list |
 | Evidence | Action | Back to theme / Copy quote | ghost-button / button |
+| Evidence | Action, done | Quote copied | button label after the copy, then back to "Copy quote" |
+| Evidence | Status | Quote copied with its citation | status region, read by a screen reader (added Stage 09 Step 5) |
 | Redacted (5.1) | Raw meta | Intercom · 9 days ago | meta |
 | Redacted (5.1) | Head | This item cannot be shown | state-title |
 | Redacted (5.1) | Body | The raw quote was scrubbed beyond display to protect personal data, so it is not available. Rather than show a broken or fabricated quote, Sift flags it. The theme still stands on its other evidence. | state-body `[DIV-6]` |
@@ -296,6 +298,7 @@ problem: the value line and the product one-liner change from screen to screen. 
 | Share-link (6.3) | Dialog | Anyone with this link can read the brief. No login needed to view, and the data is PII scrubbed like everywhere else. | body `[DIV-6]` |
 | Share-link (6.3) | Field | https://sift.app/b/7fq2-k9xa | value `[UGC]` |
 | Share-link (6.3) | Action | Copy / Done / Preview brief | button / ghost-button / button |
+| Share-link (6.3) | Action, done | Link copied | button label after the copy, and the status region (added Stage 09 Step 5) |
 | Share-link loading | Dialog | Generating share link | h1 |
 | Share-link loading | Dialog | Publishing the brief and creating a public link. This takes a moment. | body |
 | Share-link loading | Action | Continue | button |

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sift design system - Raw item</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;590;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../system/index.css">
+<link rel="stylesheet" href="_page.css">
+<script src="_theme.js"></script>
+</head>
+<!--
+  design/kit/rawitem.html - a component page in the card format (button.html is the template).
+  Stage 09 Step 5: the first component the system grew by its own contribution rule, from
+  backlog row S5-1, after the first screen built from the system had nothing for one feedback
+  item standing alone.
+
+  The page links ../system/index.css, the same entry point a product screen links. The quotes and
+  meta lines are copied from design/evidence.html and design/evidence-redacted.html.
+  No em dash anywhere.
+-->
+<body>
+<div class="kit-shell">
+  <div id="kit-panel"></div>
+  <main class="kit-main">
+
+    <div id="kit-crumbs"></div>
+    <div id="kit-head"></div>
+
+    <div class="kit-tabs" role="tablist" aria-label="Raw item page">
+      <button class="kit-tab" role="tab" id="tab-overview" aria-controls="overview" aria-selected="true">Overview</button>
+      <button class="kit-tab" role="tab" id="tab-tech" aria-controls="tech" aria-selected="false" tabindex="-1">Technical</button>
+      <button class="kit-tab" role="tab" id="tab-history" aria-controls="history" aria-selected="false" tabindex="-1">History</button>
+    </div>
+
+    <!-- ================================================================ OVERVIEW -->
+    <div class="kit-tabpanel" role="tabpanel" id="overview" aria-labelledby="tab-overview">
+
+      <div class="kit-hero">
+        <article class="u-full">
+          <div class="rawitem-meta"><span class="cite">1</span> Intercom &middot; 2 days ago &middot; Customer, mid-market</div>
+          <blockquote class="rawitem-quote">"I signed up and just stared at an empty dashboard. No idea what to do first, or where my data was supposed to come from. I expected some kind of guided setup, but it was just a blank screen. I eventually found the Sources page on my own, but a first-time user should not have to hunt for that."</blockquote>
+        </article>
+        <p class="kit-hero-note">Live: this is the product's own CSS entry point</p>
+      </div>
+      <p class="kit-note">One feedback item, in full, on its own page. What Sift knows about it comes first, in mono; then the customer's words at the document reading step, behind a rule that marks where the quote starts.</p>
+
+      <section class="kit-sec" id="variants">
+        <h2 class="kit-h2">Variants and states</h2>
+        <p class="kit-note">Not interactive: it is read, not clicked, so it has no hover, no focus and no pressed state. Links inside it and the citation index keep their own. Two content forms stand in the product, and the theme makes no difference to either, because every role it reads has its light pair.</p>
+        <div class="kit-matrix-wrap">
+          <table class="kit-matrix">
+            <thead><tr><th>Content</th><th>Where</th><th>Raw item</th></tr></thead>
+            <tbody>
+              <tr class="kit-group-end"><th>Meta and quote<code>.rawitem-meta .rawitem-quote</code></th><td class="kit-st">5.0</td>
+                <td><article><div class="rawitem-meta"><span class="cite">3</span> Intercom &middot; 5 days ago &middot; Customer, SMB</div><blockquote class="rawitem-quote">"Took me three tries to understand I had to import feedback before anything would show up."</blockquote></article></td></tr>
+              <tr class="kit-group-end"><th>Meta over a withheld item<code>.rawitem-meta</code> + <code>.h1</code> + <code>.notice</code></th><td class="kit-st">5.1</td>
+                <td><article><div class="rawitem-meta">Intercom &middot; 9 days ago</div><div class="h1">This item cannot be shown</div></article></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="kit-note">On 5.1 the quote is gone because it was scrubbed beyond display; the meta line still says where it came from, and the page's title and notice say why. The specimen draws the title in a <code class="kit-mono">div</code> so this page keeps one <code class="kit-mono">h1</code>.</p>
+      </section>
+
+      <section class="kit-sec" id="props">
+        <h2 class="kit-h2">Properties</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Property</th><th>Type</th><th>Values</th><th>Default</th></tr></thead><tbody>
+          <tr><td>Item</td><td>element</td><td><code>article</code>, no class of its own: the two zones carry it</td><td>required</td></tr>
+          <tr><td>Meta</td><td>zone</td><td><code>.rawitem-meta</code>: index, channel, date, who, in mono</td><td>required</td></tr>
+          <tr><td>Quote</td><td>zone</td><td><code>blockquote.rawitem-quote</code>, the full verbatim in quotation marks</td><td>required on 5.0, absent on 5.1</td></tr>
+          <tr><td>Citation index</td><td>atom, content</td><td><code>.cite</code> first in the meta line, the same number the theme's summary points at</td><td>present when the item is cited</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="when">
+        <h2 class="kit-h2">How to use it</h2>
+        <div class="kit-when">
+          <div>
+            <h3>When</h3>
+            <p>One feedback item on its own page, the end of the chain theme, items, raw source: 5.0, and the meta line of its state 5.1.</p>
+            <p><b>The words are the evidence.</b> This is what a PM pulls up when a decision is challenged, so the quote is set to be read aloud, at the document reading step and the full measure.</p>
+          </div>
+          <div>
+            <h3>When not</h3>
+            <ul>
+              <li>For an item in a list under a theme, linking to its page: take <a href="snippet.html">the evidence snippet</a>. Quote first, a strip with a hover; a different component.</li>
+              <li>For the facts about the item (source, author, which theme it supports): take <a href="provlist.html">the provenance list</a> under it.</li>
+              <li>For a customer quote on a theme row: that is the recessed quote of <a href="theme-card.html">the theme card</a>, smaller and secondary.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="kit-dodont">
+          <div class="kit-dd kit-dd--do">
+            <div class="kit-dd-c" inert>
+              <article class="u-full"><div class="rawitem-meta"><span class="cite">5</span> Intercom &middot; 9 days ago &middot; Customer, enterprise</div><blockquote class="rawitem-quote">"My team gave up during setup because the first-run screen was blank with no guidance."</blockquote></article>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do</div><div class="kit-dd-t">Where it came from, then the words</div>
+              <div class="kit-dd-d">The reader knows the channel and the date before reading the quote, and the rule tells the eye where the customer starts speaking.</div></div>
+          </div>
+          <div class="kit-dd kit-dd--dont">
+            <div class="kit-dd-c" inert>
+              <a class="snippet u-full" href="#"><div class="snippet-quote">"My team gave up during setup because the first-run screen was blank with no guidance."</div><div class="snippet-meta"><span class="cite">5</span> Intercom &middot; 9 days ago &middot; Customer, enterprise</div></a>
+            </div>
+            <div class="kit-dd-b"><div class="kit-dd-k">Do not</div><div class="kit-dd-t">A list row standing in for the page</div>
+              <div class="kit-dd-d">The snippet is a link with a hover, sized for a list. On the item's own page it would invite a click that goes nowhere.</div></div>
+          </div>
+        </div>
+
+        <div class="kit-limits">
+          <h3>Limits</h3>
+          <p>No usage rule on <a href="architecture.html#usage">Architecture, the usage rules</a> names this component yet.</p>
+        </div>
+        <p class="kit-note">Sources: <code class="kit-mono">ia/docs/pages/evidence.md</code> (the single raw item in context; "readable in a meeting"); the grey <code class="kit-mono">wireframes/evidence.html</code>, class <code class="kit-mono">wf-raw</code>; backlog row S5-1 in <code class="kit-mono">design/kit/docs/backlog.md</code>.</p>
+      </section>
+
+      <section class="kit-sec" id="where">
+        <h2 class="kit-h2">Where it stands</h2>
+        <p class="kit-note">One screen and its state, both in colour since Stage 09 Step 5. In grey: 5.0, 5.1. In colour:</p>
+        <div class="kit-where">
+          <a href="../evidence.html">5.0 Evidence source</a>
+          <a href="../evidence-redacted.html">5.1 Evidence redacted</a>
+        </div>
+      </section>
+    </div>
+
+    <!-- ================================================================ TECHNICAL -->
+    <div class="kit-tabpanel" role="tabpanel" id="tech" aria-labelledby="tab-tech">
+
+      <section class="kit-sec" id="anatomy">
+        <h2 class="kit-h2">Anatomy</h2>
+        <p class="kit-note">Meta then quote, the snippet's order reversed: on the item's own page the reader first needs to know what they are looking at.</p>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
+          <tr><td>the item</td><td><code>article</code></td><td>No class: nothing is drawn on the item itself</td></tr>
+          <tr><td>the meta line</td><td><code>.rawitem-meta</code></td><td>Mono, secondary ink, a wrapping flex row, 12px above what follows</td></tr>
+          <tr><td>the index</td><td><code>.cite</code></td><td>The citation atom, first in the meta line</td></tr>
+          <tr><td>the quote</td><td><code>blockquote.rawitem-quote</code></td><td>The document reading step, primary ink, 1.75 leading, the prose measure, 14px in from a 2px rule</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="kit-sec" id="tokens">
+        <h2 class="kit-h2">Tokens it reads</h2>
+        <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Reads</th><th>Which grows from</th><th>For</th></tr></thead><tbody>
+          <tr><td><code>--text-primary</code></td><td><code>--grey-050</code> dark, <code>--grey-950</code> light</td><td>the quote</td></tr>
+          <tr><td><code>--text-secondary</code></td><td><code>--grey-400</code> dark, <code>--grey-550</code> light</td><td>the meta line</td></tr>
+          <tr><td><code>--line-strong</code></td><td><code>--grey-700</code> dark, <code>--grey-350</code> light</td><td>the rule before the quote, decorative: the reason on 4.0 reads the same role</td></tr>
+          <tr><td><code>--font-mono</code>, <code>--type-2xs</code>, <code>--type-md</code>, <code>--leading-loose</code>, <code>--measure-prose</code></td><td>tokens.css</td><td>the meta face and size, the quote's reading step, leading and measure</td></tr>
+          <tr><td><code>--space-4</code>, <code>--space-5</code>, <code>--space-6</code></td><td>tokens.css</td><td>the meta gap, the space under the meta, the quote's inset</td></tr>
+        </tbody></table></div>
+        <p class="kit-note">One value off the scale: the 2px width of the rule, the same as the reason on 4.0. No new token was needed.</p>
+      </section>
+
+      <section class="kit-sec" id="markup">
+        <h2 class="kit-h2">Copy this</h2>
+        <div class="scene">
+          <pre class="kit-pre">&lt;article&gt;
+  &lt;div class="rawitem-meta"&gt;&lt;span class="cite"&gt;1&lt;/span&gt; Intercom &amp;middot; 2 days ago &amp;middot; Customer, mid-market&lt;/div&gt;
+  &lt;blockquote class="rawitem-quote"&gt;"I signed up and just stared at an empty dashboard. ..."&lt;/blockquote&gt;
+&lt;/article&gt;</pre>
+        </div>
+        <p class="kit-note">File: <code class="kit-mono">design/system/components/rawitem.css</code>, imported in the molecules group of <code class="kit-mono">design/system/index.css</code>, after the snippet.</p>
+      </section>
+    </div>
+
+    <!-- ================================================================ HISTORY -->
+    <div class="kit-tabpanel" role="tabpanel" id="history" aria-labelledby="tab-history">
+      <section class="kit-sec">
+        <h2 class="kit-h2">Changes, newest first</h2>
+        <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-26</td><td>Entered the system as five things (css, this page, registry entry, inventory row, import in the molecules group) from backlog row S5-1, closed by the owner. 5.0 and 5.1 moved onto it from the snippet's parts</td><td><code>docs/decisions.md</code>, "Stage 09 Step 5"</td></tr>
+        </tbody></table></div>
+      </section>
+    </div>
+
+    <div id="kit-pager"></div>
+
+  </main>
+</div>
+
+<script src="_nav.js"></script>
+</body>
+</html>

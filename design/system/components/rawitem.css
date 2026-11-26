@@ -1,0 +1,37 @@
+/* design/system/components/rawitem.css - level 2, molecule.
+   Reads: --text-primary, --text-secondary, --line-strong, --font-mono, --type-md, --type-2xs,
+          --leading-loose, --measure-prose, --space-4, --space-5, --space-6
+   Page:  design/kit/rawitem.html
+   Stands on: 5.0 Evidence source (meta and quote), 5.1 Evidence redacted (meta over the state's
+              title). In grey: wireframes/evidence.html, evidence-redacted.html, class wf-raw.
+   Contains: .cite, the static citation index, an atom in components/citation.css.
+
+   ONE FEEDBACK ITEM, IN FULL, STANDING ALONE. The end of the chain claim, evidence, raw source,
+   and the surface a PM pulls up when a decision is challenged (ia/docs/pages/evidence.md:50,
+   "readable in a meeting"). Built at Stage 09 Step 5 from backlog row S5-1: the first screen
+   assembled from the system had only the snippet's parts for it, and the snippet is a different
+   thing, a link strip in a list with a hover, quote first.
+
+   Here the order is the other way: what the product knows about the item first, in mono, then
+   the customer's words at the document reading step, behind a rule one step heavier than the
+   hairline, because a quote is where a block starts (--line-strong, the same role as the reason
+   on 4.0). Not a link, so no hover and no focus: it is read, not clicked. Its links and its
+   citation index keep their own states.
+
+   Geometry from the grey (wireframes/_wf.css:308-309): meta 10px above the quote, a 2px rule, the
+   quote 14px in from it, 15px at 1.7. Mapped to the scale: 12px (--space-5), 14px (--space-6),
+   --type-md (15px), --leading-loose (1.75, document prose). The 2px rule matches the reason on
+   4.0. The measure is the product's longest line, --measure-prose; no new value.
+   No em dash anywhere in this file.
+*/
+
+.rawitem-meta {
+  display: flex; gap: var(--space-4); flex-wrap: wrap; align-items: center;
+  font-family: var(--font-mono); font-size: var(--type-2xs); color: var(--text-secondary);
+  margin-bottom: var(--space-5);
+}
+.rawitem-quote {
+  font-size: var(--type-md); line-height: var(--leading-loose); color: var(--text-primary);
+  max-width: var(--measure-prose);
+  padding-left: var(--space-6); border-left: 2px solid var(--line-strong);
+}

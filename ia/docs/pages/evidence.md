@@ -32,6 +32,12 @@
 
 Back to theme (to 4.0), or copy the quote for a brief.
 
+**What "Copy quote" copies** (Stage 09 Step 5, backlog S5-2): the verbatim in quotation marks,
+then its chain on the next line, source, date and segment, the theme it supports with its citation
+number, and the link back to this item. A quote that leaves Sift without its chain breaks
+"traceable or it does not exist". The button then reads "Quote copied" and the status region
+says "Quote copied with its citation" (`voice/docs/microcopy.md`).
+
 ## Adaptive
 
 - **Mobile (360px):** the verbatim text is the top block, full width; provenance and the back action stack below; the breadcrumb collapses to a back chevron plus the theme name.

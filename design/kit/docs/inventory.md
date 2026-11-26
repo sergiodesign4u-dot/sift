@@ -593,6 +593,7 @@ group of its own level.*
 | 2 | **Theme card (ranked row)** | `components/theme-card.css` | `kit/theme-card.html` | hover, selected (`.check:checked`), focus-visible on the links inside. Low signal is a content variant, the clamped quote is the 360 form | 2.0. 6 rows, declared exception |
 | 2 | **Provenance list** | `components/provlist.css` | `kit/provlist.html` | none, not interactive; its links keep their own | 5.0, 5.1, 3.6 (grey only). 3. Built at Step 6 from the grey anatomy |
 | 2 | **Evidence snippet** | `components/snippet.css` | `kit/snippet.html` | hover, focus-visible. Redacted is a `.redacted` mark in the meta line | 4.0, 4.1. 12 |
+| 2 | **Raw item** | `components/rawitem.css` | `kit/rawitem.html` | none, not interactive; its links and citation index keep their own | 5.0, 5.1. 2. Added at Stage 09 Step 5 from backlog row S5-1: the first component the system grew by its own contribution rule |
 | 2 | **Source row** | `components/source-row.css` | `kit/source-row.html` | hover on the row; focus-visible on its buttons. Failed carries `.rowalert` | 3.0, 3.5, 3.6. Healthy 5, failed 1 |
 | 2 | **Source card (available)** | `components/source-card.css` | `kit/source-card.html` | none, not interactive; its button keeps its own | 3.0, 3.4, 3.5. Connectable 6, not yet available 3 |
 | 2 | **Saved brief row** | `components/brief-row.css` | `kit/brief-row.html` | row hover, title hover, focus-visible on the title | 6.0. Shared 2, draft 1 |

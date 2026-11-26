@@ -19,11 +19,10 @@
   original is not touched.
 
   The end of the chain claim, evidence, raw source: the one step of Flow 0 that was still grey.
-  What the system did not have is not drawn in here; it is a row in design/kit/docs/backlog.md,
-  "Stage 09 Step 5", and the screen shows what the existing parts make of it:
-  - the raw item: there is no component for one feedback item standing alone in full. It is put
-    together from the parts of the snippet (its meta line and its quote), without the snippet
-    strip, which is a link with a hover;
+  What the system did not have was not drawn in here; it went to design/kit/docs/backlog.md,
+  "Stage 09 Step 5". The first assembly put the item together from the snippet's parts; the
+  owner closed that row (S5-1), the raw item entered the system as a component
+  (components/rawitem.css, kit/rawitem.html), and the screen moved onto it.
   The closing actions stand in .actionbar, the row where a screen's closing actions sit. The
   first assembly put them in a plain block, claiming no component existed; the critique showed
   the claim was wrong, and the fix is on the screen, because it was an assembly error and not a
@@ -66,8 +65,8 @@
           </div>
 
           <article>
-            <div class="snippet-meta"><span class="cite">1</span> Intercom &middot; 2 days ago &middot; Customer, mid-market</div>
-            <blockquote class="snippet-quote">"I signed up and just stared at an empty dashboard. No idea what to do first, or where my data was supposed to come from. I expected some kind of guided setup, but it was just a blank screen. I eventually found the Sources page on my own, but a first-time user should not have to hunt for that."</blockquote>
+            <div class="rawitem-meta"><span class="cite">1</span> Intercom &middot; 2 days ago &middot; Customer, mid-market</div>
+            <blockquote class="rawitem-quote">"I signed up and just stared at an empty dashboard. No idea what to do first, or where my data was supposed to come from. I expected some kind of guided setup, but it was just a blank screen. I eventually found the Sources page on my own, but a first-time user should not have to hunt for that."</blockquote>
           </article>
 
           <h2 class="group-t group-t--section">Provenance</h2>
@@ -80,6 +79,7 @@
           <div class="actionbar">
             <a class="btn--ghost" href="theme.html">Back to theme</a>
             <button class="btn" type="button">Copy quote</button>
+            <span class="vh" role="status"></span>
           </div>
         </main>
 

@@ -1139,3 +1139,14 @@ every target 44px except the 28px avatar (decided by the owner) and inline links
 `--pf-*`) fails contrast: its intro at 3.45 in the dark theme, and under the product's light switch
 its "Walk by flow" heading at 1.22. The panel of every colour screen has 10px labels and a 1.9
 greyed link. Both predate this step; they belong to Step 6.
+
+**Two backlog rows closed by the owner the same day** ("as you recommend"), by the contribution
+rule of Step 4: new into the system first, then onto the screen.
+
+| Row | What entered the system | Then on the screen |
+|---|---|---|
+| S5-1, the raw item | a molecule, five things: `components/rawitem.css` (meta, then the quote at `--type-md`, `--leading-loose`, `--measure-prose`, 14px in from a 2px `--line-strong` rule, the grey's geometry mapped to the scale; no new token), `kit/rawitem.html`, the `_nav.js` entry (level 2, Evidence), the `inventory.md` row, the `@import` after the snippet in the molecules group. The system counts 51 components: 17, 22, 12 | 5.0 and 5.1 use `.rawitem-meta` and `.rawitem-quote` instead of the snippet's parts; the meta no longer sits 0px above the quote |
+| S5-2, the copy action | a content form of the button, "Done, after a copy", on `kit/button.html`: the check icon, the past tense, the sentence in a `.vh` status region. No new style: the done state is content, not paint. The strings "Quote copied", "Quote copied with its citation" and "Link copied" in `voice/docs/microcopy.md`; the payload, the quote with its chain, in `ia/docs/pages/evidence.md` and its page `ia/evidence.html` | 5.0 carries the empty status region beside "Copy quote". The prototype has no script, so the click still changes nothing: the done form is shown on the button page, as every other state of the stand is |
+
+IA was touched for the payload only, because the row named it; no node, scope or chip changed.
+S5-3 to S5-6 stay open; R7 stays with the owner.

@@ -138,6 +138,14 @@
             <div class="kit-form-t">Held apart</div>
             <div class="kit-form-d">A destructive action in a dialog takes <code>.u-apart</code> and the outline, never the place beside the confirm. 6.3 Share link.</div>
           </div>
+          <div>
+            <div class="kit-form-c" inert>
+              <button class="btn" type="button"><svg class="ic" viewBox="0 0 24 24"><use href="#i-check"></use></svg> Quote copied</button>
+              <span class="vh" role="status">Quote copied with its citation</span>
+            </div>
+            <div class="kit-form-t">Done, after a copy</div>
+            <div class="kit-form-d">A copy changes nothing on the screen, so the button says it happened: the check icon and the past tense in the label, and the same sentence in full in a <code>.vh</code> status region, so a screen reader hears it. The same button and the same tokens, no new style: the done state is content, not paint. It returns to rest after a moment. Strings in <code>voice/docs/microcopy.md</code>: 5.0 "Quote copied", 6.3 "Link copied". Stage 09 Step 5, backlog S5-2.</div>
+          </div>
         </div>
       </section>
 
@@ -324,6 +332,7 @@
       <section class="kit-sec">
         <h2 class="kit-h2">Changes, newest first</h2>
         <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-26</td><td>A content form, <b>Done, after a copy</b>: the check icon, the past tense, and the sentence in a status region. No new style. From backlog row S5-2, closed by the owner, after the first screen built from the system had a copy action that said nothing</td><td><code>docs/decisions.md</code>, "Stage 09 Step 5"</td></tr>
           <tr><td>2026-11-26</td><td>The icon inside a labelled button is sized in the outline too, <code>.btn--ghost .ic</code>, 15px. Until now only the fill sized it, and an outline with an icon leaned on attributes on the svg. Found when 6.3 "Copy" took the outline under usage rule R1</td><td><code>docs/decisions.md</code>, "Stage 09 Step 1"</td></tr>
           <tr><td>2026-11-26</td><td>The rule block gained its third sub-point, <b>Limits</b>: R1 from the usage rules. The rules live on <code>architecture.html</code>; this page carries the short copy</td><td><code>docs/decisions.md</code>, "Stage 09 Step 1"</td></tr>
           <tr><td>2026-11-21</td><td>Reconciled with <code>kit.css</code> byte for byte: the gap is 7px, <code>.btn</code> and <code>.btn--bare</code> draw no border (only <code>.btn--ghost</code> does), the bare button is regular weight with 13px vertical padding, and the icon button is 15px with no gap. The August values were drift nobody approved</td><td><code>docs/decisions.md</code>, "Step 6: the system reconciled with the product"</td></tr>
@@ -345,6 +354,7 @@
   <symbol id="i-brief" viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h7"/></symbol>
   <symbol id="i-evidence" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-4 4v-4H4z"/><path d="M8.5 10.5h7M8.5 13h4"/></symbol>
   <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
 </defs></svg>
 
 <script src="_nav.js"></script>
