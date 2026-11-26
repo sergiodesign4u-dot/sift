@@ -1,5 +1,5 @@
 /* design/system/components/form.css - level 3, organism.
-   Reads: --space-8
+   Reads: --space-8, --container-text
    Page:  design/kit/form.html
    Stands on: 9 screens in grey (inventory). Purpose: auth 3, connect 2, settings 2, composer 2.
    No colour screen carries the class yet [?]: the product screens that hold a form put the fields in
@@ -8,8 +8,12 @@
    Form. Four purposes (auth, connect, settings, composer), one appearance. It declares nothing but
    rhythm: the fields, the labels and the buttons are already components, so the block holds the
    gap under the last field and nothing else.
+   BEHAVIOUR AT WIDTH (Stage 10 Step 4, round 3): a CONTAINER. The form reads --container-text
+   (52ch, about 460px at its 14px), so on a wide column a field is never longer than a line of
+   its own hint; it had no measure and its fields ran the full column. The auth card (25rem) is
+   narrower, so the auth form does not move; at 360 the column is narrower still.
    No em dash anywhere in this file.
 */
 
-.form { display: block; }
+.form { display: block; max-width: var(--container-text); }
 .form .field:last-of-type { margin-bottom: var(--space-8); }

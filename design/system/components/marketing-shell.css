@@ -12,6 +12,12 @@
    NOT in this file, by decision (Step 6 one-offs): .mk-trust*, .mk-footer*, .mk-foot-*.
    The first line and the lead GROW with the page (--type-3xl, --type-lead, fluid since Stage 10
    Step 2); until then they switched to 27px and 14.5px at 820, which the system forbids.
+   BEHAVIOUR AT WIDTH (Stage 10 Step 4, round 3). The wide column is --container-page (65rem, the
+   same 1040px), and the card grid is auto-fit from a 13.75rem (220px) minimum, guarded by min()
+   so a place under the minimum still holds one full column. The census asked for --grid-col-min
+   (15rem) here; withdrawn on verification: at 15rem the fourth tier drops to a row of its own at
+   a 1440 window (4 x 240 + 3 gaps is 996px against a 992px column), so the tier grid keeps the
+   minimum its four cards were drawn at.
    No em dash anywhere in this file.
 */
 
@@ -23,5 +29,5 @@
 .mk-section { padding: var(--space-12) 0; border-bottom: 1px solid var(--line-hairline); }
 .mk-h2 { font-size: var(--type-xl); font-weight: var(--weight-strong); letter-spacing: var(--tracking-head); color: var(--text-primary); }
 .mk-section-sub { font-size: var(--type-sm); color: var(--text-secondary); margin-top: 7px; max-width: 60ch; line-height: var(--leading-body); }
-.mk-grid { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-5); margin-top: 20px; }
-.public-main--wide { max-width: 1040px; }
+.mk-grid { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(13.75rem, 100%), 1fr)); gap: var(--space-5); margin-top: 20px; }
+.public-main--wide { max-width: var(--container-page); }

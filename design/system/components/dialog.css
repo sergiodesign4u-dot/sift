@@ -12,10 +12,11 @@
    NOT HERE: `.appmain:has(> .dialog:only-child)` (centres the dialog on the canvas) is the screen
    shell's. `.linkrow` is a one-off block, not part of the system yet [?].
    The 24px padding and the 7px under the title have no exact step and stay literals.
+   BEHAVIOUR AT WIDTH (Stage 10 Step 4, round 3): a CONTAINER, 28.75rem (460px until Stage 10).
    No em dash anywhere in this file.
 */
 
-.dialog { width: 100%; max-width: 460px; background: var(--bg-raised); border: 1px solid var(--line-hairline); border-radius: var(--radius-lg); box-shadow: var(--shadow-sheet); padding: 24px; }
+.dialog { width: 100%; max-width: 28.75rem; background: var(--bg-raised); border: 1px solid var(--line-hairline); border-radius: var(--radius-lg); box-shadow: var(--shadow-sheet); padding: 24px; }
 .dialog h1 { font-size: var(--type-lg); font-weight: var(--weight-strong); letter-spacing: var(--tracking-title); color: var(--text-primary); margin-bottom: 7px; }
 .dialog p { font-size: var(--type-xs); color: var(--text-secondary); line-height: var(--leading-body); margin-bottom: var(--space-7); }
 .dialog-actions { display: flex; align-items: center; gap: var(--space-4); flex-wrap: wrap; margin-top: var(--space-7); }

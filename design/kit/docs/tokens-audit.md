@@ -357,3 +357,20 @@ local to their component and listed in `design/kit/docs/responsive.md`, "Contain
 changed frames are only those the rows above name: the snippet's and the raw item's quote (4.0,
 4.1, 5.0), the notice (3.2, 3.5, 4.1, 5.1, 6.2), and at 1024 only the breadcrumb and the static bar,
 whose gutter reads 21.86px there instead of 22 (the clamp reaches 22 at a 1040 window).
+
+### Stage 10 Step 4, round 3: the organisms
+
+| Variable or class | Was | Now | Why |
+|---|---|---|---|
+| `.summary`, `.reason` max-width (one-off, 4.0 and 4.1) | `88ch` | `var(--container-text)` | continuous text; at 88ch the summary ran 89 characters a line at 1440 (B-25) |
+| `.legal-prose`, `.form` max-width | none | `var(--container-text)` | the legal prose is the longest continuous text of the product; the form had no measure and its fields ran the full column |
+| `.app > .notice` side margin | `--space-9` (22), `--space-7` (16) below an 820 viewport | `--gutter-page` | the shell's last 820 rule; the stand twin `.appframe > .notice` follows |
+| `.public-main` | `720px`; padding `34px 24px 44px`, `22px 16px 34px` below an 820 viewport | `45rem`; sides `--gutter-page`, top `clamp(1.375rem, 0.978rem + 1.7647vw, 2.125rem)`, bottom `clamp(2.125rem, 1.7941rem + 1.4706vw, 2.75rem)` | the switch becomes growth over the gutter's span (360 to 1040); 360 keeps 22, 16, 34; the wide sides are 22, the product's one gutter, instead of 24 |
+| `.public-main--wide` | `1040px` | `var(--container-page)` | the same 1040px, now the token |
+| `.mk-footer` sides (one-off) | `--space-9`, `--space-7` below 820 | `--gutter-page` | 0.0 |
+| `.mk-grid`, `.mk-trust` minimum | `220px`, `230px` | `min(13.75rem, 100%)`, `min(14.375rem, 100%)` | rem, guarded. Not `--grid-col-min`: withdrawn on verification, the fourth tier would drop a row at 1440 |
+| `.acct-nav` width, `.mk-foot-brand` min-width | `208px`, `200px` | `13rem`, `12.5rem` | widths in rem |
+| `.state`, `.dialog` max-width | `440px`, `460px` | `27.5rem`, `28.75rem` | containers in rem |
+
+**Held against round 2.** At 360, 24 of 24 frames 0. At 1024 and 1440, 40 of 48 frames 0; the 8
+that changed are 4.0 and 4.1 (summary and reason), 6.4 and 0.0 (the public column's sides).

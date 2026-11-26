@@ -28,8 +28,10 @@
 
 /* 4.0 and 4.1 Theme detail: the synthesis itself. Set at reading size in primary ink, because this
    paragraph IS the product's claim, and every clause of it carries a citation that resolves in the
-   list below (A2). kit.css:130 */
-.summary { font-size: 14.5px; line-height: 1.8; color: var(--text-primary); margin-top: var(--space-7); max-width: 88ch; }
+   list below (A2). kit.css:130
+   Its measure, and the reason's below, is --container-text (52ch) since Stage 10 Step 4, round 3:
+   at 88ch they ran 89 characters a line at 1440 (backlog B-25). */
+.summary { font-size: 14.5px; line-height: 1.8; color: var(--text-primary); margin-top: var(--space-7); max-width: var(--container-text); }
 
 /* 6.1 and 6.2 Build brief: the title row of an artifact. The name is typed where it will be read,
    and the marker beside it says the artifact has not been shared yet. kit.css:429 */
@@ -42,7 +44,7 @@
 /* ---------- 0.0 Home ---------- */
 
 /* The trust list: a list of claims, a rule above each one instead of a box around it. kit.css:655 */
-.mk-trust { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: var(--space-6) 24px; margin-top: 20px; }
+.mk-trust { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(14.375rem, 100%), 1fr)); gap: var(--space-6) 24px; margin-top: 20px; }
 .mk-trust-item { padding-top: var(--space-6); border-top: 2px solid var(--line-strong); }
 .mk-trust-t { font-size: var(--type-base); font-weight: var(--weight-strong); letter-spacing: -0.01em; color: var(--text-primary); margin-bottom: 7px; }
 .mk-trust-t a { display: inline-flex; align-items: center; min-height: var(--size-target); color: var(--text-primary); text-decoration: none; }
@@ -51,8 +53,8 @@
 
 /* The marketing footer. The app footer is the component; this is the one screen that needs a link
    block under it, and it composes with .appfoot rather than replacing it. kit.css:664 */
-.mk-footer { display: flex; flex-wrap: wrap; gap: 24px 48px; align-items: flex-start; padding: 28px var(--space-9) var(--space-12); font-family: var(--font-ui); font-size: 13px; }
-.mk-foot-brand { display: flex; flex-direction: column; gap: var(--space-4); min-width: 200px; flex: 1; }
+.mk-footer { display: flex; flex-wrap: wrap; gap: 24px 48px; align-items: flex-start; padding: 28px var(--gutter-page) var(--space-12); font-family: var(--font-ui); font-size: 13px; }
+.mk-foot-brand { display: flex; flex-direction: column; gap: var(--space-4); min-width: 12.5rem; flex: 1; }
 .mk-foot-tag { font-size: var(--type-xs); color: var(--text-secondary); max-width: 30ch; line-height: 1.55; }
 .mk-foot-cols { display: flex; gap: 48px; flex-wrap: wrap; }
 .mk-foot-col { display: flex; flex-direction: column; }
@@ -70,7 +72,7 @@
 
 /* Why these items are one theme, and what was LEFT OUT, which is the half that makes the
    explanation checkable. kit.css:682 */
-.reason { font-size: 13px; line-height: 1.7; color: var(--text-secondary); border-left: 2px solid var(--line-strong); padding-left: var(--space-6); margin-top: var(--space-8); max-width: 88ch; }
+.reason { font-size: 13px; line-height: 1.7; color: var(--text-secondary); border-left: 2px solid var(--line-strong); padding-left: var(--space-6); margin-top: var(--space-8); max-width: var(--container-text); }
 .reason b { color: var(--text-primary); font-weight: var(--weight-medium); }
 
 /* 4.1: the line that closes a list with no "load more". kit.css:687 */
@@ -89,8 +91,9 @@
 .src-file b { color: var(--text-primary); font-weight: var(--weight-medium); }
 
 /* The column mapping. The SAMPLE is the point: a mapping screen without the customer's own data on
-   it is a form that has to be trusted rather than checked. .src-map is the container; Step 2
-   decided to declare it so that its rows never stand on an undeclared base. kit.css:700 */
+   it is a form that has to be trusted rather than checked. kit.css:700
+   The head stands outside .src-map, so the map's place is the page column, which the screen
+   shell declares; the head and the rows read the same container. */
 .src-map { display: block; }
 .src-map-head, .src-map-row { display: grid; grid-template-columns: 1fr 1.3fr 1fr 66px; gap: var(--space-6); align-items: center; }
 .src-map-head { font-family: var(--font-mono); font-size: var(--type-3xs); font-weight: var(--weight-medium); letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-secondary); padding-bottom: var(--space-3); border-bottom: 1px solid var(--line-hairline); }
@@ -108,15 +111,30 @@
 .src-review li:last-child { border-bottom: 0; }
 .src-review b { margin-left: auto; font-family: var(--font-mono); font-weight: var(--weight-medium); color: var(--text-primary); white-space: nowrap; }
 
-/* ---------- at 820 and below: kit.css:750-772 ---------- */
-@media (max-width: 820px) {
-  .mk-footer { padding: 24px var(--space-7) 28px; gap: 20px 24px; }
+/* ---------- behaviour at width (Stage 10 Step 4, round 3). Until Stage 10 all of it was one
+   @media at an 820 viewport, kit.css:750-772. Each block now measures its own place. ---------- */
+
+/* 0.0 footer. Threshold 34rem on the frame (.app): below it the gaps tighten. The wide footer
+   puts its columns beside the brand down to a 520px frame (measured), plus a rem. The side
+   gutter is --gutter-page in both forms. */
+@container (width < 34rem) {
+  .mk-footer { padding-top: 24px; padding-bottom: 28px; gap: 20px 24px; }
   .mk-foot-cols { gap: 28px; }
-  .listnote { padding: 13px var(--space-7); }
-  /* Four columns would cut every value in half, so the row becomes two: the column and its field
-     on one line, the customer's own sample on its own. Reading order is unchanged. */
+}
+
+/* 3.2 column map. Threshold 41rem on the page column: below it four columns would cut a field's
+   value (measured: the widest select clips under a 636px column, plus a rem), so the row becomes
+   two: the column and its field on one line, the customer's own sample on its own. Reading order
+   is unchanged. */
+@container (width < 41rem) {
   .src-map-head { display: none; }
   .src-map-row { grid-template-columns: 1fr auto; gap: var(--space-3) var(--space-5); padding: 13px 0; }
   .src-sample { grid-column: 1 / -1; white-space: normal; }
   .src-map-row .input { grid-column: 1; }
+}
+
+/* 4.0 list note: its 8 to 16px is the grouped list's row padding, not the page gutter, so it moves
+   with the grouped list in round 4 (patterns/grouped-list.css); until then it keeps the old query. */
+@media (max-width: 820px) {
+  .listnote { padding: 13px var(--space-7); }
 }

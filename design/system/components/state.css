@@ -16,10 +16,13 @@
    that centres the block on the canvas, is the screen shell's (it comes with screen-shell).
    19px (the title) and the 20px and 24px paddings have no exact step on the primitive scales and
    stay literals: values migrate, they are never rounded.
+   BEHAVIOUR AT WIDTH (Stage 10 Step 4, round 3): a CONTAINER, 27.5rem (440px until Stage 10, so the
+   same pixels at the default font size, and it grows with the reader's). The inline description
+   keeps its 60ch: one or two sentences, not continuous text.
    No em dash anywhere in this file.
 */
 
-.state { max-width: 440px; margin: 40px auto; text-align: center; display: flex; flex-direction: column; align-items: center; gap: var(--space-6); padding: 20px; }
+.state { max-width: 27.5rem; margin: 40px auto; text-align: center; display: flex; flex-direction: column; align-items: center; gap: var(--space-6); padding: 20px; }
 .state-t { font-size: 19px; font-weight: var(--weight-strong); letter-spacing: var(--tracking-head); color: var(--text-primary); }
 .state-d { font-size: var(--type-sm); color: var(--text-secondary); line-height: var(--leading-body); }
 .state-actions { display: flex; gap: var(--space-4); margin-top: var(--space-2); flex-wrap: wrap; justify-content: center; }

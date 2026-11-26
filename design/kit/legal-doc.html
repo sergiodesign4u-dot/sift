@@ -46,6 +46,7 @@
             <h1 class="h1">Terms of Service</h1>
             <p class="legal-meta">Last updated 19 July 2026</p>
           </header>
+          <div class="legal-body">
           <div class="legal-prose">
             <p>These terms govern your use of Sift. By creating an account or using the product, you agree to them. Please read them alongside our <a href="#">Privacy Policy</a> and <a href="#">Security and GDPR</a> page.</p>
           </div>
@@ -77,6 +78,7 @@
             <p>We may update these terms as the product evolves. When we make a material change, we update the date above and notify workspace owners. Continued use after a change means you accept the updated terms.</p>
             <h2 id="contact">Contact</h2>
             <p>Questions about these terms can go to <a href="mailto:legal@sift.app">legal@sift.app</a>. For how we handle data, see the <a href="#">Privacy Policy</a> and <a href="#">Security and GDPR</a> page.</p>
+          </div>
           </div>
           <div class="legal-related">
             More: <a href="#">Privacy Policy</a><a href="#">Security and GDPR</a><a href="#">Home</a>
@@ -114,7 +116,7 @@
           <tr><td>Contents</td><td>molecule</td><td><code>.legal-toc</code>, see <a href="legal-toc.html">legal-toc.html</a></td><td>required</td></tr>
           <tr><td>Prose</td><td>zone</td><td><code>.legal-prose</code> holding <code>h2</code>, <code>p</code>, <code>ul</code>, <code>li</code>, <code>a</code>. Each <code>h2</code> carries an <code>id</code> that the TOC links to</td><td>required</td></tr>
           <tr><td>Related</td><td>zone</td><td><code>.legal-related</code>, a rule above and the other legal pages as links, 44px target</td><td>required</td></tr>
-          <tr><td>Size</td><td>responsive</td><td>prose 14.5px; 14px at 820px and below (the product's one narrow step)</td><td>14.5px</td></tr>
+          <tr><td>Size</td><td>responsive</td><td>prose fluid, 14px at 360 growing to 14.5px (<code>--type-legal</code>); measure <code>--container-text</code> (52ch); from a 46rem place the contents become a rail</td><td>14.5px</td></tr>
           <tr><td>Axes</td><td>none</td><td>one form</td><td>n/a</td></tr>
           <tr><td>State</td><td>variant</td><td>rest &middot; hover (crumb link, related link) &middot; focus-visible</td><td>rest</td></tr>
         </tbody></table></div>
@@ -157,22 +159,37 @@
 
       <section class="kit-sec" id="anatomy">
         <h2 class="kit-h2">Anatomy</h2>
-        <p class="kit-note">A reading column, top to bottom. The TOC is a molecule and sits between the opening paragraph and the body.</p>
+        <p class="kit-note">A reading column, top to bottom. The TOC is a molecule and sits between the opening paragraph and the body; those three stand in <code class="kit-mono">.legal-body</code>.</p>
         <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
           <tr><td>the crumb</td><td><code>.legal-crumb</code></td><td>12px, secondary ink, links with no underline; hover steps the ink to primary</td></tr>
           <tr><td>the title and meta</td><td><code>h1</code>, <code>.legal-meta</code></td><td>The H1 is not styled by the organism ([?]). The meta is a mono line under it</td></tr>
+          <tr><td>the body wrapper</td><td><code>.legal-body</code></td><td>Holds the opening, the contents and the body prose. From a 46rem place it is a grid: contents as a sticky 13rem rail on the left, prose beside it (backlog B-27)</td></tr>
           <tr><td>the opening</td><td><code>.legal-prose</code> with one <code>p</code></td><td>Says what the document is and points to its two neighbours</td></tr>
           <tr><td>the contents</td><td><code>.legal-toc</code> (molecule)</td><td>Jumps to the <code>h2</code> ids below</td></tr>
-          <tr><td>the body</td><td><code>.legal-prose</code></td><td>14.5px, 1.75 line, secondary ink; <code>h2</code> in primary with a rule above and a 64px scroll margin so a jump clears the bar</td></tr>
+          <tr><td>the body</td><td><code>.legal-prose</code></td><td>14.5px, 52ch measure, 1.75 line, secondary ink; <code>h2</code> in primary with a rule above and a 64px scroll margin so a jump clears the bar</td></tr>
           <tr><td>the related line</td><td><code>.legal-related</code></td><td>A rule above, the other legal pages as links, each a 44px target</td></tr>
         </tbody></table></div>
+        <h3 class="kit-h3">Behaviour at width</h3>
+        <p class="kit-note"><b>A rail beside the prose from a 46rem place</b> (Stage 10 Step 4, round 3). The prose reads <code class="kit-mono">--container-text</code> (52ch, about 476px at 14.5px), the longest continuous text of the product. The new wrapper <code class="kit-mono">.legal-body</code> holds the opening <code class="kit-mono">.legal-prose</code>, the <code class="kit-mono">.legal-toc</code> and the body <code class="kit-mono">.legal-prose</code>. From a 46rem place it becomes a grid: the contents a sticky rail of 13rem on the left, the prose beside it (backlog B-27). 46rem is the rail, a 2rem gap and the full measure (715.7px, measured) plus a rem, so beside the rail the prose never loses its measure. The place is the public column. In the 45rem column it is 676px, so the rail never shows there and the contents stay in flow; 9.x takes the rail by standing in the wide column, which Stage 12 states on the screen. The same document, live, in two places:</p>
+        <div class="kit-widths">
+          <div class="kit-width kit-width--narrow"><div class="kit-width-cap">a 260px place: the contents in flow</div><div class="legal-body">
+            <div class="legal-prose"><p>These terms govern your use of Sift. Read them with the <a href="#">Privacy Policy</a>.</p></div>
+            <nav class="legal-toc" aria-label="On this page, narrow"><div class="legal-toc-t">On this page</div><ul><li><a href="#">The agreement</a></li><li><a href="#">Acceptable use</a></li><li><a href="#">Liability</a></li></ul></nav>
+            <div class="legal-prose"><h2>The agreement</h2><p>Sift provides a hosted product that ingests customer feedback and synthesizes it into themes, evidence, and briefs.</p><h2>Acceptable use</h2><p>You agree to use Sift only for lawful purposes and only with feedback data you have the right to process.</p></div>
+          </div></div>
+          <div class="kit-width kit-width--full"><div class="kit-width-cap">a full row: the rail needs a 736px place, so it shows only on a window wide enough for that</div><div class="legal-body">
+            <div class="legal-prose"><p>These terms govern your use of Sift. Read them with the <a href="#">Privacy Policy</a>.</p></div>
+            <nav class="legal-toc" aria-label="On this page, wide"><div class="legal-toc-t">On this page</div><ul><li><a href="#">The agreement</a></li><li><a href="#">Acceptable use</a></li><li><a href="#">Liability</a></li></ul></nav>
+            <div class="legal-prose"><h2>The agreement</h2><p>Sift provides a hosted product that ingests customer feedback and synthesizes it into themes, evidence, and briefs.</p><h2>Acceptable use</h2><p>You agree to use Sift only for lawful purposes and only with feedback data you have the right to process.</p></div>
+          </div></div>
+        </div>
       </section>
 
       <section class="kit-sec" id="axes">
         <h2 class="kit-h2">Axes, with the rule that chooses</h2>
         <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
           <tr><td></td><td><b>no axes</b></td><td>One form: 9.0, 9.1 and 9.2 (inventory, Level 3). Everything that varies is the content</td></tr>
-          <tr><td>width</td><td>prose 14.5px, 14px at 820px and below</td><td>The step is one media query on the prose, not a second layout</td></tr>
+          <tr><td>width</td><td>stacked below a 46rem place; rail beside the prose from it</td><td>The place is the public column. In the 45rem column it is 676px, so the rail never shows there; 9.x takes it in the wide column</td></tr>
         </tbody></table></div>
         <p class="kit-note"><b>Crumb against the breadcrumb molecule.</b> <code>.legal-crumb</code> and <a href="breadcrumb.html"><code>.breadcrumb</code></a> do the same job in the same 12px and the same two inks. They are different rules: the breadcrumb is a bar (22px side padding, a bottom border, a 44px link target, an opacity on the separator); the legal crumb is a plain line inside the column (a bottom margin, inline links with no target size). They are not merged here, because the rules come over byte for byte. Whether one replaces the other is a Step 6 question.</p>
       </section>
@@ -194,7 +211,7 @@
           <tr><td>focus-visible</td><td><code>--line-focus</code></td><td>The one ring from <code>base.css</code></td></tr>
           <tr><td>active, disabled</td><td><b>absent</b></td><td>The css paints neither</td></tr>
         </tbody></table></div>
-        <p class="kit-note">Kept as literals because no primitive equals them: 12px (the crumb), 14.5px (the prose), 20px and 30px (heading padding and margin), 64px (the scroll margin), 20px (list indent), 7px (list item gap), 30px (the related line's top margin).</p>
+        <p class="kit-note">Kept as literals because no primitive equals them: 12px (the crumb), 14.5px (the prose), 13rem (the rail), 20px and 30px (heading padding and margin), 64px (the scroll margin), 20px (list indent), 7px (list item gap), 30px (the related line's top margin).</p>
         <h3 class="kit-h3">Snapshots</h3>
         <p class="kit-note">No new snapshots this round: the states are shown live in the matrix above. A hover that changes ink or draws an underline, never a ground, so it is not the <code class="kit-mono">--bg-hover</code> of the list row link (<a href="cardrow.html">cardrow.html</a>).</p>
       </section>
@@ -209,11 +226,13 @@
   &lt;h1 class="h1"&gt;Terms of Service&lt;/h1&gt;
   &lt;p class="legal-meta"&gt;Last updated 19 July 2026&lt;/p&gt;
 &lt;/header&gt;
-&lt;div class="legal-prose"&gt;&lt;p&gt;Opening paragraph.&lt;/p&gt;&lt;/div&gt;
-&lt;nav class="legal-toc" aria-label="On this page"&gt;...&lt;/nav&gt;
-&lt;div class="legal-prose"&gt;
-  &lt;h2 id="agreement"&gt;The agreement&lt;/h2&gt;
-  &lt;p&gt;...&lt;/p&gt;
+&lt;div class="legal-body"&gt;
+  &lt;div class="legal-prose"&gt;&lt;p&gt;Opening paragraph.&lt;/p&gt;&lt;/div&gt;
+  &lt;nav class="legal-toc" aria-label="On this page"&gt;...&lt;/nav&gt;
+  &lt;div class="legal-prose"&gt;
+    &lt;h2 id="agreement"&gt;The agreement&lt;/h2&gt;
+    &lt;p&gt;...&lt;/p&gt;
+  &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="legal-related"&gt;
   More: &lt;a href="privacy.html"&gt;Privacy Policy&lt;/a&gt;&lt;a href="security.html"&gt;Security and GDPR&lt;/a&gt;
@@ -228,6 +247,7 @@
       <section class="kit-sec">
         <h2 class="kit-h2">Changes, newest first</h2>
         <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-27</td><td>Stage 10 Step 4, round 3: behaviour at width. New <code>.legal-body</code> wrapper around the opening, the contents and the prose; from a 46rem place the contents are a sticky 13rem rail on the left (backlog B-27). The prose reads <code>--container-text</code> (52ch). The 820 step on the prose is gone</td><td><code>design/kit/docs/responsive.md</code></td></tr>
           <tr><td>2026-11-21</td><td>Entered the system: <code>components/legal-doc.css</code>, on semantic roles, and this page in the card format</td><td><code>docs/decisions.md</code>, "The organisms entered the system"</td></tr>
           <tr><td>2026-08</td><td>Declared in the kit with the five <code>legal-*</code> classes, and accepted as a form with no colour screen: "the component page shows the prose scale, the TOC and the related block"</td><td><code>design/kit/docs/inventory.md</code>, "Control without a form: every row closed"</td></tr>
           <tr><td>2026-08</td><td>The legal rules first appeared in <code>kit.css</code>, grown out of the colour layer</td><td>commit <code>d461e12</code></td></tr>

@@ -41,6 +41,9 @@
    column (the theme card, source row, brief row, screen head, toolbar and action bar read it),
    and .app is the frame (the static selection bar, which stands outside the column, reads it).
    Inline size only: their widths come from the canvas, never from their content.
+   A NOTICE IN THE FRAME (round 3) takes --gutter-page: 16px at a 360 window, 22px from 1040.
+   Until Stage 10 it switched from 22 to 16 at an 820 viewport; the shell now holds no @media of
+   its own (the shell swap lives in app-header.css and bottom-tabs.css).
    No em dash anywhere in this file.
 */
 
@@ -49,14 +52,10 @@
 /* the screen edition: a screen that is the page */
 .app { --frame-inset: max(0px, (100% - var(--container-page)) / 2); container-type: inline-size; display: flex; flex-direction: column; min-height: 100vh; background: var(--bg-page); color: var(--text-primary); }
 .app > .appmain { flex: 1; }
-.app > .notice { margin: var(--space-6) calc(var(--frame-inset) + var(--space-9)); }
+.app > .notice { margin: var(--space-6) calc(var(--frame-inset) + var(--gutter-page)); }
 .app:has(.theme .check:checked) .selbar { display: flex; }
 .app:has(.theme .check:checked) .head-action { display: none; }
 
 /* a block that IS the screen is centred in the canvas */
 .appmain:has(> .state:only-child) { display: flex; align-items: center; justify-content: center; }
 .appmain:has(> .dialog:only-child) { display: flex; align-items: center; justify-content: center; }
-
-@media (max-width: 820px) {
-  .app > .notice { margin: var(--space-6) var(--space-7); }
-}

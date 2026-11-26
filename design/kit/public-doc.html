@@ -138,7 +138,7 @@
       <section class="kit-sec" id="props">
         <h2 class="kit-h2">Properties</h2>
         <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Property</th><th>Type</th><th>Values</th><th>Default</th></tr></thead><tbody>
-          <tr><td>Column</td><td>class</td><td><code>.public-main</code>: 720px, centred. The wide measure of 0.0 is <code>.public-main--wide</code>, which belongs to the marketing shell</td><td>required</td></tr>
+          <tr><td>Column</td><td>class</td><td><code>.public-main</code>: 45rem (720px), centred, and the container of what it holds. The wide measure of 0.0 is <code>.public-main--wide</code>, which belongs to the marketing shell</td><td>required</td></tr>
           <tr><td>Eyebrow, title, lede</td><td>zones</td><td><code>.public-eyebrow</code>, <code>.pub-h1</code>, <code>.pub-lede</code></td><td>required</td></tr>
           <tr><td>Meta</td><td>zone</td><td><code>.pub-meta</code>, a wrapping row of facts, each value in a <code>b</code></td><td>required</td></tr>
           <tr><td>Key takeaways</td><td>zone</td><td><code>.pub-key</code> with an <code>h2</code> and an <code>ol</code> of items: <code>.rank</code>, a label, <code>.conf</code></td><td>required</td></tr>
@@ -148,7 +148,7 @@
           <tr><td>Citations</td><td>zone</td><td><code>.pub-cites</code>, an <code>ol</code>: <code>.cite</code> and the quote with its provenance</td><td>required</td></tr>
           <tr><td>Sources</td><td>zone</td><td><code>.pub-sources</code>: coverage per source and a total, the last row in primary ink</td><td>required</td></tr>
           <tr><td>Method</td><td>zone</td><td><code>.pub-method</code>, one honest line on how it was made</td><td>required</td></tr>
-          <tr><td>Width</td><td>responsive</td><td>at 820px and below: smaller padding, the title 24px, the confidence pill goes to its own row (margin-left 0)</td><td>720px column</td></tr>
+          <tr><td>Width</td><td>responsive</td><td>padding is fluid between a 360 and a 1040 window; the title grows from 24px to 29px; in a column under 21rem the confidence pill follows the label (margin-left 0)</td><td>45rem column</td></tr>
           <tr><td>State</td><td>variant</td><td>none: not interactive</td><td>n/a</td></tr>
         </tbody></table></div>
       </section>
@@ -207,7 +207,7 @@
         <p class="kit-note">Ten zones, top to bottom, in reading order. Every one of them is required.</p>
         <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
           <tr><td>eyebrow</td><td><code>.public-eyebrow</code></td><td>Mono, uppercase, secondary. Says what this is and that no login is needed</td></tr>
-          <tr><td>title</td><td><code>.pub-h1</code></td><td>29px, 24px at 820px and below</td></tr>
+          <tr><td>title</td><td><code>.pub-h1</code></td><td>Fluid: 24px at 360 growing to 29px (<code>--type-2xl</code>)</td></tr>
           <tr><td>lede</td><td><code>.pub-lede</code></td><td>15.5px, secondary ink. States the finding, with numbers</td></tr>
           <tr><td>meta</td><td><code>.pub-meta</code></td><td>Rules above and below; who, when, what it covers, which sources, how long</td></tr>
           <tr><td>key takeaways</td><td><code>.pub-key</code></td><td>A raised box with the ranked list and each theme's count</td></tr>
@@ -217,13 +217,19 @@
           <tr><td>sources</td><td><code>.pub-sources</code></td><td>Coverage: what the brief could and could not have seen. Not a bibliography (A2)</td></tr>
           <tr><td>method</td><td><code>.pub-method</code></td><td>One line on how it was made (A3)</td></tr>
         </tbody></table></div>
+        <h3 class="kit-h3">Behaviour at width</h3>
+        <p class="kit-note"><b>Fluid padding, one container threshold</b> (Stage 10 Step 4, round 3). The column is 45rem (720px). Its padding is fluid: the sides are <code class="kit-mono">--gutter-page</code> (16 to 22px), the top grows from 22 to 34px and the bottom from 34 to 44px between a 360 and a 1040 window; until Stage 10 all three switched at an 820 viewport and the sides were 24 above it. <code class="kit-mono">.public-main</code> is the place of what it holds (the shared document, the marketing rows, the legal document), so it declares <code class="kit-mono">container-type</code>, with <code class="kit-mono">width: 100%</code>: a flex item centred by auto margins is sized by its content, which inline-size containment would take to zero. One query, <code class="kit-mono">@container (width &lt; 21rem)</code> on the column: below it the confidence follows the theme label (margin-left 0) instead of standing at the right edge; measured, a key row breaks in two under a 320px column. On this stand the box is the place. The same theme title, live, in two places:</p>
+        <div class="kit-widths">
+          <div class="kit-width kit-width--narrow"><div class="kit-width-cap">a 260px place: the pill follows the label</div><section class="pub-theme"><h3>1 &middot; Onboarding is confusing <span class="conf"><span class="conf-n">n=42</span></span></h3></section></div>
+          <div class="kit-width kit-width--wide"><div class="kit-width-cap">the rest of this column: the pill at the right edge</div><section class="pub-theme"><h3>1 &middot; Onboarding is confusing <span class="conf"><span class="conf-n">n=42</span></span></h3></section></div>
+        </div>
       </section>
 
       <section class="kit-sec" id="axes">
         <h2 class="kit-h2">Axes, with the rule that chooses</h2>
         <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
           <tr><td></td><td><b>no axes</b></td><td>One form, on 6.4 alone (inventory, Level 3). Everything that varies is the content: the number of themes and of citations</td></tr>
-          <tr><td>width</td><td>720px column; 820px and below steps padding, title and the pill</td><td>At 360 the confidence pill would squeeze the theme label to three lines, so it takes its own row under the body</td></tr>
+          <tr><td>width</td><td>45rem column; padding and title fluid; one container threshold at 21rem on the column</td><td>Under a 21rem column the confidence pill would squeeze the theme label, so it follows the label instead of standing at the right edge</td></tr>
         </tbody></table></div>
         <p class="kit-note"><b>.pubfoot is in this file.</b> The footer under the document (<code class="kit-mono">.pubfoot</code>, 6.4 only, in the <code class="kit-mono">kit.css</code> 6.4 block) was read by both the public bar and this page as the other's. It stands only under the shared brief, so it belongs to the document: one centred mono line, on the same values as <code class="kit-mono">kit.css</code>.</p>
       </section>
@@ -241,7 +247,7 @@
           <tr><td><code>--tracking-display</code>, <code>--tracking-title</code>, <code>--tracking-caps</code></td><td>tokens.css</td><td>the title; the theme title; the small caps</td></tr>
           <tr><td><code>--space-2</code>, <code>--space-4</code>, <code>--space-5</code>, <code>--space-6</code>, <code>--space-7</code>, <code>--space-8</code>, <code>--space-9</code>, <code>--space-10</code></td><td>tokens.css</td><td>margins, gaps and padding</td></tr>
         </tbody></table></div>
-        <p class="kit-note">No state, so no state table: the organism paints none. The accent is not read here at all: it arrives through the atom <code class="kit-mono">.cite</code>. Kept as literals because no primitive equals them: 720px, 34px, 24px, 44px (the column), 15.5px (the lede), 12px (the meta), 20px, 14px and 15px, 1.65 and 1.7 (lines), 9px, 11px.</p>
+        <p class="kit-note">No state, so no state table: the organism paints none. The accent is not read here at all: it arrives through the atom <code class="kit-mono">.cite</code>. Kept as literals because no primitive equals them: 45rem (the column), the fluid top and bottom padding (22 to 34px and 34 to 44px), 15.5px (the lede), 12px (the meta), 20px, 14px and 15px, 1.65 and 1.7 (lines), 9px, 11px.</p>
         <h3 class="kit-h3">Snapshots</h3>
         <p class="kit-note">No snapshots: the organism has no state to show. It is shown whole in the specimen above.</p>
       </section>
@@ -283,6 +289,7 @@
       <section class="kit-sec">
         <h2 class="kit-h2">Changes, newest first</h2>
         <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-27</td><td>Stage 10 Step 4, round 3: behaviour at width. The column padding is fluid (sides 16 to 22px, top 22 to 34px, bottom 34 to 44px; the 820 switch is gone), <code>.public-main</code> declares container-type, and one container threshold at 21rem moves the confidence pill</td><td><code>design/kit/docs/responsive.md</code></td></tr>
           <tr><td>2026-11-21</td><td>Entered the system: <code>components/public-doc.css</code>, on semantic roles, and this page in the card format</td><td><code>docs/decisions.md</code>, "The organisms entered the system"</td></tr>
           <tr><td>2026-08</td><td>The <code>pub-*</code> rules were first drawn for the contrast screen 6.4, then taken into the kit with the rest of the colour layer</td><td>commits <code>f86e9ff</code> (Concept Step 7) and <code>d461e12</code></td></tr>
           <tr><td>2026-08</td><td><code>.public-main--wide</code> declared so a landing page can use the same column at marketing measure; it stays with the marketing shell</td><td><code>design/kit/docs/inventory.md</code></td></tr>

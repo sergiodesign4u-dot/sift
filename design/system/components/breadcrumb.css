@@ -15,6 +15,12 @@
    BEHAVIOUR AT WIDTH (Stage 10 Step 4, round 2): FLUID. Its side gutter is --gutter-page, 16px at
    a 360 window growing to 22px at 1040 and up; until Stage 10 it switched from 22 to 16 at an 820
    viewport. 360 keeps its 16 (the owner's option A at Step 2), so nothing moves there.
+   THE NARROW FORM (backlog S5-5, ia/docs/pages/evidence.md:43, round 3): a back chevron plus the
+   parent, the theme name on 5.0. The owner chose to put it UNDER the 360 frame (22.5rem, the
+   width the mobile-first base is drawn at), so 360 keeps the full chain and its zero pixels and
+   only a narrower window collapses. The query reads the frame (.app), where the bar stands. The
+   separators are spans (.bc-sep, aria-hidden), so the form can hide them; the parent is the third
+   child from the end in every chain the product has (link, separator, current page).
    No em dash anywhere in this file.
 */
 
@@ -22,3 +28,9 @@
 .breadcrumb a { display: inline-flex; align-items: center; min-height: var(--size-target); color: var(--text-secondary); text-decoration: none; }
 .breadcrumb a:hover { color: var(--text-primary); }
 .breadcrumb span { color: var(--text-secondary); }
+
+/* threshold 22.5rem, the 360 frame itself: below it the chain becomes a back chevron plus the parent */
+@container (width < 22.5rem) {
+  .breadcrumb > :not(:nth-last-child(3)) { display: none; }
+  .breadcrumb > :nth-last-child(3)::before { content: "\2039" / ""; margin-right: var(--space-2); }
+}

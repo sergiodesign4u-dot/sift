@@ -4,9 +4,13 @@
    Stands on: 7.0, 7.1, 7.2, 7.3. In colour: account.html (7.0) and account-data.html (7.2).
    One form: side nav plus panel. Per nav item: rest, hover, current.
 
-   The nav sits above the panel and is a column first; it becomes a row beside the panel only when
-   there is room (min-width 821px), and then it is 208px wide. The colour layer has no container
-   declared anywhere, so the width is a media query, as kit.css states it.
+   The nav sits above the panel and is a column first; it becomes a rail of 13rem (208px) beside
+   the panel when the PLACE has room for both. BEHAVIOUR AT WIDTH (Stage 10 Step 4, round 3): the
+   query reads the page column, which the screen shell declares; until Stage 10 it was an 821px
+   viewport query. Threshold 35rem: beside the rail the panel keeps at least the 316px the narrow
+   form gives it at 360 down to a 542px column (measured), plus a rem. Not a fluid wrap, which
+   the census proposed: a wrapping rail grows by its share of the free space beside the panel,
+   so it could not be 13rem there and the full width on its own row at once.
    The panel's own contents are molecules and are not redeclared: account-row, cardrow.
    NOT HERE: .cardrow-t and .cardrow-d, the list row link's zones (cardrow.css, since Step 6).
    No em dash anywhere in this file.
@@ -29,7 +33,8 @@
 /* one closing line pointing out of the settings and into the document that explains them */
 .acct-seclink { font-size: var(--type-xs); color: var(--text-secondary); margin-top: var(--space-8); }
 
-@media (min-width: 821px) {
+/* threshold 35rem: from it the nav is a rail beside the panel */
+@container (width >= 35rem) {
   .acct-layout { flex-direction: row; align-items: flex-start; }
-  .acct-nav { width: 208px; flex: none; }
+  .acct-nav { width: 13rem; flex: none; }
 }

@@ -197,7 +197,7 @@ table.kit-tbl tbody tr:last-child td { border-bottom: none; }
 .kit-tabpanel > .kit-sec:first-child { margin-top: 28px; }
 
 /* the specimen: the real set, alive, on the product's ground */
-.kit-hero { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 28px 22px; margin-top: 28px; background: var(--bg-page); border: 1px solid var(--line-hairline); border-radius: var(--radius-lg); }
+.kit-hero { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 28px 22px; margin-top: 28px; background: var(--bg-page); border: 1px solid var(--line-hairline); border-radius: var(--radius-lg); container-type: inline-size; }   /* Stage 10 round 3: the hero specimen answers its box (account rail, legal rail) */
 .kit-hero-note { width: 100%; font-family: var(--font-mono); font-size: var(--type-3xs); letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-secondary); }
 
 /* the matrix: variant rows, state sub-rows, size columns. Inert: a specimen of thirty
@@ -308,10 +308,7 @@ table.kit-matrix { width: 100%; min-width: 620px; border-collapse: collapse; }
 .appframe { border: 1px solid var(--line-hairline); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sheet); background: var(--bg-page); display: flex; flex-direction: column; min-height: 560px; container-type: inline-size; }   /* the stand's frame is a place, as .app is */
 .appframe:has(.theme .check:checked) .selbar { display: flex; }
 .appframe:has(.theme .check:checked) .head-action { display: none; }
-.appframe > .notice { margin: var(--space-6) var(--space-9); }
-@media (max-width: 820px) {
-  .appframe > .notice { margin: var(--space-6) var(--space-7); }
-}
+.appframe > .notice { margin: var(--space-6) var(--gutter-page); }   /* Stage 10 round 3: the twin follows the shell, --gutter-page instead of 22 switching to 16 at 820 */
 
 /* ---------- the pattern pages (Stage 09 Step 2) ----------
    Anatomy: each part of a LIVE pattern carries data-kit-n, and the stand draws a dashed outline

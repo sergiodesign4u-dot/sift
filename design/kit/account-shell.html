@@ -138,8 +138,8 @@
       <section class="kit-sec" id="props">
         <h2 class="kit-h2">Properties</h2>
         <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Property</th><th>Type</th><th>Values</th><th>Default</th></tr></thead><tbody>
-          <tr><td>Layout</td><td>class</td><td><code>.acct-layout</code>: a column; a row from 821px</td><td>required</td></tr>
-          <tr><td>Nav</td><td>zone</td><td><code>.acct-nav</code> on a <code>nav</code> with <code>aria-label="Account sections"</code>; 208px wide from 821px</td><td>required</td></tr>
+          <tr><td>Layout</td><td>class</td><td><code>.acct-layout</code>: a column; a row from a 35rem place</td><td>required</td></tr>
+          <tr><td>Nav</td><td>zone</td><td><code>.acct-nav</code> on a <code>nav</code> with <code>aria-label="Account sections"</code>; 13rem (208px) wide from a 35rem place</td><td>required</td></tr>
           <tr><td>Home link</td><td>zone</td><td><code>.acct-nav-home</code>, uppercase, 12px</td><td>required</td></tr>
           <tr><td>Nav link</td><td>zone</td><td><code>.acct-nav-link</code>, 44px target, a 2px transparent left edge</td><td>required</td></tr>
           <tr><td>Current</td><td>modifier</td><td><code>.is-current</code> on the link, with <code>aria-current="page"</code></td><td>off</td></tr>
@@ -157,7 +157,7 @@
           <div>
             <h3>When</h3>
             <p>On the four account screens, 7.0 to 7.3: the same nav and the same panel on all of them, so the place you are is always the same shape. The panel is where the account rows live.</p>
-            <p>The nav sits above the panel when there is no room and beside it from 821px (<code>kit.css</code>, "Account shell"). The current item is marked by ink, ground and strip together, never by colour alone.</p>
+            <p>The nav sits above the panel when there is no room and beside it from a 35rem place, the page column (<code>account-shell.css</code>). The current item is marked by ink, ground and strip together, never by colour alone.</p>
           </div>
           <div>
             <h3>When not</h3>
@@ -191,21 +191,49 @@
         <p class="kit-note">Four screens share it. The identity block stands above the layout on 7.0 and 7.2; the layout is the nav and the panel.</p>
         <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
           <tr><td>identity</td><td><code>.acct-id</code></td><td>Disc, name, one meta line, a rule below</td></tr>
-          <tr><td>the layout</td><td><code>.acct-layout</code></td><td>Column first; a row from 821px</td></tr>
-          <tr><td>the nav</td><td><code>.acct-nav</code></td><td>Surface ground, hairline edge, medium radius, 6px padding; 208px from 821px</td></tr>
+          <tr><td>the layout</td><td><code>.acct-layout</code></td><td>Column first; a row from a 35rem place</td></tr>
+          <tr><td>the nav</td><td><code>.acct-nav</code></td><td>Surface ground, hairline edge, medium radius, 6px padding; 13rem (208px) from a 35rem place</td></tr>
           <tr><td>home link</td><td><code>.acct-nav-home</code></td><td>Uppercase 12px, primary ink, a 44px target</td></tr>
           <tr><td>nav link</td><td><code>.acct-nav-link</code></td><td>44px target, secondary ink. Hover and current go to primary ink on the page ground; current adds the accent strip</td></tr>
           <tr><td>the panel</td><td><code>.acct-panel</code></td><td>Flexible, with <code>min-width: 0</code> so a long row cannot push the nav</td></tr>
           <tr><td>inside the panel</td><td><code>.acct-section-t</code>, <code>.acct-seclink</code>, molecules</td><td>A title for each group, a closing line, and the rows themselves</td></tr>
         </tbody></table></div>
+        <h3 class="kit-h3">Behaviour at width</h3>
+        <p class="kit-note"><b>A rail beside the panel from a 35rem place</b> (Stage 10 Step 4, round 3). The query reads the page column, <code class="kit-mono">@container (width &gt;= 35rem)</code>, and until Stage 10 it was an 821px viewport query. Below it the nav is a column above the panel; from it the nav is a rail of 13rem (208px) beside the panel. The threshold is measured: beside the rail the panel keeps at least the 316px the narrow form gives it at 360, down to a 542px column, plus a rem. A fluid wrap was the census idea and is not used: a wrapping rail grows by its share of the free space, so it could not be 13rem beside the panel and full width on its own row at once. The same layout, live, in two places:</p>
+        <div class="kit-widths">
+          <div class="kit-width kit-width--narrow"><div class="kit-width-cap">a 260px place: the column form</div>
+            <div class="acct-layout">
+              <nav class="acct-nav" aria-label="Account sections, narrow">
+                <a class="acct-nav-home" href="#">Account</a>
+                <a class="acct-nav-link" href="#">Plan and limits</a>
+                <a class="acct-nav-link is-current" href="#" aria-current="page">Data and privacy</a>
+              </nav>
+              <div class="acct-panel">
+                <div class="acct-section-t">Privacy</div>
+                <label class="acct-row"><input type="checkbox" class="check" checked><span class="acct-row-main"><span class="acct-row-t">Scrub PII by default</span><span class="acct-row-d">Names and email addresses are scrubbed on ingest.</span></span></label>
+              </div>
+            </div></div>
+          <div class="kit-width kit-width--full"><div class="kit-width-cap">a full row, wider than 560px: the rail form</div>
+            <div class="acct-layout">
+              <nav class="acct-nav" aria-label="Account sections, wide">
+                <a class="acct-nav-home" href="#">Account</a>
+                <a class="acct-nav-link" href="#">Plan and limits</a>
+                <a class="acct-nav-link is-current" href="#" aria-current="page">Data and privacy</a>
+              </nav>
+              <div class="acct-panel">
+                <div class="acct-section-t">Privacy</div>
+                <label class="acct-row"><input type="checkbox" class="check" checked><span class="acct-row-main"><span class="acct-row-t">Scrub PII by default</span><span class="acct-row-d">Names and email addresses are scrubbed on ingest.</span></span></label>
+              </div>
+            </div></div>
+        </div>
       </section>
 
       <section class="kit-sec" id="axes">
         <h2 class="kit-h2">Axes, with the rule that chooses</h2>
         <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
-          <tr><td></td><td><b>no axes</b></td><td>One form: side nav plus panel, on 7.0, 7.1, 7.2, 7.3 (inventory, Level 3)</td></tr>
+          <tr><td></td><td><b>one form</b></td><td>Side nav plus panel, on 7.0, 7.1, 7.2, 7.3 (inventory, Level 3)</td></tr>
           <tr><td>nav item</td><td>rest &middot; hover &middot; current</td><td>Per nav item (inventory states: rest, current). Hover is shown too, because the css paints it</td></tr>
-          <tr><td>width</td><td>column below 821px, row from 821px</td><td>The inventory text says the nav collapses above the panel below 600px, and <code>kit.css</code> says the same in its comment, but the rule is at 821px. This page follows the rule</td></tr>
+          <tr><td>width</td><td>column below a 35rem place, row from it</td><td>The place is the page column, which the screen shell declares as a container. Until Stage 10 the rule was an 821px viewport query</td></tr>
         </tbody></table></div>
       </section>
 
@@ -229,7 +257,7 @@
           <tr><td>focus-visible</td><td><code>--line-focus</code></td><td>The one ring from <code>base.css</code></td></tr>
           <tr><td>active, disabled</td><td><b>absent</b></td><td>The css paints neither</td></tr>
         </tbody></table></div>
-        <p class="kit-note">Kept as literals because no primitive equals them: 2px (the nav gap and the strip), 12px with 0.04em tracking (the home link), 14.5px (the name), 40px (the disc), 3px (the meta margin), 208px (the nav width), 821px (the breakpoint).</p>
+        <p class="kit-note">Kept as literals because no primitive equals them: 2px (the nav gap and the strip), 12px with 0.04em tracking (the home link), 14.5px (the name), 40px (the disc), 3px (the meta margin), 208px (the nav width, written 13rem in the css).</p>
         <h3 class="kit-h3">Snapshots</h3>
         <p class="kit-note">No new snapshots this round: the states are shown live in the matrix above. The hover here is a ground, but a darker one than the nav, so it is not the <code class="kit-mono">--bg-hover</code> of the list row link (<a href="cardrow.html">cardrow.html</a>).</p>
       </section>
@@ -260,9 +288,10 @@
       <section class="kit-sec">
         <h2 class="kit-h2">Changes, newest first</h2>
         <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-27</td><td>Stage 10 Step 4, round 3: behaviour at width. The 821px viewport query became a container query at 35rem on the page column; the rail is 13rem. Live pair under Behaviour at width</td><td><code>design/kit/docs/responsive.md</code></td></tr>
           <tr><td>2026-11-21</td><td>The nav hover and current ground on <code>--bg-page</code> is accepted, no longer pending</td><td><code>docs/decisions.md</code>, "Step 6: the system reconciled with the product"</td></tr>
           <tr><td>2026-11-21</td><td>Entered the system: <code>components/account-shell.css</code>, on semantic roles, and this page in the card format. The nav strip reads <code>--bg-action</code>; the hover and current ground reads <code>--bg-page</code>, marked as awaiting the owner</td><td><code>docs/decisions.md</code>, "The organisms entered the system"</td></tr>
-          <tr><td>2026-08</td><td>The row layout was first written as a container query, copying the grey contract. Nothing in the colour layer declares a container, so it would never have fired; it became a media query at 821px</td><td><code>docs/decisions.md</code>, "The kit was proved on the seed screens before anything new was built"</td></tr>
+          <tr><td>2026-08</td><td>The row layout was first written as a container query, copying the grey contract. Nothing in the colour layer declares a container, so it would never have fired; it became a media query at 821px; in Stage 10 it became a container query again, on the page column, which the screen shell now declares</td><td><code>docs/decisions.md</code>, "The kit was proved on the seed screens before anything new was built"</td></tr>
           <tr><td>2026-08</td><td><code>acct-nav-home</code> and <code>acct-nav-link</code> classed as one family, the Account shell nav (13 occurrences, 4 screens)</td><td><code>design/kit/docs/inventory.md</code></td></tr>
           <tr><td>2026-08</td><td>The account rules first appeared in <code>kit.css</code>, grown out of the colour layer</td><td>commit <code>d461e12</code></td></tr>
         </tbody></table></div>

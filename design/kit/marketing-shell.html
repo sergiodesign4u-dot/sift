@@ -146,8 +146,8 @@
         <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Property</th><th>Type</th><th>Values</th><th>Default</th></tr></thead><tbody>
           <tr><td>Hero</td><td>zone</td><td><code>.mk-hero</code> holding <code>.mk-h1</code>, <code>.mk-lead</code>, <code>.mk-cta</code>, <code>.mk-note</code></td><td>first on the page</td></tr>
           <tr><td>Section</td><td>zone</td><td><code>.mk-section</code> holding <code>.mk-h2</code> and <code>.mk-section-sub</code></td><td>repeats</td></tr>
-          <tr><td>Grid</td><td>layout</td><td><code>.mk-grid</code> on a list, cards at 220px or wider, auto-fit</td><td>one column at 360</td></tr>
-          <tr><td>Column</td><td>modifier</td><td><code>.public-main--wide</code>, max 1040px</td><td>720px without it</td></tr>
+          <tr><td>Grid</td><td>layout</td><td><code>.mk-grid</code> on a list, cards at 13.75rem (220px) or wider, auto-fit, one full column in a place under it</td><td>one column at 360</td></tr>
+          <tr><td>Column</td><td>modifier</td><td><code>.public-main--wide</code>, max <code>--container-page</code> (65rem, 1040px)</td><td>720px without it</td></tr>
           <tr><td>Calls to action</td><td>slot</td><td><code>.mk-cta</code> with large buttons: the one place the large size exists</td><td>none</td></tr>
           <tr><td>State</td><td>none</td><td>not interactive</td><td>none</td></tr>
         </tbody></table></div>
@@ -189,12 +189,18 @@
         <h2 class="kit-h2">Anatomy</h2>
         <p class="kit-note">Sections in a column, top to bottom, on 0.0.</p>
         <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
-          <tr><td>hero</td><td><code>.mk-hero</code></td><td>The first line (<code>.mk-h1</code>, 36px, 27px at 360), the lead, the calls to action, the note. A hairline edge below</td></tr>
+          <tr><td>hero</td><td><code>.mk-hero</code></td><td>The first line (<code>.mk-h1</code>, <code>--type-3xl</code>, fluid), the lead, the calls to action, the note. A hairline edge below</td></tr>
           <tr><td>section</td><td><code>.mk-section</code></td><td>A headline, one line of context, then a grid or a list. A hairline edge below</td></tr>
           <tr><td>grid</td><td><code>.mk-grid</code></td><td>Holds the <a href="step-card.html">step card</a> and the <a href="tier-card.html">tier card</a></td></tr>
           <tr><td>trust</td><td><code>.mk-trust</code></td><td>A one-off. Not in this file</td></tr>
           <tr><td>footer link block</td><td><code>.mk-footer</code></td><td>A one-off. Not in this file</td></tr>
         </tbody></table></div>
+        <h3 class="kit-h3">Behaviour at width</h3>
+        <p class="kit-note"><b>The wide column and an auto-fit grid</b> (Stage 10 Step 4, round 3). <code class="kit-mono">.public-main--wide</code> is <code class="kit-mono">--container-page</code> (65rem, the same 1040px). <code class="kit-mono">.mk-grid</code> is auto-fit from a 13.75rem (220px) minimum, guarded by <code class="kit-mono">min(13.75rem, 100%)</code> so a place under the minimum still holds one full column; it reads its place, not the viewport. The census asked for <code class="kit-mono">--grid-col-min</code> (15rem) here and it was withdrawn on verification: at 15rem the fourth tier drops to a row of its own at a 1440 window (4 x 240 + 3 gaps is 996px against a 992px column), so the tier grid keeps the minimum its four cards were drawn at. Three step cards, live, in two places:</p>
+        <div class="kit-widths">
+          <div class="kit-width kit-width--narrow"><div class="kit-width-cap">a 260px place: one column</div><ol class="mk-grid"><li class="mk-step"><span class="mk-step-n">1</span><h3 class="mk-step-t">Connect a source</h3><p class="mk-step-d">Import a CSV export or connect Intercom.</p></li><li class="mk-step"><span class="mk-step-n">2</span><h3 class="mk-step-t">Read the themes</h3><p class="mk-step-d">Themes are clustered from the feedback.</p></li><li class="mk-step"><span class="mk-step-n">3</span><h3 class="mk-step-t">Check the evidence</h3><p class="mk-step-d">Each theme links to the words behind it.</p></li></ol></div>
+          <div class="kit-width kit-width--full"><div class="kit-width-cap">a full row: as many columns as fit</div><ol class="mk-grid"><li class="mk-step"><span class="mk-step-n">1</span><h3 class="mk-step-t">Connect a source</h3><p class="mk-step-d">Import a CSV export or connect Intercom.</p></li><li class="mk-step"><span class="mk-step-n">2</span><h3 class="mk-step-t">Read the themes</h3><p class="mk-step-d">Themes are clustered from the feedback.</p></li><li class="mk-step"><span class="mk-step-n">3</span><h3 class="mk-step-t">Check the evidence</h3><p class="mk-step-d">Each theme links to the words behind it.</p></li></ol></div>
+        </div>
       </section>
 
       <section class="kit-sec" id="axes">
@@ -202,7 +208,7 @@
         <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
           <tr><td></td><td><b>no axes</b></td><td>One form: hero, steps, trust, pricing, footer link block (inventory, "Marketing page shell"). One screen</td></tr>
         </tbody></table></div>
-        <p class="kit-note"><b>No states, and that is a decision rather than an omission.</b> The shell has no state of its own. At 820px and below the first line steps from 36px to 27px and the lead from 16px to 14.5px: the two 360 rules.</p>
+        <p class="kit-note"><b>No states, and that is a decision rather than an omission.</b> The shell has no state of its own. The first line and the lead grow with the page (<code class="kit-mono">--type-3xl</code>, <code class="kit-mono">--type-lead</code>, fluid since Stage 10 Step 2); until then they stepped to 27px and 14.5px at 820.</p>
       </section>
 
       <section class="kit-sec" id="tokens">
@@ -215,7 +221,7 @@
           <tr><td><code>--font-mono</code></td><td>tokens.css</td><td>the note</td></tr>
           <tr><td><code>--space-4</code>, <code>--space-5</code>, <code>--space-6</code>, <code>--space-7</code>, <code>--space-10</code>, <code>--space-12</code></td><td>tokens.css</td><td>the gaps and the section padding</td></tr>
         </tbody></table></div>
-        <p class="kit-note">Kept as literals because no primitive equals them: 30px hero top padding, 16px lead, line heights 1.15 and 1.65, tracking -0.025em on the first line, 7px and 20px margins, 27px and 14.5px at 360, and the widths 20ch, 58ch, 60ch, 220px, 1040px.</p>
+        <p class="kit-note">Kept as literals because no primitive equals them: 30px hero top padding, 16px lead, line heights 1.15 and 1.65, tracking -0.025em on the first line, 7px and 20px margins, 27px and 14.5px at 360, and the widths 20ch, 58ch, 60ch. The grid minimum is 13.75rem (220px) and the wide column is <code class="kit-mono">--container-page</code>.</p>
         <h3 class="kit-h3">Snapshots</h3>
         <p class="kit-note">No snapshots: the shell has no interactive state.</p>
       </section>
@@ -251,6 +257,7 @@
       <section class="kit-sec">
         <h2 class="kit-h2">Changes, newest first</h2>
         <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-27</td><td>Stage 10 Step 4, round 3: behaviour at width. The wide column is <code>--container-page</code> (65rem); <code>.mk-grid</code> is auto-fit from min(13.75rem, 100%). The <code>--grid-col-min</code> proposal was withdrawn on verification (the fourth tier would wrap at 1440)</td><td><code>design/kit/docs/responsive.md</code></td></tr>
           <tr><td>2026-11-21</td><td>Entered the system: <code>components/marketing-shell.css</code>, on semantic roles, and this page in the card format</td><td><code>docs/decisions.md</code>, "The organisms entered the system"</td></tr>
           <tr><td>2026-08-19</td><td><code>.public-main--wide</code> added: the public document at marketing measure, for 0.0</td><td>commit <code>41ae8c4</code>, "UI + Visual Step 5: the sample is complete, seven screens plus the two seeds"; <code>docs/inventory.md</code>, "Added" table</td></tr>
           <tr><td>2026-08-18</td><td>Written into <code>kit.css</code> from the colour layer as the marketing page shell</td><td>commit <code>d461e12</code>, "UI + Visual Step 3: the kit, grown out of the colour layer rather than written again"</td></tr>

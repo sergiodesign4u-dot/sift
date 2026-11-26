@@ -187,17 +187,20 @@
   /* Containers: a limit, not a breakpoint. They never switch, they stop. */
   --container-page: 65rem;   /* 1040px. The widest the page frame grows. The one page container the product
                                 already had (the marketing page, 1040px), now the frame of every page.
-                                Read by the shell, Step 3 */
+                                Read by the shell, Step 3, and the wide public column (.public-main--wide, round 3) */
   --container-text: 52ch;    /* the measure of continuous text. In Inter 1ch is about 1.35 characters: 52ch holds
                                 70 characters a line on real product text, measured at Step 2, inside the 65 to 75
                                 that backlog S5-1 asked for. 92ch held 98 to 122. Read by the scope line, the snippet, the raw
-                                item and the notice (Step 4); it replaced --measure-prose, deleted there */
+                                item and the notice (Step 4); it replaced --measure-prose, deleted there.
+                                Round 3: the theme summary and reason (88ch until then), the legal prose
+                                and the form (no measure until then) */
   --gutter-page: clamp(1rem, 0.8014rem + 0.8823vw, 1.375rem);  /* 16 to 22px. The gutter of the rules that
                                 switched from 22 to 16 at 820 (breadcrumb, notice in the frame, group heading,
-                                selection bar, footers): it now grows instead. Owner's decision at the Step 2
+                                selection bar, 0.0 footer, public column): it now grows instead. Owner's decision at the Step 2
                                 review, option A: 360 keeps its three edges (brand 18, breadcrumb 16, page 22),
                                 so 360 moves by 0 pixels; the page and the brand keep --space-9 and --space-8.
-                                Read by the breadcrumb and the static selection bar (Step 4, round 2) */
+                                Read by the breadcrumb and the static selection bar (Step 4, round 2), a notice
+                                in the frame, the public column's sides and the 0.0 footer (round 3) */
 
   /* The grid. The NUMBER OF COLUMNS IS NOT A TOKEN: repeat(auto-fit, minmax(var(--grid-col-min), 1fr))
      counts them, so the grid works at widths nobody planned. */

@@ -45,10 +45,10 @@ The census number it replaces: 820px, the colour layer's viewport query since St
 
 | Token | Value | What | Origin | Read from |
 |---|---|---|---|---|
-| `--container-page` | `65rem` (1040px) | the widest the page frame grows; it stops, it does not switch | the one page container the product had, the marketing page | Step 3, the shell |
-| `--container-text` | `52ch` | the measure of continuous text | measured at Step 2: in Inter 1ch is about 1.35 characters, 52ch holds 70 characters a line on real product text (67 to 73), inside the 65 to 75 of S5-1; 92ch held 98 to 122 | round 1: the scope line; round 2: the snippet, the raw item, the notice; `--measure-prose` deleted |
-| `--gutter-page` | `clamp(1rem, 0.8014rem + 0.8823vw, 1.375rem)` (16 to 22px) | the gutter of the rules that switched from 22 to 16 at 820; it grows instead | owner's decision at Step 2, option A: 360 keeps its three edges (brand 18, breadcrumb 16, page 22), 0 pixels move; the page and the brand keep their fixed gutters | round 2: the breadcrumb, the static selection bar; the notice in the frame and the footers in round 3 |
-| `--grid-col-min` | `15rem` (240px) | the narrowest a card gets in a grid | the source card grid, 3.0 | round 2: `.src-avail` |
+| `--container-page` | `65rem` (1040px) | the widest the page frame grows; it stops, it does not switch | the one page container the product had, the marketing page | Step 3, the shell; round 3, the wide public column (`.public-main--wide`) |
+| `--container-text` | `52ch` | the measure of continuous text | measured at Step 2: in Inter 1ch is about 1.35 characters, 52ch holds 70 characters a line on real product text (67 to 73), inside the 65 to 75 of S5-1; 92ch held 98 to 122 | round 1: the scope line; round 2: the snippet, the raw item, the notice; `--measure-prose` deleted; round 3: the theme summary and reason (88ch until then), the legal prose, the form |
+| `--gutter-page` | `clamp(1rem, 0.8014rem + 0.8823vw, 1.375rem)` (16 to 22px) | the gutter of the rules that switched from 22 to 16 at 820; it grows instead | owner's decision at Step 2, option A: 360 keeps its three edges (brand 18, breadcrumb 16, page 22), 0 pixels move; the page and the brand keep their fixed gutters | round 2: the breadcrumb, the static selection bar; round 3: a notice in the frame, the public column's sides (24px above 820 until then), the 0.0 footer. The app footer keeps the page's 22px: on the token it would move at 360 |
+| `--grid-col-min` | `15rem` (240px) | the narrowest a card gets in a grid | the source card grid, 3.0 | round 2: `.src-avail`. Not the marketing grids: withdrawn on verification, round 3 |
 | `--grid-gap` | `var(--space-4)` (10px) | the gap of that grid | the same grid | round 2: `.src-avail` |
 
 The number of columns is NOT a token: `repeat(auto-fit, minmax(var(--grid-col-min), 1fr))` counts
@@ -78,8 +78,11 @@ at 360 differ from the commit before by 0 pixels.
 A container threshold belongs to its component and is not a token, but it is listed here, so that
 the check can tell it from a device breakpoint. Each one is the width of the component's PLACE
 where its wide form breaks, measured, plus at least 1rem of margin, rounded up to a whole rem. Every
-one sits above the 316px a 360 window gives the page column, so 360 keeps its narrow forms and
-moves by 0 pixels.
+one sits above what a 360 window gives its place (316px of page column, 328px of public column,
+360px of frame), so 360 keeps its narrow forms and moves by 0 pixels. One exception, the owner's:
+the breadcrumb's narrow form sits exactly at the 360 frame, so only a narrower window gets it.
+Written `<` where the base is the wide form, `>=` where the base is the narrow one (the
+account rail and the legal rail are added on top of a column).
 
 | Component | File | Query | Place it reads | Below it | Measured break of the wide form |
 |---|---|---|---|---|---|
@@ -90,6 +93,12 @@ moves by 0 pixels.
 | toolbar | `toolbar.css` | `@container (width < 39rem)` | the page column | one compact Filter button replaces the full row | the full row wraps under 600px |
 | action bar | `actionbar.css` | `@container (width < 29rem)` | the page column | the note takes its own line; the buttons share the next | the note breaks in two under 450px |
 | selection bar, static | `selbar.css` | `@container (width < 42rem)` | the frame | the buttons share their line | note and buttons wrap under about 650px of frame |
+| breadcrumb | `breadcrumb.css` | `@container (width < 22.5rem)` | the frame | a back chevron plus the parent (S5-5) | not a break: the owner's option A, the 360 frame itself, so 360 keeps the full chain |
+| account shell | `account-shell.css` | `@container (width >= 35rem)` | the page column | from it, the nav is a 13rem rail beside the panel | beside the rail the panel gets less than the 316px the narrow form gives at 360 under a 542px column |
+| public document | `public-doc.css` | `@container (width < 21rem)` | the public column | the confidence follows the theme label | a key row breaks in two under a 320px column |
+| legal document, legal TOC | `legal-doc.css`, `legal-toc.css` | `@container (width >= 46rem)` | the public column | from it, the contents are a sticky 13rem rail left of the prose, links in a column | the rail, a 2rem gap and the prose's full 52ch measure need 715.7px |
+| 0.0 footer (one-off) | `one-off.css` | `@container (width < 34rem)` | the frame | the gaps and the vertical padding tighten | the columns leave the brand's row under a 520px frame |
+| 3.2 column map (one-off) | `one-off.css` | `@container (width < 41rem)` | the page column | the head hides; the row is two lines, the sample on its own | the widest select clips its value under a 636px column |
 
 **Who declares the place.** The shell places them, so `screen-shell.css` declares both of its
 places: `.appmain` (the page column) and `.app` (the frame, for the static selection bar, which
@@ -98,6 +107,13 @@ canvas, never from their content. On the stand, `.kit-sec`, `.appframe` and `.ki
 it (`design/kit/_page.css`), so a specimen answers its own box. Measured at round 2: each of the
 seven switches at exactly its threshold, at a 1600 window with the frame narrowed one pixel at a
 time, so each answers its place and not the window.
+Round 3 adds a third place: `.public-main`, the public column, declares itself in
+`public-doc.css` for what it holds (the shared document, the marketing rows, the legal document),
+with `width: 100%`, because a flex item centred by auto margins is sized by its content and
+inline-size containment takes that to zero. The 3.2 map reads the page column, not `.src-map`:
+its head stands outside the map. Measured: the seven of round 3 switch at exactly their numbers
+(559/560, 335/336, 735/736, 543/544, 655/656 and 359/360 px of place; the breadcrumb also at
+real 340 and 360 windows).
 
 ## The shell
 
@@ -167,8 +183,8 @@ line down; every other screen 0.
 | source card | fluid (grid) | `.src-avail` reads `--grid-col-min` and `--grid-gap` (the same 240 and 10px), `source-card.css` |
 | auth card | container, already | `400px` to `25rem`, `auth-card.css` |
 | phase strip | fluid, already | none: it wraps |
-| legal TOC | fluid, already | none: it wraps; the sticky rail of 9.x (B-27) comes with the legal document, round 3 |
-| tier card, step card | through their placer | none here: the marketing grid places them (marketing shell, round 3) |
+| legal TOC | fluid, already | none: it wraps; the sticky rail of 9.x (B-27) came with the legal document in round 3 |
+| tier card, step card | through their placer | none here: the marketing grid places them (marketing shell, done in round 3) |
 | provenance list, composer row, account row, form field, skeleton card | does not adapt | reasons in the inventory's Width column |
 
 **Two measures kept, withdrawn on verification.** The census asked whether the nine `ch` measures
@@ -178,7 +194,7 @@ or two words left alone. Each is one sentence of one or two lines, not continuou
 keeps its own measure. The other measures (summary and reason, state, marketing, footer) are
 organisms, round 3.
 
-**Not built, the owner's decision: S5-5**, the breadcrumb's narrow form (a back chevron plus the
+**Not built in round 2, the owner's decision: S5-5** (built in round 3, below), the breadcrumb's narrow form (a back chevron plus the
 theme name, `ia/docs/pages/evidence.md:37`). It is a new look at 360 and would move the 360 pixels
 the stage promises not to move. Two ways: a threshold under the 360 frame (only windows narrower
 than 360 get it), or the variant at 360 with the zero promise broken on the screens with a
@@ -193,6 +209,55 @@ states, 5.0, 5.1) and the static bar (6.1), whose gutter is 21.86px at a 1024 wi
 2.0, 3.0, 6.0, the accounts and the rest are 0 at every width: the wide forms of the seven queried
 molecules are unchanged. Width sweep: 15 screens, 50 widths from 320 to 1600 (10px steps between 570
 and 760), 750 frames, 0 overflow, one navigation carrier, the header sticky from 600.
+
+### Round 3, organisms: N 12 = M 10 + K 2
+
+| Organism | Verdict | Done |
+|---|---|---|
+| app header | point | Step 3: the shell swap, `@media (min-width: 37.5rem)`, sticky from it |
+| bottom tabs | point | Step 3: the same swap |
+| state block | container | `440px` to `27.5rem`, `state.css`; the inline description keeps 60ch (one or two sentences) |
+| form | container | `max-width: var(--container-text)`, `form.css`; it had no measure. No colour screen carries `.form`, so it shows on the kit only |
+| dialog | container | `460px` to `28.75rem`, `dialog.css` |
+| legal document | container + container query | the prose reads `--container-text`; new `.legal-body`: from a 46rem place the contents are a sticky 13rem rail left of the prose, `legal-doc.css` and `legal-toc.css` (B-27, `ia/docs/pages/legal.md:50`). No colour 9.x screen: in the 45rem column the place is 676px and the rail never shows; 9.x takes it by standing in the wide column, which Stage 12 states on the screen |
+| account shell | container query | the 821px viewport query to `@container (width >= 35rem)` on the page column; the rail `208px` to `13rem`, `account-shell.css`. The census said a fluid wrap; revised on verification: a wrapping rail grows by its share of the free space beside the panel, so it cannot be 13rem there and full width on its own row at once |
+| public document | container + fluid | the column `720px` to `45rem`; padding fluid: sides `--gutter-page` (24 above 820 until then), top 22 to 34px, bottom 34 to 44px between a 360 and a 1040 window, the gutter's span; `.public-main` declares `container-type`; the pill's 820 rule to `@container (width < 21rem)`, `public-doc.css` |
+| marketing shell | container + fluid | the wide column `1040px` to `var(--container-page)`; the grid `minmax(220px, 1fr)` to `minmax(min(13.75rem, 100%), 1fr)`, `marketing-shell.css` |
+| screen shell | point + container | Step 3: the frame and both places; round 3: a notice in the frame takes `--gutter-page`, its 820 `@media` is gone. The shell now holds no `@media` of its own |
+| app footer, public bar | does not adapt | one wrapping line each; their 22px gutters are the page's and the brand's, which stay (Step 2, option A) |
+
+**The one-off file, outside the count** (it is no component): the summary and the reason (4.0,
+4.1) from 88ch to `--container-text`; the trust grid `minmax(230px, 1fr)` to `min(14.375rem, 100%)`;
+the footer brand's `200px` to `12.5rem`; the 0.0 footer's sides to `--gutter-page` and its 820
+rule to `@container (width < 34rem)` on the frame; the 3.2 column map's 820 rule to
+`@container (width < 41rem)` on the page column. The list note keeps a reduced `@media (max-width:
+820px)`: its 8 to 16px is the grouped list's row padding, like the group heading's, and it moves
+with the grouped list in round 4.
+
+**Built, the owner's decision: S5-5, option A.** The breadcrumb's narrow form, a back chevron plus
+the parent (`ia/docs/pages/evidence.md:43`), from `@container (width < 22.5rem)` on the frame: the
+360 frame itself, so 360 keeps the full chain and its zero pixels and a narrower window collapses
+it (5.0 at 340: "‹ Onboarding is confusing"). The separators became `<span class="bc-sep"
+aria-hidden="true">` on the 7 screens with a breadcrumb and on the kit, so the form can hide them;
+at 360, 1024 and 1440 the change is 0 pixels. **B-26** (`text-wrap: pretty`) stays not taken: it
+moves line breaks at 360.
+
+**Withdrawn on verification: the marketing grids on `--grid-col-min`.** The census called 220, 230
+and 240 one idea. At 15rem the fourth tier drops to a row of its own at a 1440 window (4 x 240 + 3
+gaps is 996px against a 992px column), and the trust grid at 1024. Each grid keeps the minimum its
+cards were drawn at, in rem, guarded by `min()`.
+
+Held against round 2: 360 at 0 pixels on 24 of 24 screens. At 1024 and 1440, 40 of 48 frames 0;
+the 8 that changed, each with its row: 4.0 and 4.1 (the summary and the reason at 52ch, B-25,
+audit rows 4.0, 4.1), 6.4 (the sides 24 to 22px; at 1024 the top and bottom 0.3px short of 34 and
+44, the gutter's span), 0.0 (the same sides; at 1024 a 4px wider column rewraps a line and the page
+is 22px shorter). The accounts, 3.2, 5.0, the dialogs and the states are 0: their wide forms are
+unchanged. At a 640 window, intended: 7.0 and 7.2 take the rail (a 596px column), 6.4 and 0.0 take
+the wide padding and footer, 4.0's summary its measure; 3.2's map stays two lines (596 is under
+656). At a 340 window the breadcrumb collapses on its 7 screens, rows 69 to 81 only. Width sweep:
+17 screens (0.0 and 6.4 added), 54 widths from 320 to 1600 (10px steps between 570 and 760, plus
+340, 350, 359, 361), 918 frames, 0 overflow, one navigation carrier where there is navigation, the
+header sticky from 600.
 
 ## New behaviour
 
@@ -218,6 +283,13 @@ Empty until Step 6.
 | The 360 gutter | option A, keep the drift: 360 moves by 0 pixels; `--gutter-page` grows only what switched at 820 |
 | The measure and the type | as recommended: `52ch`, the screen H1 22 to 24px |
 
+## Decided at Step 4
+
+| Question | Decision |
+|---|---|
+| S5-5, the breadcrumb's narrow form | option A, as recommended (2026-11-27): under the 360 frame only, `@container (width < 22.5rem)`; 360 keeps the full chain and its 0 pixels |
+| B-26, `text-wrap: pretty` | not taken: it moves line breaks at 360 |
+
 ## Part A. Census: what adapts today, and how
 
 ### Home: `design/system/`, the 17 width queries
@@ -228,7 +300,7 @@ Everything sits on one number, 820, which **a viewport** measures. Of 17 rules, 
 |---|---|---|---|---|---|
 | app-header.css:44 | hides the text tabs | point | shell, `@media` (legal here) | stays, the number goes into the register | moved, Step 3: `min-width: 37.5rem`, mobile first |
 | bottom-tabs.css:33 | draws the bottom tabs, sticky | point | shell, `@media` | stays, same | moved, Step 3: `min-width: 37.5rem`, mobile first |
-| screen-shell.css:48 | a notice in the frame: gutter 22 to 16 | point used as a gutter | a fluid gutter token | moves into a token | waits: Step 4 |
+| screen-shell.css:48 | a notice in the frame: gutter 22 to 16 | point used as a gutter | a fluid gutter token | moves into a token | moved, round 3: `--gutter-page`, the rule is gone |
 | breadcrumb.css:23 | gutter 22 to 16 | point used as a gutter | a fluid gutter token | moves into a token | moved, round 2: `--gutter-page`, the rule is gone |
 | patterns/grouped-list.css:26 | group heading padding, gutter 16 | point used as a gutter | a fluid gutter token | moves into a token | waits: Step 4 |
 | selbar.css:29 | gutter 16; buttons take equal width | point | gutter token + `@container` | moves | moved, round 2: `--gutter-page` and `@container (width < 42rem)` on the frame |
@@ -238,11 +310,11 @@ Everything sits on one number, 820, which **a viewport** measures. Of 17 rules, 
 | screen-head.css:42 | the head action goes full width | point | `@container` | moves | moved, round 2: `@container (width < 26rem)` |
 | theme-card.css:46 | the card becomes a grid, confidence on its own row, the quote clamps to 2 lines | point | `@container` | moves | moved, round 2: `@container (width < 29rem)` |
 | toolbar.css:35 | full filter row swaps to the compact button | point | `@container` | moves | moved, round 2: `@container (width < 39rem)` |
-| account-shell.css:32 | (at 821 and up) the section list becomes a rail beside the content | point | fluid: `flex-wrap` with a minimum width, no point at all | moves into fluid | waits: Step 4 |
+| account-shell.css:32 | (at 821 and up) the section list becomes a rail beside the content | point | fluid: `flex-wrap` with a minimum width, no point at all | moves into fluid | moved, round 3: `@container (width >= 35rem)` on the column (the wrap revised on verification) |
 | legal-doc.css:28 | `font-size` of the prose 15 to 14 | point on type | `clamp()` in the type scale | moves into the scale | moved, Step 2: --type-legal; the rule is gone |
 | marketing-shell.css:27 | `font-size` h1 36 to 27, lead to 14.5 | point on type | `clamp()` | moves into the scale | moved, Step 2: --type-3xl and --type-lead; the rule is gone |
-| public-doc.css:65 | gutter 16; `font-size` h1 29 to 24; the confidence loses its margin | point | gutter token + `clamp()` + `@container` | moves | font size moved, Step 2 (--type-2xl); the rest waits: Step 4 |
-| one-off.css:112 | footer and list-note gutters; the CSV map goes from 4 columns to 2 | point | gutter token + `@container` declared by the map | moves | waits: Step 4 |
+| public-doc.css:65 | gutter 16; `font-size` h1 29 to 24; the confidence loses its margin | point | gutter token + `clamp()` + `@container` | moves | font size moved, Step 2 (--type-2xl); round 3: sides `--gutter-page`, top and bottom fluid, the pill `@container (width < 21rem)` |
+| one-off.css:112 | footer and list-note gutters; the CSV map goes from 4 columns to 2 | point | gutter token + `@container` declared by the map | moves | moved, round 3: the footer `@container (width < 34rem)`, the map `@container (width < 41rem)` on the column; the list note waits for round 4 |
 
 ### Home: the fluid and the container, already there
 

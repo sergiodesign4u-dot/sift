@@ -6,6 +6,9 @@
    A wrapping link list in a box, so a long document is navigable from its head without a rail.
    Each link keeps the 44px target (--size-target) and wraps, so the list survives 360px without a
    second row of rules. The hover reads the primary ink; the one focus ring is in base.css.
+   BEHAVIOUR AT WIDTH (Stage 10 Step 4, round 3): from a 46rem place, the legal document's
+   threshold, the box is the document's sticky rail (legal-doc.css places it) and its links stand
+   one under another; the box loses its outer margin, the rail's top is the prose's.
    No em dash anywhere in this file.
 */
 
@@ -14,3 +17,9 @@
 .legal-toc ul { list-style: none; display: flex; flex-wrap: wrap; column-gap: 20px; }
 .legal-toc a { display: inline-flex; align-items: center; min-height: var(--size-target); font-size: var(--type-xs); color: var(--text-secondary); text-decoration: none; }
 .legal-toc a:hover { color: var(--text-primary); }
+
+/* threshold 46rem, the legal document's: in the rail the links stand one under another */
+@container (width >= 46rem) {
+  .legal-toc { margin: 0; }
+  .legal-toc ul { flex-direction: column; }
+}

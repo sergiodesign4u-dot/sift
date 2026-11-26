@@ -65,7 +65,7 @@
       <section class="kit-sec" id="props">
         <h2 class="kit-h2">Properties</h2>
         <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Property</th><th>Type</th><th>Values</th><th>Default</th></tr></thead><tbody>
-          <tr><td>Sheet</td><td>own class</td><td><code>.dialog</code>: 460px at most, raised ground, hairline edge, the large radius, the sheet shadow</td><td>none: the class is required</td></tr>
+          <tr><td>Sheet</td><td>own class</td><td><code>.dialog</code>: 28.75rem (460px) at most, raised ground, hairline edge, the large radius, the sheet shadow</td><td>none: the class is required</td></tr>
           <tr><td>Title</td><td>zone</td><td><code>h1</code> inside, 17px, strong weight</td><td>required</td></tr>
           <tr><td>Text</td><td>zone</td><td><code>p</code> inside, 12.5px, secondary ink</td><td>one or more</td></tr>
           <tr><td>Actions</td><td>zone</td><td><code>.dialog-actions</code>, a wrapping row. The destructive action takes <code>.u-apart</code> and sits at the left edge</td><td>required</td></tr>
@@ -140,12 +140,18 @@
         <h2 class="kit-h2">Anatomy</h2>
         <p class="kit-note">Dialog, level 3. A sheet that holds a title, text and actions, and in 6.3 a link row.</p>
         <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
-          <tr><td>the sheet</td><td><code>.dialog</code></td><td>Raised ground, hairline edge, large radius, sheet shadow, 24px padding, 460px at most</td></tr>
+          <tr><td>the sheet</td><td><code>.dialog</code></td><td>Raised ground, hairline edge, large radius, sheet shadow, 24px padding, 28.75rem (460px) at most</td></tr>
           <tr><td>the title</td><td><code>h1</code></td><td>17px, strong weight, primary ink</td></tr>
           <tr><td>the text</td><td><code>p</code></td><td>12.5px, secondary ink, 1.6 line height</td></tr>
           <tr><td>the link row</td><td><code>.linkrow</code></td><td>A one-off block, not in the system yet [?]</td></tr>
           <tr><td>the actions</td><td><code>.dialog-actions</code></td><td>A wrapping row, 10px apart, 16px above</td></tr>
         </tbody></table></div>
+        <h3 class="kit-h3">Behaviour at width</h3>
+        <p class="kit-note"><b>A container with a cap</b> (Stage 10 Step 4, round 3). <code class="kit-mono">.dialog</code> is <code class="kit-mono">width: 100%</code> up to <code class="kit-mono">max-width: 28.75rem</code> (460px until Stage 10: the same pixels at the default font size, and it grows with the reader's). Below it the sheet takes its place and its actions wrap; nothing switches and there is no query. The same sheet, live, in two places:</p>
+        <div class="kit-widths">
+          <div class="kit-width kit-width--narrow"><div class="kit-width-cap">a 260px place: the sheet takes it</div><div class="dialog"><h1>The link is live</h1><p>Anyone with this link can read the brief without logging in.</p><div class="dialog-actions"><a class="btn" href="#">Copy link</a><a class="btn--ghost" href="#">Done</a></div></div></div>
+          <div class="kit-width kit-width--full"><div class="kit-width-cap">a full row: the sheet stops at 28.75rem</div><div class="dialog"><h1>The link is live</h1><p>Anyone with this link can read the brief without logging in.</p><div class="dialog-actions"><a class="btn" href="#">Copy link</a><a class="btn--ghost" href="#">Done</a></div></div></div>
+        </div>
       </section>
 
       <section class="kit-sec" id="axes">
@@ -167,7 +173,7 @@
           <tr><td><code>--text-primary</code>, <code>--text-secondary</code></td><td>tokens.css</td><td>the title, and the text</td></tr>
           <tr><td><code>--space-4</code>, <code>--space-7</code>, <code>--type-lg</code>, <code>--type-xs</code>, <code>--weight-strong</code>, <code>--tracking-title</code>, <code>--leading-body</code></td><td>tokens.css</td><td>the gaps and the type</td></tr>
         </tbody></table></div>
-        <p class="kit-note">Literals kept: 24px (the padding), 7px under the title, 460px. Not interactive: no hover, focus or active token.</p>
+        <p class="kit-note">Literals kept: 24px (the padding), 7px under the title. The 28.75rem cap is a rem. Not interactive: no hover, focus or active token.</p>
       </section>
 
       <section class="kit-sec" id="snapshots">
@@ -198,6 +204,7 @@
       <section class="kit-sec">
         <h2 class="kit-h2">Changes, newest first</h2>
         <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-27</td><td>Stage 10 Step 4, round 3: behaviour at width. The sheet is a container, <code>max-width: 28.75rem</code> (460px until Stage 10). Live pair under Behaviour at width</td><td><code>design/kit/docs/responsive.md</code></td></tr>
           <tr><td>2026-11-26</td><td>The 3.6 content form removed from the inventory row: the grey 3.6 draws its confirm inline. The open question now links to its backlog rows, B-08 and S6-2</td><td><code>docs/decisions.md</code>, "Stage 09 Step 6"</td></tr>
           <tr><td>2026-11-26</td><td>The rule block gained its third sub-point, <b>Limits</b>: R1, R5 from the usage rules. The rules live on <code>architecture.html</code>; this page carries the short copy</td><td><code>docs/decisions.md</code>, "Stage 09 Step 1"</td></tr>
           <tr><td>2026-11-21</td><td>Entered the system: <code>components/dialog.css</code>, on semantic roles, and this page in the card format</td><td><code>docs/decisions.md</code>, "The organisms entered the system"</td></tr>

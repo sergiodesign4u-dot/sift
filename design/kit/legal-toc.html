@@ -110,7 +110,7 @@
           <tr><td>Title</td><td>zone</td><td><code>.legal-toc-t</code>, mono uppercase</td><td>required</td></tr>
           <tr><td>List</td><td>zone</td><td>a <code>ul</code>, wrapping, 20px between columns</td><td>required</td></tr>
           <tr><td>Link</td><td>zone</td><td>an <code>a</code> in each item, 44px target</td><td>required</td></tr>
-          <tr><td>Axes</td><td>none</td><td>one form</td><td>n/a</td></tr>
+          <tr><td>Axes</td><td>none</td><td>one form; in a 46rem place its links stand in a column</td><td>n/a</td></tr>
           <tr><td>State</td><td>variant</td><td>rest &middot; hover &middot; focus-visible</td><td>rest</td></tr>
         </tbody></table></div>
       </section>
@@ -150,7 +150,7 @@
 
       <section class="kit-sec" id="anatomy">
         <h2 class="kit-h2">Anatomy</h2>
-        <p class="kit-note">A wrapping link list in a box, so a long document is navigable from its head without a rail.</p>
+        <p class="kit-note">A wrapping link list in a box, so a long document is navigable from its head. From a 46rem place it is the document's rail (see Behaviour at width).</p>
         <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Zone</th><th>Class or element</th><th>Rule</th></tr></thead><tbody>
           <tr><td>the box</td><td><code>.legal-toc</code></td><td>Surface ground, hairline edge, medium radius</td></tr>
           <tr><td>the title</td><td><code>.legal-toc-t</code></td><td>Mono, uppercase, secondary ink</td></tr>
@@ -158,7 +158,7 @@
           <tr><td>the link</td><td><code>a</code></td><td>Secondary ink, no underline, a 44px target</td></tr>
         </tbody></table></div>
         <h3 class="kit-h3">Behaviour at width</h3>
-        <p class="kit-note"><b>Fluid, no threshold</b> (Stage 10 Step 4). The list is a flex row that wraps (<code class="kit-mono">flex-wrap: wrap</code>) and each link keeps its 44px target, so in a narrow place the links run on to further lines and nothing is cut. No query, and the CSS did not change in Stage 10; it was already fluid. The same contents box, live, in two places:</p>
+        <p class="kit-note"><b>Wraps in a narrow place, a column in the rail</b> (Stage 10 Step 4, rounds 2 and 3). The list is a flex row that wraps (<code class="kit-mono">flex-wrap: wrap</code>) and each link keeps its 44px target, so in a narrow place the links run on to further lines and nothing is cut. Round 3 added one container query, <code class="kit-mono">@container (width &gt;= 46rem)</code>, the legal document's threshold: there the box is the document's sticky rail, its links stand one under another and the box loses its outer margin (the rail's top is the prose's). The rail itself is placed by <code class="kit-mono">legal-doc.css</code> and drawn live on <a href="legal-doc.html">legal-doc.html</a>, since it needs the wrapper <code class="kit-mono">.legal-body</code> around it. The boxes below are narrower than 46rem, so both show the wrapping form:</p>
         <div class="kit-widths">
           <div class="kit-width kit-width--narrow"><div class="kit-width-cap">a 260px place: the narrow form</div><nav class="legal-toc" aria-label="On this page">
               <div class="legal-toc-t">On this page</div>
@@ -186,7 +186,7 @@
       <section class="kit-sec" id="axes">
         <h2 class="kit-h2">Axes, with the rule that chooses</h2>
         <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Axis</th><th>Values</th><th>The rule that chooses</th></tr></thead><tbody>
-          <tr><td></td><td><b>no axes</b></td><td>One form: 9.0, 9.1 and 9.2. Everything that varies is its content</td></tr>
+          <tr><td></td><td><b>no axes</b></td><td>One form: 9.0, 9.1 and 9.2. Everything that varies is its content, and the place (wrapping row, or column in the rail)</td></tr>
           <tr><td>hover</td><td>the ink steps from secondary to primary</td><td>The links carry no underline and no ground, so the ink is the only signal</td></tr>
         </tbody></table></div>
       </section>
@@ -234,6 +234,7 @@
       <section class="kit-sec">
         <h2 class="kit-h2">Changes, newest first</h2>
         <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-27</td><td>Stage 10 Step 4, round 3: behaviour at width. From a 46rem place the box is the legal document's sticky rail: links in a column, outer margin 0. The wrapping form is unchanged below it</td><td><code>design/kit/docs/responsive.md</code></td></tr>
           <tr><td>2026-11-26</td><td>Stage 10 Step 4, round 2: the legal contents box was checked against its place and is fluid by its flex-wrap. The CSS did not change. Drawn live on this page</td><td><code>design/kit/docs/responsive.md</code></td></tr>
           <tr><td>2026-11-21</td><td>Entered the system: <code>components/legal-toc.css</code>, on semantic roles, and this page in the card format</td><td><code>docs/decisions.md</code>, "The molecules entered the system"</td></tr>
           <tr><td>2026-08-18</td><td>Written into <code>kit.css</code> from the colour layer as the legal table of contents, a wrapping link list in a box</td><td>commit <code>d461e12</code>, "UI + Visual Step 3: the kit, grown out of the colour layer rather than written again"</td></tr>
