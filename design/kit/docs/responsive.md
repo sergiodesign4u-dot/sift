@@ -38,8 +38,8 @@ number as a literal; the token is the register and the literal its application, 
 truth. Every `@media` of the product must give exactly the numbers in this table, and Step 6 checks
 it by grep. `rem` in a media query is the reader's default font size, so the point moves with it.
 
-The census number it replaces: 820px, the colour layer's viewport query since Stage 07. Alternative
-kept open for the owner at the Step 2 review: `51.25rem` (820px), which changes nothing on screen.
+The census number it replaces: 820px, the colour layer's viewport query since Stage 07. The owner took
+`37.5rem` at the Step 2 review over `51.25rem` (820px), which would have changed nothing on screen.
 
 ## Containers, measure, grid, gutter
 
@@ -47,7 +47,7 @@ kept open for the owner at the Step 2 review: `51.25rem` (820px), which changes 
 |---|---|---|---|---|
 | `--container-page` | `65rem` (1040px) | the widest the page frame grows; it stops, it does not switch | the one page container the product had, the marketing page | Step 3, the shell |
 | `--container-text` | `52ch` | the measure of continuous text | measured at Step 2: in Inter 1ch is about 1.35 characters, 52ch holds 70 characters a line on real product text (67 to 73), inside the 65 to 75 of S5-1; 92ch held 98 to 122 | Step 4; `--measure-prose` (92ch) retires there |
-| `--gutter-page` | `clamp(1rem, 0.8014rem + 0.8823vw, 1.375rem)` (16 to 22px) | one left edge for the brand, the breadcrumb and the page | proposed: three edges drift at 360 today (16, 18, 22) | Step 4, by the owner's decision |
+| `--gutter-page` | `clamp(1rem, 0.8014rem + 0.8823vw, 1.375rem)` (16 to 22px) | the gutter of the rules that switched from 22 to 16 at 820; it grows instead | owner's decision at Step 2, option A: 360 keeps its three edges (brand 18, breadcrumb 16, page 22), 0 pixels move; the page and the brand keep their fixed gutters | Step 4, by the owner's decision |
 | `--grid-col-min` | `15rem` (240px) | the narrowest a card gets in a grid | the source card grid, 3.0 | Step 4 |
 | `--grid-gap` | `var(--space-4)` (10px) | the gap of that grid | the same grid | Step 4 |
 
@@ -100,7 +100,15 @@ Empty until Step 6.
 |---|---|
 | New behaviour | none: no split view, one point, Step 5 short; 4.0 stays one dense column as the IA says (`ia/docs/pages/theme.md:88`) |
 | 5.0 provenance on a wide screen | below the quote, not a side panel: three short lines would make a near-empty second column |
-| The 360 gutter | brought to Step 2 as two options: keep the drift, or one fluid gutter with a named change at 360 |
+| The 360 gutter | brought to Step 2 as two options |
+
+## Decided at Step 2
+
+| Question | Decision |
+|---|---|
+| The breakpoint | `37.5rem` (600px), as recommended; not `51.25rem` |
+| The 360 gutter | option A, keep the drift: 360 moves by 0 pixels; `--gutter-page` grows only what switched at 820 |
+| The measure and the type | as recommended: `52ch`, the screen H1 22 to 24px |
 
 ## Part A. Census: what adapts today, and how
 

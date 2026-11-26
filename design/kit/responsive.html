@@ -17,7 +17,7 @@
     { id: 'ways',     label: 'Three ways' },
     { id: 'points',   label: 'The breakpoint' },
     { id: 'measure',  label: 'Container and measure' },
-    { id: 'gutter',   label: 'The gutter: your call' },
+    { id: 'gutter',   label: 'The gutter' },
     { id: 'grid',     label: 'Grid' },
     { id: 'type',     label: 'Fluid type' },
     { id: 'shell',    label: 'Shell' },
@@ -101,7 +101,7 @@
     <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Token</th><th>Value</th><th>What changes there</th><th>Why there</th><th>Applied</th></tr></thead><tbody>
       <tr><td><code class="kit-mono">--bp-shell-wide</code></td><td><b>37.5rem</b><br>600px at the default font size</td><td>The header takes the three sections; below it the bottom tabs carry them</td><td>Audit row "shell", every signed-in screen. The header row of brand, three tabs and avatar measures <b>24.1rem</b> (385px), so at 360 it does not fit. 37.5rem is the smallest width of the census above that, and it is the grey contract's 600 (backlog B-07)</td><td>Step 3</td></tr>
     </tbody></table></div>
-    <p class="kit-note"><b>The census number it replaces is 820px</b>, the colour layer's viewport query since Stage 07, on 15 rules that are not the shell's business: gutters, components and font sizes. The other choice for this review is <code class="kit-mono">51.25rem</code> (820px), which changes nothing on screen; 37.5rem gives the header tabs to windows from 600 to 820 that show the phone bar today.</p>
+    <p class="kit-note"><b>The census number it replaces is 820px</b>, the colour layer's viewport query since Stage 07, on 15 rules that are not the shell's business: gutters, components and font sizes. Decided at the Step 2 review: 37.5rem, over <code class="kit-mono">51.25rem</code> (820px), which would have changed nothing on screen. 37.5rem gives the header tabs to windows from 600 to 820 that show the phone bar today.</p>
     <p class="kit-note"><b>Why the number is written twice, and why that is not two sources of truth.</b> A media query is evaluated before the cascade of custom properties, so <code class="kit-mono">@media (min-width: var(--bp-shell-wide))</code> never matches, and raises no error. The query therefore carries <code class="kit-mono">37.5rem</code> as a literal. The token is the register, the literal is its application, and every <code class="kit-mono">@media</code> of the product must give exactly the number in the register: Step 6 checks that by grep. <b>rem</b> in a media query is the reader's default font size, so a reader with a larger font gets the phone layout on a wider window, which is the point: the line still holds the same text.</p>
     </section>
 
@@ -117,15 +117,15 @@
     <p class="kit-note">Where they are read: the page frame by the shell at Step 3, the measure by the components at Step 4. Not in <code class="kit-mono">base.css</code> as a rule on a bare element, which the pack suggests, and here is why, measured: the page frame has to hold the header, the breadcrumb, the page and the footer to one edge, and a rule on bare <code class="kit-mono">main</code> would centre the page under a header that stays at the window edge (and would reach every <code class="kit-mono">main</code> of this stand). A rule on bare <code class="kit-mono">p</code> would shrink the four notice bands, which are paragraphs with a ground of their own.</p>
     </section>
 
-    <section class="kit-sec" id="gutter"><h2 class="kit-h2">The gutter: your call</h2>
-    <p class="kit-lead">At 360 the screen has three left edges. On 5.0 the brand starts at 18px, the breadcrumb at 16px, the page and its H1 at 22px. Above 820 two of them agree at 22. The gutter is three values that disagree on the one width where the pixel promise is zero. Two ways out, and only you can take the second, because it moves 360.</p>
+    <section class="kit-sec" id="gutter"><h2 class="kit-h2">The gutter: decided, option A</h2>
+    <p class="kit-lead">At 360 the screen has three left edges. On 5.0 the brand starts at 18px, the breadcrumb at 16px, the page and its H1 at 22px. Above 820 two of them agree at 22. The gutter is three values that disagree on the one width where the pixel promise is zero. Two ways out were put to the owner at the Step 2 review, and the owner took <b>A</b>: the promise of zero pixels at 360 holds to the letter, and <code class="kit-mono">--gutter-page</code> (16 to 22px) grows only the rules that switched from 22 to 16 at 820, so a gutter no longer jumps while the window is dragged.</p>
     <div class="rs-opts">
-      <div class="scene"><div class="scene-label">A. Keep the drift: 360 moves by 0 pixels</div>
+      <div class="scene"><div class="scene-label">A. Keep the drift: taken</div>
         <div class="rs-gut"><div style="padding-left:18px">Sift, the brand, 18px</div><div style="padding-left:16px">Synthesis &rsaquo; Onboarding, the breadcrumb, 16px</div><div style="padding-left:22px">Evidence, the H1, 22px</div></div>
-        <p class="rs-cap">Three tokens reproduce today's three values. The promise holds to the letter, and the defect is written into the system.</p></div>
-      <div class="scene"><div class="scene-label">B. One fluid gutter: recommended</div>
+        <p class="rs-cap">360 moves by 0 pixels. The brand keeps <b>--space-8</b>, the page <b>--space-9</b>, and the breadcrumb, the notice, the group heading, the selection bar and the footers read <b>--gutter-page</b>: 16 at 360, 22 at 1040. The three edges at 360 stay, said out loud.</p></div>
+      <div class="scene"><div class="scene-label">B. One fluid gutter: not taken</div>
         <div class="rs-gut"><div style="padding-left:var(--gutter-page)">Sift, the brand</div><div style="padding-left:var(--gutter-page)">Synthesis &rsaquo; Onboarding, the breadcrumb</div><div style="padding-left:var(--gutter-page)">Evidence, the H1</div></div>
-        <p class="rs-cap"><b>--gutter-page</b>: 16px at 360, growing to 22px at 1040. One edge at every width. At 360 the page moves 6px left and the brand 2px: a named change, one row in the audit, explained in the pixel proof.</p></div>
+        <p class="rs-cap">One edge at every width, at the price of moving 360: the page 6px left, the brand 2px. Recommended at Step 2, not taken.</p></div>
     </div>
     </section>
 

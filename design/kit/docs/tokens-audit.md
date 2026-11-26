@@ -322,7 +322,7 @@ every difference is explained by a row here or in `design/kit/docs/responsive.md
 | `--bp-shell-wide` | none; 820px literal in 17 rules | `37.5rem` | the register of the one breakpoint. Read by the shell at Step 3 |
 | `--container-page` | none | `65rem` | the page frame. Read at Step 3 |
 | `--container-text` | none (`--measure-prose` 92ch held 98 to 122 characters) | `52ch`, 70 characters a line measured | the measure of continuous text. Read at Step 4, where `--measure-prose` retires |
-| `--gutter-page` | none; 16, 18 and 22px at 360 | `clamp(1rem, 0.8014rem + 0.8823vw, 1.375rem)` | proposed one left edge; the owner decides at the Step 2 review |
+| `--gutter-page` | none; 16, 18 and 22px at 360 | `clamp(1rem, 0.8014rem + 0.8823vw, 1.375rem)` | the rules that switched 22 to 16 at 820 grow instead. Owner's decision, option A: 360 keeps brand 18, breadcrumb 16, page 22 |
 | `--grid-col-min`, `--grid-gap` | none | `15rem`, `var(--space-4)` | the grid, from the source card grid. Read at Step 4 |
 
 All the clamps grow from 22.5rem (360px) to 65rem (1040px), the page container: the type grows
