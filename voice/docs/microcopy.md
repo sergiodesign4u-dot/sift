@@ -253,7 +253,7 @@ problem: the value line and the product one-liner change from screen to screen. 
 | Evidence | Section | Provenance | h2 |
 | Evidence | Provenance | Source: Intercom connection · synced 2 days ago | list `[DIV-2]` |
 | Evidence | Provenance | Author: redacted (PII scrubbed by default) · segment: mid-market | list `[DIV-6]` |
-| Evidence | Provenance | Supports theme: Onboarding is confusing · citation 1 | list |
+| Evidence | Provenance | Supports theme: Onboarding is confusing n=42 · citation 1 | list; `n=42` is the confidence atom, usage rule R7 (Stage 09 Step 5) |
 | Evidence | Action | Back to theme / Copy quote | ghost-button / button |
 | Evidence | Action, done | Quote copied | button label after the copy, then back to "Copy quote" |
 | Evidence | Status | Quote copied with its citation | status region, read by a screen reader (added Stage 09 Step 5) |
@@ -261,7 +261,7 @@ problem: the value line and the product one-liner change from screen to screen. 
 | Redacted (5.1) | Head | This item cannot be shown | state-title |
 | Redacted (5.1) | Body | The raw quote was scrubbed beyond display to protect personal data, so it is not available. Rather than show a broken or fabricated quote, Sift flags it. The theme still stands on its other evidence. | state-body `[DIV-6]` |
 | Redacted (5.1) | Section | Affected citation | h2 |
-| Redacted (5.1) | List | Theme: Onboarding is confusing · citation 7 is flagged as unresolved | list |
+| Redacted (5.1) | List | Theme: Onboarding is confusing n=42 · citation 7 is flagged as unresolved | list; `n=42` is the confidence atom, usage rule R7 (Stage 09 Step 5) |
 | Redacted (5.1) | List | Reason: PII scrubbed beyond display (GDPR) | list `[DIV-6]` |
 | Redacted (5.1) | List | Source: Intercom connection · synced 9 days ago | list `[DIV-2]` |
 | Redacted (5.1) | Action | Back to theme | button |

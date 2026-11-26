@@ -142,7 +142,7 @@
         <li><b>R4</b><span>At most one <code>.notice</code> on a screen</span></li>
         <li><b>R5</b><span>A warning or error band never sits on a raised surface such as a dialog</span></li>
         <li><b>R6</b><span>Exactly one <code>h1</code>, and it names the screen</span></li>
-        <li><b>R7</b><span>A theme never shows without its confidence, <code>.conf</code></span></li>
+        <li><b>R7</b><span>A theme never shows without its confidence, <code>.conf</code>: in its row, its head, and wherever provenance names it</span></li>
         <li><b>R8</b><span>The app header and the bottom tabs inside the app only, the public bar on the public pages only</span></li>
         <li><b>R9</b><span>At most one phase strip, <code>.steps</code>, on a screen</span></li>
       </ul>
@@ -180,11 +180,11 @@
         source</a> with its state <a href="../evidence-redacted.html">5.1</a>, was built from the system alone.
         Everything it could not find is a row here, with the level that closes it and its priority.
         Nothing was added to the system on the way: its completeness was the thing being tested.
-        What to close, and when, is the owner's call: S5-1 and S5-2 were closed the same day.</p>
+        What to close, and when, is the owner's call: S5-1, S5-2 and S5-3 were closed the same day.</p>
       <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>#</th><th>What is missing</th><th>What it was needed for</th><th>Level</th><th>Priority</th></tr></thead><tbody>
         <tr><td>S5-1</td><td>A raw item: one feedback item in full, standing alone. Meta above the quote with its own gap, the quote a step larger than a list row, a leading hairline, a reading measure, no link and no hover</td><td>5.0, and the meta line of 5.1. Built from the snippet's parts, the meta lands 0px above the quote and the customer's words are smaller than the title "Feedback item", on the one screen whose job is the quote</td><td>component</td><td><b>closed</b> by the owner: <a href="rawitem.html">the raw item</a></td></tr>
         <tr><td>S5-2</td><td>A done state for a copy action, announced, and its string; and what is copied, the quote alone or the quote with its citation</td><td>"Copy quote" on 5.0 changes nothing visible, and "Copy" on 6.3 has the same gap. A bare quote that leaves Sift has lost its chain</td><td>component state, microcopy, IA</td><td><b>closed</b> by the owner: <a href="button.html#forms">done, after a copy</a></td></tr>
-        <tr><td>S5-3</td><td>The theme's confidence where 5.0 names the theme: a provenance line with the theme and <code>n=42</code></td><td>The IA's defend-live surface is "n=X plus the verbatim quote"; the screen has the quote only. Usage rule R7 covers theme rows and heads, not a theme named as a claim; widening it is the owner's decision</td><td>component form, microcopy; owner for R7</td><td>medium</td></tr>
+        <tr><td>S5-3</td><td>The theme's confidence where 5.0 names the theme: a provenance line with the theme and <code>n=42</code></td><td>The IA's defend-live surface is "n=X plus the verbatim quote"; the screen has the quote only. Usage rule R7 covers theme rows and heads, not a theme named as a claim; widening it is the owner's decision</td><td>component form, microcopy; owner for R7</td><td><b>closed</b> by the owner: <a href="architecture.html#usage">R7 widened</a>, <a href="provlist.html">the provenance list</a></td></tr>
         <tr><td>S5-4</td><td>An unresolved form of the citation marker and the snippet, and its string</td><td>5.1 says citation 7 "is flagged as unresolved", and the flag shows nowhere, on 5.1 or on 4.0</td><td>component state, microcopy</td><td>medium</td></tr>
         <tr><td>S5-5</td><td>The breadcrumb's narrow form: a back chevron and the theme name at 360</td><td>The IA asks for it on 5.0; the three-level chain fits today only because the theme name is short</td><td>component variant</td><td>medium, Stage 10</td></tr>
         <tr><td>S5-6</td><td>One edition of the 5.0 author line</td><td><code>microcopy.md</code> holds "Author: redacted" and, in its own rewrite log, "Author: not shown"</td><td>microcopy</td><td>low</td></tr>

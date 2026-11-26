@@ -1150,3 +1150,13 @@ rule of Step 4: new into the system first, then onto the screen.
 
 IA was touched for the payload only, because the row named it; no node, scope or chip changed.
 S5-3 to S5-6 stay open; R7 stays with the owner.
+
+**R7 widened, and S5-3 closed, by the owner** ("as you recommend"). R7 now reads: every theme row,
+every theme head, and every provenance line that names the theme an item supports carries
+`.conf`. Why: D2 makes confidence mandatory, and `ia/docs/pages/evidence.md:50` defines the
+defend-live surface as "n=X plus the verbatim quote"; the screen had the quote only. Counted on the
+grey corpus, a theme is named in provenance on 2 pages, 5.0 and 5.1, so no other screen moves. The
+provenance list's prose form now carries the confidence atom after the theme link, with no new
+style; its page gained the Limits sub-point (R7); the two provenance lines in `microcopy.md` carry
+"n=42"; the rule changed in `architecture.md`, `architecture.html`, the Limits of
+`confidence.html` and `theme-card.html`, and the guide's one-line list. S5-4 to S5-6 stay open.

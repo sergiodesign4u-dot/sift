@@ -47,7 +47,7 @@
         <ul class="provlist u-full">
           <li>Source: <b>Intercom connection</b> &middot; synced 2 days ago</li>
           <li>Author: <b>not shown</b> (PII scrubbed by default) &middot; segment: mid-market</li>
-          <li>Supports theme: <a href="#">Onboarding is confusing</a> &middot; citation <span class="cite">1</span></li>
+          <li>Supports theme: <a href="#">Onboarding is confusing</a> <span class="conf"><span class="conf-n">n=42</span></span> &middot; citation <span class="cite">1</span></li>
         </ul>
         <p class="kit-hero-note">Prose form, from 5.0. Links keep the link atom's states</p>
       </div>
@@ -62,7 +62,7 @@
             <tbody>
               <tr><th>Prose line with a link and a citation index<code>.provlist li, a, .cite</code></th>
                 <td><ul class="provlist u-full">
-                  <li>Theme: <a href="#">Onboarding is confusing</a> &middot; citation <span class="cite">7</span> is flagged as unresolved</li>
+                  <li>Theme: <a href="#">Onboarding is confusing</a> <span class="conf"><span class="conf-n">n=42</span></span> &middot; citation <span class="cite">7</span> is flagged as unresolved</li>
                   <li>Reason: <b>PII scrubbed beyond display</b> (GDPR)</li>
                   <li>Source: Intercom connection &middot; synced 9 days ago</li>
                 </ul></td></tr>
@@ -105,6 +105,13 @@
             <ul>
               <li>For the customer's words: take <a href="snippet.html">the evidence snippet</a>. The list holds facts about the words, not the words.</li>
               <li>For a row that is itself a link to a thing: take <a href="cardrow.html">the list row link</a>.</li>
+            </ul>
+          </div>
+          <div class="kit-limits">
+            <h3>Limits</h3>
+            <p>Usage rules that name this component. Each is written once, on <a href="architecture.html#usage">Architecture, the usage rules</a>, with where it was taken from; this is the short copy.</p>
+            <ul>
+              <li><b>R7.</b> A theme never shows without its confidence: every theme row, theme head and provenance line that names a theme carries <code>.conf</code> (D2).</li>
             </ul>
           </div>
         </div>
@@ -184,6 +191,7 @@
       <section class="kit-sec">
         <h2 class="kit-h2">Changes, newest first</h2>
         <div class="tbl-wrap"><table class="kit-tbl kit-hist"><thead><tr><th>Date</th><th>What changed</th><th>Record</th></tr></thead><tbody>
+          <tr><td>2026-11-26</td><td>The prose form names a theme with its confidence, <code>.conf</code> after the theme link; and the rule block gained <b>Limits</b>, R7, widened by the owner to provenance lines. No new style: the confidence atom sits inline as it is</td><td><code>docs/decisions.md</code>, "Stage 09 Step 5"</td></tr>
           <tr><td>2026-11-26</td><td>First worn in colour: 5.0 and 5.1, built from the system alone at Stage 09 Step 5, in its prose form</td><td><code>docs/decisions.md</code>, "Stage 09 Step 5"</td></tr>
           <tr><td>2026-11-21</td><td>Entered the system at Step 6: promoted from the one-off <code>wf-prov-list</code> at Step 2, built from the grey anatomy</td><td><code>docs/decisions.md</code>, "Step 6: the system reconciled with the product"</td></tr>
         </tbody></table></div>
