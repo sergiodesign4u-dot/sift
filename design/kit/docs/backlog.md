@@ -89,3 +89,26 @@ Step 5.*
 | R10-1 | A product still for the 0.0 hero: the right column of the wide hero | 0.0 at 600 and up, audit row "hero in two columns" from `ia/docs/pages/home.md:51` ("copy left, product still right"). Neither the grey nor the colour copy has the still, so the hero stays one column with its copy at the measure (N3, the owner's decision A) | visual asset, then a 0.0 one-off layout | medium, Stage 12 or a visuals pass |
 | R10-2 | The "Why this order" field beside the list shows its three rows | 6.1 and 6.2 from a 55rem place (N4): at 20rem the owner's rationale runs about six lines, so three show and the rest scrolls. A taller field would move 360 (`rows` is markup), so it was not done here | component variant (textarea) or the screen's `rows` | low, Stage 12 |
 | R10-3 | Aligning the group heading with its rows at 360 | 8 grouped-list screens: at 360 the heading's text stands at 16px, the rows' at 8, the drift of the phone kept for the 360 promise (round 4). Aligning it moves 360 by 8px on 8 screens | value (pattern padding), the owner | low |
+
+## Stage 11: states the motion inventory needs
+
+*Stage 11 Step 1, `docs/motion.md` section 2. Motion lands on states that exist; these moments have
+a job (CONNECTION or STATUS) but the state they move between is not drawn in the grey or in the
+system. The owner's decision, 2026-11-28: none is drawn at this stage. A state that first appears in
+a wireframe or on a colour screen is an IA defect, so each is closed upstream in IA and then by the
+system, not invented by the motion. Priorities proposed at Step 1. Columns as in Stage 09 Step 5.*
+
+| # | What is missing | What it was needed for | Level | Priority |
+|---|---|---|---|---|
+| A11-1 | The open filter panel under the compact toolbar | 2.0 below the toolbar's 39rem place: "Filter" opens a panel no file draws, so at 360 the button leads nowhere (moment C2, CONNECTION) | IA state, then component (toolbar) | high |
+| A11-2 | "Load more": the appended rows and the busy foot | 2.0 "Load 6 more themes", 4.0 "Load 36 more items" (moment C3, CONNECTION); the list foot is still a candidate pattern on two screens | IA state, then pattern | medium |
+| A11-3 | The "arrived" form of an evidence row reached from a citation chip (`:target`) | 4.0, 4.1: the chip scrolls to `#e1`, the row never says it is the one (moment C4, CONNECTION; the reference in table C waits for it) | component state (snippet) | medium |
+| A11-4 | The 6.3 dialog over its underlay | 6.1, 6.2 to 6.3: today the dialog is its own page, so it cannot come from its button (moment C5, CONNECTION) | IA, then organism state (dialog) | medium |
+| A11-5 | A theme picker for "Add themes" | 6.1, 6.2: the chip opens nothing in any file, and the register has no owner for it (moment C6, CONNECTION) | IA block, then component | medium |
+| A11-6 | The 6.2 notice band's "before" form | 6.2: the warning band exists only already shown (moment C7, CONNECTION) | IA state | low |
+| A11-7 | The collapsed form of the inline disconnect confirm | 3.6: the confirm is drawn permanently open (moment C8, CONNECTION); tied to B-08 and S6-2 | IA state, one-off | low |
+| A11-8 | The delete-account confirm, inline or dialog | 7.2: "You will be asked to confirm" with no confirm drawn (moment C9, CONNECTION); tied to S6-2 | IA state, then component | medium |
+| A11-9 | A busy state of the Button | 3.6 "Re-import from Intercom", 3.3 the approval wait, 7.2 "Export data", and the Form's submitting `[?]` (moments S6, S7, S9, STATUS) | component state (button) | medium |
+| A11-10 | The CSV uploading state | 3.2: the page draws the file already parsed (moment S8, STATUS) | IA state, one-off | low |
+| A11-11 | The dragging state of the composer row and its handle | 6.1, 6.2: dragging is `[?]` in the register | component state | low |
+| A11-12 | The "Synced" form of a source row | 3.0, 3.5: "Syncing" and "Sync failed" are drawn, the good resolution is not (moment S5, STATUS) | content state (source row, tag) | low |

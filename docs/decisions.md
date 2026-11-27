@@ -1232,3 +1232,16 @@ spacing in rem, continuous text stopped at `--container-text`; 360 moved by 0 px
 difference a row of the width audit. Nothing removed: no line about width there had gone stale.
 173 to 178 lines of 200. README: Responsive = Done. `/_nav.js`: `done:true` on Responsive, `wip` on
 the group kept, 3/4, for Stage 11 to remove.
+
+## Stage 11: Animation (2026-11-28)
+
+The stage that makes the system move, and only where a movement does a job. The full record:
+`design/kit/docs/motion.md` (shown on `design/kit/motion.html` from Step 2).
+
+### Step 1: the census, the moment inventory, the character references
+
+| Decision | Why | Rejected |
+|---|---|---|
+| Table C on the live benchmark alone (owner, as recommended) | motionsites was unavailable: the free plan had used 3 of 3 prompts. Perplexity's public pages were measured in Playwright; two moments taken (the skeleton loop, a citation landing), C1 closed without a source. Amplitude's product is behind a login, its marketing site is another context | Buying a plan for three prompts; taking character from memory; widening to moments the inventory did not name |
+| The 12 states the inventory needs are not drawn now; backlog rows A11-1 to A11-12 (owner, as recommended) | Motion lands on states that exist. A state that first appears on a screen is an IA defect, fixed upstream, then in the system | Drawing a `.is-open` or a busy form so that a transition has something to move to |
+| The safety net in `base.css` (Stage 08, `* { transition: none !important }` under reduce) is named a defect of order | Placed first, it makes the reduce audit green on an empty place: 0 of 1950 moving under reduce, and 0 through a token. It comes out at Step 2 and may return last at Step 5 | Keeping it and calling the reduce duty done |
