@@ -78,3 +78,14 @@ in Step 5.*
 | S6-1 | A note that explains a section, a short paragraph under a `.group-t--section` heading | 3.6, twice in the grey (`.src-note`): "Pull the history from Intercom again..." and "Disconnecting stops the live sync...". No component page offers a body paragraph under a section heading; `.sub` belongs to the screen head, `.actionbar-note` to the closing bar | component, or one-off if 3.6 stays its only screen | medium, Stage 12 when 3.6 is painted |
 | S6-2 | A destructive action that is itself the confirm: filled or outline, and whether a danger emphasis exists | 3.6, "Disconnect Intercom". `button.html` and `dialog.html` cover a destructive action held apart from the primary one (`.u-apart`, 6.3), not one that is the primary. The grey draws it filled | component variant (button), the owner | medium, Stage 12 with B-08 |
 
+
+## Stage 10: what the width audit named and the stage did not close
+
+*Stage 10 Step 6, the idle check from the audit side and the owner's decisions. Columns as in
+Step 5.*
+
+| # | What is missing | What it was needed for | Level | Priority |
+|---|---|---|---|---|
+| R10-1 | A product still for the 0.0 hero: the right column of the wide hero | 0.0 at 600 and up, audit row "hero in two columns" from `ia/docs/pages/home.md:51` ("copy left, product still right"). Neither the grey nor the colour copy has the still, so the hero stays one column with its copy at the measure (N3, the owner's decision A) | visual asset, then a 0.0 one-off layout | medium, Stage 12 or a visuals pass |
+| R10-2 | The "Why this order" field beside the list shows its three rows | 6.1 and 6.2 from a 55rem place (N4): at 20rem the owner's rationale runs about six lines, so three show and the rest scrolls. A taller field would move 360 (`rows` is markup), so it was not done here | component variant (textarea) or the screen's `rows` | low, Stage 12 |
+| R10-3 | Aligning the group heading with its rows at 360 | 8 grouped-list screens: at 360 the heading's text stands at 16px, the rows' at 8, the drift of the phone kept for the 360 promise (round 4). Aligning it moves 360 by 8px on 8 screens | value (pattern padding), the owner | low |

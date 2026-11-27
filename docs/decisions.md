@@ -1198,3 +1198,28 @@ prototype chrome stays dark in both themes with its text at 4.5:1; the journal f
 addition of the one-screen kind, 169 to 173 lines of 200. README: Design System = Done. `/_nav.js`:
 `done:true` on System guide since Step 3, `wip` on the group kept, 2/4, for Stage 11 to remove.
 
+
+## Stage 10: Responsive, one layout that breathes (2026-11-27)
+
+The wide screen was the phone layout stretched: 17 rules on one 820px viewport query, 15 of them not
+the shell's business, nine line measures from 20 to 92ch, no page container. Stage 10 put width
+into the system and kept 360 to the pixel. The full record: `design/kit/docs/responsive.md`
+(census, audit of all 37 screens, ladder, register, thresholds, shell), shown on
+`design/kit/responsive.html`; the critique and the contract: `design/kit/docs/critique.md`,
+"Stage 10"; the proof: `design/kit/pixel-proof.html#s10`.
+
+| Decision | Why | Rejected |
+|---|---|---|
+| ONE viewport point, `--bp-shell-wide: 37.5rem`, named by the change it makes (Step 2, owner) | The audit found one change of behaviour, the shell swap. The header row of brand, three sections and avatar measures 24.1rem, so it cannot sit at 360; 37.5rem is the smallest census width above it and the grey contract's 600 (B-07). Two points is a ceiling, not a quota | `51.25rem` (the old 820): it would have changed nothing on screen and kept the phone bar on windows from 600 to 820. A second point: nothing for it to do. Device names (`--bp-tablet`): they bring back three versions |
+| The point lives as a literal in two `@media`, the token is the register | A media query is evaluated before custom properties, `var()` inside it never matches and raises no error | `var()` in the query; a build step |
+| Every other width answer is a container query, the place declared by its placer (Step 4, four rounds) | A component cannot know from the window how wide its place is; the shell, the public column and the two patterns declare `container-type`; 17 queries on a register of 15 rows, each threshold measured where the wide form breaks, plus a rem | Viewport queries per component (the old 820); container types declared by the component itself (a place is not a property of the brick) |
+| The shell, form A: the three sections move into the header from 37.5rem, sticky; the bottom tabs below (Step 3) | Three entries plus an account, no second level that must stay visible (IA 03a); exactly one carrier at any width, the hidden one out of the accessibility tree | B, a left rail: nothing to fill it. C, no change: the bottom tabs on a 1440 window |
+| The gutter at 360 kept as it is, option A (Step 2, owner); `--gutter-page` 16 to 22px grows only what switched at 820 | The promise is 0 px at 360; aligning the three edges would move it | Option B, one gutter everywhere, moving 360 |
+| The measure `--container-text: 52ch`; the screen subtitle keeps 70ch and the theme quote 78ch (Step 2, round 2) | In Inter 52ch holds about 70 characters, inside the 65 to 75 of S5-1; the two kept are one sentence each and broke a word alone onto a line at 52ch | 70ch (93 characters); one measure for every line |
+| Type fluid where it was switched: three heading steps and two reading sizes on `clamp()` with a rem addend, low end equal to 360 | A font size must not jump while a window is dragged; the rem addend keeps zoom working (WCAG 1.4.4) | Bare `vw`; a switch at a point |
+| No new behaviour at width, Step 5 in its short form | No list and detail pair reaches the threshold; 4.0 stays one dense column as the IA asks (`theme.md:88`); a split view would need state, focus and history for nothing | A split view on 4.0 with 5.0 |
+| The breadcrumb's narrow form only under the 360 frame, S5-5 option A (Step 4, owner) | 360 keeps the full chain and its 0 px | Under a wider place: moves 360. B-26, `text-wrap: pretty`: moves line breaks at 360 |
+| Step 6, the owner's priorities as recommended: type and spacing to rem at the same values (D1, D2); the 6.4 and 0.0 measures onto the token (D3 to D5) | At a 200% reader font 33 kinds of text did not grow; the air must grow with the type | Spacing kept in px with a reason |
+| The 6.1 priority panel built beside the selection from a 55rem column (N4, owner) | The audit row came from the IA (`briefs.md:93`) and was built nowhere; both blocks already existed | Rewriting the audit row to "same" |
+| The 0.0 hero stays one column (N3, owner); backlog R10-1 | The IA's product still exists nowhere; a two-column hero without it is an empty column | Making the still now: a new visual, not this stage's work |
+| B-24 (the 10px step) returned open | Its low end at 360 is the Stage 08 scale; lifting it is a change of value, the owner's | Lifting it here and breaking the 360 promise |

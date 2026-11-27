@@ -107,6 +107,7 @@ account rail and the legal rail are added on top of a column).
 | public document | `public-doc.css` | `@container (width < 21rem)` | the public column | the confidence follows the theme label | a key row breaks in two under a 320px column |
 | legal document, legal TOC | `legal-doc.css`, `legal-toc.css` | `@container (width >= 46rem)` | the public column | from it, the contents are a sticky 13rem rail left of the prose, links in a column | the rail, a 2rem gap and the prose's full 52ch measure need 715.7px |
 | 0.0 footer (one-off) | `one-off.css` | `@container (width < 34rem)` | the frame | the gaps and the vertical padding tighten | the columns leave the brand's row under a 520px frame |
+| 6.1 brief composer (one-off) | `one-off.css` | `@container (width >= 55rem)` | the page column | from it, the priority panel ("Why this order") is a 20rem column beside the selection | the selection keeps every row on one line down to 500px (the low signal row on 6.2 breaks under it); 500 + a 2rem gap + 20rem is 852px, plus a rem |
 | 3.2 column map (one-off) | `one-off.css` | `@container (width < 41rem)` | the page column | the head hides; the row is two lines, the sample on its own | the widest select clips its value under a 636px column |
 | grouped list heading, list note (one-off) | `patterns/grouped-list.css`, `one-off.css` | `@container (width < 20rem)` | the grouped list (the note outside it: the page column) | the heading and the note keep 16px at the sides, the rows 8 | not a break: the phone's drift kept for the 360 promise, exactly as wide as a 360 window's 316px place and no wider |
 
@@ -298,7 +299,8 @@ widths, 918 frames, 0 overflow, one carrier where there is navigation. Switch: 3
 **The product's width queries now: exactly the register.** Two `@media` on width, both
 `@media (min-width: 37.5rem)`, in `app-header.css` and `bottom-tabs.css`; 0 in a screen file. The
 product's third `@media`, `base.css:72`, asks for reduced motion, not width, and is not a point. Every other width answer is one of
-the 16 container queries above (14 rows of thresholds: the legal pair and the heading and note pair share theirs), or a fluid value.
+the 17 container queries above (15 rows of thresholds: the legal pair and the heading and note pair share theirs), or a fluid value.
+The seventeenth came at Step 6: the 6.1 brief composer (N4).
 
 ## New behaviour
 
@@ -318,7 +320,29 @@ allows), so no screen loses its own URL and no surface appears only at a wide wi
 
 ## Width gaps from the sweep
 
-Empty until Step 6.
+Step 6 walked every screen and every stand page from 320 to 1600 by 40, by 10 from 520 to 680
+around the point, plus 359 to 361 and 599 to 601: 91 pages, 49 widths, 4459 frames, the width read
+(`clientWidth` equal to the asked width on all). Twice: before the fixes and after them.
+
+**On the product, no gap.** 0 side scroll and exactly one navigation carrier on 1225 of 1225
+frames: the bottom tabs below 600, the header from 600, none on 0.0 and 6.4. The point and the
+seventeen container queries hand over without a width where something already breaks.
+
+**The gaps were the measure and the stand**, named and closed (rows in `critique.md`, frames on
+`pixel-proof.html#s10-sweep`):
+
+| Where | Widths | What broke | Closed by |
+|---|---|---|---|
+| 6.4, the method note, lede, rationale, summaries | 480 to 1600 | past 52ch, up to about 116 characters | `--container-text` (D3, N1) |
+| 0.0, the note, lead, section subs, a trust line | 400 to 1600 | past 52ch, up to 107ch | `--container-text` (D4, D5, N2) |
+| `responsive.html`, the Step 5 table | 320 to 960 | the page scrolled sideways | its scroll wrapper (F0) |
+| `app-header.html`, do and don't | 920 to 1120 | the wide header cut in its box | the pair stacked (D14) |
+| `screen-shell.html`, the shell table and three frames | 600 to 1600 | the wide header cut in 194 to 335px boxes | `.appframe--box`, the frame answers its own box (D14, N6) |
+| `breadcrumb.html`, the three-level trail | 505 to 540 | spilled its column, the page scrolled at 510 to 520 | `.kit-form-c > *` (D15) |
+| `color.html`, the theme pairs | 920 to 1600 | values cut in their halves | the value wraps (D16) |
+
+After the fixes: 0 failing frames, except the two kept on purpose: the screen head sub past 52ch
+(70ch by decision) and the scaled pattern thumbnails.
 
 ## Decided at Step 1
 
@@ -403,7 +427,7 @@ Corpus: `wireframes/*.html` with `screens.md`, read beside `jtbd.md` and `cjm-as
 
 | screen | what the person does here | category | how | source |
 |---|---|---|---|---|
-| 0.0 Home | decides whether Sift is worth a try | wider: grid | hero in two columns, steps 3 up, trust strip: auto-fit; marketing container | home.md:51 |
+| 0.0 Home | decides whether Sift is worth a try | wider: grid | steps 3 up, trust strip: auto-fit; marketing container. The hero in two columns is NOT built: the IA's product still for its right column exists nowhere, so the hero stays one column at the measure (Step 6, N3, owner's decision; backlog R10-1) | home.md:51 |
 | 1.0 Log in | gets in | same | the card keeps its width (container) | auth.md:41 "a form does not need width" |
 | 1.0 Sign up | creates a workspace | same | same card; the value copy stays inside it (IA: "optional ... beside") | auth.md:41 |
 | 1.0 Reset | recovers the password | same | same card | auth.md:41 |
@@ -424,7 +448,7 @@ Corpus: `wireframes/*.html` with `screens.md`, read beside `jtbd.md` and `cjm-as
 | 5.0 Evidence | reads the raw quote, the end of the chain (J3, E2) | wider: air | a readable column for the quote; provenance below | evidence.md:44 "a side panel or below"; below is taken, see question 2 |
 | 5.1 Evidence redacted | learns why the item cannot be shown | wider: air | the notice gets the measure (100 characters at 1920 now) | evidence.md:44 |
 | 6.0 Briefs | finds a saved brief | wider: air | page container, grouped list | briefs.md (no desktop note for 6.0) |
-| 6.1 Build a brief | picks themes and orders them (S1, J4) | wider: grid | selection beside the priority panel; fluid wrap, no point | briefs.md:93 "selection plus a priority panel" |
+| 6.1 Build a brief | picks themes and orders them (S1, J4) | wider: grid | selection beside the priority panel, built at Step 6 (N4, owner's decision): from a 55rem column the panel is a 20rem column beside the selection, `one-off.css`. Not a fluid wrap: a wrapping panel would grow by its share of the free space | briefs.md:93 "selection plus a priority panel" |
 | 6.2 Build, thin warning | as 6.1, warned about a thin theme | wider: grid | as 6.1 | briefs.md:93 |
 | 6.3 Share link | copies the public link | same | the dialog keeps its width | dialog.css |
 | 6.3 Share link loading | waits for the link | same | dialog | dialog.css |

@@ -41,6 +41,10 @@
    around it, because a card would claim it is a different kind of thing. kit.css:433 */
 .block { padding-top: 1.25rem; margin-top: 1.25rem; border-top: 1px solid var(--line-hairline); }
 
+/* 6.1 and 6.2: the brief being composed, the selection (the ordered themes) and the priority
+   panel ("Why this order"). One column; beside each other from a 55rem place (rule below). */
+.brief-compose { display: block; }
+
 /* ---------- 0.0 Home ---------- */
 
 /* The trust list: a list of claims, a rule above each one instead of a box around it. kit.css:655 */
@@ -138,4 +142,16 @@
    place, the one a 360 window gives; aligned with the rows at 8px from there. */
 @container (width < 20rem) {
   .listnote { padding: 0.8125rem var(--space-7); }
+}
+
+/* 6.1 and 6.2 brief composer (Stage 10 Step 6, N4, the owner's decision). Audit row 6.1, "wider:
+   grid", from ia/docs/pages/briefs.md:93: "build is selection plus a priority panel". Threshold
+   55rem on the page column: from it the priority panel is a 20rem column beside the selection.
+   Measured: the selection keeps every row on one line down to 500px (the low signal row on 6.2
+   breaks under it), so 500 + a 2rem gap + 20rem is 852px, plus a rem, rounded up. The panel keeps
+   its rule above; it only loses the margin that separated it from the list in one column.
+   Reading and tab order are unchanged: the selection first, then why. */
+@container (width >= 55rem) {
+  .brief-compose { display: grid; grid-template-columns: minmax(0, 1fr) 20rem; column-gap: var(--space-12); align-items: start; }
+  .brief-compose > .block { margin-top: 0; }
 }

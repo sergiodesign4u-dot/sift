@@ -276,14 +276,14 @@ prose states the finding, the mono states the evidence.
 
 ### Hierarchy
 
-- **Display** (590, 29px, 1.2, -0.022em): the public brief title. Drops to 24px below 820px. The
+- **Display** (590, 24 to 29px, 1.2, -0.022em): the public brief title, fluid (see Adaptive). The
   largest type anywhere in the product, and it appears on the one surface a stranger opens cold.
-- **Headline** (590, 22px, -0.02em): the app screen H1. One per screen.
+- **Headline** (590, 22 to 24px, -0.02em): the app screen H1, fluid. One per screen.
 - **Title** (590, 17px to 19px, -0.015em to -0.02em): section headings inside the public brief, and
   the title line of an empty or error state.
 - **Body** (400, 14px, 1.5, -0.011em): the base. Theme labels step to 500 weight at the same size.
-  Reading measure is capped: 70ch on a screen subtitle, 78ch on a quote, 92ch on the scope line, and
-  the public brief column is capped at 720px rather than by character count.
+  Reading measure is capped: continuous text stops at `--container-text` (52ch, about 70 characters
+  of Inter); a screen subtitle keeps 70ch and a theme card quote 78ch, both one sentence, by decision.
 - **Label** (590, 11px, 0.07em, uppercase): the eyebrow above a section of the public brief, and the
   wordmark. The only uppercase in the product.
 - **Mono** (500, 12.5px): counts, ranks, provenance lines, citation numbers, timestamps, and the app
@@ -317,25 +317,60 @@ decision:
 clamps to two lines. What drops on mobile is decided by asking what the desktop row can afford to
 lose.
 
-**One breakpoint.** The colored layer changes at `max-width: 820px`, and that single query does all
-the work: the desktop navigation tabs are replaced by sticky bottom tabs, the full filter toolbar is
-replaced by a compact one, the head action goes full width, and the reading column tightens. The
-grey structural layer in `wireframes/` uses a different mechanism (a 600px container query on the
-canvas plus a 900px window query for chrome), because there the screen sits inside a device frame.
-This is a real difference between the two layers and it is intentional: the colored copies are the
-product at full width, not a screen inside a viewer.
+**One breakpoint, and it is the shell's.** Until Stage 10 the coloured layer changed everything at
+an 820px viewport. Since Stage 10 the one viewport point is `--bp-shell-wide` (37.5rem) and it swaps
+the navigation only; every other change of width is a component answering its own place. The whole
+model is the section "Adaptive" below.
 
-**Spacing is not yet a scale.** The code carries no spacing tokens. Padding, gap, and margin are
-literals, and there are more than twenty distinct values in use, which is evidence of rhythm rather
-than of a system. A `--space-*` scale is introduced at Stage 07 Step 3 as an approved addition, and
-this section is rewritten from it at Step 7. Recording the absence is deliberate: an invented scale
-here would be a fact nobody measured.
+**Spacing is a scale, in rem.** `--space-1` to `--space-12` (4 to 32px at the default size), the
+steps the product measured on real screens since Stage 07. Since Stage 10 the scale and every
+spacing literal are rem at the same values, so the air grows with the reader's font size.
 
 **Target floor: 44px.** Every interactive control has a 44px minimum hit height, with three named
 exceptions, each written down rather than tolerated: the row checkbox is 24px (the AA floor, because
 a 44px checkbox would double the height of every row in a ranked list), the avatar reads at 28px and
 is hit at 44px through a transparent `::after` overlay, and the inline citation marker at 17px is a
 typographic mark inside prose, not a target.
+
+## Adaptive
+
+*Stage 10. Source: `design/kit/docs/responsive.md`, shown on `design/kit/responsive.html`.*
+
+**One layout that breathes, not three versions.** There is no mobile, tablet or desktop edition:
+one layout with one named change, which looks deliberate at 360, 412, 900 and 1440 although nobody
+drew those widths. 360 is the base and did not move by a pixel at this stage; every difference on a
+wide screen is a row of the width audit.
+
+**Three ways, read top down.** Fluid first (`clamp()` with a rem addend, `%`, `minmax()` with
+auto-fit, `flex-wrap`); then the container (a limit and a measure, `--container-page` 65rem and
+`--container-text` 52ch); a breakpoint last, only where the fluid physically cannot do the job.
+The number of grid columns is not a token: `auto-fit` from `--grid-col-min` counts them.
+
+**One point, named by the change: `--bp-shell-wide`, 37.5rem.** Its origin is the audit row "shell"
+(every signed-in screen): the header row of brand, three sections and avatar measures 24.1rem, so at
+360 it does not fit, and 37.5rem is the smallest width of the census above that (the grey
+contract's 600). From it the header carries the three sections and is sticky; below it the bottom
+tabs do. Exactly one carrier at any width, the hidden one out of the accessibility tree too. A
+media query cannot read `var()`, so the two queries carry the literal and the token is the register.
+The audit found no second change of behaviour, so there is no second point: two is a ceiling.
+
+**A component measures its place, not the window.** Seventeen `@container` queries on fifteen
+register rows; whoever places a component declares `container-type` (the shell for the page column
+and the frame, the public column, the two patterns). A screen file holds no `@media`, no
+`@container`, no `style=`, ever.
+
+**The shell, form A.** Three sections and an account in a corner (IA, Stage 03a): the sections move
+into the header from 37.5rem; no rail, because there is no second level that must stay visible.
+The page frame centres one 65rem column while the grounds of the header, page and footer run full
+width.
+
+**Type and space follow the reader.** Every size and space is rem; the three heading steps and two
+reading sizes are fluid from their 360 value; a font size never switches at a point.
+
+**No new behaviour at width.** No split view: no list and detail pair reached the threshold, and
+4.0 stays one dense column as the IA asks. Geometry has no theme pair; what exists only wide (the
+header sections, the account rail, the legal rail) reads colour roles and was checked in the dark
+theme.
 
 ## Elevation & Depth
 
@@ -424,7 +459,7 @@ product; mixing sets is a visual desync.
 - **Desktop:** a 52px Surface bar carrying the wordmark, three text tabs, and the avatar. A tab is
   Ash at rest, Porcelain on hover, and Porcelain on Elevated when active. Tabs are 44px tall inside
   a 52px bar.
-- **Mobile (under 820px):** the tab row is replaced by a sticky bottom tab bar on Surface with a Line
+- **Narrow (under 37.5rem, 600px):** the tab row is replaced by a sticky bottom tab bar on Surface with a Line
   top border. The active tab is the one place cyan appears in navigation, on both the icon and the
   label.
 - **Public surfaces** carry a bar with the mark and a read-only tag, and no navigation at all.

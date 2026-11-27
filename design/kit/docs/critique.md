@@ -408,8 +408,8 @@ New rows found by the second pass:
 |---|---|---|---|---|---|
 | N1 | Line over the measure | 6.4, `.pub-rationale`, `.pub-theme p` | 66.5ch and 63.1ch a line; the first sweep kept only the worst line of a frame, so the method note hid them | sweep, second pass | **fixed**: `--container-text`, 6.4 at 1280 now 122px taller, 360 0 px |
 | N2 | Line over the measure | 0.0, `.mk-trust-d` (one-off) | 54.2ch at a 480 window, one column of the trust grid | sweep, second pass | **fixed**: `--container-text` |
-| N3 | Audit row without implementation | 0.0, Part B row "hero in two columns" (`home.md:51`) | The hero is one column at every width, its right half empty from 600 up. Neither the grey nor the colour copy has the "product still" the IA puts on the right, so the row cannot be built from what exists | Claude, the idle check from the audit side | **for the owner** |
-| N4 | Audit row without implementation | 6.1 and 6.2, Part B row "selection beside the priority panel" (`briefs.md:93`) | One column at every width: the brief's themes over "Why this order". The grey draws one column too, so the row was never built anywhere | Claude, the idle check from the audit side | **for the owner** |
+| N3 | Audit row without implementation | 0.0, Part B row "hero in two columns" (`home.md:51`) | The hero is one column at every width, its right half empty from 600 up. Neither the grey nor the colour copy has the "product still" the IA puts on the right, so the row cannot be built from what exists | Claude, the idle check from the audit side | **recorded, owner's decision A**: the Part B row says what is and is not built; the still is backlog R10-1 |
+| N4 | Audit row without implementation | 6.1 and 6.2, Part B row "selection beside the priority panel" (`briefs.md:93`) | One column at every width: the brief's themes over "Why this order". The grey draws one column too, so the row was never built anywhere | Claude, the idle check from the audit side | **fixed, owner's decision A**: `.brief-compose` in `one-off.css`, the panel a 20rem column beside the selection from a 55rem column; switches at 879/880px of column, every row still one line; the field's three rows beside the list are backlog R10-2 |
 | N5 | Document disagrees with code | `design/kit/_nav.js`, the toolbar, app header and bottom tabs entries | "at 820" in the panel's purpose lines, stale since the shell moved to 37.5rem at Step 3 | Claude | **fixed**: 37.5rem and 39rem |
 | N6 | Breaks between points (stand) | `screen-shell.html`, the three frames in `.kit-forms` | Part of D14 the first fix missed: the wide header cut in 194px frames, 720 to 1600 | sweep, second pass | **fixed**: `.appframe--box`; 9 pages, 441 frames, 0 failures |
 
@@ -426,3 +426,52 @@ New rows found by the second pass:
 - **New surface without a role:** the header sections, the account rail and the legal rail read
   roles only (no colour literal in their six files); seen in the dark theme at 1280.
 - **`wireframes/`:** `git status --porcelain wireframes/` empty; last commit there `c6bb418`.
+
+### The stage contract, as a checklist
+
+*The third instrument, a separate table: it checks steps and gates, not artifacts.*
+
+| Contract line | Answer | Where it is, or why not |
+|---|---|---|
+| Input gate before Step 1: tokens, base, components, patterns, index, the grey corpus, sitemap and flows, jtbd and cjm-to-be, inventory, architecture, backlog, voice and microcopy, DESIGN.md | done | Step 1, every file found; nothing missing |
+| Gate: one step, show, wait | done | Steps 1 to 6 each shown and answered; Step 5 (short form) and Step 6's table went in one showing, on the owner's go |
+| Gate: the review at Step 2, before the components | done | the point, the gutter (option A), the measure decided at Step 2 |
+| Gate: one or two points in rem, named by the change | done | one, `--bp-shell-wide` 37.5rem; the second not taken, said in `tokens.css` and `responsive.md` |
+| Gate: `@media` cannot read `var()`, the register as an instrument | done | Codex in both passes: the two queries equal the register |
+| Gate: `container-type` declared by the placer | done | shell, public column, two patterns; each threshold measured in the browser at its own number |
+| Gate: no `@media` in a screen file, written in two places | done | `architecture.md` (and `.html`), `design/system/CLAUDE.md` line 6; grep 0 in both passes |
+| Gate: the shell from the 03a model, not revised | done | form A, three answers in `responsive.md`, "The shell" |
+| Gate: one carrier at any width, by computed style and a tab pass | done | 1225 of 1225 product frames; tab pass at 360 and 1280 |
+| Gate: the width sweep, the width read not assumed | done | 4459 frames twice, measured = asked on all |
+| Gate: idle check from both sides | done | no token without a reader (W1 withdrawn with its reason); two audit rows without implementation found at Step 6 (N3, N4) and decided by the owner |
+| Gate: wide surfaces in the dark theme | done | the header sections, the account rail, the legal rail, roles only |
+| Gate: 0 px at 360, every wide difference an audit row | done | 24 of 24 at 360 against `4536c96`; `pixel-proof.html#s10-pairs`, a row per screen |
+| Gate: new behaviour only from the audit | done | none: Step 5 short form with its four pairs and reasons |
+| Gate: no rollout | done | 24 colour screens before and after; `design/_nav.js` unchanged since `4536c96` |
+| Done when: the census before the audit, the main number named | done | 17 rules on one 820 viewport number (15 not the shell's); now 1 point in 2 queries plus 17 container queries |
+| Done when: the audit covers all 37 screens, one category each | done | Part B: same 13, wider 24, new 0 |
+| Done when: columns are not a token | done | `auto-fit` from `--grid-col-min` |
+| Done when: deliberate at 412, 900 and 1440 | done | 412 and 1440 in the Step 4 pairs, 900 looked at on 2.0, 4.0, 6.1, 7.0 at Step 6 |
+| Done when: no device names | done | Codex, both passes |
+| Done when: type fluid, nothing switched at a point, 360 equal to Stage 08, `typography.html` rebuilt | done | Step 2; `tokens-audit.md` rows |
+| Done when: 200% scales the text, no px in type | done | Step 6, D1; 0 kinds of text keep their size |
+| Done when: no adaptive px left | done | D1, D2; px only for rules, shadows, radius, ring, target sizes, 1 to 3px offsets, named in `tokens.css` |
+| Done when: width tokens have no theme pair, said aloud | done | `tokens.css`, the width block |
+| Done when: every threshold in the register | done | 15 rows, 17 queries |
+| Done when: patterns adapt in their own files | done | round 4, N 2 = M 2 + K 0 |
+| Done when: `responsive.html` built, in the panel after Geometry, registered in `/_nav.js`, every section filled, examples live | done | 11 sections in `NAV_SECTIONS`, none a stub; the gaps of the sweep filled at Step 6 |
+| Done when: the "Behaviour at width" sub-point only on components that adapt | done | Step 4 rounds |
+| Done when: the Width column on every `inventory.md` row, every "does not adapt" with a reason | done | 7 bare verdicts given their reasons at Step 6; shown on `overview.html#inventory` as a column for the first time |
+| Done when: Part C covers the inventory; a roll call before every round, N = M + K | done | 17 = 3 + 14, 22 = 17 + 5, 12 = 10 + 2, 2 = 2 + 0 |
+| Done when: split view, if any, kills no screen | skipped on purpose | no split view; written with its reason |
+| Done when: critique in two instruments, verified, a second pass | done | this section |
+| Done when: the Stage 10 section on `pixel-proof.html` | done | `#s10` to `#s10-numbers` |
+| Done when: `wireframes/` unchanged | done | 0 files changed since `4536c96` |
+| Done when: README Responsive = Done, `/_nav.js` `done:true`, the group at 3/4, `wip` kept | done | README; the route from the root page to `responsive.html` is one click, 0 broken links on the five pages it touches |
+| Done when: the closing ritual | not done | shown to the owner as a table; written after the owner's go |
+| Done when: the contract as a checklist | done | this table |
+
+One row is "skipped on purpose" and one "not done" until the owner's go. Two rows were not done
+until this step found them: the inventory's Width column had seven verdicts without a reason and
+no column in the browser, and two audit rows had never been built (N3, N4). So this table is not
+green by default.
