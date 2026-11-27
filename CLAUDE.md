@@ -125,6 +125,11 @@ page, a named section registered in that page's `NAV_SECTIONS`, or a satellite p
   desk: what drops on mobile is decided by asking what the desktop row can afford to lose, not the
   other way round. A block that only fits by being cut in half at 360 is a block that is wrong at both
   sizes.
+  **Width lives in the system, never on a screen** (Stage 10, `design/kit/docs/responsive.md`): one
+  viewport point, `--bp-shell-wide` 37.5rem, and it only swaps the shell's navigation; every other
+  width answer is a component's `@container` on a place its placer declares, each threshold in the
+  register. Type and spacing in rem; continuous text stops at `--container-text`. A width change
+  moves 360 by 0 px, and every wide difference is a row of the width audit.
 - **Wireframes stay grey and are never colored in place.** `wireframes/_wf.css` is the structural
   contract. From stage 06 color lands on copies in `design/`; stage 05 is the last stage that edits
   text in `wireframes/`. A block, page, or state that appears first in a wireframe is an IA defect:

@@ -468,10 +468,10 @@ New rows found by the second pass:
 | Done when: the Stage 10 section on `pixel-proof.html` | done | `#s10` to `#s10-numbers` |
 | Done when: `wireframes/` unchanged | done | 0 files changed since `4536c96` |
 | Done when: README Responsive = Done, `/_nav.js` `done:true`, the group at 3/4, `wip` kept | done | README; the route from the root page to `responsive.html` is one click, 0 broken links on the five pages it touches |
-| Done when: the closing ritual | not done | shown to the owner as a table; written after the owner's go |
+| Done when: the closing ritual | done | shown to the owner as a table, written after "go": the width rule added to the "Mobile-first responsive" bullet, nothing removed. `CLAUDE.md` 173 to 178 lines of 200 |
 | Done when: the contract as a checklist | done | this table |
 
-One row is "skipped on purpose" and one "not done" until the owner's go. Two rows were not done
+One row is "skipped on purpose". The closing ritual was "not done" until the owner's go. Two rows were not done
 until this step found them: the inventory's Width column had seven verdicts without a reason and
 no column in the browser, and two audit rows had never been built (N3, N4). So this table is not
 green by default.
