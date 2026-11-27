@@ -1223,3 +1223,12 @@ into the system and kept 360 to the pixel. The full record: `design/kit/docs/res
 | The 6.1 priority panel built beside the selection from a 55rem column (N4, owner) | The audit row came from the IA (`briefs.md:93`) and was built nowhere; both blocks already existed | Rewriting the audit row to "same" |
 | The 0.0 hero stays one column (N3, owner); backlog R10-1 | The IA's product still exists nowhere; a two-column hero without it is an empty column | Making the still now: a new visual, not this stage's work |
 | B-24 (the 10px step) returned open | Its low end at 360 is the Stage 08 scale; lifting it is a change of value, the owner's | Lifting it here and breaking the 360 promise |
+
+**The closing ritual,** written after the owner's "go": `CLAUDE.md` now says, at the end of the
+"Mobile-first responsive" rule, that width lives in the system and never on a screen: one viewport
+point, `--bp-shell-wide` 37.5rem, that only swaps the shell's navigation; every other width answer a
+component's `@container` on a place its placer declares, each threshold in the register; type and
+spacing in rem, continuous text stopped at `--container-text`; 360 moved by 0 px and every wide
+difference a row of the width audit. Nothing removed: no line about width there had gone stale.
+173 to 178 lines of 200. README: Responsive = Done. `/_nav.js`: `done:true` on Responsive, `wip` on
+the group kept, 3/4, for Stage 11 to remove.
