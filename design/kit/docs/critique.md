@@ -301,3 +301,76 @@ Two rows are "skipped on purpose". The closing ritual was "not done" until the o
 backlog's level and priority were missing until this step found them, so this table is not green by
 default.
 
+
+---
+
+## Stage 10, Step 6: one layout read at every width
+
+### How it was collected
+
+Five sets, collected apart and merged only after all five were in (2026-11-27):
+
+- **The width sweep** (Playwright, the main instrument of the stage): every `design/*.html` (25)
+  and every `design/kit/*.html` (66), 49 widths each: 320 to 1600 by 40, 520 to 680 by 10 around
+  the one point, and 359, 360, 361, 599, 600, 601. 4459 frames. The width is read, not asked:
+  `clientWidth` equalled the asked width on 4459 of 4459. Signs per frame: horizontal scroll, an
+  element whose right edge leaves the page outside any clipping box, a clipped box holding text,
+  the navigation carriers drawn at once (product screens), and the longest line of continuous text
+  in `ch` of its own font against `--container-text` (52ch).
+- **Codex**, `codex exec -s read-only`, the source classes of the pack (15) over `design/system/`,
+  `design/*.html`, `design/kit/` and `design/kit/docs/`. It changed no file.
+- **The reader**, a subagent with a clean context, told to build 4.0, 3.0 and 7.0 at Stage 12 from
+  `responsive.md`, `responsive.html` and `design/system/` alone, and forbidden this file,
+  `pixel-proof.html` and any session log. It returned 6 "could not understand" and 18 "understood
+  as" items; the second list was checked against the intent line by line.
+- **Claude**, in the browser: the reader's font size at 200% on 24 screens (which text grows), a tab
+  pass at 360 and 1280, the surfaces that exist only wide (the header sections, the account rail,
+  the legal rail) in the dark theme at 1280.
+- **`/impeccable audit`** with the detector on 10 screens and `responsive.html` at 360 and 1280:
+  17 of 20 (accessibility 3, performance 4, theming 4, responsive 3, integrity 3).
+
+### The defect table
+
+Proposed priority in the last column; the owner sets it. Nothing below is fixed yet except F0.
+
+| # | Class | File, element | What is wrong | Who found it | Proposed |
+|---|---|---|---|---|---|
+| F0 | Breaks between points (stand) | `responsive.html#new` | The Step 5 table went in without its scroll wrapper: the page scrolled sideways from 320 to 960 | sweep | **fixed** in this step: wrapped; 49 widths, 0 failures |
+| D1 | Type that does not follow the reader's size; px where rem belongs | 34 `font-size` literals in px in 21 files of `design/system/` (`breadcrumb.css:27` 12px, `public-doc.css:32` 15.5px, `state.css:26` 19px, `citation.css:23` 10.5px, ...) | With the root at 200%, 33 kinds of text on 24 screens keep their size: the breadcrumb, the cite chip, the rank, the field label, the state title, the 6.4 lede. The contract: no `font-size` in px anywhere | Codex, Claude | P1: the same values in rem, 0 px at the default size; a `tokens-audit.md` row |
+| D2 | Px where rem belongs | the spacing scale `--space-1` to `--space-12` (`tokens.css:154-164`), plus 66 padding and margin literals in px | Vertical spacing stays px while the type is rem: with a larger reader font the text grows and the air between does not. Step 2 moved the type scale to rem and said nothing about spacing | Codex | P2, your call: the scale to rem at the same values (0 px at default), or keep px with a written reason |
+| D3 | Line over the measure; audit row without implementation | 6.4, `.pub-method` and `.pub-lede` (`public-doc.css:32, 68`) | No measure: the method note runs to 85.6ch (about 116 characters at 1280), the lede about 92. B-25 named both and handed them to this stage; round 3 left them | sweep, impeccable | P1: `max-width: var(--container-text)`; 0 px at 360 |
+| D4 | Line over the measure | 0.0, `.mk-note` (`marketing-shell.css:28`) | No measure: 107ch a line at a 1040 window | sweep | P2: `--container-text` |
+| D5 | Measure kept with no record | 0.0, `.mk-lead` 58ch, `.mk-section-sub` 60ch | `responsive.md:195` sent them to round 3; round 3 decided neither. The section subs are two and three sentences, continuous text | sweep, Claude | P2: onto `--container-text`, or a "kept" row like `.sub`; wide only |
+| D6 | Document disagrees with code | `responsive.md:289`, `responsive.html:280` | "The product's `@media`: two". There is a third, `base.css:72`, reduced motion; the two are the width queries | Codex | P3: "two width queries" |
+| D7 | Document disagrees with code | `responsive.md:234`, `responsive.html:266` | "The list note keeps a reduced `@media (max-width: 820px)`": moved to `@container (width < 20rem)` in round 4 | Codex | P3 |
+| D8 | Understood wrongly | `design/account.html:18`; `responsive.md` Part B :423, Part C :500 | The screen's comment says the account nav stacks "below 900px", Parts B and C say "fluid wrap"; the code is `@container (width >= 35rem)` (revised in round 3) | reader | P2: the comment and both rows |
+| D9 | Document disagrees with code | `responsive.md` Part C :494, :472 | The app footer "gutter follows the token" (code: inset plus 22); the raw item "measure 92ch" (code: `--container-text` since round 2) | reader, Claude | P3 |
+| D10 | Document disagrees with code | `tokens.css:198` | Lists the group heading as a reader of `--gutter-page`; since round 4 it reads `--space-3` / `--space-7` | reader | P3 |
+| D11 | Could not understand | `responsive.md:93`, `responsive.html:210` | The toolbar's compact form is listed for 2.0, 4.0, 4.1, 6.1, 6.2; only 2.0 carries `.toolbar-full` and `.toolbar-compact`. The others use `.toolbar-row`, which wraps and never compacts | reader | P2: "compact form on 2.0; the row form wraps on 4.0, 4.1, 6.1, 6.2" |
+| D12 | Document disagrees with code | `responsive.md:90-91`, threshold table | The source row and the saved brief row "read the page column"; since round 4 they read the grouped list. The same width today, not on a Stage 12 screen with a narrower list | reader | P2 |
+| D13 | Could not understand | `responsive.md`, `responsive.html` | Which window Stage 12 measures: the numbers are given for stand canvases (a 1024 window gives 772) and nothing says the product window is meant | reader | P2: one line: the product window; on the stand a window of W shows the product at W minus 252 above 900 |
+| D14 | Breaks between points (stand) | `app-header.html` do and don't (920 to 1120), `screen-shell.html` frames (600 to 1600) | The shell reads the viewport, the specimen box is 249 to 335px: the wide header is drawn and cut, Briefs and the avatar lost behind `overflow: hidden` | sweep | P2: the wide header specimens in a full-width box, or a note that the shell answers the window |
+| D15 | Breaks between points (stand) | `breadcrumb.html`, `.kit-form-c` | The three-level trail (238px) leaves its 230px specimen column from 505 to 540; the page scrolls at 510 to 520. The product is not affected: a 52-character theme name at 361 to 560 wraps, 0 overflow | sweep | P3: `_page.css`, the column's child may shrink |
+| D16 | Breaks between points (stand) | `color.html`, `.pair` | From 920 the value chips (`rgba(...)`) are cut in 212px boxes | sweep | P3 |
+| D17 | Visual, wide only | `legal-doc.css`, the rail at 1280 | The contents rail starts right under the "Last updated" line and shares no top edge with the prose | Claude | P3: verify and align |
+| D18 | Backlog row handed and dropped | `backlog.md` B-24, the 10px micro step, "Stage 10, fluid type at 360" | Not in the stage's hand-off table, no verdict. It cannot be closed here: the floor at 360 is the Stage 08 scale, 0 px | Claude | P3: back to the backlog with that reason |
+| W1 | Token without a reader | `--bp-shell-wide` | Never read through `var()` | Codex | **withdrawn on verification**: a media query cannot read `var()`; the token is the register and the two literals equal it (`tokens.css:176`) |
+| W2 | Line over the measure | `.sub`, 55 to 70ch on 6.0, 6.0 empty, 3.2 | Past 52ch | sweep | **withdrawn on verification**: kept at 70ch on measurement in round 2, one sentence (`tokens-audit.md:354`) |
+| W3 | Contextual override | `one-off.css:133` `.src-map-row .input`, `form.css:19` `.form .field:last-of-type` | Descendant selectors on another component | Codex | **withdrawn on verification**: placement by the placer (a grid column, the last margin), not appearance; before this stage |
+| W4 | Clipped text (stand) | `patterns.html`, `.kit-thumb` | Content wider than the box | sweep | **withdrawn on verification**: scaled thumbnails, clipped by design |
+| W5 | Detector | 10 screens: undersized UI text (339 at 360, 654 at 1280), tiny text (52) | Under 11 and 12px | impeccable | **withdrawn on verification**: the micro step of Stage 07, B-24 (D18); 360 must equal the Stage 08 scale |
+| W6 | Detector | 3.2, `.notice--warn`: a side stripe on a rounded box; `responsive.html`: nested cards, lines past 80 characters | | impeccable | **withdrawn on verification**: the notice anatomy is Stage 08 and not a width question; the stand is not product |
+
+### Clean classes, with what was checked
+
+- **Two navigations at once:** 0 of 1225 product frames; exactly one carrier at every width, the
+  header from 600, the bottom tabs below, none on 0.0 and 6.4. Tab pass: 360, the bottom tabs only;
+  1280, the header sections only, no stop on a hidden element, no "Sections" landmark from the
+  hidden carrier.
+- **Horizontal scroll on a product screen:** 0 of 1225 frames, 25 screens.
+- **`@media` in a screen, a point off the register, `var()` in a query, `@container` without a
+  container, a threshold off the register, a font switched at a point, a device name, a one-sided
+  `clamp()`:** Codex, none; the 14 container thresholds match the register.
+- **New surface without a role:** the header sections, the account rail and the legal rail read
+  roles only (no colour literal in their six files); seen in the dark theme at 1280.
+- **`wireframes/`:** `git status --porcelain wireframes/` empty; last commit there `c6bb418`.

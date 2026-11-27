@@ -292,7 +292,19 @@ the 16 container queries above (14 rows of thresholds: the legal pair and the he
 
 ## New behaviour
 
-The audit found none (decided at Step 1). Step 5 runs in its short form.
+**The product needs no new behaviour at width.** Step 5 ran in its short form (2026-11-27): no
+split view, no new state, no new string in `voice/docs/microcopy.md`, no new pattern. What was
+weighed, and why it did not pass (the full rows are in Part B, "New behaviour: the candidates"):
+
+| considered | why it did not pass |
+|---|---|
+| 4.0 Theme with 5.0 Evidence beside it, the one pair of the main flow | the IA writes 4.0 as one dense column of snippets (`ia/docs/pages/theme.md:88`); the barrier it would lift (`cjm-as-is.md:179`, going back to the source to trust the insight) is already lifted on the phone by the verbatim quote with its citation, one tap from the raw item; a split adds a "nothing selected" state, focus management and history against "one decision at a time". Taking it is an IA change, not a layout decision |
+| 2.0 Synthesis with 4.0 beside it | the ranks are compared down one axis on purpose (`synthesis.md:84`); with the row above it would make three panes, a dashboard |
+| 3.0 Sources with 3.6 beside it | not the main flow: managing a source is a rare setup task, not a repeated comparison |
+| 6.0 Briefs with 6.4 beside it | not the main flow: a brief is opened and shared, not compared |
+
+No pair reaches the threshold of the stage (two pairs, or one pair of the main flow that the IA
+allows), so no screen loses its own URL and no surface appears only at a wide width.
 
 ## Width gaps from the sweep
 
