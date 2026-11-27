@@ -81,16 +81,25 @@ where its wide form breaks, measured, plus at least 1rem of margin, rounded up t
 one sits above what a 360 window gives its place (316px of page column, 328px of public column,
 360px of frame), so 360 keeps its narrow forms and moves by 0 pixels. One exception, the owner's:
 the breadcrumb's narrow form sits exactly at the 360 frame, so only a narrower window gets it.
+
+**Which window these numbers mean.** Every width in this file is the PRODUCT window, the browser a
+customer has open. The stand is not that window: above a 900 window the kit panel takes 252px, so a
+stand window of W shows the product at W minus 252 (a 1024 stand window is a 772 product window, a
+1440 one is 1188). Stage 12 measures the canvas (`.ds-canvas`) or the product page opened alone,
+never the stand window, and a place inside the canvas is measured on its container.
+Since round 4 a row or a toolbar placed by a pattern reads the pattern's box (the grouped list, the
+filtered list), not the page column: today the two are equally wide on every colour screen, on a
+Stage 12 screen with a narrower list they are not.
 Written `<` where the base is the wide form, `>=` where the base is the narrow one (the
 account rail and the legal rail are added on top of a column).
 
 | Component | File | Query | Place it reads | Below it | Measured break of the wide form |
 |---|---|---|---|---|---|
-| theme card | `theme-card.css` | `@container (width < 29rem)` | the page column | the confidence takes its own row under the body; the quote clamps to 2 lines | the label breaks in two under 435px; the label and quote get less room than the narrow form gives at 360 under 457px |
-| source row | `source-row.css` | `@container (width < 36rem)` | the page column | the stats and the actions each take a full row; the buttons share theirs | the row wraps under 550px |
-| saved brief row | `brief-row.css` | `@container (width < 28rem)` | the page column | the actions take their own row; the buttons share it | the title breaks in two under 430px |
+| theme card | `theme-card.css` | `@container (width < 29rem)` | the filtered list (2.0, round 4) | the confidence takes its own row under the body; the quote clamps to 2 lines | the label breaks in two under 435px; the label and quote get less room than the narrow form gives at 360 under 457px |
+| source row | `source-row.css` | `@container (width < 36rem)` | the grouped list (round 4) | the stats and the actions each take a full row; the buttons share theirs | the row wraps under 550px |
+| saved brief row | `brief-row.css` | `@container (width < 28rem)` | the grouped list (round 4) | the actions take their own row; the buttons share it | the title breaks in two under 430px |
 | screen head | `screen-head.css` | `@container (width < 26rem)` | the page column | the one action takes the full width; the meta row tightens | a detail title breaks in two under 395px |
-| toolbar | `toolbar.css` | `@container (width < 39rem)` | the page column | one compact Filter button replaces the full row | the full row wraps under 600px |
+| toolbar | `toolbar.css` | `@container (width < 39rem)` | the filtered list on 2.0 (round 4) | one compact Filter button replaces the full row; only 2.0 wears this pair (`.toolbar-full`, `.toolbar-compact`): 4.0, 4.1, 6.1 and 6.2 wear `.toolbar-row`, which wraps and never compacts | the full row wraps under 600px |
 | action bar | `actionbar.css` | `@container (width < 29rem)` | the page column | the note takes its own line; the buttons share the next | the note breaks in two under 450px |
 | selection bar, static | `selbar.css` | `@container (width < 42rem)` | the frame | the buttons share their line | note and buttons wrap under about 650px of frame |
 | breadcrumb | `breadcrumb.css` | `@container (width < 22.5rem)` | the frame | a back chevron plus the parent (S5-5) | not a break: the owner's option A, the 360 frame itself, so 360 keeps the full chain |
@@ -231,9 +240,9 @@ and 760), 750 frames, 0 overflow, one navigation carrier, the header sticky from
 4.1) from 88ch to `--container-text`; the trust grid `minmax(230px, 1fr)` to `min(14.375rem, 100%)`;
 the footer brand's `200px` to `12.5rem`; the 0.0 footer's sides to `--gutter-page` and its 820
 rule to `@container (width < 34rem)` on the frame; the 3.2 column map's 820 rule to
-`@container (width < 41rem)` on the page column. The list note keeps a reduced `@media (max-width:
-820px)`: its 8 to 16px is the grouped list's row padding, like the group heading's, and it moves
-with the grouped list in round 4.
+`@container (width < 41rem)` on the page column. The list note's 820 rule
+moved with the grouped list in round 4, to `@container (width < 20rem)`, the heading's threshold
+(last row of the thresholds table). Until Step 6 this paragraph still said it kept the `@media`.
 
 **Built, the owner's decision: S5-5, option A.** The breadcrumb's narrow form, a back chevron plus
 the parent (`ia/docs/pages/evidence.md:43`), from `@container (width < 22.5rem)` on the frame: the
@@ -286,8 +295,9 @@ screens with a grouped list change: the headings and the note align with the row
 widths, 918 frames, 0 overflow, one carrier where there is navigation. Switch: 319px of list, 16;
 320px, 8, for the heading and both list notes.
 
-**The product's `@media` now: exactly the register.** Two, both `@media (min-width: 37.5rem)`, in
-`app-header.css` and `bottom-tabs.css`; 0 in a screen file. Every other width answer is one of
+**The product's width queries now: exactly the register.** Two `@media` on width, both
+`@media (min-width: 37.5rem)`, in `app-header.css` and `bottom-tabs.css`; 0 in a screen file. The
+product's third `@media`, `base.css:72`, asks for reduced motion, not width, and is not a point. Every other width answer is one of
 the 16 container queries above (14 rows of thresholds: the legal pair and the heading and note pair share theirs), or a fluid value.
 
 ## New behaviour
@@ -420,7 +430,7 @@ Corpus: `wireframes/*.html` with `screens.md`, read beside `jtbd.md` and `cjm-as
 | 6.3 Share link loading | waits for the link | same | dialog | dialog.css |
 | 6.4 Shared brief | a stakeholder reads the call and its evidence (S1, E2) | wider: air | one centred readable column (already 720px) | briefs.md:93 "a centered readable column" |
 | 6.5 Briefs empty | learns there is no brief yet | same | state block | state.css |
-| 7.0 Account | finds an account section | wider: grid | the section list as a left rail; fluid wrap replaces the 821 query | account.md:53 "a left rail beside the content" |
+| 7.0 Account | finds an account section | wider: grid | the section list as a left rail; Step 1 said a fluid wrap replaces the 821 query; built as `@container (width >= 35rem)` on the column, round 3 | account.md:53 "a left rail beside the content" |
 | 7.0 Profile | edits the profile | wider: grid | as 7.0 | account.md:53 |
 | 7.0 Data and privacy | sees and sets PII scrubbing (compliance, day one) | wider: grid | as 7.0 | account.md:53 |
 | 7.0 Plan and limits | sees the plan and the seat meter | wider: grid | as 7.0 | account.md:53 |
@@ -469,7 +479,7 @@ Corpus: `inventory.md` and the 51 files. The category is the widest among the sc
 | atom | group heading | 12 screens | grid | **fluid**: its gutter (set by grouped-list) goes to the gutter token |
 | molecule | theme card | 2.0, 6.1, 6.4 | grid | **point to container**: the reflow and the 2-line quote move to `@container` |
 | molecule | evidence snippet | 4.0, 4.1, 6.4 | air | **container**: measure, already on `--measure-prose` |
-| molecule | raw item | 5.0, 5.1 | air | **container**: measure 92ch, where S5-1 asked 65 to 75 (B-25) |
+| molecule | raw item | 5.0, 5.1 | air | **container**: was 92ch, where S5-1 asked 65 to 75 (B-25); `--container-text` since round 2 |
 | molecule | provenance list | 5.0, 5.1 | air | does not adapt: short lines, below the quote |
 | molecule | source row | 3.0, 3.5 | grid | **point to container** |
 | molecule | source card | 3.0, 3.4, 3.5 | grid | **fluid**: auto-fill, the minimum goes to `--grid-col-min` |
@@ -479,7 +489,7 @@ Corpus: `inventory.md` and the 51 files. The category is the widest among the sc
 | molecule | form field | 1.0, 3.2, 6.1 | grid | does not adapt: the form gives the width |
 | molecule | notice band | 7 screens | air | **container**: it has no measure today, and gives the longest lines (122 at 1440) |
 | molecule | screen head | 15 screens | grid | **point to container**: the full-width action |
-| molecule | toolbar | 6 screens | grid | **point to container**: full row or compact |
+| molecule | toolbar | 6 screens | grid | **point to container**: full row or compact, on 2.0 only; the other five wear the wrapping row |
 | molecule | selection bar | 2.0, 6.1, 6.2 | grid | **point to container** + gutter token |
 | molecule | action bar | 3.2, 3.3, 3.6, 5.0, 6.1 | grid | **point to container** |
 | molecule | phase strip | 6 screens | grid | **fluid**, already (wrap) |
@@ -491,13 +501,13 @@ Corpus: `inventory.md` and the 51 files. The category is the widest among the sc
 | molecule | step card | 0.0 | grid | **fluid**: the marketing grid places it |
 | organism | app header | 27 screens | grid | **point**: the shell swap, viewport `@media`, Step 3 |
 | organism | bottom tabs | 27 screens | grid | **point**: the same swap |
-| organism | app footer | 27 screens | grid | does not adapt: one wrapping line; its gutter follows the token |
-| organism | public bar | 10 screens | grid | does not adapt: no destinations to swap; gutter follows the token |
+| organism | app footer | 27 screens | grid | does not adapt: one wrapping line; its gutter is the frame inset plus the page's 22px (`--space-9`), kept by option A, not `--gutter-page` |
+| organism | public bar | 10 screens | grid | does not adapt: no destinations to swap; its gutter is the brand's 22px (`--space-9`), kept by option A, not `--gutter-page` |
 | organism | state block | 8 screens | same | **container**, already (440px and 60ch, to rem) |
 | organism | form | 9 screens, grey | grid | **container**: it has no measure today, and on 3.2 and 7.x its fields would run the full column |
 | organism | dialog | 6.3 | same | **container**, already (460px, to rem) |
 | organism | legal document | 9.x | grid | **fluid**: the sticky rail by wrap; the prose size by `clamp()`, not the point |
-| organism | account shell | 7.x | grid | **fluid**: the rail by wrap, the 821 query goes |
+| organism | account shell | 7.x | grid | **container query**, revised in round 3: from a 35rem column the 13rem rail stands beside the panel; Step 1 said a fluid wrap, which cannot hold a 13rem rail and a full-width row at once |
 | organism | public document | 6.4 | air | **container** (720px) + `clamp()` for the h1 |
 | organism | marketing shell | 0.0 | grid | **container + fluid**: 1040px, auto-fit, `clamp()` for h1 and lead |
 | organism | screen shell | 27 screens | grid | **point + container**: the page container it lacks, Step 3 |

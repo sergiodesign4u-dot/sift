@@ -23,5 +23,5 @@
   font-weight: var(--weight-medium); letter-spacing: var(--tracking-caps);
   text-transform: uppercase; color: var(--text-secondary);
 }
-.group-t--section { margin: 24px 0 var(--space-4); /* kit.css:408, no space step is 24. Reverted at Step 6 */ }
+.group-t--section { margin: 1.5rem 0 var(--space-4); /* kit.css:408, no space step is 24. Reverted at Step 6 */ }
 .group-t--inline { margin: 0; }

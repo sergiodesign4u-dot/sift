@@ -1,5 +1,5 @@
 /* design/system/components/marketing-shell.css - level 3, organism (shell).
-   Reads: --text-primary, --text-secondary, --line-hairline, --font-mono, --type-3xl, --type-lead, --type-xl, --type-2xs, --type-sm, --weight-strong, --tracking-head, --leading-body, --space-*
+   Reads: --text-primary, --text-secondary, --line-hairline, --font-mono, --type-3xl, --type-lead, --type-xl, --type-2xs, --type-sm, --weight-strong, --tracking-head, --leading-body, --space-*, --container-text
    Page:  design/kit/marketing-shell.html
    Stands on: 0.0 Home (design/index.html). One screen.
 
@@ -18,16 +18,19 @@
    (15rem) here; withdrawn on verification: at 15rem the fourth tier drops to a row of its own at
    a 1440 window (4 x 240 + 3 gaps is 996px against a 992px column), so the tier grid keeps the
    minimum its four cards were drawn at.
+   THE MEASURE (Stage 10 Step 6, owner's decision D5, and D4): the lead (58ch until then), the
+   section subs (60ch) and the note under the actions (none, 107ch at a 1040 window) are continuous
+   text and read --container-text. Narrower only wide: at 360 the column is under 52ch anyway.
    No em dash anywhere in this file.
 */
 
-.mk-hero { padding: 30px 0 var(--space-12); border-bottom: 1px solid var(--line-hairline); }
+.mk-hero { padding: 1.875rem 0 var(--space-12); border-bottom: 1px solid var(--line-hairline); }
 .mk-h1 { font-size: var(--type-3xl); line-height: 1.15; font-weight: var(--weight-strong); letter-spacing: -0.025em; color: var(--text-primary); max-width: 20ch; }
-.mk-lead { font-size: var(--type-lead); line-height: 1.65; color: var(--text-secondary); margin-top: var(--space-7); max-width: 58ch; }
+.mk-lead { font-size: var(--type-lead); line-height: 1.65; color: var(--text-secondary); margin-top: var(--space-7); max-width: var(--container-text); }
 .mk-cta { display: flex; gap: var(--space-4); flex-wrap: wrap; margin-top: var(--space-10); }
-.mk-note { font-family: var(--font-mono); font-size: var(--type-2xs); color: var(--text-secondary); margin-top: var(--space-6); }
+.mk-note { font-family: var(--font-mono); font-size: var(--type-2xs); color: var(--text-secondary); margin-top: var(--space-6); max-width: var(--container-text); }
 .mk-section { padding: var(--space-12) 0; border-bottom: 1px solid var(--line-hairline); }
 .mk-h2 { font-size: var(--type-xl); font-weight: var(--weight-strong); letter-spacing: var(--tracking-head); color: var(--text-primary); }
-.mk-section-sub { font-size: var(--type-sm); color: var(--text-secondary); margin-top: 7px; max-width: 60ch; line-height: var(--leading-body); }
-.mk-grid { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(13.75rem, 100%), 1fr)); gap: var(--space-5); margin-top: 20px; }
+.mk-section-sub { font-size: var(--type-sm); color: var(--text-secondary); margin-top: 0.4375rem; max-width: var(--container-text); line-height: var(--leading-body); }
+.mk-grid { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(13.75rem, 100%), 1fr)); gap: var(--space-5); margin-top: 1.25rem; }
 .public-main--wide { max-width: var(--container-page); }

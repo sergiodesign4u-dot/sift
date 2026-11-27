@@ -37,16 +37,16 @@
    No em dash anywhere in this file.
 */
 
-.theme { display: grid; grid-template-columns: 22px 20px 1fr auto 20px; align-items: start; gap: var(--space-2) var(--space-6); padding: 13px var(--space-3); border-bottom: 1px solid var(--line-hairline); transition: background .12s var(--ease); }
+.theme { display: grid; grid-template-columns: 22px 20px 1fr auto 20px; align-items: start; gap: var(--space-2) var(--space-6); padding: 0.8125rem var(--space-3); border-bottom: 1px solid var(--line-hairline); transition: background .12s var(--ease); }
 .theme:hover { background: var(--bg-hover); }
 .theme:has(.check:checked) { box-shadow: inset 2px 0 0 var(--bg-action); }
 
 .theme-main { text-decoration: none; color: inherit; min-width: 0; }
 .theme-label { display: block; font-size: var(--type-base); font-weight: var(--weight-medium); color: var(--text-primary); }
-.theme-quote { display: block; font-size: var(--type-xs); color: var(--text-secondary); line-height: 1.55; margin-top: 7px; padding-left: 11px; border-left: 1px solid var(--line-hairline); max-width: 78ch; }
-.theme-prov { display: block; font-family: var(--font-mono); font-size: var(--type-2xs); color: var(--text-secondary); margin-top: 7px; }
+.theme-quote { display: block; font-size: var(--type-xs); color: var(--text-secondary); line-height: 1.55; margin-top: 0.4375rem; padding-left: 0.6875rem; border-left: 1px solid var(--line-hairline); max-width: 78ch; }
+.theme-prov { display: block; font-family: var(--font-mono); font-size: var(--type-2xs); color: var(--text-secondary); margin-top: 0.4375rem; }
 
-.theme-drill { display: inline-flex; align-items: center; justify-content: center; min-width: var(--size-target); min-height: var(--size-target); color: var(--text-secondary); font-size: 18px; text-decoration: none; line-height: 1; transition: color .15s var(--ease); }
+.theme-drill { display: inline-flex; align-items: center; justify-content: center; min-width: var(--size-target); min-height: var(--size-target); color: var(--text-secondary); font-size: 1.125rem; text-decoration: none; line-height: 1; transition: color .15s var(--ease); }
 .theme:hover .theme-drill { color: var(--text-primary); }
 
 /* threshold 29rem: below it the pill moves under the body and the quote clamps to two lines */

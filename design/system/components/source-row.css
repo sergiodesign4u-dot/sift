@@ -36,12 +36,12 @@
 .src-name { display: block; font-size: var(--type-base); font-weight: var(--weight-medium); color: var(--text-primary); }
 .src-sub { display: block; font-family: var(--font-mono); font-size: var(--type-2xs); color: var(--text-secondary); margin-top: var(--space-1); }
 .src-stats { display: flex; gap: var(--space-9); flex-wrap: wrap; }
-.src-stat { display: flex; flex-direction: column; gap: 3px; }
+.src-stat { display: flex; flex-direction: column; gap: 0.1875rem; }
 .src-stat-l { font-family: var(--font-mono); font-size: var(--type-3xs); text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-secondary); }
 .src-stat-v { font-family: var(--font-mono); font-size: var(--type-xs); color: var(--text-primary); }
 .src-rowactions { display: flex; gap: var(--space-3); flex: none; align-items: center; }
 .rowalert {
-  display: block; font-size: 12px; color: var(--text-secondary);
+  display: block; font-size: 0.75rem; color: var(--text-secondary);
   margin-top: var(--space-3); padding-left: var(--space-4);
   border-left: 2px solid var(--line-warning-strong);
 }

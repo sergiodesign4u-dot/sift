@@ -331,7 +331,9 @@ Five sets, collected apart and merged only after all five were in (2026-11-27):
 
 ### The defect table
 
-Proposed priority in the last column; the owner sets it. Nothing below is fixed yet except F0.
+Proposed priority in the last column. The owner took every proposed priority and both recommended
+choices, D2 to rem and D5 onto the token (2026-11-27, "as you recommend"). The status of each row
+is in the next section.
 
 | # | Class | File, element | What is wrong | Who found it | Proposed |
 |---|---|---|---|---|---|
@@ -360,6 +362,56 @@ Proposed priority in the last column; the owner sets it. Nothing below is fixed 
 | W4 | Clipped text (stand) | `patterns.html`, `.kit-thumb` | Content wider than the box | sweep | **withdrawn on verification**: scaled thumbnails, clipped by design |
 | W5 | Detector | 10 screens: undersized UI text (339 at 360, 654 at 1280), tiny text (52) | Under 11 and 12px | impeccable | **withdrawn on verification**: the micro step of Stage 07, B-24 (D18); 360 must equal the Stage 08 scale |
 | W6 | Detector | 3.2, `.notice--warn`: a side stripe on a rounded box; `responsive.html`: nested cards, lines past 80 characters | | impeccable | **withdrawn on verification**: the notice anatomy is Stage 08 and not a width question; the stand is not product |
+
+### Verified and fixed, after the owner's priorities
+
+Every row was read again in the current file before the edit; all 18 held.
+
+| # | Status | What changed |
+|---|---|---|
+| D1 | fixed | 34 `font-size` literals in 21 files to the same values in rem. At a 200% root font, 0 kinds of text keep their size (33 before) |
+| D2 | fixed | `--space-1` to `--space-12` to rem at the same values; 87 px values in 85 padding, margin and gap declarations to rem. Px kept for what does not scale, named in `tokens.css` above the scale |
+| D3 | fixed | `.pub-lede`, `.pub-method` read `--container-text` |
+| D4 | fixed | `.mk-note` reads `--container-text` |
+| D5 | fixed | `.mk-lead`, `.mk-section-sub` read `--container-text`; 58ch and 60ch are gone |
+| D6 | fixed | "two width queries" plus the reduced-motion query, in both places |
+| D7 | fixed | the list note's paragraph names its `@container (width < 20rem)`, in both places |
+| D8 | fixed | the 7.0 comment; Part B and Part C rows say what was built and what Step 1 had said, md and html |
+| D9 | fixed | app footer and public bar: the 22px `--space-9`, not `--gutter-page`; the raw item: 92ch was, `--container-text` since round 2 |
+| D10 | fixed | `tokens.css`: the group heading switched too and does not read `--gutter-page` |
+| D11 | fixed | the compact toolbar on 2.0 only, the wrapping row on the other four: thresholds table, round 2 table, Part C, md and html, and `kit/_nav.js` |
+| D12 | fixed | the place column: grouped list for the source row and brief row, filtered list for the theme card and the 2.0 toolbar, with a line on why it matters at Stage 12 |
+| D13 | fixed | "Which window these numbers mean": the product window; a stand window W shows W minus 252 above 900 |
+| D14 | fixed (stand) | `.kit-dodont--stack` on the two wide-header pairs; `.appframe--box`, a stand twin of the shell swap on the frame's own box, on the five narrow frames of `screen-shell.html` |
+| D15 | fixed (stand) | `.kit-form-c > *` may not exceed the column |
+| D16 | fixed (stand) | `.pair-chip` wraps inside its half |
+| D17 | fixed | `.legal-body` steps down 18px in the rail form only: rail and prose share one top edge, measured 449 and 449 |
+| D18 | fixed | B-24 back open in `backlog.md` and `why.html` with the reason; B-25 closed, B-26 marked not taken |
+
+### The second pass, after the fixes
+
+- **Codex**, read-only, over the 52 changed files and the diff: 0 in nine classes. One finding: the
+  tokens-audit row said "87 padding, margin and gap literals"; Codex counted 57 declarations.
+  Recounted: 87 values in 85 declarations (67 padding and margin, 18 gap). The row was reworded to
+  say both; Codex's 57 is withdrawn on verification.
+- **The sweep again, every page**: 25 screens and 66 kit pages, 49 widths, 4459 frames, measured =
+  asked on all. Product: 0 side scroll, 0 two-carrier frames. What it still flags is withdrawn
+  (`.sub`, W2; the scaled thumbnails, W4) or new below.
+- **Font at 200%**: 0 kinds of text keep their size, on 24 screens.
+- **Pixels**: against the commit before the fixes, 24 of 24 screens 0 px at 360; at a 1280 window
+  22 of 24 are 0, and 0.0 and 6.4 grow taller only by the measured lines. Against the close of
+  Stage 09 (`4536c96`), 24 of 24 screens 0 px at 360.
+
+New rows found by the second pass:
+
+| # | Class | File, element | What is wrong | Who found it | Status |
+|---|---|---|---|---|---|
+| N1 | Line over the measure | 6.4, `.pub-rationale`, `.pub-theme p` | 66.5ch and 63.1ch a line; the first sweep kept only the worst line of a frame, so the method note hid them | sweep, second pass | **fixed**: `--container-text`, 6.4 at 1280 now 122px taller, 360 0 px |
+| N2 | Line over the measure | 0.0, `.mk-trust-d` (one-off) | 54.2ch at a 480 window, one column of the trust grid | sweep, second pass | **fixed**: `--container-text` |
+| N3 | Audit row without implementation | 0.0, Part B row "hero in two columns" (`home.md:51`) | The hero is one column at every width, its right half empty from 600 up. Neither the grey nor the colour copy has the "product still" the IA puts on the right, so the row cannot be built from what exists | Claude, the idle check from the audit side | **for the owner** |
+| N4 | Audit row without implementation | 6.1 and 6.2, Part B row "selection beside the priority panel" (`briefs.md:93`) | One column at every width: the brief's themes over "Why this order". The grey draws one column too, so the row was never built anywhere | Claude, the idle check from the audit side | **for the owner** |
+| N5 | Document disagrees with code | `design/kit/_nav.js`, the toolbar, app header and bottom tabs entries | "at 820" in the panel's purpose lines, stale since the shell moved to 37.5rem at Step 3 | Claude | **fixed**: 37.5rem and 39rem |
+| N6 | Breaks between points (stand) | `screen-shell.html`, the three frames in `.kit-forms` | Part of D14 the first fix missed: the wide header cut in 194px frames, 720 to 1600 | sweep, second pass | **fixed**: `.appframe--box`; 9 pages, 441 frames, 0 failures |
 
 ### Clean classes, with what was checked
 

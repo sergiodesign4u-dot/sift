@@ -374,3 +374,21 @@ whose gutter reads 21.86px there instead of 22 (the clamp reaches 22 at a 1040 w
 
 **Held against round 2.** At 360, 24 of 24 frames 0. At 1024 and 1440, 40 of 48 frames 0; the 8
 that changed are 4.0 and 4.1 (summary and reason), 6.4 and 0.0 (the public column's sides).
+
+### Stage 10 Step 6: what the critique found and the owner decided
+
+| Variable or class | Was | Now | Why |
+|---|---|---|---|
+| 34 `font-size` literals in 21 files of `design/system/` (D1) | px: 10.5, 11.5, 12, 13, 14.5, 15, 15.5, 18, 19 | the same values in rem: 0.65625, 0.71875, 0.75, 0.8125, 0.90625, 0.9375, 0.96875, 1.125, 1.1875 | with the reader's font size at 200%, 33 kinds of text kept their size (WCAG 1.4.4). 0 px at the default size |
+| `--space-1` to `--space-12` (D2, the owner's decision) | 4 6 8 10 12 14 16 18 22 26 32px | 0.25 to 2rem, the same values | the air grows with the type it separates; Step 2 had moved the type and said nothing about spacing |
+| 87 px values in 85 declarations across `design/system/` (D2): 67 padding and margin, 18 gap | px | the same values in rem | the same rule. Kept in px on purpose: a 1px rule, a shadow, the radius, the focus ring, the target sizes, 1 to 3px optical offsets (`top`, `bottom`, `inset`) and the frame inset's `0px` fallback |
+| `.pub-lede`, `.pub-method` max-width (6.4, D3) | none | `var(--container-text)` | about 92 and 116 characters a line at 1280; B-25 named both |
+| `.pub-rationale`, `.pub-theme p` max-width (6.4, N1, found by the second pass) | none | `var(--container-text)` | about 90 and 85 characters a line at 1280; the first sweep reported only the worst line of a frame, so the method note hid them |
+| `.mk-trust-d` max-width (0.0, one-off, N2) | none | `var(--container-text)` | one column of the trust grid at a 480 window ran 54ch |
+| `.mk-note` max-width (0.0, D4) | none | `var(--container-text)` | 107ch a line at a 1040 window |
+| `.mk-lead`, `.mk-section-sub` max-width (0.0, D5, the owner's decision) | `58ch`, `60ch` | `var(--container-text)` | continuous text of two and three sentences; the two were never decided at round 3 |
+| `.legal-body` in the rail form (D17) | no top margin | `margin-top: var(--space-8)` | the rail's frame stood flush under "Last updated"; rail and prose now share one top edge 18px below it. In flow (every 9.x width under a 46rem place) nothing moves |
+
+**Held against the commit before.** At 360, 24 of 24 screens 0 pixels. At a 1280 window (a 1028px
+canvas), 22 of 24 frames 0; the two that changed are only what the rows above name: 0.0 grew 115px
+taller and 6.4 grew 122px, because the measured lines now wrap.

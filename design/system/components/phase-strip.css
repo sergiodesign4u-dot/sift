@@ -17,8 +17,8 @@
    No em dash anywhere in this file.
 */
 
-.steps { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; padding: 11px var(--space-3); border-bottom: 1px solid var(--line-hairline); font-size: 12px; color: var(--text-secondary); }
-.step { display: inline-flex; align-items: center; gap: 7px; }
+.steps { display: flex; align-items: center; gap: 0.5625rem; flex-wrap: wrap; padding: 0.6875rem var(--space-3); border-bottom: 1px solid var(--line-hairline); font-size: 0.75rem; color: var(--text-secondary); }
+.step { display: inline-flex; align-items: center; gap: 0.4375rem; }
 .step-n { display: inline-flex; align-items: center; justify-content: center; width: 19px; height: 19px; border-radius: var(--radius-pill); border: 1px solid var(--line-hairline); font-family: var(--font-mono); font-size: var(--type-3xs); flex: none; }
 .step.is-done .step-n { color: var(--text-primary); border-color: var(--line-control); }
 /* a finished phase carries a mark rather than its number: the number is a position in a

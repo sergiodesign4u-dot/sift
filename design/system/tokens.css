@@ -151,17 +151,22 @@
   --ring-offset: 2px;       /* the gap between the control and its ring */
   --ring-offset-wide: 4px;  /* the title input only: its dashed underline sits on the baseline, and a 2px gap would draw the ring on top of it */
 
-  --space-1: 4px;
-  --space-2: 6px;
-  --space-3: 8px;
-  --space-4: 10px;
-  --space-5: 12px;
-  --space-6: 14px;
-  --space-7: 16px;
-  --space-8: 18px;
-  --space-9: 22px;
-  --space-10: 26px;
-  --space-12: 32px;
+  /* The spacing scale. Stage 10 Step 6, owner's decision D2: in rem since then, at the same values
+     (4 6 8 10 12 14 16 18 22 26 32px at the default font size), so the air grows with the reader's
+     font size together with the type it separates. The literal sizes and spaces in px across
+     design/system/ went to rem in the same pass (D1, D2); px stays only for what does not scale:
+     a 1px rule, a shadow, the radius, the ring, a target size, a 1 to 3px optical offset. */
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.375rem;  /* 6px */
+  --space-3: 0.5rem;    /* 8px */
+  --space-4: 0.625rem;  /* 10px */
+  --space-5: 0.75rem;   /* 12px */
+  --space-6: 0.875rem;  /* 14px */
+  --space-7: 1rem;      /* 16px */
+  --space-8: 1.125rem;  /* 18px */
+  --space-9: 1.375rem;  /* 22px */
+  --space-10: 1.625rem; /* 26px */
+  --space-12: 2rem;     /* 32px */
 
   --size-target: 44px;   /* the target floor. Three named exceptions, all in conventions.md */
   --size-check:  24px;   /* the checkbox, at the AA floor by a named exception */
@@ -195,8 +200,10 @@
                                 Round 3: the theme summary and reason (88ch until then), the legal prose
                                 and the form (no measure until then) */
   --gutter-page: clamp(1rem, 0.8014rem + 0.8823vw, 1.375rem);  /* 16 to 22px. The gutter of the rules that
-                                switched from 22 to 16 at 820 (breadcrumb, notice in the frame, group heading,
-                                selection bar, 0.0 footer, public column): it now grows instead. Owner's decision at the Step 2
+                                switched from 22 to 16 at 820 (breadcrumb, notice in the frame, selection bar,
+                                0.0 footer, public column): it now grows instead. The group heading
+                                switched too and does NOT read it: its 16 and 8 are the grouped list's
+                                row padding (--space-7, --space-3), patterns/grouped-list.css, round 4. Owner's decision at the Step 2
                                 review, option A: 360 keeps its three edges (brand 18, breadcrumb 16, page 22),
                                 so 360 moves by 0 pixels; the page and the brand keep --space-9 and --space-8.
                                 Read by the breadcrumb and the static selection bar (Step 4, round 2), a notice

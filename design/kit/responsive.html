@@ -207,7 +207,7 @@
       <tr><td>source row</td><td>3.0, 3.5</td><td><b>container query</b></td><td><code>@container (width &lt; 36rem)</code>: stats and actions each take a full row. <a href="source-row.html">Page</a></td></tr>
       <tr><td>saved brief row</td><td>6.0</td><td><b>container query</b></td><td><code>@container (width &lt; 28rem)</code>: the actions take their own row. <a href="brief-row.html">Page</a></td></tr>
       <tr><td>screen head</td><td>15 screens</td><td><b>container query</b></td><td><code>@container (width &lt; 26rem)</code>: the one action goes full width. The sub keeps 70ch. <a href="screen-head.html">Page</a></td></tr>
-      <tr><td>toolbar</td><td>2.0, 4.0, 4.1, 6.1, 6.2</td><td><b>container query</b></td><td><code>@container (width &lt; 39rem)</code>: one compact Filter button replaces the full row. <a href="toolbar.html">Page</a></td></tr>
+      <tr><td>toolbar</td><td>2.0, 4.0, 4.1, 6.1, 6.2</td><td><b>container query</b></td><td><code>@container (width &lt; 39rem)</code>: one compact Filter button replaces the full row, on 2.0 only; 4.0, 4.1, 6.1 and 6.2 wear <code>.toolbar-row</code>, which wraps and never compacts. <a href="toolbar.html">Page</a></td></tr>
       <tr><td>action bar</td><td>3.2, 5.0, 5.1, 7.2</td><td><b>container query</b></td><td><code>@container (width &lt; 29rem)</code>: the note takes its own line, the buttons share the next. <a href="actionbar.html">Page</a></td></tr>
       <tr><td>selection bar</td><td>2.0, 6.1, 6.2</td><td><b>container query on the frame</b> + gutter token</td><td><code>@container (width &lt; 42rem)</code> read on <code>.app</code>, because the static bar stands outside the column: the buttons share their line. Gutter <code>--gutter-page</code>. <a href="selbar.html">Page</a></td></tr>
       <tr><td>evidence snippet</td><td>4.0, 4.1</td><td><b>container</b></td><td>the quote stops at <code>--container-text</code>, 52ch; was 92ch. <a href="snippet.html">Page</a></td></tr>
@@ -226,14 +226,15 @@
       <tr><td>skeleton card</td><td>2.2, 4.2, 6.3</td><td>does not adapt</td><td>the column it stands in gives the width</td></tr>
     </tbody></table></div>
     <h3 class="kit-h3">Container thresholds</h3>
-    <p class="kit-note">Local, not tokens, and listed so the check can tell them from a device breakpoint. Each is the width of the PLACE where the wide form breaks, measured, plus at least 1rem, rounded up to a whole rem. All sit above the 316px a 360 window gives the column, so 360 keeps its narrow forms. The shell places them, so <code class="kit-mono">screen-shell.css</code> declares both places: <code class="kit-mono">.appmain</code>, the column, and <code class="kit-mono">.app</code>, the frame.</p>
+    <p class="kit-note">Local, not tokens, and listed so the check can tell them from a device breakpoint. Each is the width of the PLACE where the wide form breaks, measured, plus at least 1rem, rounded up to a whole rem. All sit above the 316px a 360 window gives the column, so 360 keeps its narrow forms. The shell places them, so <code class="kit-mono">screen-shell.css</code> declares both places: <code class="kit-mono">.appmain</code>, the column, and <code class="kit-mono">.app</code>, the frame. Since round 4 a row or a toolbar placed by a pattern reads the pattern's box (grouped list, filtered list): as wide as the column on every colour screen today, not on a Stage 12 screen with a narrower list.</p>
+    <p class="kit-note"><b>Which window these numbers mean: the product's.</b> Every width on this page is the browser window a customer has open. The stand is not that window: above a 900 window the kit panel takes 252px, so a stand window of W shows the product at W minus 252 (1024 is 772, 1440 is 1188). Stage 12 measures the canvas or the product page opened alone, never the stand window.</p>
     <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Component</th><th>Query</th><th>Place</th><th>Wide form breaks</th><th>Switches, measured</th></tr></thead><tbody>
       <tr><td>screen head</td><td><code>width &lt; 26rem</code></td><td>column</td><td>title in two under 395px</td><td>415 narrow, 416 wide</td></tr>
-      <tr><td>saved brief row</td><td><code>width &lt; 28rem</code></td><td>column</td><td>title in two under 430px</td><td>447 narrow, 448 wide</td></tr>
-      <tr><td>theme card</td><td><code>width &lt; 29rem</code></td><td>column</td><td>label in two under 435px</td><td>463 narrow, 464 wide</td></tr>
+      <tr><td>saved brief row</td><td><code>width &lt; 28rem</code></td><td>grouped list</td><td>title in two under 430px</td><td>447 narrow, 448 wide</td></tr>
+      <tr><td>theme card</td><td><code>width &lt; 29rem</code></td><td>filtered list</td><td>label in two under 435px</td><td>463 narrow, 464 wide</td></tr>
       <tr><td>action bar</td><td><code>width &lt; 29rem</code></td><td>column</td><td>note in two under 450px</td><td>463 narrow, 464 wide</td></tr>
-      <tr><td>source row</td><td><code>width &lt; 36rem</code></td><td>column</td><td>row wraps under 550px</td><td>575 narrow, 576 wide</td></tr>
-      <tr><td>toolbar</td><td><code>width &lt; 39rem</code></td><td>column</td><td>full row wraps under 600px</td><td>623 narrow, 624 wide</td></tr>
+      <tr><td>source row</td><td><code>width &lt; 36rem</code></td><td>grouped list</td><td>row wraps under 550px</td><td>575 narrow, 576 wide</td></tr>
+      <tr><td>toolbar</td><td><code>width &lt; 39rem</code></td><td>filtered list on 2.0, else column</td><td>full row wraps under 600px</td><td>623 narrow, 624 wide</td></tr>
       <tr><td>selection bar, static</td><td><code>width &lt; 42rem</code></td><td>frame</td><td>wraps under about 650px</td><td>671 narrow, 672 wide</td></tr>
       <tr><td>breadcrumb (round 3)</td><td><code>width &lt; 22.5rem</code></td><td>frame</td><td>not a break: the owner's option A, the 360 frame itself</td><td>359 narrow, 360 full chain</td></tr>
       <tr><td>account shell (round 3)</td><td><code>width &gt;= 35rem</code></td><td>column</td><td>beside the rail the panel gets under 316px below a 542px column</td><td>559 column, 560 rail</td></tr>
@@ -263,7 +264,7 @@
       <tr><td>screen shell</td><td>27 screens</td><td><b>point + container</b></td><td>a notice in the frame takes <code>--gutter-page</code>; the shell holds no <code>@media</code> of its own now. <a href="screen-shell.html">Page</a></td></tr>
       <tr><td>app footer, public bar</td><td>27, 10 screens</td><td>does not adapt</td><td>one wrapping line each; their 22px gutters are the page's and the brand's, kept by option A</td></tr>
     </tbody></table></div>
-    <p class="kit-note"><b>The one-off file, outside the count.</b> The theme summary and reason (4.0, 4.1) from 88ch to <code class="kit-mono">--container-text</code> (B-25); the trust grid and the footer brand in rem; the 0.0 footer and the 3.2 column map each on their own container query (rows above). The list note keeps a reduced 820 rule: it is the grouped list's row padding and moves with it in round 4.</p>
+    <p class="kit-note"><b>The one-off file, outside the count.</b> The theme summary and reason (4.0, 4.1) from 88ch to <code class="kit-mono">--container-text</code> (B-25); the trust grid and the footer brand in rem; the 0.0 footer and the 3.2 column map each on their own container query (rows above). The list note's 820 rule moved with the grouped list in round 4, to <code class="kit-mono">@container (width &lt; 20rem)</code> (last row of the thresholds).</p>
     <p class="kit-note"><b>Built, the owner's decision: S5-5, option A.</b> Under the 360 frame the breadcrumb is a back chevron plus the parent; 360 keeps the full chain. The separators became <code class="kit-mono">&lt;span class="bc-sep" aria-hidden="true"&gt;</code> on the 7 screens and the kit, invisible at 360, 1024 and 1440. B-26 stays not taken.</p>
     <p class="kit-note"><b>Withdrawn on verification: the marketing grids on <code class="kit-mono">--grid-col-min</code>.</b> At 15rem the fourth tier drops to a row of its own at 1440 (4 x 240 + 3 gaps is 996px against a 992px column). Each grid keeps the minimum its cards were drawn at, in rem.</p>
     <p class="kit-note"><b>Held against round 2.</b> At 360, 24 of 24 screens at 0 pixels. At 1024 and 1440, 40 of 48 frames 0; the 8 that changed: 4.0 and 4.1 (summary and reason at 52ch), 6.4 and 0.0 (the sides 24 to 22px; at 1024 the 0.0 column is 4px wider, a line rewraps, the page is 22px shorter). The accounts, 3.2, 5.0, the dialogs and the states are 0. At a 640 window, on purpose: 7.0 and 7.2 take the rail, 6.4 and 0.0 the wide padding and footer; the 3.2 map stays in two lines. At a 340 window only the breadcrumb row moves, on its 7 screens. Width sweep: 17 screens, 54 widths, 918 frames, 0 overflow, one carrier where there is navigation.</p>
@@ -277,7 +278,7 @@
     </tbody></table></div>
     <p class="kit-note"><b>Measured.</b> Both patterns are exactly as wide as the page column on every colour screen (316px at 360, 996px at 1440), so no row's threshold moved: against round 3, 72 of 72 frames are 0 at 360, 1024 and 1440. At a 412 window the 8 grouped-list screens align their headings with the rows, on purpose (each heading 2px taller); the switch is exact, 319px of list at 16, 320 at 8. Width sweep: 17 screens, 54 widths, 918 frames, 0 overflow.</p>
     <p class="kit-note"><b>For the owner.</b> Aligning the heading at 360 too would remove the last drift of the phone, and would move 360 by 8px on 8 screens. Not done: the zero at 360 is the stage's promise.</p>
-    <p class="kit-note"><b>The product's <code class="kit-mono">@media</code> now equals the register:</b> two, both <code class="kit-mono">min-width: 37.5rem</code>, in the header and the bottom tabs; none in a screen file. Every other width answer is one of 16 container queries (14 thresholds, listed above) or a fluid value. The pairs: 4.0 at 412, <a href="screens/s10/r4-theme-412-before.png">before</a> and <a href="screens/s10/r4-theme-412-after.png">after</a>; 6.0 at 412, <a href="screens/s10/r4-briefs-412-before.png">before</a> and <a href="screens/s10/r4-briefs-412-after.png">after</a>; 4.0 at 360, <a href="screens/s10/r4-theme-360-before.png">before</a> and <a href="screens/s10/r4-theme-360-after.png">after</a> (identical files).</p></section>
+    <p class="kit-note"><b>The product's width queries now equal the register:</b> two <code class="kit-mono">@media</code> on width, both <code class="kit-mono">min-width: 37.5rem</code>, in the header and the bottom tabs; none in a screen file. The third <code class="kit-mono">@media</code>, <code class="kit-mono">base.css:72</code>, asks for reduced motion, not width. Every other width answer is one of 16 container queries (14 thresholds, listed above) or a fluid value. The pairs: 4.0 at 412, <a href="screens/s10/r4-theme-412-before.png">before</a> and <a href="screens/s10/r4-theme-412-after.png">after</a>; 6.0 at 412, <a href="screens/s10/r4-briefs-412-before.png">before</a> and <a href="screens/s10/r4-briefs-412-after.png">after</a>; 4.0 at 360, <a href="screens/s10/r4-theme-360-before.png">before</a> and <a href="screens/s10/r4-theme-360-after.png">after</a> (identical files).</p></section>
     <section class="kit-sec" id="new"><h2 class="kit-h2">New behaviour</h2>
     <p class="kit-lead"><b>The product needs no new behaviour at width.</b> Step 5 ran in its short form: no split view, no new state, no new string, no new pattern. Four list and detail pairs were weighed; none reaches the threshold (two pairs, or one pair of the main flow that the IA allows).</p>
     <div class="tbl-wrap"><table class="kit-tbl"><thead><tr><th>Considered</th><th>Why it did not pass</th></tr></thead><tbody>
@@ -373,7 +374,7 @@
 <tr><td>6.3 Share link loading</td><td>waits for the link</td><td>same</td><td>dialog</td><td>dialog.css</td></tr>
 <tr><td>6.4 Shared brief</td><td>a stakeholder reads the call and its evidence (S1, E2)</td><td>wider: air</td><td>one centred readable column (already 720px)</td><td>briefs.md:93 "a centered readable column"</td></tr>
 <tr><td>6.5 Briefs empty</td><td>learns there is no brief yet</td><td>same</td><td>state block</td><td>state.css</td></tr>
-<tr><td>7.0 Account</td><td>finds an account section</td><td>wider: grid</td><td>the section list as a left rail; fluid wrap replaces the 821 query</td><td>account.md:53 "a left rail beside the content"</td></tr>
+<tr><td>7.0 Account</td><td>finds an account section</td><td>wider: grid</td><td>the section list as a left rail; Step 1 said a fluid wrap replaces the 821 query; built as <code>@container (width &gt;= 35rem)</code>, round 3</td><td>account.md:53 "a left rail beside the content"</td></tr>
 <tr><td>7.0 Profile</td><td>edits the profile</td><td>wider: grid</td><td>as 7.0</td><td>account.md:53</td></tr>
 <tr><td>7.0 Data and privacy</td><td>sees and sets PII scrubbing (compliance, day one)</td><td>wider: grid</td><td>as 7.0</td><td>account.md:53</td></tr>
 <tr><td>7.0 Plan and limits</td><td>sees the plan and the seat meter</td><td>wider: grid</td><td>as 7.0</td><td>account.md:53</td></tr>
@@ -419,7 +420,7 @@
 <tr><td>atom</td><td>group heading</td><td>12 screens</td><td>grid</td><td><b>fluid</b>: its gutter (set by grouped-list) goes to the gutter token</td></tr>
 <tr><td>molecule</td><td>theme card</td><td>2.0, 6.1, 6.4</td><td>grid</td><td><b>point to container</b>: the reflow and the 2-line quote move to <code>@container</code></td></tr>
 <tr><td>molecule</td><td>evidence snippet</td><td>4.0, 4.1, 6.4</td><td>air</td><td><b>container</b>: measure, already on <code>--measure-prose</code></td></tr>
-<tr><td>molecule</td><td>raw item</td><td>5.0, 5.1</td><td>air</td><td><b>container</b>: measure 92ch, where S5-1 asked 65 to 75 (B-25)</td></tr>
+<tr><td>molecule</td><td>raw item</td><td>5.0, 5.1</td><td>air</td><td><b>container</b>: was 92ch, where S5-1 asked 65 to 75 (B-25); <code>--container-text</code> since round 2</td></tr>
 <tr><td>molecule</td><td>provenance list</td><td>5.0, 5.1</td><td>air</td><td>does not adapt: short lines, below the quote</td></tr>
 <tr><td>molecule</td><td>source row</td><td>3.0, 3.5</td><td>grid</td><td><b>point to container</b></td></tr>
 <tr><td>molecule</td><td>source card</td><td>3.0, 3.4, 3.5</td><td>grid</td><td><b>fluid</b>: auto-fill, the minimum goes to <code>--grid-col-min</code></td></tr>
@@ -429,7 +430,7 @@
 <tr><td>molecule</td><td>form field</td><td>1.0, 3.2, 6.1</td><td>grid</td><td>does not adapt: the form gives the width</td></tr>
 <tr><td>molecule</td><td>notice band</td><td>7 screens</td><td>air</td><td><b>container</b>: it has no measure today, and gives the longest lines (122 at 1440)</td></tr>
 <tr><td>molecule</td><td>screen head</td><td>15 screens</td><td>grid</td><td><b>point to container</b>: the full-width action</td></tr>
-<tr><td>molecule</td><td>toolbar</td><td>6 screens</td><td>grid</td><td><b>point to container</b>: full row or compact</td></tr>
+<tr><td>molecule</td><td>toolbar</td><td>6 screens</td><td>grid</td><td><b>point to container</b>: full row or compact, on 2.0 only; the other five wear the wrapping row</td></tr>
 <tr><td>molecule</td><td>selection bar</td><td>2.0, 6.1, 6.2</td><td>grid</td><td><b>point to container</b> + gutter token</td></tr>
 <tr><td>molecule</td><td>action bar</td><td>3.2, 3.3, 3.6, 5.0, 6.1</td><td>grid</td><td><b>point to container</b></td></tr>
 <tr><td>molecule</td><td>phase strip</td><td>6 screens</td><td>grid</td><td><b>fluid</b>, already (wrap)</td></tr>
@@ -441,13 +442,13 @@
 <tr><td>molecule</td><td>step card</td><td>0.0</td><td>grid</td><td><b>fluid</b>: the marketing grid places it</td></tr>
 <tr><td>organism</td><td>app header</td><td>27 screens</td><td>grid</td><td><b>point</b>: the shell swap, viewport <code>@media</code>, Step 3</td></tr>
 <tr><td>organism</td><td>bottom tabs</td><td>27 screens</td><td>grid</td><td><b>point</b>: the same swap</td></tr>
-<tr><td>organism</td><td>app footer</td><td>27 screens</td><td>grid</td><td>does not adapt: one wrapping line; its gutter follows the token</td></tr>
-<tr><td>organism</td><td>public bar</td><td>10 screens</td><td>grid</td><td>does not adapt: no destinations to swap; gutter follows the token</td></tr>
+<tr><td>organism</td><td>app footer</td><td>27 screens</td><td>grid</td><td>does not adapt: one wrapping line; its gutter is the frame inset plus the page's 22px (<code>--space-9</code>), kept by option A, not <code>--gutter-page</code></td></tr>
+<tr><td>organism</td><td>public bar</td><td>10 screens</td><td>grid</td><td>does not adapt: no destinations to swap; its gutter is the brand's 22px (<code>--space-9</code>), kept by option A, not <code>--gutter-page</code></td></tr>
 <tr><td>organism</td><td>state block</td><td>8 screens</td><td>same</td><td><b>container</b>, already (440px and 60ch, to rem)</td></tr>
 <tr><td>organism</td><td>form</td><td>9 screens, grey</td><td>grid</td><td><b>container</b>: it has no measure today, and on 3.2 and 7.x its fields would run the full column</td></tr>
 <tr><td>organism</td><td>dialog</td><td>6.3</td><td>same</td><td><b>container</b>, already (460px, to rem)</td></tr>
 <tr><td>organism</td><td>legal document</td><td>9.x</td><td>grid</td><td><b>fluid</b>: the sticky rail by wrap; the prose size by <code>clamp()</code>, not the point</td></tr>
-<tr><td>organism</td><td>account shell</td><td>7.x</td><td>grid</td><td><b>fluid</b>: the rail by wrap, the 821 query goes</td></tr>
+<tr><td>organism</td><td>account shell</td><td>7.x</td><td>grid</td><td><b>container query</b>, revised in round 3: from a 35rem column the 13rem rail stands beside the panel; Step 1 said a fluid wrap, which cannot hold a 13rem rail and a full-width row at once</td></tr>
 <tr><td>organism</td><td>public document</td><td>6.4</td><td>air</td><td><b>container</b> (720px) + <code>clamp()</code> for the h1</td></tr>
 <tr><td>organism</td><td>marketing shell</td><td>0.0</td><td>grid</td><td><b>container + fluid</b>: 1040px, auto-fit, <code>clamp()</code> for h1 and lead</td></tr>
 <tr><td>organism</td><td>screen shell</td><td>27 screens</td><td>grid</td><td><b>point + container</b>: the page container it lacks, Step 3</td></tr>

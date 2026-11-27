@@ -38,7 +38,7 @@
 .head-text { flex: 1; min-width: 0; }
 .head-action { flex: none; }
 
-.head-meta { display: flex; align-items: center; gap: var(--space-6); flex-wrap: wrap; font-size: var(--type-xs); color: var(--text-secondary); margin-top: 9px; }
+.head-meta { display: flex; align-items: center; gap: var(--space-6); flex-wrap: wrap; font-size: var(--type-xs); color: var(--text-secondary); margin-top: 0.5625rem; }
 
 .main-head { padding: var(--space-7) 0 var(--space-6); }
 .h1 { font-size: var(--type-xl); font-weight: var(--weight-strong); letter-spacing: var(--tracking-head); }

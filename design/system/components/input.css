@@ -16,7 +16,7 @@
 .input {
   width: 100%;
   min-height: var(--size-target);
-  padding: 11px var(--space-5);
+  padding: 0.6875rem var(--space-5);
   background: var(--bg-surface);
   border: 1px solid var(--line-control);
   border-radius: var(--radius-md);
@@ -33,11 +33,11 @@ textarea.input { resize: vertical; line-height: 1.55; /* kit.css:346, byte for b
 /* select: its native chrome is removed, so the affordance has to be put back. The chevron is
    drawn from the placeholder's own ink on a WRAPPER, because a select cannot carry a
    pseudo-element, and it costs neither a colour literal nor a request. */
-select.input { appearance: none; -webkit-appearance: none; cursor: pointer; padding-right: 32px; }
+select.input { appearance: none; -webkit-appearance: none; cursor: pointer; padding-right: 2rem; }
 .select { position: relative; display: block; }
 .select::after {
   content: ""; position: absolute; right: 13px; top: 50%;
-  width: 6px; height: 6px; margin-top: -5px;
+  width: 6px; height: 6px; margin-top: -0.3125rem;
   border-right: 1.5px solid var(--text-secondary);
   border-bottom: 1.5px solid var(--text-secondary);
   transform: rotate(45deg); pointer-events: none;
@@ -49,14 +49,14 @@ select.input { appearance: none; -webkit-appearance: none; cursor: pointer; padd
 
 /* density: a mapping grid puts five of these in a column, so the type and the padding come down.
    The 44px floor does NOT come down with them. */
-.input--dense { font-size: var(--type-xs); padding: 9px var(--space-4); }
+.input--dense { font-size: var(--type-xs); padding: 0.5625rem var(--space-4); }
 
 /* the title of an artifact, typed where it will be read. The dashed rule is the only thing
    saying the heading can be edited. */
 .input--title {
   min-width: 180px; background: none; border: 0;
   border-bottom: 1px dashed var(--line-control); border-radius: 0;
-  padding: 2px 0 var(--space-2);
+  padding: 0.125rem 0 var(--space-2);
   font-size: var(--type-xl); font-weight: var(--weight-strong); letter-spacing: var(--tracking-head);
 }
 .input--title:focus-visible { outline-offset: var(--ring-offset-wide); }

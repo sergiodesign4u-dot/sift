@@ -22,5 +22,5 @@
   font-family: var(--font-mono); font-size: var(--type-2xs);
   color: var(--text-warning); background: var(--bg-warning);
   border: 1px solid var(--line-warning); border-radius: var(--radius-sm);
-  padding: 1px var(--space-2); white-space: nowrap;
+  padding: 0.0625rem var(--space-2); white-space: nowrap;
 }

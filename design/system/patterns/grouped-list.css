@@ -34,5 +34,5 @@
    heading keeps the 14 16 6 the phone was drawn with. kit.css:754 and :764 originally, then
    group-heading.css until Stage 09, an 820 viewport query until Stage 10. */
 @container (width < 20rem) {
-  .grouped-list > .group-t { padding: 14px var(--space-7) var(--space-2); }
+  .grouped-list > .group-t { padding: 0.875rem var(--space-7) var(--space-2); }
 }

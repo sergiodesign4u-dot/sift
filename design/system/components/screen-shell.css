@@ -47,7 +47,7 @@
    No em dash anywhere in this file.
 */
 
-.appmain { flex: 1; padding: 20px calc(var(--frame-inset, 0px) + var(--space-9)); container-type: inline-size; }
+.appmain { flex: 1; padding: 1.25rem calc(var(--frame-inset, 0px) + var(--space-9)); container-type: inline-size; }
 
 /* the screen edition: a screen that is the page */
 .app { --frame-inset: max(0px, (100% - var(--container-page)) / 2); container-type: inline-size; display: flex; flex-direction: column; min-height: 100vh; background: var(--bg-page); color: var(--text-primary); }

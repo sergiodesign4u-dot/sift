@@ -31,7 +31,7 @@
    list below (A2). kit.css:130
    Its measure, and the reason's below, is --container-text (52ch) since Stage 10 Step 4, round 3:
    at 88ch they ran 89 characters a line at 1440 (backlog B-25). */
-.summary { font-size: 14.5px; line-height: 1.8; color: var(--text-primary); margin-top: var(--space-7); max-width: var(--container-text); }
+.summary { font-size: 0.90625rem; line-height: 1.8; color: var(--text-primary); margin-top: var(--space-7); max-width: var(--container-text); }
 
 /* 6.1 and 6.2 Build brief: the title row of an artifact. The name is typed where it will be read,
    and the marker beside it says the artifact has not been shared yet. kit.css:429 */
@@ -39,24 +39,24 @@
 
 /* 6.1 and 6.2: a block inside a main that otherwise holds rows. A rule above it rather than a card
    around it, because a card would claim it is a different kind of thing. kit.css:433 */
-.block { padding-top: 20px; margin-top: 20px; border-top: 1px solid var(--line-hairline); }
+.block { padding-top: 1.25rem; margin-top: 1.25rem; border-top: 1px solid var(--line-hairline); }
 
 /* ---------- 0.0 Home ---------- */
 
 /* The trust list: a list of claims, a rule above each one instead of a box around it. kit.css:655 */
-.mk-trust { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(14.375rem, 100%), 1fr)); gap: var(--space-6) 24px; margin-top: 20px; }
+.mk-trust { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(14.375rem, 100%), 1fr)); gap: var(--space-6) 1.5rem; margin-top: 1.25rem; }
 .mk-trust-item { padding-top: var(--space-6); border-top: 2px solid var(--line-strong); }
-.mk-trust-t { font-size: var(--type-base); font-weight: var(--weight-strong); letter-spacing: -0.01em; color: var(--text-primary); margin-bottom: 7px; }
+.mk-trust-t { font-size: var(--type-base); font-weight: var(--weight-strong); letter-spacing: -0.01em; color: var(--text-primary); margin-bottom: 0.4375rem; }
 .mk-trust-t a { display: inline-flex; align-items: center; min-height: var(--size-target); color: var(--text-primary); text-decoration: none; }
 .mk-trust-t a:hover { text-decoration: underline; }
-.mk-trust-d { font-size: 13px; color: var(--text-secondary); line-height: 1.65; }
+.mk-trust-d { font-size: 0.8125rem; color: var(--text-secondary); line-height: 1.65; max-width: var(--container-text); }   /* Stage 10 Step 6, N2: one column of the trust grid at a 480 window ran 54ch */
 
 /* The marketing footer. The app footer is the component; this is the one screen that needs a link
    block under it, and it composes with .appfoot rather than replacing it. kit.css:664 */
-.mk-footer { display: flex; flex-wrap: wrap; gap: 24px 48px; align-items: flex-start; padding: 28px var(--gutter-page) var(--space-12); font-family: var(--font-ui); font-size: 13px; }
+.mk-footer { display: flex; flex-wrap: wrap; gap: 1.5rem 3rem; align-items: flex-start; padding: 1.75rem var(--gutter-page) var(--space-12); font-family: var(--font-ui); font-size: 0.8125rem; }
 .mk-foot-brand { display: flex; flex-direction: column; gap: var(--space-4); min-width: 12.5rem; flex: 1; }
 .mk-foot-tag { font-size: var(--type-xs); color: var(--text-secondary); max-width: 30ch; line-height: 1.55; }
-.mk-foot-cols { display: flex; gap: 48px; flex-wrap: wrap; }
+.mk-foot-cols { display: flex; gap: 3rem; flex-wrap: wrap; }
 .mk-foot-col { display: flex; flex-direction: column; }
 .mk-foot-h { font-family: var(--font-mono); font-size: var(--type-3xs); font-weight: var(--weight-medium); letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-secondary); }
 .mk-foot-col a { display: flex; align-items: center; min-height: var(--size-target); font-size: var(--type-xs); color: var(--text-secondary); text-decoration: none; }
@@ -72,22 +72,22 @@
 
 /* Why these items are one theme, and what was LEFT OUT, which is the half that makes the
    explanation checkable. kit.css:682 */
-.reason { font-size: 13px; line-height: 1.7; color: var(--text-secondary); border-left: 2px solid var(--line-strong); padding-left: var(--space-6); margin-top: var(--space-8); max-width: var(--container-text); }
+.reason { font-size: 0.8125rem; line-height: 1.7; color: var(--text-secondary); border-left: 2px solid var(--line-strong); padding-left: var(--space-6); margin-top: var(--space-8); max-width: var(--container-text); }
 .reason b { color: var(--text-primary); font-weight: var(--weight-medium); }
 
 /* 4.1: the line that closes a list with no "load more". kit.css:687 */
-.listnote { font-size: var(--type-xs); color: var(--text-secondary); line-height: var(--leading-body); padding: 13px var(--space-3); border-bottom: 1px solid var(--line-hairline); }
+.listnote { font-size: var(--type-xs); color: var(--text-secondary); line-height: var(--leading-body); padding: 0.8125rem var(--space-3); border-bottom: 1px solid var(--line-hairline); }
 
 /* ---------- 3.2 Connect CSV ---------- */
 
 /* The drop zone. Dashed, because dashed is what the whole product uses for "nothing here yet, and
    something goes here". The icon slot inside is centred: layout on the block's own child, not a
    variant of the slot. kit.css:691 */
-.src-drop { border: 1px dashed var(--line-control); border-radius: var(--radius-md); background: var(--bg-surface); padding: var(--space-10) 20px; text-align: center; margin: var(--space-2) 0 var(--space-5); }
+.src-drop { border: 1px dashed var(--line-control); border-radius: var(--radius-md); background: var(--bg-surface); padding: var(--space-10) 1.25rem; text-align: center; margin: var(--space-2) 0 var(--space-5); }
 .src-drop .iconslot { margin: 0 auto var(--space-6); }
 .src-drop-t { font-size: var(--type-base); font-weight: var(--weight-medium); color: var(--text-primary); }
-.src-drop-d { font-size: var(--type-xs); color: var(--text-secondary); margin: 5px 0 var(--space-7); }
-.src-file { font-family: var(--font-mono); font-size: 12px; color: var(--text-secondary); margin-bottom: var(--space-7); }
+.src-drop-d { font-size: var(--type-xs); color: var(--text-secondary); margin: 0.3125rem 0 var(--space-7); }
+.src-file { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-secondary); margin-bottom: var(--space-7); }
 .src-file b { color: var(--text-primary); font-weight: var(--weight-medium); }
 
 /* The column mapping. The SAMPLE is the point: a mapping screen without the customer's own data on
@@ -97,17 +97,17 @@
 .src-map { display: block; }
 .src-map-head, .src-map-row { display: grid; grid-template-columns: 1fr 1.3fr 1fr 66px; gap: var(--space-6); align-items: center; }
 .src-map-head { font-family: var(--font-mono); font-size: var(--type-3xs); font-weight: var(--weight-medium); letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-secondary); padding-bottom: var(--space-3); border-bottom: 1px solid var(--line-hairline); }
-.src-map-row { padding: 11px 0; border-bottom: 1px solid var(--line-hairline); }
+.src-map-row { padding: 0.6875rem 0; border-bottom: 1px solid var(--line-hairline); }
 .src-map-col { font-family: var(--font-mono); font-size: var(--type-xs); color: var(--text-primary); }
-.src-sample { font-family: var(--font-mono); font-size: 11.5px; color: var(--text-secondary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.src-sample { font-family: var(--font-mono); font-size: 0.71875rem; color: var(--text-secondary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .src-inc { display: flex; justify-content: center; }
 
 /* The review summary: the count, and the two facts about privacy that the default makes true,
    said before the import rather than in a settings screen afterwards. kit.css:710 */
-.src-review { border: 1px solid var(--line-hairline); border-radius: var(--radius-md); background: var(--bg-surface); padding: var(--space-7) var(--space-8); margin-top: 20px; }
+.src-review { border: 1px solid var(--line-hairline); border-radius: var(--radius-md); background: var(--bg-surface); padding: var(--space-7) var(--space-8); margin-top: 1.25rem; }
 .src-review h2 { font-family: var(--font-mono); font-size: var(--type-3xs); font-weight: var(--weight-medium); letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-secondary); margin-bottom: var(--space-4); }
-.src-review ul { list-style: none; display: grid; gap: 2px; }
-.src-review li { display: flex; align-items: baseline; gap: var(--space-6); padding: 7px 0; font-size: 13px; color: var(--text-secondary); border-bottom: 1px solid var(--line-hairline); }
+.src-review ul { list-style: none; display: grid; gap: 0.125rem; }
+.src-review li { display: flex; align-items: baseline; gap: var(--space-6); padding: 0.4375rem 0; font-size: 0.8125rem; color: var(--text-secondary); border-bottom: 1px solid var(--line-hairline); }
 .src-review li:last-child { border-bottom: 0; }
 .src-review b { margin-left: auto; font-family: var(--font-mono); font-weight: var(--weight-medium); color: var(--text-primary); white-space: nowrap; }
 
@@ -118,8 +118,8 @@
    puts its columns beside the brand down to a 520px frame (measured), plus a rem. The side
    gutter is --gutter-page in both forms. */
 @container (width < 34rem) {
-  .mk-footer { padding-top: 24px; padding-bottom: 28px; gap: 20px 24px; }
-  .mk-foot-cols { gap: 28px; }
+  .mk-footer { padding-top: 1.5rem; padding-bottom: 1.75rem; gap: 1.25rem 1.5rem; }
+  .mk-foot-cols { gap: 1.75rem; }
 }
 
 /* 3.2 column map. Threshold 41rem on the page column: below it four columns would cut a field's
@@ -128,7 +128,7 @@
    is unchanged. */
 @container (width < 41rem) {
   .src-map-head { display: none; }
-  .src-map-row { grid-template-columns: 1fr auto; gap: var(--space-3) var(--space-5); padding: 13px 0; }
+  .src-map-row { grid-template-columns: 1fr auto; gap: var(--space-3) var(--space-5); padding: 0.8125rem 0; }
   .src-sample { grid-column: 1 / -1; white-space: normal; }
   .src-map-row .input { grid-column: 1; }
 }
@@ -137,5 +137,5 @@
    takes the grouped list's threshold (patterns/grouped-list.css, round 4): 16px only under a 20rem
    place, the one a 360 window gives; aligned with the rows at 8px from there. */
 @container (width < 20rem) {
-  .listnote { padding: 13px var(--space-7); }
+  .listnote { padding: 0.8125rem var(--space-7); }
 }

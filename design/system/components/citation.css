@@ -20,7 +20,7 @@
   display: inline-flex; align-items: center; justify-content: center;
   min-width: 17px; height: 17px; padding: 0 var(--space-1);
   border-radius: var(--radius-sm);
-  font-family: var(--font-mono); font-size: 10.5px;
+  font-family: var(--font-mono); font-size: 0.65625rem;
   color: var(--text-evidence); background: var(--bg-evidence);
   border: 1px solid var(--line-evidence);
   vertical-align: 1px;
@@ -29,7 +29,7 @@
   display: inline-flex; align-items: center; gap: var(--space-1);
   min-height: var(--size-check); padding: 0 var(--space-2);
   border-radius: var(--radius-sm);
-  font-family: var(--font-mono); font-size: 10.5px;
+  font-family: var(--font-mono); font-size: 0.65625rem;
   color: var(--text-evidence); background: var(--bg-evidence);
   border: 1px solid var(--line-evidence);
   text-decoration: none; white-space: nowrap; vertical-align: baseline;

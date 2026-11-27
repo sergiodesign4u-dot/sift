@@ -17,8 +17,8 @@
 */
 
 .acct-layout { display: flex; flex-direction: column; gap: var(--space-8); }
-.acct-nav { display: flex; flex-direction: column; gap: 2px; border: 1px solid var(--line-hairline); border-radius: var(--radius-md); background: var(--bg-surface); padding: var(--space-2); }
-.acct-nav-home { display: flex; align-items: center; min-height: var(--size-target); padding: var(--space-1) var(--space-4); font-size: 12px; font-weight: var(--weight-strong); letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-primary); text-decoration: none; }
+.acct-nav { display: flex; flex-direction: column; gap: 0.125rem; border: 1px solid var(--line-hairline); border-radius: var(--radius-md); background: var(--bg-surface); padding: var(--space-2); }
+.acct-nav-home { display: flex; align-items: center; min-height: var(--size-target); padding: var(--space-1) var(--space-4); font-size: 0.75rem; font-weight: var(--weight-strong); letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-primary); text-decoration: none; }
 .acct-nav-link { display: flex; align-items: center; gap: var(--space-3); min-height: var(--size-target); padding: var(--space-4); border-radius: var(--radius-sm); border-left: 2px solid transparent; font-size: var(--type-sm); color: var(--text-secondary); text-decoration: none; transition: color .15s, background .12s var(--ease); }
 .acct-nav-link:hover { color: var(--text-primary); background: var(--bg-page); /* a hover that goes darker than its surface: no state token carries it, so it reads the page ground. Accepted at Step 6 */ }
 .acct-nav-link.is-current { color: var(--text-primary); background: var(--bg-page); /* a hover that goes darker than its surface: no state token carries it, so it reads the page ground. Accepted at Step 6 */ border-left-color: var(--bg-action); }
@@ -26,8 +26,8 @@
 .acct-id { display: flex; align-items: center; gap: var(--space-6); padding-bottom: var(--space-7); margin-bottom: var(--space-7); border-bottom: 1px solid var(--line-hairline); }
 /* .acct-id-avatar is the avatar atom's 40px form and is declared in avatar.css only. Round 3 wrote it
    here too, identically; the duplicate was removed at Step 6, because an organism never redeclares an atom. */
-.acct-id-name { font-size: 14.5px; font-weight: var(--weight-strong); color: var(--text-primary); }
-.acct-id-meta { font-size: var(--type-xs); color: var(--text-secondary); margin-top: 3px; }
+.acct-id-name { font-size: 0.90625rem; font-weight: var(--weight-strong); color: var(--text-primary); }
+.acct-id-meta { font-size: var(--type-xs); color: var(--text-secondary); margin-top: 0.1875rem; }
 .acct-section-t { font-family: var(--font-mono); font-size: var(--type-3xs); font-weight: var(--weight-medium); letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-secondary); margin: var(--space-9) 0 var(--space-2); }
 .acct-section-t:first-child { margin-top: 0; }
 /* one closing line pointing out of the settings and into the document that explains them */

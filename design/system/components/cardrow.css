@@ -10,7 +10,7 @@
 */
 
 .cardrow {
-  display: block; padding: 15px var(--space-3);
+  display: block; padding: 0.9375rem var(--space-3);
   border-bottom: 1px solid var(--line-hairline);
   text-decoration: none; color: inherit;
   transition: background-color .12s var(--ease);

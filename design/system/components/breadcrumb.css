@@ -24,7 +24,7 @@
    No em dash anywhere in this file.
 */
 
-.breadcrumb { display: flex; align-items: center; gap: var(--space-2); font-size: 12px; color: var(--text-secondary); padding: 0 calc(var(--frame-inset, 0px) + var(--gutter-page)); border-bottom: 1px solid var(--line-hairline); }
+.breadcrumb { display: flex; align-items: center; gap: var(--space-2); font-size: 0.75rem; color: var(--text-secondary); padding: 0 calc(var(--frame-inset, 0px) + var(--gutter-page)); border-bottom: 1px solid var(--line-hairline); }
 .breadcrumb a { display: inline-flex; align-items: center; min-height: var(--size-target); color: var(--text-secondary); text-decoration: none; }
 .breadcrumb a:hover { color: var(--text-primary); }
 .breadcrumb span { color: var(--text-secondary); }

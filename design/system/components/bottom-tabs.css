@@ -26,7 +26,7 @@
 */
 
 .bottomtabs { display: flex; position: sticky; bottom: 0; border-top: 1px solid var(--line-hairline); background: var(--bg-surface); }
-.btab { display: flex; flex-direction: column; align-items: center; gap: 3px; text-decoration: none; color: var(--text-secondary); font-size: var(--type-3xs); flex: 1; padding: var(--space-3) 0; }
+.btab { display: flex; flex-direction: column; align-items: center; gap: 0.1875rem; text-decoration: none; color: var(--text-secondary); font-size: var(--type-3xs); flex: 1; padding: var(--space-3) 0; }
 .btab .ico { width: 20px; height: 20px; color: var(--text-secondary); }
 .btab .ico svg { width: 20px; height: 20px; display: block; }
 .btab.active { color: var(--text-accent); }

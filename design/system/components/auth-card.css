@@ -15,13 +15,13 @@
    No em dash anywhere in this file.
 */
 
-.auth-wrap { max-width: 25rem; margin: 34px auto; }
+.auth-wrap { max-width: 25rem; margin: 2.125rem auto; }
 .auth-card { background: var(--bg-surface); border: 1px solid var(--line-hairline); border-radius: var(--radius-lg); padding: var(--space-10); }
 .auth-card + .auth-card { margin-top: var(--space-7); }
-.auth-h2 { font-size: var(--type-lg); font-weight: var(--weight-strong); letter-spacing: var(--tracking-title); color: var(--text-primary); margin-bottom: 5px; }
+.auth-h2 { font-size: var(--type-lg); font-weight: var(--weight-strong); letter-spacing: var(--tracking-title); color: var(--text-primary); margin-bottom: 0.3125rem; }
 .auth-step { display: block; font-family: var(--font-mono); font-size: var(--type-3xs); font-weight: var(--weight-medium); letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: var(--space-3); }
 .auth-value { font-size: var(--type-xs); color: var(--text-secondary); line-height: var(--leading-body); margin: var(--space-1) 0 var(--space-8); }
-.auth-or { display: flex; align-items: center; gap: var(--space-4); font-size: 11.5px; color: var(--text-secondary); margin: var(--space-7) 0; }
+.auth-or { display: flex; align-items: center; gap: var(--space-4); font-size: 0.71875rem; color: var(--text-secondary); margin: var(--space-7) 0; }
 .auth-or::before, .auth-or::after { content: ""; flex: 1; height: 1px; background: var(--line-hairline); }
-.auth-switch { font-size: var(--type-xs); color: var(--text-secondary); text-align: center; margin-top: 20px; }
+.auth-switch { font-size: var(--type-xs); color: var(--text-secondary); text-align: center; margin-top: 1.25rem; }
 .auth-sent { font-size: var(--type-xs); color: var(--text-secondary); line-height: var(--leading-body); background: var(--bg-page); border: 1px solid var(--line-hairline); border-radius: var(--radius-md); padding: var(--space-6); }

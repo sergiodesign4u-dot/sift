@@ -12,5 +12,5 @@
    No em dash anywhere in this file.
 */
 
-.field-label { display: block; font-size: 12px; /* kit.css:372. Reverted at Step 6 */ color: var(--text-secondary); margin-bottom: var(--space-2); }
+.field-label { display: block; font-size: 0.75rem; /* kit.css:372. Reverted at Step 6 */ color: var(--text-secondary); margin-bottom: var(--space-2); }
 .field-label-row { display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-5); }

@@ -18,7 +18,7 @@
    No em dash anywhere in this file.
 */
 
-.provlist { list-style: none; font-size: 12px; color: var(--text-secondary); margin: var(--space-1) 0 var(--space-5); }
+.provlist { list-style: none; font-size: 0.75rem; color: var(--text-secondary); margin: var(--space-1) 0 var(--space-5); }
 .provlist li { padding: var(--space-2) 0; border-bottom: 1px solid var(--line-hairline); }
 .provlist b { color: var(--text-primary); font-weight: var(--weight-strong); }
 .provlist a { color: var(--text-primary); }

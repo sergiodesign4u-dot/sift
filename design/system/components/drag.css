@@ -14,7 +14,7 @@
 .drag {
   display: inline-flex; align-items: center; justify-content: center;
   min-width: var(--size-check); min-height: var(--size-target);
-  color: var(--text-secondary); cursor: grab; flex: none; line-height: 1; font-size: 13px; /* kit.css:414. Reverted at Step 6 */
+  color: var(--text-secondary); cursor: grab; flex: none; line-height: 1; font-size: 0.8125rem; /* kit.css:414. Reverted at Step 6 */
 }
 .drag:active { cursor: grabbing; }
 .drag .ic { width: 15px; height: 15px; }

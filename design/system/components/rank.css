@@ -9,4 +9,4 @@
    No em dash anywhere in this file.
 */
 
-.rank { font-family: var(--font-mono); font-size: 12px; /* kit.css:152, no type step is 12. Reverted at Step 6 */ color: var(--text-secondary); text-align: right; padding-top: 2px; }
+.rank { font-family: var(--font-mono); font-size: 0.75rem; /* kit.css:152, no type step is 12. Reverted at Step 6 */ color: var(--text-secondary); text-align: right; padding-top: 0.125rem; }

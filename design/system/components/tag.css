@@ -18,6 +18,6 @@
   letter-spacing: 0.04em; text-transform: uppercase;
   color: var(--text-secondary);
   border: 1px solid var(--line-hairline); border-radius: var(--radius-sm);
-  padding: 2px var(--space-2); white-space: nowrap; flex: none;
+  padding: 0.125rem var(--space-2); white-space: nowrap; flex: none;
 }
 .tag--alert { color: var(--text-warning); border-color: var(--line-warning); border-style: dashed; background: var(--bg-warning); }

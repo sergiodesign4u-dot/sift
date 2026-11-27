@@ -135,7 +135,7 @@ a.kit-link:hover { color: var(--text-primary); background: var(--bg-raised); }
 .pair-half.is-dark { background: #0B0E11; color: #EAEEF2; }
 .pair-half.is-light { background: #FFFFFF; color: #101418; }
 .pair-t { font-family: var(--font-mono); font-size: var(--type-3xs); letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.7; }
-.pair-chip { display: inline-block; margin-top: 8px; padding: 4px 9px; border-radius: var(--radius-sm); font-family: var(--font-mono); font-size: var(--type-3xs); }
+.pair-chip { display: inline-block; max-width: 100%; overflow-wrap: anywhere; margin-top: 8px; padding: 4px 9px; border-radius: var(--radius-sm); font-family: var(--font-mono); font-size: var(--type-3xs); }   /* Stage 10 Step 6, D16: an rgba() value breaks inside its half instead of being cut */
 
 /* ---------- tables ---------- */
 .tbl-wrap { position: relative; overflow-x: auto; border: 1px solid var(--line-hairline); border-radius: var(--radius-lg); margin-top: 16px; }
@@ -217,6 +217,7 @@ table.kit-matrix { width: 100%; min-width: 620px; border-collapse: collapse; }
 /* other forms: a tile per form that is not a cell of the matrix */
 .kit-forms { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 12px; margin-top: 16px; }
 .kit-form-c { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; min-height: 96px; padding: 18px; background: var(--bg-page); border: 1px solid var(--line-hairline); border-radius: var(--radius-lg); }
+.kit-form-c > * { max-width: 100%; min-width: 0; }   /* Stage 10 Step 6, D15: a specimen wider than its column (the three-level breadcrumb) wraps inside it, as on a screen, instead of pushing the page sideways */
 .kit-form-t { margin-top: 10px; font-size: var(--type-xs); font-weight: var(--weight-strong); color: var(--text-primary); }
 .kit-form-d { margin-top: 3px; font-size: var(--type-3xs); color: var(--text-secondary); line-height: var(--leading-body); }
 .kit-form-d code { font-family: var(--font-mono); color: var(--text-primary); }
@@ -234,6 +235,7 @@ table.kit-matrix { width: 100%; min-width: 620px; border-collapse: collapse; }
 
 /* do and do not: the live example over the sentence, the sentence over nothing */
 .kit-dodont { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 18px; }
+.kit-dodont--stack { grid-template-columns: 1fr; }   /* Stage 10 Step 6, D14: a pair of wide specimens (the wide header) one under another, each the full width of the section */
 .kit-dd { border: 1px solid var(--line-hairline); border-radius: var(--radius-lg); overflow: hidden; background: var(--bg-surface); }
 .kit-dd-c { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 20px 18px; background: var(--bg-page); border-bottom: 1px solid var(--line-hairline); }
 .kit-dd-b { padding: 12px 16px 16px; border-top: 3px solid var(--line-hairline); margin-top: -1px; }
@@ -309,6 +311,15 @@ table.kit-matrix { width: 100%; min-width: 620px; border-collapse: collapse; }
 .appframe:has(.theme .check:checked) .selbar { display: flex; }
 .appframe:has(.theme .check:checked) .head-action { display: none; }
 .appframe > .notice { margin: var(--space-6) var(--gutter-page); }   /* Stage 10 round 3: the twin follows the shell, --gutter-page instead of 22 switching to 16 at 820 */
+/* Stage 10 Step 6, D14. A stand frame in a table cell is narrower than the point while the window
+   is wider, so the product's swap, which reads the WINDOW, drew the wide header in a 249 to 335px
+   box and cut Briefs and the avatar. .appframe--box makes such a frame answer its own box with the
+   same number: under 37.5rem of frame the header drops its tabs and the bottom tabs show. A stand
+   twin of the two @media in app-header.css and bottom-tabs.css, never a product rule. */
+@container (width < 37.5rem) {
+  .appframe--box .navtabs { display: none; }
+  .appframe--box .bottomtabs { display: flex; }
+}
 
 /* ---------- the pattern pages (Stage 09 Step 2) ----------
    Anatomy: each part of a LIVE pattern carries data-kit-n, and the stand draws a dashed outline

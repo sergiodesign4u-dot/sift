@@ -19,7 +19,7 @@
 .link--muted:hover { color: var(--text-primary); }
 .link--action {
   display: inline-flex; align-items: center; min-height: var(--size-target);
-  font-size: 12px; color: var(--text-secondary);   /* kit.css:320: 12px and no side padding. Reverted at Step 6 */
+  font-size: 0.75rem; color: var(--text-secondary);   /* kit.css:320: 12px and no side padding. Reverted at Step 6 */
   background: none; border: 0; cursor: pointer;
   text-decoration: underline;
 }

@@ -22,13 +22,13 @@
    No em dash anywhere in this file.
 */
 
-.state { max-width: 27.5rem; margin: 40px auto; text-align: center; display: flex; flex-direction: column; align-items: center; gap: var(--space-6); padding: 20px; }
-.state-t { font-size: 19px; font-weight: var(--weight-strong); letter-spacing: var(--tracking-head); color: var(--text-primary); }
+.state { max-width: 27.5rem; margin: 2.5rem auto; text-align: center; display: flex; flex-direction: column; align-items: center; gap: var(--space-6); padding: 1.25rem; }
+.state-t { font-size: 1.1875rem; font-weight: var(--weight-strong); letter-spacing: var(--tracking-head); color: var(--text-primary); }
 .state-d { font-size: var(--type-sm); color: var(--text-secondary); line-height: var(--leading-body); }
 .state-actions { display: flex; gap: var(--space-4); margin-top: var(--space-2); flex-wrap: wrap; justify-content: center; }
 
 /* An empty group inside a screen that is otherwise populated: it sits in the flow of the list,
    left aligned, because the next action is further down the screen and not in here. */
-.state--inline { max-width: none; margin: 0; text-align: left; align-items: flex-start; padding: var(--space-9) var(--space-3) 24px; border-bottom: 1px solid var(--line-hairline); }
+.state--inline { max-width: none; margin: 0; text-align: left; align-items: flex-start; padding: var(--space-9) var(--space-3) 1.5rem; border-bottom: 1px solid var(--line-hairline); }
 .state--inline .state-d { max-width: 60ch; }
 .state--inline .state-actions { justify-content: flex-start; }

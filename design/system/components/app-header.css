@@ -39,9 +39,9 @@
 */
 
 .appbar { display: flex; align-items: center; gap: var(--space-6); height: var(--size-bar); padding: 0 calc(var(--frame-inset, 0px) + var(--space-8)); border-bottom: 1px solid var(--line-hairline); background: var(--bg-surface); }
-.brand { display: flex; align-items: center; gap: var(--space-3); font-weight: var(--weight-strong); letter-spacing: 0.06em; text-transform: uppercase; font-size: 13px; color: var(--text-primary); }
+.brand { display: flex; align-items: center; gap: var(--space-3); font-weight: var(--weight-strong); letter-spacing: 0.06em; text-transform: uppercase; font-size: 0.8125rem; color: var(--text-primary); }
 .brand .mark { color: var(--text-accent); }
-.navtabs { display: none; gap: 2px; }
+.navtabs { display: none; gap: 0.125rem; }
 .navtabs a { display: inline-flex; align-items: center; min-height: var(--size-target); font-size: var(--type-sm); color: var(--text-secondary); text-decoration: none; padding: 0 var(--space-5); border-radius: var(--radius-md); transition: color .15s, background .15s; }
 .navtabs a:hover { color: var(--text-primary); }
 .navtabs a.active { color: var(--text-primary); background: var(--bg-raised); }

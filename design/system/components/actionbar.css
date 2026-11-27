@@ -23,6 +23,6 @@
 /* threshold 29rem: below it the note takes its own line and the buttons share the next */
 @container (width < 29rem) {
   .actionbar { flex-wrap: wrap; }
-  .actionbar-note { width: 100%; margin-right: 0; margin-bottom: 2px; }
+  .actionbar-note { width: 100%; margin-right: 0; margin-bottom: 0.125rem; }
   .actionbar > a, .actionbar > button { flex: 1; }
 }

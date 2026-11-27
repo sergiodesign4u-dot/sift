@@ -1,5 +1,5 @@
 /* design/system/components/public-doc.css - level 3, organism.
-   Reads: --line-hairline, --bg-surface, --text-primary, --text-secondary, --font-mono, --radius-md, --space-*, --type-*, --weight-*, --leading-*, --tracking-*
+   Reads: --line-hairline, --bg-surface, --text-primary, --text-secondary, --font-mono, --radius-md, --space-*, --type-*, --weight-*, --leading-*, --tracking-*, --container-text
    Page:  design/kit/public-doc.html
    Stands on: 6.4 Shared brief, design/shared-brief.html; .public-main and .public-eyebrow also on
    0.0 Home. One form: eyebrow, H1, lede, meta, key
@@ -23,18 +23,22 @@
    content, which inline-size containment would take to zero. One container threshold, 21rem on
    the column: below it the confidence follows the theme label instead of standing at the right
    edge (measured: a key row breaks in two under a 320px column).
+   THE MEASURE (Stage 10 Step 6, D3, and N1 of the second pass): the lede, the rationale, the theme
+   summaries and the method note are continuous text and read --container-text; until then they had
+   none: about 92, 90, 85 and 116 characters a line at 1280 (B-25).
+   Stage 10 Step 6, D1 and D2: every size and space in px here is now the same value in rem.
    No em dash anywhere in this file.
 */
 
 .public-main { width: 100%; max-width: 45rem; margin: 0 auto; padding: clamp(1.375rem, 0.978rem + 1.7647vw, 2.125rem) var(--gutter-page) clamp(2.125rem, 1.7941rem + 1.4706vw, 2.75rem); container-type: inline-size; }
 .public-eyebrow { font-family: var(--font-mono); font-size: var(--type-2xs); letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-secondary); }
 .pub-h1 { font-size: var(--type-2xl); font-weight: var(--weight-strong); letter-spacing: var(--tracking-display); line-height: var(--leading-tight); margin: var(--space-4) 0 var(--space-5); }
-.pub-lede { font-size: 15.5px; line-height: 1.65; color: var(--text-secondary); }
-.pub-meta { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-9); margin-top: 20px; padding: var(--space-6) 0; border-top: 1px solid var(--line-hairline); border-bottom: 1px solid var(--line-hairline); font-size: 12px; color: var(--text-secondary); }
+.pub-lede { font-size: 0.96875rem; line-height: 1.65; color: var(--text-secondary); max-width: var(--container-text); }
+.pub-meta { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-9); margin-top: 1.25rem; padding: var(--space-6) 0; border-top: 1px solid var(--line-hairline); border-bottom: 1px solid var(--line-hairline); font-size: 0.75rem; color: var(--text-secondary); }
 .pub-meta b { color: var(--text-primary); font-weight: var(--weight-medium); }
 
 /* Key takeaways, for the reader who will not scroll (A4: the order IS the recommendation) */
-.pub-key { margin: var(--space-10) 0 0; padding: var(--space-8) 20px; background: var(--bg-surface); border: 1px solid var(--line-hairline); border-radius: var(--radius-md); }
+.pub-key { margin: var(--space-10) 0 0; padding: var(--space-8) 1.25rem; background: var(--bg-surface); border: 1px solid var(--line-hairline); border-radius: var(--radius-md); }
 .pub-key h2 { font-size: var(--type-2xs); font-weight: var(--weight-strong); letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-secondary); margin-bottom: var(--space-5); }
 .pub-key ol { list-style: none; display: grid; gap: var(--space-4); }
 .pub-key li { display: flex; align-items: baseline; gap: var(--space-5); font-size: var(--type-md); color: var(--text-primary); }
@@ -42,21 +46,21 @@
 .pub-key .conf { margin-left: auto; }
 
 /* The author's judgement, attributed and visibly separate from the evidence (A5) */
-.pub-rationale { margin: var(--space-9) 0 0; padding-left: var(--space-6); border-left: 2px solid var(--line-hairline); font-size: var(--type-base); line-height: 1.7; color: var(--text-secondary); }
+.pub-rationale { margin: var(--space-9) 0 0; padding-left: var(--space-6); border-left: 2px solid var(--line-hairline); font-size: var(--type-base); line-height: 1.7; color: var(--text-secondary); max-width: var(--container-text); }
 .pub-rationale b { color: var(--text-primary); font-weight: var(--weight-medium); }
 
-.pub-h2 { font-size: var(--type-2xs); font-weight: var(--weight-strong); letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-secondary); margin: 34px 0 var(--space-6); padding-top: var(--space-8); border-top: 1px solid var(--line-hairline); }
+.pub-h2 { font-size: var(--type-2xs); font-weight: var(--weight-strong); letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-secondary); margin: 2.125rem 0 var(--space-6); padding-top: var(--space-8); border-top: 1px solid var(--line-hairline); }
 .pub-theme { margin-bottom: var(--space-10); }
-.pub-theme h3 { display: flex; align-items: baseline; gap: var(--space-4); flex-wrap: wrap; font-size: var(--type-lg); font-weight: var(--weight-strong); letter-spacing: var(--tracking-title); color: var(--text-primary); margin-bottom: 9px; }
+.pub-theme h3 { display: flex; align-items: baseline; gap: var(--space-4); flex-wrap: wrap; font-size: var(--type-lg); font-weight: var(--weight-strong); letter-spacing: var(--tracking-title); color: var(--text-primary); margin-bottom: 0.5625rem; }
 .pub-theme h3 .conf { margin-left: auto; }
-.pub-theme p { font-size: 14.5px; line-height: var(--leading-loose); color: var(--text-secondary); }
+.pub-theme p { font-size: 0.90625rem; line-height: var(--leading-loose); color: var(--text-secondary); max-width: var(--container-text); }
 
 /* The customer's words, set as reading matter rather than as a card (A5) */
-.pub-quote { margin: var(--space-5) 0 0 0; padding-left: 15px; border-left: 1px solid var(--line-hairline); font-size: var(--type-base); line-height: 1.7; color: var(--text-primary); }
+.pub-quote { margin: var(--space-5) 0 0 0; padding-left: 0.9375rem; border-left: 1px solid var(--line-hairline); font-size: var(--type-base); line-height: 1.7; color: var(--text-primary); }
 
-.pub-cites { list-style: none; display: grid; gap: 11px; }
-.pub-cites li { display: flex; gap: 11px; font-size: 13px; line-height: 1.65; color: var(--text-secondary); }
-.pub-cites .cite { flex: none; margin-top: 2px; }
+.pub-cites { list-style: none; display: grid; gap: 0.6875rem; }
+.pub-cites li { display: flex; gap: 0.6875rem; font-size: 0.8125rem; line-height: 1.65; color: var(--text-secondary); }
+.pub-cites .cite { flex: none; margin-top: 0.125rem; }
 
 /* Coverage, not a bibliography: what the brief could and could not have seen (A2) */
 .pub-sources { list-style: none; display: grid; gap: 0; }
@@ -65,11 +69,11 @@
 .pub-sources b { margin-left: auto; font-family: var(--font-mono); font-weight: var(--weight-medium); color: var(--text-primary); }
 
 /* One honest line on how it was made (A3) */
-.pub-method { margin-top: var(--space-10); padding-top: var(--space-8); border-top: 1px solid var(--line-hairline); font-size: var(--type-xs); line-height: 1.7; color: var(--text-secondary); }
+.pub-method { margin-top: var(--space-10); padding-top: var(--space-8); border-top: 1px solid var(--line-hairline); font-size: var(--type-xs); line-height: 1.7; color: var(--text-secondary); max-width: var(--container-text); }
 
 /* The foot of the shared document: one centred mono line under the reading column. Lead-added:
    it sits in the 6.4 block of kit.css and is used only by design/shared-brief.html. */
-.pubfoot { padding: var(--space-7) 24px; border-top: 1px solid var(--line-hairline); background: var(--bg-surface); font-family: var(--font-mono); font-size: var(--type-2xs); color: var(--text-secondary); text-align: center; }
+.pubfoot { padding: var(--space-7) 1.5rem; border-top: 1px solid var(--line-hairline); background: var(--bg-surface); font-family: var(--font-mono); font-size: var(--type-2xs); color: var(--text-secondary); text-align: center; }
 
 /* threshold 21rem: below it the confidence follows the label instead of standing at the right edge */
 @container (width < 21rem) {
